@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/widgets/vertical_space.dart';
-import 'package:moodly/features/home/presentation/widgets/feeling_today_section/feeling_today_section.dart';
-
+import '../../../../core/widgets/vertical_space.dart';
+import '../widgets/feeling_today_section/feeling_today_section.dart';
 import '../../../../core/constants/constants.dart';
 import '../widgets/daily_stats_section/daily_stats_section.dart';
 import '../widgets/home_appbar/home_appbar.dart';
