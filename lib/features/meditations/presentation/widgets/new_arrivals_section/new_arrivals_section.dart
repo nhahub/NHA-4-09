@@ -8,6 +8,7 @@ class NewArrivalsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const AppSectionHeader(title: "New arrivals"),
         Container(),

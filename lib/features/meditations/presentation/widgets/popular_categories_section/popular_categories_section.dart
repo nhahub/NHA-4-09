@@ -8,6 +8,7 @@ class PopularCategoriesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const AppSectionHeader(title: "Popular Categories"),
         Container(),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../core/constants/constants.dart';
 import '../widgets/categories_section/categories_section.dart';
 import '../widgets/for_difficult_situations_section/for_difficult_situations_section.dart';
@@ -14,26 +13,30 @@ class MeditationsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
-      child: Column(
-        children: [
-          SizedBox(height: 70),
-          MeditationsAppBar(),
-          SizedBox(height: 70),
-          CategoriesSection(),
-          SizedBox(height: 70),
-          RecommendedForYouSection(),
-          SizedBox(height: 70),
-          PopularCategoriesSection(),
-          SizedBox(height: 70),
-          YourDailyRoutineSection(),
-          SizedBox(height: 70),
-          ForDifficultSituationsSection(),
-          SizedBox(height: 70),
-          NewArrivalsSection(),
-          SizedBox(height: 70),
-        ],
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
+          child: Column(
+            children: [
+              SizedBox(height: 60),
+              MeditationsAppBar(isPremium: false),
+              SizedBox(height: 20),
+              CategoriesSection(),
+              SizedBox(height: 20),
+              RecommendedForYouSection(),
+              SizedBox(height: 20),
+              PopularCategoriesSection(),
+              SizedBox(height: 20),
+              YourDailyRoutineSection(),
+              SizedBox(height: 20),
+              ForDifficultSituationsSection(),
+              SizedBox(height: 20),
+              NewArrivalsSection(),
+              SizedBox(height: 20),
+            ],
+          ),
+        ),
       ),
     );
   }

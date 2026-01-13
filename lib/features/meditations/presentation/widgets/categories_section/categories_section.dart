@@ -5,6 +5,8 @@ class CategoriesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [Container()]);
+    return Row(
+      
+      children: [Container()]);
   }
 }

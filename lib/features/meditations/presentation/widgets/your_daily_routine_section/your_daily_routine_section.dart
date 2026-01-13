@@ -8,6 +8,7 @@ class YourDailyRoutineSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const AppSectionHeader(title: "Your daily routine"),
         Container(),

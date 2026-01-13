@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:moodly/features/meditations/presentation/views/meditations_view.dart';
 
 import '../../features/app/privacy_policy_view.dart';
 import '../../features/app/terms_and_conditions_view.dart';
@@ -15,7 +16,7 @@ import 'routes.dart';
 abstract class AppRouter {
   static GoRouter createRouter() {
     return GoRouter(
-      initialLocation: Routes.homeView,
+      initialLocation: Routes.meditationsView,
       routes: [
         GoRoute(
           path: Routes.startView,
@@ -58,6 +59,10 @@ abstract class AppRouter {
         GoRoute(
           path: Routes.homeView,
           builder: (context, state) => const HomeView(),
+        ),
+        GoRoute(
+          path: Routes.meditationsView,
+          builder: (context, state) => const MeditationsView(),
         ),
       ],
     );

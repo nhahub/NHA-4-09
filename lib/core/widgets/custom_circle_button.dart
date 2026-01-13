@@ -20,7 +20,7 @@ class CustomCircleButton extends StatelessWidget {
         }
       },
       child: Container(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: Colors.white,
           shape: BoxShape.circle,
@@ -43,7 +43,7 @@ class CustomCircleButton extends StatelessWidget {
             ),
           ],
         ),
-        child: SvgPicture.asset(icon, width: 24),
+        child: SvgPicture.asset(icon, width: 22),
       ),
     );
   }
