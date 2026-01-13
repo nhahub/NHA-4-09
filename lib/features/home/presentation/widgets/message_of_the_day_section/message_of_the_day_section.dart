@@ -8,6 +8,7 @@ class MessageOfTheDaySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const AppSectionHeader(title: "Message of the Day"),
         Container(),

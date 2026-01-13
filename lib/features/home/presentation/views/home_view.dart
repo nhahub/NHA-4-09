@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/features/home/presentation/widgets/feeling_today_section/feeling_today_section.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../widgets/daily_stats_section/daily_stats_section.dart';
@@ -14,24 +15,28 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
-        child: Column(
-          children: [
-            SizedBox(height: 70),
-            HomeAppbar(),
-            SizedBox(height: 70),
-            MessageOfTheDaySection(),
-            SizedBox(height: 70),
-            DailyStatsSection(),
-            SizedBox(height: 70),
-            MoodProgressSection(),
-            SizedBox(height: 70),
-            MeditationsForYouSection(),
-            SizedBox(height: 70),
-            SessionsForYouSection(),
-            SizedBox(height: 70),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
+          child: Column(
+            children: [
+              SizedBox(height: 60),
+              HomeAppbar(isPremium: false),
+              SizedBox(height: 20),
+              MessageOfTheDaySection(),
+              SizedBox(height: 30),
+              FeelingTodaySection(),
+              SizedBox(height: 30),
+              DailyStatsSection(),
+              SizedBox(height: 30),
+              MoodProgressSection(),
+              SizedBox(height: 30),
+              MeditationsForYouSection(),
+              SizedBox(height: 30),
+              SessionsForYouSection(),
+              SizedBox(height: 30),
+            ],
+          ),
         ),
       ),
     );
