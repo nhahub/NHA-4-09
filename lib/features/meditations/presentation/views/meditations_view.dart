@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/widgets/vertical_space.dart';
 import '../../../../core/constants/constants.dart';
 import '../widgets/categories_section/categories_section.dart';
 import '../widgets/for_difficult_situations_section/for_difficult_situations_section.dart';
@@ -14,28 +15,32 @@ class MeditationsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
-          child: Column(
-            children: [
-              SizedBox(height: 60),
-              MeditationsAppBar(isPremium: false),
-              SizedBox(height: 20),
-              CategoriesSection(),
-              SizedBox(height: 20),
-              RecommendedForYouSection(),
-              SizedBox(height: 20),
-              PopularCategoriesSection(),
-              SizedBox(height: 20),
-              YourDailyRoutineSection(),
-              SizedBox(height: 20),
-              ForDifficultSituationsSection(),
-              SizedBox(height: 20),
-              NewArrivalsSection(),
-              SizedBox(height: 20),
-            ],
-          ),
+      body: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
+        child: Column(
+          children: [
+            SizedBox(height: 60),
+            MeditationsAppBar(isPremium: false),
+            VerticalSpace(),
+            CategoriesSection(),
+            VerticalSpace(),
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  RecommendedForYouSection(),
+                  VerticalSpace(),
+                  PopularCategoriesSection(),
+                  VerticalSpace(),
+                  YourDailyRoutineSection(),
+                  VerticalSpace(),
+                  ForDifficultSituationsSection(),
+                  VerticalSpace(),
+                  NewArrivalsSection(),
+                  VerticalSpace(),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

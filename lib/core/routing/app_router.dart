@@ -16,7 +16,7 @@ import 'routes.dart';
 abstract class AppRouter {
   static GoRouter createRouter() {
     return GoRouter(
-      initialLocation: Routes.meditationsView,
+      initialLocation: Routes.homeView,
       routes: [
         GoRoute(
           path: Routes.startView,

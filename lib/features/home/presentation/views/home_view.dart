@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/widgets/vertical_space.dart';
 import 'package:moodly/features/home/presentation/widgets/feeling_today_section/feeling_today_section.dart';
 
 import '../../../../core/constants/constants.dart';
@@ -15,28 +16,32 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
-          child: Column(
-            children: [
-              SizedBox(height: 60),
-              HomeAppbar(isPremium: false),
-              SizedBox(height: 20),
-              MessageOfTheDaySection(),
-              SizedBox(height: 20),
-              FeelingTodaySection(),
-              SizedBox(height: 20),
-              DailyStatsSection(),
-              SizedBox(height: 20),
-              MoodProgressSection(),
-              SizedBox(height: 20),
-              MeditationsForYouSection(),
-              SizedBox(height: 20),
-              SessionsForYouSection(),
-              SizedBox(height: 20),
-            ],
-          ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
+        child: Column(
+          children: [
+            SizedBox(height: 60),
+            HomeAppbar(isPremium: false),
+            VerticalSpace(),
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  MessageOfTheDaySection(),
+                  VerticalSpace(),
+                  FeelingTodaySection(),
+                  VerticalSpace(),
+                  DailyStatsSection(),
+                  VerticalSpace(),
+                  MoodProgressSection(),
+                  VerticalSpace(),
+                  MeditationsForYouSection(),
+                  VerticalSpace(),
+                  SessionsForYouSection(),
+                  VerticalSpace(),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
