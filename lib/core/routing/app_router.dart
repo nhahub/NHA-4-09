@@ -1,7 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:moodly/features/splash/splash_view.dart';
 import '../../features/meditations/presentation/views/meditations_view.dart';
-
 import '../../features/app/privacy_policy_view.dart';
 import '../../features/app/terms_and_conditions_view.dart';
 import '../../features/auth/presentation/views/forgot_password_view.dart';

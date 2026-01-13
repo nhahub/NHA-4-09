@@ -50,6 +50,20 @@ abstract class AppStyles {
     fontFamily: "Nunito",
     letterSpacing: -0.2,
   );
+  // h2 with shadow
+  static TextStyle h2WithShadow = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeightHelper.extraBold,
+    fontFamily: "Nunito",
+    letterSpacing: -0.2,
+    shadows: [
+      Shadow(
+        color: Colors.black.withAlpha(alphaFromPercentage(24)),
+        offset: const Offset(0, 2),
+        blurRadius: 2,
+      ),
+    ],
+  );
   // h3
   static const TextStyle h3 = TextStyle(
     fontSize: 16,
