@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../../../core/widgets/vertical_space.dart';
-import '../widgets/feeling_today_section/feeling_today_section.dart';
+
 import '../../../../core/constants/constants.dart';
+import '../../../../core/widgets/vertical_space.dart';
 import '../widgets/daily_stats_section/daily_stats_section.dart';
+import '../widgets/feeling_today_section/feeling_today_section.dart';
 import '../widgets/home_appbar/home_appbar.dart';
 import '../widgets/meditations_for_you_section/meditations_for_you_section.dart';
 import '../widgets/message_of_the_day_section/message_of_the_day_section.dart';

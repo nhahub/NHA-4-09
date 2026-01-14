@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/helpers/alpha_from_percent.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/core/theming/app_styles.dart';
+import '../../../../../core/helpers/alpha_from_percent.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/app_styles.dart';
 
 class CardContant extends StatelessWidget {
   const CardContant({super.key, required this.quote, required this.author});

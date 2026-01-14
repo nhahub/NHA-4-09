@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
 import '../helpers/alpha_from_percent.dart';
 import '../routing/routes.dart';
 import '../theming/app_colors.dart';
@@ -12,7 +13,7 @@ class FreeContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(Routes.premiumOfferView);
+        context.push(Routes.premiumView);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),

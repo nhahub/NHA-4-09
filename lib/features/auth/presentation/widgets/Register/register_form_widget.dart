@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:moodly/features/auth/presentation/widgets/Register/already_have_an_account.dart';
-import 'package:moodly/features/auth/presentation/widgets/shared/email_text_field.dart';
-import 'package:moodly/features/auth/presentation/widgets/shared/password_text_field.dart';
+import 'already_have_an_account.dart';
+import '../shared/email_text_field.dart';
+import '../shared/password_text_field.dart';
 import '../../../../../core/widgets/app_text_button.dart';
 
 class RegisterFormWidget extends StatefulWidget {

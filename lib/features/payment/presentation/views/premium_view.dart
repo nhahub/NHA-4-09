@@ -9,8 +9,8 @@ import '../widgets/premium_offers/premium_header.dart';
 import '../widgets/premium_offers/premium_offers.dart';
 import '../widgets/premium_offers/subscribe_section.dart';
 
-class PremiumOffersView extends StatelessWidget {
-  const PremiumOffersView({super.key, required this.withClose});
+class PremiumView extends StatelessWidget {
+  const PremiumView({super.key, required this.withClose});
   final bool withClose;
 
   @override

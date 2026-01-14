@@ -1,9 +1,9 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/features/home/presentation/widgets/message_of_the_day_section/card_contant.dart';
-import 'package:moodly/features/home/presentation/widgets/message_of_the_day_section/card_dot.dart';
+import '../../../../../core/theming/app_assets.dart';
+import '../../../../../core/theming/app_colors.dart';
+import 'card_contant.dart';
+import 'card_dot.dart';
 import '../../../../../core/widgets/app_section_header.dart';
 
 class MessageOfTheDaySection extends StatelessWidget {

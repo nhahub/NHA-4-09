@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moodly/features/auth/presentation/widgets/Register/register_form_widget.dart';
+import 'register_form_widget.dart';
 import '../../../../../core/theming/app_assets.dart';
 
 class RegisterViewBody extends StatelessWidget {

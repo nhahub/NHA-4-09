@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import '../helpers/alpha_from_percent.dart';
 import '../theming/app_assets.dart';
 import '../theming/app_colors.dart';

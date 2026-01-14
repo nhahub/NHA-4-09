@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:moodly/features/auth/presentation/widgets/Register/register_view_body.dart';
+import '../widgets/Register/register_view_body.dart';
 
 class RegisterView extends StatelessWidget {
   const RegisterView({super.key});
