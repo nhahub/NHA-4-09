@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../../../core/routing/routes.dart';
+import 'package:moodly/features/auth/presentation/widgets/Register/already_have_an_account.dart';
+import 'package:moodly/features/auth/presentation/widgets/shared/email_text_field.dart';
+import 'package:moodly/features/auth/presentation/widgets/shared/password_text_field.dart';
 import '../../../../../core/widgets/app_text_button.dart';
-import 'create_an_account.dart';
-import '../shared/email_text_field.dart';
-import 'forgot_password.dart';
-import '../shared/password_text_field.dart';
 
-class LoginFormWidget extends StatefulWidget {
-  const LoginFormWidget({super.key});
+class RegisterFormWidget extends StatefulWidget {
+  const RegisterFormWidget({super.key});
 
   @override
-  State<LoginFormWidget> createState() => _LoginFormWidgetState();
+  State<RegisterFormWidget> createState() => _RegisterFormWidgetState();
 }
 
-class _LoginFormWidgetState extends State<LoginFormWidget> {
+class _RegisterFormWidgetState extends State<RegisterFormWidget> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -38,20 +35,18 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
             EmailTextField(emailController: emailController),
             const SizedBox(height: 20),
             PasswordTextField(passwordController: passwordController),
-            const ForgotPassword(),
-            const SizedBox(height: 20),
             const Spacer(),
             SizedBox(
               width: double.infinity,
               child: AppTextButton(
                 onPressed: () {
-                  validateThenLogin(context);
+                  validateThenRegister(context);
                 },
-                buttonText: "Login",
+                buttonText: "Register",
               ),
             ),
             const SizedBox(height: 20),
-            const CreateAnAccount(),
+            const AlreadyHaveAnAccount(),
             const SizedBox(height: 20),
           ],
         ),
@@ -59,9 +54,9 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
     );
   }
 
-  void validateThenLogin(BuildContext context) {
+  void validateThenRegister(BuildContext context) {
     if (formKey.currentState!.validate()) {
-      context.pushReplacement(Routes.homeView);
+      context.pop();
     }
   }
 }
