@@ -20,7 +20,7 @@ class EmailTextField extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 8, left: 10),
           child: Text(
             "Email",
-            style: AppStyles.p.copyWith(color: AppColors.bodyGray),
+            style: AppStyles.medium15.copyWith(color: AppColors.bodyGray),
           ),
         ),
         AppTextFormField(

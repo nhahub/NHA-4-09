@@ -43,7 +43,7 @@ class SelectableOptionTile extends StatelessWidget {
               height: 24,
             ),
             const SizedBox(width: 18),
-            Expanded(child: Text(text, style: AppStyles.p)),
+            Expanded(child: Text(text, style: AppStyles.medium15)),
             const SizedBox(width: 10),
             Image.asset(icon, width: 60, height: 60),
           ],

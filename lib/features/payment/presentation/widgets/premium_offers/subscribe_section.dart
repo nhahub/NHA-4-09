@@ -26,7 +26,7 @@ class SubscribeSection extends StatelessWidget {
             child: const Text(
               "Subscribe",
               textAlign: TextAlign.center,
-              style: AppStyles.pPlayful,
+              style: AppStyles.extraBold15,
             ),
           ),
         ),

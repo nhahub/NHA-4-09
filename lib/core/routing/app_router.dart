@@ -16,7 +16,7 @@ import 'routes.dart';
 abstract class AppRouter {
   static GoRouter createRouter() {
     return GoRouter(
-      initialLocation: Routes.homeView,
+      initialLocation: Routes.startView,
       routes: [
         GoRoute(
           path: Routes.splashView,
@@ -40,7 +40,6 @@ abstract class AppRouter {
         ),
         GoRoute(
           path: Routes.premiumOfferView,
-
           builder: (context, state) =>
               const PremiumOffersView(withClose: false),
         ),

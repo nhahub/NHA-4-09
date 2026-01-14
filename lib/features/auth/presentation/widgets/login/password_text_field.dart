@@ -28,7 +28,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           padding: const EdgeInsets.only(bottom: 8, left: 10),
           child: Text(
             "Password",
-            style: AppStyles.p.copyWith(color: AppColors.bodyGray),
+            style: AppStyles.medium15.copyWith(color: AppColors.bodyGray),
           ),
         ),
         AppTextFormField(

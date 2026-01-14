@@ -43,7 +43,7 @@ class QuestionnaireButton extends StatelessWidget {
               ? Center(
                   child: Text(
                     "Finish",
-                    style: AppStyles.h3.copyWith(color: Colors.white),
+                    style: AppStyles.extraBold16.copyWith(color: Colors.white),
                   ),
                 )
               : Row(
@@ -51,7 +51,9 @@ class QuestionnaireButton extends StatelessWidget {
                   children: [
                     Text(
                       "Continue",
-                      style: AppStyles.h3.copyWith(color: Colors.white),
+                      style: AppStyles.extraBold16.copyWith(
+                        color: Colors.white,
+                      ),
                     ),
                     const SizedBox(width: 8),
                     SvgPicture.asset(

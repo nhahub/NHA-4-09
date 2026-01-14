@@ -49,7 +49,7 @@ class PremiumContainer extends StatelessWidget {
         children: [
           Text(
             "Premium",
-            style: AppStyles.p.copyWith(
+            style: AppStyles.medium15.copyWith(
               color: Colors.white,
               shadows: [
                 Shadow(

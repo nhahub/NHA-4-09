@@ -22,15 +22,17 @@ class WelcomeView extends StatelessWidget {
           child: Image.asset(AppAssets.welcomeBackground),
         ),
         Padding(
-        padding: const EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
+          padding: const EdgeInsets.symmetric(
+            horizontal: kAppHorizontalPadding,
+          ),
           child: Column(
             children: [
               const SizedBox(height: 25),
-              const Text("Welcome to Zenspun!", style: AppStyles.h1),
+              const Text("Welcome to Zenspun!", style: AppStyles.extraBold27),
               const SizedBox(height: 5),
               Text(
                 "Let's set up your personal space. Find a quiet moment — a few quick questions will help personalize your experience.",
-                style: AppStyles.p.copyWith(color: AppColors.bodyGray),
+                style: AppStyles.medium15.copyWith(color: AppColors.bodyGray),
                 textAlign: TextAlign.center,
               ),
               const Spacer(),
@@ -42,7 +44,7 @@ class WelcomeView extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Continue", style: AppStyles.pPlayful),
+                      const Text("Continue", style: AppStyles.extraBold15),
                       const SizedBox(width: 8),
                       SvgPicture.asset(AppAssets.arrowRightIcon, width: 20),
                     ],

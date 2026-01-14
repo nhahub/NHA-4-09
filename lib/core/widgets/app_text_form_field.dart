@@ -56,12 +56,16 @@ class AppTextFormField extends StatelessWidget {
             buildOutLineInputBorder(borderColor: AppColors.lightGrey),
         enabledBorder:
             enabledBorder ??
-            buildOutLineInputBorder(borderColor: AppColors.borderButton.withAlpha((255 * 0.15).toInt())),
+            buildOutLineInputBorder(
+              borderColor: AppColors.borderButton.withAlpha(
+                (255 * 0.15).toInt(),
+              ),
+            ),
         errorBorder: buildOutLineInputBorder(borderColor: AppColors.darkRed),
         focusedErrorBorder: buildOutLineInputBorder(
           borderColor: AppColors.darkRed,
         ),
-        hintStyle: AppStyles.p,
+        hintStyle: AppStyles.medium15,
         hintText: hintText,
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
@@ -69,7 +73,7 @@ class AppTextFormField extends StatelessWidget {
         filled: true,
       ),
       obscureText: isObscureText ?? false,
-      style: textStyle ?? AppStyles.p,
+      style: textStyle ?? AppStyles.medium15,
       validator: (value) {
         return validator(value);
       },
@@ -79,7 +83,7 @@ class AppTextFormField extends StatelessWidget {
 
 OutlineInputBorder buildOutLineInputBorder({required Color borderColor}) {
   return OutlineInputBorder(
-    borderSide: BorderSide(color: borderColor , width: 1.3),
+    borderSide: BorderSide(color: borderColor, width: 1.3),
     borderRadius: BorderRadius.circular(15),
   );
 }

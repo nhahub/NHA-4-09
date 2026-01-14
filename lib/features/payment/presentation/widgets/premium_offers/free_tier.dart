@@ -12,7 +12,7 @@ class FreeTier extends StatelessWidget {
     return Center(
       child: Text(
         "30 days free. 287.90 RON / year. Cancel anytime.",
-        style: AppStyles.sWithShadow.copyWith(
+        style: AppStyles.medium14WithShadow.copyWith(
           color: AppColors.borderButton.withAlpha(alphaFromPercentage(6)),
         ),
       ),

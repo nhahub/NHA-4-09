@@ -1,5 +1,6 @@
 class AppAssets {
   // Icons
+  static const String logoIcon = 'assets/logo/logo.svg';
   static const String emailIcon = 'assets/svgs/email.svg';
   static const String googleIcon = 'assets/svgs/google.svg';
   static const String appleIcon = 'assets/svgs/apple.svg';

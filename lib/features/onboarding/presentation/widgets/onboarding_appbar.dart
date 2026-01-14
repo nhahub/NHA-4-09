@@ -37,7 +37,7 @@ class OnboardingAppbar extends StatelessWidget {
           if (currentPageIndex != 0)
             Text(
               "${currentPageIndex + 1}/${questionsLength + 1}",
-              style: AppStyles.p.copyWith(color: AppColors.bodyGray),
+              style: AppStyles.medium15.copyWith(color: AppColors.bodyGray),
             ),
         ],
       ),

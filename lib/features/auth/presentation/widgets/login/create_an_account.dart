@@ -15,7 +15,7 @@ class CreateAnAccount extends StatelessWidget {
       children: [
         Text(
           "New here?",
-          style: AppStyles.p.copyWith(color: AppColors.bodyGray),
+          style: AppStyles.medium15.copyWith(color: AppColors.bodyGray),
         ),
         const SizedBox(width: 3),
         GestureDetector(
@@ -24,7 +24,7 @@ class CreateAnAccount extends StatelessWidget {
           },
           child: Text(
             "Create an account.",
-            style: AppStyles.p.copyWith(
+            style: AppStyles.medium15.copyWith(
               color: AppColors.linkGray,
               decoration: TextDecoration.underline,
               decorationColor: AppColors.linkGray,

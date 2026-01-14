@@ -8,6 +8,6 @@ class AppSectionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(title, style: AppStyles.h2);
+    return Text(title, style: AppStyles.extraBold20);
   }
 }

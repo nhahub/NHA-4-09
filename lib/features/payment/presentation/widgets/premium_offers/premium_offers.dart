@@ -24,14 +24,14 @@ class PremiumOffers extends StatelessWidget {
                     children: [
                       Text(
                         offer.title,
-                        style: AppStyles.pPlayfulWithShadow.copyWith(
+                        style: AppStyles.extraBold15WithShadow.copyWith(
                           color: Colors.white,
                         ),
                       ),
                       Text(
                         offer.subtitle,
                         overflow: TextOverflow.ellipsis,
-                        style: AppStyles.pWithShadow.copyWith(
+                        style: AppStyles.medium15WithShadow.copyWith(
                           color: Colors.white.withAlpha(
                             alphaFromPercentage(80),
                           ),

@@ -77,14 +77,14 @@ class _ChoosePaymentTypeState extends State<ChoosePaymentType> {
 
                     Text(
                       "${type.price} RON",
-                      style: AppStyles.h3.copyWith(
+                      style: AppStyles.extraBold16.copyWith(
                         color: isSelected ? Colors.black : Colors.white,
                       ),
                     ),
                     const SizedBox(width: 4),
                     Text(
                       "/ ${type.duration}",
-                      style: AppStyles.h3.copyWith(
+                      style: AppStyles.extraBold16.copyWith(
                         color: isSelected
                             ? AppColors.bodyGray
                             : Colors.white.withAlpha(alphaFromPercentage(80)),
@@ -106,7 +106,9 @@ class _ChoosePaymentTypeState extends State<ChoosePaymentType> {
                         borderRadius: 8,
                         child: Text(
                           type.discount ?? "",
-                          style: AppStyles.s.copyWith(color: Colors.white),
+                          style: AppStyles.medium14.copyWith(
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                   ],

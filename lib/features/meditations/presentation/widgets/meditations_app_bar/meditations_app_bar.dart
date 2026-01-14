@@ -13,7 +13,7 @@ class MeditationsAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Text("Meditations", style: AppStyles.h1),
+        const Text("Meditations", style: AppStyles.extraBold27),
         const SizedBox(width: 20),
         isPremium ? const PremiumContainer() : FreeContainer(),
         const Spacer(),

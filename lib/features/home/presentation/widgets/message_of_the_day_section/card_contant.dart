@@ -17,12 +17,12 @@ class CardContant extends StatelessWidget {
       children: [
         Text(
           '"$quote"',
-          style: AppStyles.h2WithShadow.copyWith(color: Colors.white),
+          style: AppStyles.extraBold20WithShadow.copyWith(color: Colors.white),
         ),
         const SizedBox(height: 10),
         Text(
           "— $author",
-          style: AppStyles.h3.copyWith(
+          style: AppStyles.extraBold16.copyWith(
             color: AppColors.borderButton.withAlpha(alphaFromPercentage(70)),
           ),
         ),

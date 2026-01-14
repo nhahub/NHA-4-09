@@ -40,7 +40,7 @@ class FreeContainer extends StatelessWidget {
         ),
         child: Text(
           "Free",
-          style: AppStyles.p.copyWith(
+          style: AppStyles.medium15.copyWith(
             color: AppColors.borderButton.withAlpha(alphaFromPercentage(6)),
             shadows: [
               Shadow(

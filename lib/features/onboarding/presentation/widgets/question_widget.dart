@@ -28,7 +28,11 @@ class QuestionWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 16),
-            Text(question, style: AppStyles.h1, textAlign: TextAlign.center),
+            Text(
+              question,
+              style: AppStyles.extraBold27,
+              textAlign: TextAlign.center,
+            ),
             const SizedBox(height: 32),
             Column(
               children: options.map((option) {

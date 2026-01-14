@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/constants/constants.dart';
 
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_colors.dart';
@@ -22,18 +23,22 @@ class StartViewBody extends StatelessWidget {
           children: [
             Image.asset(AppAssets.start),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
+              padding: const EdgeInsets.symmetric(
+                horizontal: kAppHorizontalPadding,
+              ),
               child: Column(
                 children: [
                   const Text(
                     'Your safe space for\nmind and soul.',
-                    style: AppStyles.h1,
+                    style: AppStyles.extraBold27,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8),
                   Text(
                     'Guided meditations, mood tracking, and\ncommunity support — all in one app.',
-                    style: AppStyles.p.copyWith(color: AppColors.bodyGray),
+                    style: AppStyles.medium15.copyWith(
+                      color: AppColors.bodyGray,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 20),

@@ -13,7 +13,7 @@ class HomeAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Text("Home", style: AppStyles.h1),
+        const Text("Home", style: AppStyles.extraBold27),
         const SizedBox(width: 20),
         isPremium ? const PremiumContainer() : FreeContainer(),
         const Spacer(),

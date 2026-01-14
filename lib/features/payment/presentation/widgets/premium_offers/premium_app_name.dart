@@ -12,12 +12,14 @@ class PremiumAppName extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Zenspun', style: AppStyles.h0WithShadow),
+        Text('Zenspun', style: AppStyles.extraBold50WithShadow),
         Row(
           children: [
             Text(
               'Premium',
-              style: AppStyles.h1WithShadow.copyWith(color: Colors.white),
+              style: AppStyles.extraBold27WithShadow.copyWith(
+                color: Colors.white,
+              ),
             ),
             const SizedBox(width: 5),
             AppAssets.premiumIcon.svgWithShadow(size: 22, color: Colors.white),

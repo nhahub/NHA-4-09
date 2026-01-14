@@ -10,7 +10,7 @@ class FeelingTodaySection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("How are you feeling today?", style: AppStyles.h2),
+        const Text("How are you feeling today?", style: AppStyles.extraBold20),
         Container(),
       ],
     );

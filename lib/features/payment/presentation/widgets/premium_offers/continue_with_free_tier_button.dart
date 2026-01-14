@@ -28,7 +28,9 @@ class ContinueWithFreeTierButton extends StatelessWidget {
             child: Text(
               "Continue on the Free Tier",
               textAlign: TextAlign.center,
-              style: AppStyles.pPlayfulWithShadow.copyWith(color: Colors.white),
+              style: AppStyles.extraBold15WithShadow.copyWith(
+                color: Colors.white,
+              ),
             ),
           ),
         ),

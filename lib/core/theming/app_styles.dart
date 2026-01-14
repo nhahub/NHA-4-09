@@ -5,7 +5,49 @@ import 'app_colors.dart';
 import 'font_weight_helper.dart';
 
 abstract class AppStyles {
-  static TextStyle h0WithShadow = TextStyle(
+  static const TextStyle extraBold27 = TextStyle(
+    fontSize: 27,
+    fontWeight: FontWeightHelper.extraBold,
+    fontFamily: "Nunito",
+    letterSpacing: -1,
+  );
+  static const TextStyle extraBold20 = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeightHelper.extraBold,
+    fontFamily: "Nunito",
+    letterSpacing: -0.2,
+  );
+  static const TextStyle extraBold16 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeightHelper.extraBold,
+    fontFamily: "Nunito",
+    letterSpacing: -0.2,
+  );
+  static const TextStyle extraBold15 = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeightHelper.extraBold,
+    fontFamily: "Nunito",
+    letterSpacing: -0.2,
+  );
+  static const TextStyle medium15 = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeightHelper.medium,
+    fontFamily: "SFPro",
+  );
+  static const TextStyle extraBold14 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeightHelper.extraBold,
+    fontFamily: "Nunito",
+    letterSpacing: -0.2,
+  );
+  static const TextStyle medium14 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeightHelper.medium,
+    fontFamily: "SFPro",
+  );
+
+
+  static TextStyle extraBold50WithShadow = TextStyle(
     fontSize: 50,
     fontWeight: FontWeightHelper.extraBold,
     fontFamily: "Nunito",
@@ -20,9 +62,9 @@ abstract class AppStyles {
       ),
     ],
   );
-  // h1 with shadow
-  static TextStyle h1WithShadow = TextStyle(
-    fontSize: 26,
+
+  static TextStyle extraBold27WithShadow = TextStyle(
+    fontSize: 27,
     fontWeight: FontWeightHelper.extraBold,
     fontFamily: "Nunito",
     letterSpacing: -1,
@@ -36,22 +78,7 @@ abstract class AppStyles {
       ),
     ],
   );
-  // h1
-  static const TextStyle h1 = TextStyle(
-    fontSize: 26,
-    fontWeight: FontWeightHelper.extraBold,
-    fontFamily: "Nunito",
-    letterSpacing: -1,
-  );
-  // h2
-  static const TextStyle h2 = TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeightHelper.extraBold,
-    fontFamily: "Nunito",
-    letterSpacing: -0.2,
-  );
-  // h2 with shadow
-  static TextStyle h2WithShadow = TextStyle(
+  static TextStyle extraBold20WithShadow = TextStyle(
     fontSize: 20,
     fontWeight: FontWeightHelper.extraBold,
     fontFamily: "Nunito",
@@ -64,21 +91,7 @@ abstract class AppStyles {
       ),
     ],
   );
-  // h3
-  static const TextStyle h3 = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeightHelper.extraBold,
-    fontFamily: "Nunito",
-    letterSpacing: -0.2,
-  );
-  // p-playful
-  static const TextStyle pPlayful = TextStyle(
-    fontSize: 15,
-    fontWeight: FontWeightHelper.extraBold,
-    fontFamily: "Nunito",
-    letterSpacing: -0.2,
-  );
-  static TextStyle pPlayfulWithShadow = TextStyle(
+  static TextStyle extraBold15WithShadow = TextStyle(
     fontSize: 15,
     fontWeight: FontWeightHelper.extraBold,
     fontFamily: "Nunito",
@@ -91,13 +104,7 @@ abstract class AppStyles {
       ),
     ],
   );
-  // p
-  static const TextStyle p = TextStyle(
-    fontSize: 15,
-    fontWeight: FontWeightHelper.medium,
-    fontFamily: "SFPro",
-  );
-  static TextStyle pWithShadow = TextStyle(
+  static TextStyle medium15WithShadow = TextStyle(
     fontSize: 15,
     fontWeight: FontWeightHelper.medium,
     fontFamily: "SFPro",
@@ -109,20 +116,7 @@ abstract class AppStyles {
       ),
     ],
   );
-  // s-playful
-  static const TextStyle sPlayful = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeightHelper.extraBold,
-    fontFamily: "Nunito",
-    letterSpacing: -0.2,
-  );
-  // s
-  static const TextStyle s = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeightHelper.medium,
-    fontFamily: "SFPro",
-  );
-  static TextStyle sWithShadow = TextStyle(
+  static TextStyle medium14WithShadow = TextStyle(
     fontSize: 14,
     fontWeight: FontWeightHelper.medium,
     fontFamily: "SFPro",

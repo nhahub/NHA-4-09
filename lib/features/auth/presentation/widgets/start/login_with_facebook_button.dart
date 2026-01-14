@@ -25,7 +25,7 @@ class LoginWithFacebookButton extends StatelessWidget {
           const SizedBox(width: 16),
           Text(
             'Continue with Facebook',
-            style: AppStyles.pPlayful.copyWith(color: Colors.black),
+            style: AppStyles.extraBold15.copyWith(color: Colors.black),
           ),
         ],
       ),

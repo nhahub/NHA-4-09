@@ -20,11 +20,13 @@ class LoginWithEmailButton extends StatelessWidget {
           const SizedBox(width: 10),
           Text(
             'Log in with email',
-            style: AppStyles.pPlayful.copyWith(
+            style: AppStyles.extraBold15.copyWith(
               color: Colors.white,
               shadows: [
                 Shadow(
-                  color: const Color(0xff0B1324).withAlpha((255 * 0.24).toInt()),
+                  color: const Color(
+                    0xff0B1324,
+                  ).withAlpha((255 * 0.24).toInt()),
                   offset: const Offset(0, 2),
                   blurRadius: 4,
                 ),
