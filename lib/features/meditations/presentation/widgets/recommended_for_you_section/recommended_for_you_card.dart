@@ -39,9 +39,7 @@ class RecommendedForYouCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CategoryContainer(
-                  categoryTitle: recommendedForYouModel.category,
-                ),
+                CategoryContainer(categoryTitle: recommendedForYouModel.category),
                 SizedBox(height: 35),
                 Center(child: PlayButton()),
               ],

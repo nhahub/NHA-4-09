@@ -16,7 +16,8 @@ class CardDescriptionContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      alignment: Alignment.bottomCenter,
+      clipBehavior: Clip.none,
+      alignment: Alignment.bottomLeft,
       children: [
         ClipRRect(
           borderRadius: const BorderRadius.only(
