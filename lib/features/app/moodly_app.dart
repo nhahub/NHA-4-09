@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moodly/core/routing/routes.dart';
@@ -14,6 +15,10 @@ class MoodlyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => AuthatcationCubit(),
       child: MaterialApp(
+        useInheritedMediaQuery: true,
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
+
         debugShowCheckedModeBanner: false,
         theme: ThemeManager.getAppTheme(),
         onGenerateRoute: AppRouter.generateRoute,

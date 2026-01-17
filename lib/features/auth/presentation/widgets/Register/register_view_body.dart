@@ -21,13 +21,16 @@ class RegisterViewBody extends StatelessWidget {
             if (state is RegisterSuccess) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                  content: Text("تم إنشاء الحساب بنجاح، يرجى تسجيل الدخول"),
+                  content: Text("Registration successful! Please log in."),
                   backgroundColor: Colors.green,
                 ),
               );
 
               Navigator.pushNamedAndRemoveUntil(
-                  context, Routes.loginView, (route) => false);
+                context,
+                Routes.loginView,
+                (route) => false,
+              );
             } else if (state is AuthFailure) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
