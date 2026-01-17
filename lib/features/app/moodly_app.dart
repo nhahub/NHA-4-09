@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/routing/routes.dart';
+import 'package:moodly/features/auth/presentation/cubit/authatcation_cubit.dart';
 
 import '../../core/routing/app_router.dart';
 import '../../core/theming/theme_manager.dart';
@@ -8,10 +11,14 @@ class MoodlyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeManager.getAppTheme(),
-      routerConfig: AppRouter.createRouter(),
+    return BlocProvider(
+      create: (context) => AuthatcationCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeManager.getAppTheme(),
+        onGenerateRoute: AppRouter.generateRoute,
+        initialRoute: Routes.splashView,
+      ),
     );
   }
 }

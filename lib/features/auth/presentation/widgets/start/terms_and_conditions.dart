@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_colors.dart';
@@ -25,7 +24,7 @@ class TermsAndConditions extends StatelessWidget {
             ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                context.push(Routes.termsAndConditionsView);
+                Navigator.pushNamed(context, Routes.termsAndConditionsView);
               },
           ),
           const TextSpan(text: " and "),
@@ -37,7 +36,7 @@ class TermsAndConditions extends StatelessWidget {
             ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                context.push(Routes.privacyPolicyView);
+                Navigator.pushNamed(context, Routes.privacyPolicyView);
               },
           ),
           const TextSpan(text: "."),

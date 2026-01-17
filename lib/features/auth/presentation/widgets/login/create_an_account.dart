@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_colors.dart';
@@ -20,7 +19,7 @@ class CreateAnAccount extends StatelessWidget {
         const SizedBox(width: 3),
         GestureDetector(
           onTap: () {
-            context.push(Routes.registerView);
+            Navigator.pushNamed(context, Routes.registerView);
           },
           child: Text(
             "Create an account.",
