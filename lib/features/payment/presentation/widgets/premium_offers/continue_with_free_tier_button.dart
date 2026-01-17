@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../core/routing/routes.dart';
@@ -17,7 +16,7 @@ class ContinueWithFreeTierButton extends StatelessWidget {
           width: double.infinity,
           child: TextButton(
             onPressed: () {
-              context.pushReplacement(Routes.homeView);
+              Navigator.pushReplacementNamed(context, Routes.homeView);
             },
             style: TextButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 14),

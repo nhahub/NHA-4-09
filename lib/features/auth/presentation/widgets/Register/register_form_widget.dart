@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/auth/presentation/cubit/authatcation_cubit.dart';
 import 'already_have_an_account.dart';
 import '../shared/email_text_field.dart';
 import '../shared/password_text_field.dart';
@@ -28,35 +29,41 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
   Widget build(BuildContext context) {
     return Form(
       key: formKey,
-      child: Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            EmailTextField(emailController: emailController),
-            const SizedBox(height: 20),
-            PasswordTextField(passwordController: passwordController),
-            const Spacer(),
-            SizedBox(
-              width: double.infinity,
-              child: AppTextButton(
-                onPressed: () {
-                  validateThenRegister(context);
-                },
-                buttonText: "Register",
-              ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Create Account",
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          EmailTextField(emailController: emailController),
+          const SizedBox(height: 20),
+          PasswordTextField(passwordController: passwordController),
+
+          SizedBox(height: 20),
+          SizedBox(
+            width: double.infinity,
+            child: AppTextButton(
+              onPressed: () {
+                validateThenRegister(context);
+              },
+              buttonText: "Register",
             ),
-            const SizedBox(height: 20),
-            const AlreadyHaveAnAccount(),
-            const SizedBox(height: 20),
-          ],
-        ),
+          ),
+          const SizedBox(height: 20),
+          const AlreadyHaveAnAccount(),
+          const SizedBox(height: 20),
+        ],
       ),
     );
   }
 
   void validateThenRegister(BuildContext context) {
     if (formKey.currentState!.validate()) {
-      context.pop();
+      context.read<AuthatcationCubit>().register(
+        emailController.text.trim(),
+        passwordController.text,
+      );
     }
   }
 }

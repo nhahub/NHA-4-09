@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/auth/presentation/cubit/authatcation_cubit.dart';
 
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/widgets/app_text_button.dart';
@@ -29,9 +30,9 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      child: Expanded(
+    return Flexible(
+      child: Form(
+        key: formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -61,7 +62,10 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
 
   void validateThenLogin(BuildContext context) {
     if (formKey.currentState!.validate()) {
-      context.pushReplacement(Routes.homeView);
+      context.read<AuthatcationCubit>().login(
+            emailController.text,
+            passwordController.text,
+          );
     }
   }
 }
