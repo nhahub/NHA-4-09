@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:moodly/core/routing/routes.dart';
 import 'package:moodly/features/auth/presentation/cubit/authatcation_cubit.dart';
 import 'package:moodly/features/auth/presentation/cubit/authatcation_state.dart';
-import 'package:moodly/features/home/presentation/views/home_view.dart';
 import 'register_form_widget.dart';
 import '../../../../../core/theming/app_assets.dart';
 
