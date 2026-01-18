@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_colors.dart';
@@ -12,7 +11,7 @@ class ForgotPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        context.push(Routes.forgotPasswordView);
+        Navigator.pushNamed(context, Routes.forgotPasswordView);
       },
       child: Text(
         "Forgot password?",

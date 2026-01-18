@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/auth/presentation/cubit/authatcation_cubit.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/widgets/vertical_space.dart';
@@ -15,31 +17,38 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
         child: Column(
           children: [
-            SizedBox(height: 60),
+            const SizedBox(height: 60),
             HomeAppbar(isPremium: false),
-            VerticalSpace(),
-            SingleChildScrollView(
-              child: Column(
-                children: [
-                  MessageOfTheDaySection(),
-                  VerticalSpace(),
-                  FeelingTodaySection(),
-                  VerticalSpace(),
-                  DailyStatsSection(),
-                  VerticalSpace(),
-                  MoodProgressSection(),
-                  VerticalSpace(),
-                  MeditationsForYouSection(),
-                  VerticalSpace(),
-                  SessionsForYouSection(),
-                  VerticalSpace(),
-                ],
-              ),
+            const VerticalSpace(),
+            Column(
+              children: [
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: IconButton(
+                    onPressed: () {
+                      context.read<AuthatcationCubit>().logout();
+                    },
+                    icon: const Icon(Icons.logout, color: Colors.red),
+                  ),
+                ),
+                const MessageOfTheDaySection(),
+                const VerticalSpace(),
+                const FeelingTodaySection(),
+                const VerticalSpace(),
+                const DailyStatsSection(),
+                const VerticalSpace(),
+                const MoodProgressSection(),
+                const VerticalSpace(),
+                const MeditationsForYouSection(),
+                const VerticalSpace(),
+                const SessionsForYouSection(),
+                const VerticalSpace(),
+              ],
             ),
           ],
         ),

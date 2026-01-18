@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../extensions/svg_shadow_extension.dart';
 import '../helpers/alpha_from_percent.dart';
@@ -11,7 +10,7 @@ class CustomCloseWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.pop(),
+      onTap: () => Navigator.pop(context),
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
