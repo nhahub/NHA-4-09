@@ -39,7 +39,7 @@ class _SplashViewState extends State<SplashView> {
     if (session != null) {
       Navigator.pushReplacementNamed(context, Routes.homeView);
     } else {
-      Navigator.pushReplacementNamed(context, Routes.loginView);
+      Navigator.pushReplacementNamed(context, Routes.startView);
     }
   }
 
