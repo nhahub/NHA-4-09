@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
@@ -19,7 +18,7 @@ class AlreadyHaveAnAccount extends StatelessWidget {
         const SizedBox(width: 3),
         GestureDetector(
           onTap: () {
-            context.pop();
+            Navigator.pop(context);
           },
           child: Text(
             "Login.",

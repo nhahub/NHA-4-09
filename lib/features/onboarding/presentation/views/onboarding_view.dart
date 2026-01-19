@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../core/routing/routes.dart';
 import '../../data/models/questionnaire_model.dart';
@@ -23,7 +22,8 @@ class OnboardingView extends StatelessWidget {
         builder: (context, state) {
           final cubit = context.read<OnboardingCubit>();
           void finishOnboarding() {
-            context.go(Routes.homeView, extra: state.answers);
+            Navigator.pushNamedAndRemoveUntil(
+                context, Routes.homeView, (route) => false);
           }
 
           return Scaffold(
