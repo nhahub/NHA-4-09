@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/constants/constants.dart';
 
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_styles.dart';
@@ -12,14 +13,21 @@ class MeditationsAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Text("Meditations", style: AppStyles.extraBold27),
-        const SizedBox(width: 20),
-        isPremium ? const PremiumContainer() : FreeContainer(),
-        const Spacer(),
-        CustomCircleButton(icon: AppAssets.serachIcon, onTap: () {}),
-      ],
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              const Text("Meditations", style: AppStyles.extraBold27),
+              SizedBox(width: 10),
+              isPremium ? const PremiumContainer() : FreeContainer(),
+            ],
+          ),
+          CustomCircleButton(icon: AppAssets.serachIcon, onTap: () {}),
+        ],
+      ),
     );
   }
 }

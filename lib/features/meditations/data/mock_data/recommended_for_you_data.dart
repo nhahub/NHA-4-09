@@ -1,33 +1,20 @@
 import 'package:moodly/core/theming/app_assets.dart';
+import 'package:moodly/features/meditations/data/models/meditation_card_model.dart';
 
-class RecommendedForYouModel {
-  final String imagePath;
-  final String category;
-  final String title;
-  final int duration;
-
-  const RecommendedForYouModel({
-    required this.imagePath,
-    required this.category,
-    required this.title,
-    required this.duration,
-  });
-}
-
-const List<RecommendedForYouModel> recommendedForYouData = [
-  RecommendedForYouModel(
+const List<MeditationCardModel> recommendedForYouData = [
+  MeditationCardModel(
     imagePath: AppAssets.meditation1,
     category: 'Sleep',
     title: 'Calm breathing for peaceful sleep',
     duration: 12,
   ),
-  RecommendedForYouModel(
+  MeditationCardModel(
     imagePath: AppAssets.meditation2,
     category: 'Stress',
     title: 'Get rid of anxious thoughts',
     duration: 9,
   ),
-  RecommendedForYouModel(
+  MeditationCardModel(
     imagePath: AppAssets.meditation3,
     category: 'Concentration',
     title: 'Total focus on learning',

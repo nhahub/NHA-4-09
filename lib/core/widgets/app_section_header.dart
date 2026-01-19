@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/constants/constants.dart';
 
 import '../theming/app_styles.dart';
 
@@ -8,6 +9,9 @@ class AppSectionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(title, style: AppStyles.extraBold20);
+    return Padding(
+      padding: const EdgeInsets.only(left: kAppHorizontalPadding),
+      child: Text(title, style: AppStyles.extraBold20),
+    );
   }
 }

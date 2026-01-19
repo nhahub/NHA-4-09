@@ -5,12 +5,16 @@ import 'package:moodly/features/meditations/presentation/widgets/recommended_for
 
 class CardDescriptionContainer extends StatelessWidget {
   final String title;
-  final int duration;
+  final int? duration;
+  final bool? withDuration;
+  final TextStyle? titleStyle;
 
   const CardDescriptionContainer({
     super.key,
     required this.title,
-    required this.duration,
+    this.duration,
+    this.withDuration = true,
+    this.titleStyle,
   });
 
   @override
@@ -32,7 +36,10 @@ class CardDescriptionContainer extends StatelessWidget {
             ),
             child: Opacity(
               opacity: 0.0,
-              child: DescriptionData(title: title, duration: duration),
+              child: DescriptionData(
+                title: title,
+                duration: withDuration == false ? 0 : duration!,
+              ),
             ),
           ),
         ),
@@ -55,7 +62,12 @@ class CardDescriptionContainer extends StatelessWidget {
             ),
           ),
         ),
-        DescriptionData(title: title, duration: duration),
+        DescriptionData(
+          title: title,
+          duration: duration ?? 0,
+          withDuration: withDuration,
+          titleStyle: titleStyle,
+        ),
       ],
     );
   }

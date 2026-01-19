@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../../core/widgets/vertical_space.dart';
-import '../../../../core/constants/constants.dart';
 import '../widgets/categories_section/categories_section.dart';
 import '../widgets/for_difficult_situations_section/for_difficult_situations_section.dart';
 import '../widgets/meditations_app_bar/meditations_app_bar.dart';
@@ -15,33 +14,30 @@ class MeditationsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
-        child: Column(
-          children: [
-            SizedBox(height: 60),
-            MeditationsAppBar(isPremium: false),
-            VerticalSpace(),
-            CategoriesSection(),
-            VerticalSpace(),
-            SingleChildScrollView(
-              child: Column(
-                children: [
-                  RecommendedForYouSection(),
-                  VerticalSpace(),
-                  PopularCategoriesSection(),
-                  VerticalSpace(),
-                  YourDailyRoutineSection(),
-                  VerticalSpace(),
-                  ForDifficultSituationsSection(),
-                  VerticalSpace(),
-                  NewArrivalsSection(),
-                  VerticalSpace(),
-                ],
-              ),
+      body: Column(
+        children: [
+          SizedBox(height: 60),
+          MeditationsAppBar(isPremium: true),
+          Expanded(
+            child: CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(child: VerticalSpace()),
+                SliverToBoxAdapter(child: CategoriesSection()),
+                SliverToBoxAdapter(child: VerticalSpace()),
+                SliverToBoxAdapter(child: RecommendedForYouSection()),
+                SliverToBoxAdapter(child: VerticalSpace()),
+                SliverToBoxAdapter(child: PopularCategoriesSection()),
+                SliverToBoxAdapter(child: VerticalSpace()),
+                SliverToBoxAdapter(child: YourDailyRoutineSection()),
+                SliverToBoxAdapter(child: VerticalSpace()),
+                SliverToBoxAdapter(child: ForDifficultSituationsSection()),
+                SliverToBoxAdapter(child: VerticalSpace()),
+                SliverToBoxAdapter(child: NewArrivalsSection()),
+                SliverToBoxAdapter(child: VerticalSpace()),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
