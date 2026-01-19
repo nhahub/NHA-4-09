@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:moodly/core/helpers/snackbar_service.dart';
+import 'package:moodly/core/extensions/spacing.dart';
 import 'package:moodly/core/routing/routes.dart';
 import 'package:moodly/features/auth/presentation/cubit/authatcation_cubit.dart';
 import 'package:moodly/features/auth/presentation/cubit/authatcation_state.dart';
@@ -18,12 +20,7 @@ class RegisterViewBody extends StatelessWidget {
         child: BlocConsumer<AuthatcationCubit, AuthatcationState>(
           listener: (context, state) {
             if (state is RegisterSuccess) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text("Registration successful! Please log in."),
-                  backgroundColor: Colors.green,
-                ),
-              );
+              CustomSnackbar.show(context, "Registration Successful");
 
               Navigator.pushNamedAndRemoveUntil(
                 context,
@@ -31,29 +28,37 @@ class RegisterViewBody extends StatelessWidget {
                 (route) => false,
               );
             } else if (state is AuthFailure) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.message),
-                  backgroundColor: Colors.red,
-                ),
-              );
+              CustomSnackbar.show(context, state.message, isError: true);
             }
           },
           builder: (context, state) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(height: 50),
-                SvgPicture.asset(AppAssets.zenspunLogo, width: 90, height: 90),
-                const SizedBox(height: 80),
-                if (state is AuthLoading)
-                  const Padding(
-                    padding: EdgeInsets.all(20.0),
-                    child: CircularProgressIndicator(),
-                  )
-                else
-                  const RegisterFormWidget(),
-              ],
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: MediaQuery.of(context).size.height * 0.8,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    gapHeight(50),
+
+                    SvgPicture.asset(
+                      AppAssets.zenspunLogo,
+                      width: 90,
+                      height: 90,
+                    ),
+                    gapHeight(80),
+
+                    if (state is AuthLoading)
+                      const Padding(
+                        padding: EdgeInsets.all(20.0),
+                        child: CircularProgressIndicator(),
+                      )
+                    else
+                      const RegisterFormWidget(),
+                  ],
+                ),
+              ),
             );
           },
         ),
@@ -61,3 +66,5 @@ class RegisterViewBody extends StatelessWidget {
     );
   }
 }
+//hazemhamdy135@gamil.com
+//Ahmed@1215

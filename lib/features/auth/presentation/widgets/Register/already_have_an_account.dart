@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/extensions/spacing.dart';
 
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
@@ -15,7 +16,8 @@ class AlreadyHaveAnAccount extends StatelessWidget {
           "Already have an account?",
           style: AppStyles.medium15.copyWith(color: AppColors.bodyGray),
         ),
-        const SizedBox(width: 3),
+        gapWidth(3),
+
         GestureDetector(
           onTap: () {
             Navigator.pop(context);

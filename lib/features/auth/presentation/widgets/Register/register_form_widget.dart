@@ -17,11 +17,14 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
+    confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -33,10 +36,22 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           EmailTextField(emailController: emailController),
-          const SizedBox(height: 20),
-          PasswordTextField(passwordController: passwordController),
+          gapHeight(20),
 
-          SizedBox(height: 20),
+          PasswordTextField(
+            text: "Enter Your Password",
+            passwordController: passwordController,
+          ),
+          gapHeight(20),
+
+          PasswordTextField(
+            hitText: "Repeat Password",
+            text: "Enter Your Repeat Password",
+            passwordController: confirmPasswordController,
+          ),
+
+          gapHeight(20),
+
           SizedBox(
             width: double.infinity,
             child: AppTextButton(
@@ -46,9 +61,10 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
               buttonText: "Register",
             ),
           ),
-          const SizedBox(height: 20),
+          gapHeight(20),
+
           const AlreadyHaveAnAccount(),
-          const SizedBox(height: 20),
+          gapHeight(20),
         ],
       ),
     );

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
- import 'package:moodly/core/widgets/app_text_button.dart';
+import 'package:moodly/core/helpers/snackbar_service.dart';
+import 'package:moodly/core/extensions/spacing.dart';
+import 'package:moodly/core/widgets/app_text_button.dart';
 import 'package:moodly/features/auth/presentation/cubit/authatcation_cubit.dart';
 import 'package:moodly/features/auth/presentation/cubit/authatcation_state.dart';
 import 'package:moodly/features/auth/presentation/widgets/shared/email_text_field.dart';
@@ -27,16 +29,9 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
     return BlocListener<AuthatcationCubit, AuthatcationState>(
       listener: (context, state) {
         if (state is ForgotPasswordSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Reset password link sent to your email'),
-            ),
-          );
-          //  Navigator.pushNamed(context, Routes.resetPasswordView);
+          CustomSnackbar.show(context, "Reset link sent to your email");
         } else if (state is AuthFailure) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(state.message)));
+          CustomSnackbar.show(context, state.message, isError: true);
         }
       },
       child: Form(
@@ -46,9 +41,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
           child: Column(
             children: [
               EmailTextField(emailController: emailController),
-
-              const SizedBox(height: 16),
-
+              gapHeight(16),
               AppTextButton(
                 onPressed: () {
                   if (!formKey.currentState!.validate()) return;

@@ -12,11 +12,15 @@ import '../../../../../core/widgets/app_text_form_field.dart';
 class PasswordTextField extends StatefulWidget {
   final TextEditingController passwordController;
   bool isPasswordObscureText = true;
-
+  String hitText;
+  String text;
   PasswordTextField({
     super.key,
+
     required this.passwordController,
     this.isPasswordObscureText = true,
+    this.hitText = "Password",
+    this.text = "",
   });
 
   @override
@@ -32,12 +36,12 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
         Padding(
           padding: const EdgeInsets.only(bottom: 8, left: 10),
           child: Text(
-            "Password",
+            widget.hitText,
             style: AppStyles.medium15.copyWith(color: AppColors.bodyGray),
           ),
         ),
         AppTextFormField(
-          hintText: "Enter Your Password",
+          hintText: widget.text,
           prefixIcon: Padding(
             padding: const EdgeInsets.only(left: 12, right: 4),
             child: SvgPicture.asset(
