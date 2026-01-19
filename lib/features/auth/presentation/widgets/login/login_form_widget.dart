@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/extensions/spacing.dart';
 import 'package:moodly/features/auth/presentation/cubit/authatcation_cubit.dart';
 
 import '../../../../../core/widgets/app_text_button.dart';
@@ -36,14 +37,13 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             EmailTextField(emailController: emailController),
-            const SizedBox(height: 20),
+            gapHeight(20),
             PasswordTextField(
               text: "Enter Your Password",
               passwordController: passwordController,
             ),
             const ForgotPassword(),
-            SizedBox(height: 20),
-
+            gapHeight(20),
             SizedBox(
               width: double.infinity,
               child: AppTextButton(
@@ -53,9 +53,9 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                 buttonText: "Login",
               ),
             ),
-            const SizedBox(height: 20),
+            gapHeight(20),
             const CreateAnAccount(),
-            const SizedBox(height: 20),
+            gapHeight(20),
           ],
         ),
       ),

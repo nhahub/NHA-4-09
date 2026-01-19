@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/extensions/spacing.dart';
 import 'package:moodly/features/auth/presentation/cubit/authatcation_cubit.dart';
 import 'already_have_an_account.dart';
 import '../shared/email_text_field.dart';
@@ -17,11 +18,14 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
+    confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -33,19 +37,22 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           EmailTextField(emailController: emailController),
-          const SizedBox(height: 20),
+          gapHeight(20),
+
           PasswordTextField(
             text: "Enter Your Password",
             passwordController: passwordController,
           ),
-          const SizedBox(height: 20),
+          gapHeight(20),
+
           PasswordTextField(
             hitText: "Repeat Password",
             text: "Enter Your Repeat Password",
-            passwordController: passwordController,
+            passwordController: confirmPasswordController,
           ),
 
-          SizedBox(height: 20),
+          gapHeight(20),
+
           SizedBox(
             width: double.infinity,
             child: AppTextButton(
@@ -55,9 +62,10 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
               buttonText: "Register",
             ),
           ),
-          const SizedBox(height: 20),
+          gapHeight(20),
+
           const AlreadyHaveAnAccount(),
-          const SizedBox(height: 20),
+          gapHeight(20),
         ],
       ),
     );

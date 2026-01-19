@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/extensions/spacing.dart';
 import 'package:moodly/core/routing/routes.dart';
 import 'package:moodly/core/widgets/app_text_button.dart';
 import 'package:moodly/features/auth/presentation/cubit/reset_password_cubit.dart';
@@ -58,14 +59,14 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     isPasswordObscureText: true,
                   ),
 
-              
-                  const SizedBox(height: 16),
+                  gapHeight(16),
+
                   PasswordTextField(
                     passwordController: _confirmPasswordController,
                     isPasswordObscureText: true,
                   ),
- 
-                  const SizedBox(height: 24),
+
+                  gapHeight(24),
 
                   BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
                     builder: (context, state) {
