@@ -34,7 +34,16 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
         children: [
           EmailTextField(emailController: emailController),
           const SizedBox(height: 20),
-          PasswordTextField(passwordController: passwordController),
+          PasswordTextField(
+            text: "Enter Your Password",
+            passwordController: passwordController,
+          ),
+          const SizedBox(height: 20),
+          PasswordTextField(
+            hitText: "Repeat Password",
+            text: "Enter Your Repeat Password",
+            passwordController: passwordController,
+          ),
 
           SizedBox(height: 20),
           SizedBox(

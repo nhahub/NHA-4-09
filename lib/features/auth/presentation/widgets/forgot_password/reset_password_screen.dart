@@ -58,37 +58,13 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     isPasswordObscureText: true,
                   ),
 
-                  // EmailTextField(
-                  //   controller: _passwordController,
-                  //   obscureText: true,
-                  //   decoration: const InputDecoration(
-                  //     labelText: 'New Password',
-                  //   ),
-                  //   validator: (value) {
-                  //     if (value == null || value.length < 8) {
-                  //       return 'Password must be at least 8 characters';
-                  //     }
-                  //     return null;
-                  //   },
-                  // ),
+              
                   const SizedBox(height: 16),
                   PasswordTextField(
                     passwordController: _confirmPasswordController,
                     isPasswordObscureText: true,
                   ),
-
-                  // TextFormField(
-                  //    obscureText: true,
-                  //   decoration: const InputDecoration(
-                  //     labelText: 'Confirm Password',
-                  //   ),
-                  //   validator: (value) {
-                  //     if (value != _passwordController.text) {
-                  //       return 'Passwords do not match';
-                  //     }
-                  //     return null;
-                  //   },
-                  // ),
+ 
                   const SizedBox(height: 24),
 
                   BlocBuilder<ResetPasswordCubit, ResetPasswordState>(

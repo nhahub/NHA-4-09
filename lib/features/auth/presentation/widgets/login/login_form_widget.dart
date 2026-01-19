@@ -37,7 +37,10 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
           children: [
             EmailTextField(emailController: emailController),
             const SizedBox(height: 20),
-            PasswordTextField(passwordController: passwordController),
+            PasswordTextField(
+              text: "Enter Your Password",
+              passwordController: passwordController,
+            ),
             const ForgotPassword(),
             SizedBox(height: 20),
 
