@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/constants/static.dart';
 import 'package:moodly/core/routing/routes.dart';
 import 'package:moodly/features/auth/presentation/cubit/authatcation_cubit.dart';
 import 'package:moodly/features/auth/presentation/cubit/authatcation_state.dart';
 
-import '../../../../core/constants/constants.dart';
 import '../../../../core/widgets/vertical_space.dart';
 import '../widgets/daily_stats_section/daily_stats_section.dart';
 import '../widgets/feeling_today_section/feeling_today_section.dart';

@@ -4,7 +4,6 @@ import 'package:moodly/core/routing/routes.dart';
 import 'package:moodly/core/widgets/app_text_button.dart';
 import 'package:moodly/features/auth/presentation/cubit/reset_password_cubit.dart';
 import 'package:moodly/features/auth/presentation/cubit/reset_password_state.dart';
-import 'package:moodly/features/auth/presentation/widgets/shared/email_text_field.dart';
 import 'package:moodly/features/auth/presentation/widgets/shared/password_text_field.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
@@ -54,11 +53,11 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               key: _formKey,
               child: Column(
                 children: [
-
                   PasswordTextField(
                     passwordController: _passwordController,
                     isPasswordObscureText: true,
                   ),
+
                   // EmailTextField(
                   //   controller: _passwordController,
                   //   obscureText: true,
@@ -72,7 +71,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   //     return null;
                   //   },
                   // ),
-
                   const SizedBox(height: 16),
                   PasswordTextField(
                     passwordController: _confirmPasswordController,
