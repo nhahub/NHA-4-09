@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/theming/app_assets.dart';
+import '../../theming/app_assets.dart';
 
 class PlayButton extends StatelessWidget {
   const PlayButton({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/features/meditations/data/models/popular_categories_model.dart';
-import 'package:moodly/features/meditations/presentation/widgets/recommended_for_you_section/card_description_container.dart';
+import '../../../../../core/theming/app_styles.dart';
+import '../../../data/models/popular_categories_model.dart';
+import '../../../../../core/widgets/shared/card_description_container.dart';
 
 class CategoryCard extends StatelessWidget {
   final PopularCategoriesModel popularCategoriesModel;

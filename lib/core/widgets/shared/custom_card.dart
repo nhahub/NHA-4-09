@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/meditations/data/models/meditation_card_model.dart';
-import 'package:moodly/features/meditations/presentation/widgets/recommended_for_you_section/card_description_container.dart';
-import 'package:moodly/features/meditations/presentation/widgets/recommended_for_you_section/category_container.dart';
-import 'package:moodly/features/meditations/presentation/widgets/recommended_for_you_section/play_button.dart';
+import '../../../features/meditations/data/models/meditation_card_model.dart';
+import 'card_description_container.dart';
+import 'category_container.dart';
+import 'play_button.dart';
 
 class CustomCard extends StatelessWidget {
   final MeditationCardModel meditationCardModel;

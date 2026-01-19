@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'register_form_widget.dart';
+
 import '../../../../../core/theming/app_assets.dart';
+import 'register_form_widget.dart';
 
 class RegisterViewBody extends StatelessWidget {
   const RegisterViewBody({super.key});

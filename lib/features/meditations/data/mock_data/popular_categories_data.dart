@@ -1,5 +1,5 @@
-import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/features/meditations/data/models/popular_categories_model.dart';
+import '../../../../core/theming/app_assets.dart';
+import '../models/popular_categories_model.dart';
 
 const List<PopularCategoriesModel> popularCategoriesData = [
   PopularCategoriesModel(imagePath: AppAssets.category1, title: 'Anxiety'),

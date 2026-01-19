@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'already_have_an_account.dart';
+
+import '../../../../../core/widgets/app_text_button.dart';
 import '../shared/email_text_field.dart';
 import '../shared/password_text_field.dart';
-import '../../../../../core/widgets/app_text_button.dart';
+import 'already_have_an_account.dart';
 
 class RegisterFormWidget extends StatefulWidget {
   const RegisterFormWidget({super.key});

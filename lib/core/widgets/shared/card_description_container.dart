@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:moodly/core/helpers/alpha_from_percent.dart';
-import 'package:moodly/features/meditations/presentation/widgets/recommended_for_you_section/description_data.dart';
+import '../../helpers/alpha_from_percent.dart';
+import 'description_data.dart';
 
 class CardDescriptionContainer extends StatelessWidget {
   final String title;

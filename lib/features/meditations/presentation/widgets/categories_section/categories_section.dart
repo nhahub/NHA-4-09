@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/features/meditations/data/models/category_enum.dart';
-import 'package:moodly/features/meditations/presentation/widgets/categories_section/active_category_button.dart';
-import 'package:moodly/features/meditations/presentation/widgets/categories_section/un_active_category_button.dart';
+import '../../../../../core/constants/constants.dart';
+import '../../../data/models/category_enum.dart';
+import 'active_category_button.dart';
+import 'un_active_category_button.dart';
 
 class CategoriesSection extends StatefulWidget {
   const CategoriesSection({super.key});

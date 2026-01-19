@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/features/meditations/data/mock_data/new_arrivals_data.dart';
-import 'package:moodly/features/meditations/presentation/widgets/recommended_for_you_section/custom_card.dart';
+import '../../../../../core/constants/constants.dart';
+import '../../../data/mock_data/new_arrivals_data.dart';
+import '../../../../../core/widgets/shared/custom_card.dart';
 
 class NewArrivalsGridView extends StatelessWidget {
   const NewArrivalsGridView({super.key});

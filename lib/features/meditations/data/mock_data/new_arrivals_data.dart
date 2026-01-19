@@ -1,5 +1,5 @@
-import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/features/meditations/data/models/meditation_card_model.dart';
+import '../../../../core/theming/app_assets.dart';
+import '../models/meditation_card_model.dart';
 
 const List<MeditationCardModel> newArrivalsData = [
   MeditationCardModel(

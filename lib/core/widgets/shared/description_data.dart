@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/helpers/alpha_from_percent.dart';
-import 'package:moodly/core/theming/app_styles.dart' show AppStyles;
+import '../../helpers/alpha_from_percent.dart';
+import '../../theming/app_styles.dart' show AppStyles;
 
 class DescriptionData extends StatelessWidget {
   const DescriptionData({

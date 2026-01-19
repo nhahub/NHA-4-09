@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/helpers/alpha_from_percent.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/features/meditations/data/models/category_enum.dart';
+import '../../../../../core/helpers/alpha_from_percent.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/app_styles.dart';
+import '../../../data/models/category_enum.dart';
 
 class UnActiveCategoryButton extends StatelessWidget {
   const UnActiveCategoryButton({

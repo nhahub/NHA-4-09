@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/features/meditations/presentation/widgets/your_daily_routine_section/your_daily_routine_list_view.dart';
+import '../../../../../core/constants/constants.dart';
+import 'your_daily_routine_list_view.dart';
 
 import '../../../../../core/widgets/app_section_header.dart';
 
