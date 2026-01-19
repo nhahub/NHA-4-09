@@ -20,6 +20,7 @@ class LoginViewBody extends StatelessWidget {
             if (state is AuthSuccess) {
               Future.delayed(const Duration(milliseconds: 300), () {
                 Navigator.pushNamedAndRemoveUntil(
+                  // ignore: use_build_context_synchronously
                   context,
                   Routes.homeView,
                   (route) => false,
