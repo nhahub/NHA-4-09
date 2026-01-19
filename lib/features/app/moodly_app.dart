@@ -17,7 +17,6 @@ class MoodlyApp extends StatelessWidget {
       create: (context) => AuthatcationCubit(),
       child: MaterialApp(
         navigatorKey: navigatorKey,
-        useInheritedMediaQuery: true,
         locale: DevicePreview.locale(context),
         builder: DevicePreview.appBuilder,
         debugShowCheckedModeBanner: false,
