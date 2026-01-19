@@ -20,10 +20,12 @@ class LoginViewBody extends StatelessWidget {
         child: BlocConsumer<AuthatcationCubit, AuthatcationState>(
           listener: (context, state) {
             if (state is AuthSuccess) {
-              log("Login successful for user ID: ${state.userId}");
               Future.delayed(const Duration(milliseconds: 300), () {
                 Navigator.pushNamedAndRemoveUntil(
-                    context, Routes.homeView, (route) => false);
+                  context,
+                  Routes.homeView,
+                  (route) => false,
+                );
               });
             } else if (state is AuthFailure) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -35,25 +37,33 @@ class LoginViewBody extends StatelessWidget {
             }
           },
           builder: (context, state) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  "Login to Your Account",
-                  style: Theme.of(context).textTheme.headlineMedium,
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: MediaQuery.of(context).size.height,
                 ),
-                const SizedBox(height: 80),
-                SvgPicture.asset(AppAssets.zenspunLogo, width: 90, height: 90),
-                const SizedBox(height: 120),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(height: 50),
+                    SvgPicture.asset(
+                      AppAssets.zenspunLogo,
+                      width: 90,
+                      height: 90,
+                    ),
+                    const SizedBox(height: 80),
 
-                if (state is AuthLoading)
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    child: CircularProgressIndicator(),
-                  )
-                else
-                  const LoginFormWidget(),
-              ],
+                    if (state is AuthLoading)
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        child: CircularProgressIndicator(),
+                      )
+                    else
+                      const LoginFormWidget(),
+                  ],
+                ),
+              ),
             );
           },
         ),

@@ -43,7 +43,7 @@ class RegisterViewBody extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 80),
+                const SizedBox(height: 50),
                 SvgPicture.asset(AppAssets.zenspunLogo, width: 90, height: 90),
                 const SizedBox(height: 80),
                 if (state is AuthLoading)

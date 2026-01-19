@@ -32,10 +32,6 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Create Account",
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
           EmailTextField(emailController: emailController),
           const SizedBox(height: 20),
           PasswordTextField(passwordController: passwordController),

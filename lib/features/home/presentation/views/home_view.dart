@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/routing/routes.dart';
 import 'package:moodly/features/auth/presentation/cubit/authatcation_cubit.dart';
+import 'package:moodly/features/auth/presentation/cubit/authatcation_state.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/widgets/vertical_space.dart';
@@ -17,40 +19,49 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
-        child: Column(
-          children: [
-            const SizedBox(height: 60),
-            HomeAppbar(isPremium: false),
-            const VerticalSpace(),
-            Column(
-              children: [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: IconButton(
-                    onPressed: () {
-                      context.read<AuthatcationCubit>().logout();
-                    },
-                    icon: const Icon(Icons.logout, color: Colors.red),
-                  ),
+    return BlocListener<AuthatcationCubit, AuthatcationState>(
+      listener: (context, state) {
+        if (state is AuthInitial) {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            Routes.loginView,
+            (route) => false,
+          );
+        }
+      },
+      child: Scaffold(
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
+          child: Column(
+            children: [
+              const SizedBox(height: 60),
+              HomeAppbar(isPremium: false),
+              const VerticalSpace(),
+
+              Align(
+                alignment: Alignment.centerRight,
+                child: IconButton(
+                  onPressed: () {
+                    context.read<AuthatcationCubit>().logout();
+                  },
+                  icon: const Icon(Icons.logout, color: Colors.red),
                 ),
-                const MessageOfTheDaySection(),
-                const VerticalSpace(),
-                const FeelingTodaySection(),
-                const VerticalSpace(),
-                const DailyStatsSection(),
-                const VerticalSpace(),
-                const MoodProgressSection(),
-                const VerticalSpace(),
-                const MeditationsForYouSection(),
-                const VerticalSpace(),
-                const SessionsForYouSection(),
-                const VerticalSpace(),
-              ],
-            ),
-          ],
+              ),
+
+              const MessageOfTheDaySection(),
+              const VerticalSpace(),
+              const FeelingTodaySection(),
+              const VerticalSpace(),
+              const DailyStatsSection(),
+              const VerticalSpace(),
+              const MoodProgressSection(),
+              const VerticalSpace(),
+              const MeditationsForYouSection(),
+              const VerticalSpace(),
+              const SessionsForYouSection(),
+              const VerticalSpace(),
+            ],
+          ),
         ),
       ),
     );
