@@ -73,6 +73,7 @@ flutter:
     - assets/images/
     - assets/mock_images/
     - assets/logo/
+    - .env
 
   fonts:
     - family: SFPro

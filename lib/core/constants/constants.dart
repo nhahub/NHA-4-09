@@ -1,5 +1,6 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 class AppConstants {
-  static const String supabaseUrl = 'https://bgvufvgufbeoojigmloh.supabase.co';
-  static const String supabaseAnonKey =
-      'sb_publishable_DYO_UExNAMb3-hFrlflUiw_8VWprJ2U';
+  static String get supabaseUrl => dotenv.env['SUPABASE_URL'] ?? '';
+  static String get supabaseAnonKey => dotenv.env['SUPABASE_ANON_KEY'] ?? '';
 }
