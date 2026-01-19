@@ -1,10 +1,12 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
+
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/widgets/app_section_header.dart';
 import 'card_contant.dart';
 import 'card_dot.dart';
-import '../../../../../core/widgets/app_section_header.dart';
 
 class MessageOfTheDaySection extends StatelessWidget {
   final String quote =

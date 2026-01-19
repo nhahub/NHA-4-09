@@ -99,8 +99,8 @@ abstract class AppStyles {
     shadows: [
       Shadow(
         color: Colors.black.withAlpha(alphaFromPercentage(25)),
-        offset: const Offset(0, 2),
-        blurRadius: 2,
+        offset: const Offset(0, 1.34),
+        blurRadius: 4,
       ),
     ],
   );
@@ -123,8 +123,8 @@ abstract class AppStyles {
     shadows: [
       Shadow(
         color: AppColors.shadow.withAlpha(alphaFromPercentage(70)),
-        offset: const Offset(0, 1),
-        blurRadius: 2,
+        offset: const Offset(0, 1.34),
+        blurRadius: 4,
       ),
     ],
   );

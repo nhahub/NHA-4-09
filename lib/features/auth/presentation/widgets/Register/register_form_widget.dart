@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/extensions/spacing.dart';
+import 'package:moodly/core/widgets/app_text_button.dart';
 import 'package:moodly/features/auth/presentation/cubit/authatcation_cubit.dart';
 import 'already_have_an_account.dart';
 import '../shared/email_text_field.dart';
 import '../shared/password_text_field.dart';
-import '../../../../../core/widgets/app_text_button.dart';
 
 class RegisterFormWidget extends StatefulWidget {
   const RegisterFormWidget({super.key});

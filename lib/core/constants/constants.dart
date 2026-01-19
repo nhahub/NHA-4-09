@@ -4,3 +4,6 @@ class AppConstants {
   static String get supabaseUrl => dotenv.env['SUPABASE_URL'] ?? '';
   static String get supabaseAnonKey => dotenv.env['SUPABASE_ANON_KEY'] ?? '';
 }
+const double kAppHorizontalPadding = 26.72;
+const double kAppVerticalPadding = 26.72;
+const double kAppSectionSpacing = 21.0;

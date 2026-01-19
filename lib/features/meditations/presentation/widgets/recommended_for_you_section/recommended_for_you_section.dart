@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import '../../../../../core/constants/constants.dart';
+import 'recommended_for_you_list_view.dart';
 import '../../../../../core/widgets/app_section_header.dart';
 
 class RecommendedForYouSection extends StatelessWidget {
@@ -11,7 +12,8 @@ class RecommendedForYouSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const AppSectionHeader(title: "Recommended for you"),
-        Container(),
+        const SizedBox(height: kAppSectionSpacing),
+        const RecommendedForYouListView(),
       ],
     );
   }

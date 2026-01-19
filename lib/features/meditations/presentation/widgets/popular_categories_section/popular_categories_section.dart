@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../../../core/constants/constants.dart';
+import 'popular_categories_list_view.dart';
 
 import '../../../../../core/widgets/app_section_header.dart';
 
@@ -11,7 +13,8 @@ class PopularCategoriesSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const AppSectionHeader(title: "Popular Categories"),
-        Container(),
+        const SizedBox(height: kAppSectionSpacing),
+        const PopularCategoriesListView(),
       ],
     );
   }

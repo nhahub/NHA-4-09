@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import '../widgets/Register/register_view_body.dart';
 
 class RegisterView extends StatelessWidget {
