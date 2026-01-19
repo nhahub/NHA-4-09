@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moodly/features/auth/presentation/cubit/authatcation_cubit.dart';
 
- import '../../../../../core/widgets/app_text_button.dart';
+import '../../../../../core/widgets/app_text_button.dart';
 import '../shared/email_text_field.dart';
 import '../shared/password_text_field.dart';
 import 'create_an_account.dart';
@@ -39,8 +39,8 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
             const SizedBox(height: 20),
             PasswordTextField(passwordController: passwordController),
             const ForgotPassword(),
-            const SizedBox(height: 20),
-            const Spacer(),
+            SizedBox(height: 20),
+
             SizedBox(
               width: double.infinity,
               child: AppTextButton(
@@ -62,9 +62,9 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
   void validateThenLogin(BuildContext context) {
     if (formKey.currentState!.validate()) {
       context.read<AuthatcationCubit>().login(
-            emailController.text,
-            passwordController.text,
-          );
+        emailController.text,
+        passwordController.text,
+      );
     }
   }
 }

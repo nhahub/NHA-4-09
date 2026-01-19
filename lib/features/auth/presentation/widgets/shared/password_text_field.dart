@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -9,16 +11,19 @@ import '../../../../../core/widgets/app_text_form_field.dart';
 
 class PasswordTextField extends StatefulWidget {
   final TextEditingController passwordController;
+  bool isPasswordObscureText = true;
 
-  const PasswordTextField({super.key, required this.passwordController});
+  PasswordTextField({
+    super.key,
+    required this.passwordController,
+    this.isPasswordObscureText = true,
+  });
 
   @override
   State<PasswordTextField> createState() => _PasswordTextFieldState();
 }
 
 class _PasswordTextFieldState extends State<PasswordTextField> {
-  bool isPasswordObscureText = true;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -44,16 +49,18 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
               ),
             ),
           ),
-          isObscureText: isPasswordObscureText,
+          isObscureText: widget.isPasswordObscureText,
           controller: widget.passwordController,
           suffixIcon: IconButton(
             onPressed: () {
               setState(() {
-                isPasswordObscureText = !isPasswordObscureText;
+                widget.isPasswordObscureText = !widget.isPasswordObscureText;
               });
             },
             icon: Icon(
-              isPasswordObscureText ? Icons.visibility_off : Icons.visibility,
+              widget.isPasswordObscureText
+                  ? Icons.visibility_off
+                  : Icons.visibility,
               color: AppColors.brandGreen,
             ),
           ),

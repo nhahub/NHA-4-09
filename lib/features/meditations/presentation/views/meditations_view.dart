@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/constants/static.dart';
 import '../../../../core/widgets/vertical_space.dart';
-import '../../../../core/constants/constants.dart';
 import '../widgets/categories_section/categories_section.dart';
 import '../widgets/for_difficult_situations_section/for_difficult_situations_section.dart';
 import '../widgets/meditations_app_bar/meditations_app_bar.dart';

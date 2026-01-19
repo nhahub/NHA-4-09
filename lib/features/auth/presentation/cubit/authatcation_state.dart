@@ -15,3 +15,5 @@ class AuthFailure extends AuthatcationState {
   final String message;
   AuthFailure(this.message);
 }
+
+class ForgotPasswordSuccess extends AuthatcationState {}

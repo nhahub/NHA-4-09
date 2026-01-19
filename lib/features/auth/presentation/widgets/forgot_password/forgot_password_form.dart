@@ -1,51 +1,68 @@
 import 'package:flutter/material.dart';
-
-import '../../../../../core/widgets/app_text_button.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+ import 'package:moodly/core/widgets/app_text_button.dart';
+import 'package:moodly/features/auth/presentation/cubit/authatcation_cubit.dart';
+import 'package:moodly/features/auth/presentation/cubit/authatcation_state.dart';
+import 'package:moodly/features/auth/presentation/widgets/shared/email_text_field.dart';
 
 class ForgotPasswordForm extends StatefulWidget {
   const ForgotPasswordForm({super.key});
 
   @override
-  State<ForgotPasswordForm> createState() => _PinInputFormState();
+  State<ForgotPasswordForm> createState() => _ForgotPasswordFormState();
 }
 
-class _PinInputFormState extends State<ForgotPasswordForm> {
+class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+
   @override
   void dispose() {
-    phoneNumberController.dispose();
+    emailController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
-          children: [
-            const Spacer(),
-            // PhoneTextField(phoneNumberController: phoneNumberController),
-            const Spacer(),
-            AppTextButton(
-              onPressed: () {
-                validateThenVerifyCode(context);
-              },
-              buttonText: "Send Code",
+    return BlocListener<AuthatcationCubit, AuthatcationState>(
+      listener: (context, state) {
+        if (state is ForgotPasswordSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Reset password link sent to your email'),
             ),
-            const Spacer(flex: 2),
-          ],
+          );
+          //  Navigator.pushNamed(context, Routes.resetPasswordView);
+        } else if (state is AuthFailure) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.message)));
+        }
+      },
+      child: Form(
+        key: formKey,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            children: [
+              EmailTextField(emailController: emailController),
+
+              const SizedBox(height: 16),
+
+              AppTextButton(
+                onPressed: () {
+                  if (!formKey.currentState!.validate()) return;
+
+                  context.read<AuthatcationCubit>().forgotPassword(
+                    emailController.text.trim(),
+                  );
+                },
+                buttonText: "Send Reset Link",
+              ),
+            ],
+          ),
         ),
       ),
     );
-  }
-
-  void validateThenVerifyCode(BuildContext context) {
-    if (formKey.currentState!.validate()) {
-      // context.push(Routes.otpVerificationView, extra: true);
-    }
   }
 }

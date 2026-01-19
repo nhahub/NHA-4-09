@@ -1,8 +1,6 @@
-class AppConstants {
-  static const String urlSubabase = 'https://bgvufvgufbeoojigmloh.supabase.co';
-  static const String anonKey =
-      'sb_publishable_DYO_UExNAMb3-hFrlflUiw_8VWprJ2U';
-}
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-const double kAppHorizontalPadding = 35.4;
-const double kAppVerticalPadding = 35.4;
+class AppConstants {
+  static String get supabaseUrl => dotenv.env['SUPABASE_URL'] ?? '';
+  static String get supabaseAnonKey => dotenv.env['SUPABASE_ANON_KEY'] ?? '';
+}

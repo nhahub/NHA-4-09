@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/constants/static.dart';
 
-import '../../../../core/constants/constants.dart';
 import '../../../../core/theming/app_styles.dart';
 import '../../data/models/option_model.dart';
 import 'selectable_option_tile.dart';
