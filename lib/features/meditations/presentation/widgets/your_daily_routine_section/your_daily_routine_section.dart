@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../../../core/constants/constants.dart';
+import 'your_daily_routine_list_view.dart';
 
 import '../../../../../core/widgets/app_section_header.dart';
 
@@ -11,7 +13,8 @@ class YourDailyRoutineSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const AppSectionHeader(title: "Your daily routine"),
-        Container(),
+        const SizedBox(height: kAppSectionSpacing),
+        const YourDailyRoutineListView(),
       ],
     );
   }

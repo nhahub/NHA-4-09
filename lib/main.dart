@@ -10,8 +10,8 @@ import 'features/app/moodly_app.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Load .env file
   await dotenv.load(fileName: ".env");
+  await DeepLinkService.init();
 
   await Supabase.initialize(
     url: AppConstants.supabaseUrl,
@@ -25,6 +25,4 @@ void main() async {
       builder: (_) => const MoodlyApp(),
     ),
   );
-
-  await DeepLinkService.init();
 }

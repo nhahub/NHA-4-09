@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/extensions/spacing.dart';
 
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/app_styles.dart';
@@ -15,7 +16,8 @@ class ForgotPasswordView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
-              const SizedBox(height: 80),
+              gapHeight(80),
+
               Align(
                 alignment: AlignmentDirectional.centerStart,
                 child: Text(
@@ -25,7 +27,7 @@ class ForgotPasswordView extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 15),
+              gapHeight(15),
               const Expanded(child: ForgotPasswordForm()),
             ],
           ),

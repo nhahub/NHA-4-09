@@ -43,6 +43,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   app_links: ^6.4.1
   flutter_dotenv: ^6.0.0
+  awesome_snackbar_content: ^0.1.8
+  fluttertoast: ^9.0.0
 
 
 

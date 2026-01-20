@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:moodly/core/helpers/snackbar_service.dart';
+import 'package:moodly/core/extensions/spacing.dart';
 import 'package:moodly/core/routing/routes.dart';
 import 'package:moodly/features/auth/presentation/cubit/authatcation_cubit.dart';
 import 'package:moodly/features/auth/presentation/cubit/authatcation_state.dart';
@@ -20,37 +22,33 @@ class LoginViewBody extends StatelessWidget {
             if (state is AuthSuccess) {
               Future.delayed(const Duration(milliseconds: 300), () {
                 Navigator.pushNamedAndRemoveUntil(
+                  // ignore: use_build_context_synchronously
                   context,
                   Routes.homeView,
                   (route) => false,
                 );
               });
             } else if (state is AuthFailure) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.message),
-                  backgroundColor: Colors.red,
-                ),
-              );
+              CustomSnackbar.show(context, state.message, isError: true);
             }
           },
           builder: (context, state) {
             return SingleChildScrollView(
               child: ConstrainedBox(
                 constraints: BoxConstraints(
-                  minHeight: MediaQuery.of(context).size.height,
+                  minHeight: MediaQuery.of(context).size.height * 0.8,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const SizedBox(height: 50),
+                    gapHeight(50),
                     SvgPicture.asset(
                       AppAssets.zenspunLogo,
                       width: 90,
                       height: 90,
                     ),
-                    const SizedBox(height: 80),
+                    gapHeight(80),
 
                     if (state is AuthLoading)
                       const Padding(
