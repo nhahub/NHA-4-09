@@ -36,13 +36,13 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           EmailTextField(emailController: emailController),
-          gapHeight(20),
+          const SizedBox(height: 20),
 
           PasswordTextField(
             text: "Enter Your Password",
             passwordController: passwordController,
           ),
-          gapHeight(20),
+          const SizedBox(height: 20),
 
           PasswordTextField(
             hitText: "Repeat Password",
@@ -50,7 +50,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
             passwordController: confirmPasswordController,
           ),
 
-          gapHeight(20),
+          const SizedBox(height: 20),
 
           SizedBox(
             width: double.infinity,
@@ -61,10 +61,10 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
               buttonText: "Register",
             ),
           ),
-          gapHeight(20),
+          const SizedBox(height: 20),
 
           const AlreadyHaveAnAccount(),
-          gapHeight(20),
+          const SizedBox(height: 20),
         ],
       ),
     );

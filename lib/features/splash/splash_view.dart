@@ -17,30 +17,30 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView> {
   @override
-  void initState() {
-    super.initState();
-    _redirect();
-  }
+  // void initState() {
+  //   super.initState();
+  //   _redirect();
+  // }
 
-  Future<void> _redirect() async {
-    await Future.delayed(const Duration(seconds: 2));
-    if (!mounted) return;
+  // Future<void> _redirect() async {
+  //   await Future.delayed(const Duration(seconds: 2));
+  //   if (!mounted) return;
 
-    if (DeepLinkState.openedFromResetLink) {
-      DeepLinkState.openedFromResetLink = false;
+  //   if (DeepLinkState.openedFromResetLink) {
+  //     DeepLinkState.openedFromResetLink = false;
 
-      Navigator.pushReplacementNamed(context, Routes.resetPasswordView);
-      return;
-    }
+  //     Navigator.pushReplacementNamed(context, Routes.resetPasswordView);
+  //     return;
+  //   }
 
-    final session = Supabase.instance.client.auth.currentSession;
+  //   final session = Supabase.instance.client.auth.currentSession;
 
-    if (session != null) {
-      Navigator.pushReplacementNamed(context, Routes.homeView);
-    } else {
-      Navigator.pushReplacementNamed(context, Routes.startView);
-    }
-  }
+  //   if (session != null) {
+  //     Navigator.pushReplacementNamed(context, Routes.homeView);
+  //   } else {
+  //     Navigator.pushReplacementNamed(context, Routes.startView);
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {

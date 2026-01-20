@@ -6,6 +6,7 @@ import 'package:moodly/features/auth/presentation/views/register_view.dart';
 import 'package:moodly/features/auth/presentation/views/start_view.dart';
 import 'package:moodly/features/auth/presentation/widgets/forgot_password/reset_password_screen.dart';
 import 'package:moodly/features/home/presentation/views/home_view.dart';
+import 'package:moodly/features/meditations/presentation/views/meditations_view.dart';
 import 'package:moodly/features/splash/splash_view.dart';
 
 class AppRouter {
@@ -30,6 +31,9 @@ class AppRouter {
 
       case Routes.homeView:
         return MaterialPageRoute(builder: (_) => const HomeView());
+
+      case Routes.meditationsView:
+        return MaterialPageRoute(builder: (_) => const MeditationsView());
 
       default:
         return MaterialPageRoute(
