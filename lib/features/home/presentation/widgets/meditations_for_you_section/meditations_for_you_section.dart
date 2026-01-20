@@ -11,7 +11,7 @@ class MeditationsForYouSection extends StatelessWidget {
     return Column(
       children: [
         MeditationsForYouHeader(),
-        SizedBox(height: kAppSectionSpacing),
+        const SizedBox(height: kAppSectionSpacing),
         MeditationsForYouListView(),
       ],
     );

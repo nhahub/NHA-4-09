@@ -59,7 +59,7 @@ class HomeView extends StatelessWidget {
                     const MeditationsForYouSection(),
                     const VerticalSpace(),
                     const SessionsForYouSection(),
-                    const VerticalSpace(),
+                    const SizedBox(height: 40,),
                   ],
                 ),
               ),

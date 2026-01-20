@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/home/presentation/widgets/shared/see_more_widget.dart';
-
-import '../../../../../core/widgets/app_section_header.dart';
+import 'package:moodly/core/constants/constants.dart';
+import 'package:moodly/features/home/presentation/widgets/sessions_for_you_section/sessions_for_you_header.dart';
+import 'package:moodly/features/home/presentation/widgets/sessions_for_you_section/sessions_for_you_list_view.dart';
 
 class SessionsForYouSection extends StatelessWidget {
   const SessionsForYouSection({super.key});
@@ -10,14 +10,9 @@ class SessionsForYouSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          children: [
-            const AppSectionHeader(title: "Sessions for you"),
-            const Spacer(),
-            SeeMoreWidget(onTap: () {}),
-          ],
-        ),
-        Container(),
+        const SessionsForYouHeader(),
+        const SizedBox(height: kAppSectionSpacing),
+        SessionsForYouListView(),
       ],
     );
   }
