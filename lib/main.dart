@@ -19,10 +19,11 @@ void main() async {
   );
 
   runApp(
-    DevicePreview(
-      enabled: true,
-      devices: Devices.all,
-      builder: (_) => const MoodlyApp(),
-    ),
+    const MoodlyApp(),
+    // DevicePreview(
+    //   enabled: true,
+    //   devices: Devices.all,
+    //   builder: (_) => const MoodlyApp(),
+    // ),
   );
 }

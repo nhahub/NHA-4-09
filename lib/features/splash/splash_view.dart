@@ -1,12 +1,12 @@
-import 'dart:async';
+// import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moodly/core/routing/deep_link_state.dart';
-import 'package:moodly/core/routing/routes.dart';
+// import 'package:moodly/core/routing/deep_link_state.dart';
+// import 'package:moodly/core/routing/routes.dart';
 import 'package:moodly/core/theming/app_assets.dart';
 import 'package:moodly/core/theming/app_colors.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+// import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});

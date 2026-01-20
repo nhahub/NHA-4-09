@@ -23,7 +23,7 @@ class MoodlyApp extends StatelessWidget {
         theme: ThemeManager.getAppTheme(),
         onGenerateRoute: AppRouter.generateRoute,
 
-        initialRoute: Routes.meditationsView,
+        initialRoute: Routes.homeView,
       ),
     );
   }
