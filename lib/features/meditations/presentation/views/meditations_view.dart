@@ -34,7 +34,7 @@ class MeditationsView extends StatelessWidget {
                 SliverToBoxAdapter(child: ForDifficultSituationsSection()),
                 SliverToBoxAdapter(child: VerticalSpace()),
                 SliverToBoxAdapter(child: NewArrivalsSection()),
-                SliverToBoxAdapter(child: VerticalSpace()),
+                SliverToBoxAdapter(child: const SizedBox(height: 120)),
               ],
             ),
           ),

@@ -42,7 +42,7 @@ class _MainViewState extends State<MainView> {
               switchOutCurve: Curves.easeOut,
               transitionBuilder: (child, animation) {
                 final offsetAnimation = Tween<Offset>(
-                  begin: const Offset(1, 0), // Slide من اليمين
+                  begin: const Offset(1, 0),
                   end: Offset.zero,
                 ).animate(animation);
                 return SlideTransition(position: offsetAnimation, child: child);
