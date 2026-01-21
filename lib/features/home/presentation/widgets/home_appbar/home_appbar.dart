@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:moodly/core/constants/static.dart';
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../../../../core/widgets/custom_circle_button.dart';
@@ -12,14 +12,20 @@ class HomeAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Text("Home", style: AppStyles.extraBold27),
-        const SizedBox(width: 20),
-        isPremium ? const PremiumContainer() : FreeContainer(),
-        const Spacer(),
-        CustomCircleButton(icon: AppAssets.slidersHorizontalIcon, onTap: () {}),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
+      child: Row(
+        children: [
+          const Text("Home", style: AppStyles.extraBold27),
+          const SizedBox(width: 20),
+          isPremium ? const PremiumContainer() : FreeContainer(),
+          const Spacer(),
+          CustomCircleButton(
+            icon: AppAssets.slidersHorizontalIcon,
+            onTap: () {},
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../../core/theming/app_styles.dart';
+import 'package:moodly/core/widgets/app_section_header.dart';
 
 class FeelingTodaySection extends StatelessWidget {
   const FeelingTodaySection({super.key});
@@ -10,7 +9,7 @@ class FeelingTodaySection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("How are you feeling today?", style: AppStyles.extraBold20),
+        const AppSectionHeader(title: "How are you feeling today?"),
         Container(),
       ],
     );

@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:moodly/core/constants/constants.dart';
+import 'package:moodly/core/extensions/spacing.dart';
 
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_colors.dart';
@@ -20,81 +22,86 @@ class MessageOfTheDaySection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const AppSectionHeader(title: "Message of the Day"),
-        SizedBox(height: 35),
-        Stack(
-          children: [
-            Transform.rotate(
-              angle: 3 * pi / 180,
-              child: Transform.translate(
-                offset: const Offset(0, -10),
-                child: Container(
-                  height: 180,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: AppColors.brandGreen, width: 2),
-                    gradient: const LinearGradient(
-                      colors: [AppColors.lightGreen, AppColors.brandGreen],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      stops: [0, 0.75],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: AppColors.brandGreen, width: 2),
-                gradient: const LinearGradient(
-                  colors: [AppColors.lightGreen, AppColors.brandGreen],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-              ),
-              child: Stack(
-                children: [
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    top: -30,
-                    child: Opacity(
-                      opacity: 0.7,
-                      child: Image.asset(
-                        AppAssets.cardEffect,
-                        fit: BoxFit.cover,
+        gapHeight(35),
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: kAppHorizontalPadding,
+          ),
+          child: Stack(
+            children: [
+              Transform.rotate(
+                angle: 3 * pi / 180,
+                child: Transform.translate(
+                  offset: const Offset(0, -10),
+                  child: Container(
+                    height: 180,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: AppColors.brandGreen, width: 2),
+                      gradient: const LinearGradient(
+                        colors: [AppColors.lightGreen, AppColors.brandGreen],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        stops: [0, 0.75],
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [CardDot(), CardDot()],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 18,
-                            vertical: 8,
-                          ),
-                          child: CardContant(quote: quote, author: author),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [CardDot(), CardDot()],
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-          ],
+              Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: AppColors.brandGreen, width: 2),
+                  gradient: const LinearGradient(
+                    colors: [AppColors.lightGreen, AppColors.brandGreen],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+                child: Stack(
+                  children: [
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      top: -30,
+                      child: Opacity(
+                        opacity: 0.7,
+                        child: Image.asset(
+                          AppAssets.cardEffect,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [CardDot(), CardDot()],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 18,
+                              vertical: 8,
+                            ),
+                            child: CardContant(quote: quote, author: author),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [CardDot(), CardDot()],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );

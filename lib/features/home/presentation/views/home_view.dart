@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/constants/static.dart';
 import 'package:moodly/core/routing/routes.dart';
 import 'package:moodly/features/auth/presentation/cubit/authatcation_cubit.dart';
 import 'package:moodly/features/auth/presentation/cubit/authatcation_state.dart';
-
 import '../../../../core/widgets/vertical_space.dart';
 import '../widgets/daily_stats_section/daily_stats_section.dart';
 import '../widgets/feeling_today_section/feeling_today_section.dart';
@@ -30,38 +28,43 @@ class HomeView extends StatelessWidget {
         }
       },
       child: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
-          child: Column(
-            children: [
-              const SizedBox(height: 60),
-              HomeAppbar(isPremium: false),
-              const VerticalSpace(),
+        body: Column(
+          children: [
+            const SizedBox(height: 60),
+            HomeAppbar(isPremium: false),
+            const VerticalSpace(),
 
-              Align(
-                alignment: Alignment.centerRight,
-                child: IconButton(
-                  onPressed: () {
-                    context.read<AuthatcationCubit>().logout();
-                  },
-                  icon: const Icon(Icons.logout, color: Colors.red),
+            Align(
+              alignment: Alignment.centerRight,
+              child: IconButton(
+                onPressed: () {
+                  context.read<AuthatcationCubit>().logout();
+                },
+                icon: const Icon(Icons.logout, color: Colors.red),
+              ),
+            ),
+
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const MessageOfTheDaySection(),
+                    const VerticalSpace(),
+                    const FeelingTodaySection(),
+                    const VerticalSpace(),
+                    const DailyStatsSection(),
+                    const VerticalSpace(),
+                    const MoodProgressSection(),
+                    const VerticalSpace(),
+                    const MeditationsForYouSection(),
+                    const VerticalSpace(),
+                    const SessionsForYouSection(),
+                    const SizedBox(height: 40,),
+                  ],
                 ),
               ),
-
-              const MessageOfTheDaySection(),
-              const VerticalSpace(),
-              const FeelingTodaySection(),
-              const VerticalSpace(),
-              const DailyStatsSection(),
-              const VerticalSpace(),
-              const MoodProgressSection(),
-              const VerticalSpace(),
-              const MeditationsForYouSection(),
-              const VerticalSpace(),
-              const SessionsForYouSection(),
-              const VerticalSpace(),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
