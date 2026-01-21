@@ -5,9 +5,12 @@ import 'package:moodly/core/theming/app_styles.dart';
 
 class ContactWidget extends StatelessWidget {
   final String icon;
-  final int price;
+  final num price;
+  final num priceAfterDiscount;
+  final num discount;
   final double additionalWidth;
   final double iconSize;
+  final bool isPaidUser = true;
 
   const ContactWidget({
     super.key,
@@ -15,6 +18,8 @@ class ContactWidget extends StatelessWidget {
     required this.price,
     required this.iconSize,
     this.additionalWidth = 8,
+    required this.priceAfterDiscount,
+    required this.discount,
   });
 
   @override
@@ -31,10 +36,25 @@ class ContactWidget extends StatelessWidget {
           ),
         ),
         SizedBox(width: additionalWidth),
-        Text(
-          "$price USD",
-          style: AppStyles.extraBold15.copyWith(color: AppColors.linkGray),
-        ),
+        if (isPaidUser && discount != 0) ...[
+          Text(
+            "$price",
+            style: AppStyles.medium15.copyWith(
+              color: AppColors.bodyGray,
+              decoration: TextDecoration.lineThrough,
+            ),
+          ),
+          const SizedBox(width: 3),
+          Text(
+            "$priceAfterDiscount USD",
+            style: AppStyles.extraBold15.copyWith(color: AppColors.linkGray),
+          ),
+        ],
+        if (isPaidUser == false || isPaidUser && discount == 0)
+          Text(
+            "$price USD",
+            style: AppStyles.extraBold15.copyWith(color: AppColors.linkGray),
+          ),
         const SizedBox(width: 3),
         Text(
           "/ hour",

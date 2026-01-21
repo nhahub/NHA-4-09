@@ -39,12 +39,16 @@ class TherapistDetails extends StatelessWidget {
           ContactWidget(
             icon: AppAssets.coloredChatIcon,
             price: sessionsForYouModel.chatPrice,
+            discount: sessionsForYouModel.discount,
+            priceAfterDiscount: sessionsForYouModel.chatPriceAfterDiscount,
             iconSize: 20,
           ),
           const SizedBox(height: 8),
           ContactWidget(
             icon: AppAssets.phoneIcon,
             price: sessionsForYouModel.livePrice,
+            discount: sessionsForYouModel.discount,
+            priceAfterDiscount: sessionsForYouModel.livePriceAfterDiscount,
             iconSize: 17,
             additionalWidth: 12,
           ),

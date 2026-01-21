@@ -4,9 +4,9 @@ class SessionsForYouModel {
   final String image;
   final String name;
   final String speciality;
-  final int discount;
-  final int livePrice;
-  final int chatPrice;
+  final num discount;
+  final num livePrice;
+  final num chatPrice;
   final RatingModel rating;
 
   const SessionsForYouModel({
@@ -18,6 +18,16 @@ class SessionsForYouModel {
     required this.chatPrice,
     required this.rating,
   });
+
+  /// live price after discount (1 decimal)
+  num get livePriceAfterDiscount {
+    return num.parse((livePrice * (1 - discount / 100)).toStringAsFixed(1));
+  }
+
+  /// chat price after discount (1 decimal)
+  num get chatPriceAfterDiscount {
+    return num.parse((chatPrice * (1 - discount / 100)).toStringAsFixed(1));
+  }
 }
 
 class RatingModel {
