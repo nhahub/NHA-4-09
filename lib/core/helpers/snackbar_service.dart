@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:moodly/core/theming/app_colors.dart';
+import '../theming/app_colors.dart';
 
 class CustomSnackbar {
   static void show(

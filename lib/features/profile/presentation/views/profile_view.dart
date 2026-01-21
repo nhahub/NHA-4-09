@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/routing/routes.dart';
-import 'package:moodly/features/auth/presentation/cubit/authatcation_cubit.dart';
-import 'package:moodly/features/auth/presentation/cubit/authatcation_state.dart';
+import '../../../../core/routing/routes.dart';
+import '../../../auth/presentation/cubit/authatcation_cubit.dart';
+import '../../../auth/presentation/cubit/authatcation_state.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});

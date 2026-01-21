@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moodly/core/constants/static.dart';
-import 'package:moodly/core/extensions/spacing.dart';
-import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/core/theming/app_styles.dart';
+import '../../../../../core/constants/static.dart';
+import '../../../../../core/extensions/spacing.dart';
+import '../../../../../core/theming/app_assets.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/app_styles.dart';
 
 class SeeMoreWidget extends StatelessWidget {
   final VoidCallback onTap;

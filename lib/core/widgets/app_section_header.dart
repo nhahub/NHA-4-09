@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../constants/constants.dart';
 
+import '../constants/constants.dart';
 import '../theming/app_styles.dart';
 
 class AppSectionHeader extends StatelessWidget {

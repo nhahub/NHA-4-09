@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/widgets/horizontal_padding_list.dart';
-import 'package:moodly/features/home/data/models/sessions_for_you_model.dart';
-import 'package:moodly/features/home/presentation/widgets/sessions_for_you_section/sessions_for_you_card.dart';
+import '../../../../../core/widgets/horizontal_padding_list.dart';
+import '../../../data/models/sessions_for_you_model.dart';
+import 'sessions_for_you_card.dart';
 
 class SessionsForYouListView extends StatelessWidget {
   const SessionsForYouListView({super.key});

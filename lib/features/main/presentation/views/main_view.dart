@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/Community/presentation/views/community_view.dart';
-import 'package:moodly/features/chatbot/presentation/views/chatbot_view.dart';
-import 'package:moodly/features/home/presentation/views/home_view.dart';
-import 'package:moodly/features/main/presentation/widgets/main_nav_bar.dart';
-import 'package:moodly/features/meditations/presentation/views/meditations_view.dart';
-import 'package:moodly/features/profile/presentation/views/profile_view.dart';
+import '../../../Community/presentation/views/community_view.dart';
+import '../../../chatbot/presentation/views/chatbot_view.dart';
+import '../../../home/presentation/views/home_view.dart';
+import '../widgets/main_nav_bar.dart';
+import '../../../meditations/presentation/views/meditations_view.dart';
+import '../../../profile/presentation/views/profile_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -48,7 +48,7 @@ class _MainViewState extends State<MainView> {
                 return SlideTransition(position: offsetAnimation, child: child);
               },
               child: IndexedStack(
-                key: ValueKey(_currentIndex), 
+                key: ValueKey(_currentIndex),
                 index: _currentIndex,
                 children: _screens,
               ),

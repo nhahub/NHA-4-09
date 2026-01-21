@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/home/data/models/sessions_for_you_model.dart';
-import 'package:moodly/features/home/presentation/widgets/sessions_for_you_section/discount_container.dart';
-import 'package:moodly/features/home/presentation/widgets/sessions_for_you_section/rating_container.dart';
+import '../../../data/models/sessions_for_you_model.dart';
+import 'discount_container.dart';
+import 'rating_container.dart';
 
 class TherapistCoverInfo extends StatelessWidget {
   const TherapistCoverInfo({super.key, required this.sessionsForYouModel});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/widgets/app_section_header.dart';
+import '../../../../../core/widgets/app_section_header.dart';
 
 class FeelingTodaySection extends StatelessWidget {
   const FeelingTodaySection({super.key});

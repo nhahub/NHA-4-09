@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moodly/core/helpers/snackbar_service.dart';
-import 'package:moodly/core/extensions/spacing.dart';
-import 'package:moodly/core/routing/routes.dart';
-import 'package:moodly/features/auth/presentation/cubit/authatcation_cubit.dart';
-import 'package:moodly/features/auth/presentation/cubit/authatcation_state.dart';
+import '../../../../../core/helpers/snackbar_service.dart';
+import '../../../../../core/extensions/spacing.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../cubit/authatcation_cubit.dart';
+import '../../cubit/authatcation_state.dart';
 import '../../../../../core/theming/app_assets.dart';
 import 'login_form_widget.dart';
 

@@ -1,4 +1,4 @@
-import 'package:moodly/core/theming/app_assets.dart';
+import '../../../../core/theming/app_assets.dart';
 
 class SessionsForYouModel {
   final String image;

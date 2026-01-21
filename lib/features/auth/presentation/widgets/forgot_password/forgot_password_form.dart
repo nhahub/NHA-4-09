@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/helpers/snackbar_service.dart';
-import 'package:moodly/core/extensions/spacing.dart';
-import 'package:moodly/core/widgets/app_text_button.dart';
-import 'package:moodly/features/auth/presentation/cubit/authatcation_cubit.dart';
-import 'package:moodly/features/auth/presentation/cubit/authatcation_state.dart';
-import 'package:moodly/features/auth/presentation/widgets/shared/email_text_field.dart';
+import '../../../../../core/helpers/snackbar_service.dart';
+import '../../../../../core/extensions/spacing.dart';
+import '../../../../../core/widgets/app_text_button.dart';
+import '../../cubit/authatcation_cubit.dart';
+import '../../cubit/authatcation_state.dart';
+import '../shared/email_text_field.dart';
 
 class ForgotPasswordForm extends StatefulWidget {
   const ForgotPasswordForm({super.key});

@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:app_links/app_links.dart';
 import 'package:flutter/widgets.dart';
-import 'package:moodly/core/routing/deep_link_state.dart';
-import 'package:moodly/core/routing/navigation_service.dart';
-import 'package:moodly/core/routing/routes.dart';
+import 'deep_link_state.dart';
+import 'navigation_service.dart';
+import 'routes.dart';
 
 class DeepLinkService {
   static final AppLinks _appLinks = AppLinks();

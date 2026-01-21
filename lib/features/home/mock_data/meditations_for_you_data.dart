@@ -1,4 +1,4 @@
-import 'package:moodly/features/meditations/data/models/meditation_card_model.dart';
+import '../../meditations/data/models/meditation_card_model.dart';
 import '../../../../core/theming/app_assets.dart';
 
 const List<MeditationCardModel> meditationsForYouData = [

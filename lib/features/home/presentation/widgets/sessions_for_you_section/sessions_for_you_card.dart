@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/helpers/alpha_from_percent.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/features/home/data/models/sessions_for_you_model.dart';
-import 'package:moodly/features/home/presentation/widgets/sessions_for_you_section/therapist_cover_info.dart';
-import 'package:moodly/features/home/presentation/widgets/sessions_for_you_section/therapist_details.dart';
+import '../../../../../core/helpers/alpha_from_percent.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../data/models/sessions_for_you_model.dart';
+import 'therapist_cover_info.dart';
+import 'therapist_details.dart';
 
 class SessionsForYouCard extends StatelessWidget {
   final SessionsForYouModel sessionsForYouModel;
