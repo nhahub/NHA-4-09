@@ -16,7 +16,7 @@ class MeditationsView extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          SizedBox(height: 60),
+          const VerticalSpace(),
           MeditationsAppBar(isPremium: true),
           Expanded(
             child: CustomScrollView(
