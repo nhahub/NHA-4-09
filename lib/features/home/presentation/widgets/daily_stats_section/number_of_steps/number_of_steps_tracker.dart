@@ -1,0 +1,41 @@
+import 'package:flutter/material.dart';
+import 'package:moodly/core/helpers/alpha_from_percent.dart';
+import 'package:moodly/core/theming/app_colors.dart';
+import 'package:moodly/core/theming/app_styles.dart';
+
+class NumberOfStepsTracker extends StatelessWidget {
+  final int numberOfSteps = 2245;
+  const NumberOfStepsTracker({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Text("$numberOfSteps", style: AppStyles.extraBold21),
+        SizedBox(width: 5),
+        Text(
+          "/ 10,000",
+          style: AppStyles.extraBold15.copyWith(color: AppColors.bodyGray),
+        ),
+        Spacer(),
+        SizedBox(
+          width: 108,
+          child: LinearProgressIndicator(
+            value: numberOfSteps / 10000,
+            minHeight: 8,
+            borderRadius: BorderRadius.circular(8),
+            backgroundColor: AppColors.borderButton.withAlpha(
+              alphaFromPercentage(6),
+            ),
+            valueColor: AlwaysStoppedAnimation<Color>(AppColors.brandGreen),
+          ),
+        ),
+        SizedBox(width: 10),
+        Text(
+          "${(numberOfSteps / 10000 * 100).toStringAsFixed(0)}%",
+          style: AppStyles.medium14.copyWith(color: AppColors.bodyGray),
+        ),
+      ],
+    );
+  }
+}

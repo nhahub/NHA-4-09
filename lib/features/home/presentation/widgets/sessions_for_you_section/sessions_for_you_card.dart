@@ -15,7 +15,7 @@ class SessionsForYouCard extends StatelessWidget {
       width: 284.52,
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-        color: Color(0xffF9F9FB),
+        color: AppColors.bgFill,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: AppColors.borderButton.withAlpha(alphaFromPercentage(6)),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../../../../core/widgets/app_section_header.dart';
+import 'package:moodly/core/constants/constants.dart';
+import 'package:moodly/features/home/presentation/widgets/daily_stats_section/shared/daily_stats_container.dart';
+import '../../../../../../core/widgets/app_section_header.dart';
 
 class DailyStatsSection extends StatelessWidget {
   const DailyStatsSection({super.key});
@@ -11,7 +12,8 @@ class DailyStatsSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const AppSectionHeader(title: "Daily Stats"),
-        Container(),
+        const SizedBox(height: kAppSectionSpacing),
+        DailyStatsContainer(),
       ],
     );
   }
