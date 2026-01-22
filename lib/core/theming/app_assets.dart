@@ -12,7 +12,6 @@ class AppAssets {
   static const String cardDotIcon = 'assets/svgs/card_dot.svg';
   static const String chartBarIcon = 'assets/svgs/chart_bar.svg';
   static const String chatIcon = 'assets/svgs/chat.svg';
-  static const String coloredChatIcon = 'assets/svgs/colored_chat.svg';
   static const String checkIcon = 'assets/svgs/check.svg';
   static const String dotsThreeIcon = 'assets/svgs/dots_three.svg';
   static const String flowerLotusIcon = 'assets/svgs/flower_lotus.svg';

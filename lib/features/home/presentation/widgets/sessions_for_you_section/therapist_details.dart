@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/features/home/data/models/sessions_for_you_model.dart';
-import 'package:moodly/features/home/presentation/widgets/sessions_for_you_section/contact_widget.dart';
+import '../../../../../core/constants/constants.dart';
+import '../../../../../core/theming/app_assets.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/app_styles.dart';
+import '../../../data/models/sessions_for_you_model.dart';
+import 'contact_widget.dart';
 
 class TherapistDetails extends StatelessWidget {
   const TherapistDetails({super.key, required this.sessionsForYouModel});
@@ -37,7 +37,7 @@ class TherapistDetails extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           ContactWidget(
-            icon: AppAssets.coloredChatIcon,
+            icon: AppAssets.chatIcon,
             price: sessionsForYouModel.chatPrice,
             discount: sessionsForYouModel.discount,
             priceAfterDiscount: sessionsForYouModel.chatPriceAfterDiscount,

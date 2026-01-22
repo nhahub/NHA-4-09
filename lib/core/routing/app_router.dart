@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/routing/routes.dart';
-import 'package:moodly/features/auth/presentation/views/forgot_password_view.dart';
-import 'package:moodly/features/auth/presentation/views/login_view.dart';
-import 'package:moodly/features/auth/presentation/views/register_view.dart';
-import 'package:moodly/features/auth/presentation/views/start_view.dart';
-import 'package:moodly/features/auth/presentation/widgets/forgot_password/reset_password_screen.dart';
-import 'package:moodly/features/home/presentation/views/home_view.dart';
-import 'package:moodly/features/meditations/presentation/views/meditations_view.dart';
-import 'package:moodly/features/splash/splash_view.dart';
+import 'routes.dart';
+import '../../features/auth/presentation/views/forgot_password_view.dart';
+import '../../features/auth/presentation/views/login_view.dart';
+import '../../features/auth/presentation/views/register_view.dart';
+import '../../features/auth/presentation/views/start_view.dart';
+import '../../features/auth/presentation/widgets/forgot_password/reset_password_screen.dart';
+import '../../features/home/presentation/views/home_view.dart';
+import '../../features/main/presentation/views/main_view.dart';
+import '../../features/meditations/presentation/views/meditations_view.dart';
+import '../../features/splash/splash_view.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -28,6 +29,9 @@ class AppRouter {
 
       case Routes.resetPasswordView:
         return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
+
+      case Routes.mainView:
+        return MaterialPageRoute(builder: (_) => const MainView());
 
       case Routes.homeView:
         return MaterialPageRoute(builder: (_) => const HomeView());

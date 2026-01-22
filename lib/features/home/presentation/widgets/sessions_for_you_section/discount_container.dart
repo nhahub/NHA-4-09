@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/features/home/data/models/sessions_for_you_model.dart';
+import '../../../../../core/theming/app_assets.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/app_styles.dart';
+import '../../../data/models/sessions_for_you_model.dart';
 
 class DiscountContainer extends StatelessWidget {
   final bool isPaidUser = true;

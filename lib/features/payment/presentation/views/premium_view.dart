@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:moodly/core/constants/static.dart';
+import '../../../../core/constants/static.dart';
 
  import '../widgets/premium_offers/continue_with_free_tier_button.dart';
 import '../widgets/premium_offers/free_tier.dart';

@@ -1,9 +1,9 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/routing/navigation_service.dart';
-import 'package:moodly/core/routing/routes.dart';
-import 'package:moodly/features/auth/presentation/cubit/authatcation_cubit.dart';
+import '../../core/routing/navigation_service.dart';
+import '../../core/routing/routes.dart';
+import '../auth/presentation/cubit/authatcation_cubit.dart';
 
 import '../../core/routing/app_router.dart';
 import '../../core/theming/theme_manager.dart';
@@ -22,8 +22,7 @@ class MoodlyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeManager.getAppTheme(),
         onGenerateRoute: AppRouter.generateRoute,
-
-        initialRoute: Routes.homeView,
+        initialRoute: Routes.mainView,
       ),
     );
   }

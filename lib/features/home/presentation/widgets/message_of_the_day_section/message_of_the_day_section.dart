@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/core/extensions/spacing.dart';
+import '../../../../../core/constants/constants.dart';
+import '../../../../../core/extensions/spacing.dart';
 
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_colors.dart';

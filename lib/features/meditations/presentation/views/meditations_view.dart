@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/widgets/vertical_space.dart';
 import '../widgets/categories_section/categories_section.dart';
 import '../widgets/for_difficult_situations_section/for_difficult_situations_section.dart';
@@ -16,7 +17,7 @@ class MeditationsView extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          SizedBox(height: 60),
+          const VerticalSpace(),
           MeditationsAppBar(isPremium: true),
           Expanded(
             child: CustomScrollView(
@@ -33,7 +34,7 @@ class MeditationsView extends StatelessWidget {
                 SliverToBoxAdapter(child: ForDifficultSituationsSection()),
                 SliverToBoxAdapter(child: VerticalSpace()),
                 SliverToBoxAdapter(child: NewArrivalsSection()),
-                SliverToBoxAdapter(child: VerticalSpace()),
+                SliverToBoxAdapter(child: const SizedBox(height: 120)),
               ],
             ),
           ),

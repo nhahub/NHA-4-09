@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/extensions/spacing.dart';
+import '../../../../../core/extensions/spacing.dart';
 
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_colors.dart';

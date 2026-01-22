@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/widgets/app_section_header.dart';
-import 'package:moodly/features/home/presentation/widgets/shared/see_more_widget.dart';
+import '../../../../../core/widgets/app_section_header.dart';
+import '../shared/see_more_widget.dart';
 
 class MeditationsForYouHeader extends StatelessWidget {
   const MeditationsForYouHeader({super.key});

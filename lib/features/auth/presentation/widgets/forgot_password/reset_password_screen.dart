@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/extensions/spacing.dart';
-import 'package:moodly/core/routing/routes.dart';
-import 'package:moodly/core/widgets/app_text_button.dart';
-import 'package:moodly/features/auth/presentation/cubit/reset_password_cubit.dart';
-import 'package:moodly/features/auth/presentation/cubit/reset_password_state.dart';
-import 'package:moodly/features/auth/presentation/widgets/shared/password_text_field.dart';
+
+import '../../../../../core/extensions/spacing.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../../../../core/widgets/app_text_button.dart';
+import '../../cubit/reset_password_cubit.dart';
+import '../../cubit/reset_password_state.dart';
+import '../shared/password_text_field.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});

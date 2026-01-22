@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
 import 'authatcation_state.dart';
 
 class AuthatcationCubit extends Cubit<AuthatcationState> {

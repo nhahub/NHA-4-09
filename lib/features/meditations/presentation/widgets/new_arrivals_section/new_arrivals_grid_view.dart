@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/constants/constants.dart';
-import '../../../data/mock_data/new_arrivals_data.dart';
 import '../../../../../core/widgets/shared/custom_card.dart';
+import '../../../data/mock_data/new_arrivals_data.dart';
 
 class NewArrivalsGridView extends StatelessWidget {
   const NewArrivalsGridView({super.key});

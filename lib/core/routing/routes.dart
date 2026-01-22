@@ -10,6 +10,7 @@ class Routes {
   static const String privacyPolicyView = '/privacyPolicyView';
   static const String forgotPasswordView = '/forgotPasswordView';
   static const String subscribeView = '/subscribeView';
+  static const String mainView = '/mainView';
   static const String homeView = '/homeView';
   static const String meditationsView = '/meditationsView';
 }
