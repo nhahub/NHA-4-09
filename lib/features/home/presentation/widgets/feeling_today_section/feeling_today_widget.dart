@@ -10,21 +10,24 @@ class FeelingTodayWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Image.asset(feelingTodayData[index].icon, width: 27),
-          const SizedBox(height: 8),
-          Image.asset(AppAssets.shadow, height: 8, width: 27),
-          const SizedBox(height: 8),
-          Text(
-            feelingTodayData[index].feeling,
-            textAlign: TextAlign.center,
-            style: AppStyles.medium14.copyWith(color: AppColors.bodyGray),
-          ),
-        ],
+    return GestureDetector(
+      onTap: () {},
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(feelingTodayData[index].icon, width: 27),
+            const SizedBox(height: 4),
+            Image.asset(AppAssets.shadow, height: 12),
+            const SizedBox(height: 4),
+            Text(
+              feelingTodayData[index].feeling,
+              textAlign: TextAlign.center,
+              style: AppStyles.medium14.copyWith(color: AppColors.bodyGray),
+            ),
+          ],
+        ),
       ),
     );
   }

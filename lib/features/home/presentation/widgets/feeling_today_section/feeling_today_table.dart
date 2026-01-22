@@ -9,8 +9,26 @@ class FeelingTodayTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            offset: const Offset(0, 0.33),
+            color: AppColors.shadow.withAlpha(alphaFromPercentage(12)),
+            blurRadius: 0.67,
+            spreadRadius: -1,
+          ),
+          BoxShadow(
+            offset: const Offset(0, 2),
+            color: AppColors.shadow.withAlpha(alphaFromPercentage(12)),
+            blurRadius: 4,
+            spreadRadius: -1,
+          ),
+        ],
+      ),
       child: Table(
         columnWidths: const {
           0: FlexColumnWidth(),
