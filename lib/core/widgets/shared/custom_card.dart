@@ -50,8 +50,8 @@ class CustomCard extends StatelessWidget {
                   CategoryContainer(
                     categoryTitle: meditationCardModel.category,
                   ),
-                  SizedBox(height: 35),
-                  Center(child: PlayButton()),
+                  const SizedBox(height: 35),
+                  const Center(child: PlayButton()),
                 ],
               ),
             ),

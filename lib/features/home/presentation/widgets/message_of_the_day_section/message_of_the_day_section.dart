@@ -79,7 +79,7 @@ class MessageOfTheDaySection extends StatelessWidget {
                       padding: const EdgeInsets.all(10),
                       child: Column(
                         children: [
-                          Row(
+                          const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [CardDot(), CardDot()],
                           ),
@@ -90,7 +90,7 @@ class MessageOfTheDaySection extends StatelessWidget {
                             ),
                             child: CardContant(quote: quote, author: author),
                           ),
-                          Row(
+                          const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [CardDot(), CardDot()],
                           ),

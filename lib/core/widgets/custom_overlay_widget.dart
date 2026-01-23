@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:moodly/core/widgets/premium_popup.dart';
+import 'premium_popup.dart';
 
 class CustomOverlayWidget extends StatelessWidget {
   final double height;
@@ -33,7 +33,7 @@ class CustomOverlayWidget extends StatelessWidget {
             ),
           ),
         ),
-        PremiumPopup(),
+        const PremiumPopup(),
       ],
     );
   }

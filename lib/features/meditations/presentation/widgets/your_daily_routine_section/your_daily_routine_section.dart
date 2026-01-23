@@ -9,12 +9,12 @@ class YourDailyRoutineSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const AppSectionHeader(title: "Your daily routine"),
-        const SizedBox(height: kAppSectionSpacing),
-        const YourDailyRoutineListView(),
+        AppSectionHeader(title: "Your daily routine"),
+        SizedBox(height: kAppSectionSpacing),
+        YourDailyRoutineListView(),
       ],
     );
   }

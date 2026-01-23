@@ -8,9 +8,9 @@ class FeelingTodayModel {
 }
 
 List<FeelingTodayModel> feelingTodayData = [
-  FeelingTodayModel(feeling: "V. Bad", icon: AppAssets.veryBad),
-  FeelingTodayModel(feeling: "Bad", icon: AppAssets.bad),
-  FeelingTodayModel(feeling: "Neutral", icon: AppAssets.neutral),
-  FeelingTodayModel(feeling: "Good", icon: AppAssets.good),
-  FeelingTodayModel(feeling: "V. Good", icon: AppAssets.veryGood),
+  const FeelingTodayModel(feeling: "V. Bad", icon: AppAssets.veryBad),
+  const FeelingTodayModel(feeling: "Bad", icon: AppAssets.bad),
+  const FeelingTodayModel(feeling: "Neutral", icon: AppAssets.neutral),
+  const FeelingTodayModel(feeling: "Good", icon: AppAssets.good),
+  const FeelingTodayModel(feeling: "V. Good", icon: AppAssets.veryGood),
 ];

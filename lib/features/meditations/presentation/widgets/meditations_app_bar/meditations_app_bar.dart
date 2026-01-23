@@ -14,15 +14,15 @@ class MeditationsAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
+      padding: const EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
               const Text("Meditations", style: AppStyles.extraBold27),
-              SizedBox(width: 10),
-              isPremium ? const PremiumContainer() : FreeContainer(),
+              const SizedBox(width: 10),
+              isPremium ? const PremiumContainer() : const FreeContainer(),
             ],
           ),
           CustomCircleButton(icon: AppAssets.serachIcon, onTap: () {}),

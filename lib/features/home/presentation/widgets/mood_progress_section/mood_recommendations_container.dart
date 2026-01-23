@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../core/theming/app_colors.dart';
@@ -36,21 +37,19 @@ class MoodRecommendationsContainer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             "It seems like you had a harder time.",
             style: AppStyles.extraBold15,
           ),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           Text(
             "In recent days, your emotional state has been lower than your usual average.",
             style: AppStyles.medium14.copyWith(color: AppColors.bodyGray),
           ),
-          SizedBox(height: 16),
-          SeeRecommendationsButton(),
+          const SizedBox(height: 16),
+          const SeeRecommendationsButton(),
         ],
       ),
     );
   }
 }
-
-

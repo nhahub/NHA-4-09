@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/core/helpers/alpha_from_percent.dart';
-import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/core/widgets/app_text_button.dart';
+import '../constants/constants.dart';
+import '../helpers/alpha_from_percent.dart';
+import '../theming/app_assets.dart';
+import '../theming/app_colors.dart';
+import '../theming/app_styles.dart';
+import 'app_text_button.dart';
 
 class PremiumPopup extends StatelessWidget {
   final double price = 29.99;
@@ -43,7 +43,7 @@ class PremiumPopup extends StatelessWidget {
                 width: 2,
                 color: AppColors.borderButton.withAlpha(alphaFromPercentage(6)),
               ),
-              gradient: LinearGradient(
+              gradient: const LinearGradient(
                 colors: [AppColors.brandGreen, AppColors.lightGreen],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -78,18 +78,18 @@ class PremiumPopup extends StatelessWidget {
               height: 16,
             ),
           ),
-          SizedBox(height: 16),
-          Text("Available with Premium", style: AppStyles.extraBold16),
-          SizedBox(height: 5),
+          const SizedBox(height: 16),
+          const Text("Available with Premium", style: AppStyles.extraBold16),
+          const SizedBox(height: 5),
           Text(
             "Unlock advanced features and get therapy discounts, all for:",
             style: AppStyles.medium14.copyWith(color: AppColors.bodyGray),
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           Row(
             children: [
               Text("$price USD", style: AppStyles.extraBold21),
-              SizedBox(width: 5),
+              const SizedBox(width: 5),
               Text(
                 "/ month",
                 style: AppStyles.extraBold15.copyWith(
@@ -98,7 +98,7 @@ class PremiumPopup extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: kAppSectionSpacing),
+          const SizedBox(height: kAppSectionSpacing),
           SizedBox(
             width: double.infinity,
             child: AppTextButton(

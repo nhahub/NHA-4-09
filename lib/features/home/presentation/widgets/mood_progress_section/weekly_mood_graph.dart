@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../../../../core/widgets/custom_circle_button.dart';
@@ -15,13 +16,13 @@ class WeeklyMoodGraph extends StatelessWidget {
           children: [
             CustomCircleButton(icon: AppAssets.arrowRightIosIcon, onTap: () {}),
             const Spacer(),
-            Text("April 21-27", style: AppStyles.extraBold15),
+            const Text("April 21-27", style: AppStyles.extraBold15),
             const Spacer(),
             CustomCircleButton(icon: AppAssets.arrowLeftIosIcon, onTap: () {}),
           ],
         ),
-        SizedBox(height: 16),
-        CustomMoodProgressGraph(),
+        const SizedBox(height: 16),
+        const CustomMoodProgressGraph(),
       ],
     );
   }

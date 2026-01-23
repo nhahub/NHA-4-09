@@ -24,7 +24,7 @@ class NumberOfStepsCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
+      child: const Column(
         children: [StepsHeader(), SizedBox(height: 10), NumberOfStepsTracker()],
       ),
     );

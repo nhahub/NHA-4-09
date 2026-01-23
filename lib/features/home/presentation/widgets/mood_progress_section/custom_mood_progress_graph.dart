@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../data/models/mood_chart.dart';
+
 import '../../../../../core/theming/app_styles.dart';
+import '../../../data/models/mood_chart.dart';
 import 'graph_column.dart';
 import 'grid_painter.dart';
 
@@ -27,7 +28,7 @@ class CustomMoodProgressGraph extends StatelessWidget {
               /// ================= Grid Lines =================
               CustomPaint(
                 size: Size(chartWidth, chartHeight),
-                painter: GridPainter(maxY: maxY),
+                painter: const GridPainter(maxY: maxY),
               ),
 
               /// ================= Bars + Emojis + Titles =================
@@ -35,7 +36,7 @@ class CustomMoodProgressGraph extends StatelessWidget {
                 final mood = weekMood[index];
                 final barHeight = (mood.value / maxY) * chartHeight;
                 final left = spacing + index * (barWidth + spacing);
-                final bottom = 30.0; // reserved space for titles
+                const bottom = 30.0; // reserved space for titles
 
                 return Stack(
                   alignment: Alignment.bottomCenter,

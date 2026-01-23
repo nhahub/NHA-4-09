@@ -21,7 +21,7 @@ class DailyStatsContainer extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Column(
+      child: const Column(
         children: [WaterAmountCard(), SizedBox(height: 4), NumberOfStepsCard()],
       ),
     );

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/core/widgets/custom_circle_button.dart';
-import 'package:moodly/features/home/presentation/widgets/mood_progress_section/custom_mood_progress_graph.dart';
+import '../../../../../core/theming/app_assets.dart';
+import '../../../../../core/theming/app_styles.dart';
+import '../../../../../core/widgets/custom_circle_button.dart';
+import 'custom_mood_progress_graph.dart';
 
 class MonthlyMoodGraph extends StatelessWidget {
   const MonthlyMoodGraph({super.key});
@@ -15,13 +15,13 @@ class MonthlyMoodGraph extends StatelessWidget {
           children: [
             CustomCircleButton(icon: AppAssets.arrowRightIosIcon, onTap: () {}),
             const Spacer(),
-            Text("April", style: AppStyles.extraBold15),
+            const Text("April", style: AppStyles.extraBold15),
             const Spacer(),
             CustomCircleButton(icon: AppAssets.arrowLeftIosIcon, onTap: () {}),
           ],
         ),
-        SizedBox(height: 16),
-        CustomMoodProgressGraph(),
+        const SizedBox(height: 16),
+        const CustomMoodProgressGraph(),
       ],
     );
   }

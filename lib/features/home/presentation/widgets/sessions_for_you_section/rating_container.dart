@@ -18,7 +18,7 @@ class RatingContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
         color: AppColors.buttonBlack.withAlpha(alphaFromPercentage(50)),
-        borderRadius: BorderRadius.all(Radius.circular(8)),
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

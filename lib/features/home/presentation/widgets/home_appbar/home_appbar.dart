@@ -19,7 +19,7 @@ class HomeAppbar extends StatelessWidget {
         children: [
           const Text("Home", style: AppStyles.extraBold27),
           const SizedBox(width: 20),
-          isPremium ? const PremiumContainer() : FreeContainer(),
+          isPremium ? const PremiumContainer() : const FreeContainer(),
           const Spacer(),
           CustomCircleButton(
             icon: AppAssets.slidersHorizontalIcon,

@@ -9,12 +9,12 @@ class PopularCategoriesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const AppSectionHeader(title: "Popular Categories"),
-        const SizedBox(height: kAppSectionSpacing),
-        const PopularCategoriesListView(),
+        AppSectionHeader(title: "Popular Categories"),
+        SizedBox(height: kAppSectionSpacing),
+        PopularCategoriesListView(),
       ],
     );
   }

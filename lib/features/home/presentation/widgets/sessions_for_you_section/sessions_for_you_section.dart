@@ -9,10 +9,10 @@ class SessionsForYouSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        const SessionsForYouHeader(),
-        const SizedBox(height: kAppSectionSpacing),
+        SessionsForYouHeader(),
+        SizedBox(height: kAppSectionSpacing),
         SessionsForYouListView(),
       ],
     );

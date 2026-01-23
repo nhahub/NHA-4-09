@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../core/widgets/vertical_space.dart';
 import '../widgets/daily_stats_section/shared/daily_stats_section.dart';
 import '../widgets/feeling_today_section/feeling_today_section.dart';
@@ -14,28 +13,28 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Column(
         children: [
-          const VerticalSpace(),
+          VerticalSpace(),
           HomeAppbar(isPremium: false),
-          const VerticalSpace(),
+          VerticalSpace(),
           Expanded(
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const MessageOfTheDaySection(),
-                  const VerticalSpace(),
-                  const FeelingTodaySection(),
-                  const VerticalSpace(),
-                  const DailyStatsSection(),
-                  const VerticalSpace(),
-                  const MoodProgressSection(isPremium: false),
-                  const VerticalSpace(),
-                  const MeditationsForYouSection(),
-                  const VerticalSpace(),
-                  const SessionsForYouSection(),
-                  const SizedBox(height: 120),
+                  MessageOfTheDaySection(),
+                  VerticalSpace(),
+                  FeelingTodaySection(),
+                  VerticalSpace(),
+                  DailyStatsSection(),
+                  VerticalSpace(),
+                  MoodProgressSection(isPremium: false),
+                  VerticalSpace(),
+                  MeditationsForYouSection(),
+                  VerticalSpace(),
+                  SessionsForYouSection(),
+                  SizedBox(height: 120),
                 ],
               ),
             ),

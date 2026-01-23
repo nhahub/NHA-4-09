@@ -8,11 +8,11 @@ class DailyStatsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const AppSectionHeader(title: "Daily Stats"),
-        const SizedBox(height: kAppSectionSpacing),
+        AppSectionHeader(title: "Daily Stats"),
+        SizedBox(height: kAppSectionSpacing),
         DailyStatsContainer(),
       ],
     );

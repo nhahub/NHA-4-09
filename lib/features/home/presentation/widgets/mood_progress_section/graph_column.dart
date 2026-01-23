@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../core/theming/app_colors.dart';
 
@@ -24,7 +25,7 @@ class GraphColumn extends StatelessWidget {
           end: Alignment.bottomCenter,
           stops: [0, 0.75],
         ),
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(6),
           topRight: Radius.circular(6),
         ),

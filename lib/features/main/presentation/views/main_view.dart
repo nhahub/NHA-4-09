@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+
 import '../../../Community/presentation/views/community_view.dart';
 import '../../../chatbot/presentation/views/chatbot_view.dart';
 import '../../../home/presentation/views/home_view.dart';
-import '../widgets/main_nav_bar.dart';
 import '../../../meditations/presentation/views/meditations_view.dart';
 import '../../../profile/presentation/views/profile_view.dart';
+import '../widgets/main_nav_bar.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});

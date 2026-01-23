@@ -32,8 +32,8 @@ class ActiveCategoryButton extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppColors.brandGreen,
             borderRadius: BorderRadius.circular(333),
-            border: Border.all(color: Color(0xff5dbf76), width: 4),
-            boxShadow: [
+            border: Border.all(color: const Color(0xff5dbf76), width: 4),
+            boxShadow: const [
               // BoxShadow(
               //   color: AppColors.shadow.withAlpha(alphaFromPercentage(10)),
               //   offset: const Offset(0, 0.67),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import '../../../../../core/constants/static.dart';
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_colors.dart';
@@ -21,7 +22,7 @@ class SeeMoreWidget extends StatelessWidget {
               "See more",
               style: AppStyles.extraBold15.copyWith(color: AppColors.linkGray),
             ),
-            SizedBox(width: 6),
+            const SizedBox(width: 6),
             SvgPicture.asset(
               AppAssets.arrowLeftIosIcon,
               width: 16,

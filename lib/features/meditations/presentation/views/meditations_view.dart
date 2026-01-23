@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/widgets/custom_overlay_widget.dart';
+import '../../../../core/widgets/custom_overlay_widget.dart';
 
 import '../../../../core/widgets/vertical_space.dart';
 import '../widgets/categories_section/categories_section.dart';
@@ -24,30 +24,32 @@ class MeditationsView extends StatelessWidget {
           Expanded(
             child: CustomScrollView(
               slivers: [
-                SliverToBoxAdapter(child: VerticalSpace()),
-                SliverToBoxAdapter(child: CategoriesSection()),
-                SliverToBoxAdapter(child: VerticalSpace()),
-                SliverToBoxAdapter(child: RecommendedForYouSection()),
-                SliverToBoxAdapter(child: VerticalSpace()),
+                const SliverToBoxAdapter(child: VerticalSpace()),
+                const SliverToBoxAdapter(child: CategoriesSection()),
+                const SliverToBoxAdapter(child: VerticalSpace()),
+                const SliverToBoxAdapter(child: RecommendedForYouSection()),
+                const SliverToBoxAdapter(child: VerticalSpace()),
                 if (isPremium) ...[
-                  SliverToBoxAdapter(child: PopularCategoriesSection()),
-                  SliverToBoxAdapter(child: VerticalSpace()),
+                  const SliverToBoxAdapter(child: PopularCategoriesSection()),
+                  const SliverToBoxAdapter(child: VerticalSpace()),
                 ],
                 isPremium
-                    ? SliverToBoxAdapter(child: YourDailyRoutineSection())
-                    : SliverToBoxAdapter(
+                    ? const SliverToBoxAdapter(child: YourDailyRoutineSection())
+                    : const SliverToBoxAdapter(
                         child: CustomOverlayWidget(
                           height: 320,
                           child: YourDailyRoutineSection(),
                         ),
                       ),
                 if (isPremium) ...[
-                  SliverToBoxAdapter(child: VerticalSpace()),
-                  SliverToBoxAdapter(child: ForDifficultSituationsSection()),
-                  SliverToBoxAdapter(child: VerticalSpace()),
-                  SliverToBoxAdapter(child: NewArrivalsSection()),
+                  const SliverToBoxAdapter(child: VerticalSpace()),
+                  const SliverToBoxAdapter(
+                    child: ForDifficultSituationsSection(),
+                  ),
+                  const SliverToBoxAdapter(child: VerticalSpace()),
+                  const SliverToBoxAdapter(child: NewArrivalsSection()),
                 ],
-                SliverToBoxAdapter(child: const SizedBox(height: 120)),
+                const SliverToBoxAdapter(child: SizedBox(height: 120)),
               ],
             ),
           ),
