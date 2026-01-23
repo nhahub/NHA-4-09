@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:moodly/core/extensions/context_extensions.dart';
+import 'package:moodly/core/routing/routes.dart';
 
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_colors.dart';
@@ -11,7 +13,9 @@ class SeeRecommendationsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        context.push(Routes.recommendationsView);
+      },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

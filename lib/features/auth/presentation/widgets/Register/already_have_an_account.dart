@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/extensions/context_extensions.dart';
 
 import '../../../../../core/extensions/spacing.dart';
 import '../../../../../core/theming/app_colors.dart';
@@ -20,7 +21,7 @@ class AlreadyHaveAnAccount extends StatelessWidget {
 
         GestureDetector(
           onTap: () {
-            Navigator.pop(context);
+            context.pop();
           },
           child: Text(
             "Login.",

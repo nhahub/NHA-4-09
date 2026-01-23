@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:moodly/core/extensions/context_extensions.dart';
 
 import '../../../../../core/extensions/spacing.dart';
 import '../../../../../core/helpers/snackbar_service.dart';
@@ -22,12 +23,8 @@ class LoginViewBody extends StatelessWidget {
           listener: (context, state) {
             if (state is AuthSuccess) {
               Future.delayed(const Duration(milliseconds: 300), () {
-                Navigator.pushNamedAndRemoveUntil(
-                  // ignore: use_build_context_synchronously
-                  context,
-                  Routes.homeView,
-                  (route) => false,
-                );
+                // ignore: use_build_context_synchronously
+                context.pushAndRemoveUntil(Routes.mainView);
               });
             } else if (state is AuthFailure) {
               CustomSnackbar.show(context, state.message, isError: true);

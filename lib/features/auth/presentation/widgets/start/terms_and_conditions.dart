@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:moodly/core/extensions/context_extensions.dart';
 
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_colors.dart';
@@ -24,7 +25,7 @@ class TermsAndConditions extends StatelessWidget {
             ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                Navigator.pushNamed(context, Routes.termsAndConditionsView);
+                context.push(Routes.termsAndConditionsView);
               },
           ),
           const TextSpan(text: " and "),
@@ -36,7 +37,7 @@ class TermsAndConditions extends StatelessWidget {
             ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                Navigator.pushNamed(context, Routes.privacyPolicyView);
+                context.push(Routes.privacyPolicyView);
               },
           ),
           const TextSpan(text: "."),

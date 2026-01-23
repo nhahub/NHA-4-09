@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/extensions/context_extensions.dart';
 
 import '../helpers/alpha_from_percent.dart';
 import '../routing/routes.dart';
@@ -12,7 +13,7 @@ class FreeContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, Routes.premiumView);
+        context.push(Routes.premiumView);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),

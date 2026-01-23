@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/extensions/context_extensions.dart';
+import 'package:moodly/core/routing/routes.dart';
 
 import '../../../../../core/widgets/horizontal_padding_list.dart';
 import '../../../../../core/widgets/shared/custom_card.dart';
@@ -15,7 +17,9 @@ class MeditationsForYouListView extends StatelessWidget {
       itemBuilder: (context, index) {
         return CustomCard(
           meditationCardModel: meditationsForYouData[index],
-          onTap: () {},
+          onTap: () {
+            context.push(Routes.videoView);
+          },
         );
       },
     );

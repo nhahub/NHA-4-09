@@ -9,32 +9,33 @@ import '../widgets/mood_progress_section/mood_progress_section.dart';
 import '../widgets/sessions_for_you_section/sessions_for_you_section.dart';
 
 class HomeView extends StatelessWidget {
+  final bool isPremium = false;
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Column(
         children: [
-          VerticalSpace(),
-          HomeAppbar(isPremium: false),
-          VerticalSpace(),
+          const VerticalSpace(),
+          HomeAppbar(isPremium: isPremium),
+          const VerticalSpace(),
           Expanded(
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  MessageOfTheDaySection(),
-                  VerticalSpace(),
-                  FeelingTodaySection(),
-                  VerticalSpace(),
-                  DailyStatsSection(),
-                  VerticalSpace(),
-                  MoodProgressSection(isPremium: false),
-                  VerticalSpace(),
-                  MeditationsForYouSection(),
-                  VerticalSpace(),
-                  SessionsForYouSection(),
-                  SizedBox(height: 120),
+                  const MessageOfTheDaySection(),
+                  const VerticalSpace(),
+                  const FeelingTodaySection(),
+                  const VerticalSpace(),
+                  const DailyStatsSection(),
+                  const VerticalSpace(),
+                  MoodProgressSection(isPremium: isPremium),
+                  const VerticalSpace(),
+                  const MeditationsForYouSection(),
+                  const VerticalSpace(),
+                  const SessionsForYouSection(),
+                  const SizedBox(height: 120),
                 ],
               ),
             ),

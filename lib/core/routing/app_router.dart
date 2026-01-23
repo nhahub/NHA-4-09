@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/views/video_view.dart';
+import 'package:moodly/features/home/presentation/views/chat_doctor_view.dart';
+import 'package:moodly/features/home/presentation/views/live_view.dart';
+import 'package:moodly/features/home/presentation/views/recommendations_view.dart';
+import 'package:moodly/features/home/presentation/views/therapist_details_view.dart';
+import 'package:moodly/features/meditations/presentation/views/audio_view.dart';
 
 import '../../features/auth/presentation/views/forgot_password_view.dart';
 import '../../features/auth/presentation/views/login_view.dart';
@@ -8,7 +14,7 @@ import '../../features/auth/presentation/widgets/forgot_password/reset_password_
 import '../../features/home/presentation/views/home_view.dart';
 import '../../features/main/presentation/views/main_view.dart';
 import '../../features/meditations/presentation/views/meditations_view.dart';
-import '../../features/splash/splash_view.dart';
+import '../../features/splash/views/splash_view.dart';
 import 'routes.dart';
 
 class AppRouter {
@@ -16,6 +22,7 @@ class AppRouter {
     switch (settings.name) {
       case Routes.splashView:
         return MaterialPageRoute(builder: (_) => const SplashView());
+
       case Routes.startView:
         return MaterialPageRoute(builder: (_) => const StartView());
 
@@ -39,6 +46,24 @@ class AppRouter {
 
       case Routes.meditationsView:
         return MaterialPageRoute(builder: (_) => const MeditationsView());
+
+      case Routes.videoView:
+        return MaterialPageRoute(builder: (_) => const VideoView());
+
+      case Routes.audioView:
+        return MaterialPageRoute(builder: (_) => const AudioView());
+
+      case Routes.therapistDetailsView:
+        return MaterialPageRoute(builder: (_) => const TherapistDetailsView());
+
+      case Routes.chatDoctorView:
+        return MaterialPageRoute(builder: (_) => const ChatDoctorView());
+
+      case Routes.liveView:
+        return MaterialPageRoute(builder: (_) => const LiveView());
+
+      case Routes.recommendationsView:
+        return MaterialPageRoute(builder: (_) => const RecommendationsView());
 
       default:
         return MaterialPageRoute(

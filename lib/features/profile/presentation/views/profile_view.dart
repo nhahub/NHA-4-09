@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/extensions/context_extensions.dart';
 
 import '../../../../core/routing/routes.dart';
 import '../../../auth/presentation/cubit/authatcation_cubit.dart';
@@ -13,11 +14,7 @@ class ProfileView extends StatelessWidget {
     return BlocListener<AuthatcationCubit, AuthatcationState>(
       listener: (context, state) {
         if (state is AuthInitial) {
-          Navigator.pushNamedAndRemoveUntil(
-            context,
-            Routes.loginView,
-            (route) => false,
-          );
+          context.pushAndRemoveUntil(Routes.loginView);
         }
       },
       child: Scaffold(

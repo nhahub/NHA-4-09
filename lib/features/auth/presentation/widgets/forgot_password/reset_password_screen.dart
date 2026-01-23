@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/extensions/context_extensions.dart';
 
 import '../../../../../core/extensions/spacing.dart';
 import '../../../../../core/routing/routes.dart';
@@ -37,7 +38,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Password updated successfully')),
             );
-            Navigator.of(context).pushReplacementNamed(Routes.loginView);
+            context.pushReplacement(Routes.loginView);
           } else if (state is ResetPasswordFailure) {
             ScaffoldMessenger.of(
               context,

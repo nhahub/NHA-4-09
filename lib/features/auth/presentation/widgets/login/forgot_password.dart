@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/extensions/context_extensions.dart';
 
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_colors.dart';
@@ -11,7 +12,7 @@ class ForgotPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Navigator.pushNamed(context, Routes.forgotPasswordView);
+        context.push(Routes.forgotPasswordView);
       },
       child: Text(
         "Forgot password?",

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:moodly/core/extensions/context_extensions.dart';
 
 import '../helpers/alpha_from_percent.dart';
 import '../theming/app_colors.dart';
@@ -15,7 +16,7 @@ class CustomCircleButton extends StatelessWidget {
         if (onTap != null) {
           onTap!();
         } else {
-          Navigator.pop(context);
+          context.pop();
         }
       },
       child: Container(
