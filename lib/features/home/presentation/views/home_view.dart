@@ -30,7 +30,7 @@ class HomeView extends StatelessWidget {
                   const VerticalSpace(),
                   const DailyStatsSection(),
                   const VerticalSpace(),
-                  const MoodProgressSection(),
+                  const MoodProgressSection(isPremium: false),
                   const VerticalSpace(),
                   const MeditationsForYouSection(),
                   const VerticalSpace(),

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/home/presentation/widgets/mood_progress_section/mood_tracker_widget.dart';
 import '../../../../../core/constants/static.dart';
-import '../../manager/mood_range_cubit/mood_range_cubit.dart';
-import 'mood_graph_switcher.dart';
-import 'mood_range_selector.dart';
 import 'mood_recommendations_container.dart';
 
 class MoodProgressBody extends StatelessWidget {
@@ -15,16 +12,7 @@ class MoodProgressBody extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
       child: Column(
         children: [
-          BlocProvider(
-            create: (_) => MoodRangeCubit(),
-            child: Column(
-              children: const [
-                MoodRangeSelector(),
-                SizedBox(height: 16),
-                MoodGraphSwitcher(),
-              ],
-            ),
-          ),
+          MoodTrackerWidget(),
           SizedBox(height: 16),
           MoodRecommendationsContainer(),
         ],

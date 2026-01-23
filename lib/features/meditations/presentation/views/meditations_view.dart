@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/widgets/custom_overlay_widget.dart';
 
 import '../../../../core/widgets/vertical_space.dart';
 import '../widgets/categories_section/categories_section.dart';
@@ -10,6 +11,7 @@ import '../widgets/recommended_for_you_section/recommended_for_you_section.dart'
 import '../widgets/your_daily_routine_section/your_daily_routine_section.dart';
 
 class MeditationsView extends StatelessWidget {
+  final bool isPremium = true;
   const MeditationsView({super.key});
 
   @override
@@ -18,7 +20,7 @@ class MeditationsView extends StatelessWidget {
       body: Column(
         children: [
           const VerticalSpace(),
-          MeditationsAppBar(isPremium: true),
+          MeditationsAppBar(isPremium: isPremium),
           Expanded(
             child: CustomScrollView(
               slivers: [
@@ -27,13 +29,24 @@ class MeditationsView extends StatelessWidget {
                 SliverToBoxAdapter(child: VerticalSpace()),
                 SliverToBoxAdapter(child: RecommendedForYouSection()),
                 SliverToBoxAdapter(child: VerticalSpace()),
-                SliverToBoxAdapter(child: PopularCategoriesSection()),
-                SliverToBoxAdapter(child: VerticalSpace()),
-                SliverToBoxAdapter(child: YourDailyRoutineSection()),
-                SliverToBoxAdapter(child: VerticalSpace()),
-                SliverToBoxAdapter(child: ForDifficultSituationsSection()),
-                SliverToBoxAdapter(child: VerticalSpace()),
-                SliverToBoxAdapter(child: NewArrivalsSection()),
+                if (isPremium) ...[
+                  SliverToBoxAdapter(child: PopularCategoriesSection()),
+                  SliverToBoxAdapter(child: VerticalSpace()),
+                ],
+                isPremium
+                    ? SliverToBoxAdapter(child: YourDailyRoutineSection())
+                    : SliverToBoxAdapter(
+                        child: CustomOverlayWidget(
+                          height: 320,
+                          child: YourDailyRoutineSection(),
+                        ),
+                      ),
+                if (isPremium) ...[
+                  SliverToBoxAdapter(child: VerticalSpace()),
+                  SliverToBoxAdapter(child: ForDifficultSituationsSection()),
+                  SliverToBoxAdapter(child: VerticalSpace()),
+                  SliverToBoxAdapter(child: NewArrivalsSection()),
+                ],
                 SliverToBoxAdapter(child: const SizedBox(height: 120)),
               ],
             ),
