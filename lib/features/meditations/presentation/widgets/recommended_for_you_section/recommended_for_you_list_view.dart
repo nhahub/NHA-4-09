@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/widgets/horizontal_padding_list.dart';
-import '../../../data/mock_data/recommended_for_you_data.dart';
 import '../../../../../core/widgets/shared/custom_card.dart';
+import '../../../data/mock_data/recommended_for_you_data.dart';
 
 class RecommendedForYouListView extends StatelessWidget {
   const RecommendedForYouListView({super.key});

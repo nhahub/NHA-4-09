@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/features/home/data/models/water_cups_model.dart';
-import 'package:moodly/features/home/presentation/manager/cups_of_water_cubit/cups_of_water_cubit.dart';
-import 'package:moodly/features/home/presentation/widgets/daily_stats_section/water_amount/add_bottel_icon.dart';
+import '../../../../../../core/theming/app_assets.dart';
+import '../../../../data/models/water_cups_model.dart';
+import '../../../manager/cups_of_water_cubit/cups_of_water_cubit.dart';
+import 'add_bottel_icon.dart';
 
 class WaterCupsList extends StatelessWidget {
   const WaterCupsList({super.key});

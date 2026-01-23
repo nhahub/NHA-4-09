@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moodly/core/helpers/alpha_from_percent.dart';
-import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/core/theming/app_colors.dart';
+import '../../../../../../core/helpers/alpha_from_percent.dart';
+import '../../../../../../core/theming/app_assets.dart';
+import '../../../../../../core/theming/app_colors.dart';
 
 class AddBottelIcon extends StatelessWidget {
   const AddBottelIcon({super.key});

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../../../core/constants/static.dart';
 
- import '../widgets/premium_offers/continue_with_free_tier_button.dart';
+import '../../../../core/constants/static.dart';
+import '../widgets/premium_offers/continue_with_free_tier_button.dart';
 import '../widgets/premium_offers/free_tier.dart';
 import '../widgets/premium_offers/premium_background.dart';
 import '../widgets/premium_offers/premium_header.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/home/data/models/water_cups_model.dart';
-import 'package:moodly/features/home/data/repos/water_repo.dart';
+import '../../../data/models/water_cups_model.dart';
+import '../../../data/repos/water_repo.dart';
 
 class CupsOfWaterCubit extends Cubit<WaterCupsModel> {
   final WaterRepo waterRepo;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/features/home/domain/enums/mood_time_range.dart';
-import 'package:moodly/features/home/presentation/manager/mood_range_cubit/mood_range_cubit.dart';
-import 'package:moodly/features/home/presentation/widgets/mood_progress_section/range_button.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../domain/enums/mood_time_range.dart';
+import '../../manager/mood_range_cubit/mood_range_cubit.dart';
+import 'range_button.dart';
 
 class MoodRangeSelector extends StatelessWidget {
   const MoodRangeSelector({super.key});

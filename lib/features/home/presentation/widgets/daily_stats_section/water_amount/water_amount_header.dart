@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/features/home/data/models/water_cups_model.dart';
-import 'package:moodly/features/home/presentation/manager/cups_of_water_cubit/cups_of_water_cubit.dart';
-import 'package:moodly/features/home/presentation/widgets/daily_stats_section/shared/custom_three_dots_icon.dart';
+import '../../../../../../core/theming/app_colors.dart';
+import '../../../../../../core/theming/app_styles.dart';
+import '../../../../data/models/water_cups_model.dart';
+import '../../../manager/cups_of_water_cubit/cups_of_water_cubit.dart';
+import '../shared/custom_three_dots_icon.dart';
 
 class WaterAmountHeader extends StatelessWidget {
   const WaterAmountHeader({super.key});

@@ -1,4 +1,4 @@
-import 'package:moodly/features/home/data/models/water_cups_model.dart';
+import '../models/water_cups_model.dart';
 
 class WaterRepo {
   Future<WaterCupsModel> getWaterCups() async {

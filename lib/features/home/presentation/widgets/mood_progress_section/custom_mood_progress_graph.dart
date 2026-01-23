@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/home/data/models/mood_chart.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/features/home/presentation/widgets/mood_progress_section/graph_column.dart';
-import 'package:moodly/features/home/presentation/widgets/mood_progress_section/grid_painter.dart';
+import '../../../data/models/mood_chart.dart';
+import '../../../../../core/theming/app_styles.dart';
+import 'graph_column.dart';
+import 'grid_painter.dart';
 
 class CustomMoodProgressGraph extends StatelessWidget {
   const CustomMoodProgressGraph({super.key});

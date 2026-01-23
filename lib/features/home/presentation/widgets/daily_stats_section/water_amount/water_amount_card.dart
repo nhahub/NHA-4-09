@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/core/helpers/alpha_from_percent.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/features/home/data/repos/water_repo.dart';
-import 'package:moodly/features/home/presentation/manager/cups_of_water_cubit/cups_of_water_cubit.dart';
-import 'package:moodly/features/home/presentation/widgets/daily_stats_section/water_amount/water_cups_list.dart';
-import 'package:moodly/features/home/presentation/widgets/daily_stats_section/water_amount/water_amount_header.dart';
+import '../../../../../../core/constants/constants.dart';
+import '../../../../../../core/helpers/alpha_from_percent.dart';
+import '../../../../../../core/theming/app_colors.dart';
+import '../../../../data/repos/water_repo.dart';
+import '../../../manager/cups_of_water_cubit/cups_of_water_cubit.dart';
+import 'water_cups_list.dart';
+import 'water_amount_header.dart';
 
 class WaterAmountCard extends StatelessWidget {
   const WaterAmountCard({super.key});

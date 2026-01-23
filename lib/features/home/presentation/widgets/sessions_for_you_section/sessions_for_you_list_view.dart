@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/widgets/horizontal_padding_list.dart';
 import '../../../data/models/sessions_for_you_model.dart';
 import 'sessions_for_you_card.dart';

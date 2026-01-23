@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/core/helpers/alpha_from_percent.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/features/home/presentation/widgets/mood_progress_section/see_recommendations_button.dart';
+import '../../../../../core/constants/constants.dart';
+import '../../../../../core/helpers/alpha_from_percent.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/app_styles.dart';
+import 'see_recommendations_button.dart';
 
 class MoodRecommendationsContainer extends StatelessWidget {
   const MoodRecommendationsContainer({super.key});

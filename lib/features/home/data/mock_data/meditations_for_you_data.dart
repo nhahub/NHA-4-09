@@ -1,5 +1,5 @@
-import '../../../meditations/data/models/meditation_card_model.dart';
 import '../../../../../core/theming/app_assets.dart';
+import '../../../meditations/data/models/meditation_card_model.dart';
 
 const List<MeditationCardModel> meditationsForYouData = [
   MeditationCardModel(

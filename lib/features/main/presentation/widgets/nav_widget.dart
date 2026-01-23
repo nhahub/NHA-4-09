@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
 import '../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../core/theming/app_colors.dart';
-import 'package:flutter/material.dart';
 
 class NavWidget extends StatelessWidget {
   const NavWidget({

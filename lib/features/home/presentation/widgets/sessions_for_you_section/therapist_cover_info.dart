@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../data/models/sessions_for_you_model.dart';
 import 'discount_container.dart';
 import 'rating_container.dart';

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/static.dart';
-import 'package:moodly/core/helpers/alpha_from_percent.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/features/home/presentation/widgets/daily_stats_section/number_of_steps/number_of_steps_card.dart';
-import 'package:moodly/features/home/presentation/widgets/daily_stats_section/water_amount/water_amount_card.dart';
+
+import '../../../../../../core/constants/static.dart';
+import '../../../../../../core/helpers/alpha_from_percent.dart';
+import '../../../../../../core/theming/app_colors.dart';
+import '../number_of_steps/number_of_steps_card.dart';
+import '../water_amount/water_amount_card.dart';
 
 class DailyStatsContainer extends StatelessWidget {
   const DailyStatsContainer({super.key});

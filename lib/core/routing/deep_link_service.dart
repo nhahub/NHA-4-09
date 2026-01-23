@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:app_links/app_links.dart';
 import 'package:flutter/widgets.dart';
+
 import 'deep_link_state.dart';
 import 'navigation_service.dart';
 import 'routes.dart';

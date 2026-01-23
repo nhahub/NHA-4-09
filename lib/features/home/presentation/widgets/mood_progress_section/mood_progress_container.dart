@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/constants/static.dart';
-import 'package:moodly/features/home/presentation/manager/mood_range_cubit/mood_range_cubit.dart';
-import 'package:moodly/features/home/presentation/widgets/mood_progress_section/mood_graph_switcher.dart';
-import 'package:moodly/features/home/presentation/widgets/mood_progress_section/mood_range_selector.dart';
-import 'package:moodly/features/home/presentation/widgets/mood_progress_section/mood_recommendations_container.dart';
+import '../../../../../core/constants/static.dart';
+import '../../manager/mood_range_cubit/mood_range_cubit.dart';
+import 'mood_graph_switcher.dart';
+import 'mood_range_selector.dart';
+import 'mood_recommendations_container.dart';
 
 class MoodProgressBody extends StatelessWidget {
   const MoodProgressBody({super.key});

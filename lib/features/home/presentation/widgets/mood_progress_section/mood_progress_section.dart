@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/features/home/presentation/widgets/mood_progress_section/mood_progress_container.dart';
+import '../../../../../core/constants/constants.dart';
+import 'mood_progress_container.dart';
 import '../../../../../core/widgets/app_section_header.dart';
 
 class MoodProgressSection extends StatelessWidget {

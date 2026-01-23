@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/features/home/presentation/widgets/daily_stats_section/shared/custom_three_dots_icon.dart';
+import '../../../../../../core/theming/app_colors.dart';
+import '../../../../../../core/theming/app_styles.dart';
+import '../shared/custom_three_dots_icon.dart';
 
 class StepsHeader extends StatelessWidget {
   const StepsHeader({super.key});

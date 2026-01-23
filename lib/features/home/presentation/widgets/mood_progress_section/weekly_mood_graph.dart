@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/core/widgets/custom_circle_button.dart';
-import 'package:moodly/features/home/presentation/widgets/mood_progress_section/custom_mood_progress_graph.dart';
+import '../../../../../core/theming/app_assets.dart';
+import '../../../../../core/theming/app_styles.dart';
+import '../../../../../core/widgets/custom_circle_button.dart';
+import 'custom_mood_progress_graph.dart';
 
 class WeeklyMoodGraph extends StatelessWidget {
   const WeeklyMoodGraph({super.key});
