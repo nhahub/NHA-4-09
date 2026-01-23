@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:moodly/core/extensions/context_extensions.dart';
+import 'package:moodly/core/routing/routes.dart';
 import '../constants/constants.dart';
 import '../helpers/alpha_from_percent.dart';
 import '../theming/app_assets.dart';
@@ -103,7 +105,7 @@ class PremiumPopup extends StatelessWidget {
             width: double.infinity,
             child: AppTextButton(
               onPressed: () {
-                // Navigator.push(context, );
+                context.push(Routes.subscribeView);
               },
               buttonText: "Subscribe",
             ),

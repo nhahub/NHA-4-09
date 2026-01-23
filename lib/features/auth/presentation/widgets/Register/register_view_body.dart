@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:moodly/core/extensions/context_extensions.dart';
 
 import '../../../../../core/extensions/spacing.dart';
 import '../../../../../core/helpers/snackbar_service.dart';
@@ -22,12 +23,7 @@ class RegisterViewBody extends StatelessWidget {
           listener: (context, state) {
             if (state is RegisterSuccess) {
               CustomSnackbar.show(context, "Registration Successful");
-
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                Routes.loginView,
-                (route) => false,
-              );
+              context.pushAndRemoveUntil(Routes.loginView);
             } else if (state is AuthFailure) {
               CustomSnackbar.show(context, state.message, isError: true);
             }

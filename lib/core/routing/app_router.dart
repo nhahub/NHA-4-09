@@ -14,7 +14,7 @@ import '../../features/auth/presentation/widgets/forgot_password/reset_password_
 import '../../features/home/presentation/views/home_view.dart';
 import '../../features/main/presentation/views/main_view.dart';
 import '../../features/meditations/presentation/views/meditations_view.dart';
-import '../../features/splash/splash_view.dart';
+import '../../features/splash/views/splash_view.dart';
 import 'routes.dart';
 
 class AppRouter {

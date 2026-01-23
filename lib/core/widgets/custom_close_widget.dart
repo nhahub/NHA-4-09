@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/extensions/context_extensions.dart';
 
 import '../extensions/svg_shadow_extension.dart';
 import '../helpers/alpha_from_percent.dart';
@@ -10,7 +11,7 @@ class CustomCloseWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.pop(context),
+      onTap: () => context.pop(),
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(

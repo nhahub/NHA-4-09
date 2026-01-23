@@ -1,11 +1,9 @@
 // import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
 // import 'package:moodly/core/routing/deep_link_state.dart';
 // import 'package:moodly/core/routing/routes.dart';
-import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/core/theming/app_colors.dart';
+import 'package:moodly/features/splash/widgets/splash_view_body.dart';
 // import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SplashView extends StatefulWidget {
@@ -21,59 +19,30 @@ class _SplashViewState extends State<SplashView> {
   //   super.initState();
   //   _redirect();
   // }
-
   // Future<void> _redirect() async {
   //   await Future.delayed(const Duration(seconds: 2));
   //   if (!mounted) return;
-
   //   if (DeepLinkState.openedFromResetLink) {
   //     DeepLinkState.openedFromResetLink = false;
-
-  //     Navigator.pushReplacementNamed(context, Routes.resetPasswordView);
+  //     context.pushReplacement(Routes.resetPasswordView);
   //     return;
   //   }
-
   //   final session = Supabase.instance.client.auth.currentSession;
-
   //   if (session != null) {
-  //     Navigator.pushReplacementNamed(context, Routes.homeView);
+  //     context.pushReplacement(Routes.mainView);
   //   } else {
-  //     Navigator.pushReplacementNamed(context, Routes.startView);
+  //     context.pushReplacement(Routes.startView);
   //   }
   // }
-
   @override
   Widget build(BuildContext context) {
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(
+    return const AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.light,
         statusBarBrightness: Brightness.light,
         systemNavigationBarIconBrightness: Brightness.light,
       ),
-      child: Scaffold(
-        body: Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [AppColors.lightGreen, AppColors.brandGreen],
-            ),
-          ),
-          child: Center(
-            child: SvgPicture.asset(
-              AppAssets.zenspunLogo,
-              width: 120,
-              height: 120,
-              colorFilter: const ColorFilter.mode(
-                Colors.white,
-                BlendMode.srcIn,
-              ),
-            ),
-          ),
-        ),
-      ),
+      child: Scaffold(body: SplashViewBody()),
     );
   }
 }

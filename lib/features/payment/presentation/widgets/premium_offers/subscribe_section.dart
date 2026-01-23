@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/extensions/context_extensions.dart';
 
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_styles.dart';
@@ -20,7 +21,7 @@ class SubscribeSection extends StatelessWidget {
             backgroundColor: Colors.white,
             withGradient: false,
             onPressed: () {
-              Navigator.pushReplacementNamed(context, Routes.subscribeView);
+              context.pushReplacement(Routes.subscribeView);
             },
             child: const Text(
               "Subscribe",

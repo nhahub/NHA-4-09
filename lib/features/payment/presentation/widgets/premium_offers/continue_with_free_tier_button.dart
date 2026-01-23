@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/extensions/context_extensions.dart';
 
 import '../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../core/routing/routes.dart';
@@ -16,7 +17,7 @@ class ContinueWithFreeTierButton extends StatelessWidget {
           width: double.infinity,
           child: TextButton(
             onPressed: () {
-              Navigator.pushReplacementNamed(context, Routes.homeView);
+              context.pushReplacement(Routes.mainView);
             },
             style: TextButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 14),
