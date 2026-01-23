@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/constants/constants.dart';
-import 'recommended_for_you_list_view.dart';
 import '../../../../../core/widgets/app_section_header.dart';
+import 'recommended_for_you_list_view.dart';
 
 class RecommendedForYouSection extends StatelessWidget {
   const RecommendedForYouSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const AppSectionHeader(title: "Recommended for you"),
-        const SizedBox(height: kAppSectionSpacing),
-        const RecommendedForYouListView(),
+        AppSectionHeader(title: "Recommended for you"),
+        SizedBox(height: kAppSectionSpacing),
+        RecommendedForYouListView(),
       ],
     );
   }

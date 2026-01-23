@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/extensions/spacing.dart';
-import '../../cubit/authatcation_cubit.dart';
 
+import '../../../../../core/extensions/spacing.dart';
 import '../../../../../core/widgets/app_text_button.dart';
+import '../../cubit/authatcation_cubit.dart';
 import '../shared/email_text_field.dart';
 import '../shared/password_text_field.dart';
 import 'create_an_account.dart';

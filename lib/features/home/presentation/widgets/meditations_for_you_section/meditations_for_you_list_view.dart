@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/widgets/horizontal_padding_list.dart';
 import '../../../../../core/widgets/shared/custom_card.dart';
-import '../../../mock_data/meditations_for_you_data.dart';
+import '../../../data/mock_data/meditations_for_you_data.dart';
 
 class MeditationsForYouListView extends StatelessWidget {
   const MeditationsForYouListView({super.key});

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
+
 import '../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
@@ -31,8 +32,8 @@ class ActiveCategoryButton extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppColors.brandGreen,
             borderRadius: BorderRadius.circular(333),
-            border: Border.all(color: Color(0xff5dbf76), width: 4),
-            boxShadow: [
+            border: Border.all(color: const Color(0xff5dbf76), width: 4),
+            boxShadow: const [
               // BoxShadow(
               //   color: AppColors.shadow.withAlpha(alphaFromPercentage(10)),
               //   offset: const Offset(0, 0.67),

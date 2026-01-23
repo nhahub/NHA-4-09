@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/constants/constants.dart';
 import '../../../data/models/category_enum.dart';
 import 'active_category_button.dart';

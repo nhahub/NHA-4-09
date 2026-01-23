@@ -9,11 +9,11 @@ class ForDifficultSituationsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const AppSectionHeader(title: "For difficult situations"),
-        const SizedBox(height: kAppSectionSpacing),
+        AppSectionHeader(title: "For difficult situations"),
+        SizedBox(height: kAppSectionSpacing),
         ForDifficultSituationsListView(),
       ],
     );

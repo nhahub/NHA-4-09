@@ -39,7 +39,7 @@ class DescriptionData extends StatelessWidget {
                     color: Colors.white.withAlpha(alphaFromPercentage(80)),
                   ),
                 )
-              : SizedBox.shrink(),
+              : const SizedBox.shrink(),
         ],
       ),
     );

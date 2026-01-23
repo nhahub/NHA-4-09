@@ -31,7 +31,7 @@ class OnboardingAppbar extends StatelessWidget {
           if (currentPageIndex != 0)
             CustomCircleButton(
               onTap: previousPage,
-              icon: AppAssets.arrowLeftIcon,
+              icon: AppAssets.arrowLeftIosIcon,
             ),
           CustomDotsIndicator(currentPageIndex: currentPageIndex),
           if (currentPageIndex != 0)

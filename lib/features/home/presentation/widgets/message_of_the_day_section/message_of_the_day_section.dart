@@ -1,9 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/extensions/spacing.dart';
-
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/widgets/app_section_header.dart';
@@ -79,7 +79,7 @@ class MessageOfTheDaySection extends StatelessWidget {
                       padding: const EdgeInsets.all(10),
                       child: Column(
                         children: [
-                          Row(
+                          const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [CardDot(), CardDot()],
                           ),
@@ -90,7 +90,7 @@ class MessageOfTheDaySection extends StatelessWidget {
                             ),
                             child: CardContant(quote: quote, author: author),
                           ),
-                          Row(
+                          const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [CardDot(), CardDot()],
                           ),

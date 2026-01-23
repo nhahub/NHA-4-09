@@ -19,7 +19,7 @@ class PremiumContainer extends StatelessWidget {
           width: 2,
           color: AppColors.borderButton.withAlpha(alphaFromPercentage(6)),
         ),
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           colors: [AppColors.brandGreen, AppColors.lightGreen],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -61,7 +61,7 @@ class PremiumContainer extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(width: 8),
+          const SizedBox(width: 8),
           SvgPicture.asset(AppAssets.premiumIcon, width: 12, height: 12),
         ],
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../data/models/sessions_for_you_model.dart';
@@ -15,7 +16,7 @@ class SessionsForYouCard extends StatelessWidget {
       width: 284.52,
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-        color: Color(0xffF9F9FB),
+        color: AppColors.bgFill,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: AppColors.borderButton.withAlpha(alphaFromPercentage(6)),

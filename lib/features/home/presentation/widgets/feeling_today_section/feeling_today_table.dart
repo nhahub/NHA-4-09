@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/static.dart';
-import 'package:moodly/core/helpers/alpha_from_percent.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/features/home/presentation/widgets/feeling_today_section/feeling_today_widget.dart';
+
+import '../../../../../core/constants/static.dart';
+import '../../../../../core/helpers/alpha_from_percent.dart';
+import '../../../../../core/theming/app_colors.dart';
+import 'feeling_today_widget.dart';
 
 class FeelingTodayTable extends StatelessWidget {
   const FeelingTodayTable({super.key});

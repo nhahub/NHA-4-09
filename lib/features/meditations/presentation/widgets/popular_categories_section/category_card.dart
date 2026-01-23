@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/theming/app_styles.dart';
-import '../../../data/models/popular_categories_model.dart';
 import '../../../../../core/widgets/shared/card_description_container.dart';
+import '../../../data/models/popular_categories_model.dart';
 
 class CategoryCard extends StatelessWidget {
   final PopularCategoriesModel popularCategoriesModel;
