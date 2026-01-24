@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/extensions/context_extensions.dart';
-import 'package:moodly/core/routing/routes.dart';
+import '../../../../../core/extensions/context_extensions.dart';
+import '../../../../../core/routing/routes.dart';
 
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/widgets/shared/custom_card.dart';

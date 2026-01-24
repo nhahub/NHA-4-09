@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/enums/fade_position.dart';
-import 'package:moodly/core/widgets/fade_scrollable.dart';
+import '../enums/fade_position.dart';
+import 'fade_scrollable.dart';
 import '../constants/static.dart';
 import '../theming/app_styles.dart';
 import 'custom_circle_button.dart';

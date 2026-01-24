@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/core/theming/app_colors.dart';
+import '../../../core/theming/app_assets.dart';
+import '../../../core/theming/app_colors.dart';
 
 class SplashViewBody extends StatelessWidget {
   const SplashViewBody({super.key});

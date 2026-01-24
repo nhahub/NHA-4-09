@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/enums/fade_position.dart';
+import '../enums/fade_position.dart';
 
 class FadeScrollable extends StatelessWidget {
   final Widget child;

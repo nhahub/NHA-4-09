@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moodly/core/extensions/context_extensions.dart';
+import '../../../../../core/extensions/context_extensions.dart';
 
 import '../../../../../core/extensions/spacing.dart';
 import '../../../../../core/helpers/snackbar_service.dart';

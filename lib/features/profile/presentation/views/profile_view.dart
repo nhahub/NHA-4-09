@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/enums/fade_position.dart';
-import 'package:moodly/core/extensions/context_extensions.dart';
-import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/core/widgets/custom_appbar.dart';
-import 'package:moodly/core/widgets/fade_scrollable.dart';
+import '../../../../core/enums/fade_position.dart';
+import '../../../../core/extensions/context_extensions.dart';
+import '../../../../core/theming/app_assets.dart';
+import '../../../../core/widgets/custom_appbar.dart';
+import '../../../../core/widgets/fade_scrollable.dart';
 
 import '../../../../core/routing/routes.dart';
 import '../../../auth/presentation/cubit/authatcation_cubit.dart';

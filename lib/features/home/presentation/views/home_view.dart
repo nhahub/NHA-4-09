@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/enums/fade_position.dart';
-import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/core/widgets/fade_scrollable.dart';
+import '../../../../core/enums/fade_position.dart';
+import '../../../../core/theming/app_assets.dart';
+import '../../../../core/widgets/fade_scrollable.dart';
 import '../../../../core/widgets/vertical_space.dart';
 import '../widgets/daily_stats_section/shared/daily_stats_section.dart';
 import '../widgets/feeling_today_section/feeling_today_section.dart';

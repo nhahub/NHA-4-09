@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moodly/core/extensions/context_extensions.dart';
-import 'package:moodly/core/routing/routes.dart';
+import '../extensions/context_extensions.dart';
+import '../routing/routes.dart';
 import '../constants/constants.dart';
 import '../helpers/alpha_from_percent.dart';
 import '../theming/app_assets.dart';
