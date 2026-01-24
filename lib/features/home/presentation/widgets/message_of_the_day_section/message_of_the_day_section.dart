@@ -1,7 +1,7 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-
+import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
+import 'package:moodly/core/helpers/alpha_from_percent.dart';
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/extensions/spacing.dart';
 import '../../../../../core/theming/app_assets.dart';
@@ -38,12 +38,38 @@ class MessageOfTheDaySection extends StatelessWidget {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: AppColors.brandGreen, width: 2),
                       gradient: const LinearGradient(
                         colors: [AppColors.lightGreen, AppColors.brandGreen],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         stops: [0, 0.75],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Transform.rotate(
+                angle: 3 * pi / 180,
+                child: Transform.translate(
+                  offset: const Offset(0, -10),
+                  child: InnerShadow(
+                    shadows: [
+                      Shadow(
+                        color: Colors.blueAccent.withAlpha(
+                          alphaFromPercentage(60),
+                        ),
+                        offset: const Offset(0, 1.34),
+                        blurRadius: 4,
+                      ),
+                    ],
+                    child: Container(
+                      height: 180,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: AppColors.borderButton.withAlpha(
+                          alphaFromPercentage(12),
+                        ),
                       ),
                     ),
                   ),

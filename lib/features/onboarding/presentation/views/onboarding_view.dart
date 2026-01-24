@@ -23,7 +23,7 @@ class OnboardingView extends StatelessWidget {
         builder: (context, state) {
           final cubit = context.read<OnboardingCubit>();
           void finishOnboarding() {
-            context.pushAndRemoveUntil(Routes.mainView);
+            context.pushAndRemoveUntil(Routes.premiumView);
           }
 
           return Scaffold(
