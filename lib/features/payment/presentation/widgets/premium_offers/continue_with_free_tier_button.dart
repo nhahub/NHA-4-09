@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/extensions/context_extensions.dart';
+import '../../../../../core/extensions/context_extensions.dart';
 
 import '../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../core/routing/routes.dart';

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/views/video_view.dart';
-import 'package:moodly/features/home/presentation/views/chat_doctor_view.dart';
-import 'package:moodly/features/home/presentation/views/live_view.dart';
-import 'package:moodly/features/home/presentation/views/recommendations_view.dart';
-import 'package:moodly/features/home/presentation/views/therapist_details_view.dart';
-import 'package:moodly/features/meditations/presentation/views/audio_view.dart';
+import 'package:moodly/features/payment/presentation/views/premium_view.dart';
+import 'package:moodly/features/payment/presentation/views/subscribe_view.dart';
+import '../views/video_view.dart';
+import '../../features/home/presentation/views/chat_doctor_view.dart';
+import '../../features/home/presentation/views/live_view.dart';
+import '../../features/home/presentation/views/recommendations_view.dart';
+import '../../features/home/presentation/views/therapist_details_view.dart';
+import '../../features/meditations/presentation/views/audio_view.dart';
 
 import '../../features/auth/presentation/views/forgot_password_view.dart';
 import '../../features/auth/presentation/views/login_view.dart';
@@ -64,6 +66,14 @@ class AppRouter {
 
       case Routes.recommendationsView:
         return MaterialPageRoute(builder: (_) => const RecommendationsView());
+
+      case Routes.premiumView:
+        return MaterialPageRoute(
+          builder: (_) => const PremiumView(withClose: false),
+        );
+
+      case Routes.subscribeView:
+        return MaterialPageRoute(builder: (_) => const SubscribeView());
 
       default:
         return MaterialPageRoute(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/extensions/context_extensions.dart';
+import '../../../../core/extensions/context_extensions.dart';
 
 import '../../../../core/routing/routes.dart';
 import '../../data/models/questionnaire_model.dart';
@@ -23,7 +23,7 @@ class OnboardingView extends StatelessWidget {
         builder: (context, state) {
           final cubit = context.read<OnboardingCubit>();
           void finishOnboarding() {
-            context.pushAndRemoveUntil(Routes.mainView);
+            context.pushAndRemoveUntil(Routes.premiumView);
           }
 
           return Scaffold(

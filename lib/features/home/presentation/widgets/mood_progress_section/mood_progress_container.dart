@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'mood_tracker_widget.dart';
+
 import '../../../../../core/constants/static.dart';
 import 'mood_recommendations_container.dart';
+import 'mood_tracker_widget.dart';
 
 class MoodProgressBody extends StatelessWidget {
   const MoodProgressBody({super.key});

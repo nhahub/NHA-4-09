@@ -8,9 +8,7 @@ abstract class ThemeManager {
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.white,
         centerTitle: true,
-        systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: Colors.black,
-        ),
+        systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.black),
       ),
     );
   }
