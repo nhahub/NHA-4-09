@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/enums/fade_position.dart';
 import 'package:moodly/core/extensions/context_extensions.dart';
+import 'package:moodly/core/theming/app_assets.dart';
+import 'package:moodly/core/widgets/custom_appbar.dart';
+import 'package:moodly/core/widgets/fade_scrollable.dart';
 
 import '../../../../core/routing/routes.dart';
 import '../../../auth/presentation/cubit/authatcation_cubit.dart';
 import '../../../auth/presentation/cubit/authatcation_state.dart';
 
 class ProfileView extends StatelessWidget {
+  final bool isPremium = false;
   const ProfileView({super.key});
 
   @override
@@ -18,20 +23,28 @@ class ProfileView extends StatelessWidget {
         }
       },
       child: Scaffold(
-        appBar: AppBar(title: const Text('Profile')),
-        body: Column(
-          children: [
-            Align(
-              alignment: Alignment.centerRight,
-              child: IconButton(
-                onPressed: () {
-                  context.read<AuthatcationCubit>().logout();
-                },
-                icon: const Icon(Icons.logout, color: Colors.red),
+        appBar: CustomAppbar(
+          title: "Profile",
+          isPremium: isPremium,
+          icon: AppAssets.searchIcon,
+          onTap: () {},
+        ),
+        body: FadeScrollable(
+          fadePosition: FadePosition.bottom,
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.centerRight,
+                child: IconButton(
+                  onPressed: () {
+                    context.read<AuthatcationCubit>().logout();
+                  },
+                  icon: const Icon(Icons.logout, color: Colors.red),
+                ),
               ),
-            ),
-            const Center(child: Text('Welcome to the Profile View!')),
-          ],
+              const Center(child: Text('Welcome to the Profile View!')),
+            ],
+          ),
         ),
       ),
     );

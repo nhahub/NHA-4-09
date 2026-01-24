@@ -17,7 +17,7 @@ class AppAssets {
   static const String dotsThreeIcon = 'assets/svgs/dots_three.svg';
   static const String flowerLotusIcon = 'assets/svgs/flower_lotus.svg';
   static const String homeIcon = 'assets/svgs/home.svg';
-  static const String serachIcon = 'assets/svgs/serach.svg';
+  static const String searchIcon = 'assets/svgs/serach.svg';
   static const String percentIcon = 'assets/svgs/percent.svg';
   static const String phoneIcon = 'assets/svgs/phone.svg';
   static const String playCircleIcon = 'assets/svgs/play_circle.svg';

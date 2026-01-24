@@ -1,7 +1,6 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../core/routing/app_router.dart';
 import '../../core/routing/navigation_service.dart';
 import '../../core/routing/routes.dart';
