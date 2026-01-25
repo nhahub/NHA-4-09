@@ -14,6 +14,7 @@ class NewArrivalsGridView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
       child: GridView.builder(
+        padding: EdgeInsets.zero,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
