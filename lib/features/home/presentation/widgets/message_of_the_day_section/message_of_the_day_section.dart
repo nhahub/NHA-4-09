@@ -1,19 +1,21 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
-import 'package:moodly/core/helpers/alpha_from_percent.dart';
+import 'main_card.dart';
+import 'rotated_gradient_card.dart';
+import 'rotated_inner_shadow_card.dart';
 import '../../../../../core/constants/constants.dart';
-import '../../../../../core/extensions/spacing.dart';
-import '../../../../../core/theming/app_assets.dart';
-import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/widgets/app_section_header.dart';
-import 'card_contant.dart';
-import 'card_dot.dart';
 
 class MessageOfTheDaySection extends StatelessWidget {
+  static const cardHeight = 180.0;
+  static const cardRadius = 20.0;
+  static const rotationAngle = 3 * pi / 180;
+  static const translateOffset = Offset(0, -10);
+
   final String quote =
       "Don't waste time knocking on the wall, hoping to turn it into a door.";
   final String author = "Coco Chanel";
+
   const MessageOfTheDaySection({super.key});
 
   @override
@@ -22,110 +24,16 @@ class MessageOfTheDaySection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const AppSectionHeader(title: "Message of the Day"),
-        gapHeight(35),
+        const SizedBox(height: 35),
         Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: kAppHorizontalPadding,
           ),
           child: Stack(
             children: [
-              Transform.rotate(
-                angle: 3 * pi / 180,
-                child: Transform.translate(
-                  offset: const Offset(0, -10),
-                  child: Container(
-                    height: 180,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      gradient: const LinearGradient(
-                        colors: [AppColors.lightGreen, AppColors.brandGreen],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        stops: [0, 0.75],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Transform.rotate(
-                angle: 3 * pi / 180,
-                child: Transform.translate(
-                  offset: const Offset(0, -10),
-                  child: InnerShadow(
-                    shadows: [
-                      Shadow(
-                        color: Colors.blueAccent.withAlpha(
-                          alphaFromPercentage(60),
-                        ),
-                        offset: const Offset(0, 1.34),
-                        blurRadius: 4,
-                      ),
-                    ],
-                    child: Container(
-                      height: 180,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: AppColors.borderButton.withAlpha(
-                          alphaFromPercentage(12),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: AppColors.brandGreen, width: 2),
-                  gradient: const LinearGradient(
-                    colors: [AppColors.lightGreen, AppColors.brandGreen],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-                child: Stack(
-                  children: [
-                    Positioned(
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      top: -30,
-                      child: Opacity(
-                        opacity: 0.7,
-                        child: Image.asset(
-                          AppAssets.cardEffect,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Column(
-                        children: [
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [CardDot(), CardDot()],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 18,
-                              vertical: 8,
-                            ),
-                            child: CardContant(quote: quote, author: author),
-                          ),
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [CardDot(), CardDot()],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              const RotatedGradientCard(),
+              const RotatedInnerShadowCard(),
+              MainCard(quote: quote, author: author),
             ],
           ),
         ),

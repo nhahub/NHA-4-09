@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/extensions/spacing.dart';
 import '../../../../../core/widgets/app_text_button.dart';
 import '../../cubit/authatcation_cubit.dart';
 import '../shared/email_text_field.dart';
@@ -37,13 +36,13 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             EmailTextField(emailController: emailController),
-            gapHeight(20),
+            const SizedBox(height: 20),
             PasswordTextField(
               text: "Enter Your Password",
               passwordController: passwordController,
             ),
             const ForgotPassword(),
-            gapHeight(20),
+            const SizedBox(height: 20),
             SizedBox(
               width: double.infinity,
               child: AppTextButton(
@@ -53,9 +52,9 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                 buttonText: "Login",
               ),
             ),
-            gapHeight(20),
+            const SizedBox(height: 20),
             const CreateAnAccount(),
-            gapHeight(20),
+            const SizedBox(height: 20),
           ],
         ),
       ),

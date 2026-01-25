@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../../../../core/extensions/context_extensions.dart';
 
-import '../../../../../core/extensions/spacing.dart';
+import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/helpers/snackbar_service.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_assets.dart';
@@ -37,15 +36,13 @@ class RegisterViewBody extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    gapHeight(50),
-
+                    const SizedBox(height: 50),
                     SvgPicture.asset(
                       AppAssets.zenspunLogo,
                       width: 90,
                       height: 90,
                     ),
-                    gapHeight(80),
-
+                    const SizedBox(height: 80),
                     if (state is AuthLoading)
                       const Padding(
                         padding: EdgeInsets.all(20.0),

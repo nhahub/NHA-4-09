@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../extensions/context_extensions.dart';
-import '../routing/routes.dart';
+
 import '../constants/constants.dart';
+import '../extensions/context_extensions.dart';
 import '../helpers/alpha_from_percent.dart';
+import '../routing/routes.dart';
 import '../theming/app_assets.dart';
 import '../theming/app_colors.dart';
 import '../theming/app_styles.dart';

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/extensions/context_extensions.dart';
-import '../../../../../core/extensions/spacing.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/widgets/app_text_button.dart';
 import '../../cubit/reset_password_cubit.dart';
@@ -60,15 +59,13 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     passwordController: _passwordController,
                     isPasswordObscureText: true,
                   ),
-
-                  gapHeight(16),
-
+                  const SizedBox(height: 16),
                   PasswordTextField(
                     passwordController: _confirmPasswordController,
                     isPasswordObscureText: true,
                   ),
 
-                  gapHeight(24),
+                  const SizedBox(height: 24),
 
                   BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
                     builder: (context, state) {

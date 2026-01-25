@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../enums/fade_position.dart';
 
 class FadeScrollable extends StatelessWidget {

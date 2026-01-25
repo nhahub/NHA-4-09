@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import '../enums/fade_position.dart';
-import 'fade_scrollable.dart';
+
 import '../constants/static.dart';
+import '../enums/fade_position.dart';
 import '../theming/app_styles.dart';
 import 'custom_circle_button.dart';
+import 'fade_scrollable.dart';
 import 'free_container.dart';
 import 'premium_container.dart';
 
