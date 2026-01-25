@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/extensions/context_extensions.dart';
-import '../../../../../core/routing/routes.dart';
 
+import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/helpers/alpha_from_percent.dart';
+import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../data/models/sessions_for_you_model.dart';
 import 'therapist_cover_info.dart';

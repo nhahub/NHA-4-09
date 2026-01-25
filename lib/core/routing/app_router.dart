@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/payment/presentation/views/premium_view.dart';
-import 'package:moodly/features/payment/presentation/views/subscribe_view.dart';
+import '../../features/payment/presentation/views/premium_view.dart';
+import '../../features/payment/presentation/views/subscribe_view.dart';
 import '../views/video_view.dart';
 import '../../features/home/presentation/views/chat_doctor_view.dart';
 import '../../features/home/presentation/views/live_view.dart';

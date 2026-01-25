@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/extensions/spacing.dart';
 import '../../../../../core/helpers/snackbar_service.dart';
 import '../../../../../core/widgets/app_text_button.dart';
 import '../../cubit/authatcation_cubit.dart';
@@ -42,7 +41,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
           child: Column(
             children: [
               EmailTextField(emailController: emailController),
-              gapHeight(16),
+              const SizedBox(height: 16),
               AppTextButton(
                 onPressed: () {
                   if (!formKey.currentState!.validate()) return;

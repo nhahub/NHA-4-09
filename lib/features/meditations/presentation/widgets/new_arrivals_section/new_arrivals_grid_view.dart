@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/extensions/context_extensions.dart';
-import '../../../../../core/routing/routes.dart';
 
 import '../../../../../core/constants/constants.dart';
+import '../../../../../core/extensions/context_extensions.dart';
+import '../../../../../core/routing/routes.dart';
 import '../../../../../core/widgets/shared/custom_card.dart';
 import '../../../data/mock_data/new_arrivals_data.dart';
 

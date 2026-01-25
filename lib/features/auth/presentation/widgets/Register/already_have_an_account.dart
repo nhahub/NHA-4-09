@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/extensions/context_extensions.dart';
 
-import '../../../../../core/extensions/spacing.dart';
+import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
 
@@ -17,8 +16,7 @@ class AlreadyHaveAnAccount extends StatelessWidget {
           "Already have an account?",
           style: AppStyles.medium15.copyWith(color: AppColors.bodyGray),
         ),
-        gapWidth(3),
-
+        const SizedBox(width: 3),
         GestureDetector(
           onTap: () {
             context.pop();

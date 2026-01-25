@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/extensions/spacing.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/app_styles.dart';
 import '../widgets/forgot_password/forgot_password_form.dart';
@@ -16,7 +14,7 @@ class ForgotPasswordView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
-              gapHeight(80),
+              const SizedBox(height: 80),
 
               Align(
                 alignment: AlignmentDirectional.centerStart,
@@ -27,7 +25,7 @@ class ForgotPasswordView extends StatelessWidget {
                   ),
                 ),
               ),
-              gapHeight(15),
+              const SizedBox(height: 15),
               const Expanded(child: ForgotPasswordForm()),
             ],
           ),
