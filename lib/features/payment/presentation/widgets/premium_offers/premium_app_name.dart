@@ -12,7 +12,7 @@ class PremiumAppName extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Zenspun', style: AppStyles.extraBold50WithShadow),
+        Text('Moodly', style: AppStyles.extraBold50WithShadow),
         Row(
           children: [
             Text(
