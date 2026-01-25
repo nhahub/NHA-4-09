@@ -7,9 +7,9 @@ class AppAssets {
   static const String facebookIcon = 'assets/svgs/facebook.svg';
   static const String zenspunLogo = 'assets/svgs/zenspun_logo.svg';
   static const String passwordIcon = 'assets/svgs/password_icon.svg';
-  static const String arrowLeftIosIcon = 'assets/svgs/arrow_right_ios.svg';
-  static const String arrowRightIcon = 'assets/svgs/arrow_left.svg';
-  static const String arrowRightIosIcon = 'assets/svgs/arrow_left_ios.svg';
+  static const String arrowRightIosIcon = 'assets/svgs/arrow_right_ios.svg';
+  static const String arrowRightIcon = 'assets/svgs/arrow_right.svg';
+  static const String arrowLeftIosIcon = 'assets/svgs/arrow_left_ios.svg';
   static const String cardDotIcon = 'assets/svgs/card_dot.svg';
   static const String chartBarIcon = 'assets/svgs/chart_bar.svg';
   static const String chatIcon = 'assets/svgs/chat.svg';
