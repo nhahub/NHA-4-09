@@ -24,7 +24,7 @@ class SeeMoreWidget extends StatelessWidget {
             ),
             const SizedBox(width: 6),
             SvgPicture.asset(
-              AppAssets.arrowLeftIosIcon,
+              AppAssets.arrowRightIosIcon,
               width: 16,
               height: 16,
               colorFilter: const ColorFilter.mode(

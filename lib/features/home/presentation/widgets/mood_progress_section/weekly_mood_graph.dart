@@ -14,11 +14,11 @@ class WeeklyMoodGraph extends StatelessWidget {
       children: [
         Row(
           children: [
-            CustomCircleButton(icon: AppAssets.arrowRightIosIcon, onTap: () {}),
+            CustomCircleButton(icon: AppAssets.arrowLeftIosIcon, onTap: () {}),
             const Spacer(),
             const Text("April 21-27", style: AppStyles.extraBold15),
             const Spacer(),
-            CustomCircleButton(icon: AppAssets.arrowLeftIosIcon, onTap: () {}),
+            CustomCircleButton(icon: AppAssets.arrowRightIosIcon, onTap: () {}),
           ],
         ),
         const SizedBox(height: 16),

@@ -25,7 +25,7 @@ class SeeRecommendationsButton extends StatelessWidget {
           ),
           const SizedBox(width: 7),
           SvgPicture.asset(
-            AppAssets.arrowLeftIosIcon,
+            AppAssets.arrowRightIosIcon,
             width: 16,
             height: 16,
             colorFilter: const ColorFilter.mode(

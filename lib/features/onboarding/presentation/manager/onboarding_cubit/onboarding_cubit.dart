@@ -43,12 +43,17 @@ class OnboardingCubit extends Cubit<OnboardingState> {
 
   void selectOption(String questionId, String optionId) {
     final newAnswers = Map<String, List<String>>.from(state.answers);
-    newAnswers.putIfAbsent(questionId, () => []);
-    if (newAnswers[questionId]!.contains(optionId)) {
-      newAnswers[questionId]!.remove(optionId);
+
+    final currentList = List<String>.from(newAnswers[questionId] ?? []);
+
+    if (currentList.contains(optionId)) {
+      currentList.remove(optionId);
     } else {
-      newAnswers[questionId]!.add(optionId);
+      currentList.add(optionId);
     }
+
+    newAnswers[questionId] = currentList;
+
     emit(state.copyWith(answers: newAnswers));
   }
 

@@ -13,6 +13,8 @@ class Routes {
   static const String mainView = '/mainView';
   static const String homeView = '/homeView';
   static const String meditationsView = '/meditationsView';
+  static const String chatbotView = '/chatbotView';
+  static const String profileView = '/profileView';
   static const String videoView = '/videoView';
   static const String audioView = '/audioView';
   static const String therapistDetailsView = '/therapistDetailsView';

@@ -14,11 +14,11 @@ class YearlyMoodGraph extends StatelessWidget {
       children: [
         Row(
           children: [
-            CustomCircleButton(icon: AppAssets.arrowRightIosIcon, onTap: () {}),
+            CustomCircleButton(icon: AppAssets.arrowLeftIosIcon, onTap: () {}),
             const Spacer(),
             const Text("2026", style: AppStyles.extraBold15),
             const Spacer(),
-            CustomCircleButton(icon: AppAssets.arrowLeftIosIcon, onTap: () {}),
+            CustomCircleButton(icon: AppAssets.arrowRightIosIcon, onTap: () {}),
           ],
         ),
         const SizedBox(height: 16),

@@ -13,7 +13,7 @@ import '../widgets/mood_progress_section/mood_progress_section.dart';
 import '../widgets/sessions_for_you_section/sessions_for_you_section.dart';
 
 class HomeView extends StatelessWidget {
-  final bool isPremium = false;
+  final bool isPremium = true;
   const HomeView({super.key});
 
   @override

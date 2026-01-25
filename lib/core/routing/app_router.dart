@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/features/chatbot/presentation/views/chatbot_view.dart';
+import 'package:moodly/features/onboarding/presentation/views/onboarding_view.dart';
+import 'package:moodly/features/profile/presentation/views/privacy_policy_view.dart';
+import 'package:moodly/features/profile/presentation/views/profile_view.dart';
+import 'package:moodly/features/profile/presentation/views/terms_and_conditions_view.dart';
 import '../../features/payment/presentation/views/premium_view.dart';
 import '../../features/payment/presentation/views/subscribe_view.dart';
 import '../views/video_view.dart';
@@ -40,6 +45,9 @@ class AppRouter {
       case Routes.resetPasswordView:
         return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
 
+      case Routes.onboardingView:
+        return MaterialPageRoute(builder: (_) => const OnboardingView());
+
       case Routes.mainView:
         return MaterialPageRoute(builder: (_) => const MainView());
 
@@ -48,6 +56,12 @@ class AppRouter {
 
       case Routes.meditationsView:
         return MaterialPageRoute(builder: (_) => const MeditationsView());
+
+      case Routes.chatbotView:
+        return MaterialPageRoute(builder: (_) => const ChatbotView());
+
+      case Routes.profileView:
+        return MaterialPageRoute(builder: (_) => const ProfileView());
 
       case Routes.videoView:
         return MaterialPageRoute(builder: (_) => const VideoView());
@@ -74,6 +88,14 @@ class AppRouter {
 
       case Routes.subscribeView:
         return MaterialPageRoute(builder: (_) => const SubscribeView());
+
+      case Routes.termsAndConditionsView:
+        return MaterialPageRoute(
+          builder: (_) => const TermsAndConditionsView(),
+        );
+
+      case Routes.privacyPolicyView:
+        return MaterialPageRoute(builder: (_) => const PrivacyPolicyView());
 
       default:
         return MaterialPageRoute(
