@@ -6,7 +6,7 @@ import '../../core/routing/app_router.dart';
 import '../../core/routing/navigation_service.dart';
 import '../../core/routing/routes.dart';
 import '../../core/theming/theme_manager.dart';
-import '../auth/presentation/cubit/authatcation_cubit.dart';
+import '../auth/presentation/manager/auth_cubit/auth_cubit.dart';
 
 class MoodlyApp extends StatelessWidget {
   const MoodlyApp({super.key});
@@ -14,7 +14,7 @@ class MoodlyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthatcationCubit(),
+      create: (context) => AuthCubit(),
       child: MaterialApp(
         navigatorKey: navigatorKey,
         locale: DevicePreview.locale(context),
@@ -22,7 +22,7 @@ class MoodlyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeManager.getAppTheme(),
         onGenerateRoute: AppRouter.generateRoute,
-        initialRoute: Routes.mainView,
+        initialRoute: Routes.splashView,
       ),
     );
   }

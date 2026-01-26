@@ -1,10 +1,11 @@
-// import 'dart:async';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// import 'package:moodly/core/routing/deep_link_state.dart';
-// import 'package:moodly/core/routing/routes.dart';
+import 'package:moodly/core/routing/deep_link_state.dart';
+import 'package:moodly/core/routing/routes.dart';
 import 'package:moodly/features/splash/widgets/splash_view_body.dart';
-// import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../../core/extensions/context_extensions.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -15,25 +16,27 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView> {
   @override
-  // void initState() {
-  //   super.initState();
-  //   _redirect();
-  // }
-  // Future<void> _redirect() async {
-  //   await Future.delayed(const Duration(seconds: 2));
-  //   if (!mounted) return;
-  //   if (DeepLinkState.openedFromResetLink) {
-  //     DeepLinkState.openedFromResetLink = false;
-  //     context.pushReplacement(Routes.resetPasswordView);
-  //     return;
-  //   }
-  //   final session = Supabase.instance.client.auth.currentSession;
-  //   if (session != null) {
-  //     context.pushReplacement(Routes.mainView);
-  //   } else {
-  //     context.pushReplacement(Routes.startView);
-  //   }
-  // }
+  void initState() {
+    super.initState();
+    _redirect();
+  }
+
+  Future<void> _redirect() async {
+    await Future.delayed(const Duration(seconds: 2));
+    if (!mounted) return;
+    if (DeepLinkState.openedFromResetLink) {
+      DeepLinkState.openedFromResetLink = false;
+      context.pushReplacement(Routes.resetPasswordView);
+      return;
+    }
+    final session = Supabase.instance.client.auth.currentSession;
+    if (session != null) {
+      context.pushReplacement(Routes.mainView);
+    } else {
+      context.pushReplacement(Routes.startView);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return const AnnotatedRegion<SystemUiOverlayStyle>(

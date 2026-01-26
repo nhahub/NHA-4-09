@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-
+import 'package:moodly/core/functions/build_snack_bar.dart';
+import 'package:moodly/core/helpers/logger.dart';
 import '../../../../../core/extensions/context_extensions.dart';
-import '../../../../../core/helpers/snackbar_service.dart';
+import '../../../../../core/functions/error_dialog.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_assets.dart';
-import '../../cubit/authatcation_cubit.dart';
-import '../../cubit/authatcation_state.dart';
+import '../../manager/auth_cubit/auth_cubit.dart';
 import 'login_form_widget.dart';
 
 class LoginViewBody extends StatelessWidget {
@@ -18,46 +18,33 @@ class LoginViewBody extends StatelessWidget {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32),
-        child: BlocConsumer<AuthatcationCubit, AuthatcationState>(
+        child: BlocListener<AuthCubit, AuthState>(
           listener: (context, state) {
             if (state is AuthSuccess) {
-              Future.delayed(const Duration(milliseconds: 300), () {
-                // ignore: use_build_context_synchronously
-                context.pushAndRemoveUntil(Routes.mainView);
-              });
+              successSnackBar(context: context, message: "Login Success");
+              context.pushAndRemoveUntil(Routes.mainView);
             } else if (state is AuthFailure) {
-              CustomSnackbar.show(context, state.message, isError: true);
+              errorDialog(context: context, message: state.message);
+              Logger.log(state.message);
             }
           },
-          builder: (context, state) {
-            return SingleChildScrollView(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  minHeight: MediaQuery.of(context).size.height * 0.8,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const SizedBox(height: 50),
-                    SvgPicture.asset(
-                      AppAssets.zenspunLogo,
-                      width: 90,
-                      height: 90,
-                    ),
-                    const SizedBox(height: 80),
-                    if (state is AuthLoading)
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20),
-                        child: CircularProgressIndicator(),
-                      )
-                    else
-                      const LoginFormWidget(),
-                  ],
-                ),
+          child: SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: MediaQuery.of(context).size.height * 0.8,
               ),
-            );
-          },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: 50),
+                  SvgPicture.asset(AppAssets.moodlyLogo, width: 90, height: 90),
+                  const SizedBox(height: 80),
+                  const LoginFormWidget(),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );

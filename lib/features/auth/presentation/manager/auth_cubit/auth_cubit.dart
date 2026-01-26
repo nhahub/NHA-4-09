@@ -1,19 +1,17 @@
 import 'dart:developer';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+part  'auth_state.dart';
 
-import 'authatcation_state.dart';
-
-class AuthatcationCubit extends Cubit<AuthatcationState> {
+class AuthCubit extends Cubit<AuthState> {
   final SupabaseClient _supabase = Supabase.instance.client;
-  AuthatcationCubit() : super(AuthInitial());
+  AuthCubit() : super(AuthInitial());
 
   // تسجيل الدخول
   Future<void> login(String email, String password) async {
     emit(AuthLoading());
     try {
-      final response = await _supabase.auth.signInWithPassword(
+      final AuthResponse response = await _supabase.auth.signInWithPassword(
         email: email,
         password: password,
       );

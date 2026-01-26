@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/widgets/app_text_button.dart';
-import '../../cubit/reset_password_cubit.dart';
-import '../../cubit/reset_password_state.dart';
+import '../../manager/auth_cubit/reset_password_cubit.dart';
+import '../../manager/auth_cubit/reset_password_state.dart';
 import '../shared/password_text_field.dart';
 
 class ResetPasswordScreen extends StatefulWidget {

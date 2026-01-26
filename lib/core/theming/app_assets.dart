@@ -1,11 +1,10 @@
 class AppAssets {
   // Icons
-  static const String logoIcon = 'assets/logo/logo.svg';
   static const String emailIcon = 'assets/svgs/email.svg';
   static const String googleIcon = 'assets/svgs/google.svg';
   static const String appleIcon = 'assets/svgs/apple.svg';
   static const String facebookIcon = 'assets/svgs/facebook.svg';
-  static const String zenspunLogo = 'assets/svgs/zenspun_logo.svg';
+  static const String moodlyLogo = 'assets/svgs/moodly_logo.svg';
   static const String passwordIcon = 'assets/svgs/password_icon.svg';
   static const String arrowRightIosIcon = 'assets/svgs/arrow_right_ios.svg';
   static const String arrowRightIcon = 'assets/svgs/arrow_right.svg';

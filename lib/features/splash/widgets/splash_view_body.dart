@@ -21,7 +21,7 @@ class SplashViewBody extends StatelessWidget {
       ),
       child: Center(
         child: SvgPicture.asset(
-          AppAssets.zenspunLogo,
+          AppAssets.moodlyLogo,
           width: 120,
           height: 120,
           colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),

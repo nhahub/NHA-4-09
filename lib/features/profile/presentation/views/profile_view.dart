@@ -7,8 +7,7 @@ import '../../../../core/routing/routes.dart';
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/widgets/custom_appbar.dart';
 import '../../../../core/widgets/fade_scrollable.dart';
-import '../../../auth/presentation/cubit/authatcation_cubit.dart';
-import '../../../auth/presentation/cubit/authatcation_state.dart';
+import '../../../auth/presentation/manager/auth_cubit/auth_cubit.dart';
 
 class ProfileView extends StatelessWidget {
   final bool isPremium = false;
@@ -16,7 +15,7 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthatcationCubit, AuthatcationState>(
+    return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthInitial) {
           context.pushAndRemoveUntil(Routes.loginView);
@@ -37,7 +36,7 @@ class ProfileView extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: IconButton(
                   onPressed: () {
-                    context.read<AuthatcationCubit>().logout();
+                    context.read<AuthCubit>().logout();
                   },
                   icon: const Icon(Icons.logout, color: Colors.red),
                 ),

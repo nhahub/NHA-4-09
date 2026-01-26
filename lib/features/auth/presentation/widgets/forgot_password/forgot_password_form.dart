@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/helpers/snackbar_service.dart';
 import '../../../../../core/widgets/app_text_button.dart';
-import '../../cubit/authatcation_cubit.dart';
-import '../../cubit/authatcation_state.dart';
+import '../../manager/auth_cubit/auth_cubit.dart';
 import '../shared/email_text_field.dart';
 
 class ForgotPasswordForm extends StatefulWidget {
@@ -26,7 +25,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthatcationCubit, AuthatcationState>(
+    return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is ForgotPasswordSuccess) {
           CustomSnackbar.show(context, "Reset link sent to your email");
@@ -46,7 +45,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
                 onPressed: () {
                   if (!formKey.currentState!.validate()) return;
 
-                  context.read<AuthatcationCubit>().forgotPassword(
+                  context.read<AuthCubit>().forgotPassword(
                     emailController.text.trim(),
                   );
                 },

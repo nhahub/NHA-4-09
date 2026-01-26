@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/widgets/app_text_button.dart';
-import '../../cubit/authatcation_cubit.dart';
+import '../../manager/auth_cubit/auth_cubit.dart';
 import '../shared/email_text_field.dart';
 import '../shared/password_text_field.dart';
 import 'already_have_an_account.dart';
@@ -73,7 +73,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
 
   void validateThenRegister(BuildContext context) {
     if (formKey.currentState!.validate()) {
-      context.read<AuthatcationCubit>().register(
+      context.read<AuthCubit>().register(
         emailController.text.trim(),
         passwordController.text,
       );

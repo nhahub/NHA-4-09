@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:moodly/core/services/get_it_service.dart';
 import '../../../data/models/quote_model.dart';
 import '../../../data/repos/quote_repo_impl.dart';
 import 'main_card.dart';
@@ -21,7 +22,7 @@ class MessageOfTheDaySection extends StatefulWidget {
 
 class _MessageOfTheDaySectionState extends State<MessageOfTheDaySection> {
   Quote? _dailyQuote;
-  final QuoteRepoImpl _quoteRepoImpl = QuoteRepoImpl();
+  final QuoteRepoImpl _quoteRepoImpl = getIt<QuoteRepoImpl>();
 
   @override
   void initState() {

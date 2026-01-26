@@ -6,8 +6,7 @@ import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/helpers/snackbar_service.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_assets.dart';
-import '../../cubit/authatcation_cubit.dart';
-import '../../cubit/authatcation_state.dart';
+import '../../manager/auth_cubit/auth_cubit.dart';
 import 'register_form_widget.dart';
 
 class RegisterViewBody extends StatelessWidget {
@@ -18,7 +17,7 @@ class RegisterViewBody extends StatelessWidget {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32),
-        child: BlocConsumer<AuthatcationCubit, AuthatcationState>(
+        child: BlocConsumer<AuthCubit, AuthState>(
           listener: (context, state) {
             if (state is RegisterSuccess) {
               CustomSnackbar.show(context, "Registration Successful");
@@ -38,7 +37,7 @@ class RegisterViewBody extends StatelessWidget {
                   children: [
                     const SizedBox(height: 50),
                     SvgPicture.asset(
-                      AppAssets.zenspunLogo,
+                      AppAssets.moodlyLogo,
                       width: 90,
                       height: 90,
                     ),
