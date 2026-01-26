@@ -577,5 +577,11 @@ const quotes = {
       "quote": "If you can dream it, you can achieve it.",
       "author": "Zig Ziglar",
     },
+    {
+      "id": 103,
+      "quote":
+          "Don't waste time knocking on the wall, hoping to turn it into a door.",
+      "author": "Coco Chanel",
+    },
   ],
 };

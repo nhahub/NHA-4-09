@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../data/mock_data/month_mood.dart';
 
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_styles.dart';
@@ -22,7 +23,7 @@ class MonthlyMoodGraph extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 16),
-        const CustomMoodProgressGraph(),
+        CustomMoodProgressGraph(moodData: monthMood, barWidth: 40),
       ],
     );
   }

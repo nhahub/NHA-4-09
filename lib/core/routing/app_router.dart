@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/chatbot/presentation/views/chatbot_view.dart';
-import 'package:moodly/features/onboarding/presentation/views/onboarding_view.dart';
-import 'package:moodly/features/profile/presentation/views/privacy_policy_view.dart';
-import 'package:moodly/features/profile/presentation/views/profile_view.dart';
-import 'package:moodly/features/profile/presentation/views/terms_and_conditions_view.dart';
+import '../../features/chatbot/presentation/views/chatbot_view.dart';
+import '../../features/onboarding/presentation/views/onboarding_view.dart';
+import '../../features/profile/presentation/views/privacy_policy_view.dart';
+import '../../features/profile/presentation/views/profile_view.dart';
+import '../../features/profile/presentation/views/terms_and_conditions_view.dart';
 import '../../features/payment/presentation/views/premium_view.dart';
 import '../../features/payment/presentation/views/subscribe_view.dart';
 import '../views/video_view.dart';

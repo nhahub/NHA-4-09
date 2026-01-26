@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/constants/static.dart';
+import '../../../../../../core/constants/constants.dart';
 import '../../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../../core/theming/app_colors.dart';
 import '../number_of_steps/number_of_steps_card.dart';

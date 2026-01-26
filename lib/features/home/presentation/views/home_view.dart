@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../core/enums/fade_position.dart';
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/widgets/custom_appbar.dart';

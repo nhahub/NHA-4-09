@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../data/mock_data/week_mood.dart';
 
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_styles.dart';
@@ -22,7 +23,7 @@ class WeeklyMoodGraph extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 16),
-        const CustomMoodProgressGraph(),
+        CustomMoodProgressGraph(moodData: weekMood, barWidth: 33.39),
       ],
     );
   }

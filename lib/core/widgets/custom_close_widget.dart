@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../extensions/context_extensions.dart';
 
+import '../extensions/context_extensions.dart';
 import '../extensions/svg_shadow_extension.dart';
 import '../helpers/alpha_from_percent.dart';
 import '../theming/app_assets.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/constants/static.dart';
+import '../../../../../core/constants/constants.dart';
 import 'mood_recommendations_container.dart';
 import 'mood_tracker_widget.dart';
 

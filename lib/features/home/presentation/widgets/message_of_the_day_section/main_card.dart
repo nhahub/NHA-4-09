@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../data/models/quote_model.dart';
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_colors.dart';
 import 'card_contant.dart';
@@ -6,9 +7,8 @@ import 'card_dot.dart';
 import 'message_of_the_day_section.dart';
 
 class MainCard extends StatelessWidget {
-  final String quote;
-  final String author;
-  const MainCard({super.key, required this.quote, required this.author});
+  final Quote dailyQuote;
+  const MainCard({super.key, required this.dailyQuote});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class MainCard extends StatelessWidget {
                     horizontal: 18,
                     vertical: 8,
                   ),
-                  child: CardContant(quote: quote, author: author),
+                  child: CardContant(dailyQuote: dailyQuote),
                 ),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
