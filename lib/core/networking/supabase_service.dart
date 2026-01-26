@@ -28,7 +28,7 @@ class SupabaseService {
   }
 
   // Forgot Password
-  Future<void> forgotPassword(String email) async {
+  Future<void> forgotPassword({required String email}) async {
     await _supabase.auth.resetPasswordForEmail(
       email,
       redirectTo: 'moodly://reset-password',

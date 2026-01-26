@@ -8,14 +8,14 @@ class AuthLoading extends AuthState {}
 
 class AuthSuccess extends AuthState {
   final String userId;
-  AuthSuccess(this.userId);
+  AuthSuccess({required this.userId});
 }
 
 class RegisterSuccess extends AuthState {}
 
 class AuthFailure extends AuthState {
   final String message;
-  AuthFailure(this.message);
+  AuthFailure({required this.message});
 }
 
 class ForgotPasswordSuccess extends AuthState {}

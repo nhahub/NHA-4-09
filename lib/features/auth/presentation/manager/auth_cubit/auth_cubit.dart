@@ -1,26 +1,27 @@
 import 'dart:developer';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/auth/data/repos/auth_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-part  'auth_state.dart';
+part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final SupabaseClient _supabase = Supabase.instance.client;
-  AuthCubit() : super(AuthInitial());
+  final AuthRepo authRepo;
+  AuthCubit({required this.authRepo}) : super(AuthInitial());
 
-  // تسجيل الدخول
-  Future<void> login(String email, String password) async {
+  // Login
+  Future<void> login({required String email, required String password}) async {
     emit(AuthLoading());
-    try {
-      final AuthResponse response = await _supabase.auth.signInWithPassword(
-        email: email,
-        password: password,
-      );
-      if (response.user != null) {
-        emit(AuthSuccess(response.user!.id));
-      }
-    } catch (e) {
-      emit(AuthFailure(e.toString()));
-    }
+
+    final Either<String, String> response = await authRepo.login(
+      email: email,
+      password: password,
+    );
+    return response.fold(
+      (failure) => emit(AuthFailure(message: failure)),
+      (userId) => emit(AuthSuccess(userId: userId)),
+    );
   }
 
   // إنشاء حساب جديد (تم التعديل)
@@ -37,7 +38,7 @@ class AuthCubit extends Cubit<AuthState> {
         emit(RegisterSuccess());
       }
     } catch (e) {
-      emit(AuthFailure(e.toString()));
+      emit(AuthFailure(message: e.toString()));
     }
   }
 
@@ -51,7 +52,7 @@ class AuthCubit extends Cubit<AuthState> {
 
       emit(ForgotPasswordSuccess());
     } catch (e) {
-      emit(AuthFailure(e.toString()));
+      emit(AuthFailure(message: e.toString()));
     }
   }
 
