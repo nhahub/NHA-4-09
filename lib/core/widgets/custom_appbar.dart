@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../constants/static.dart';
+import '../constants/constants.dart';
 import '../enums/fade_position.dart';
 import '../theming/app_styles.dart';
 import 'custom_circle_button.dart';
