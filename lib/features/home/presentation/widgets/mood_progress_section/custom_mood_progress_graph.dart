@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
-
-import '../../../../../core/theming/app_styles.dart';
 import '../../../data/models/mood_chart.dart';
+import '../../../../../core/theming/app_styles.dart';
 import 'graph_column.dart';
 import 'grid_painter.dart';
 
 class CustomMoodProgressGraph extends StatelessWidget {
-  const CustomMoodProgressGraph({super.key});
+  final List<MoodChart> moodData;
+  final double barWidth;
+
+  const CustomMoodProgressGraph({
+    super.key,
+    required this.moodData,
+    required this.barWidth,
+  });
 
   static const double maxY = 4;
-  static const double barWidth = 33.39;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +26,7 @@ class CustomMoodProgressGraph extends StatelessWidget {
               constraints.maxHeight - 58; // reserved for bottom titles
           final chartWidth = constraints.maxWidth;
           final spacing =
-              (chartWidth - barWidth * weekMood.length) / (weekMood.length + 1);
+              (chartWidth - barWidth * moodData.length) / (moodData.length + 1);
 
           return Stack(
             children: [
@@ -32,8 +37,8 @@ class CustomMoodProgressGraph extends StatelessWidget {
               ),
 
               /// ================= Bars + Emojis + Titles =================
-              ...List.generate(weekMood.length, (index) {
-                final mood = weekMood[index];
+              ...List.generate(moodData.length, (index) {
+                final mood = moodData[index];
                 final barHeight = (mood.value / maxY) * chartHeight;
                 final left = spacing + index * (barWidth + spacing);
                 const bottom = 30.0; // reserved space for titles
@@ -41,7 +46,7 @@ class CustomMoodProgressGraph extends StatelessWidget {
                 return Stack(
                   alignment: Alignment.bottomCenter,
                   children: [
-                    /// Graph Column
+                    /// Bars
                     Positioned(
                       left: left,
                       bottom: bottom,
@@ -63,7 +68,7 @@ class CustomMoodProgressGraph extends StatelessWidget {
                       left: left + (barWidth / 2) - 12, // center text
                       bottom: 0,
                       child: Text(
-                        mood.day,
+                        mood.label,
                         style: AppStyles.extraBold14.copyWith(
                           color: const Color(0xff7E7C8E),
                         ),

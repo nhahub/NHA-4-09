@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import '../../../data/models/quote_model.dart';
 
 import '../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
 
 class CardContant extends StatelessWidget {
-  const CardContant({super.key, required this.quote, required this.author});
-
-  final String quote;
-  final String author;
+  const CardContant({super.key, required this.dailyQuote});
+  final Quote dailyQuote;
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +16,12 @@ class CardContant extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          '"$quote"',
+          '"${dailyQuote.quote}"',
           style: AppStyles.extraBold20WithShadow.copyWith(color: Colors.white),
         ),
         const SizedBox(height: 10),
         Text(
-          "— $author",
+          "— ${dailyQuote.author}",
           style: AppStyles.extraBold16.copyWith(
             color: AppColors.borderButton.withAlpha(alphaFromPercentage(70)),
           ),

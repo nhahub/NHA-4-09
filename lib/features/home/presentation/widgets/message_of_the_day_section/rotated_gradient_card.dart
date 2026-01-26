@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import '../../../data/models/quote_model.dart';
+import 'card_contant.dart';
 import '../../../../../core/theming/app_colors.dart';
 import 'message_of_the_day_section.dart';
 
 class RotatedGradientCard extends StatelessWidget {
-  const RotatedGradientCard({super.key});
+  final Quote dailyQuote;
+  const RotatedGradientCard({super.key, required this.dailyQuote});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +15,6 @@ class RotatedGradientCard extends StatelessWidget {
       child: Transform.translate(
         offset: MessageOfTheDaySection.translateOffset,
         child: Container(
-          height: MessageOfTheDaySection.cardHeight,
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(
@@ -23,6 +25,13 @@ class RotatedGradientCard extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               stops: [0, 0.75],
+            ),
+          ),
+          child: Opacity(
+            opacity: 0,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
+              child: CardContant(dailyQuote: dailyQuote),
             ),
           ),
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../constants/constants.dart';
 import '../enums/fade_position.dart';
 import '../theming/app_styles.dart';

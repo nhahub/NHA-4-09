@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
+import '../../../data/models/quote_model.dart';
+import 'card_contant.dart';
 import '../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../core/theming/app_colors.dart';
 import 'message_of_the_day_section.dart';
 
 class RotatedInnerShadowCard extends StatelessWidget {
-  const RotatedInnerShadowCard({super.key});
+  final Quote dailyQuote;
+  const RotatedInnerShadowCard({super.key, required this.dailyQuote});
 
   @override
   Widget build(BuildContext context) {
@@ -13,22 +15,19 @@ class RotatedInnerShadowCard extends StatelessWidget {
       angle: MessageOfTheDaySection.rotationAngle,
       child: Transform.translate(
         offset: MessageOfTheDaySection.translateOffset,
-        child: InnerShadow(
-          shadows: [
-            Shadow(
-              color: Colors.white.withAlpha(alphaFromPercentage(60)),
-              offset: const Offset(0, 1.34),
-              blurRadius: 1,
+        child: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(
+              MessageOfTheDaySection.cardRadius,
             ),
-          ],
-          child: Container(
-            height: MessageOfTheDaySection.cardHeight,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                MessageOfTheDaySection.cardRadius,
-              ),
-              color: AppColors.borderButton.withAlpha(alphaFromPercentage(12)),
+            color: AppColors.borderButton.withAlpha(alphaFromPercentage(12)),
+          ),
+          child: Opacity(
+            opacity: 0,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
+              child: CardContant(dailyQuote: dailyQuote),
             ),
           ),
         ),
