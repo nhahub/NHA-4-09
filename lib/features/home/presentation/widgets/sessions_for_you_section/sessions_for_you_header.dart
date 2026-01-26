@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/routing/routes.dart';
 
+import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/widgets/app_section_header.dart';
 import '../shared/see_more_widget.dart';
 
@@ -12,7 +14,11 @@ class SessionsForYouHeader extends StatelessWidget {
       children: [
         const AppSectionHeader(title: "Sessions for you"),
         const Spacer(),
-        SeeMoreWidget(onTap: () {}),
+        SeeMoreWidget(
+          onTap: () {
+            context.push(Routes.allAvailableSessionsView);
+          },
+        ),
       ],
     );
   }

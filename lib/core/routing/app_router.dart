@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/features/home/presentation/views/all_available_sessions_view.dart';
+import 'package:moodly/features/home/presentation/views/all_meditations_view.dart';
 import '../../features/chatbot/presentation/views/chatbot_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../../features/profile/presentation/views/privacy_policy_view.dart';
@@ -96,6 +98,14 @@ class AppRouter {
 
       case Routes.privacyPolicyView:
         return MaterialPageRoute(builder: (_) => const PrivacyPolicyView());
+
+      case Routes.allMeditationsView:
+        return MaterialPageRoute(builder: (_) => const AllMeditationsView());
+
+      case Routes.allAvailableSessionsView:
+        return MaterialPageRoute(
+          builder: (_) => const AllAvailableSessionsView(),
+        );
 
       default:
         return MaterialPageRoute(
