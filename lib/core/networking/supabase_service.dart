@@ -39,4 +39,9 @@ class SupabaseService {
   Future<void> logout() async {
     await _supabase.auth.signOut();
   }
+
+  // Reset Password
+  Future<void> resetPassword({required String newPassword}) async {
+    await _supabase.auth.updateUser(UserAttributes(password: newPassword));
+  }
 }

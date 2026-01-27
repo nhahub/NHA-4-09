@@ -9,7 +9,7 @@ void successSnackBar({required BuildContext context, required String message}) {
       backgroundColor: Colors.transparent,
       elevation: 0,
       behavior: SnackBarBehavior.floating,
-      duration: const Duration(seconds: 4),
+      duration: const Duration(seconds: 2),
       content: customSnackbar(
         message: message,
         color: AppColors.green,
@@ -27,7 +27,7 @@ void errorSnackBar({required BuildContext context, required String message}) {
       backgroundColor: Colors.transparent,
       elevation: 0,
       behavior: SnackBarBehavior.floating,
-      duration: const Duration(seconds: 4),
+      duration: const Duration(seconds: 2),
       content: customSnackbar(
         message: message,
         color: AppColors.darkRed,
@@ -45,7 +45,7 @@ void warningSnackBar({required BuildContext context, required String message}) {
       backgroundColor: Colors.transparent,
       elevation: 0,
       behavior: SnackBarBehavior.floating,
-      duration: const Duration(seconds: 4),
+      duration: const Duration(seconds: 2),
       content: customSnackbar(
         message: message,
         color: AppColors.yellow,

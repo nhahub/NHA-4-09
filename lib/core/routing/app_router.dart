@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/services/get_it_service.dart';
+import 'package:moodly/features/auth/data/repos/auth_repo.dart';
+import 'package:moodly/features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
+import 'package:moodly/features/auth/presentation/manager/login_cubit/login_cubit.dart';
+import 'package:moodly/features/auth/presentation/manager/logout_cubit/logout_cubit.dart';
+import 'package:moodly/features/auth/presentation/manager/reset_password_cubit/reset_password_cubit.dart';
 import 'package:moodly/features/home/presentation/views/all_available_sessions_view.dart';
 import 'package:moodly/features/home/presentation/views/all_meditations_view.dart';
+import '../../features/auth/presentation/manager/register_cubit/register_cubit.dart';
 import '../../features/chatbot/presentation/views/chatbot_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../../features/profile/presentation/views/privacy_policy_view.dart';
@@ -19,7 +27,7 @@ import '../../features/auth/presentation/views/forgot_password_view.dart';
 import '../../features/auth/presentation/views/login_view.dart';
 import '../../features/auth/presentation/views/register_view.dart';
 import '../../features/auth/presentation/views/start_view.dart';
-import '../../features/auth/presentation/widgets/forgot_password/reset_password_screen.dart';
+import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/home/presentation/views/home_view.dart';
 import '../../features/main/presentation/views/main_view.dart';
 import '../../features/meditations/presentation/views/meditations_view.dart';
@@ -30,86 +38,121 @@ class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.splashView:
-        return MaterialPageRoute(builder: (_) => const SplashView());
+        return MaterialPageRoute(builder: (context) => const SplashView());
 
       case Routes.startView:
-        return MaterialPageRoute(builder: (_) => const StartView());
+        return MaterialPageRoute(builder: (context) => const StartView());
 
       case Routes.loginView:
-        return MaterialPageRoute(builder: (_) => const LoginView());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => LoginCubit(authRepo: getIt.get<AuthRepo>()),
+            child: const LoginView(),
+          ),
+        );
 
       case Routes.registerView:
-        return MaterialPageRoute(builder: (_) => const RegisterView());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => RegisterCubit(authRepo: getIt.get<AuthRepo>()),
+            child: const RegisterView(),
+          ),
+        );
 
       case Routes.forgotPasswordView:
-        return MaterialPageRoute(builder: (_) => const ForgotPasswordView());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                ForgotPasswordCubit(authRepo: getIt.get<AuthRepo>()),
+            child: const ForgotPasswordView(),
+          ),
+        );
 
       case Routes.resetPasswordView:
-        return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                ResetPasswordCubit(authRepo: getIt.get<AuthRepo>()),
+            child: const ResetPasswordView(),
+          ),
+        );
 
       case Routes.onboardingView:
-        return MaterialPageRoute(builder: (_) => const OnboardingView());
+        return MaterialPageRoute(builder: (context) => const OnboardingView());
 
       case Routes.mainView:
-        return MaterialPageRoute(builder: (_) => const MainView());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => LogoutCubit(authRepo: getIt.get<AuthRepo>()),
+            child: const MainView(),
+          ),
+        );
 
       case Routes.homeView:
-        return MaterialPageRoute(builder: (_) => const HomeView());
+        return MaterialPageRoute(builder: (context) => const HomeView());
 
       case Routes.meditationsView:
-        return MaterialPageRoute(builder: (_) => const MeditationsView());
+        return MaterialPageRoute(builder: (context) => const MeditationsView());
 
       case Routes.chatbotView:
-        return MaterialPageRoute(builder: (_) => const ChatbotView());
+        return MaterialPageRoute(builder: (context) => const ChatbotView());
 
       case Routes.profileView:
-        return MaterialPageRoute(builder: (_) => const ProfileView());
+        return MaterialPageRoute(builder: (context) => const ProfileView());
 
       case Routes.videoView:
-        return MaterialPageRoute(builder: (_) => const VideoView());
+        return MaterialPageRoute(builder: (context) => const VideoView());
 
       case Routes.audioView:
-        return MaterialPageRoute(builder: (_) => const AudioView());
+        return MaterialPageRoute(builder: (context) => const AudioView());
 
       case Routes.therapistDetailsView:
-        return MaterialPageRoute(builder: (_) => const TherapistDetailsView());
+        return MaterialPageRoute(
+          builder: (context) => const TherapistDetailsView(),
+        );
 
       case Routes.chatDoctorView:
-        return MaterialPageRoute(builder: (_) => const ChatDoctorView());
+        return MaterialPageRoute(builder: (context) => const ChatDoctorView());
 
       case Routes.liveView:
-        return MaterialPageRoute(builder: (_) => const LiveView());
+        return MaterialPageRoute(builder: (context) => const LiveView());
 
       case Routes.recommendationsView:
-        return MaterialPageRoute(builder: (_) => const RecommendationsView());
+        return MaterialPageRoute(
+          builder: (context) => const RecommendationsView(),
+        );
 
       case Routes.premiumView:
         return MaterialPageRoute(
-          builder: (_) => const PremiumView(withClose: false),
+          builder: (context) => const PremiumView(withClose: false),
         );
 
       case Routes.subscribeView:
-        return MaterialPageRoute(builder: (_) => const SubscribeView());
+        return MaterialPageRoute(builder: (context) => const SubscribeView());
 
       case Routes.termsAndConditionsView:
         return MaterialPageRoute(
-          builder: (_) => const TermsAndConditionsView(),
+          builder: (context) => const TermsAndConditionsView(),
         );
 
       case Routes.privacyPolicyView:
-        return MaterialPageRoute(builder: (_) => const PrivacyPolicyView());
+        return MaterialPageRoute(
+          builder: (context) => const PrivacyPolicyView(),
+        );
 
       case Routes.allMeditationsView:
-        return MaterialPageRoute(builder: (_) => const AllMeditationsView());
+        return MaterialPageRoute(
+          builder: (context) => const AllMeditationsView(),
+        );
 
       case Routes.allAvailableSessionsView:
         return MaterialPageRoute(
-          builder: (_) => const AllAvailableSessionsView(),
+          builder: (context) => const AllAvailableSessionsView(),
         );
 
       default:
         return MaterialPageRoute(
-          builder: (_) => Scaffold(
+          builder: (context) => Scaffold(
             body: Center(child: Text('No route defined for ${settings.name}')),
           ),
         );

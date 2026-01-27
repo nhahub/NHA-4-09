@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/auth/presentation/manager/register_cubit/register_cubit.dart';
 
 import '../../../../../core/widgets/app_text_button.dart';
-import '../../manager/auth_cubit/auth_cubit.dart';
+import '../../../../../core/widgets/custom_circular_progress_indicator.dart';
 import '../shared/email_text_field.dart';
 import '../shared/password_text_field.dart';
 import 'already_have_an_account.dart';
@@ -53,14 +54,24 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
 
           const SizedBox(height: 20),
 
-          SizedBox(
-            width: double.infinity,
-            child: AppTextButton(
-              onPressed: () {
-                validateThenRegister(context);
-              },
-              buttonText: "Register",
-            ),
+          BlocBuilder<RegisterCubit, RegisterState>(
+            builder: (context, state) {
+              return IgnorePointer(
+                ignoring: state is RegisterLoadingState,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: AppTextButton(
+                    onPressed: () {
+                      validateThenRegister(context);
+                    },
+                    buttonText: "Register",
+                    child: state is RegisterLoadingState
+                        ? const CustomCircularProgressIndicator()
+                        : null,
+                  ),
+                ),
+              );
+            },
           ),
           const SizedBox(height: 20),
 
@@ -73,7 +84,7 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
 
   void validateThenRegister(BuildContext context) {
     if (formKey.currentState!.validate()) {
-      context.read<AuthCubit>().register(
+      context.read<RegisterCubit>().register(
         emailController.text.trim(),
         passwordController.text,
       );

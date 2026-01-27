@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../core/helpers/snackbar_service.dart';
+import 'package:moodly/features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
+import '../../../../../core/functions/build_snack_bar.dart';
+import '../../../../../core/functions/error_dialog.dart';
 import '../../../../../core/widgets/app_text_button.dart';
-import '../../manager/auth_cubit/auth_cubit.dart';
+import '../../../../../core/widgets/custom_circular_progress_indicator.dart';
 import '../shared/email_text_field.dart';
 
 class ForgotPasswordForm extends StatefulWidget {
@@ -25,12 +26,15 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthCubit, AuthState>(
+    return BlocListener<ForgotPasswordCubit, ForgotPasswordState>(
       listener: (context, state) {
-        if (state is ForgotPasswordSuccess) {
-          CustomSnackbar.show(context, "Reset link sent to your email");
-        } else if (state is AuthFailure) {
-          CustomSnackbar.show(context, state.message, isError: true);
+        if (state is ForgotPasswordSuccessState) {
+          successSnackBar(
+            context: context,
+            message: "Reset link sent to your email",
+          );
+        } else if (state is ForgotPasswordFailureState) {
+          errorDialog(context: context, message: state.message);
         }
       },
       child: Form(
@@ -41,20 +45,34 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
             children: [
               EmailTextField(emailController: emailController),
               const SizedBox(height: 16),
-              AppTextButton(
-                onPressed: () {
-                  if (!formKey.currentState!.validate()) return;
-
-                  context.read<AuthCubit>().forgotPassword(
-                    emailController.text.trim(),
+              BlocBuilder<ForgotPasswordCubit, ForgotPasswordState>(
+                builder: (context, state) {
+                  return IgnorePointer(
+                    ignoring: state is ForgotPasswordLoadingState,
+                    child: AppTextButton(
+                      onPressed: () {
+                        validateThenSendResetLink(context);
+                      },
+                      buttonText: "Send Reset Link",
+                      child: state is ForgotPasswordLoadingState
+                          ? const CustomCircularProgressIndicator()
+                          : null,
+                    ),
                   );
                 },
-                buttonText: "Send Reset Link",
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void validateThenSendResetLink(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      context.read<ForgotPasswordCubit>().forgotPassword(
+        emailController.text.trim(),
+      );
+    }
   }
 }

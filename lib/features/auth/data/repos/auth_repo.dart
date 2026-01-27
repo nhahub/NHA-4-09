@@ -33,6 +33,9 @@ class AuthRepo {
         email: email,
         password: password,
       );
+      if (response.user != null) {
+        await supabaseService.logout();
+      }
       return Right(response.user!.id);
     } on AuthApiException catch (e) {
       return Left(e.message);
@@ -54,6 +57,20 @@ class AuthRepo {
 
   Future<Either<String, Unit>> logout() async {
     try {
+      await supabaseService.logout();
+      return const Right(unit);
+    } on AuthApiException catch (e) {
+      return Left(e.message);
+    } on Exception catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  Future<Either<String, Unit>> resetPassword({
+    required String newPassword,
+  }) async {
+    try {
+      await supabaseService.resetPassword(newPassword: newPassword);
       await supabaseService.logout();
       return const Right(unit);
     } on AuthApiException catch (e) {

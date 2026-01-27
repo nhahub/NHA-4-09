@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moodly/core/widgets/custom_circular_progress_indicator.dart';
+import 'package:moodly/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import '../../../../../core/widgets/app_text_button.dart';
-import '../../manager/auth_cubit/auth_cubit.dart';
 import '../shared/email_text_field.dart';
 import '../shared/password_text_field.dart';
 import 'create_an_account.dart';
@@ -43,10 +43,10 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
             ),
             const ForgotPassword(),
             const SizedBox(height: 20),
-            BlocBuilder<AuthCubit, AuthState>(
+            BlocBuilder<LoginCubit, LoginState>(
               builder: (context, state) {
                 return IgnorePointer(
-                  ignoring: state is AuthLoading,
+                  ignoring: state is LoginLoadingState,
                   child: SizedBox(
                     width: double.infinity,
                     child: AppTextButton(
@@ -54,7 +54,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                         validateThenLogin(context);
                       },
                       buttonText: "Login",
-                      child: state is AuthLoading
+                      child: state is LoginLoadingState
                           ? const CustomCircularProgressIndicator()
                           : null,
                     ),
@@ -73,7 +73,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
 
   void validateThenLogin(BuildContext context) {
     if (formKey.currentState!.validate()) {
-      context.read<AuthCubit>().login(
+      context.read<LoginCubit>().login(
         email: emailController.text,
         password: passwordController.text,
       );

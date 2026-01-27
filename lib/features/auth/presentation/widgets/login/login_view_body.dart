@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:moodly/core/functions/build_snack_bar.dart';
-import 'package:moodly/core/helpers/logger.dart';
+import 'package:moodly/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/functions/error_dialog.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_assets.dart';
-import '../../manager/auth_cubit/auth_cubit.dart';
 import 'login_form_widget.dart';
 
 class LoginViewBody extends StatelessWidget {
@@ -18,14 +17,13 @@ class LoginViewBody extends StatelessWidget {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32),
-        child: BlocListener<AuthCubit, AuthState>(
+        child: BlocListener<LoginCubit, LoginState>(
           listener: (context, state) {
-            if (state is AuthSuccess) {
+            if (state is LoginSuccessState) {
               successSnackBar(context: context, message: "Login Success");
               context.pushAndRemoveUntil(Routes.mainView);
-            } else if (state is AuthFailure) {
+            } else if (state is LoginFailureState) {
               errorDialog(context: context, message: state.message);
-              Logger.log(state.message);
             }
           },
           child: SingleChildScrollView(

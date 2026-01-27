@@ -45,6 +45,7 @@ dependencies:
   flutter_svg: ^2.2.3
   fluttertoast: ^9.0.0
   get_it: ^9.2.0
+  modal_progress_hud_nsn: ^0.5.1
   shared_preferences: ^2.5.4
   supabase_flutter: ^2.12.0
 
