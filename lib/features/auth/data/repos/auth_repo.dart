@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:moodly/core/networking/supabase_service.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../../../core/networking/auth_error_handler.dart';
 
 class AuthRepo {
   final SupabaseService supabaseService;
@@ -17,10 +17,8 @@ class AuthRepo {
         password: password,
       );
       return Right(response.user!.id);
-    } on AuthApiException catch (e) {
-      return Left(e.message);
     } on Exception catch (e) {
-      return Left(e.toString());
+      return Left(AuthErrorHandler.map(error: e));
     }
   }
 
@@ -37,10 +35,8 @@ class AuthRepo {
         await supabaseService.logout();
       }
       return Right(response.user!.id);
-    } on AuthApiException catch (e) {
-      return Left(e.message);
     } on Exception catch (e) {
-      return Left(e.toString());
+      return Left(AuthErrorHandler.map(error: e));
     }
   }
 
@@ -48,10 +44,8 @@ class AuthRepo {
     try {
       await supabaseService.forgotPassword(email: email);
       return const Right(unit);
-    } on AuthApiException catch (e) {
-      return Left(e.message);
     } on Exception catch (e) {
-      return Left(e.toString());
+      return Left(AuthErrorHandler.map(error: e));
     }
   }
 
@@ -59,10 +53,8 @@ class AuthRepo {
     try {
       await supabaseService.logout();
       return const Right(unit);
-    } on AuthApiException catch (e) {
-      return Left(e.message);
     } on Exception catch (e) {
-      return Left(e.toString());
+      return Left(AuthErrorHandler.map(error: e));
     }
   }
 
@@ -73,10 +65,8 @@ class AuthRepo {
       await supabaseService.resetPassword(newPassword: newPassword);
       await supabaseService.logout();
       return const Right(unit);
-    } on AuthApiException catch (e) {
-      return Left(e.message);
     } on Exception catch (e) {
-      return Left(e.toString());
+      return Left(AuthErrorHandler.map(error: e));
     }
   }
 }

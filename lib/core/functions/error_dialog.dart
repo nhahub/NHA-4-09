@@ -48,7 +48,7 @@ class ErrorDialog extends StatelessWidget {
         children: [
           const Icon(Icons.error_outline, color: AppColors.red, size: 48),
           const SizedBox(height: 16),
-          Text(message, style: AppStyles.bold20),
+          Text(message, style: AppStyles.bold20, textAlign: TextAlign.center),
           const SizedBox(height: 20),
           OutlinedButton(
             onPressed: () => context.pop(),
