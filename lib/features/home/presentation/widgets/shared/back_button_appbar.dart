@@ -41,7 +41,7 @@ class BackButtonAppbar extends StatelessWidget implements PreferredSizeWidget {
                     },
                   ),
                   const SizedBox(width: 15),
-                  Text(title, style: AppStyles.extraBold27),
+                  Text(title, style: AppStyles.extraBold21),
                 ],
               ),
             ),

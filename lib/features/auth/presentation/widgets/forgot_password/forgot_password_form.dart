@@ -44,19 +44,22 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
           child: Column(
             children: [
               EmailTextField(emailController: emailController),
-              const SizedBox(height: 16),
+              const SizedBox(height: 30),
               BlocBuilder<ForgotPasswordCubit, ForgotPasswordState>(
                 builder: (context, state) {
                   return IgnorePointer(
                     ignoring: state is ForgotPasswordLoadingState,
-                    child: AppTextButton(
-                      onPressed: () {
-                        validateThenSendResetLink(context);
-                      },
-                      buttonText: "Send Reset Link",
-                      child: state is ForgotPasswordLoadingState
-                          ? const CustomCircularProgressIndicator()
-                          : null,
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: AppTextButton(
+                        onPressed: () {
+                          validateThenSendResetLink(context);
+                        },
+                        buttonText: "Send Reset Link",
+                        child: state is ForgotPasswordLoadingState
+                            ? const CustomCircularProgressIndicator()
+                            : null,
+                      ),
                     ),
                   );
                 },

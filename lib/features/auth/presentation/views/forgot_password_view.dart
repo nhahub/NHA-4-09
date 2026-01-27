@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:moodly/core/constants/constants.dart';
+import 'package:moodly/core/theming/app_assets.dart';
 
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/app_styles.dart';
+import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../widgets/forgot_password/forgot_password_form.dart';
 
 class ForgotPasswordView extends StatelessWidget {
@@ -10,24 +14,39 @@ class ForgotPasswordView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const BackButtonAppbar(title: "Forget Password"),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(
+            horizontal: kAppHorizontalPadding,
+          ),
           child: Column(
             children: [
-              const SizedBox(height: 80),
-
-              Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: Text(
-                  "Forget Password",
-                  style: AppStyles.medium15.copyWith(
-                    color: AppColors.brandGreen,
-                  ),
+              const Spacer(),
+              SvgPicture.asset(
+                AppAssets.forgotPasswordIcon,
+                width: 150,
+                height: 150,
+                colorFilter: const ColorFilter.mode(
+                  AppColors.brandGreen,
+                  BlendMode.srcIn,
                 ),
               ),
-              const SizedBox(height: 15),
-              const Expanded(child: ForgotPasswordForm()),
+              const SizedBox(height: 20),
+              const Text(
+                "Forgot password",
+                style: AppStyles.extraBold21,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                "Please enter your email address to reset your password",
+                style: AppStyles.medium15,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 30),
+              const ForgotPasswordForm(),
+              const Spacer(flex: 3,),
             ],
           ),
         ),
