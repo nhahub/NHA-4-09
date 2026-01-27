@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/core/enums/fade_position.dart';
-import 'package:moodly/core/extensions/context_extensions.dart';
-import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/core/widgets/custom_circle_button.dart';
-import 'package:moodly/core/widgets/fade_scrollable.dart';
+import '../../../../../core/constants/constants.dart';
+import '../../../../../core/enums/fade_position.dart';
+import '../../../../../core/extensions/context_extensions.dart';
+import '../../../../../core/theming/app_assets.dart';
+import '../../../../../core/theming/app_styles.dart';
+import '../../../../../core/widgets/custom_circle_button.dart';
+import '../../../../../core/widgets/fade_scrollable.dart';
 
 class BackButtonAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;

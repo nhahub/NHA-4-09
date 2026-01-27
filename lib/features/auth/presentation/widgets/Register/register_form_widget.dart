@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/auth/presentation/manager/register_cubit/register_cubit.dart';
+import '../../manager/register_cubit/register_cubit.dart';
 
 import '../../../../../core/widgets/app_text_button.dart';
 import '../../../../../core/widgets/custom_circular_progress_indicator.dart';

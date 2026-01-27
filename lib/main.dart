@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:moodly/core/services/get_it_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
 import 'core/constants/constants.dart';
 import 'core/routing/deep_link_service.dart';
 import 'core/services/cache_helper.dart';
+import 'core/services/get_it_service.dart';
 import 'features/app/moodly_app.dart';
 
 void main() async {

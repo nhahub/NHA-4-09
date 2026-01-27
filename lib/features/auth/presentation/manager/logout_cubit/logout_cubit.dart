@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/auth/data/repos/auth_repo.dart';
+import '../../../data/repos/auth_repo.dart';
 part 'logout_state.dart';
 
 class LogoutCubit extends Cubit<LogoutState> {

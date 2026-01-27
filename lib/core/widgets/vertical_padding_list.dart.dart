@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
+import '../constants/constants.dart';
 
 class VerticalPaddingList extends StatelessWidget {
   final int itemCount;

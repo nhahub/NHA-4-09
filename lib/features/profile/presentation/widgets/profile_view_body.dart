@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/enums/fade_position.dart';
-import 'package:moodly/core/widgets/fade_scrollable.dart';
+import '../../../../core/enums/fade_position.dart';
+import '../../../../core/widgets/fade_scrollable.dart';
 import '../../../auth/presentation/manager/logout_cubit/logout_cubit.dart';
 
 class ProfileViewBody extends StatelessWidget {

@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:moodly/core/routing/deep_link_state.dart';
-import 'package:moodly/core/routing/routes.dart';
-import 'package:moodly/features/splash/widgets/splash_view_body.dart';
+import '../../../core/routing/deep_link_state.dart';
+import '../../../core/routing/routes.dart';
+import '../widgets/splash_view_body.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../core/extensions/context_extensions.dart';
 

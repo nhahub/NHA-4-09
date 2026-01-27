@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:moodly/core/extensions/context_extensions.dart';
-import 'package:moodly/core/functions/build_snack_bar.dart';
-import 'package:moodly/core/functions/error_dialog.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/core/widgets/custom_circular_progress_indicator.dart';
-import 'package:moodly/features/auth/presentation/manager/logout_cubit/logout_cubit.dart';
-import 'package:moodly/features/profile/presentation/widgets/profile_view_body.dart';
+
+import '../../../../core/extensions/context_extensions.dart';
+import '../../../../core/functions/build_snack_bar.dart';
+import '../../../../core/functions/error_dialog.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/theming/app_assets.dart';
+import '../../../../core/theming/app_colors.dart';
 import '../../../../core/widgets/custom_appbar.dart';
+import '../../../../core/widgets/custom_circular_progress_indicator.dart';
+import '../../../auth/presentation/manager/logout_cubit/logout_cubit.dart';
+import '../widgets/profile_view_body.dart';
 
 class ProfileView extends StatelessWidget {
   final bool isPremium = false;

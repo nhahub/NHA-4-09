@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/widgets/vertical_padding_list.dart.dart';
-import 'package:moodly/features/home/data/mock_data/meditations_for_you_data.dart';
-import 'package:moodly/features/home/presentation/widgets/shared/back_button_appbar.dart';
+import '../../../../core/widgets/vertical_padding_list.dart.dart';
+import '../../data/mock_data/meditations_for_you_data.dart';
+import '../widgets/shared/back_button_appbar.dart';
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/routing/routes.dart';

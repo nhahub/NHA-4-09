@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import '../../../../core/services/cache_helper.dart';
 import '../local_data/quotes.dart';
 import '../models/quote_model.dart';

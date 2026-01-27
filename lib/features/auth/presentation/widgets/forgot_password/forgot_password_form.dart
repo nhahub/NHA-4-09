@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
+import '../../manager/forgot_password_cubit/forgot_password_cubit.dart';
 import '../../../../../core/functions/build_snack_bar.dart';
 import '../../../../../core/functions/error_dialog.dart';
 import '../../../../../core/widgets/app_text_button.dart';

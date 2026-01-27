@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/widgets/app_text_button.dart';
-import 'package:moodly/core/widgets/custom_circular_progress_indicator.dart';
-import 'package:moodly/features/auth/presentation/manager/reset_password_cubit/reset_password_cubit.dart';
-import 'package:moodly/features/auth/presentation/manager/reset_password_cubit/reset_password_state.dart';
-import 'package:moodly/features/auth/presentation/widgets/shared/password_text_field.dart';
+import '../../../../../core/widgets/app_text_button.dart';
+import '../../../../../core/widgets/custom_circular_progress_indicator.dart';
+import '../../manager/reset_password_cubit/reset_password_cubit.dart';
+import '../../manager/reset_password_cubit/reset_password_state.dart';
+import '../shared/password_text_field.dart';
 
 class ResetPasswordFormWidget extends StatefulWidget {
   const ResetPasswordFormWidget({super.key});

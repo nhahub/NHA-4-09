@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:moodly/core/networking/supabase_service.dart';
+
 import '../../../../core/networking/auth_error_handler.dart';
+import '../../../../core/networking/supabase_service.dart';
 
 class AuthRepo {
   final SupabaseService supabaseService;

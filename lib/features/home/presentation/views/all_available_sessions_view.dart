@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/core/widgets/vertical_padding_list.dart.dart';
-import 'package:moodly/features/home/data/models/sessions_for_you_model.dart';
-import 'package:moodly/features/home/presentation/widgets/sessions_for_you_section/sessions_for_you_card.dart';
-import 'package:moodly/features/home/presentation/widgets/shared/back_button_appbar.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../core/widgets/vertical_padding_list.dart.dart';
+import '../../data/models/sessions_for_you_model.dart';
+import '../widgets/sessions_for_you_section/sessions_for_you_card.dart';
+import '../widgets/shared/back_button_appbar.dart';
 
 class AllAvailableSessionsView extends StatelessWidget {
   const AllAvailableSessionsView({super.key});
