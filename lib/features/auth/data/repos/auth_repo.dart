@@ -1,24 +1,24 @@
 import 'package:dartz/dartz.dart';
 import '../../../../core/networking/auth_error_handler.dart';
-import '../../../../core/networking/supabase_service.dart';
+import '../../../../core/services/supabase_auth_service.dart';
 
 class AuthRepo {
-  final SupabaseService supabaseService;
+  final SupabaseAuthService supabaseAuthService;
 
-  AuthRepo({required this.supabaseService});
+  AuthRepo({required this.supabaseAuthService});
 
   Future<Either<String, String>> login({
     required String email,
     required String password,
   }) async {
     try {
-      final response = await supabaseService.login(
+      final response = await supabaseAuthService.login(
         email: email,
         password: password,
       );
       return Right(response.user!.id);
     } on Exception catch (e) {
-      return Left(AuthErrorHandler.map(error: e));
+      return Left(AuthErrorHandler.handle(error: e));
     }
   }
 
@@ -27,25 +27,25 @@ class AuthRepo {
     required String password,
   }) async {
     try {
-      final response = await supabaseService.register(
+      final response = await supabaseAuthService.register(
         email: email,
         password: password,
       );
       if (response.user != null) {
-        await supabaseService.logout();
+        await supabaseAuthService.logout();
       }
       return Right(response.user!.id);
     } on Exception catch (e) {
-      return Left(AuthErrorHandler.map(error: e));
+      return Left(AuthErrorHandler.handle(error: e));
     }
   }
 
   Future<Either<String, Unit>> forgotPassword({required String email}) async {
     try {
-      await supabaseService.forgotPassword(email: email);
+      await supabaseAuthService.forgotPassword(email: email);
       return const Right(unit);
     } on Exception catch (e) {
-      return Left(AuthErrorHandler.map(error: e));
+      return Left(AuthErrorHandler.handle(error: e));
     }
   }
 }
