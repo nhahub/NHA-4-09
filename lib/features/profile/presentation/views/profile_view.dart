@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
-import '../../../../core/extensions/context_extensions.dart';
+import 'package:moodly/core/extensions/context_extensions.dart';
+import 'package:moodly/core/functions/error_dialog.dart';
+import 'package:moodly/core/routing/routes.dart';
 import '../../../../core/functions/build_snack_bar.dart';
-import '../../../../core/functions/error_dialog.dart';
-import '../../../../core/routing/routes.dart';
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/widgets/custom_appbar.dart';
@@ -28,21 +27,23 @@ class ProfileView extends StatelessWidget {
           errorDialog(context: context, message: state.message);
         }
       },
-      builder: (context, state) => ModalProgressHUD(
-        inAsyncCall: state is LogoutLoadingState,
-        progressIndicator: const CustomCircularProgressIndicator(
-          color: AppColors.brandGreen,
-        ),
-        child: Scaffold(
-          appBar: CustomAppbar(
-            title: "Profile",
-            isPremium: isPremium,
-            icon: AppAssets.searchIcon,
-            onTap: () {},
+      builder: (context, state) {
+        return ModalProgressHUD(
+          inAsyncCall: state is LogoutLoadingState,
+          progressIndicator: const CustomCircularProgressIndicator(
+            color: AppColors.brandGreen,
           ),
-          body: const ProfileViewBody(),
-        ),
-      ),
+          child: Scaffold(
+            appBar: CustomAppbar(
+              title: "Profile",
+              isPremium: isPremium,
+              icon: AppAssets.searchIcon,
+              onTap: () {},
+            ),
+            body: const ProfileViewBody(),
+          ),
+        );
+      },
     );
   }
 }

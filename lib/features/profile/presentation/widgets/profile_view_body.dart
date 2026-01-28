@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/profile/presentation/helpers/logout_dialog.dart';
 import '../../../../core/enums/fade_position.dart';
 import '../../../../core/widgets/fade_scrollable.dart';
-import '../../../auth/presentation/manager/logout_cubit/logout_cubit.dart';
 
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({super.key});
@@ -15,7 +14,7 @@ class ProfileViewBody extends StatelessWidget {
         children: [
           IconButton(
             onPressed: () {
-              context.read<LogoutCubit>().logout();
+              logoutDialog(context);
             },
             icon: const Icon(Icons.logout, color: Colors.red),
           ),

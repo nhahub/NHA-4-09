@@ -49,25 +49,4 @@ class AuthRepo {
       return Left(AuthErrorHandler.map(error: e));
     }
   }
-
-  Future<Either<String, Unit>> logout() async {
-    try {
-      await supabaseService.logout();
-      return const Right(unit);
-    } on Exception catch (e) {
-      return Left(AuthErrorHandler.map(error: e));
-    }
-  }
-
-  Future<Either<String, Unit>> resetPassword({
-    required String newPassword,
-  }) async {
-    try {
-      await supabaseService.resetPassword(newPassword: newPassword);
-      await supabaseService.logout();
-      return const Right(unit);
-    } on Exception catch (e) {
-      return Left(AuthErrorHandler.map(error: e));
-    }
-  }
 }

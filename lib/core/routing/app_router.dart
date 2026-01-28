@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/profile/data/repos/settings_repo.dart';
 import '../services/get_it_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
@@ -72,7 +73,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) =>
-                ResetPasswordCubit(authRepo: getIt.get<AuthRepo>()),
+                ResetPasswordCubit(settingsRepo: getIt.get<SettingsRepo>()),
             child: const ResetPasswordView(),
           ),
         );
@@ -83,7 +84,8 @@ class AppRouter {
       case Routes.mainView:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => LogoutCubit(authRepo: getIt.get<AuthRepo>()),
+            create: (context) =>
+                LogoutCubit(settingsRepo: getIt.get<SettingsRepo>()),
             child: const MainView(),
           ),
         );
