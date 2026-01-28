@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../../../../core/functions/build_snack_bar.dart';
+import 'package:moodly/core/functions/confirm_dialog.dart';
 import '../../manager/register_cubit/register_cubit.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/functions/error_dialog.dart';
@@ -20,11 +20,15 @@ class RegisterViewBody extends StatelessWidget {
         child: BlocConsumer<RegisterCubit, RegisterState>(
           listener: (context, state) {
             if (state is RegisterSuccessState) {
-              successSnackBar(
+              confirmDialog(
                 context: context,
-                message: "Registration Success",
+                title: "Verify Your Email",
+                message:
+                    " We have sent verification link to your email.Please check your inbox.",
+                onConfirm: () {
+                  context.pushAndRemoveUntil(Routes.loginView);
+                },
               );
-              context.pushAndRemoveUntil(Routes.loginView);
             } else if (state is RegisterFailureState) {
               errorDialog(context: context, message: state.message);
             }

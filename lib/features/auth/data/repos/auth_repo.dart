@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-
 import '../../../../core/networking/auth_error_handler.dart';
 import '../../../../core/networking/supabase_service.dart';
 

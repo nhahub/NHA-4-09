@@ -2,7 +2,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseService {
   final SupabaseClient _supabase = Supabase.instance.client;
-
   // Login
   Future<AuthResponse> login({
     required String email,
@@ -29,10 +28,10 @@ class SupabaseService {
 
   // Forgot Password
   Future<void> forgotPassword({required String email}) async {
-    await _supabase.auth.resetPasswordForEmail(
-      email,
-      redirectTo: 'moodly://reset-password',
-    );
+    // await _supabase.auth.resetPasswordForEmail(
+    //   email,
+    //   redirectTo: 'moodly://reset-password',
+    // );
   }
 
   // Logout
@@ -43,5 +42,10 @@ class SupabaseService {
   // Reset Password
   Future<void> resetPassword({required String newPassword}) async {
     await _supabase.auth.updateUser(UserAttributes(password: newPassword));
+  }
+
+  Future<String> getAccessToken() async {
+    final User? currentUser = _supabase.auth.currentUser;
+    return currentUser!.id;
   }
 }

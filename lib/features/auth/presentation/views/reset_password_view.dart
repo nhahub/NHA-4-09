@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/functions/build_snack_bar.dart';
+import 'package:moodly/core/functions/confirm_dialog.dart';
 import '../widgets/reset_password/reset_password_view_body.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../../../../core/extensions/context_extensions.dart';
@@ -17,11 +17,14 @@ class ResetPasswordView extends StatelessWidget {
     return BlocListener<ResetPasswordCubit, ResetPasswordState>(
       listener: (context, state) {
         if (state is ResetPasswordSuccessState) {
-          successSnackBar(
+          confirmDialog(
             context: context,
-            message: "Password updated successfully",
+            title: "Password Updated",
+            message: "Your password has been updated successfully.Please login",
+            onConfirm: () {
+              context.pushReplacement(Routes.loginView);
+            },
           );
-          context.pushReplacement(Routes.loginView);
         } else if (state is ResetPasswordFailureState) {
           errorDialog(context: context, message: state.message);
         }

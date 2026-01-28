@@ -34,13 +34,15 @@ class BackButtonAppbar extends StatelessWidget implements PreferredSizeWidget {
               ),
               child: Row(
                 children: [
-                  CustomCircleButton(
-                    icon: AppAssets.arrowLeftIosIcon,
-                    onTap: () {
-                      context.pop();
-                    },
-                  ),
-                  const SizedBox(width: 15),
+                  context.canPop
+                      ? CustomCircleButton(
+                          icon: AppAssets.arrowLeftIosIcon,
+                          onTap: () {
+                            context.pop();
+                          },
+                        )
+                      : const SizedBox.shrink(),
+                  SizedBox(width: context.canPop ? 15 : kAppHorizontalPadding),
                   Text(title, style: AppStyles.extraBold21),
                 ],
               ),

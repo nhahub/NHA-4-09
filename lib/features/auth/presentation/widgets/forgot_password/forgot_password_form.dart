@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/extensions/context_extensions.dart';
+import '../../../../../core/functions/confirm_dialog.dart';
 import '../../manager/forgot_password_cubit/forgot_password_cubit.dart';
-import '../../../../../core/functions/build_snack_bar.dart';
 import '../../../../../core/functions/error_dialog.dart';
 import '../../../../../core/widgets/app_text_button.dart';
 import '../../../../../core/widgets/custom_circular_progress_indicator.dart';
@@ -29,9 +30,14 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
     return BlocListener<ForgotPasswordCubit, ForgotPasswordState>(
       listener: (context, state) {
         if (state is ForgotPasswordSuccessState) {
-          successSnackBar(
+          confirmDialog(
             context: context,
-            message: "Reset link sent to your email",
+            title: "Reset Link Sent",
+            message:
+                "We have sent reset link to your email. Please check your inbox.",
+            onConfirm: () {
+              context.pop();
+            },
           );
         } else if (state is ForgotPasswordFailureState) {
           errorDialog(context: context, message: state.message);
@@ -76,6 +82,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
       context.read<ForgotPasswordCubit>().forgotPassword(
         emailController.text.trim(),
       );
+      emailController.clear();
     }
   }
 }

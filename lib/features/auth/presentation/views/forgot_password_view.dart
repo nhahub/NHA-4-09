@@ -24,8 +24,8 @@ class ForgotPasswordView extends StatelessWidget {
               const Spacer(),
               SvgPicture.asset(
                 AppAssets.forgotPasswordIcon,
-                width: 150,
-                height: 150,
+                width: 100,
+                height: 100,
                 colorFilter: const ColorFilter.mode(
                   AppColors.brandGreen,
                   BlendMode.srcIn,
@@ -45,7 +45,7 @@ class ForgotPasswordView extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               const ForgotPasswordForm(),
-              const Spacer(flex: 3,),
+              const Spacer(flex: 3),
             ],
           ),
         ),

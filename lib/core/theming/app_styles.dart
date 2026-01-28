@@ -69,6 +69,11 @@ abstract class AppStyles {
     fontWeight: FontWeightHelper.medium,
     fontFamily: "SFPro",
   );
+  static const TextStyle regular14 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeightHelper.regular,
+    fontFamily: "SFPro",
+  );
 
   static TextStyle extraBold50WithShadow = TextStyle(
     fontSize: 50,

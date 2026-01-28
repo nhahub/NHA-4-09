@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/constants/constants.dart';
+import '../../../../../core/helpers/confirm_password_validator.dart';
 import '../../../../../core/widgets/app_text_button.dart';
 import '../../../../../core/widgets/custom_circular_progress_indicator.dart';
 import '../../manager/reset_password_cubit/reset_password_cubit.dart';
@@ -35,13 +37,21 @@ class _ResetPasswordFormWidgetState extends State<ResetPasswordFormWidget> {
           PasswordTextField(
             passwordController: _passwordController,
             isPasswordObscureText: true,
+            text: "New Password",
+            hintText: "Enter Your New Password",
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: kAppSectionSpacing),
           PasswordTextField(
             passwordController: _confirmPasswordController,
             isPasswordObscureText: true,
+            text: "Repeat Password",
+            hintText: "Repeat Your Password",
+            validator: (value) => validateConfirmPassword(
+              value: value,
+              password: _passwordController.text,
+            ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 20),
           BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
             builder: (context, state) {
               return IgnorePointer(

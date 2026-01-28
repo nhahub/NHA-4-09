@@ -34,6 +34,7 @@ class AppAssets {
   static const String repeatIcon = 'assets/svgs/repeat.svg';
   static const String forgotPasswordIcon = 'assets/svgs/forgot_password.svg';
   static const String resetpasswordIcon = 'assets/svgs/password_reset.svg';
+  static const String checkMark = 'assets/svgs/check_mark.svg';
   static const String slidersHorizontalIcon =
       'assets/svgs/sliders_horizontal.svg';
 
