@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
+import 'package:moodly/core/services/supabase_crud_service.dart';
 import 'package:moodly/features/profile/data/repos/settings_repo.dart';
-import '../networking/supabase_service.dart';
+import 'supabase_auth_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/home/data/repos/quote_repo_impl.dart';
 
@@ -10,16 +11,19 @@ Future<void> setupGetIt() async {
   // QuoteRepo
   getIt.registerLazySingleton<QuoteRepoImpl>(() => QuoteRepoImpl());
 
-  // Supabase Service
-  getIt.registerLazySingleton<SupabaseService>(() => SupabaseService());
+  // Supabase Auth Service
+  getIt.registerLazySingleton<SupabaseAuthService>(() => SupabaseAuthService());
+
+  // Supabase CRUD Service
+  getIt.registerLazySingleton<SupabaseCRUDService>(() => SupabaseCRUDService());
 
   // AuthRepo
   getIt.registerLazySingleton<AuthRepo>(
-    () => AuthRepo(supabaseService: getIt()),
+    () => AuthRepo(supabaseAuthService: getIt()),
   );
 
   // SettingsRepo
   getIt.registerLazySingleton<SettingsRepo>(
-    () => SettingsRepo(supabaseService: getIt()),
+    () => SettingsRepo(supabaseAuthService: getIt()),
   );
 }

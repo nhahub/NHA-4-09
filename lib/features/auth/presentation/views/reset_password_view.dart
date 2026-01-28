@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moodly/core/functions/confirm_dialog.dart';
+import '../../../../core/theming/app_styles.dart';
 import '../widgets/reset_password/reset_password_view_body.dart';
-import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/functions/error_dialog.dart';
 import '../../../../core/routing/routes.dart';
@@ -29,9 +29,15 @@ class ResetPasswordView extends StatelessWidget {
           errorDialog(context: context, message: state.message);
         }
       },
-      child: const Scaffold(
-        appBar: BackButtonAppbar(title: "Reset Password"),
-        body: ResetPasswordViewBody(),
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: false,
+          title: const Padding(
+            padding: EdgeInsets.only(left: 15),
+            child: Text("Reset Password", style: AppStyles.extraBold21),
+          ),
+        ),
+        body: const ResetPasswordViewBody(),
       ),
     );
   }

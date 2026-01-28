@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthErrorHandler {
-  static String map({required dynamic error}) {
+  static String handle({required dynamic error}) {
     // Direct socket error
     if (error is SocketException) {
       return 'Please check your internet connection and try again.';

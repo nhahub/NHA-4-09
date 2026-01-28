@@ -1,19 +1,19 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/networking/auth_error_handler.dart';
-import '../../../../core/networking/supabase_service.dart';
+import '../../../../core/services/supabase_auth_service.dart';
 
 class SettingsRepo {
-  final SupabaseService supabaseService;
+  final SupabaseAuthService supabaseAuthService;
 
-  SettingsRepo({required this.supabaseService});
+  SettingsRepo({required this.supabaseAuthService});
 
   Future<Either<String, Unit>> logout() async {
     try {
-      await supabaseService.logout();
+      await supabaseAuthService.logout();
       return const Right(unit);
     } on Exception catch (e) {
-      return Left(AuthErrorHandler.map(error: e));
+      return Left(AuthErrorHandler.handle(error: e));
     }
   }
 
@@ -21,11 +21,11 @@ class SettingsRepo {
     required String newPassword,
   }) async {
     try {
-      await supabaseService.resetPassword(newPassword: newPassword);
-      await supabaseService.logout();
+      await supabaseAuthService.resetPassword(newPassword: newPassword);
+      await supabaseAuthService.logout();
       return const Right(unit);
     } on Exception catch (e) {
-      return Left(AuthErrorHandler.map(error: e));
+      return Left(AuthErrorHandler.handle(error: e));
     }
   }
 }

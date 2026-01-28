@@ -1,6 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class SupabaseService {
+class SupabaseAuthService {
   final SupabaseClient _supabase = Supabase.instance.client;
   // Login
   Future<AuthResponse> login({
