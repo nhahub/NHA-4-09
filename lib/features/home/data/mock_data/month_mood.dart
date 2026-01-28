@@ -1,6 +1,6 @@
-import '../models/mood_chart.dart';
 import '../../domain/enums/emoji_range.dart';
 import '../../domain/enums/weeks_range.dart';
+import '../models/mood_chart.dart';
 
 final List<MoodChart> monthMood = [
   MoodChart(

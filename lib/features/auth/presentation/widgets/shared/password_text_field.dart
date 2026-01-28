@@ -11,16 +11,18 @@ import '../../../../../core/widgets/app_text_form_field.dart';
 
 class PasswordTextField extends StatefulWidget {
   final TextEditingController passwordController;
+  final dynamic Function(String?)? validator;
   bool isPasswordObscureText = true;
-  String hitText;
+  String hintText;
   String text;
   PasswordTextField({
     super.key,
 
     required this.passwordController,
     this.isPasswordObscureText = true,
-    this.hitText = "Password",
+    this.hintText = "Password",
     this.text = "",
+    this.validator,
   });
 
   @override
@@ -36,12 +38,12 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
         Padding(
           padding: const EdgeInsets.only(bottom: 8, left: 10),
           child: Text(
-            widget.hitText,
+            widget.text,
             style: AppStyles.medium15.copyWith(color: AppColors.bodyGray),
           ),
         ),
         AppTextFormField(
-          hintText: widget.text,
+          hintText: widget.hintText,
           prefixIcon: Padding(
             padding: const EdgeInsets.only(left: 12, right: 4),
             child: SvgPicture.asset(
@@ -68,7 +70,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
               color: AppColors.brandGreen,
             ),
           ),
-          validator: validatePassword,
+          validator: widget.validator ?? validatePassword,
         ),
       ],
     );

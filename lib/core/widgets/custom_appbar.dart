@@ -10,15 +10,15 @@ import 'premium_container.dart';
 
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final String icon;
-  final VoidCallback onTap;
+  final String? icon;
+  final VoidCallback? onTap;
   final bool isPremium;
   const CustomAppbar({
     super.key,
     required this.isPremium,
-    required this.icon,
-    required this.onTap,
+    this.onTap,
     required this.title,
+    this.icon,
   });
 
   @override
@@ -47,7 +47,9 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
                   const SizedBox(width: 20),
                   isPremium ? const PremiumContainer() : const FreeContainer(),
                   const Spacer(),
-                  CustomCircleButton(icon: icon, onTap: onTap),
+                  icon != null
+                      ? CustomCircleButton(icon: icon!, onTap: onTap)
+                      : const SizedBox.shrink(),
                 ],
               ),
             ),

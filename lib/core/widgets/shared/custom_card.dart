@@ -44,17 +44,11 @@ class CustomCard extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(22),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CategoryContainer(
-                    categoryTitle: meditationCardModel.category,
-                  ),
-                  const SizedBox(height: 35),
-                  const Center(child: PlayButton()),
-                ],
+              child: CategoryContainer(
+                categoryTitle: meditationCardModel.category,
               ),
             ),
+            const Center(child: PlayButton()),
           ],
         ),
       ),

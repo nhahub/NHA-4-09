@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/helpers/confirm_password_validator.dart';
+import '../../manager/register_cubit/register_cubit.dart';
 
 import '../../../../../core/widgets/app_text_button.dart';
-import '../../cubit/authatcation_cubit.dart';
+import '../../../../../core/widgets/custom_circular_progress_indicator.dart';
 import '../shared/email_text_field.dart';
 import '../shared/password_text_field.dart';
 import 'already_have_an_account.dart';
@@ -16,16 +18,16 @@ class RegisterFormWidget extends StatefulWidget {
 
 class _RegisterFormWidgetState extends State<RegisterFormWidget> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
       TextEditingController();
 
   @override
   void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    confirmPasswordController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -36,31 +38,46 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          EmailTextField(emailController: emailController),
+          EmailTextField(emailController: _emailController),
           const SizedBox(height: 20),
 
           PasswordTextField(
-            text: "Enter Your Password",
-            passwordController: passwordController,
+            text: "Password",
+            hintText: "Enter Your Password",
+            passwordController: _passwordController,
           ),
           const SizedBox(height: 20),
 
           PasswordTextField(
-            hitText: "Repeat Password",
-            text: "Enter Your Repeat Password",
-            passwordController: confirmPasswordController,
-          ),
-
-          const SizedBox(height: 20),
-
-          SizedBox(
-            width: double.infinity,
-            child: AppTextButton(
-              onPressed: () {
-                validateThenRegister(context);
-              },
-              buttonText: "Register",
+            text: "Repeat Password",
+            hintText: "Repeat Your Password",
+            passwordController: _confirmPasswordController,
+            validator: (value) => validateConfirmPassword(
+              value: value,
+              password: _passwordController.text,
             ),
+          ),
+
+          const SizedBox(height: 20),
+
+          BlocBuilder<RegisterCubit, RegisterState>(
+            builder: (context, state) {
+              return IgnorePointer(
+                ignoring: state is RegisterLoadingState,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: AppTextButton(
+                    onPressed: () {
+                      validateThenRegister(context);
+                    },
+                    buttonText: "Register",
+                    child: state is RegisterLoadingState
+                        ? const CustomCircularProgressIndicator()
+                        : null,
+                  ),
+                ),
+              );
+            },
           ),
           const SizedBox(height: 20),
 
@@ -73,9 +90,9 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
 
   void validateThenRegister(BuildContext context) {
     if (formKey.currentState!.validate()) {
-      context.read<AuthatcationCubit>().register(
-        emailController.text.trim(),
-        passwordController.text,
+      context.read<RegisterCubit>().register(
+        _emailController.text.trim(),
+        _passwordController.text,
       );
     }
   }

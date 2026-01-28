@@ -23,9 +23,27 @@ abstract class AppStyles {
     fontFamily: "Nunito",
     letterSpacing: -0.2,
   );
+  static const TextStyle bold20 = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeightHelper.bold,
+    fontFamily: "Nunito",
+    letterSpacing: -0.2,
+  );
+    static const TextStyle semiBold17 = TextStyle(
+    fontSize: 17,
+    fontWeight: FontWeightHelper.semiBold,
+    fontFamily: "Nunito",
+    letterSpacing: -0.2,
+  );
   static const TextStyle extraBold16 = TextStyle(
     fontSize: 16,
     fontWeight: FontWeightHelper.extraBold,
+    fontFamily: "Nunito",
+    letterSpacing: -0.2,
+  );
+  static const TextStyle semiBold16 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeightHelper.semiBold,
     fontFamily: "Nunito",
     letterSpacing: -0.2,
   );
@@ -49,6 +67,11 @@ abstract class AppStyles {
   static const TextStyle medium14 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeightHelper.medium,
+    fontFamily: "SFPro",
+  );
+  static const TextStyle regular14 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeightHelper.regular,
     fontFamily: "SFPro",
   );
 

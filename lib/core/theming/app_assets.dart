@@ -1,11 +1,10 @@
 class AppAssets {
   // Icons
-  static const String logoIcon = 'assets/logo/logo.svg';
   static const String emailIcon = 'assets/svgs/email.svg';
   static const String googleIcon = 'assets/svgs/google.svg';
   static const String appleIcon = 'assets/svgs/apple.svg';
   static const String facebookIcon = 'assets/svgs/facebook.svg';
-  static const String zenspunLogo = 'assets/svgs/zenspun_logo.svg';
+  static const String moodlyLogo = 'assets/svgs/moodly_logo.svg';
   static const String passwordIcon = 'assets/svgs/password_icon.svg';
   static const String arrowRightIosIcon = 'assets/svgs/arrow_right_ios.svg';
   static const String arrowRightIcon = 'assets/svgs/arrow_right.svg';
@@ -33,6 +32,9 @@ class AppAssets {
   static const String heartIcon = 'assets/svgs/heart.svg';
   static const String heartFillIcon = 'assets/svgs/heart_fill.svg';
   static const String repeatIcon = 'assets/svgs/repeat.svg';
+  static const String forgotPasswordIcon = 'assets/svgs/forgot_password.svg';
+  static const String resetpasswordIcon = 'assets/svgs/password_reset.svg';
+  static const String checkMark = 'assets/svgs/check_mark.svg';
   static const String slidersHorizontalIcon =
       'assets/svgs/sliders_horizontal.svg';
 

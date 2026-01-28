@@ -65,7 +65,7 @@ class AppTextFormField extends StatelessWidget {
         focusedErrorBorder: buildOutLineInputBorder(
           borderColor: AppColors.darkRed,
         ),
-        hintStyle: AppStyles.medium15,
+        hintStyle: AppStyles.medium15.copyWith(color: AppColors.linkGray),
         hintText: hintText,
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,

@@ -14,12 +14,11 @@ class PremiumHeader extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        AppAssets.zenspunLogo.svgWithShadow(size: 55, color: Colors.white),
+        AppAssets.moodlyLogo.svgWithShadow(size: 55, color: Colors.white),
         const SizedBox(width: 18),
         const PremiumAppName(),
         const Spacer(),
-        if (withClose)
-        const CustomCloseWidget(),
+        if (withClose) const CustomCloseWidget(),
       ],
     );
   }

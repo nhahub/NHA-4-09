@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../core/enums/fade_position.dart';
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/routing/routes.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:moodly/core/extensions/context_extensions.dart';
+import 'package:moodly/core/functions/error_dialog.dart';
+import 'package:moodly/core/routing/routes.dart';
+import '../../../../core/functions/build_snack_bar.dart';
 import '../../../../core/theming/app_assets.dart';
+import '../../../../core/theming/app_colors.dart';
 import '../../../../core/widgets/custom_appbar.dart';
-import '../../../../core/widgets/fade_scrollable.dart';
-import '../../../auth/presentation/cubit/authatcation_cubit.dart';
-import '../../../auth/presentation/cubit/authatcation_state.dart';
+import '../../../../core/widgets/custom_circular_progress_indicator.dart';
+import '../../../auth/presentation/manager/logout_cubit/logout_cubit.dart';
+import '../widgets/profile_view_body.dart';
 
 class ProfileView extends StatelessWidget {
   final bool isPremium = false;
@@ -16,37 +18,32 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthatcationCubit, AuthatcationState>(
+    return BlocConsumer<LogoutCubit, LogoutState>(
       listener: (context, state) {
-        if (state is AuthInitial) {
+        if (state is LogoutSuccessState) {
+          successSnackBar(context: context, message: "Logout Success");
           context.pushAndRemoveUntil(Routes.loginView);
+        } else if (state is LogoutFailureState) {
+          errorDialog(context: context, message: state.message);
         }
       },
-      child: Scaffold(
-        appBar: CustomAppbar(
-          title: "Profile",
-          isPremium: isPremium,
-          icon: AppAssets.searchIcon,
-          onTap: () {},
-        ),
-        body: FadeScrollable(
-          fadePosition: FadePosition.bottom,
-          child: Column(
-            children: [
-              Align(
-                alignment: Alignment.centerRight,
-                child: IconButton(
-                  onPressed: () {
-                    context.read<AuthatcationCubit>().logout();
-                  },
-                  icon: const Icon(Icons.logout, color: Colors.red),
-                ),
-              ),
-              const Center(child: Text('Welcome to the Profile View!')),
-            ],
+      builder: (context, state) {
+        return ModalProgressHUD(
+          inAsyncCall: state is LogoutLoadingState,
+          progressIndicator: const CustomCircularProgressIndicator(
+            color: AppColors.brandGreen,
           ),
-        ),
-      ),
+          child: Scaffold(
+            appBar: CustomAppbar(
+              title: "Profile",
+              isPremium: isPremium,
+              icon: AppAssets.searchIcon,
+              onTap: () {},
+            ),
+            body: const ProfileViewBody(),
+          ),
+        );
+      },
     );
   }
 }

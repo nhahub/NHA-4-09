@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-
+import 'package:moodly/core/functions/confirm_dialog.dart';
+import '../../manager/register_cubit/register_cubit.dart';
 import '../../../../../core/extensions/context_extensions.dart';
-import '../../../../../core/helpers/snackbar_service.dart';
+import '../../../../../core/functions/error_dialog.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_assets.dart';
-import '../../cubit/authatcation_cubit.dart';
-import '../../cubit/authatcation_state.dart';
 import 'register_form_widget.dart';
 
 class RegisterViewBody extends StatelessWidget {
@@ -18,13 +17,20 @@ class RegisterViewBody extends StatelessWidget {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32),
-        child: BlocConsumer<AuthatcationCubit, AuthatcationState>(
+        child: BlocConsumer<RegisterCubit, RegisterState>(
           listener: (context, state) {
-            if (state is RegisterSuccess) {
-              CustomSnackbar.show(context, "Registration Successful");
-              context.pushAndRemoveUntil(Routes.loginView);
-            } else if (state is AuthFailure) {
-              CustomSnackbar.show(context, state.message, isError: true);
+            if (state is RegisterSuccessState) {
+              confirmDialog(
+                context: context,
+                title: "Verify Your Email",
+                message:
+                    " We have sent verification link to your email.Please check your inbox.",
+                onConfirm: () {
+                  context.pushAndRemoveUntil(Routes.loginView);
+                },
+              );
+            } else if (state is RegisterFailureState) {
+              errorDialog(context: context, message: state.message);
             }
           },
           builder: (context, state) {
@@ -38,18 +44,12 @@ class RegisterViewBody extends StatelessWidget {
                   children: [
                     const SizedBox(height: 50),
                     SvgPicture.asset(
-                      AppAssets.zenspunLogo,
+                      AppAssets.moodlyLogo,
                       width: 90,
                       height: 90,
                     ),
                     const SizedBox(height: 80),
-                    if (state is AuthLoading)
-                      const Padding(
-                        padding: EdgeInsets.all(20.0),
-                        child: CircularProgressIndicator(),
-                      )
-                    else
-                      const RegisterFormWidget(),
+                    const RegisterFormWidget(),
                   ],
                 ),
               ),
