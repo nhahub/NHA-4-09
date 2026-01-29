@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moodly/core/helpers/alpha_from_percent.dart';
-import 'package:moodly/core/theming/app_colors.dart';
+import '../helpers/alpha_from_percent.dart';
+import '../theming/app_colors.dart';
 import '../theming/app_assets.dart';
 import '../theming/app_styles.dart';
 import '../widgets/app_text_button.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moodly/core/functions/confirm_dialog.dart';
+import '../../../../../core/functions/confirm_dialog.dart';
 import '../../manager/register_cubit/register_cubit.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/functions/error_dialog.dart';

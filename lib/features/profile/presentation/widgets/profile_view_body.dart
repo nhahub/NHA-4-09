@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/profile/presentation/helpers/logout_dialog.dart';
+import '../helpers/logout_dialog.dart';
 import '../../../../core/enums/fade_position.dart';
 import '../../../../core/widgets/fade_scrollable.dart';
 

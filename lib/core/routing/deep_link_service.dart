@@ -12,13 +12,13 @@ class DeepLinkService {
   static StreamSubscription<Uri>? _sub;
 
   static Future<void> init() async {
-    // 🔹 initial link (app closed)
+    // initial link (app closed)
     final Uri? initialUri = await _appLinks.getInitialLink();
     if (initialUri != null) {
       _navigateSafely(initialUri);
     }
 
-    // 🔹 runtime links
+    // runtime links
     _sub ??= _appLinks.uriLinkStream.listen(_navigateSafely);
   }
 
@@ -27,7 +27,6 @@ class DeepLinkService {
 
     DeepLinkState.openedFromResetLink = true;
 
-    // ❗❗❗ الحل السحري
     WidgetsBinding.instance.addPostFrameCallback((_) {
       navigatorKey.currentState?.pushNamed(Routes.resetPasswordView);
     });

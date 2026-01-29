@@ -1,13 +1,15 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
+
+import '../../../../../core/constants/constants.dart';
 import '../../../../../core/services/get_it_service.dart';
+import '../../../../../core/widgets/app_section_header.dart';
 import '../../../data/models/quote_model.dart';
 import '../../../data/repos/quote_repo_impl.dart';
 import 'main_card.dart';
 import 'rotated_gradient_card.dart';
 import 'rotated_inner_shadow_card.dart';
-import '../../../../../core/constants/constants.dart';
-import '../../../../../core/widgets/app_section_header.dart';
 
 class MessageOfTheDaySection extends StatefulWidget {
   static const cardRadius = 20.0;

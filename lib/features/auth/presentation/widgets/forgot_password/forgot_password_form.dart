@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/extensions/context_extensions.dart';
+import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/functions/confirm_dialog.dart';
 import '../../manager/forgot_password_cubit/forgot_password_cubit.dart';
 import '../../../../../core/functions/error_dialog.dart';

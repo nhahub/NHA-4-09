@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/helpers/confirm_password_validator.dart';
-import '../../manager/register_cubit/register_cubit.dart';
 
+import '../../../../../core/helpers/confirm_password_validator.dart';
 import '../../../../../core/widgets/app_text_button.dart';
 import '../../../../../core/widgets/custom_circular_progress_indicator.dart';
+import '../../manager/register_cubit/register_cubit.dart';
 import '../shared/email_text_field.dart';
 import '../shared/password_text_field.dart';
 import 'already_have_an_account.dart';
