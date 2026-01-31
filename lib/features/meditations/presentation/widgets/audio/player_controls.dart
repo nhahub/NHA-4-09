@@ -18,14 +18,16 @@ class PlayerControls extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // Restart
-          IconButton(
-            icon: const Icon(Icons.replay),
-            onPressed: () async {
+          ControlsIcon(
+            iconPath: AppAssets.repeatIcon,
+            width: 20,
+            height: 20,
+            onTap: () async {
               await player.seek(Duration.zero);
               await player.play();
             },
           ),
-          const SizedBox(width: 5),
+          const SizedBox(width: 15),
           // Rewind 10s
           ControlsIcon(
             iconPath: AppAssets.previousIcon,
