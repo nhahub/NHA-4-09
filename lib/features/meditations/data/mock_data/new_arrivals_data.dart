@@ -1,29 +1,33 @@
+import 'package:moodly/features/meditations/domain/audio_entity.dart';
 import '../../../../core/theming/app_assets.dart';
-import '../models/meditation_card_model.dart';
 
-const List<MeditationCardModel> newArrivalsData = [
-  MeditationCardModel(
-    imagePath: AppAssets.newArrival1,
+const List<AudioEntity> newArrivalsData = [
+  AudioEntity(
+    coverUrl: AppAssets.newArrival1,
     category: 'Reset',
     title: "Coming back after a hard day.",
     duration: 12,
+    audioUrl: "",
   ),
-  MeditationCardModel(
-    imagePath: AppAssets.newArrival2,
+  AudioEntity(
+    coverUrl: AppAssets.newArrival2,
     category: 'Clarity',
     title: 'Weekend mental cleansing.',
     duration: 9,
+    audioUrl: "",
   ),
-  MeditationCardModel(
-    imagePath: AppAssets.newArrival3,
+  AudioEntity(
+    coverUrl: AppAssets.newArrival3,
     category: 'Anxiety',
     title: 'Before an exam or interview.',
     duration: 5,
+    audioUrl: "",
   ),
-  MeditationCardModel(
-    imagePath: AppAssets.newArrival4,
+  AudioEntity(
+    coverUrl: AppAssets.newArrival4,
     category: 'Sleep',
     title: 'Positive thoughts before sleep.',
     duration: 7,
+    audioUrl: "",
   ),
 ];
