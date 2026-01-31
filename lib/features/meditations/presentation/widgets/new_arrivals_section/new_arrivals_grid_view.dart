@@ -25,9 +25,9 @@ class NewArrivalsGridView extends StatelessWidget {
         ),
         itemBuilder: (context, index) {
           return CustomCard(
-            meditationCardModel: newArrivalsData[index],
+            mediaEntity: newArrivalsData[index],
             onTap: () {
-              context.push(Routes.audioView);
+              context.push(Routes.audioView, args: newArrivalsData[index]);
             },
           );
         },

@@ -15,9 +15,12 @@ class ForDifficultSituationsListView extends StatelessWidget {
       itemCount: forDifficultSituationsData.length,
       itemBuilder: (context, index) {
         return CustomCard(
-          meditationCardModel: forDifficultSituationsData[index],
+          mediaEntity: forDifficultSituationsData[index],
           onTap: () {
-            context.push(Routes.audioView);
+            context.push(
+              Routes.audioView,
+              args: forDifficultSituationsData[index],
+            );
           },
         );
       },

@@ -1,23 +1,26 @@
+import 'package:moodly/features/meditations/domain/video_entity.dart';
 import '../../../../core/theming/app_assets.dart';
-import '../models/meditation_card_model.dart';
 
-const List<MeditationCardModel> recommendedForYouData = [
-  MeditationCardModel(
-    imagePath: AppAssets.meditation1,
+const List<VideoEntity> recommendedForYouData = [
+  VideoEntity(
+    coverUrl: AppAssets.meditation1,
     category: 'Sleep',
     title: 'Calm breathing for peaceful sleep',
     duration: 12,
+    videoUrl: "",
   ),
-  MeditationCardModel(
-    imagePath: AppAssets.meditation2,
+  VideoEntity(
+    coverUrl: AppAssets.meditation2,
     category: 'Stress',
     title: 'Get rid of anxious thoughts',
     duration: 9,
+    videoUrl: "",
   ),
-  MeditationCardModel(
-    imagePath: AppAssets.meditation3,
+  VideoEntity(
+    coverUrl: AppAssets.meditation3,
     category: 'Concentration',
     title: 'Total focus on learning',
     duration: 7,
+    videoUrl: "",
   ),
 ];

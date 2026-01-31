@@ -30,10 +30,11 @@ class AllMeditationsView extends StatelessWidget {
               sliver: VerticalPaddingList(
                 itemCount: meditationsForYouData.length,
                 itemBuilder: (context, index) {
+                  final meditation = meditationsForYouData[index];
                   return SizedBox(
                     height: 254,
                     child: CustomCard(
-                      meditationCardModel: meditationsForYouData[index],
+                      mediaEntity: meditation,
                       onTap: () {
                         context.push(Routes.videoView);
                       },

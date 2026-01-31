@@ -12,25 +12,24 @@ class SupabaseCRUDService {
   }
 
   /// Read / Get data
-Future<List<Map<String, dynamic>>> getData({
-  required String table,
-  String? orderBy,
-  bool ascending = true,
-  int? limit,
-}) async {
-  dynamic query = client.from(table).select();
+  Future<List<Map<String, dynamic>>> getData({
+    required String table,
+    String? orderBy,
+    bool ascending = true,
+    int? limit,
+  }) async {
+    dynamic query = client.from(table).select();
 
-  if (orderBy != null) {
-    query = query.order(orderBy, ascending: ascending);
+    if (orderBy != null) {
+      query = query.order(orderBy, ascending: ascending);
+    }
+    if (limit != null) {
+      query = query.limit(limit);
+    }
+
+    final res = await query;
+    return List<Map<String, dynamic>>.from(res);
   }
-  if (limit != null) {
-    query = query.limit(limit);
-  }
-
-  final res = await query;
-  return List<Map<String, dynamic>>.from(res);
-}
-
 
   /// Update data
   Future<void> updateData({

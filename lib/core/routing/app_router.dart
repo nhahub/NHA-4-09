@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/meditations/domain/audio_entity.dart';
 import '../../features/profile/data/repos/settings_repo.dart';
 import '../services/get_it_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -106,7 +107,10 @@ class AppRouter {
         return MaterialPageRoute(builder: (context) => const VideoView());
 
       case Routes.audioView:
-        return MaterialPageRoute(builder: (context) => const AudioView());
+        final AudioEntity audioEntity = settings.arguments as AudioEntity;
+        return MaterialPageRoute(
+          builder: (context) => AudioView(audioEntity: audioEntity),
+        );
 
       case Routes.therapistDetailsView:
         return MaterialPageRoute(
