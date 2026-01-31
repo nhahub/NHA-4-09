@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/core/theming/app_assets.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../core/theming/app_assets.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/app_styles.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';

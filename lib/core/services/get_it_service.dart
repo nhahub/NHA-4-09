@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
-import 'package:moodly/core/services/supabase_crud_service.dart';
-import 'package:moodly/features/profile/data/repos/settings_repo.dart';
+import 'supabase_crud_service.dart';
+import '../../features/profile/data/repos/settings_repo.dart';
 import 'supabase_auth_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/home/data/repos/quote_repo_impl.dart';

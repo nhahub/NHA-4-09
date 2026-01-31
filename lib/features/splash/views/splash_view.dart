@@ -1,11 +1,13 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../../../core/extensions/context_extensions.dart';
 import '../../../core/routing/deep_link_state.dart';
 import '../../../core/routing/routes.dart';
 import '../widgets/splash_view_body.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-import '../../../core/extensions/context_extensions.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});

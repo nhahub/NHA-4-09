@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
+import '../../../../../core/theming/app_colors.dart';
 import '../../../data/models/quote_model.dart';
 import 'card_contant.dart';
-import '../../../../../core/theming/app_colors.dart';
 import 'message_of_the_day_section.dart';
 
 class RotatedGradientCard extends StatelessWidget {

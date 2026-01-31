@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/functions/confirm_dialog.dart';
+import '../../../../core/functions/confirm_dialog.dart';
 import '../../../../core/theming/app_styles.dart';
 import '../widgets/reset_password/reset_password_view_body.dart';
 import '../../../../core/extensions/context_extensions.dart';

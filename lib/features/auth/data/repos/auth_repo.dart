@@ -1,4 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
 import '../../../../core/networking/auth_error_handler.dart';
 import '../../../../core/services/supabase_auth_service.dart';
 
@@ -12,7 +14,7 @@ class AuthRepo {
     required String password,
   }) async {
     try {
-      final response = await supabaseAuthService.login(
+      final AuthResponse response = await supabaseAuthService.login(
         email: email,
         password: password,
       );

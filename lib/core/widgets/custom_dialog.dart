@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/extensions/context_extensions.dart';
-import 'package:moodly/core/theming/app_colors.dart';
+import '../extensions/context_extensions.dart';
+import '../theming/app_colors.dart';
 import '../theming/app_styles.dart';
 
 class CustomDialog<C extends StateStreamable<S>, S> extends StatelessWidget {
