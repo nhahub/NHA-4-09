@@ -1,7 +1,6 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-
+import 'package:moodly/core/widgets/custom_circular_progress_indicator.dart';
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/services/get_it_service.dart';
 import '../../../../../core/widgets/app_section_header.dart';
@@ -41,24 +40,26 @@ class _MessageOfTheDaySectionState extends State<MessageOfTheDaySection> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const AppSectionHeader(title: "Message of the Day"),
-        const SizedBox(height: 35),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: kAppHorizontalPadding,
-          ),
-          child: Stack(
+    return _dailyQuote == null
+        ? const CustomCircularProgressIndicator()
+        : Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              RotatedGradientCard(dailyQuote: _dailyQuote ?? loadingQuote),
-              RotatedInnerShadowCard(dailyQuote: _dailyQuote ?? loadingQuote),
-              MainCard(dailyQuote: _dailyQuote ?? loadingQuote),
+              const AppSectionHeader(title: "Message of the Day"),
+              const SizedBox(height: 35),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: kAppHorizontalPadding,
+                ),
+                child: Stack(
+                  children: [
+                    RotatedGradientCard(dailyQuote: _dailyQuote!),
+                    RotatedInnerShadowCard(dailyQuote: _dailyQuote!),
+                    MainCard(dailyQuote: _dailyQuote!),
+                  ],
+                ),
+              ),
             ],
-          ),
-        ),
-      ],
-    );
+          );
   }
 }
