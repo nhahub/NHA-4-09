@@ -1,5 +1,6 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:moodly/features/payment/presentation/views/premium_view.dart';
 
 import '../../core/routing/app_router.dart';
 import '../../core/routing/navigation_service.dart';
@@ -18,7 +19,7 @@ class MoodlyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeManager.getAppTheme(),
       onGenerateRoute: AppRouter.generateRoute,
-      initialRoute: Routes.splashView,
+      home: PremiumView(withClose: false),
     );
   }
 }
