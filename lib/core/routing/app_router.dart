@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/services/app_launch_decider.dart';
 import 'package:moodly/features/meditations/domain/audio_entity.dart';
 import '../../features/profile/data/repos/settings_repo.dart';
 import '../services/get_it_service.dart';
@@ -33,14 +34,15 @@ import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/home/presentation/views/home_view.dart';
 import '../../features/main/presentation/views/main_view.dart';
 import '../../features/meditations/presentation/views/meditations_view.dart';
-import '../../features/splash/views/splash_view.dart';
 import 'routes.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case Routes.splashView:
-        return MaterialPageRoute(builder: (context) => const SplashView());
+      case Routes.root:
+        return MaterialPageRoute(
+          builder: (_) => AppLaunchDecider.decideStartView(),
+        );
 
       case Routes.startView:
         return MaterialPageRoute(builder: (context) => const StartView());
