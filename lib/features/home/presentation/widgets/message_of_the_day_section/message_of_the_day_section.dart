@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:moodly/core/widgets/custom_circular_progress_indicator.dart';
+import '../../../../../core/widgets/custom_circular_progress_indicator.dart';
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/services/get_it_service.dart';
 import '../../../../../core/widgets/app_section_header.dart';

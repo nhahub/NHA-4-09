@@ -5,19 +5,24 @@ import '../helpers/alpha_from_percent.dart';
 import '../theming/app_colors.dart';
 import '../theming/app_styles.dart';
 
-void errorDialog({required BuildContext context, required String message}) {
+void errorDialog({
+  required BuildContext context,
+  required String message,
+  VoidCallback? onPressed,
+}) {
   showDialog(
     context: context,
     builder: (context) {
-      return ErrorDialog(message: message);
+      return ErrorDialog(message: message, onPressed: onPressed);
     },
   );
 }
 
 class ErrorDialog extends StatelessWidget {
   final String message;
+  final VoidCallback? onPressed;
 
-  const ErrorDialog({super.key, required this.message});
+  const ErrorDialog({super.key, required this.message, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +57,7 @@ class ErrorDialog extends StatelessWidget {
           Text(message, style: AppStyles.bold20, textAlign: TextAlign.center),
           const SizedBox(height: 20),
           OutlinedButton(
-            onPressed: () => context.pop(),
+            onPressed: () => onPressed ?? context.pop(),
             style: OutlinedButton.styleFrom(
               side: const BorderSide(color: AppColors.brandGreen),
             ),

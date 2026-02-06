@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moodly/features/meditations/domain/audio_entity.dart';
+import '../../../domain/audio_entity.dart';
 import '../../../../../core/theming/app_assets.dart';
 
 class AudioInfo extends StatelessWidget {

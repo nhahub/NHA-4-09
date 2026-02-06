@@ -1,12 +1,16 @@
-import 'package:audio_session/audio_session.dart';
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/features/home/presentation/widgets/shared/back_button_appbar.dart';
-import 'package:moodly/features/meditations/domain/audio_entity.dart';
-import 'package:moodly/features/meditations/presentation/widgets/audio/audio_progress_bar.dart';
-import 'package:moodly/features/meditations/presentation/widgets/audio/player_controls.dart';
-import 'package:moodly/features/meditations/presentation/widgets/audio/audio_info.dart';
+import 'package:moodly/core/extensions/context_extensions.dart';
+import 'package:moodly/core/functions/error_dialog.dart';
+import 'package:moodly/core/routing/routes.dart';
+import 'package:moodly/features/Community/data/services/audio_player_service.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../core/errors/audio_exceptions.dart';
+import '../../../../core/services/get_it_service.dart';
+import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
+import '../../domain/audio_entity.dart';
+import '../widgets/audio/audio_progress_bar.dart';
+import '../widgets/audio/player_controls.dart';
+import '../widgets/audio/audio_info.dart';
 
 class AudioView extends StatefulWidget {
   final AudioEntity audioEntity;
@@ -18,30 +22,37 @@ class AudioView extends StatefulWidget {
 }
 
 class _AudioViewState extends State<AudioView> {
-  late final AudioPlayer _audioPlayer;
+  late final AudioPlayerService _audioService;
 
   @override
   void initState() {
+    _audioService = getIt<AudioPlayerService>();
+    _init();
     super.initState();
-    _initPlayer();
   }
 
-  Future<void> _initPlayer() async {
-    _audioPlayer = AudioPlayer();
-
-    final session = await AudioSession.instance;
-    await session.configure(const AudioSessionConfiguration.music());
-
+  Future<void> _init() async {
     try {
-      await _audioPlayer.setUrl(widget.audioEntity.audioUrl);
-    } catch (e) {
-      debugPrint("Error loading audio source: $e");
+      await _audioService.init(widget.audioEntity.audioUrl);
+    } on AudioLoadException catch (e) {
+      if (!mounted) return;
+      errorDialog(context: context, message: e.message);
+    } on AudioSessionException catch (e) {
+      if (!mounted) return;
+      errorDialog(
+        context: context,
+        message: e.message,
+        onPressed: () => context.pushAndRemoveUntil(Routes.meditationsView),
+      );
+    } catch (_) {
+      if (!mounted) return;
+      errorDialog(context: context, message: "Unexpected error occurred");
     }
   }
 
   @override
   void dispose() {
-    _audioPlayer.dispose();
+    _audioService.dispose();
     super.dispose();
   }
 
@@ -49,23 +60,39 @@ class _AudioViewState extends State<AudioView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const BackButtonAppbar(title: "Now playing"),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 28),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(height: kAppSectionSpacing),
-                AudioInfo(audioEntity: widget.audioEntity),
-                const SizedBox(height: 30),
-                AudioProgressBar(player: _audioPlayer),
-                const SizedBox(height: 10),
-                PlayerControls(player: _audioPlayer),
-                const SizedBox(height: 30),
-              ],
-            ),
+      body: AudioViewBody(widget: widget, audioService: _audioService),
+    );
+  }
+}
+
+class AudioViewBody extends StatelessWidget {
+  const AudioViewBody({
+    super.key,
+    required this.widget,
+    required AudioPlayerService audioService,
+  }) : _audioService = audioService;
+
+  final AudioView widget;
+  final AudioPlayerService _audioService;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 28),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(height: kAppSectionSpacing),
+              AudioInfo(audioEntity: widget.audioEntity),
+              const SizedBox(height: 30),
+              AudioProgressBar(player: _audioService.player),
+              const SizedBox(height: 10),
+              PlayerControls(player: _audioService.player),
+              const SizedBox(height: 30),
+            ],
           ),
         ),
       ),

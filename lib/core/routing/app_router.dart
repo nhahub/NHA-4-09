@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/services/app_launch_decider.dart';
-import 'package:moodly/features/meditations/domain/audio_entity.dart';
+import '../services/app_launch_decider.dart';
+import '../../features/meditations/domain/audio_entity.dart';
 import '../../features/profile/data/repos/settings_repo.dart';
 import '../services/get_it_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';

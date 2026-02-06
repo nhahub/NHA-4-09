@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../helpers/logout_dialog.dart';
+
 import '../../../../core/enums/fade_position.dart';
 import '../../../../core/widgets/fade_scrollable.dart';
+import '../helpers/logout_dialog.dart';
 
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({super.key});
