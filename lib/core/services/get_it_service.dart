@@ -1,5 +1,5 @@
 import 'package:get_it/get_it.dart';
-import 'package:moodly/features/Community/data/services/audio_player_service.dart';
+import '../../features/Community/data/services/audio_player_service.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/home/data/repos/quote_repo_impl.dart';

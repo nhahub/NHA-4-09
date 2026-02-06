@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../features/Community/data/services/audio_player_service.dart';
+import '../../features/meditations/presentation/manager/cubit/audio_cubit.dart';
 import '../services/app_launch_decider.dart';
 import '../../features/meditations/domain/audio_entity.dart';
 import '../../features/profile/data/repos/settings_repo.dart';
@@ -111,7 +113,13 @@ class AppRouter {
       case Routes.audioView:
         final AudioEntity audioEntity = settings.arguments as AudioEntity;
         return MaterialPageRoute(
-          builder: (context) => AudioView(audioEntity: audioEntity),
+          builder: (context) => BlocProvider(
+            create: (context) => AudioCubit(
+              audioService: getIt.get<AudioPlayerService>(),
+              audioEntity: audioEntity,
+            )..initAudio(audioUrl: audioEntity.audioUrl),
+            child: const AudioView(),
+          ),
         );
 
       case Routes.therapistDetailsView:

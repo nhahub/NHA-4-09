@@ -5,15 +5,14 @@ import '../helpers/alpha_from_percent.dart';
 import '../theming/app_colors.dart';
 import '../theming/app_styles.dart';
 
-void errorDialog({
+Future<void> errorDialog({
   required BuildContext context,
   required String message,
-  VoidCallback? onPressed,
-}) {
-  showDialog(
+}) async {
+  return showDialog(
     context: context,
     builder: (context) {
-      return ErrorDialog(message: message, onPressed: onPressed);
+      return ErrorDialog(message: message);
     },
   );
 }
@@ -57,7 +56,7 @@ class ErrorDialog extends StatelessWidget {
           Text(message, style: AppStyles.bold20, textAlign: TextAlign.center),
           const SizedBox(height: 20),
           OutlinedButton(
-            onPressed: () => onPressed ?? context.pop(),
+            onPressed: () => context.pop(),
             style: OutlinedButton.styleFrom(
               side: const BorderSide(color: AppColors.brandGreen),
             ),

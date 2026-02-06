@@ -1,5 +1,5 @@
-import '../../../meditations/domain/video_entity.dart';
 import '../../../../../core/theming/app_assets.dart';
+import '../../../meditations/domain/video_entity.dart';
 
 const List<VideoEntity> meditationsForYouData = [
   VideoEntity(
