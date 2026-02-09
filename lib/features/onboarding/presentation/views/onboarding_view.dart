@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/routing/routes.dart';
+import 'package:moodly/features/onboarding/presentation/helpers/onboarding_helper.dart';
 import '../../data/models/questionnaire_model.dart';
 import '../manager/onboarding_cubit/onboarding_cubit.dart';
 import '../manager/onboarding_cubit/onboarding_state.dart';
@@ -22,9 +20,6 @@ class OnboardingView extends StatelessWidget {
       child: BlocBuilder<OnboardingCubit, OnboardingState>(
         builder: (context, state) {
           final cubit = context.read<OnboardingCubit>();
-          void finishOnboarding() {
-            context.pushAndRemoveUntil(Routes.premiumView);
-          }
 
           return Scaffold(
             body: Column(
@@ -50,7 +45,7 @@ class OnboardingView extends StatelessWidget {
                   QuestionnaireButton(
                     currentPageIndex: state.currentPageIndex,
                     onNext: cubit.nextPage,
-                    onFinish: finishOnboarding,
+                    onFinish: () => onFinishOnboarding(context),
                     questionsLength: questions.length,
                     selectedValues: state.currentPageIndex > 0
                         ? state.answers[questions[state.currentPageIndex - 1]

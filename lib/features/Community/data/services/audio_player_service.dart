@@ -1,7 +1,7 @@
 import 'package:audio_session/audio_session.dart';
 import 'package:just_audio/just_audio.dart';
 
-import '../../../../core/errors/audio_exceptions.dart';
+import '../../../../core/errors/audio_error.dart';
 
 class AudioPlayerService {
   final AudioPlayer _player = AudioPlayer();

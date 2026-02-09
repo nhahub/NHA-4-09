@@ -28,7 +28,7 @@ class WelcomeView extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 25),
-              const Text("Welcome to Zenspun!", style: AppStyles.extraBold27),
+              const Text("Welcome to Moodly!", style: AppStyles.extraBold27),
               const SizedBox(height: 5),
               Text(
                 "Let's set up your personal space. Find a quiet moment — a few quick questions will help personalize your experience.",

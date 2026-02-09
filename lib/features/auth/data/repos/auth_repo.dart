@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:moodly/core/errors/failure.dart';
+import 'package:moodly/core/networking/api_error_handler.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
-import '../../../../core/networking/auth_error_handler.dart';
 import '../../../../core/services/supabase_auth_service.dart';
 
 class AuthRepo {
@@ -9,7 +9,7 @@ class AuthRepo {
 
   AuthRepo({required this.supabaseAuthService});
 
-  Future<Either<String, String>> login({
+  Future<Either<Failure, String>> login({
     required String email,
     required String password,
   }) async {
@@ -18,13 +18,13 @@ class AuthRepo {
         email: email,
         password: password,
       );
-      return Right(response.user!.id);
-    } on Exception catch (e) {
-      return Left(AuthErrorHandler.handle(error: e));
+      return right(response.user!.id);
+    } catch (e) {
+      return left(ApiErrorHandler.handle(error: e));
     }
   }
 
-  Future<Either<String, String>> register({
+  Future<Either<Failure, String>> register({
     required String email,
     required String password,
   }) async {
@@ -36,18 +36,18 @@ class AuthRepo {
       if (response.user != null) {
         await supabaseAuthService.logout();
       }
-      return Right(response.user!.id);
-    } on Exception catch (e) {
-      return Left(AuthErrorHandler.handle(error: e));
+      return right(response.user!.id);
+    } catch (e) {
+      return left(ApiErrorHandler.handle(error: e));
     }
   }
 
-  Future<Either<String, Unit>> forgotPassword({required String email}) async {
+  Future<Either<Failure, void>> forgotPassword({required String email}) async {
     try {
       await supabaseAuthService.forgotPassword(email: email);
-      return const Right(unit);
-    } on Exception catch (e) {
-      return Left(AuthErrorHandler.handle(error: e));
+      return right(null);
+    } catch (e) {
+      return left(ApiErrorHandler.handle(error: e));
     }
   }
 }
