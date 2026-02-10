@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:moodly/core/networking/api_error_model.dart';
+import '../networking/api_error_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class NetworkError {

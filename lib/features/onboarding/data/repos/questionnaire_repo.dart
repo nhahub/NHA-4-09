@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:moodly/features/onboarding/data/Services/questionnaire_service.dart';
-import 'package:moodly/features/onboarding/data/models/questionnaire_answers_model.dart';
+import '../Services/questionnaire_service.dart';
+import '../models/question_model.dart';
+import '../models/questionnaire_answers_model.dart';
+import '../models/questionnaire_model.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/networking/api_error_handler.dart';
@@ -10,6 +12,10 @@ class QuestionnaireRepo {
 
   QuestionnaireRepo({required QuestionnaireService questionnaireService})
     : _questionnaireService = questionnaireService;
+
+  List<QuestionModel> getQuestions() {
+    return onboardingQuestionnaire.questions;
+  }
 
   Future<Either<Failure, void>> saveQuestionnaireAnswers(
     QuestionnaireAnswersModel model,

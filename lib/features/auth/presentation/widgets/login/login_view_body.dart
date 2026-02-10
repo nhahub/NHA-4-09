@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moodly/features/onboarding/presentation/helpers/onboarding_helper.dart';
-
+import '../../../../onboarding/data/Services/onboarding_local_service.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/functions/build_snack_bar.dart';
 import '../../../../../core/functions/error_dialog.dart';
@@ -51,7 +50,7 @@ class LoginViewBody extends StatelessWidget {
 
   void onLoginSuccess(BuildContext context) {
     successSnackBar(context: context, message: "Login Success");
-    final bool hasSeenOnboarding = checkIfHasSeenOnboarding();
+    final bool hasSeenOnboarding = OnboardingLocalService.hasSeenOnboarding();
     if (hasSeenOnboarding) {
       context.pushAndRemoveUntil(Routes.mainView);
     } else {

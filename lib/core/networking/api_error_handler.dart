@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:moodly/core/errors/database_error.dart';
+import '../errors/database_error.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../errors/auth_error.dart';
 import '../errors/network_error.dart';

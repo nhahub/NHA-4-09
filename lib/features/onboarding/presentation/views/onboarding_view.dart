@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/onboarding/presentation/helpers/onboarding_helper.dart';
-import '../../data/models/questionnaire_model.dart';
+import '../../../../core/extensions/context_extensions.dart';
+import '../manager/questionnaire_cubit/questionnaire_cubit.dart';
+import '../../../../core/routing/routes.dart';
+import '../../data/models/question_model.dart';
 import '../manager/onboarding_cubit/onboarding_cubit.dart';
 import '../manager/onboarding_cubit/onboarding_state.dart';
 import '../widgets/onboarding_appbar.dart';
@@ -13,53 +15,60 @@ class OnboardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final questions = onboardingQuestionnaire.questions;
+    final OnboardingCubit onboardingCubit = context.read<OnboardingCubit>();
+    final QuestionnaireCubit questionnaireCubit = context
+        .read<QuestionnaireCubit>();
+    final List<QuestionModel> questions = questionnaireCubit.getQuestions();
 
-    return BlocProvider(
-      create: (_) => OnboardingCubit(),
-      child: BlocBuilder<OnboardingCubit, OnboardingState>(
-        builder: (context, state) {
-          final cubit = context.read<OnboardingCubit>();
+    return BlocConsumer<OnboardingCubit, OnboardingState>(
+      listener: (context, state) {
+        if (state.isFinished) {
+          context.pushAndRemoveUntil(Routes.premiumView);
+        }
+      },
+      builder: (context, state) {
+        final int currentPageIndex = state.currentPageIndex;
+        final bool isFirstPage = currentPageIndex == 0;
+        final int questionsLength = questions.length;
 
-          return Scaffold(
-            body: Column(
-              children: [
-                SizedBox(height: state.currentPageIndex == 0 ? 80 : 60),
+        final List<String> selectedValues = questionnaireCubit
+            .getSelectedValuesForIndex(
+              index: currentPageIndex,
+              questions: questions,
+            );
 
-                OnboardingAppbar(
-                  currentPageIndex: state.currentPageIndex,
-                  questionsLength: questions.length,
-                  previousPage: cubit.previousPage,
+        return Scaffold(
+          body: Column(
+            children: [
+              SizedBox(height: isFirstPage ? 80 : 60),
+
+              OnboardingAppbar(
+                currentPageIndex: currentPageIndex,
+                questionsLength: questionsLength,
+                previousPage: onboardingCubit.previousPage,
+              ),
+
+              OnboardingPageView(
+                questions: questions,
+                onPageChanged: onboardingCubit.goToPage,
+                nextPage: onboardingCubit.nextPage,
+                onSelectOption: questionnaireCubit.selectOption,
+                pageController: onboardingCubit.pageController,
+              ),
+
+              if (!isFirstPage) ...[
+                QuestionnaireButton(
+                  currentPageIndex: currentPageIndex,
+                  onNext: onboardingCubit.nextPage,
+                  questionsLength: questionsLength,
+                  selectedValues: selectedValues,
                 ),
-
-                OnboardingPageView(
-                  onPageChanged: (index) {
-                    cubit.goToPage(index);
-                  },
-                  questions: questions,
-                  nextPage: cubit.nextPage,
-                  onSelectOption: cubit.selectOption,
-                ),
-
-                if (state.currentPageIndex != 0) ...[
-                  QuestionnaireButton(
-                    currentPageIndex: state.currentPageIndex,
-                    onNext: cubit.nextPage,
-                    onFinish: () => onFinishOnboarding(context),
-                    questionsLength: questions.length,
-                    selectedValues: state.currentPageIndex > 0
-                        ? state.answers[questions[state.currentPageIndex - 1]
-                                  .id] ??
-                              []
-                        : [],
-                  ),
-                  const SizedBox(height: 32),
-                ],
+                const SizedBox(height: 32),
               ],
-            ),
-          );
-        },
-      ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

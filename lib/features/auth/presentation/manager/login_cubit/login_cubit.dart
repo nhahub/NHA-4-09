@@ -15,13 +15,13 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> login({required String email, required String password}) async {
     emit(LoginLoadingState());
 
-    final Either<Failure, String> response = await authRepo.login(
+    final Either<Failure, void> response = await authRepo.login(
       email: email,
       password: password,
     );
     return response.fold(
       (failure) => emit(LoginFailureState(message: failure.message)),
-      (userId) => emit(LoginSuccessState(userId: userId)),
+      (userId) => emit(LoginSuccessState()),
     );
   }
 }

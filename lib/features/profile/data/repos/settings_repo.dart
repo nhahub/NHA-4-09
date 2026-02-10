@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:moodly/core/networking/api_error_handler.dart';
+import '../../../../core/networking/api_error_handler.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/services/supabase_auth_service.dart';
 

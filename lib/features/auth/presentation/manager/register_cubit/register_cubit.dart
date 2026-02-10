@@ -15,13 +15,13 @@ class RegisterCubit extends Cubit<RegisterState> {
   Future<void> register(String email, String password) async {
     emit(RegisterLoadingState());
 
-    final Either<Failure, String> response = await authRepo.register(
+    final Either<Failure, void> response = await authRepo.register(
       email: email,
       password: password,
     );
     return response.fold(
       (failure) => emit(RegisterFailureState(message: failure.message)),
-      (userId) => emit(RegisterSuccessState(userId: userId)),
+      (userId) => emit(RegisterSuccessState()),
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:moodly/core/errors/failure.dart';
+import '../errors/failure.dart';
 
 class ApiErrorModel extends Failure {
   ApiErrorModel({required super.message});

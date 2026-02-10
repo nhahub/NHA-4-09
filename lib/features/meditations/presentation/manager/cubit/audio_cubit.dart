@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../domain/audio_entity.dart';
 
 import '../../../../../core/errors/audio_error.dart';
 import '../../../../Community/data/services/audio_player_service.dart';
+import '../../../domain/audio_entity.dart';
 
 part 'audio_state.dart';
 
