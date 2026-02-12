@@ -12,12 +12,17 @@ class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit({required this.authRepo}) : super(RegisterInitialState());
 
   // Register
-  Future<void> register(String email, String password) async {
+  Future<void> register({
+    required String email,
+    required String password,
+    required String name,
+  }) async {
     emit(RegisterLoadingState());
 
     final Either<Failure, void> response = await authRepo.register(
       email: email,
       password: password,
+      name: name,
     );
     return response.fold(
       (failure) => emit(RegisterFailureState(message: failure.message)),

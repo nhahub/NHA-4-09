@@ -13,11 +13,10 @@ class QuestionnaireAnswersModel {
 
   Map<String, dynamic> toJson() {
     return {
-      'user_id': userId,
+      'id': userId,
       'q1_answers': q1,
       'q2_answers': q2,
       'q3_answers': q3,
-      'completed': true,
     };
   }
 }

@@ -21,7 +21,7 @@ class LoginViewBody extends StatelessWidget {
         child: BlocListener<LoginCubit, LoginState>(
           listener: (context, state) {
             if (state is LoginSuccessState) {
-              onLoginSuccess(context);
+              onLoginSuccess(context, isOldUser: state.isOldUser);
             } else if (state is LoginFailureState) {
               errorDialog(context: context, message: state.message);
             }
@@ -35,7 +35,7 @@ class LoginViewBody extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 30),
                   SvgPicture.asset(AppAssets.moodlyLogo, width: 90, height: 90),
                   const SizedBox(height: 80),
                   const LoginFormWidget(),
@@ -48,10 +48,13 @@ class LoginViewBody extends StatelessWidget {
     );
   }
 
-  void onLoginSuccess(BuildContext context) {
+  void onLoginSuccess(BuildContext context, {required bool isOldUser}) {
     successSnackBar(context: context, message: "Login Success");
     final bool hasSeenOnboarding = OnboardingLocalService.hasSeenOnboarding();
     if (hasSeenOnboarding) {
+      context.pushAndRemoveUntil(Routes.mainView);
+    } else if (isOldUser) {
+      OnboardingLocalService.setSeenOnboarding();
       context.pushAndRemoveUntil(Routes.mainView);
     } else {
       context.pushAndRemoveUntil(Routes.onboardingView);

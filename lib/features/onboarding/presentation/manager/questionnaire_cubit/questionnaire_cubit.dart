@@ -43,6 +43,7 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     emit(QuestionnaireLoadingState());
     final Either<Failure, void> result = await _questionnaireRepo
         .saveQuestionnaireAnswers(questionnaireAnswersModel);
+
     result.fold(
       (failure) => emit(QuestionnaireFailureState(message: failure.message)),
       (_) => emit(QuestionnaireUploadedState()),

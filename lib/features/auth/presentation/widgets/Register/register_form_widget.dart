@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/auth/presentation/widgets/Register/name_text_field.dart';
 
 import '../../../../../core/helpers/confirm_password_validator.dart';
 import '../../../../../core/widgets/app_text_button.dart';
@@ -18,6 +19,7 @@ class RegisterFormWidget extends StatefulWidget {
 
 class _RegisterFormWidgetState extends State<RegisterFormWidget> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
@@ -38,6 +40,8 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          NameTextField(nameController: _nameController),
+          const SizedBox(height: 20),
           EmailTextField(emailController: _emailController),
           const SizedBox(height: 20),
 
@@ -91,8 +95,9 @@ class _RegisterFormWidgetState extends State<RegisterFormWidget> {
   void validateThenRegister(BuildContext context) {
     if (formKey.currentState!.validate()) {
       context.read<RegisterCubit>().register(
-        _emailController.text.trim(),
-        _passwordController.text,
+        email: _emailController.text.trim(),
+        name: _nameController.text.trim(),
+        password: _passwordController.text,
       );
     }
   }

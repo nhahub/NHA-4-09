@@ -19,9 +19,17 @@ class LoginCubit extends Cubit<LoginState> {
       email: email,
       password: password,
     );
+
     return response.fold(
       (failure) => emit(LoginFailureState(message: failure.message)),
-      (userId) => emit(LoginSuccessState()),
+      (_) async {
+        final Either<Failure, bool> oldUserResponse = await authRepo
+            .isUserOld();
+        oldUserResponse.fold(
+          (failure) => emit(LoginFailureState(message: failure.message)),
+          (isOldUser) => emit(LoginSuccessState(isOldUser: isOldUser)),
+        );
+      },
     );
   }
 }

@@ -31,6 +31,23 @@ class SupabaseCRUDService {
     return List<Map<String, dynamic>>.from(res);
   }
 
+  /// Read / Get single row
+  Future<Map<String, dynamic>?> getSingleRow({
+    required String table,
+    required String whereColumn,
+    required dynamic whereValue,
+  }) async {
+    final res = await client
+        .from(table)
+        .select()
+        .eq(whereColumn, whereValue)
+        .maybeSingle();
+
+    if (res == null) return null;
+
+    return Map<String, dynamic>.from(res);
+  }
+
   /// Update data
   Future<void> updateData({
     required String table,

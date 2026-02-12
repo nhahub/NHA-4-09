@@ -1,5 +1,4 @@
 import 'package:get_it/get_it.dart';
-import '../../features/onboarding/data/Services/onboarding_local_service.dart';
 import '../../features/onboarding/data/Services/questionnaire_service.dart';
 import '../../features/onboarding/data/repos/questionnaire_repo.dart';
 import '../../features/Community/data/services/audio_player_service.dart';
@@ -14,11 +13,6 @@ final getIt = GetIt.instance;
 Future<void> setupGetIt() async {
   // Supabase CRUD Service
   getIt.registerLazySingleton<SupabaseCRUDService>(() => SupabaseCRUDService());
-
-  // Onboarding
-  getIt.registerLazySingleton<OnboardingLocalService>(
-    () => OnboardingLocalService(),
-  );
 
   // Qestionnaire
   getIt.registerLazySingleton<QuestionnaireService>(
@@ -36,7 +30,7 @@ Future<void> setupGetIt() async {
 
   // AuthRepo
   getIt.registerLazySingleton<AuthRepo>(
-    () => AuthRepo(supabaseAuthService: getIt()),
+    () => AuthRepo(supabaseAuthService: getIt(), supabaseCRUDService: getIt()),
   );
 
   // SettingsRepo
