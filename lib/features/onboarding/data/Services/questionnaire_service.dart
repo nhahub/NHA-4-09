@@ -22,7 +22,7 @@ class QuestionnaireService {
     await _supabaseService.updateData(
       table: kProfilesTable,
       data: {"is_old_user": true},
-      idColumn: "is_old_user",
+      idColumn: "id",
       idValue: getUser()!.userId,
     );
   }

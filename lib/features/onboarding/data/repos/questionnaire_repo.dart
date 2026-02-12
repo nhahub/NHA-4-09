@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import '../../../../core/helpers/logger.dart';
 import '../Services/questionnaire_service.dart';
 import '../models/question_model.dart';
 import '../models/questionnaire_answers_model.dart';
@@ -34,6 +35,7 @@ class QuestionnaireRepo {
       await _questionnaireService.updateUserDataRemote();
       return right(null);
     } catch (e) {
+      Logger.log(e.toString());
       return left(ApiErrorHandler.handle(error: e));
     }
   }

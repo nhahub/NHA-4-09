@@ -39,6 +39,7 @@ class AuthRepo {
   }
 
   Future<Either<Failure, void>> register({
+    required String name,
     required String email,
     required String password,
   }) async {
@@ -50,6 +51,8 @@ class AuthRepo {
       await saveUserDataRemote(
         userDataModel: UserDataModel(
           userId: response.user!.id,
+          email: response.user!.email,
+          name: name,
           isOldUser: false,
         ),
       );
@@ -80,6 +83,7 @@ class AuthRepo {
       );
       return right(null);
     } catch (e) {
+      Logger.log(e.toString());
       return left(ApiErrorHandler.handle(error: e));
     }
   }
@@ -95,6 +99,7 @@ class AuthRepo {
       UserDataModel userDataModel = UserDataModel.fromJson(currentUser!);
       return right(userDataModel.isOldUser!);
     } catch (e) {
+      Logger.log(e.toString());
       return left(ApiErrorHandler.handle(error: e));
     }
   }

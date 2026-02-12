@@ -10,6 +10,9 @@ class UserDataModel {
   final String? email;
   final String? phone;
   final String? image;
+  final String? gender;
+  @JsonKey(name: 'birth_date')
+  final String? birthDate;
   @JsonKey(name: 'is_old_user')
   final bool? isOldUser;
 
@@ -20,6 +23,8 @@ class UserDataModel {
     this.phone,
     this.image,
     this.isOldUser,
+    this.gender,
+    this.birthDate,
   });
 
   factory UserDataModel.fromJson(Map<String, dynamic> json) =>

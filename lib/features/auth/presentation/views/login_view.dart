@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:moodly/features/home/presentation/widgets/shared/back_button_appbar.dart';
 
 import '../widgets/login/login_view_body.dart';
 
@@ -13,7 +14,7 @@ class LoginView extends StatelessWidget {
         statusBarIconBrightness: Brightness.dark,
         statusBarBrightness: Brightness.light,
       ),
-      child: Scaffold(body: LoginViewBody()),
+      child: Scaffold(appBar: BackButtonAppbar(), body: LoginViewBody()),
     );
   }
 }

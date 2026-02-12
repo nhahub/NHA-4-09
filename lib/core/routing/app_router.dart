@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../features/onboarding/data/Services/onboarding_local_service.dart';
 import '../../features/onboarding/data/repos/questionnaire_repo.dart';
 import '../../features/onboarding/presentation/manager/onboarding_cubit/onboarding_cubit.dart';
 import '../../features/onboarding/presentation/manager/questionnaire_cubit/questionnaire_cubit.dart';
@@ -91,11 +90,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => MultiBlocProvider(
             providers: [
-              BlocProvider(
-                create: (context) => OnboardingCubit(
-                  localService: getIt.get<OnboardingLocalService>(),
-                ),
-              ),
+              BlocProvider(create: (context) => OnboardingCubit()),
               BlocProvider(
                 create: (context) => QuestionnaireCubit(
                   questionnaireRepo: getIt.get<QuestionnaireRepo>(),

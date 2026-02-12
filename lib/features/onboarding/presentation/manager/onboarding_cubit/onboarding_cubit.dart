@@ -6,14 +6,13 @@ import '../../../data/models/questionnaire_model.dart';
 import 'onboarding_state.dart';
 
 class OnboardingCubit extends Cubit<OnboardingState> {
-  final OnboardingLocalService localService;
   final PageController pageController = PageController();
 
-  OnboardingCubit({required this.localService})
+  OnboardingCubit()
     : super(const OnboardingState());
 
   Future<void> finishOnboarding() async {
-    await localService.setSeenOnboarding();
+    await OnboardingLocalService.setSeenOnboarding();
     emit(state.copyWith(isFinished: true));
   }
 

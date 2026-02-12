@@ -9,9 +9,9 @@ import '../../../../../core/widgets/custom_circle_button.dart';
 import '../../../../../core/widgets/fade_scrollable.dart';
 
 class BackButtonAppbar extends StatelessWidget implements PreferredSizeWidget {
-  final String title;
+  final String? title;
   static const double height = 80;
-  const BackButtonAppbar({super.key, required this.title});
+  const BackButtonAppbar({super.key, this.title});
 
   @override
   Size get preferredSize => const Size.fromHeight(height);
@@ -44,7 +44,7 @@ class BackButtonAppbar extends StatelessWidget implements PreferredSizeWidget {
                         )
                       : const SizedBox.shrink(),
                   SizedBox(width: context.canPop ? 15 : kAppHorizontalPadding),
-                  Text(title, style: AppStyles.extraBold21),
+                  Text(title ?? "", style: AppStyles.extraBold21),
                 ],
               ),
             ),
