@@ -75,7 +75,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
 
   void validateThenLogin(BuildContext context) {
     if (formKey.currentState!.validate()) {
-      context.read<LoginCubit>().login(
+      context.read<LoginCubit>().loginWithEmail(
         email: emailController.text,
         password: passwordController.text,
       );

@@ -3,7 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class SupabaseAuthService {
   final SupabaseClient _supabase = Supabase.instance.client;
   // Login
-  Future<AuthResponse> login({
+  Future<AuthResponse> loginWithEmail({
     required String email,
     required String password,
   }) async {
@@ -12,6 +12,12 @@ class SupabaseAuthService {
       password: password,
     );
     return response;
+  }
+
+  // Your Task (Ahmed)
+  Future<AuthResponse> loginWithGoogle() async {
+    // Write your code here
+    return AuthResponse();
   }
 
   // Register
