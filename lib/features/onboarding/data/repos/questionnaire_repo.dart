@@ -22,17 +22,18 @@ class QuestionnaireRepo {
   ) async {
     try {
       await _questionnaireService.saveQuestionnaireAnswers(model);
+      await updateUserDataRemote();
       return right(null);
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));
     }
   }
 
-  Future<Either<Failure, bool>> isCompleted(String userId) async {
+  Future<Either<Failure, void>> updateUserDataRemote() async {
     try {
-      final bool isCompleted = await _questionnaireService.isCompleted(userId);
-      return right(isCompleted);
-    } on Exception catch (e) {
+      await _questionnaireService.updateUserDataRemote();
+      return right(null);
+    } catch (e) {
       return left(ApiErrorHandler.handle(error: e));
     }
   }

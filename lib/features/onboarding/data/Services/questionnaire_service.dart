@@ -1,3 +1,5 @@
+import 'package:moodly/core/functions/get_user.dart';
+
 import '../../../../core/services/supabase_crud_service.dart';
 import '../models/questionnaire_answers_model.dart';
 
@@ -16,14 +18,12 @@ class QuestionnaireService {
     );
   }
 
-  Future<bool> isCompleted(String userId) async {
-    final res = await _supabaseService.getData(
-      table: kQuestionnaireAnswersTable,
-      limit: 1,
+  Future<void> updateUserDataRemote() async {
+    await _supabaseService.updateData(
+      table: kProfilesTable,
+      data: {"is_old_user": true},
+      idColumn: "is_old_user",
+      idValue: getUser()!.userId,
     );
-
-    if (res.isEmpty) return false;
-
-    return res.any((row) => row['user_id'] == userId);
   }
 }

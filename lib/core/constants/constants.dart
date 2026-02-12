@@ -11,8 +11,6 @@ const double kAppSectionSpacing = 21.0;
 const String kHasSeenOnboarding = "hasSeenOnboarding";
 const String kUserData = "userData";
 
-
 // Tables
+const String kProfilesTable = "profiles";
 const String kQuestionnaireAnswersTable = "questionnaire_answers";
-
-
