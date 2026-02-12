@@ -10,7 +10,6 @@ class OnboardingPageView extends StatelessWidget {
   final void Function(int)? onPageChanged;
   final List<QuestionModel> questions;
   final void Function() nextPage;
-  final void Function(String questionId, String optionId) onSelectOption;
   final PageController pageController;
 
   const OnboardingPageView({
@@ -18,7 +17,6 @@ class OnboardingPageView extends StatelessWidget {
     required this.onPageChanged,
     required this.questions,
     required this.nextPage,
-    required this.onSelectOption,
     required this.pageController,
   });
 
@@ -42,13 +40,18 @@ class OnboardingPageView extends StatelessWidget {
           >(
             selector: (state) => state.answers[question.id] ?? [],
             builder: (context, selectedValues) {
+              final QuestionnaireCubit questionnaireCubit = context
+                  .read<QuestionnaireCubit>();
               return QuestionWidget(
                 key: ValueKey(question.id),
                 question: question.question,
                 options: question.options,
                 selectedValues: selectedValues,
                 onSelect: (optionId) {
-                  onSelectOption(question.id, optionId);
+                  questionnaireCubit.selectOption(
+                    questionId: question.id,
+                    optionId: optionId,
+                  );
                 },
               );
             },

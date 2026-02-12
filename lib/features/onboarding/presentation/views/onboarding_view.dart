@@ -23,19 +23,13 @@ class OnboardingView extends StatelessWidget {
     return BlocConsumer<OnboardingCubit, OnboardingState>(
       listener: (context, state) {
         if (state.isFinished) {
-          context.pushAndRemoveUntil(Routes.premiumView);
+          context.pushAndRemoveUntil(Routes.premiumView, args: false);
         }
       },
       builder: (context, state) {
         final int currentPageIndex = state.currentPageIndex;
         final bool isFirstPage = currentPageIndex == 0;
         final int questionsLength = questions.length;
-
-        final List<String> selectedValues = questionnaireCubit
-            .getSelectedValuesForIndex(
-              index: currentPageIndex,
-              questions: questions,
-            );
 
         return Scaffold(
           body: Column(
@@ -52,16 +46,29 @@ class OnboardingView extends StatelessWidget {
                 questions: questions,
                 onPageChanged: onboardingCubit.goToPage,
                 nextPage: onboardingCubit.nextPage,
-                onSelectOption: questionnaireCubit.selectOption,
                 pageController: onboardingCubit.pageController,
               ),
 
               if (!isFirstPage) ...[
-                QuestionnaireButton(
-                  currentPageIndex: currentPageIndex,
-                  onNext: onboardingCubit.nextPage,
-                  questionsLength: questionsLength,
-                  selectedValues: selectedValues,
+                BlocSelector<
+                  QuestionnaireCubit,
+                  QuestionnaireState,
+                  List<String>
+                >(
+                  selector: (state) {
+                    if (currentPageIndex == 0) return [];
+                    final id = questions[currentPageIndex - 1].id;
+                    return state.answers[id] ?? [];
+                  },
+                  builder: (context, selectedValues) {
+                    return QuestionnaireButton(
+                      questions: questions,
+                      currentPageIndex: currentPageIndex,
+                      onNext: onboardingCubit.nextPage,
+                      questionsLength: questionsLength,
+                      selectedValues: selectedValues,
+                    );
+                  },
                 ),
                 const SizedBox(height: 32),
               ],

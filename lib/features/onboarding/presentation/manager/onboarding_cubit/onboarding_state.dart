@@ -19,5 +19,5 @@ class OnboardingState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [currentPageIndex];
+  List<Object?> get props => [currentPageIndex, isFinished];
 }

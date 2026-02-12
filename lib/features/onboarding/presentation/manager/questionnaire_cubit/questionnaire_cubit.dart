@@ -21,7 +21,7 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     return result;
   }
 
-  void selectOption(String questionId, String optionId) {
+  void selectOption({required String questionId, required String optionId}) {
     final newAnswers = Map<String, List<String>>.from(state.answers);
 
     final currentList = List<String>.from(newAnswers[questionId] ?? []);
@@ -35,15 +35,6 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     newAnswers[questionId] = currentList;
 
     emit(state.copyWith(answers: newAnswers));
-  }
-
-  List<String> getSelectedValuesForIndex({
-    required int index,
-    required List questions,
-  }) {
-    if (index == 0) return [];
-    final id = questions[index - 1].id;
-    return state.answers[id] ?? [];
   }
 
   Future<void> saveQuestionnaireAnswers({

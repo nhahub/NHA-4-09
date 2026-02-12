@@ -43,9 +43,4 @@ class SupabaseAuthService {
   Future<void> resetPassword({required String newPassword}) async {
     await _supabase.auth.updateUser(UserAttributes(password: newPassword));
   }
-
-  Future<String> getUserId() async {
-    final User? currentUser = _supabase.auth.currentUser;
-    return currentUser!.id;
-  }
 }

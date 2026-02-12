@@ -13,7 +13,7 @@ class FreeContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(Routes.premiumView);
+        context.push(Routes.premiumView, args: true);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),

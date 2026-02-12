@@ -21,7 +21,9 @@ class AuthRepo {
         email: email,
         password: password,
       );
-      await saveUser(userDataModel: UserDataModel(userId: response.user!.id));
+      if (getUser() == null) {
+        await saveUser(userDataModel: UserDataModel(userId: response.user!.id));
+      }
       return right(null);
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));
