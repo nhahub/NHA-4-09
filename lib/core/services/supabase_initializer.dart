@@ -1,4 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
+
 import '../constants/constants.dart';
 
 class SupabaseInitializer {

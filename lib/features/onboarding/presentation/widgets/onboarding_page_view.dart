@@ -1,57 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../manager/questionnaire_cubit/questionnaire_cubit.dart';
 
 import '../../data/models/question_model.dart';
-import '../manager/onboarding_cubit/onboarding_cubit.dart';
-import '../manager/onboarding_cubit/onboarding_state.dart';
 import '../views/welcome_view.dart';
 import 'question_widget.dart';
 
-class OnboardingPageView extends StatefulWidget {
+class OnboardingPageView extends StatelessWidget {
   final void Function(int)? onPageChanged;
   final List<QuestionModel> questions;
   final void Function() nextPage;
-  final void Function(String questionId, String optionId) onSelectOption;
+  final PageController pageController;
 
   const OnboardingPageView({
     super.key,
     required this.onPageChanged,
     required this.questions,
     required this.nextPage,
-    required this.onSelectOption,
+    required this.pageController,
   });
 
   @override
-  State<OnboardingPageView> createState() => _OnboardingPageViewState();
-}
-
-class _OnboardingPageViewState extends State<OnboardingPageView> {
-  @override
   Widget build(BuildContext context) {
-    final cubit = context.read<OnboardingCubit>();
-
     return Expanded(
       child: PageView.builder(
-        controller: cubit.pageController,
+        controller: pageController,
         physics: const NeverScrollableScrollPhysics(),
-        onPageChanged: widget.onPageChanged,
-        itemCount: widget.questions.length + 1,
+        onPageChanged: onPageChanged,
+        itemCount: questions.length + 1,
         itemBuilder: (context, index) {
-          if (index == 0) return WelcomeView(onNext: widget.nextPage);
+          if (index == 0) return WelcomeView(onNext: nextPage);
 
-          final question = widget.questions[index - 1];
+          final question = questions[index - 1];
 
-          return BlocBuilder<OnboardingCubit, OnboardingState>(
-            builder: (context, state) {
-              final selectedValues = state.answers[question.id] ?? [];
+          return BlocSelector<
+            QuestionnaireCubit,
+            QuestionnaireState,
+            List<String>
+          >(
+            selector: (state) => state.answers[question.id] ?? [],
+            builder: (context, selectedValues) {
+              final QuestionnaireCubit questionnaireCubit = context
+                  .read<QuestionnaireCubit>();
               return QuestionWidget(
                 key: ValueKey(question.id),
                 question: question.question,
                 options: question.options,
                 selectedValues: selectedValues,
                 onSelect: (optionId) {
-                  widget.onSelectOption(question.id, optionId);
-                  setState(() {});
+                  questionnaireCubit.selectOption(
+                    questionId: question.id,
+                    optionId: optionId,
+                  );
                 },
               );
             },

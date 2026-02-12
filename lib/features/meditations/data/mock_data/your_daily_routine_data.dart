@@ -1,5 +1,5 @@
-import 'package:moodly/features/meditations/domain/video_entity.dart';
 import '../../../../core/theming/app_assets.dart';
+import '../../domain/video_entity.dart';
 
 const List<VideoEntity> yourDailyRoutineData = [
   VideoEntity(

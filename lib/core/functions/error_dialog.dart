@@ -5,8 +5,11 @@ import '../helpers/alpha_from_percent.dart';
 import '../theming/app_colors.dart';
 import '../theming/app_styles.dart';
 
-void errorDialog({required BuildContext context, required String message}) {
-  showDialog(
+Future<void> errorDialog({
+  required BuildContext context,
+  required String message,
+}) async {
+  return showDialog(
     context: context,
     builder: (context) {
       return ErrorDialog(message: message);
@@ -16,8 +19,9 @@ void errorDialog({required BuildContext context, required String message}) {
 
 class ErrorDialog extends StatelessWidget {
   final String message;
+  final VoidCallback? onPressed;
 
-  const ErrorDialog({super.key, required this.message});
+  const ErrorDialog({super.key, required this.message, this.onPressed});
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-
+import '../../../../onboarding/data/Services/onboarding_local_service.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/functions/build_snack_bar.dart';
 import '../../../../../core/functions/error_dialog.dart';
@@ -21,8 +21,7 @@ class LoginViewBody extends StatelessWidget {
         child: BlocListener<LoginCubit, LoginState>(
           listener: (context, state) {
             if (state is LoginSuccessState) {
-              successSnackBar(context: context, message: "Login Success");
-              context.pushAndRemoveUntil(Routes.mainView);
+              onLoginSuccess(context);
             } else if (state is LoginFailureState) {
               errorDialog(context: context, message: state.message);
             }
@@ -47,5 +46,15 @@ class LoginViewBody extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void onLoginSuccess(BuildContext context) {
+    successSnackBar(context: context, message: "Login Success");
+    final bool hasSeenOnboarding = OnboardingLocalService.hasSeenOnboarding();
+    if (hasSeenOnboarding) {
+      context.pushAndRemoveUntil(Routes.mainView);
+    } else {
+      context.pushAndRemoveUntil(Routes.onboardingView);
+    }
   }
 }

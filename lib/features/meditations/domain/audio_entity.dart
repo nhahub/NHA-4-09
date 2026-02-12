@@ -1,4 +1,4 @@
-import 'package:moodly/core/entities/media_entity.dart';
+import '../../../core/entities/media_entity.dart';
 
 class AudioEntity extends MediaEntity {
   final String audioUrl;

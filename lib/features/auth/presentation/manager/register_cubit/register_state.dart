@@ -11,10 +11,7 @@ final class RegisterInitialState extends RegisterState {}
 
 final class RegisterLoadingState extends RegisterState {}
 
-final class RegisterSuccessState extends RegisterState {
-  final String userId;
-  const RegisterSuccessState({required this.userId});
-}
+final class RegisterSuccessState extends RegisterState {}
 
 final class RegisterFailureState extends RegisterState {
   final String message;

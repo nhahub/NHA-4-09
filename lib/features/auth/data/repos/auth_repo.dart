@@ -1,7 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../../../core/networking/auth_error_handler.dart';
+import '../../../../core/errors/failure.dart';
+import '../../../../core/functions/get_user.dart';
+import '../../../../core/models/user_data_model.dart';
+import '../../../../core/networking/api_error_handler.dart';
 import '../../../../core/services/supabase_auth_service.dart';
 
 class AuthRepo {
@@ -9,7 +12,7 @@ class AuthRepo {
 
   AuthRepo({required this.supabaseAuthService});
 
-  Future<Either<String, String>> login({
+  Future<Either<Failure, void>> login({
     required String email,
     required String password,
   }) async {
@@ -18,36 +21,37 @@ class AuthRepo {
         email: email,
         password: password,
       );
-      return Right(response.user!.id);
-    } on Exception catch (e) {
-      return Left(AuthErrorHandler.handle(error: e));
+      if (getUser() == null) {
+        await saveUser(userDataModel: UserDataModel(userId: response.user!.id));
+      }
+      return right(null);
+    } catch (e) {
+      return left(ApiErrorHandler.handle(error: e));
     }
   }
 
-  Future<Either<String, String>> register({
+  Future<Either<Failure, void>> register({
     required String email,
     required String password,
   }) async {
     try {
-      final response = await supabaseAuthService.register(
+      final AuthResponse response = await supabaseAuthService.register(
         email: email,
         password: password,
       );
-      if (response.user != null) {
-        await supabaseAuthService.logout();
-      }
-      return Right(response.user!.id);
-    } on Exception catch (e) {
-      return Left(AuthErrorHandler.handle(error: e));
+      await saveUser(userDataModel: UserDataModel(userId: response.user!.id));
+      return right(null);
+    } catch (e) {
+      return left(ApiErrorHandler.handle(error: e));
     }
   }
 
-  Future<Either<String, Unit>> forgotPassword({required String email}) async {
+  Future<Either<Failure, void>> forgotPassword({required String email}) async {
     try {
       await supabaseAuthService.forgotPassword(email: email);
-      return const Right(unit);
-    } on Exception catch (e) {
-      return Left(AuthErrorHandler.handle(error: e));
+      return right(null);
+    } catch (e) {
+      return left(ApiErrorHandler.handle(error: e));
     }
   }
 }

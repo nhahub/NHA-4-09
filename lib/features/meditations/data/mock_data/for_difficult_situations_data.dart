@@ -1,4 +1,4 @@
-import 'package:moodly/features/meditations/domain/audio_entity.dart';
+import '../../domain/audio_entity.dart';
 import '../../../../core/theming/app_assets.dart';
 
 const List<AudioEntity> forDifficultSituationsData = [

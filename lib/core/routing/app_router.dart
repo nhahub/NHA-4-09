@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/services/app_launch_decider.dart';
-import 'package:moodly/features/meditations/domain/audio_entity.dart';
+import '../../features/onboarding/data/Services/onboarding_local_service.dart';
+import '../../features/onboarding/data/repos/questionnaire_repo.dart';
+import '../../features/onboarding/presentation/manager/onboarding_cubit/onboarding_cubit.dart';
+import '../../features/onboarding/presentation/manager/questionnaire_cubit/questionnaire_cubit.dart';
+import '../../features/Community/data/services/audio_player_service.dart';
+import '../../features/meditations/presentation/manager/cubit/audio_cubit.dart';
+import '../services/app_launch_decider.dart';
+import '../../features/meditations/domain/audio_entity.dart';
 import '../../features/profile/data/repos/settings_repo.dart';
 import '../services/get_it_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -82,7 +88,23 @@ class AppRouter {
         );
 
       case Routes.onboardingView:
-        return MaterialPageRoute(builder: (context) => const OnboardingView());
+        return MaterialPageRoute(
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => OnboardingCubit(
+                  localService: getIt.get<OnboardingLocalService>(),
+                ),
+              ),
+              BlocProvider(
+                create: (context) => QuestionnaireCubit(
+                  questionnaireRepo: getIt.get<QuestionnaireRepo>(),
+                ),
+              ),
+            ],
+            child: const OnboardingView(),
+          ),
+        );
 
       case Routes.mainView:
         return MaterialPageRoute(
@@ -111,7 +133,13 @@ class AppRouter {
       case Routes.audioView:
         final AudioEntity audioEntity = settings.arguments as AudioEntity;
         return MaterialPageRoute(
-          builder: (context) => AudioView(audioEntity: audioEntity),
+          builder: (context) => BlocProvider(
+            create: (context) => AudioCubit(
+              audioService: getIt.get<AudioPlayerService>(),
+              audioEntity: audioEntity,
+            )..initAudio(audioUrl: audioEntity.audioUrl),
+            child: const AudioView(),
+          ),
         );
 
       case Routes.therapistDetailsView:
@@ -131,8 +159,9 @@ class AppRouter {
         );
 
       case Routes.premiumView:
+        final bool withClose = settings.arguments as bool;
         return MaterialPageRoute(
-          builder: (context) => const PremiumView(withClose: false),
+          builder: (context) => PremiumView(withClose: withClose),
         );
 
       case Routes.subscribeView:

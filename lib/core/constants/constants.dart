@@ -8,3 +8,11 @@ class AppConstants {
 const double kAppHorizontalPadding = 26.72;
 const double kAppVerticalPadding = 26.72;
 const double kAppSectionSpacing = 21.0;
+const String kHasSeenOnboarding = "hasSeenOnboarding";
+const String kUserData = "userData";
+
+
+// Tables
+const String kQuestionnaireAnswersTable = "questionnaire_answers";
+
+

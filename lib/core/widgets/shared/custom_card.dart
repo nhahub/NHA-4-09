@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/entities/media_entity.dart';
+
+import '../../entities/media_entity.dart';
 import 'card_description_container.dart';
 import 'category_container.dart';
 import 'play_button.dart';
