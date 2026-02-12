@@ -18,7 +18,7 @@ UserDataModel? getUser() {
   }
 }
 
-Future<void> saveUser({required UserDataModel userDataModel}) async {
+Future<void> saveUserDataLocal({required UserDataModel userDataModel}) async {
   final jsonString = jsonEncode(userDataModel.toJson());
   await CacheHelper.set(key: kUserData, value: jsonString);
 }

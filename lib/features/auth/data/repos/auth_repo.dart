@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/core/helpers/logger.dart';
 import 'package:moodly/core/services/supabase_crud_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -19,21 +18,36 @@ class AuthRepo {
     required this.supabaseCRUDService,
   });
 
-  Future<Either<Failure, void>> login({
+  Future<Either<Failure, void>> loginWithEmail({
     required String email,
     required String password,
   }) async {
     try {
-      final AuthResponse response = await supabaseAuthService.login(
+      final AuthResponse response = await supabaseAuthService.loginWithEmail(
         email: email,
         password: password,
       );
       if (getUser() == null) {
-        await saveUser(userDataModel: UserDataModel(userId: response.user!.id));
+        await saveUserDataLocal(
+          userDataModel: UserDataModel(userId: response.user!.id),
+        );
       }
       return right(null);
     } catch (e) {
-      Logger.log(e.toString());
+      return left(ApiErrorHandler.handle(error: e));
+    }
+  }
+
+  Future<Either<Failure, void>> loginWithGoogle() async {
+    try {
+      final AuthResponse response = await supabaseAuthService.loginWithGoogle();
+      if (getUser() == null) {
+        await saveUserDataLocal(
+          userDataModel: UserDataModel(userId: response.user!.id),
+        );
+      }
+      return right(null);
+    } catch (e) {
       return left(ApiErrorHandler.handle(error: e));
     }
   }
@@ -56,10 +70,11 @@ class AuthRepo {
           isOldUser: false,
         ),
       );
-      await saveUser(userDataModel: UserDataModel(userId: response.user!.id));
+      await saveUserDataLocal(
+        userDataModel: UserDataModel(userId: response.user!.id),
+      );
       return right(null);
     } catch (e) {
-      Logger.log(e.toString());
       return left(ApiErrorHandler.handle(error: e));
     }
   }
@@ -83,12 +98,11 @@ class AuthRepo {
       );
       return right(null);
     } catch (e) {
-      Logger.log(e.toString());
       return left(ApiErrorHandler.handle(error: e));
     }
   }
 
-  Future<Either<Failure, bool>> isUserOld() async {
+  Future<Either<Failure, bool?>> isUserOld() async {
     try {
       Map<String, dynamic>? currentUser = await supabaseCRUDService
           .getSingleRow(
@@ -99,7 +113,6 @@ class AuthRepo {
       UserDataModel userDataModel = UserDataModel.fromJson(currentUser!);
       return right(userDataModel.isOldUser!);
     } catch (e) {
-      Logger.log(e.toString());
       return left(ApiErrorHandler.handle(error: e));
     }
   }
