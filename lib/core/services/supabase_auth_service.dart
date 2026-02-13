@@ -16,8 +16,34 @@ class SupabaseAuthService {
 
   // Your Task (Ahmed)
   Future<AuthResponse> loginWithGoogle() async {
-    // Write your code here
-    return AuthResponse();
+    // Initiate Google OAuth flow
+    await _supabase.auth.signInWithOAuth(
+      OAuthProvider.google,
+      redirectTo: 'moodly://auth/callback',
+      queryParams: const {
+        // Force account chooser each time
+        'prompt': 'select_account',
+      },
+    );
+
+    // Wait for auth state change with timeout
+    final response = await _supabase.auth.onAuthStateChange
+        .where((state) =>
+            state.event == AuthChangeEvent.signedIn ||
+            state.event == AuthChangeEvent.userUpdated)
+        .timeout(
+          const Duration(seconds: 30),
+          onTimeout: (sink) {
+            throw Exception('Login timeout. Please try again.');
+          },
+        )
+        .first;
+
+    // Return the auth response
+    return AuthResponse(
+      session: response.session,
+      user: response.session?.user,
+    );
   }
 
   // Register

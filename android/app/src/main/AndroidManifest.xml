@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:label="Moodly"
         android:name="${applicationName}"
@@ -30,6 +32,18 @@
                 <data
                     android:scheme="moodly"
                     android:host="reset-password"/>
+            </intent-filter>
+
+            <!-- GOOGLE OAUTH CALLBACK -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:scheme="moodly"
+                    android:host="auth"/>
             </intent-filter>
 
             <meta-data

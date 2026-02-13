@@ -74,7 +74,6 @@ flutter:
     - assets/svgs/
     - assets/images/
     - assets/mock_images/
-    - assets/logo/
     - .env
 
   fonts:

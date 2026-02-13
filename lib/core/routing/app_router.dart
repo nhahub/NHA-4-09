@@ -43,6 +43,13 @@ import 'routes.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
+    final String routeName = settings.name ?? '';
+    if (routeName.contains('callback')) {
+      return MaterialPageRoute(
+        builder: (_) => AppLaunchDecider.decideStartView(),
+      );
+    }
+
     switch (settings.name) {
       case Routes.root:
         return MaterialPageRoute(
