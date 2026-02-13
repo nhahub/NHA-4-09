@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:moodly/core/constants/constants.dart';
 import 'package:moodly/core/services/supabase_crud_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -18,7 +17,7 @@ class AuthRepo {
     required this.supabaseCRUDService,
   });
 
-  Future<Either<Failure, void>> loginWithEmail({
+  Future<Either<Failure, AuthResponse>> loginWithEmail({
     required String email,
     required String password,
   }) async {
@@ -29,24 +28,34 @@ class AuthRepo {
       );
       if (getUser() == null) {
         await saveUserDataLocal(
-          userDataModel: UserDataModel(userId: response.user!.id),
+          userDataModel: UserDataModel(
+            userId: response.user!.id,
+            email: response.user!.email,
+            name: response.user!.userMetadata!['name'],
+            isOldUser: response.user!.userMetadata!['is_old_user'],
+          ),
         );
       }
-      return right(null);
+      return right(response);
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));
     }
   }
 
-  Future<Either<Failure, void>> loginWithGoogle() async {
+  Future<Either<Failure, AuthResponse>> loginWithGoogle() async {
     try {
       final AuthResponse response = await supabaseAuthService.loginWithGoogle();
       if (getUser() == null) {
         await saveUserDataLocal(
-          userDataModel: UserDataModel(userId: response.user!.id),
+          userDataModel: UserDataModel(
+            userId: response.user!.id,
+            email: response.user!.email,
+            name: response.user!.userMetadata!['name'],
+            isOldUser: response.user!.userMetadata!['is_old_user'],
+          ),
         );
       }
-      return right(null);
+      return right(response);
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));
     }
@@ -59,19 +68,17 @@ class AuthRepo {
   }) async {
     try {
       final AuthResponse response = await supabaseAuthService.register(
+        name: name,
         email: email,
         password: password,
       );
-      await saveUserDataRemote(
+      await saveUserDataLocal(
         userDataModel: UserDataModel(
           userId: response.user!.id,
           email: response.user!.email,
-          name: name,
-          isOldUser: false,
+          name: response.user!.userMetadata!['name'],
+          isOldUser: response.user!.userMetadata!['is_old_user'],
         ),
-      );
-      await saveUserDataLocal(
-        userDataModel: UserDataModel(userId: response.user!.id),
       );
       return right(null);
     } catch (e) {
@@ -83,35 +90,6 @@ class AuthRepo {
     try {
       await supabaseAuthService.forgotPassword(email: email);
       return right(null);
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
-  }
-
-  Future<Either<Failure, void>> saveUserDataRemote({
-    required UserDataModel userDataModel,
-  }) async {
-    try {
-      await supabaseCRUDService.addData(
-        table: kProfilesTable,
-        data: userDataModel.toJson(),
-      );
-      return right(null);
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
-  }
-
-  Future<Either<Failure, bool?>> isUserOld() async {
-    try {
-      Map<String, dynamic>? currentUser = await supabaseCRUDService
-          .getSingleRow(
-            table: kProfilesTable,
-            whereColumn: 'id',
-            whereValue: getUser()!.userId,
-          );
-      UserDataModel userDataModel = UserDataModel.fromJson(currentUser!);
-      return right(userDataModel.isOldUser!);
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));
     }
