@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/auth/presentation/widgets/Register/name_text_field.dart';
+import 'name_text_field.dart';
 
 import '../../../../../core/helpers/confirm_password_validator.dart';
 import '../../../../../core/widgets/app_text_button.dart';

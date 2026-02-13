@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../data/models/question_model.dart';
-import '../../../data/repos/questionnaire_repo.dart';
 
 import '../../../../../core/errors/failure.dart';
+import '../../../data/models/question_model.dart';
 import '../../../data/models/questionnaire_answers_model.dart';
+import '../../../data/repos/questionnaire_repo.dart';
 
 part 'questionnaire_state.dart';
 

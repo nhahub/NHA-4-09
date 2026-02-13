@@ -1,12 +1,12 @@
 import 'package:dartz/dartz.dart';
+
+import '../../../../core/errors/failure.dart';
 import '../../../../core/helpers/logger.dart';
+import '../../../../core/networking/api_error_handler.dart';
 import '../Services/questionnaire_service.dart';
 import '../models/question_model.dart';
 import '../models/questionnaire_answers_model.dart';
 import '../models/questionnaire_model.dart';
-
-import '../../../../core/errors/failure.dart';
-import '../../../../core/networking/api_error_handler.dart';
 
 class QuestionnaireRepo {
   final QuestionnaireService _questionnaireService;
@@ -32,7 +32,7 @@ class QuestionnaireRepo {
 
   Future<Either<Failure, void>> updateUserDataRemote() async {
     try {
-      await _questionnaireService.updateUserDataRemote();
+      await _questionnaireService.updateUserStatus();
       return right(null);
     } catch (e) {
       Logger.log(e.toString());

@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
-import '../../../../core/networking/api_error_handler.dart';
+
 import '../../../../core/errors/failure.dart';
+import '../../../../core/networking/api_error_handler.dart';
 import '../../../../core/services/supabase_auth_service.dart';
 
 class SettingsRepo {

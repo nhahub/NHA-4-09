@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:moodly/core/services/supabase_crud_service.dart';
+import '../../../../core/services/supabase_crud_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../core/errors/failure.dart';

@@ -58,4 +58,8 @@ class SupabaseAuthService {
   Future<void> resetPassword({required String newPassword}) async {
     await _supabase.auth.updateUser(UserAttributes(password: newPassword));
   }
+
+  Future<void> editUserProfile({required Map<String, dynamic> data}) async {
+    await _supabase.auth.updateUser(UserAttributes(data: data));
+  }
 }

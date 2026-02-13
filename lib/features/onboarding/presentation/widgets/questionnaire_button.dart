@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moodly/core/functions/error_dialog.dart';
-import 'package:moodly/features/onboarding/data/models/question_model.dart';
+import '../../../../core/functions/error_dialog.dart';
+import '../../data/models/question_model.dart';
 import '../../../../core/functions/get_user.dart';
 import '../../../../core/widgets/custom_circular_progress_indicator.dart';
 import '../../data/models/questionnaire_answers_model.dart';

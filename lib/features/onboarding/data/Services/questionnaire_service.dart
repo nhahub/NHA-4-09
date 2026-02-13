@@ -1,15 +1,17 @@
-import 'package:moodly/core/functions/get_user.dart';
-
+import '../../../../core/constants/constants.dart';
+import '../../../../core/services/supabase_auth_service.dart';
 import '../../../../core/services/supabase_crud_service.dart';
 import '../models/questionnaire_answers_model.dart';
 
-import '../../../../core/constants/constants.dart';
-
 class QuestionnaireService {
   final SupabaseCRUDService _supabaseService;
+  final SupabaseAuthService _supabaseAuthService;
 
-  QuestionnaireService({required SupabaseCRUDService supabaseService})
-    : _supabaseService = supabaseService;
+  QuestionnaireService({
+    required SupabaseCRUDService supabaseService,
+    required SupabaseAuthService supabaseAuthService,
+  }) : _supabaseService = supabaseService,
+       _supabaseAuthService = supabaseAuthService;
 
   Future<void> saveQuestionnaireAnswers(QuestionnaireAnswersModel model) async {
     await _supabaseService.addData(
@@ -18,12 +20,7 @@ class QuestionnaireService {
     );
   }
 
-  Future<void> updateUserDataRemote() async {
-    await _supabaseService.updateData(
-      table: kProfilesTable,
-      data: {"is_old_user": true},
-      idColumn: "id",
-      idValue: getUser()!.userId,
-    );
+  Future<void> updateUserStatus() async {
+    await _supabaseAuthService.editUserProfile(data: {"is_old_user": true});
   }
 }
