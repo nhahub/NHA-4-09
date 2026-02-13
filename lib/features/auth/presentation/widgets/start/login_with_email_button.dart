@@ -36,7 +36,7 @@ class LoginWithEmailButton extends StatelessWidget {
         ],
       ),
       onPressed: () {
-        context.pushReplacement(Routes.loginView);
+        context.push(Routes.loginView);
       },
     );
   }

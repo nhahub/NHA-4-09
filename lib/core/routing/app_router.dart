@@ -1,45 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../features/profile/data/repos/settings_repo.dart';
-import '../services/get_it_service.dart';
+
+import '../../features/Community/data/services/audio_player_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
 import '../../features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import '../../features/auth/presentation/manager/logout_cubit/logout_cubit.dart';
-import '../../features/auth/presentation/manager/reset_password_cubit/reset_password_cubit.dart';
-import '../../features/home/presentation/views/all_available_sessions_view.dart';
-import '../../features/home/presentation/views/all_meditations_view.dart';
 import '../../features/auth/presentation/manager/register_cubit/register_cubit.dart';
-import '../../features/chatbot/presentation/views/chatbot_view.dart';
-import '../../features/onboarding/presentation/views/onboarding_view.dart';
-import '../../features/profile/presentation/views/privacy_policy_view.dart';
-import '../../features/profile/presentation/views/profile_view.dart';
-import '../../features/profile/presentation/views/terms_and_conditions_view.dart';
-import '../../features/payment/presentation/views/premium_view.dart';
-import '../../features/payment/presentation/views/subscribe_view.dart';
-import '../views/video_view.dart';
-import '../../features/home/presentation/views/chat_doctor_view.dart';
-import '../../features/home/presentation/views/live_view.dart';
-import '../../features/home/presentation/views/recommendations_view.dart';
-import '../../features/home/presentation/views/therapist_details_view.dart';
-import '../../features/meditations/presentation/views/audio_view.dart';
-
+import '../../features/auth/presentation/manager/reset_password_cubit/reset_password_cubit.dart';
 import '../../features/auth/presentation/views/forgot_password_view.dart';
 import '../../features/auth/presentation/views/login_view.dart';
 import '../../features/auth/presentation/views/register_view.dart';
-import '../../features/auth/presentation/views/start_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
+import '../../features/auth/presentation/views/start_view.dart';
+import '../../features/chatbot/presentation/views/chatbot_view.dart';
+import '../../features/home/presentation/views/all_available_sessions_view.dart';
+import '../../features/home/presentation/views/all_meditations_view.dart';
+import '../../features/home/presentation/views/chat_doctor_view.dart';
 import '../../features/home/presentation/views/home_view.dart';
+import '../../features/home/presentation/views/live_view.dart';
+import '../../features/home/presentation/views/recommendations_view.dart';
+import '../../features/home/presentation/views/therapist_details_view.dart';
 import '../../features/main/presentation/views/main_view.dart';
+import '../../features/meditations/domain/audio_entity.dart';
+import '../../features/meditations/presentation/manager/cubit/audio_cubit.dart';
+import '../../features/meditations/presentation/views/audio_view.dart';
 import '../../features/meditations/presentation/views/meditations_view.dart';
-import '../../features/splash/views/splash_view.dart';
+import '../../features/onboarding/data/repos/questionnaire_repo.dart';
+import '../../features/onboarding/presentation/manager/onboarding_cubit/onboarding_cubit.dart';
+import '../../features/onboarding/presentation/manager/questionnaire_cubit/questionnaire_cubit.dart';
+import '../../features/onboarding/presentation/views/onboarding_view.dart';
+import '../../features/payment/presentation/views/premium_view.dart';
+import '../../features/payment/presentation/views/subscribe_view.dart';
+import '../../features/profile/data/repos/settings_repo.dart';
+import '../../features/profile/presentation/views/privacy_policy_view.dart';
+import '../../features/profile/presentation/views/profile_view.dart';
+import '../../features/profile/presentation/views/terms_and_conditions_view.dart';
+import '../services/app_launch_decider.dart';
+import '../services/get_it_service.dart';
+import '../views/video_view.dart';
 import 'routes.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case Routes.splashView:
-        return MaterialPageRoute(builder: (context) => const SplashView());
+      case Routes.root:
+        return MaterialPageRoute(
+          builder: (_) => AppLaunchDecider.decideStartView(),
+        );
 
       case Routes.startView:
         return MaterialPageRoute(builder: (context) => const StartView());
@@ -79,7 +87,19 @@ class AppRouter {
         );
 
       case Routes.onboardingView:
-        return MaterialPageRoute(builder: (context) => const OnboardingView());
+        return MaterialPageRoute(
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => OnboardingCubit()),
+              BlocProvider(
+                create: (context) => QuestionnaireCubit(
+                  questionnaireRepo: getIt.get<QuestionnaireRepo>(),
+                ),
+              ),
+            ],
+            child: const OnboardingView(),
+          ),
+        );
 
       case Routes.mainView:
         return MaterialPageRoute(
@@ -106,7 +126,16 @@ class AppRouter {
         return MaterialPageRoute(builder: (context) => const VideoView());
 
       case Routes.audioView:
-        return MaterialPageRoute(builder: (context) => const AudioView());
+        final AudioEntity audioEntity = settings.arguments as AudioEntity;
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => AudioCubit(
+              audioService: getIt.get<AudioPlayerService>(),
+              audioEntity: audioEntity,
+            )..initAudio(audioUrl: audioEntity.audioUrl),
+            child: const AudioView(),
+          ),
+        );
 
       case Routes.therapistDetailsView:
         return MaterialPageRoute(
@@ -125,8 +154,9 @@ class AppRouter {
         );
 
       case Routes.premiumView:
+        final bool withClose = settings.arguments as bool;
         return MaterialPageRoute(
-          builder: (context) => const PremiumView(withClose: false),
+          builder: (context) => PremiumView(withClose: withClose),
         );
 
       case Routes.subscribeView:

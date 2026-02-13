@@ -15,7 +15,7 @@ class RecommendedForYouListView extends StatelessWidget {
       itemCount: recommendedForYouData.length,
       itemBuilder: (context, index) {
         return CustomCard(
-          meditationCardModel: recommendedForYouData[index],
+          mediaEntity: recommendedForYouData[index],
           onTap: () {
             context.push(Routes.videoView);
           },

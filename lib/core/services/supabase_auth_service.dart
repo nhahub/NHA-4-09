@@ -3,7 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class SupabaseAuthService {
   final SupabaseClient _supabase = Supabase.instance.client;
   // Login
-  Future<AuthResponse> login({
+  Future<AuthResponse> loginWithEmail({
     required String email,
     required String password,
   }) async {
@@ -14,14 +14,29 @@ class SupabaseAuthService {
     return response;
   }
 
+  // Your Task (Ahmed)
+  Future<AuthResponse> loginWithGoogle() async {
+    // Write your code here
+    return AuthResponse();
+  }
+
   // Register
   Future<AuthResponse> register({
     required String email,
     required String password,
+    required String name,
   }) async {
     final response = await _supabase.auth.signUp(
       email: email,
       password: password,
+      data: {
+        'name': name,
+        "is_old_user": false,
+        "image": "",
+        "phone": "",
+        "birth_date": "",
+        "gender": "",
+      },
     );
     return response;
   }
@@ -44,8 +59,7 @@ class SupabaseAuthService {
     await _supabase.auth.updateUser(UserAttributes(password: newPassword));
   }
 
-  Future<String> getAccessToken() async {
-    final User? currentUser = _supabase.auth.currentUser;
-    return currentUser!.id;
+  Future<void> editUserProfile({required Map<String, dynamic> data}) async {
+    await _supabase.auth.updateUser(UserAttributes(data: data));
   }
 }

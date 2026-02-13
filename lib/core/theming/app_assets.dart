@@ -31,12 +31,17 @@ class AppAssets {
   static const String exportIcon = 'assets/svgs/export.svg';
   static const String heartIcon = 'assets/svgs/heart.svg';
   static const String heartFillIcon = 'assets/svgs/heart_fill.svg';
-  static const String repeatIcon = 'assets/svgs/repeat.svg';
   static const String forgotPasswordIcon = 'assets/svgs/forgot_password.svg';
   static const String resetpasswordIcon = 'assets/svgs/password_reset.svg';
   static const String checkMark = 'assets/svgs/check_mark.svg';
   static const String slidersHorizontalIcon =
       'assets/svgs/sliders_horizontal.svg';
+  static const String playIcon = 'assets/svgs/play.svg';
+  static const String pauseIcon = 'assets/svgs/pause.svg';
+  static const String nextIcon = 'assets/svgs/next.svg';
+  static const String previousIcon = 'assets/svgs/previous.svg';
+  static const String shuffleIcon = 'assets/svgs/shuffle.svg';
+  static const String repeatIcon = 'assets/svgs/repeat.svg';
 
   // Images
   static const String start = 'assets/images/start.png';

@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../data/Services/onboarding_local_service.dart';
 import '../../../data/models/questionnaire_model.dart';
 import 'onboarding_state.dart';
 
 class OnboardingCubit extends Cubit<OnboardingState> {
   final PageController pageController = PageController();
 
-  OnboardingCubit() : super(const OnboardingState());
+  OnboardingCubit()
+    : super(const OnboardingState());
+
+  Future<void> finishOnboarding() async {
+    await OnboardingLocalService.setSeenOnboarding();
+    emit(state.copyWith(isFinished: true));
+  }
 
   void nextPage() async {
     final maxIndex = onboardingQuestionnaire.questions.length;
@@ -39,22 +46,6 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   void goToPage(int index) {
     pageController.jumpToPage(index);
     emit(state.copyWith(currentPageIndex: index));
-  }
-
-  void selectOption(String questionId, String optionId) {
-    final newAnswers = Map<String, List<String>>.from(state.answers);
-
-    final currentList = List<String>.from(newAnswers[questionId] ?? []);
-
-    if (currentList.contains(optionId)) {
-      currentList.remove(optionId);
-    } else {
-      currentList.add(optionId);
-    }
-
-    newAnswers[questionId] = currentList;
-
-    emit(state.copyWith(answers: newAnswers));
   }
 
   @override

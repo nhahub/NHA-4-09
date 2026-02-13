@@ -12,8 +12,8 @@ final class LoginInitialState extends LoginState {}
 final class LoginLoadingState extends LoginState {}
 
 final class LoginSuccessState extends LoginState {
-  final String userId;
-  const LoginSuccessState({required this.userId});
+  final bool isOldUser;
+  const LoginSuccessState({required this.isOldUser});
 }
 
 final class LoginFailureState extends LoginState {

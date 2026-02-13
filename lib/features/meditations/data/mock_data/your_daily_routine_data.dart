@@ -1,29 +1,33 @@
 import '../../../../core/theming/app_assets.dart';
-import '../models/meditation_card_model.dart';
+import '../../domain/video_entity.dart';
 
-const List<MeditationCardModel> yourDailyRoutineData = [
-  MeditationCardModel(
-    imagePath: AppAssets.routine1,
+const List<VideoEntity> yourDailyRoutineData = [
+  VideoEntity(
+    coverUrl: AppAssets.routine1,
     category: 'Motivation',
     title: 'Gentle start to the morning.',
     duration: 6,
+    videoUrl: "",
   ),
-  MeditationCardModel(
-    imagePath: AppAssets.routine2,
+  VideoEntity(
+    coverUrl: AppAssets.routine2,
     category: 'Reset',
     title: 'Mental break in the middle of the day.',
     duration: 5,
+    videoUrl: "",
   ),
-  MeditationCardModel(
-    imagePath: AppAssets.routine3,
+  VideoEntity(
+    coverUrl: AppAssets.routine3,
     category: 'Mindfulness',
     title: '5 minutes for you.',
     duration: 5,
+    videoUrl: "",
   ),
-  MeditationCardModel(
-    imagePath: AppAssets.routine4,
+  VideoEntity(
+    coverUrl: AppAssets.routine4,
     category: 'Sleep',
     title: 'Calm and stress-free evening.',
     duration: 7,
+    videoUrl: "",
   ),
 ];

@@ -1,0 +1,22 @@
+import 'dart:io';
+
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../networking/api_error_model.dart';
+
+class NetworkError {
+  final dynamic error;
+
+  NetworkError(this.error);
+
+  ApiErrorModel handle() {
+    if (error is SocketException ||
+        (error is AuthRetryableFetchException &&
+            error.toString().toLowerCase().contains('network'))) {
+      return ApiErrorModel(
+        message: 'Please check your internet connection and try again.',
+      );
+    }
+    return ApiErrorModel(message: error.toString());
+  }
+}

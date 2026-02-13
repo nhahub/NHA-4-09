@@ -23,7 +23,7 @@ class ProfileView extends StatelessWidget {
       listener: (context, state) {
         if (state is LogoutSuccessState) {
           successSnackBar(context: context, message: "Logout Success");
-          context.pushAndRemoveUntil(Routes.loginView);
+          context.pushAndRemoveUntil(Routes.startView);
         } else if (state is LogoutFailureState) {
           errorDialog(context: context, message: state.message);
         }

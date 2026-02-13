@@ -1,23 +1,26 @@
 import '../../../../../core/theming/app_assets.dart';
-import '../../../meditations/data/models/meditation_card_model.dart';
+import '../../../meditations/domain/video_entity.dart';
 
-const List<MeditationCardModel> meditationsForYouData = [
-  MeditationCardModel(
-    imagePath: AppAssets.meditation1,
+const List<VideoEntity> meditationsForYouData = [
+  VideoEntity(
+    coverUrl: AppAssets.meditation1,
     category: 'Sleep',
     title: 'Calm breathing for peaceful sleep',
     duration: 12,
+    videoUrl: "",
   ),
-  MeditationCardModel(
-    imagePath: AppAssets.meditation2,
+  VideoEntity(
+    coverUrl: AppAssets.meditation2,
     category: 'Stress',
     title: 'Get rid of anxious thoughts',
     duration: 9,
+    videoUrl: "",
   ),
-  MeditationCardModel(
-    imagePath: AppAssets.meditation3,
+  VideoEntity(
+    coverUrl: AppAssets.meditation3,
     category: 'Concentration',
     title: 'Total focus on learning',
     duration: 7,
+    videoUrl: "",
   ),
 ];

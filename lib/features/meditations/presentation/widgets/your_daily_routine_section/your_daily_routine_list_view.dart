@@ -15,7 +15,7 @@ class YourDailyRoutineListView extends StatelessWidget {
       itemCount: yourDailyRoutineData.length,
       itemBuilder: (context, index) {
         return CustomCard(
-          meditationCardModel: yourDailyRoutineData[index],
+          mediaEntity: yourDailyRoutineData[index],
           onTap: () {
             context.push(Routes.videoView);
           },

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-import '../../../features/meditations/data/models/meditation_card_model.dart';
+import '../../entities/media_entity.dart';
 import 'card_description_container.dart';
 import 'category_container.dart';
 import 'play_button.dart';
 
 class CustomCard extends StatelessWidget {
-  final MeditationCardModel meditationCardModel;
+  final MediaEntity mediaEntity;
   final VoidCallback? onTap;
   final double? cardWidth;
 
   const CustomCard({
     super.key,
-    required this.meditationCardModel,
+    required this.mediaEntity,
     required this.onTap,
     this.cardWidth,
   });
@@ -25,7 +25,7 @@ class CustomCard extends StatelessWidget {
         width: cardWidth ?? 242,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(meditationCardModel.imagePath),
+            image: AssetImage(mediaEntity.coverUrl),
             fit: BoxFit.cover,
           ),
           color: Colors.grey.shade300,
@@ -38,15 +38,13 @@ class CustomCard extends StatelessWidget {
               left: 0,
               right: 0,
               child: CardDescriptionContainer(
-                title: meditationCardModel.title,
-                duration: meditationCardModel.duration,
+                title: mediaEntity.title,
+                duration: mediaEntity.duration,
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(22),
-              child: CategoryContainer(
-                categoryTitle: meditationCardModel.category,
-              ),
+              child: CategoryContainer(categoryTitle: mediaEntity.category),
             ),
             const Center(child: PlayButton()),
           ],
