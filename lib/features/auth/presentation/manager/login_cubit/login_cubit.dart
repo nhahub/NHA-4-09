@@ -12,6 +12,17 @@ class LoginCubit extends Cubit<LoginState> {
   final AuthRepo authRepo;
   LoginCubit({required this.authRepo}) : super(LoginInitialState());
 
+  bool _isOldUser(AuthResponse response) {
+    final dynamic value = response.user?.userMetadata?['is_old_user'];
+    if (value is bool) {
+      return value;
+    }
+    if (value is String) {
+      return value.toLowerCase() == 'true';
+    }
+    return false;
+  }
+
   // Login
   Future<void> loginWithEmail({
     required String email,
@@ -27,7 +38,7 @@ class LoginCubit extends Cubit<LoginState> {
       (response) {
         return emit(
           LoginSuccessState(
-            isOldUser: response.user!.userMetadata!['is_old_user'],
+            isOldUser: _isOldUser(response),
           ),
         );
       },
@@ -45,7 +56,7 @@ class LoginCubit extends Cubit<LoginState> {
       (response) {
         return emit(
           LoginSuccessState(
-            isOldUser: response.user!.userMetadata!['is_old_user'],
+            isOldUser: _isOldUser(response),
           ),
         );
       },
