@@ -1,8 +1,8 @@
 import 'dart:convert';
+
 import '../constants/constants.dart';
 import '../extensions/extensions.dart';
 import '../models/user_data_model.dart';
-
 import '../services/cache_helper.dart';
 
 UserDataModel? getUser() {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/onboarding/data/Services/onboarding_local_service.dart';
+import '../../features/onboarding/data/Services/onboarding_local_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../features/auth/presentation/manager/logout_cubit/logout_cubit.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';

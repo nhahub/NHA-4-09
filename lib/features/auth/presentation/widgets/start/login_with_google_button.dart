@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moodly/core/extensions/context_extensions.dart';
-import 'package:moodly/core/functions/build_snack_bar.dart';
-import 'package:moodly/core/services/get_it_service.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/core/widgets/custom_circular_progress_indicator.dart';
-import 'package:moodly/features/auth/data/repos/auth_repo.dart';
-import 'package:moodly/features/auth/presentation/manager/login_cubit/login_cubit.dart';
-import 'package:moodly/features/onboarding/data/Services/onboarding_local_service.dart';
+import '../../../../../core/extensions/context_extensions.dart';
+import '../../../../../core/functions/build_snack_bar.dart';
+import '../../../../../core/services/get_it_service.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/widgets/custom_circular_progress_indicator.dart';
+import '../../../data/repos/auth_repo.dart';
+import '../../manager/login_cubit/login_cubit.dart';
+import '../../../../onboarding/data/Services/onboarding_local_service.dart';
 
 import '../../../../../core/functions/error_dialog.dart';
 import '../../../../../core/routing/routes.dart';
