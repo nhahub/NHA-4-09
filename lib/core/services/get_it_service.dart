@@ -22,7 +22,7 @@ Future<void> setupGetIt() async {
       supabaseAuthService: getIt(),
     ),
   );
-  
+
   getIt.registerLazySingleton<QuestionnaireRepo>(
     () => QuestionnaireRepo(questionnaireService: getIt()),
   );
@@ -35,7 +35,7 @@ Future<void> setupGetIt() async {
 
   // AuthRepo
   getIt.registerLazySingleton<AuthRepo>(
-    () => AuthRepo(supabaseAuthService: getIt(), supabaseCRUDService: getIt()),
+    () => AuthRepo(supabaseAuthService: getIt()),
   );
 
   // SettingsRepo

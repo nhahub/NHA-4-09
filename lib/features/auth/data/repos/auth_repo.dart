@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import '../../../../core/services/supabase_crud_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../core/errors/failure.dart';
@@ -10,12 +9,8 @@ import '../../../../core/services/supabase_auth_service.dart';
 
 class AuthRepo {
   final SupabaseAuthService supabaseAuthService;
-  final SupabaseCRUDService supabaseCRUDService;
 
-  AuthRepo({
-    required this.supabaseAuthService,
-    required this.supabaseCRUDService,
-  });
+  AuthRepo({required this.supabaseAuthService});
 
   Future<Either<Failure, AuthResponse>> loginWithEmail({
     required String email,
@@ -44,7 +39,8 @@ class AuthRepo {
 
   Future<Either<Failure, AuthResponse?>> loginWithGoogle() async {
     try {
-      final AuthResponse? response = await supabaseAuthService.loginWithGoogle();
+      final AuthResponse? response = await supabaseAuthService
+          .loginWithGoogle();
       if (getUser() == null && response != null) {
         await saveUserDataLocal(
           userDataModel: UserDataModel(
