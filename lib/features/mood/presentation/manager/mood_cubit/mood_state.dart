@@ -9,20 +9,24 @@ sealed class MoodState extends Equatable {
 
 class MoodInitialState extends MoodState {}
 
-class MoodCheckingState extends MoodState {}
-
-class MoodEmptyState extends MoodState {}
-
 class MoodSelectedState extends MoodState {
-  final int index;
-  const MoodSelectedState({required this.index});
+  final int selectedIndex;
+  const MoodSelectedState({required this.selectedIndex});
+
+  @override
+  List<Object> get props => [selectedIndex];
 }
 
 class MoodSavingState extends MoodState {}
 
 class MoodSavedState extends MoodState {}
 
-class MoodErrorState extends MoodState {
+class MoodFailedState extends MoodState {
   final String message;
-  const MoodErrorState({required this.message});
+  const MoodFailedState({required this.message});
+
+  @override
+  List<Object> get props => [message];
 }
+
+class MoodValidationErrorState extends MoodState {}

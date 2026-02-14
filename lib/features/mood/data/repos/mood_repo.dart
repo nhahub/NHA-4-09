@@ -6,15 +6,16 @@ import 'package:moodly/features/mood/data/models/mood_model.dart';
 import 'package:moodly/features/mood/data/services/mood_remote_service.dart';
 
 class MoodRepo {
-  final MoodRemoteService moodRemoteService;
+  final MoodRemoteService _moodRemoteService;
 
-  MoodRepo({required this.moodRemoteService});
+  MoodRepo({required MoodRemoteService moodRemoteService})
+    : _moodRemoteService = moodRemoteService;
 
   Future<Either<Failure, void>> saveCurrentMood({
     required String currentMood,
   }) async {
     try {
-      await moodRemoteService.saveCurrentMood(
+      await _moodRemoteService.saveCurrentMood(
         moodModel: MoodModel(
           userId: getUser()!.userId,
           currentMood: currentMood,
