@@ -1,17 +1,29 @@
+import 'package:dartz/dartz.dart';
+import 'package:moodly/core/errors/failure.dart';
+import 'package:moodly/core/functions/get_user.dart';
+import 'package:moodly/core/networking/api_error_handler.dart';
 import 'package:moodly/features/mood/data/models/mood_model.dart';
 import 'package:moodly/features/mood/data/services/mood_remote_service.dart';
 
 class MoodRepo {
   final MoodRemoteService moodRemoteService;
 
-  MoodRepo(this.moodRemoteService);
+  MoodRepo({required this.moodRemoteService});
 
-  Future<void> saveDailyMood(MoodModel mood, String userId) {
-    return moodRemoteService.insertMood(mood, userId);
-  }
-
-  Future<bool> hasDailyMood(String userId) async {
-    final data = await moodRemoteService.getTodayMood(userId);
-    return data.isNotEmpty;
+  Future<Either<Failure, void>> saveCurrentMood({
+    required String currentMood,
+  }) async {
+    try {
+      await moodRemoteService.saveCurrentMood(
+        moodModel: MoodModel(
+          userId: getUser()!.userId,
+          currentMood: currentMood,
+          createdAt: DateTime.now(),
+        ),
+      );
+      return right(null);
+    } catch (e) {
+      return left(ApiErrorHandler.handle(error: e));
+    }
   }
 }

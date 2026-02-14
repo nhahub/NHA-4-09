@@ -1,24 +1,14 @@
+import 'package:moodly/core/constants/constants.dart';
+import 'package:moodly/core/services/supabase_crud_service.dart';
 import 'package:moodly/features/mood/data/models/mood_model.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MoodRemoteService {
-  final SupabaseClient client;
+  final SupabaseCRUDService _supabaseService;
 
-  MoodRemoteService(this.client);
+  MoodRemoteService({required SupabaseCRUDService supabaseService})
+    : _supabaseService = supabaseService;
 
-  Future<void> insertMood(MoodModel mood, String userId) async {
-    await client.from('user_moods').insert(mood.toMap(userId));
-  }
-
-  Future<List<Map<String, dynamic>>> getTodayMood(String userId) async {
-    final today = DateTime.now();
-    final start = DateTime(today.year, today.month, today.day);
-
-    return await client
-        .from('user_moods')
-        .select()
-        .eq('user_id', userId)
-        .eq('mood_type', 'daily')
-        .gte('created_at', start.toIso8601String());
+  Future<void> saveCurrentMood({required MoodModel moodModel}) async {
+    await _supabaseService.addData(table: kMoodTable, data: moodModel.toJson());
   }
 }

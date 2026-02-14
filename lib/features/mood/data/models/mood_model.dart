@@ -1,22 +1,24 @@
-import 'package:moodly/features/mood/domain/entities/mood_entity.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-class MoodModel extends MoodEntity {
+part 'mood_model.g.dart';
+
+@JsonSerializable()
+class MoodModel {
+  @JsonKey(name: 'user_id')
+  final String userId;
+  @JsonKey(name: 'current_mood')
+  final String currentMood;
+  @JsonKey(name: 'created_at')
+  final DateTime createdAt;
+
   MoodModel({
-    required super.mood,
-    required super.moodValue,
-    required super.type,
-    super.note,
-    super.source,
-    required super.createdAt,
+    required this.userId,
+    required this.currentMood,
+    required this.createdAt,
   });
 
-  Map<String, dynamic> toMap(String userId) => {
-    'user_id': userId,
-    'mood': mood,
-    'mood_value': moodValue,
-    'mood_type': type,
-    'note': note,
-    'source': source,
-    'created_at': createdAt.toIso8601String(),
-  };
+  factory MoodModel.fromJson(Map<String, dynamic> json) =>
+      _$MoodModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MoodModelToJson(this);
 }

@@ -13,3 +13,4 @@ const String kUserData = "userData";
 
 // Tables
 const String kQuestionnaireAnswersTable = "questionnaire_answers";
+const String kMoodTable = "moods";
