@@ -15,6 +15,8 @@ class ApiErrorHandler {
       return AuthError(error).handle();
     } else if (error is PostgrestException) {
       return DatabaseError(error).handle();
+    } else if (error is StateError) {
+      return ApiErrorModel(message: 'Please select an account again.');
     } else {
       return ApiErrorModel(message: 'Unknown error: ${error.toString()}');
     }

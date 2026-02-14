@@ -36,11 +36,7 @@ class LoginCubit extends Cubit<LoginState> {
     return response.fold(
       (failure) => emit(LoginFailureState(message: failure.message)),
       (response) {
-        return emit(
-          LoginSuccessState(
-            isOldUser: _isOldUser(response),
-          ),
-        );
+        return emit(LoginSuccessState(isOldUser: _isOldUser(response)));
       },
     );
   }
@@ -48,17 +44,17 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> loginWithGoogle() async {
     emit(LoginLoadingState());
 
-    final Either<Failure, AuthResponse> response = await authRepo
+    final Either<Failure, AuthResponse?> response = await authRepo
         .loginWithGoogle();
 
     return response.fold(
       (failure) => emit(LoginFailureState(message: failure.message)),
       (response) {
-        return emit(
-          LoginSuccessState(
-            isOldUser: _isOldUser(response),
-          ),
-        );
+        if (response == null) {
+          return emit(LoginInitialState());
+        } else {
+          return emit(LoginSuccessState(isOldUser: _isOldUser(response)));
+        }
       },
     );
   }

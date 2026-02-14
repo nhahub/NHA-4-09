@@ -42,15 +42,15 @@ class AuthRepo {
     }
   }
 
-  Future<Either<Failure, AuthResponse>> loginWithGoogle() async {
+  Future<Either<Failure, AuthResponse?>> loginWithGoogle() async {
     try {
-      final AuthResponse response = await supabaseAuthService.loginWithGoogle();
-      if (getUser() == null) {
+      final AuthResponse? response = await supabaseAuthService.loginWithGoogle();
+      if (getUser() == null && response != null) {
         await saveUserDataLocal(
           userDataModel: UserDataModel(
             userId: response.user!.id,
             email: response.user!.email,
-            name: response.user!.userMetadata!['name'],
+            name: response.user!.userMetadata!['full_name'],
             isOldUser: response.user!.userMetadata!['is_old_user'],
           ),
         );

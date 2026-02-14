@@ -14,8 +14,7 @@ class SupabaseAuthService {
     return response;
   }
 
-  // Your Task (Ahmed)
-  Future<AuthResponse> loginWithGoogle() async {
+  Future<AuthResponse?> loginWithGoogle() async {
     // Initiate Google OAuth flow
     await _supabase.auth.signInWithOAuth(
       OAuthProvider.google,
@@ -26,24 +25,28 @@ class SupabaseAuthService {
       },
     );
 
-    // Wait for auth state change with timeout
+    // Wait for auth state change
     final response = await _supabase.auth.onAuthStateChange
-        .where((state) =>
-            state.event == AuthChangeEvent.signedIn ||
-            state.event == AuthChangeEvent.userUpdated)
+        .where(
+          (state) =>
+              state.event == AuthChangeEvent.signedIn ||
+              state.event == AuthChangeEvent.userUpdated,
+        )
         .timeout(
           const Duration(seconds: 30),
           onTimeout: (sink) {
-            throw Exception('Login timeout. Please try again.');
+            sink.close();
           },
         )
         .first;
 
-    // Return the auth response
-    return AuthResponse(
-      session: response.session,
-      user: response.session?.user,
-    );
+    final session = response.session;
+
+    if (session != null) {
+      return AuthResponse(session: session, user: session.user);
+    } else {
+      return null;
+    }
   }
 
   // Register

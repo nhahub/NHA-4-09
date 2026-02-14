@@ -3,10 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/functions/build_snack_bar.dart';
-import '../../../../../core/services/get_it_service.dart';
-import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/widgets/custom_circular_progress_indicator.dart';
-import '../../../data/repos/auth_repo.dart';
 import '../../manager/login_cubit/login_cubit.dart';
 import '../../../../onboarding/data/Services/onboarding_local_service.dart';
 
@@ -21,47 +17,30 @@ class LoginWithGoogleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => LoginCubit(authRepo: getIt.get<AuthRepo>()),
-      child: BlocConsumer<LoginCubit, LoginState>(
-        listener: (context, state) {
-          if (state is LoginSuccessState) {
-            onLoginSuccess(context, isOldUser: state.isOldUser);
-          } else if (state is LoginFailureState) {
-            errorDialog(context: context, message: state.message);
-          }
-        },
-        builder: (context, state) {
-          return AppTextButton(
-            withGradient: false,
-            shadowColor: const Color(
-              0xff07112E,
-            ).withAlpha((255 * 0.06).toInt()),
-            child: state is LoginLoadingState
-                ? const CustomCircularProgressIndicator(
-                    color: AppColors.brandGreen,
-                  )
-                : Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        AppAssets.googleIcon,
-                        width: 20,
-                        height: 20,
-                      ),
-                      const SizedBox(width: 16),
-                      Text(
-                        'Continue with Google',
-                        style: AppStyles.extraBold15.copyWith(
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-            onPressed: () {
-              context.read<LoginCubit>().loginWithGoogle();
-            },
-          );
+    return BlocListener<LoginCubit, LoginState>(
+      listener: (context, state) {
+        if (state is LoginSuccessState) {
+          onLoginSuccess(context, isOldUser: state.isOldUser);
+        } else if (state is LoginFailureState) {
+          errorDialog(context: context, message: state.message);
+        }
+      },
+      child: AppTextButton(
+        withGradient: false,
+        shadowColor: const Color(0xff07112E).withAlpha((255 * 0.06).toInt()),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(AppAssets.googleIcon, width: 20, height: 20),
+            const SizedBox(width: 16),
+            Text(
+              'Continue with Google',
+              style: AppStyles.extraBold15.copyWith(color: Colors.black),
+            ),
+          ],
+        ),
+        onPressed: () {
+          context.read<LoginCubit>().loginWithGoogle();
         },
       ),
     );
