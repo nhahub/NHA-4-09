@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/widgets/app_section_header.dart';
-import 'feeling_today_table.dart';
+import '../../../../mood/presentation/widgets/feeling_today_table.dart';
 
 class FeelingTodaySection extends StatelessWidget {
   const FeelingTodaySection({super.key});

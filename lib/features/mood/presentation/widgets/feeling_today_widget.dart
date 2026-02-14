@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/theming/app_assets.dart';
-import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/theming/app_styles.dart';
-import '../../../data/models/feeling_today_model.dart';
+import '../../../../core/theming/app_assets.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/app_styles.dart';
+import '../../../home/data/models/feeling_today_model.dart';
 
 class FeelingTodayWidget extends StatelessWidget {
   final int index;

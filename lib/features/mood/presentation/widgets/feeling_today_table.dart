@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/constants/constants.dart';
-import '../../../../../core/helpers/alpha_from_percent.dart';
-import '../../../../../core/theming/app_colors.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../core/helpers/alpha_from_percent.dart';
+import '../../../../core/theming/app_colors.dart';
 import 'feeling_today_widget.dart';
 
 class FeelingTodayTable extends StatelessWidget {
