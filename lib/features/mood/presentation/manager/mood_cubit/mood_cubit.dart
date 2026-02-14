@@ -42,7 +42,6 @@ class MoodCubit extends Cubit<MoodState> {
           MoodLocalService.setSelectedDailyMood(
             dailyMood: feelingTodayData[_selectedIndex!].feeling,
           );
-          MoodLocalService.setHasSelectedDailyMood();
         }
         emit(MoodSavedState());
       },
