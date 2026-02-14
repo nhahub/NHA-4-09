@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'name_text_field.dart';
 
 import '../../../../../core/helpers/confirm_password_validator.dart';
 import '../../../../../core/widgets/app_text_button.dart';
@@ -9,6 +8,7 @@ import '../../manager/register_cubit/register_cubit.dart';
 import '../shared/email_text_field.dart';
 import '../shared/password_text_field.dart';
 import 'already_have_an_account.dart';
+import 'name_text_field.dart';
 
 class RegisterFormWidget extends StatefulWidget {
   const RegisterFormWidget({super.key});

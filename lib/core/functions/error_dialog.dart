@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
+import '../constants/constants.dart';
 
 import '../extensions/context_extensions.dart';
 import '../helpers/alpha_from_percent.dart';

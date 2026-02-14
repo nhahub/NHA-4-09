@@ -1,6 +1,6 @@
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/core/services/supabase_crud_service.dart';
-import 'package:moodly/features/mood/data/models/mood_model.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../core/services/supabase_crud_service.dart';
+import '../models/mood_model.dart';
 
 class MoodRemoteService {
   final SupabaseCRUDService _supabaseService;

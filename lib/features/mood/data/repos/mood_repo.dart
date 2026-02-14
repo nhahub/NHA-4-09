@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:moodly/core/errors/failure.dart';
-import 'package:moodly/core/functions/get_user.dart';
-import 'package:moodly/core/networking/api_error_handler.dart';
-import 'package:moodly/features/mood/data/models/mood_model.dart';
-import 'package:moodly/features/mood/data/services/mood_remote_service.dart';
+import '../../../../core/errors/failure.dart';
+import '../../../../core/functions/get_user.dart';
+import '../../../../core/networking/api_error_handler.dart';
+import '../models/mood_model.dart';
+import '../services/mood_remote_service.dart';
 
 class MoodRepo {
   final MoodRemoteService _moodRemoteService;

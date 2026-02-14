@@ -1,5 +1,6 @@
-import '../networking/api_error_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../networking/api_error_model.dart';
 
 class DatabaseError {
   final PostgrestException error;

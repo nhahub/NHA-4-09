@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/functions/build_snack_bar.dart';
-import '../../manager/login_cubit/login_cubit.dart';
-import '../../../../onboarding/data/Services/onboarding_local_service.dart';
-
 import '../../../../../core/functions/error_dialog.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../../../../core/widgets/app_text_button.dart';
+import '../../../../onboarding/data/Services/onboarding_local_service.dart';
+import '../../manager/login_cubit/login_cubit.dart';
 
 class LoginWithGoogleButton extends StatelessWidget {
   const LoginWithGoogleButton({super.key});

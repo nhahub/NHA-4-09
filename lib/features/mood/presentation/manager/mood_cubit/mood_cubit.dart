@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/errors/failure.dart';
-import 'package:moodly/features/home/data/models/feeling_today_model.dart';
-import 'package:moodly/features/mood/data/repos/mood_repo.dart';
-import 'package:moodly/features/mood/data/services/mood_local_service.dart';
+import '../../../../../core/errors/failure.dart';
+import '../../../../home/data/models/feeling_today_model.dart';
+import '../../../data/repos/mood_repo.dart';
+import '../../../data/services/mood_local_service.dart';
 
 part 'mood_state.dart';
 

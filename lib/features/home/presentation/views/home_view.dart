@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/mood/data/services/mood_local_service.dart';
-import 'package:moodly/features/mood/presentation/widgets/mood_dialog.dart';
+import '../../../mood/data/services/mood_local_service.dart';
+import '../../../mood/presentation/widgets/mood_dialog.dart';
 import '../../../../core/enums/fade_position.dart';
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/widgets/custom_appbar.dart';

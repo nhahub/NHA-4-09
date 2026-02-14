@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
-import 'package:moodly/features/mood/data/repos/mood_repo.dart';
-import 'package:moodly/features/mood/data/services/mood_remote_service.dart';
+import '../../features/mood/data/repos/mood_repo.dart';
+import '../../features/mood/data/services/mood_remote_service.dart';
 
 import '../../features/Community/data/services/audio_player_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
