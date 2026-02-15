@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/theming/app_assets.dart';
 import '../../../../data/models/water_cups_model.dart';
-import '../../../manager/cups_of_water_cubit/cups_of_water_cubit.dart';
+import '../../../manager/cups_of_water_cubit/water_tracking_cubit.dart';
 import 'add_bottel_icon.dart';
 
 class WaterCupsList extends StatelessWidget {
@@ -11,18 +11,18 @@ class WaterCupsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CupsOfWaterCubit, WaterCupsModel>(
+    return BlocBuilder<WaterTrackingCubit, WaterCupsModel>(
       builder: (context, state) {
         return Wrap(
           spacing: 2,
           runSpacing: 8,
           children: List.generate(state.filledCups.length, (index) {
-            final isFilled = state.filledCups[index];
-            final isCurrent = index == state.currentIndex;
+            final bool isFilled = state.filledCups[index];
+            final bool isCurrent = index == state.currentIndex;
 
             return GestureDetector(
               onTap: isCurrent && !isFilled
-                  ? () => context.read<CupsOfWaterCubit>().fillCurrentCup()
+                  ? () => context.read<WaterTrackingCubit>().fillCurrentCup()
                   : null,
               child: Stack(
                 alignment: Alignment.center,

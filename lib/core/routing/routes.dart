@@ -23,4 +23,5 @@ class Routes {
   static const String chatDoctorView = '/chatDoctorView';
   static const String liveView = '/liveView';
   static const String recommendationsView = '/recommendationsView';
+  static const String waterTrackingView = '/waterTrackingView';
 }

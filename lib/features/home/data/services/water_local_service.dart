@@ -6,7 +6,8 @@ class WaterLocalService {
   static String get _today => DateFormat('yyyy-MM-dd').format(DateTime.now());
 
   static Future<int> getCurrentCups() async {
-    final lastDate = CacheHelper.getString(key: kLastWaterDate) ?? _today;
+    final String lastDate =
+        CacheHelper.getString(key: kLastWaterDate) ?? _today;
 
     if (lastDate != _today) {
       await resetCups();
@@ -28,7 +29,6 @@ class WaterLocalService {
     await _saveCupsAndDate(0);
   }
 
-  
   // Helper to save both cups and date together
   static Future<void> _saveCupsAndDate(int cups) async {
     await CacheHelper.set(key: kDailyWaterCups, value: cups);

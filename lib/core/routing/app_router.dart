@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/home/data/repos/water_repo.dart';
+import 'package:moodly/features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
+import 'package:moodly/features/home/presentation/views/water_tracking_view.dart';
 
 import '../../features/Community/data/services/audio_player_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -44,7 +47,7 @@ import 'routes.dart';
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final String routeName = settings.name ?? '';
-    
+
     if (routeName.contains('callback')) {
       return MaterialPageRoute(
         builder: (_) => AppLaunchDecider.decideStartView(),
@@ -120,6 +123,14 @@ class AppRouter {
 
       case Routes.homeView:
         return MaterialPageRoute(builder: (context) => const HomeView());
+
+      case Routes.waterTrackingView:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider.value(
+            value: context.read<WaterTrackingCubit>(),
+            child: const WaterTrackingView(),
+          ),
+        );
 
       case Routes.meditationsView:
         return MaterialPageRoute(builder: (context) => const MeditationsView());

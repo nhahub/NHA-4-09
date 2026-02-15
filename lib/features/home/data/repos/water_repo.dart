@@ -6,7 +6,7 @@ import '../models/water_cups_model.dart';
 
 class WaterRepo {
   Future<WaterCupsModel> getWaterCups() async {
-    final currentCups = await WaterLocalService.getCurrentCups();
+    final int currentCups = await WaterLocalService.getCurrentCups();
     return _buildModel(currentCups);
   }
 
@@ -20,10 +20,12 @@ class WaterRepo {
   }
 
   WaterCupsModel _buildModel(int currentCups) {
-    const int maxCups = kMaxCups;
-    final filledCups = List.generate(maxCups, (index) => index < currentCups);
+    final List<bool> filledCups = List.generate(
+      kMaxCups,
+      (index) => index < currentCups,
+    );
     return WaterCupsModel(
-      currentIndex: currentCups < maxCups ? currentCups : maxCups - 1,
+      currentIndex: currentCups < kMaxCups ? currentCups : kMaxCups - 1,
       filledCups: filledCups,
     );
   }

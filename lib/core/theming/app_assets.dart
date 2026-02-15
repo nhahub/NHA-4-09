@@ -42,6 +42,9 @@ class AppAssets {
   static const String previousIcon = 'assets/svgs/previous.svg';
   static const String shuffleIcon = 'assets/svgs/shuffle.svg';
   static const String repeatIcon = 'assets/svgs/repeat.svg';
+  static const String rewardIcon = 'assets/svgs/reward.svg';
+  static const String increaseIcon = 'assets/svgs/increase.svg';
+  static const String targetIcon = 'assets/svgs/target.svg';
 
   // Images
   static const String start = 'assets/images/start.png';

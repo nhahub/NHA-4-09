@@ -4,10 +4,10 @@ import 'package:moodly/core/constants/constants.dart';
 import '../../../data/models/water_cups_model.dart';
 import '../../../data/repos/water_repo.dart';
 
-class CupsOfWaterCubit extends Cubit<WaterCupsModel> {
+class WaterTrackingCubit extends Cubit<WaterCupsModel> {
   final WaterRepo waterRepo;
 
-  CupsOfWaterCubit({required this.waterRepo})
+  WaterTrackingCubit({required this.waterRepo})
     : super(
         WaterCupsModel(
           currentIndex: 0,
@@ -16,12 +16,12 @@ class CupsOfWaterCubit extends Cubit<WaterCupsModel> {
       );
 
   Future<void> loadData() async {
-    final data = await waterRepo.getWaterCups();
+    final WaterCupsModel data = await waterRepo.getWaterCups();
     emit(data);
   }
 
   Future<void> fillCurrentCup() async {
-    final updatedState = await waterRepo.incrementCup();
+    final WaterCupsModel updatedState = await waterRepo.incrementCup();
     emit(updatedState);
   }
 
