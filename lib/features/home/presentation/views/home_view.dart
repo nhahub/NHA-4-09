@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../mood/data/services/mood_local_service.dart';
-import '../../../mood/presentation/widgets/mood_dialog.dart';
+import 'package:moodly/features/mood/presentation/helpers/mood_helper.dart';
 import '../../../../core/enums/fade_position.dart';
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/widgets/custom_appbar.dart';
@@ -25,17 +24,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (MoodLocalService.hasSelectedDailyMood()) return;
-      showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (context) {
-          return const MoodDialog(isDailyMood: true);
-        },
-      );
-    });
+    openDailyMoodDialog(context);
   }
 
   @override
