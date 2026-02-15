@@ -1,4 +1,6 @@
 import 'package:get_it/get_it.dart';
+import '../../features/mood/data/repos/mood_repo.dart';
+import '../../features/mood/data/services/mood_remote_service.dart';
 
 import '../../features/Community/data/services/audio_player_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -15,34 +17,44 @@ Future<void> setupGetIt() async {
   // Supabase CRUD Service
   getIt.registerLazySingleton<SupabaseCRUDService>(() => SupabaseCRUDService());
 
-  // Qestionnaire
+  // Questionnaire Service
   getIt.registerLazySingleton<QuestionnaireService>(
     () => QuestionnaireService(
       supabaseService: getIt(),
       supabaseAuthService: getIt(),
     ),
   );
-  
+
   getIt.registerLazySingleton<QuestionnaireRepo>(
     () => QuestionnaireRepo(questionnaireService: getIt()),
   );
 
-  // QuoteRepo
+  // Quote Repo
   getIt.registerLazySingleton<QuoteRepoImpl>(() => QuoteRepoImpl());
 
   // Supabase Auth Service
   getIt.registerLazySingleton<SupabaseAuthService>(() => SupabaseAuthService());
 
-  // AuthRepo
+  // Auth Repo
   getIt.registerLazySingleton<AuthRepo>(
-    () => AuthRepo(supabaseAuthService: getIt(), supabaseCRUDService: getIt()),
+    () => AuthRepo(supabaseAuthService: getIt()),
   );
 
-  // SettingsRepo
+  // Mood Repo
+  getIt.registerLazySingleton<MoodRepo>(
+    () => MoodRepo(moodRemoteService: getIt()),
+  );
+
+  // Mood Remote Service
+  getIt.registerLazySingleton<MoodRemoteService>(
+    () => MoodRemoteService(supabaseService: getIt()),
+  );
+
+  // Settings Repo
   getIt.registerLazySingleton<SettingsRepo>(
     () => SettingsRepo(supabaseAuthService: getIt()),
   );
 
-  // AudioPlayerService
+  // Audio Player Service
   getIt.registerFactory(() => AudioPlayerService());
 }

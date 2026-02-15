@@ -1,20 +1,31 @@
 import 'package:flutter/material.dart';
-
+import 'package:moodly/features/mood/presentation/helpers/mood_helper.dart';
 import '../../../../core/enums/fade_position.dart';
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/widgets/custom_appbar.dart';
 import '../../../../core/widgets/fade_scrollable.dart';
 import '../../../../core/widgets/vertical_space.dart';
 import '../widgets/daily_stats_section/shared/daily_stats_section.dart';
-import '../widgets/feeling_today_section/feeling_today_section.dart';
 import '../widgets/meditations_for_you_section/meditations_for_you_section.dart';
 import '../widgets/message_of_the_day_section/message_of_the_day_section.dart';
 import '../widgets/mood_progress_section/mood_progress_section.dart';
 import '../widgets/sessions_for_you_section/sessions_for_you_section.dart';
 
-class HomeView extends StatelessWidget {
-  final bool isPremium = true;
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  final bool isPremium = true;
+
+  @override
+  void initState() {
+    super.initState();
+    openDailyMoodDialog(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +44,6 @@ class HomeView extends StatelessWidget {
             children: [
               const SizedBox(height: 80),
               const MessageOfTheDaySection(),
-              const VerticalSpace(),
-              const FeelingTodaySection(),
               const VerticalSpace(),
               const DailyStatsSection(),
               const VerticalSpace(),
