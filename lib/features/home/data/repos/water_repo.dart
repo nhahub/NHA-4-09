@@ -1,12 +1,30 @@
+// water_repo.dart
+import 'package:moodly/core/constants/constants.dart';
+import 'package:moodly/features/home/data/services/water_local_service.dart';
+
 import '../models/water_cups_model.dart';
 
 class WaterRepo {
   Future<WaterCupsModel> getWaterCups() async {
-    return WaterCupsModel(
-      currentIndex: 0,
-      filledCups: List.generate(8, (_) => false),
-    );
+    final currentCups = await WaterLocalService.getCurrentCups();
+    return _buildModel(currentCups);
   }
 
-  Future<void> saveWaterCups(WaterCupsModel model) async {}
+  Future<WaterCupsModel> incrementCup() async {
+    final currentCups = await WaterLocalService.incrementCup();
+    return _buildModel(currentCups);
+  }
+
+  Future<void> resetDailyCups() async {
+    await WaterLocalService.resetCups();
+  }
+
+  WaterCupsModel _buildModel(int currentCups) {
+    const int maxCups = kMaxCups;
+    final filledCups = List.generate(maxCups, (index) => index < currentCups);
+    return WaterCupsModel(
+      currentIndex: currentCups < maxCups ? currentCups : maxCups - 1,
+      filledCups: filledCups,
+    );
+  }
 }
