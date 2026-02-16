@@ -24,18 +24,16 @@ class AudioViewBody extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: kAppHorizontalPadding,
+            vertical: kAppVerticalPadding,
           ),
           child: Column(
+            spacing: 30,
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: kAppSectionSpacing),
               AudioInfo(audioEntity: audioEntity),
-              const SizedBox(height: 30),
               AudioProgressBar(player: audioService.player),
-              const SizedBox(height: 10),
               PlayerControls(player: audioService.player),
-              const SizedBox(height: 30),
             ],
           ),
         ),
