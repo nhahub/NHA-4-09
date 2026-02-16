@@ -15,32 +15,51 @@ class AudioProgressBar extends StatelessWidget {
         final duration = player.duration ?? Duration.zero;
 
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Slider(
-              activeColor: const Color(0xff5c5c5c),
-              inactiveColor: const Color(0xffafafaf),
-              value: position.inSeconds.toDouble().clamp(
-                0,
-                duration.inSeconds.toDouble(),
+            SliderTheme(
+              data: SliderTheme.of(context).copyWith(
+                trackShape: const RectangularSliderTrackShape(),
+                trackHeight: 3,
+                thumbShape: const RoundSliderThumbShape(
+                  enabledThumbRadius: 10.0,
+                ),
+                overlayShape: const RoundSliderOverlayShape(
+                  overlayRadius: 14.0,
+                ),
+                activeTrackColor: Colors.grey[800],
+                inactiveTrackColor: Colors.grey[500],
+                thumbColor: Colors.grey[800],
               ),
-              max: duration.inSeconds.toDouble(),
-              onChanged: (value) {
-                player.seek(Duration(seconds: value.toInt()));
-              },
+              child: Slider(
+                activeColor: const Color(0xff5c5c5c),
+                inactiveColor: const Color(0xffafafaf),
+                value: position.inSeconds.toDouble().clamp(
+                  0,
+                  duration.inSeconds.toDouble(),
+                ),
+                max: duration.inSeconds.toDouble(),
+                onChanged: (value) {
+                  player.seek(Duration(seconds: value.toInt()));
+                },
+              ),
             ),
-            const SizedBox(height: 12),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  _formatDuration(position),
-                  style: const TextStyle(color: Color(0xff404040)),
-                ),
-                Text(
-                  _formatDuration(duration),
-                  style: const TextStyle(color: Color(0xff404040)),
-                ),
-              ],
+            const SizedBox(height: 6),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    _formatDuration(position),
+                    style: const TextStyle(color: Color(0xff404040)),
+                  ),
+                  Text(
+                    _formatDuration(duration),
+                    style: const TextStyle(color: Color(0xff404040)),
+                  ),
+                ],
+              ),
             ),
           ],
         );

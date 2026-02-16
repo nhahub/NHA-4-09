@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:moodly/core/theming/app_styles.dart';
 
 import '../../../../../core/theming/app_assets.dart';
 import '../../../domain/audio_entity.dart';
@@ -15,7 +16,7 @@ class AudioInfo extends StatelessWidget {
         Container(
           height: 370,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(25),
             image: DecorationImage(
               image: AssetImage(audioEntity.coverUrl),
               fit: BoxFit.fill,
@@ -31,13 +32,10 @@ class AudioInfo extends StatelessWidget {
               child: Text(
                 audioEntity.title,
                 softWrap: true,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: AppStyles.extraBold17,
               ),
             ),
+            const SizedBox(width: 5),
             GestureDetector(
               onTap: () {
                 // Handle favorite icon tap

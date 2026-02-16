@@ -15,6 +15,7 @@ class PlayerControls extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Row(
+        spacing: 25,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // Restart
@@ -27,7 +28,6 @@ class PlayerControls extends StatelessWidget {
               await player.play();
             },
           ),
-          const SizedBox(width: 15),
           // Rewind 10s
           ControlsIcon(
             iconPath: AppAssets.previousIcon,
@@ -38,20 +38,20 @@ class PlayerControls extends StatelessWidget {
               );
             },
           ),
-          const SizedBox(width: 15),
           // Play/Pause
           StreamBuilder<PlayerState>(
             stream: player.playerStateStream,
             builder: (context, snapshot) {
               final playing = snapshot.data?.playing ?? false;
 
-              return Container(
-                padding: playing
-                    ? const EdgeInsets.all(28)
-                    : const EdgeInsets.all(24),
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.lightGreen,
+              return ElevatedButton(
+                onPressed: () {
+                  playing ? player.pause() : player.play();
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: const CircleBorder(),
+                  padding: const EdgeInsets.all(20),
+                  backgroundColor: AppColors.lightGreen,
                 ),
                 child: ControlsIcon(
                   color: Colors.white,
@@ -64,7 +64,6 @@ class PlayerControls extends StatelessWidget {
               );
             },
           ),
-          const SizedBox(width: 15),
           // Forward 10s
           ControlsIcon(
             iconPath: AppAssets.nextIcon,
@@ -74,7 +73,6 @@ class PlayerControls extends StatelessWidget {
               player.seek(newPosition <= duration ? newPosition : duration);
             },
           ),
-          const SizedBox(width: 15),
           // Shuffle
           ControlsIcon(
             iconPath: AppAssets.shuffleIcon,

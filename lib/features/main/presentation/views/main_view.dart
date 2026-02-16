@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/services/get_it_service.dart';
+import 'package:moodly/features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
 
 import '../../../Community/presentation/views/community_view.dart';
 import '../../../chatbot/presentation/views/chatbot_view.dart';
+import '../../../home/data/repos/water_repo.dart';
 import '../../../home/presentation/views/home_view.dart';
 import '../../../meditations/presentation/views/meditations_view.dart';
 import '../../../profile/presentation/views/profile_view.dart';
@@ -17,12 +21,16 @@ class MainView extends StatefulWidget {
 class _MainViewState extends State<MainView> {
   int _currentIndex = 0;
 
-  final List<Widget> _screens = const [
-    HomeView(key: ValueKey('home')),
-    CommunityView(key: ValueKey('community')),
-    MeditationsView(key: ValueKey('meditations')),
-    ChatbotView(key: ValueKey('chatbot')),
-    ProfileView(key: ValueKey('profile')),
+  final List<Widget> _screens = [
+    BlocProvider(
+      create: (context) =>
+          WaterTrackingCubit(waterRepo: getIt.get<WaterRepo>())..loadData(),
+      child: const HomeView(key: ValueKey('home')),
+    ),
+    const CommunityView(key: ValueKey('community')),
+    const MeditationsView(key: ValueKey('meditations')),
+    const ChatbotView(key: ValueKey('chatbot')),
+    const ProfileView(key: ValueKey('profile')),
   ];
 
   void _onTabSelected(int index) {

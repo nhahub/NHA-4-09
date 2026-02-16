@@ -19,25 +19,27 @@ class PremiumOffers extends StatelessWidget {
                 children: [
                   offer.icon.svgWithShadow(size: 24, color: Colors.white),
                   const SizedBox(width: 15),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        offer.title,
-                        style: AppStyles.extraBold15WithShadow.copyWith(
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        offer.subtitle,
-                        overflow: TextOverflow.ellipsis,
-                        style: AppStyles.medium15WithShadow.copyWith(
-                          color: Colors.white.withAlpha(
-                            alphaFromPercentage(80),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          offer.title,
+                          style: AppStyles.extraBold15WithShadow.copyWith(
+                            color: Colors.white,
                           ),
                         ),
-                      ),
-                    ],
+                        Text(
+                          offer.subtitle,
+                          softWrap: true,
+                          style: AppStyles.medium15WithShadow.copyWith(
+                            color: Colors.white.withAlpha(
+                              alphaFromPercentage(80),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
