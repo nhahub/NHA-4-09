@@ -17,17 +17,18 @@ class HomeViewBody extends StatelessWidget {
     return FadeScrollable(
       fadePosition: FadePosition.bottom,
       child: SingleChildScrollView(
-        child: Column(
-          spacing: 20,
-          children: [
-            const SizedBox(height: 60),
-            const MessageOfTheDaySection(),
-            const DailyStatsSection(),
-            MoodProgressSection(isPremium: isPremium),
-            const MeditationsForYouSection(),
-            const SessionsForYouSection(),
-            const SizedBox(height: 100),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.only(top: 80, bottom: 140),
+          child: Column(
+            spacing: 20,
+            children: [
+              const MessageOfTheDaySection(),
+              const DailyStatsSection(),
+              MoodProgressSection(isPremium: isPremium),
+              const MeditationsForYouSection(),
+              const SessionsForYouSection(),
+            ],
+          ),
         ),
       ),
     );
