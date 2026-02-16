@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../manager/mood_cubit/mood_cubit.dart';
-
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/app_styles.dart';
@@ -21,30 +20,48 @@ class MoodWidget extends StatelessWidget {
         builder: (context, state) {
           final bool isSelected =
               state is MoodSelectedState && state.selectedIndex == index;
+
+          BorderRadius borderRadius = BorderRadius.zero;
+          if (index == 0) {
+            borderRadius = const BorderRadius.only(
+              topLeft: Radius.circular(16),
+              bottomLeft: Radius.circular(16),
+            );
+          } else if (index == feelingTodayData.length - 1) {
+            borderRadius = const BorderRadius.only(
+              topRight: Radius.circular(16),
+              bottomRight: Radius.circular(16),
+            );
+          }
+
           return Container(
-            color: isSelected
-                ? Colors.greenAccent.shade100
-                : Colors.transparent,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Image.asset(feelingTodayData[index].icon, width: 27),
-                  const SizedBox(height: 4),
-                  Image.asset(AppAssets.shadow, height: 12),
-                  const SizedBox(height: 4),
-                  Text(
-                    feelingTodayData[index].feeling,
-                    textAlign: TextAlign.center,
-                    style: AppStyles.medium14.copyWith(
-                      color: isSelected
-                          ? AppColors.brandGreen
-                          : AppColors.bodyGray,
-                    ),
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
+            decoration: BoxDecoration(
+              color: isSelected
+                  ? Colors.greenAccent.shade100
+                  : Colors.transparent,
+              borderRadius: borderRadius,
+            ),
+            child: Column(
+              spacing: 6,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(
+                  feelingTodayData[index].icon,
+                  width: 30,
+                  height: 30,
+                ),
+                Image.asset(AppAssets.shadow, height: 12),
+                Text(
+                  feelingTodayData[index].feeling,
+                  textAlign: TextAlign.center,
+                  style: AppStyles.medium14.copyWith(
+                    color: isSelected
+                        ? AppColors.brandGreen
+                        : AppColors.bodyGray,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         },

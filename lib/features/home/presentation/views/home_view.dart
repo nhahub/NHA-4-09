@@ -12,7 +12,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  final bool isPremium = true;
+  final bool isPremium = false;
 
   @override
   void initState() {

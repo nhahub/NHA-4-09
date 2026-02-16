@@ -11,7 +11,9 @@ class FreeTier extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        "30 days free. 287.90 RON / year. Cancel anytime.",
+        "30 days free. 287.90 USD / year. Cancel anytime.",
+        textAlign: TextAlign.center,
+        softWrap: true,
         style: AppStyles.medium14WithShadow.copyWith(
           color: AppColors.borderButton.withAlpha(alphaFromPercentage(6)),
         ),
