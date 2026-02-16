@@ -34,7 +34,10 @@ class WaterAmountHeader extends StatelessWidget {
               const Spacer(),
               InkWell(
                 onTap: () {
-                  context.push(Routes.waterTrackingView,);
+                  context.push(
+                    Routes.waterTrackingView,
+                    args: context.read<WaterTrackingCubit>(),
+                  );
                 },
                 child: SvgPicture.asset(AppAssets.arrowRightIosIcon),
               ),

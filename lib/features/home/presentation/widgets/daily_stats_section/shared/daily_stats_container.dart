@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moodly/core/extensions/context_extensions.dart';
+import 'package:moodly/features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
 
 import '../../../../../../core/constants/constants.dart';
 import '../../../../../../core/helpers/alpha_from_percent.dart';
@@ -27,7 +29,10 @@ class DailyStatsContainer extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              context.push(Routes.waterTrackingView);
+              context.push(
+                Routes.waterTrackingView,
+                args: context.read<WaterTrackingCubit>(),
+              );
             },
             child: const WaterAmountCard(isWithArrow: true),
           ),
@@ -38,5 +43,3 @@ class DailyStatsContainer extends StatelessWidget {
     );
   }
 }
-
-

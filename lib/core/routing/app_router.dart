@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/home/data/repos/water_repo.dart';
 import 'package:moodly/features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
 import 'package:moodly/features/home/presentation/views/water_tracking_view.dart';
-
 import '../../features/Community/data/services/audio_player_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
@@ -20,7 +18,6 @@ import '../../features/chatbot/presentation/views/chatbot_view.dart';
 import '../../features/home/presentation/views/all_available_sessions_view.dart';
 import '../../features/home/presentation/views/all_meditations_view.dart';
 import '../../features/home/presentation/views/chat_doctor_view.dart';
-import '../../features/home/presentation/views/home_view.dart';
 import '../../features/home/presentation/views/live_view.dart';
 import '../../features/home/presentation/views/recommendations_view.dart';
 import '../../features/home/presentation/views/therapist_details_view.dart';
@@ -121,13 +118,11 @@ class AppRouter {
           ),
         );
 
-      case Routes.homeView:
-        return MaterialPageRoute(builder: (context) => const HomeView());
-
       case Routes.waterTrackingView:
+        final cubit = settings.arguments as WaterTrackingCubit;
         return MaterialPageRoute(
-          builder: (context) => BlocProvider.value(
-            value: context.read<WaterTrackingCubit>(),
+          builder: (_) => BlocProvider.value(
+            value: cubit,
             child: const WaterTrackingView(),
           ),
         );
