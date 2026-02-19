@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moodly/features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
 import 'package:moodly/features/home/presentation/views/water_tracking_view.dart';
+import 'package:moodly/features/meals_recommendations/presentation/views/meals_recommendations_view.dart';
 import '../../features/Community/data/services/audio_player_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
@@ -125,6 +126,11 @@ class AppRouter {
             value: cubit,
             child: const WaterTrackingView(),
           ),
+        );
+
+      case Routes.mealsRecommendationsView:
+        return MaterialPageRoute(
+          builder: (context) => const MealsRecommendationsView(),
         );
 
       case Routes.meditationsView:

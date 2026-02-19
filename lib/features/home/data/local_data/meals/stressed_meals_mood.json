@@ -1,0 +1,287 @@
+{
+  "stressed": {
+    "meals": [
+      {
+        "id": "st_meal_001",
+        "name": "Grilled Chicken with Brown Rice",
+        "type": "meal",
+        "nutrients": ["protein", "complex_carbs", "vitamin_b"],
+        "effects": ["calming", "energy_boost"],
+        "tags": ["healthy"],
+        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/chicken-1238243_640.jpg"
+      },
+      {
+        "id": "st_meal_002",
+        "name": "Lentil Soup",
+        "type": "meal",
+        "nutrients": ["iron", "magnesium", "fiber"],
+        "effects": ["calming", "mood_stability"],
+        "tags": ["vegan"],
+        "image": "https://cdn.pixabay.com/photo/2017/08/06/02/08/lentil-soup-2588891_640.jpg"
+      },
+      {
+        "id": "st_meal_003",
+        "name": "Oatmeal with Fruits",
+        "type": "meal",
+        "nutrients": ["fiber", "complex_carbs"],
+        "effects": ["calming", "energy_stable"],
+        "tags": ["breakfast"],
+        "image": "https://cdn.pixabay.com/photo/2016/11/29/09/08/oatmeal-1868727_640.jpg"
+      },
+      {
+        "id": "st_meal_004",
+        "name": "Quinoa Salad with Avocado",
+        "type": "meal",
+        "nutrients": ["magnesium", "healthy_fats", "vitamin_b"],
+        "effects": ["stress_relief"],
+        "tags": ["healthy", "vegan"],
+        "image": "https://cdn.pixabay.com/photo/2017/05/07/08/56/quinoa-2294413_640.jpg"
+      },
+      {
+        "id": "st_meal_005",
+        "name": "Turkey Wrap with Veggies",
+        "type": "meal",
+        "nutrients": ["protein", "vitamin_b"],
+        "effects": ["calming"],
+        "tags": ["quick"],
+        "image": "https://cdn.pixabay.com/photo/2016/03/05/20/06/wrap-1238645_640.jpg"
+      },
+      {
+        "id": "st_meal_006",
+        "name": "Salmon with Steamed Broccoli",
+        "type": "meal",
+        "nutrients": ["omega3", "protein"],
+        "effects": ["stress_relief", "anti_depression"],
+        "tags": ["premium"],
+        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/salmon-1238241_640.jpg"
+      },
+      {
+        "id": "st_meal_007",
+        "name": "Chickpea Stir Fry",
+        "type": "meal",
+        "nutrients": ["fiber", "magnesium"],
+        "effects": ["calming"],
+        "tags": ["vegan"],
+        "image": "https://cdn.pixabay.com/photo/2017/06/10/07/16/stir-fry-2385253_640.jpg"
+      },
+      {
+        "id": "st_meal_008",
+        "name": "Brown Rice Sushi Rolls",
+        "type": "meal",
+        "nutrients": ["complex_carbs", "protein"],
+        "effects": ["mood_stability"],
+        "tags": ["healthy"],
+        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/sushi-1238249_640.jpg"
+      },
+      {
+        "id": "st_meal_009",
+        "name": "Vegetable Soup",
+        "type": "meal",
+        "nutrients": ["fiber", "vitamins"],
+        "effects": ["calming"],
+        "tags": ["vegan"],
+        "image": "https://cdn.pixabay.com/photo/2015/07/28/21/56/soup-865915_640.jpg"
+      },
+      {
+        "id": "st_meal_010",
+        "name": "Tofu and Spinach Salad",
+        "type": "meal",
+        "nutrients": ["protein", "iron"],
+        "effects": ["stress_relief"],
+        "tags": ["vegan"],
+        "image": "https://cdn.pixabay.com/photo/2017/06/02/18/24/tofu-2369646_640.jpg"
+      }
+    ],
+    "snacks": [
+      {
+        "id": "st_snack_001",
+        "name": "Banana with Peanut Butter",
+        "type": "snack",
+        "nutrients": ["magnesium", "vitamin_b6"],
+        "effects": ["calming"],
+        "tags": ["quick"],
+        "image": "https://cdn.pixabay.com/photo/2018/01/15/07/51/banana-3087090_640.jpg"
+      },
+      {
+        "id": "st_snack_002",
+        "name": "Mixed Nuts",
+        "type": "snack",
+        "nutrients": ["magnesium", "healthy_fats"],
+        "effects": ["energy_boost"],
+        "tags": ["quick"],
+        "image": "https://cdn.pixabay.com/photo/2015/04/08/13/13/nuts-712665_640.jpg"
+      },
+      {
+        "id": "st_snack_003",
+        "name": "Greek Yogurt with Honey",
+        "type": "snack",
+        "nutrients": ["protein", "probiotics"],
+        "effects": ["calming"],
+        "tags": ["healthy"],
+        "image": "https://cdn.pixabay.com/photo/2017/07/16/10/43/yogurt-2508918_640.jpg"
+      },
+      {
+        "id": "st_snack_004",
+        "name": "Dark Chocolate",
+        "type": "snack",
+        "nutrients": ["magnesium", "antioxidants"],
+        "effects": ["mood_boost"],
+        "tags": ["comfort"],
+        "image": "https://cdn.pixabay.com/photo/2017/01/21/14/28/chocolate-1998223_640.jpg"
+      },
+      {
+        "id": "st_snack_005",
+        "name": "Apple Slices with Almond Butter",
+        "type": "snack",
+        "nutrients": ["fiber", "healthy_fats"],
+        "effects": ["calming"],
+        "tags": ["healthy"],
+        "image": "https://cdn.pixabay.com/photo/2015/03/26/09/40/apple-690230_640.jpg"
+      },
+      {
+        "id": "st_snack_006",
+        "name": "Carrot Sticks with Hummus",
+        "type": "snack",
+        "nutrients": ["fiber", "magnesium"],
+        "effects": ["calming"],
+        "tags": ["vegan"],
+        "image": "https://cdn.pixabay.com/photo/2017/06/30/20/29/vegetables-2454341_640.jpg"
+      },
+      {
+        "id": "st_snack_007",
+        "name": "Trail Mix",
+        "type": "snack",
+        "nutrients": ["magnesium", "protein"],
+        "effects": ["energy_boost"],
+        "tags": ["quick"],
+        "image": "https://cdn.pixabay.com/photo/2016/11/29/09/08/trail-mix-1868729_640.jpg"
+      },
+      {
+        "id": "st_snack_008",
+        "name": "Rice Cakes with Avocado",
+        "type": "snack",
+        "nutrients": ["healthy_fats", "fiber"],
+        "effects": ["calming"],
+        "tags": ["vegan"],
+        "image": "https://cdn.pixabay.com/photo/2017/02/01/11/28/avocado-2035650_640.jpg"
+      },
+      {
+        "id": "st_snack_009",
+        "name": "Cucumber Slices with Tahini",
+        "type": "snack",
+        "nutrients": ["healthy_fats", "magnesium"],
+        "effects": ["stress_relief"],
+        "tags": ["vegan"],
+        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/cucumber-1238255_640.jpg"
+      },
+      {
+        "id": "st_snack_010",
+        "name": "Oat Energy Balls",
+        "type": "snack",
+        "nutrients": ["complex_carbs", "fiber"],
+        "effects": ["energy_stable"],
+        "tags": ["healthy"],
+        "image": "https://cdn.pixabay.com/photo/2017/06/10/07/16/oat-balls-2385252_640.jpg"
+      }
+    ],
+    "drinks": [
+      {
+        "id": "st_drink_001",
+        "name": "Chamomile Tea",
+        "type": "drink",
+        "nutrients": ["antioxidants"],
+        "effects": ["calming", "sleep_support"],
+        "tags": ["herbal"],
+        "image": "https://cdn.pixabay.com/photo/2016/04/14/16/32/chamomile-1329546_640.jpg"
+      },
+      {
+        "id": "st_drink_002",
+        "name": "Green Tea",
+        "type": "drink",
+        "nutrients": ["antioxidants", "l_theanine"],
+        "effects": ["focus", "calm_energy"],
+        "tags": ["tea"],
+        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/green-tea-1238247_640.jpg"
+      },
+      {
+        "id": "st_drink_003",
+        "name": "Milk with Honey",
+        "type": "drink",
+        "nutrients": ["tryptophan", "calcium"],
+        "effects": ["sleep_support", "calming"],
+        "tags": ["night"],
+        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/milk-1238245_640.jpg"
+      },
+      {
+        "id": "st_drink_004",
+        "name": "Lemon Water",
+        "type": "drink",
+        "nutrients": ["vitamin_c"],
+        "effects": ["energy_boost"],
+        "tags": ["hydration"],
+        "image": "https://cdn.pixabay.com/photo/2016/01/19/17/28/lemon-water-1142142_640.jpg"
+      },
+      {
+        "id": "st_drink_005",
+        "name": "Peppermint Tea",
+        "type": "drink",
+        "nutrients": ["antioxidants"],
+        "effects": ["calming"],
+        "tags": ["herbal"],
+        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/peppermint-1238244_640.jpg"
+      },
+      {
+        "id": "st_drink_006",
+        "name": "Coconut Water",
+        "type": "drink",
+        "nutrients": ["electrolytes"],
+        "effects": ["hydration", "stress_relief"],
+        "tags": ["healthy"],
+        "image": "https://cdn.pixabay.com/photo/2017/01/20/00/30/coconut-water-1994552_640.jpg"
+      },
+      {
+        "id": "st_drink_007",
+        "name": "Berry Smoothie",
+        "type": "drink",
+        "nutrients": ["vitamins", "antioxidants"],
+        "effects": ["mood_boost"],
+        "tags": ["healthy"],
+        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/berry-smoothie-1238251_640.jpg"
+      },
+      {
+        "id": "st_drink_008",
+        "name": "Herbal Relaxing Tea",
+        "type": "drink",
+        "nutrients": ["antioxidants"],
+        "effects": ["stress_relief"],
+        "tags": ["herbal"],
+        "image": "https://cdn.pixabay.com/photo/2016/04/14/16/32/herbal-tea-1329553_640.jpg"
+      },
+      {
+        "id": "st_drink_009",
+        "name": "Warm Turmeric Milk",
+        "type": "drink",
+        "nutrients": ["antioxidants", "calcium"],
+        "effects": ["calming"],
+        "tags": ["night"],
+        "image": "https://cdn.pixabay.com/photo/2017/06/10/07/16/turmeric-milk-2385250_640.jpg"
+      },
+      {
+        "id": "st_drink_010",
+        "name": "Chamomile Lemon Tea",
+        "type": "drink",
+        "nutrients": ["antioxidants"],
+        "effects": ["calming"],
+        "tags": ["herbal"],
+        "image": "https://cdn.pixabay.com/photo/2016/04/14/16/32/lemon-chamomile-1329548_640.jpg"
+      }
+    ],
+    "avoid": [
+      "Caffeine",
+      "Alcohol",
+      "Fast Food",
+      "Sugary Snacks",
+      "Energy Drinks"
+    ]
+  }
+}

@@ -114,4 +114,10 @@ class AppAssets {
   static const String situation3 = 'assets/mock_images/situation3.jpg';
   static const String situation4 = 'assets/mock_images/situation4.jpg';
   static const String situation5 = 'assets/mock_images/situation5.jpg';
+
+  // Recommendations Meals
+  static const String meal =
+      'assets/images/meal.png';
+  static const String mealwebp =
+      'assets/images/meal.png';
 }

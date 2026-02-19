@@ -1,0 +1,287 @@
+{
+  "happy": {
+    "meals": [
+      {
+        "id": "hp_meal_001",
+        "name": "Rainbow Buddha Bowl",
+        "type": "meal",
+        "nutrients": ["vitamins", "fiber", "antioxidants"],
+        "effects": ["energy_boost", "vibrant_mood"],
+        "tags": ["vegan", "colorful"],
+        "image": "https://cdn.pixabay.com/photo/2017/10/09/19/29/eat-2834549_640.jpg"
+      },
+      {
+        "id": "hp_meal_002",
+        "name": "Grilled Shrimp Tacos with Mango Salsa",
+        "type": "meal",
+        "nutrients": ["protein", "vitamin_c", "zinc"],
+        "effects": ["dopamine_boost", "refreshing"],
+        "tags": ["seafood", "light"],
+        "image": "https://cdn.pixabay.com/photo/2014/11/05/15/57/tacos-518032_640.jpg"
+      },
+      {
+        "id": "hp_meal_003",
+        "name": "Mediterranean Mezze Platter",
+        "type": "meal",
+        "nutrients": ["healthy_fats", "protein"],
+        "effects": ["social_mood", "satisfaction"],
+        "tags": ["vegetarian", "sharing"],
+        "image": "https://cdn.pixabay.com/photo/2017/06/20/11/17/food-2422709_640.jpg"
+      },
+      {
+        "id": "hp_meal_004",
+        "name": "Turkey and Cranberry Sandwich",
+        "type": "meal",
+        "nutrients": ["tryptophan", "complex_carbs"],
+        "effects": ["serotonin_boost", "sustained_energy"],
+        "tags": ["lunch"],
+        "image": "https://cdn.pixabay.com/photo/2016/09/13/11/53/sandwich-1667015_640.jpg"
+      },
+      {
+        "id": "hp_meal_005",
+        "name": "Strawberry Spinach Salad with Walnuts",
+        "type": "meal",
+        "nutrients": ["folate", "omega3"],
+        "effects": ["mood_enhancement"],
+        "tags": ["healthy", "fruit_infused"],
+        "image": "https://cdn.pixabay.com/photo/2017/09/16/19/21/salad-2756467_640.jpg"
+      },
+      {
+        "id": "hp_meal_006",
+        "name": "Grilled Salmon with Asparagus",
+        "type": "meal",
+        "nutrients": ["omega3", "vitamin_d"],
+        "effects": ["brain_health", "long_term_joy"],
+        "tags": ["omega_rich"],
+        "image": "https://cdn.pixabay.com/photo/2014/11/05/15/57/salmon-518032_640.jpg"
+      },
+      {
+        "id": "hp_meal_007",
+        "name": "Chickpea Curry with Turmeric Rice",
+        "type": "meal",
+        "nutrients": ["fiber", "curcumin"],
+        "effects": ["anti_inflammatory", "comfort"],
+        "tags": ["vegan", "warm"],
+        "image": "https://cdn.pixabay.com/photo/2017/06/10/07/16/curry-2385250_640.jpg"
+      },
+      {
+        "id": "hp_meal_008",
+        "name": "Chicken Pesto Pasta with Cherry Tomatoes",
+        "type": "meal",
+        "nutrients": ["protein", "healthy_fats"],
+        "effects": ["satisfaction", "energy"],
+        "tags": ["italian", "tasty"],
+        "image": "https://cdn.pixabay.com/photo/2015/05/29/22/17/pasta-788274_640.jpg"
+      },
+      {
+        "id": "hp_meal_009",
+        "name": "Greek Salad with Grilled Halloumi",
+        "type": "meal",
+        "nutrients": ["calcium", "healthy_fats"],
+        "effects": ["freshness", "light_mood"],
+        "tags": ["vegetarian", "fresh"],
+        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/salad-1238241_640.jpg"
+      },
+      {
+        "id": "hp_meal_010",
+        "name": "Roast Beef with Sweet Potato Fries",
+        "type": "meal",
+        "nutrients": ["iron", "vitamin_a"],
+        "effects": ["strength", "sustained_mood"],
+        "tags": ["hearty", "healthy_sides"],
+        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/beef-1238243_640.jpg"
+      }
+    ],
+    "snacks": [
+      {
+        "id": "hp_snack_001",
+        "name": "Fresh Berry Medley",
+        "type": "snack",
+        "nutrients": ["antioxidants", "vitamin_c"],
+        "effects": ["natural_sugar_hit", "refreshing"],
+        "tags": ["fruit", "light"],
+        "image": "https://cdn.pixabay.com/photo/2016/04/15/08/04/strawberries-1330459_640.jpg"
+      },
+      {
+        "id": "hp_snack_002",
+        "name": "Popcorn with Sea Salt",
+        "type": "snack",
+        "nutrients": ["fiber", "whole_grains"],
+        "effects": ["fun_snacking", "light_energy"],
+        "tags": ["low_cal"],
+        "image": "https://cdn.pixabay.com/photo/2015/05/07/15/08/popcorn-756602_640.jpg"
+      },
+      {
+        "id": "hp_snack_003",
+        "name": "Yogurt Parfait with Granola",
+        "type": "snack",
+        "nutrients": ["probiotics", "protein"],
+        "effects": ["gut_health", "joyful_texture"],
+        "tags": ["breakfast", "sweet"],
+        "image": "https://cdn.pixabay.com/photo/2016/11/22/18/52/yogurt-1850011_640.jpg"
+      },
+      {
+        "id": "hp_snack_004",
+        "name": "Pineapple Slices",
+        "type": "snack",
+        "nutrients": ["bromelain", "vitamin_c"],
+        "effects": ["tropical_vibes", "digestive_ease"],
+        "tags": ["vegan", "sweet"],
+        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/pineapple-1238253_640.jpg"
+      },
+      {
+        "id": "hp_snack_005",
+        "name": "Cashews and Dried Apricots",
+        "type": "snack",
+        "nutrients": ["magnesium", "iron"],
+        "effects": ["steady_joy", "brain_power"],
+        "tags": ["quick", "energy"],
+        "image": "https://cdn.pixabay.com/photo/2017/03/27/14/01/cashew-2178915_640.jpg"
+      },
+      {
+        "id": "hp_snack_006",
+        "name": "Rice Cakes with Peanut Butter",
+        "type": "snack",
+        "nutrients": ["protein", "healthy_fats"],
+        "effects": ["satisfaction"],
+        "tags": ["quick", "crunchy"],
+        "image": "https://cdn.pixabay.com/photo/2018/04/13/11/17/rice-cakes-3316270_640.jpg"
+      },
+      {
+        "id": "hp_snack_007",
+        "name": "Watermelon Cubes",
+        "type": "snack",
+        "nutrients": ["hydration", "lycopene"],
+        "effects": ["cooling", "bright_mood"],
+        "tags": ["fruit", "summer"],
+        "image": "https://cdn.pixabay.com/photo/2017/06/15/21/11/watermelon-2406830_640.jpg"
+      },
+      {
+        "id": "hp_snack_008",
+        "name": "Pistachios",
+        "type": "snack",
+        "nutrients": ["vitamin_b6", "antioxidants"],
+        "effects": ["mood_balance"],
+        "tags": ["nuts", "healthy"],
+        "image": "https://cdn.pixabay.com/photo/2017/08/31/15/23/pistachios-2701099_640.jpg"
+      },
+      {
+        "id": "hp_snack_009",
+        "name": "Apple Slices with Honey",
+        "type": "snack",
+        "nutrients": ["fiber", "natural_sugars"],
+        "effects": ["energy_lift"],
+        "tags": ["sweet", "natural"],
+        "image": "https://cdn.pixabay.com/photo/2015/03/26/09/40/apple-690230_640.jpg"
+      },
+      {
+        "id": "hp_snack_010",
+        "name": "Frozen Grapes",
+        "type": "snack",
+        "nutrients": ["antioxidants"],
+        "effects": ["fun_texture", "refreshing"],
+        "tags": ["fruit", "frozen"],
+        "image": "https://cdn.pixabay.com/photo/2017/11/11/11/33/grapes-2938927_640.jpg"
+      }
+    ],
+    "drinks": [
+      {
+        "id": "hp_drink_001",
+        "name": "Fresh Orange Juice",
+        "type": "drink",
+        "nutrients": ["vitamin_c", "folate"],
+        "effects": ["instant_refreshment", "brightness"],
+        "tags": ["morning", "citrus"],
+        "image": "https://cdn.pixabay.com/photo/2016/01/15/17/05/orange-juice-1142054_640.jpg"
+      },
+      {
+        "id": "hp_drink_002",
+        "name": "Iced Hibiscus Tea",
+        "type": "drink",
+        "nutrients": ["antioxidants"],
+        "effects": ["cooling", "joyful_color"],
+        "tags": ["herbal", "cold"],
+        "image": "https://cdn.pixabay.com/photo/2016/07/28/11/50/beverage-1547702_640.jpg"
+      },
+      {
+        "id": "hp_drink_003",
+        "name": "Sparkling Water with Mint & Lime",
+        "type": "drink",
+        "nutrients": ["hydration"],
+        "effects": ["sparkly_mood", "zero_guilt"],
+        "tags": ["refreshing", "bubbly"],
+        "image": "https://cdn.pixabay.com/photo/2016/07/31/13/23/mojito-1559039_640.jpg"
+      },
+      {
+        "id": "hp_drink_004",
+        "name": "Strawberry Banana Smoothie",
+        "type": "drink",
+        "nutrients": ["potassium", "vitamins"],
+        "effects": ["creamy_joy", "filling"],
+        "tags": ["smoothie", "fruit"],
+        "image": "https://cdn.pixabay.com/photo/2018/01/15/07/51/smoothie-3087090_640.jpg"
+      },
+      {
+        "id": "hp_drink_005",
+        "name": "Ginger Lemonade",
+        "type": "drink",
+        "nutrients": ["vitamin_c", "gingerol"],
+        "effects": ["invigorating", "digestive_boost"],
+        "tags": ["refreshing", "zesty"],
+        "image": "https://cdn.pixabay.com/photo/2016/01/19/17/28/lemonade-1142142_640.jpg"
+      },
+      {
+        "id": "hp_drink_006",
+        "name": "Mango Lassi",
+        "type": "drink",
+        "nutrients": ["probiotics", "vitamin_a"],
+        "effects": ["rich_pleasure", "gut_happy"],
+        "tags": ["sweet", "traditional"],
+        "image": "https://cdn.pixabay.com/photo/2017/06/10/07/16/mango-lassi-2385250_640.jpg"
+      },
+      {
+        "id": "hp_drink_007",
+        "name": "Coconut Water with Pineapple",
+        "type": "drink",
+        "nutrients": ["electrolytes", "vitamin_c"],
+        "effects": ["tropical_refreshment"],
+        "tags": ["hydration", "exotic"],
+        "image": "https://cdn.pixabay.com/photo/2017/01/20/00/30/coconut-1994552_640.jpg"
+      },
+      {
+        "id": "hp_drink_008",
+        "name": "Green Apple Juice",
+        "type": "drink",
+        "nutrients": ["antioxidants", "fiber"],
+        "effects": ["sharp_awakening", "crisp_mood"],
+        "tags": ["fresh", "morning"],
+        "image": "https://cdn.pixabay.com/photo/2017/01/21/14/28/juice-1998223_640.jpg"
+      },
+      {
+        "id": "hp_drink_009",
+        "name": "Pomegranate Spritzer",
+        "type": "drink",
+        "nutrients": ["polyphenols"],
+        "effects": ["energy_boost", "vibrant"],
+        "tags": ["cold", "tart"],
+        "image": "https://cdn.pixabay.com/photo/2016/04/15/08/04/juice-1330459_640.jpg"
+      },
+      {
+        "id": "hp_drink_010",
+        "name": "Peach Iced Tea",
+        "type": "drink",
+        "nutrients": ["antioxidants"],
+        "effects": ["summery_vibe", "relaxation"],
+        "tags": ["sweet", "cold"],
+        "image": "https://cdn.pixabay.com/photo/2016/07/28/11/50/tea-1547702_640.jpg"
+      }
+    ],
+    "avoid": [
+      "Heavy Deep-Fried Foods",
+      "High-Fructose Corn Syrup",
+      "Excessive Alcohol",
+      "Highly Processed Energy Bars",
+      "Large Portions of Red Meat"
+    ]
+  }
+}
