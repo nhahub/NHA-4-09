@@ -80,7 +80,12 @@ abstract class AppStyles {
     fontWeight: FontWeightHelper.regular,
     fontFamily: "SFPro",
   );
-
+  static const TextStyle extraBold12 = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeightHelper.extraBold,
+    fontFamily: "Nunito",
+    letterSpacing: -0.2,
+  );
   static TextStyle extraBold50WithShadow = TextStyle(
     fontSize: 50,
     fontWeight: FontWeightHelper.extraBold,

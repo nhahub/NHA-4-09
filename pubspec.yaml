@@ -74,6 +74,7 @@ flutter:
   assets:
     - assets/svgs/
     - assets/images/
+    - assets/images/meals/
     - assets/mock_images/
     - .env
 
