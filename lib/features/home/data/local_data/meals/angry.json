@@ -8,7 +8,7 @@
         "nutrients": ["omega3", "protein", "vitamins"],
         "effects": ["mood_calm", "stress_relief"],
         "tags": ["healthy"],
-        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/salmon-1238241_640.jpg"
+        "image": "assets/images/meals/angry/grilled_salmon_with_steamed_veggies.webp"
       },
       {
         "id": "ag_meal_002",
@@ -17,7 +17,7 @@
         "nutrients": ["fiber", "iron", "magnesium"],
         "effects": ["calming", "stress_relief"],
         "tags": ["vegan"],
-        "image": "https://cdn.pixabay.com/photo/2017/08/06/02/08/lentil-soup-2588891_640.jpg"
+        "image": "assets/images/meals/angry/lentil_and_vegetable_soup.webp"
       },
       {
         "id": "ag_meal_003",
@@ -277,6 +277,15 @@
       }
     ],
     "avoid": [
+      {
+        "id": "ag_drink_010",
+        "name": "Caffeine",
+        "type": "drink",
+        "nutrients": ["antioxidants"],
+        "effects": ["calming"],
+        "tags": ["herbal"],
+        "image": "assets/images/meals/angry/caffeine.webp"
+      },
       "Caffeine",
       "Alcohol",
       "Fast Food",

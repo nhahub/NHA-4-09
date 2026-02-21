@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/theming/app_assets.dart';
+import 'package:moodly/core/constants/constants.dart';
+import 'package:moodly/features/home/data/models/meal_model.dart';
+import '../../../home/presentation/widgets/recommended_food_section/meal_card.dart';
 
 class MealsRecommendationsView extends StatelessWidget {
   const MealsRecommendationsView({super.key});
@@ -12,26 +13,20 @@ class MealsRecommendationsView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              height: 120,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 20,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Image.asset(
-                      AppAssets.meal,
-                      fit: BoxFit.cover,
-                      width: 150,
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Image.asset(AppAssets.mealwebp, fit: BoxFit.cover),
-                  ),
-                ],
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: kAppHorizontalPadding,
+              ),
+              child: MealCard(
+                mealModel: MealModel(
+                  id: "0",
+                  name: "Warm Turmeric Milk",
+                  type: "type",
+                  nutrients: ["nutrients"],
+                  effects: ["effects"],
+                  tags: ["tags"],
+                  image: "assets/images/meals/angry/warm_turmeric_milk.webp",
+                ),
               ),
             ),
           ],
