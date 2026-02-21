@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/features/home/data/models/meal_model.dart';
-import '../../../home/presentation/widgets/recommended_food_section/meal_card.dart';
+import 'package:moodly/features/meals_recommendations/data/models/mood_food_model.dart';
+import '../widgets/meal_card.dart';
 
 class MealsRecommendationsView extends StatelessWidget {
   const MealsRecommendationsView({super.key});
@@ -18,7 +18,7 @@ class MealsRecommendationsView extends StatelessWidget {
                 horizontal: kAppHorizontalPadding,
               ),
               child: MealCard(
-                mealModel: MealModel(
+                mealModel: MoodFoodModel(
                   id: "0",
                   name: "Warm Turmeric Milk",
                   type: "type",

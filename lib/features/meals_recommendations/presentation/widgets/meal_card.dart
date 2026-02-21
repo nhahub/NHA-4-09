@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/home/presentation/widgets/recommended_food_section/meal_card_data_container.dart';
+import 'package:moodly/features/meals_recommendations/presentation/widgets/meal_card_data_container.dart';
 
-import '../../../data/models/meal_model.dart';
+import '../../data/models/mood_food_model.dart';
 
 class MealCard extends StatelessWidget {
-  final MealModel mealModel;
+  final MoodFoodModel mealModel;
 
   const MealCard({super.key, required this.mealModel});
 

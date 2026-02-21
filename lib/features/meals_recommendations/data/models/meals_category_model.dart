@@ -1,14 +1,14 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'meal_model.dart';
+import 'mood_food_model.dart';
 
 part 'meals_category_model.g.dart';
 
 @JsonSerializable()
 class MealsCategoryModel {
-  final List<MealModel> meals;
-  final List<MealModel> snacks;
-  final List<MealModel> drinks;
-  final List<MealModel> avoid;
+  final List<MoodFoodModel> meals;
+  final List<MoodFoodModel> snacks;
+  final List<MoodFoodModel> drinks;
+  final List<MoodFoodModel> avoid;
 
   MealsCategoryModel({
     required this.meals,

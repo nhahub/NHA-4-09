@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:moodly/core/extensions/context_extensions.dart';
 import 'package:moodly/core/routing/routes.dart';
 import 'package:moodly/core/widgets/app_section_header.dart';
-import 'package:moodly/features/home/presentation/widgets/daily_stats_section/recommended_food/recommended_food_card.dart';
-import '../../../../../core/constants/constants.dart';
+import 'package:moodly/features/meals_recommendations/presentation/widgets/recommended_food_card.dart';
+import '../../../../core/constants/constants.dart';
 
 class RecommendedFoodSection extends StatelessWidget {
   const RecommendedFoodSection({super.key});

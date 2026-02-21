@@ -1,12 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/helpers/alpha_from_percent.dart';
-import '../../../../../core/theming/app_styles.dart';
+import '../../../../core/helpers/alpha_from_percent.dart';
+import '../../../../core/theming/app_styles.dart';
 
 class MealCardDataContainer extends StatelessWidget {
   final String title;
-
   const MealCardDataContainer({super.key, required this.title});
 
   @override

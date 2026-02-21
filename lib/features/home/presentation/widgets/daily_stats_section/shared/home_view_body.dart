@@ -5,7 +5,7 @@ import 'package:moodly/features/home/presentation/widgets/daily_stats_section/sh
 import 'package:moodly/features/home/presentation/widgets/meditations_for_you_section/meditations_for_you_section.dart';
 import 'package:moodly/features/home/presentation/widgets/message_of_the_day_section/message_of_the_day_section.dart';
 import 'package:moodly/features/home/presentation/widgets/mood_progress_section/mood_progress_section.dart';
-import 'package:moodly/features/home/presentation/widgets/recommended_food_section/recommended_food_section.dart';
+import 'package:moodly/features/meals_recommendations/presentation/widgets/recommended_food_section.dart';
 import 'package:moodly/features/home/presentation/widgets/sessions_for_you_section/sessions_for_you_section.dart';
 
 class HomeViewBody extends StatelessWidget {

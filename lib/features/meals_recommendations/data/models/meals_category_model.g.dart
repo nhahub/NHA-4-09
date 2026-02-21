@@ -9,16 +9,16 @@ part of 'meals_category_model.dart';
 MealsCategoryModel _$MealsCategoryModelFromJson(Map<String, dynamic> json) =>
     MealsCategoryModel(
       meals: (json['meals'] as List<dynamic>)
-          .map((e) => MealModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => MoodFoodModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       snacks: (json['snacks'] as List<dynamic>)
-          .map((e) => MealModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => MoodFoodModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       drinks: (json['drinks'] as List<dynamic>)
-          .map((e) => MealModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => MoodFoodModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       avoid: (json['avoid'] as List<dynamic>)
-          .map((e) => MealModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => MoodFoodModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
