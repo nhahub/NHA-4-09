@@ -1,5 +1,5 @@
 import 'package:get_it/get_it.dart';
-import 'package:moodly/features/home/data/repos/water_repo.dart';
+import '../../features/home/data/repos/water_repo.dart';
 import '../../features/mood/data/repos/mood_repo.dart';
 import '../../features/mood/data/services/mood_remote_service.dart';
 

@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/core/services/cache_helper.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../core/services/cache_helper.dart';
 
 class WaterLocalService {
   static String get _today => DateFormat('yyyy-MM-dd').format(DateTime.now());

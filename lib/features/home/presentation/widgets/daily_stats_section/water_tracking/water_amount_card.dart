@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/home/presentation/widgets/daily_stats_section/shared/app_custom_card.dart';
+import '../shared/app_custom_card.dart';
 import 'water_amount_header.dart';
 import 'water_cups_list.dart';
 

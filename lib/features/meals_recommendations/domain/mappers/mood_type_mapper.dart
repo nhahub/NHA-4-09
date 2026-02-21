@@ -1,4 +1,4 @@
-import 'package:moodly/features/meals_recommendations/domain/enums/mood_type.dart';
+import '../enums/mood_type.dart';
 
 String moodTypeToString(MoodType mood) {
   switch (mood) {

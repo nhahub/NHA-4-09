@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import 'mood_food_model.dart';
 
 part 'meals_category_model.g.dart';

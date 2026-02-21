@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/features/home/presentation/widgets/daily_stats_section/water_tracking/water_tracking_view_body.dart';
-import 'package:moodly/features/home/presentation/widgets/shared/back_button_appbar.dart';
+
+import '../../../../core/theming/app_colors.dart';
+import '../widgets/daily_stats_section/water_tracking/water_tracking_view_body.dart';
+import '../widgets/shared/back_button_appbar.dart';
 
 class WaterTrackingView extends StatelessWidget {
   const WaterTrackingView({super.key});

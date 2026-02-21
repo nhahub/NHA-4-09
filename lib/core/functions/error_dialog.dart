@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../constants/constants.dart';
 
+import '../constants/constants.dart';
 import '../extensions/context_extensions.dart';
 import '../helpers/alpha_from_percent.dart';
 import '../theming/app_colors.dart';
