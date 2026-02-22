@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../../../core/constants/constants.dart';
+import '../../../../data/local_data/water_stats_data.dart';
 import '../../../../data/models/water_cups_model.dart';
 import '../../../manager/cups_of_water_cubit/water_tracking_cubit.dart';
 import '../shared/app_custom_card.dart';
 import 'health_benefits_card.dart';
 import 'statistics_card.dart';
 import 'water_amount_card.dart';
-import '../../../../data/local_data/water_stats_data.dart';
 
 class WaterTrackingViewBody extends StatelessWidget {
   const WaterTrackingViewBody({super.key});

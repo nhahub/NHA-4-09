@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:moodly/core/constants/constants.dart';
+import '../../../../core/constants/constants.dart';
 
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/functions/build_snack_bar.dart';

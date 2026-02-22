@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/features/meals_recommendations/data/models/recommended_food_item_model.dart';
-import 'package:moodly/features/meals_recommendations/presentation/widgets/recommended_food_card.dart';
+
+import '../../../../core/constants/constants.dart';
+import '../../data/models/recommended_food_item_model.dart';
+import 'recommended_food_card.dart';
 
 class RecommendedFoodListView extends StatelessWidget {
   final List<RecommendedFoodItemModel> food;

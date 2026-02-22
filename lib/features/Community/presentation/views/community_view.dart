@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
 
+import '../../../../core/constants/constants.dart';
 import '../../../../core/enums/fade_position.dart';
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/widgets/custom_appbar.dart';

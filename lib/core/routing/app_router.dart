@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/meals_recommendations/data/repos/recommended_food_repo.dart';
-import 'package:moodly/features/meals_recommendations/domain/enums/food_type.dart';
-import 'package:moodly/features/meals_recommendations/domain/enums/mood_type.dart';
-import 'package:moodly/features/meals_recommendations/presentation/manager/recommended_food_cubit/recommended_food_cubit.dart';
+import '../../features/meals_recommendations/data/repos/recommended_food_repo.dart';
+import '../../features/meals_recommendations/domain/enums/food_type.dart';
+import '../../features/meals_recommendations/domain/enums/mood_type.dart';
+import '../../features/meals_recommendations/presentation/manager/recommended_food_cubit/recommended_food_cubit.dart';
 import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
 import '../../features/home/presentation/views/water_tracking_view.dart';
 import '../../features/meals_recommendations/presentation/views/recommended_food_view.dart';

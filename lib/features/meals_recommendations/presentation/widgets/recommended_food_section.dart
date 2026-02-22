@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+
+import '../../../../core/constants/constants.dart';
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/widgets/app_section_header.dart';
 import 'recommended_food_home_card.dart';
-import '../../../../core/constants/constants.dart';
 
 class RecommendedFoodSection extends StatelessWidget {
   const RecommendedFoodSection({super.key});

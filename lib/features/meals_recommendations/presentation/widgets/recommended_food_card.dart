@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/meals_recommendations/presentation/widgets/recommended_food_card_data_container.dart';
+import 'recommended_food_card_data_container.dart';
 
 import '../../data/models/recommended_food_item_model.dart';
 
