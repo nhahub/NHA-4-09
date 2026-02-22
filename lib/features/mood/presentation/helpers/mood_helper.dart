@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/mood/data/services/mood_local_service.dart';
-import 'package:moodly/features/mood/presentation/widgets/mood_dialog.dart';
+
+import '../../data/services/mood_local_service.dart';
+import '../widgets/mood_dialog.dart';
 
 void openDailyMoodDialog(BuildContext context) {
   WidgetsBinding.instance.addPostFrameCallback((_) {

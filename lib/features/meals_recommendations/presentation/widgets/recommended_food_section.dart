@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/extensions/context_extensions.dart';
-import 'package:moodly/core/routing/routes.dart';
-import 'package:moodly/core/widgets/app_section_header.dart';
-import 'package:moodly/features/home/presentation/widgets/daily_stats_section/recommended_food/recommended_food_card.dart';
-import '../../../../../core/constants/constants.dart';
+
+import '../../../../core/constants/constants.dart';
+import '../../../../core/extensions/context_extensions.dart';
+import '../../../../core/routing/routes.dart';
+import '../../../../core/widgets/app_section_header.dart';
+import 'recommended_food_home_card.dart';
 
 class RecommendedFoodSection extends StatelessWidget {
   const RecommendedFoodSection({super.key});
@@ -17,9 +18,9 @@ class RecommendedFoodSection extends StatelessWidget {
         const SizedBox(height: kAppSectionSpacing),
         GestureDetector(
           onTap: () {
-            context.push(Routes.mealsRecommendationsView);
+            context.push(Routes.recommendedFoodView);
           },
-          child: const RecommendedFoodCard(),
+          child: const RecommendedFoodHomeCard(),
         ),
       ],
     );

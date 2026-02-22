@@ -24,3 +24,6 @@ const int kMaxCups = 8;
 // Tables
 const String kQuestionnaireAnswersTable = "questionnaire_answers";
 const String kMoodTable = "moods";
+
+// Premium
+const bool kIsPremium = true;

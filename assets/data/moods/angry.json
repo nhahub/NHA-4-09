@@ -8,7 +8,7 @@
         "nutrients": ["omega3", "protein", "vitamins"],
         "effects": ["mood_calm", "stress_relief"],
         "tags": ["healthy"],
-        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/salmon-1238241_640.jpg"
+        "image": "assets/images/meals/angry/grilled_salmon_with_steamed_veggies.webp"
       },
       {
         "id": "ag_meal_002",
@@ -17,7 +17,7 @@
         "nutrients": ["fiber", "iron", "magnesium"],
         "effects": ["calming", "stress_relief"],
         "tags": ["vegan"],
-        "image": "https://cdn.pixabay.com/photo/2017/08/06/02/08/lentil-soup-2588891_640.jpg"
+        "image": "assets/images/meals/angry/lentil_and_vegetable_soup.webp"
       },
       {
         "id": "ag_meal_003",
@@ -26,7 +26,7 @@
         "nutrients": ["protein", "magnesium", "healthy_fats"],
         "effects": ["mood_calm"],
         "tags": ["vegan"],
-        "image": "https://cdn.pixabay.com/photo/2017/05/07/08/56/quinoa-2294413_640.jpg"
+        "image": "assets/images/meals/angry/quinoa_salad_with_avocado.webp"
       },
       {
         "id": "ag_meal_004",
@@ -35,7 +35,7 @@
         "nutrients": ["protein", "complex_carbs"],
         "effects": ["stress_relief"],
         "tags": ["healthy"],
-        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/chicken-1238243_640.jpg"
+        "image": "assets/images/meals/angry/grilled_chicken_with_rice.webp"
       },
       {
         "id": "ag_meal_005",
@@ -44,7 +44,7 @@
         "nutrients": ["protein", "fiber"],
         "effects": ["stress_relief"],
         "tags": ["vegan"],
-        "image": "https://cdn.pixabay.com/photo/2017/06/10/07/16/stir-fry-2385253_640.jpg"
+        "image": "assets/images/meals/angry/vegetable_stir_fry_with_tofu.webp"
       },
       {
         "id": "ag_meal_006",
@@ -53,7 +53,7 @@
         "nutrients": ["complex_carbs", "healthy_fats"],
         "effects": ["calming"],
         "tags": ["vegetarian"],
-        "image": "https://cdn.pixabay.com/photo/2015/05/29/22/17/pasta-788274_640.jpg"
+        "image": "assets/images/meals/angry/whole_wheat_pasta_with_pesto.webp"
       },
       {
         "id": "ag_meal_007",
@@ -62,7 +62,7 @@
         "nutrients": ["protein", "healthy_fats"],
         "effects": ["mood_calm"],
         "tags": ["breakfast"],
-        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/avocado-toast-1238257_640.jpg"
+        "image": "assets/images/meals/angry/egg_and_avocado_toast.webp"
       },
       {
         "id": "ag_meal_008",
@@ -71,7 +71,7 @@
         "nutrients": ["fiber", "iron", "magnesium"],
         "effects": ["stress_relief"],
         "tags": ["vegan"],
-        "image": "https://cdn.pixabay.com/photo/2017/06/02/18/24/tofu-2369646_640.jpg"
+        "image": "assets/images/meals/angry/spinach_and_chickpea_bowl.webp"
       },
       {
         "id": "ag_meal_009",
@@ -80,7 +80,7 @@
         "nutrients": ["complex_carbs", "protein"],
         "effects": ["calming"],
         "tags": ["healthy"],
-        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/sushi-1238249_640.jpg"
+        "image": "assets/images/meals/angry/rice_sushi_rolls.webp"
       },
       {
         "id": "ag_meal_010",
@@ -89,7 +89,7 @@
         "nutrients": ["fiber", "vitamins"],
         "effects": ["calming"],
         "tags": ["vegan"],
-        "image": "https://cdn.pixabay.com/photo/2015/07/28/21/56/soup-865915_640.jpg"
+        "image": "assets/images/meals/angry/vegetable_soup.webp"
       }
     ],
     "snacks": [
@@ -100,7 +100,7 @@
         "nutrients": ["magnesium", "antioxidants"],
         "effects": ["mood_boost", "stress_relief"],
         "tags": ["comfort"],
-        "image": "https://cdn.pixabay.com/photo/2017/01/21/14/28/chocolate-1998223_640.jpg"
+        "image": "assets/images/meals/angry/dark_chocolate.webp"
       },
       {
         "id": "ag_snack_002",
@@ -109,7 +109,7 @@
         "nutrients": ["magnesium", "healthy_fats"],
         "effects": ["calming"],
         "tags": ["quick"],
-        "image": "https://cdn.pixabay.com/photo/2015/04/08/13/13/nuts-712665_640.jpg"
+        "image": "assets/images/meals/angry/mixed_nuts.webp"
       },
       {
         "id": "ag_snack_003",
@@ -118,7 +118,7 @@
         "nutrients": ["magnesium"],
         "effects": ["energy_stable"],
         "tags": ["quick"],
-        "image": "https://cdn.pixabay.com/photo/2018/01/15/07/51/banana-3087090_640.jpg"
+        "image": "assets/images/meals/angry/banana.webp"
       },
       {
         "id": "ag_snack_004",
@@ -127,7 +127,7 @@
         "nutrients": ["protein", "magnesium"],
         "effects": ["energy_stable"],
         "tags": ["quick"],
-        "image": "https://cdn.pixabay.com/photo/2016/11/29/09/08/trail-mix-1868729_640.jpg"
+        "image": "assets/images/meals/angry/trail_mix.webp"
       },
       {
         "id": "ag_snack_005",
@@ -136,7 +136,7 @@
         "nutrients": ["fiber", "healthy_fats"],
         "effects": ["calming"],
         "tags": ["healthy"],
-        "image": "https://cdn.pixabay.com/photo/2015/03/26/09/40/apple-690230_640.jpg"
+        "image": "assets/images/meals/angry/apple_slices_with_peanut_butter.webp"
       },
       {
         "id": "ag_snack_006",
@@ -145,7 +145,7 @@
         "nutrients": ["fiber", "magnesium"],
         "effects": ["calming"],
         "tags": ["vegan"],
-        "image": "https://cdn.pixabay.com/photo/2017/06/30/20/29/vegetables-2454341_640.jpg"
+        "image": "assets/images/meals/angry/carrot.webp"
       },
       {
         "id": "ag_snack_007",
@@ -154,7 +154,7 @@
         "nutrients": ["magnesium"],
         "effects": ["stress_relief"],
         "tags": ["vegan"],
-        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/cucumber-1238255_640.jpg"
+        "image": "assets/images/meals/angry/cucumber_slices.webp"
       },
       {
         "id": "ag_snack_008",
@@ -163,7 +163,7 @@
         "nutrients": ["protein", "probiotics"],
         "effects": ["calming"],
         "tags": ["healthy"],
-        "image": "https://cdn.pixabay.com/photo/2017/07/16/10/43/yogurt-2508918_640.jpg"
+        "image": "assets/images/meals/angry/greek_yogurt_with_honey.webp"
       },
       {
         "id": "ag_snack_009",
@@ -172,7 +172,7 @@
         "nutrients": ["fiber", "complex_carbs"],
         "effects": ["energy_stable"],
         "tags": ["healthy"],
-        "image": "https://cdn.pixabay.com/photo/2017/06/10/07/16/oat-balls-2385252_640.jpg"
+        "image": "assets/images/meals/angry/oat_energy_balls.webp"
       },
       {
         "id": "ag_snack_010",
@@ -181,7 +181,7 @@
         "nutrients": ["magnesium", "antioxidants"],
         "effects": ["mood_boost"],
         "tags": ["comfort"],
-        "image": "https://cdn.pixabay.com/photo/2017/01/21/14/28/chocolate-1998223_640.jpg"
+        "image": "assets/images/meals/angry/dark_chocolate_with_nuts.webp"
       }
     ],
     "drinks": [
@@ -192,7 +192,7 @@
         "nutrients": ["antioxidants", "l_theanine"],
         "effects": ["calming", "focus"],
         "tags": ["herbal"],
-        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/green-tea-1238247_640.jpg"
+        "image": "assets/images/meals/angry/green_tea.webp"
       },
       {
         "id": "ag_drink_002",
@@ -201,7 +201,7 @@
         "nutrients": ["antioxidants"],
         "effects": ["calming", "stress_relief"],
         "tags": ["herbal"],
-        "image": "https://cdn.pixabay.com/photo/2016/04/14/16/32/chamomile-1329546_640.jpg"
+        "image": "assets/images/meals/angry/chamomile_tea.webp"
       },
       {
         "id": "ag_drink_003",
@@ -210,7 +210,7 @@
         "nutrients": ["antioxidants"],
         "effects": ["calming"],
         "tags": ["herbal"],
-        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/peppermint-1238244_640.jpg"
+        "image": "assets/images/meals/angry/peppermint_tea.webp"
       },
       {
         "id": "ag_drink_004",
@@ -219,7 +219,7 @@
         "nutrients": ["antioxidants", "calcium"],
         "effects": ["calming"],
         "tags": ["night"],
-        "image": "https://cdn.pixabay.com/photo/2017/06/10/07/16/turmeric-milk-2385250_640.jpg"
+        "image": "assets/images/meals/angry/warm_turmeric_milk.webp"
       },
       {
         "id": "ag_drink_005",
@@ -228,7 +228,7 @@
         "nutrients": ["vitamin_c"],
         "effects": ["energy_boost"],
         "tags": ["hydration"],
-        "image": "https://cdn.pixabay.com/photo/2016/01/19/17/28/lemon-water-1142142_640.jpg"
+        "image": "assets/images/meals/angry/lemon_water.webp"
       },
       {
         "id": "ag_drink_006",
@@ -237,7 +237,7 @@
         "nutrients": ["vitamins", "antioxidants"],
         "effects": ["energy_boost"],
         "tags": ["healthy"],
-        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/berry-smoothie-1238251_640.jpg"
+        "image": "assets/images/meals/angry/berry_smoothie.webp"
       },
       {
         "id": "ag_drink_007",
@@ -246,7 +246,7 @@
         "nutrients": ["electrolytes"],
         "effects": ["hydration", "stress_relief"],
         "tags": ["healthy"],
-        "image": "https://cdn.pixabay.com/photo/2017/01/20/00/30/coconut-water-1994552_640.jpg"
+        "image": "assets/images/meals/angry/coconut_water.webp"
       },
       {
         "id": "ag_drink_008",
@@ -255,7 +255,7 @@
         "nutrients": ["tryptophan", "calcium"],
         "effects": ["calming", "sleep_support"],
         "tags": ["night"],
-        "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/milk-1238245_640.jpg"
+        "image": "assets/images/meals/angry/milk_with_honey.webp"
       },
       {
         "id": "ag_drink_009",
@@ -264,7 +264,7 @@
         "nutrients": ["antioxidants"],
         "effects": ["stress_relief"],
         "tags": ["herbal"],
-        "image": "https://cdn.pixabay.com/photo/2016/04/14/16/32/herbal-tea-1329553_640.jpg"
+        "image": "assets/images/meals/angry/herbal_relaxing_tea.webp"
       },
       {
         "id": "ag_drink_010",
@@ -273,15 +273,55 @@
         "nutrients": ["antioxidants"],
         "effects": ["calming"],
         "tags": ["herbal"],
-        "image": "https://cdn.pixabay.com/photo/2016/04/14/16/32/lemon-chamomile-1329548_640.jpg"
+        "image": "assets/images/meals/angry/chamomile_lemon_tea.webp"
       }
     ],
     "avoid": [
-      "Caffeine",
-      "Alcohol",
-      "Fast Food",
-      "Sugary Snacks",
-      "Energy Drinks"
+      {
+        "id": "ag_avoid_001",
+        "name": "Caffeine",
+        "type": "avoid",
+        "nutrients": ["stimulants"],
+        "effects": ["increase_anxiety", "increase_heart_rate", "agitation"],
+        "tags": ["drink", "stimulant"],
+        "image": "assets/images/meals/angry/caffeine.webp"
+      },
+      {
+        "id": "ag_avoid_002",
+        "name": "Alcohol",
+        "type": "avoid",
+        "nutrients": ["toxins"],
+        "effects": ["mood_instability", "dehydration", "poor_sleep"],
+        "tags": ["drink", "alcoholic"],
+        "image": "assets/images/meals/angry/alcohol.webp"
+      },
+      {
+        "id": "ag_avoid_003",
+        "name": "Fast Food",
+        "type": "avoid",
+        "nutrients": ["trans_fats", "sodium", "preservatives"],
+        "effects": ["inflammation", "low_energy", "mood_crash"],
+        "tags": ["junk_food", "processed"],
+        "image": "assets/images/meals/angry/fast_food.webp"
+      },
+      {
+        "id": "ag_avoid_004",
+        "name": "Sugary Snacks",
+        "type": "avoid",
+        "nutrients": ["refined_sugar"],
+        "effects": ["energy_spikes", "energy_crash", "irritability"],
+        "tags": ["sweets", "processed"],
+        "image": "assets/images/meals/angry/sugary_snacks.webp"
+      },
+      {
+        "id": "ag_avoid_005",
+        "name": "Energy Drinks",
+        "type": "avoid",
+        "nutrients": ["caffeine", "sugar", "stimulants"],
+        "effects": ["nervousness", "agitation", "sleep_disruption"],
+        "tags": ["drink", "stimulant"],
+        "image": "assets/images/meals/angry/energy_drinks.webp"
+      }
     ]
   }
 }

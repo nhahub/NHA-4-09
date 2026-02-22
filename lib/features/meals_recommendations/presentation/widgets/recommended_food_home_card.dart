@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/core/extensions/context_extensions.dart';
-import 'package:moodly/core/routing/routes.dart';
-import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/core/widgets/app_text_button.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../core/extensions/context_extensions.dart';
+import '../../../../core/routing/routes.dart';
+import '../../../../core/theming/app_assets.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/app_styles.dart';
+import '../../../../core/widgets/app_text_button.dart';
 
-class RecommendedFoodCard extends StatelessWidget {
-  const RecommendedFoodCard({super.key});
+class RecommendedFoodHomeCard extends StatelessWidget {
+  const RecommendedFoodHomeCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +67,7 @@ class RecommendedFoodCard extends StatelessWidget {
                     verticalPadding: 10,
                     borderRadius: 12,
                     onPressed: () {
-                      context.push(Routes.mealsRecommendationsView);
+                      context.push(Routes.recommendedFoodView);
                     },
                     child: Text(
                       'Explore now',

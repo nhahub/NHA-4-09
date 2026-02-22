@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/services/get_it_service.dart';
-import 'package:moodly/features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
 
+import '../../../../core/services/get_it_service.dart';
 import '../../../Community/presentation/views/community_view.dart';
 import '../../../chatbot/presentation/views/chatbot_view.dart';
 import '../../../home/data/repos/water_repo.dart';
+import '../../../home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
 import '../../../home/presentation/views/home_view.dart';
 import '../../../meditations/presentation/views/meditations_view.dart';
 import '../../../profile/presentation/views/profile_view.dart';

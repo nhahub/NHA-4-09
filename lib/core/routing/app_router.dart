@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
-import 'package:moodly/features/home/presentation/views/water_tracking_view.dart';
-import 'package:moodly/features/meals_recommendations/presentation/views/meals_recommendations_view.dart';
+import '../../features/meals_recommendations/data/repos/recommended_food_repo.dart';
+import '../../features/meals_recommendations/domain/enums/food_type.dart';
+import '../../features/meals_recommendations/domain/enums/mood_type.dart';
+import '../../features/meals_recommendations/presentation/manager/recommended_food_cubit/recommended_food_cubit.dart';
+import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
+import '../../features/home/presentation/views/water_tracking_view.dart';
+import '../../features/meals_recommendations/presentation/views/recommended_food_view.dart';
 import '../../features/Community/data/services/audio_player_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
@@ -128,9 +132,18 @@ class AppRouter {
           ),
         );
 
-      case Routes.mealsRecommendationsView:
+      case Routes.recommendedFoodView:
         return MaterialPageRoute(
-          builder: (context) => const MealsRecommendationsView(),
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                RecommendedFoodCubit(
+                  recommendedFoodRepo: getIt.get<RecommendedFoodRepo>(),
+                )..getRecommendedFood(
+                  foodType: FoodType.meals,
+                  moodType: MoodType.angry,
+                ),
+            child: const RecommendedFoodView(),
+          ),
         );
 
       case Routes.meditationsView:

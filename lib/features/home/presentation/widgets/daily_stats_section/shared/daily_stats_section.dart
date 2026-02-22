@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/routing/routes.dart';
-import 'package:moodly/features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
-import 'package:moodly/features/home/presentation/widgets/daily_stats_section/shared/surface_card.dart';
-import 'package:moodly/features/home/presentation/widgets/daily_stats_section/water_tracking/water_amount_card.dart';
+
 import '../../../../../../core/constants/constants.dart';
 import '../../../../../../core/extensions/context_extensions.dart';
+import '../../../../../../core/routing/routes.dart';
 import '../../../../../../core/widgets/app_section_header.dart';
+import '../../../manager/cups_of_water_cubit/water_tracking_cubit.dart';
+import '../water_tracking/water_amount_card.dart';
+import 'surface_card.dart';
 
 class DailyStatsSection extends StatelessWidget {
   const DailyStatsSection({super.key});

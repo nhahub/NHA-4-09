@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../../core/errors/failure.dart';
 import '../../../../home/data/models/feeling_today_model.dart';
 import '../../../data/repos/mood_repo.dart';

@@ -1,4 +1,4 @@
-import 'package:moodly/core/constants/constants.dart';
+import '../../../../core/constants/constants.dart';
 
 class WaterCupsModel {
   final int currentIndex;

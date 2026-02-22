@@ -143,6 +143,19 @@ abstract class AppStyles {
       ),
     ],
   );
+  static TextStyle extraBold17WithShadow = TextStyle(
+    fontSize: 17,
+    fontWeight: FontWeightHelper.extraBold,
+    fontFamily: "Nunito",
+    letterSpacing: -0.2,
+    shadows: [
+      Shadow(
+        color: Colors.black.withAlpha(alphaFromPercentage(25)),
+        offset: const Offset(0, 1.34),
+        blurRadius: 4,
+      ),
+    ],
+  );
   static TextStyle medium15WithShadow = TextStyle(
     fontSize: 15,
     fontWeight: FontWeightHelper.medium,

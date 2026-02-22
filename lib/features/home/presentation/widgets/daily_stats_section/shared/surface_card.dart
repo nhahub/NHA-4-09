@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/core/helpers/alpha_from_percent.dart';
-import 'package:moodly/core/theming/app_colors.dart';
+
+import '../../../../../../core/constants/constants.dart';
+import '../../../../../../core/helpers/alpha_from_percent.dart';
+import '../../../../../../core/theming/app_colors.dart';
 
 class SurfaceCard extends StatelessWidget {
   final Widget child;

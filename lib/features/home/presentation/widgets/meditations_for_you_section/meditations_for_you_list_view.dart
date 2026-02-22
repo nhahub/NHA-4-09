@@ -17,7 +17,6 @@ class MeditationsForYouListView extends StatelessWidget {
       itemBuilder: (context, index) {
         return CustomCard(
           mediaEntity: meditationsForYouData[index],
-
           onTap: () {
             context.push(Routes.videoView);
           },
