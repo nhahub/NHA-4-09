@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/constants/constants.dart';
+import 'package:moodly/features/meditations/data/models/category_enum.dart';
 
 import '../../../../core/enums/fade_position.dart';
 import '../../../../core/theming/app_assets.dart';
@@ -14,7 +16,7 @@ import '../widgets/recommended_for_you_section/recommended_for_you_section.dart'
 import '../widgets/your_daily_routine_section/your_daily_routine_section.dart';
 
 class MeditationsView extends StatelessWidget {
-  final bool isPremium = true;
+  final bool isPremium = kIsPremium;
   const MeditationsView({super.key});
 
   @override
@@ -32,7 +34,12 @@ class MeditationsView extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             const SliverToBoxAdapter(child: SizedBox(height: 80)),
-            const SliverToBoxAdapter(child: CategoriesSection()),
+            SliverToBoxAdapter(
+              child: CategoriesSection<Category>(
+                categories: Category.values,
+                getTitle: (cat) => cat.title,
+              ),
+            ),
             const SliverToBoxAdapter(child: VerticalSpace()),
             const SliverToBoxAdapter(child: RecommendedForYouSection()),
             const SliverToBoxAdapter(child: VerticalSpace()),

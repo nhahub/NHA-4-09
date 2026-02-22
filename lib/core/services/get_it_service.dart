@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:moodly/features/meals_recommendations/data/local_service/mood_local_data_source.dart';
 import '../../features/home/data/repos/water_repo.dart';
 import '../../features/mood/data/repos/mood_repo.dart';
 import '../../features/mood/data/services/mood_remote_service.dart';
@@ -58,6 +59,9 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<SettingsRepo>(
     () => SettingsRepo(supabaseAuthService: getIt()),
   );
+
+  // Mood Local Data Source
+  getIt.registerLazySingleton<MoodLocalDataSource>(() => MoodLocalDataSource());
 
   // Audio Player Service
   getIt.registerFactory(() => AudioPlayerService());

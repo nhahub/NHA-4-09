@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
-
 import '../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
-import '../../../data/models/category_enum.dart';
 
 class ActiveCategoryButton extends StatelessWidget {
   const ActiveCategoryButton({
     super.key,
-    required this.category,
+    required this.title,
     required this.onTap,
   });
   final VoidCallback onTap;
-  final Category category;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +60,7 @@ class ActiveCategoryButton extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              category.title,
+              title,
               style: AppStyles.extraBold14.copyWith(color: Colors.white),
             ),
           ),

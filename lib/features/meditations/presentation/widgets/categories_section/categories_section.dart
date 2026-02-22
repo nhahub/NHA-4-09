@@ -1,19 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/constants/constants.dart';
+import 'package:moodly/features/meditations/presentation/widgets/categories_section/active_category_button.dart';
+import 'package:moodly/features/meditations/presentation/widgets/categories_section/un_active_category_button.dart';
 
-import '../../../../../core/constants/constants.dart';
-import '../../../data/models/category_enum.dart';
-import 'active_category_button.dart';
-import 'un_active_category_button.dart';
+class CategoriesSection<T> extends StatefulWidget {
+  final List<T> categories;
+  final String Function(T) getTitle;
 
-class CategoriesSection extends StatefulWidget {
-  const CategoriesSection({super.key});
+  const CategoriesSection({
+    super.key,
+    required this.categories,
+    required this.getTitle,
+  });
 
   @override
-  State<CategoriesSection> createState() => _CategoriesSectionState();
+  State<CategoriesSection<T>> createState() => _CategoriesSectionState<T>();
 }
 
-class _CategoriesSectionState extends State<CategoriesSection> {
-  Category selectedCategory = Category.values.first;
+class _CategoriesSectionState<T> extends State<CategoriesSection<T>> {
+  late T selectedCategory;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedCategory = widget.categories.first;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,15 +33,16 @@ class _CategoriesSectionState extends State<CategoriesSection> {
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
-        itemCount: Category.values.length,
+        itemCount: widget.categories.length,
         separatorBuilder: (_, __) => const SizedBox(width: 5.34),
         itemBuilder: (context, index) {
-          final category = Category.values[index];
-          final isActive = selectedCategory == category;
+          final T category = widget.categories[index];
+          final bool isActive = selectedCategory == category;
+          final String title = widget.getTitle(category);
 
           return isActive
               ? ActiveCategoryButton(
-                  category: category,
+                  title: title,
                   onTap: () {
                     setState(() {
                       selectedCategory = category;
@@ -38,7 +50,7 @@ class _CategoriesSectionState extends State<CategoriesSection> {
                   },
                 )
               : UnActiveCategoryButton(
-                  category: category,
+                  title: title,
                   onTap: () {
                     setState(() {
                       selectedCategory = category;

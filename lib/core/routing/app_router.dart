@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/meals_recommendations/data/local_service/mood_local_data_source.dart';
+import 'package:moodly/features/meals_recommendations/domain/enums/food_type.dart';
+import 'package:moodly/features/meals_recommendations/domain/enums/mood_type.dart';
+import 'package:moodly/features/meals_recommendations/presentation/manager/food_cubit/food_recommendations_cubit.dart';
 import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
 import '../../features/home/presentation/views/water_tracking_view.dart';
-import '../../features/meals_recommendations/presentation/views/meals_recommendations_view.dart';
+import '../../features/meals_recommendations/presentation/views/food_recommendations_view.dart';
 import '../../features/Community/data/services/audio_player_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
@@ -130,7 +134,12 @@ class AppRouter {
 
       case Routes.mealsRecommendationsView:
         return MaterialPageRoute(
-          builder: (context) => const MealsRecommendationsView(),
+          builder: (context) => BlocProvider(
+            create: (context) => FoodRecommendationsCubit(
+              localDataSource: getIt.get<MoodLocalDataSource>(),
+            )..loadMeals(category: FoodType.meals, mood: MoodType.angry),
+            child: const FoodRecommendationsView(),
+          ),
         );
 
       case Routes.meditationsView:

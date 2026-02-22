@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/constants/constants.dart';
 import '../widgets/daily_stats_section/shared/home_view_body.dart';
 import '../../../mood/presentation/helpers/mood_helper.dart';
 import '../../../../core/theming/app_assets.dart';
@@ -12,7 +13,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  final bool isPremium = false;
+  final bool isPremium = kIsPremium;
 
   @override
   void initState() {
