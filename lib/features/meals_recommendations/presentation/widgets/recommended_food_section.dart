@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/widgets/app_section_header.dart';
-import 'recommended_food_card.dart';
+import 'recommended_food_home_card.dart';
 import '../../../../core/constants/constants.dart';
 
 class RecommendedFoodSection extends StatelessWidget {
@@ -17,9 +17,9 @@ class RecommendedFoodSection extends StatelessWidget {
         const SizedBox(height: kAppSectionSpacing),
         GestureDetector(
           onTap: () {
-            context.push(Routes.mealsRecommendationsView);
+            context.push(Routes.recommendedFoodView);
           },
-          child: const RecommendedFoodCard(),
+          child: const RecommendedFoodHomeCard(),
         ),
       ],
     );

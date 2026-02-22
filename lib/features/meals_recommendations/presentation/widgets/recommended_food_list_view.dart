@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/features/meals_recommendations/data/models/mood_food_model.dart';
-import 'package:moodly/features/meals_recommendations/presentation/widgets/meal_card.dart';
+import 'package:moodly/features/meals_recommendations/data/models/recommended_food_item_model.dart';
+import 'package:moodly/features/meals_recommendations/presentation/widgets/recommended_food_card.dart';
 
-class MealsListView extends StatelessWidget {
-  final List<MoodFoodModel> food;
-  const MealsListView({super.key, required this.food});
+class RecommendedFoodListView extends StatelessWidget {
+  final List<RecommendedFoodItemModel> food;
+  final ScrollController controller;
+
+  const RecommendedFoodListView({
+    super.key,
+    required this.food,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +19,15 @@ class MealsListView extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
         child: ListView.separated(
+          controller: controller,
           separatorBuilder: (context, index) => const SizedBox(height: 8),
           itemCount: food.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: index == food.length - 1
-                  ? const EdgeInsets.only(bottom: kAppHorizontalPadding)
+                  ? const EdgeInsets.only(bottom: 12)
                   : EdgeInsets.zero,
-              child: MealCard(mealModel: food[index]),
+              child: RecommendedFoodCard(mealModel: food[index]),
             );
           },
         ),

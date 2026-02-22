@@ -1,12 +1,10 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
-
 import '../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../core/theming/app_styles.dart';
 
-class MealCardDataContainer extends StatelessWidget {
+class RecommendedFoodCardDataContainer extends StatelessWidget {
   final String title;
-  const MealCardDataContainer({super.key, required this.title});
+  const RecommendedFoodCardDataContainer({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -14,28 +12,6 @@ class MealCardDataContainer extends StatelessWidget {
       clipBehavior: Clip.none,
       alignment: Alignment.bottomLeft,
       children: [
-        ClipRRect(
-          borderRadius: const BorderRadius.only(
-            bottomLeft: Radius.circular(16),
-            bottomRight: Radius.circular(16),
-          ),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(
-              sigmaX: 3.0,
-              sigmaY: 10.0,
-              tileMode: TileMode.decal,
-            ),
-            child: Opacity(
-              opacity: 0.0,
-              child: Text(
-                title,
-                style: AppStyles.extraBold15WithShadow.copyWith(
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-        ),
         ClipRRect(
           borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(16),
@@ -59,7 +35,8 @@ class MealCardDataContainer extends StatelessWidget {
           padding: const EdgeInsets.only(left: 16, bottom: 25),
           child: Text(
             title,
-            style: AppStyles.extraBold15WithShadow.copyWith(
+            softWrap: true,
+            style: AppStyles.extraBold17WithShadow.copyWith(
               color: Colors.white,
             ),
           ),

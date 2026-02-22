@@ -38,6 +38,7 @@ class MeditationsView extends StatelessWidget {
               child: CategoriesSection<Category>(
                 categories: Category.values,
                 getTitle: (cat) => cat.title,
+                onCategorySelected: (Category category) {},
               ),
             ),
             const SliverToBoxAdapter(child: VerticalSpace()),

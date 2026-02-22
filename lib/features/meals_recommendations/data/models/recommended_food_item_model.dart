@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'mood_food_model.g.dart';
+part 'recommended_food_item_model.g.dart';
 
 @JsonSerializable()
-class MoodFoodModel {
+class RecommendedFoodItemModel {
   final String id;
   final String name;
   final String type;
@@ -12,7 +12,7 @@ class MoodFoodModel {
   final List<String> tags;
   final String image;
 
-  MoodFoodModel({
+  RecommendedFoodItemModel({
     required this.id,
     required this.name,
     required this.type,
@@ -22,8 +22,8 @@ class MoodFoodModel {
     required this.image,
   });
 
-  factory MoodFoodModel.fromJson(Map<String, dynamic> json) =>
-      _$MoodFoodModelFromJson(json);
+  factory RecommendedFoodItemModel.fromJson(Map<String, dynamic> json) =>
+      _$RecommendedFoodItemModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$MoodFoodModelToJson(this);
+  Map<String, dynamic> toJson() => _$RecommendedFoodItemModelToJson(this);
 }

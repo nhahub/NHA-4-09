@@ -1,84 +1,30 @@
 import 'package:flutter/material.dart';
-import '../../../../core/constants/constants.dart';
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/routing/routes.dart';
-import '../../../../core/theming/app_assets.dart';
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/app_styles.dart';
-import '../../../../core/widgets/app_text_button.dart';
+import 'package:moodly/features/meals_recommendations/presentation/widgets/recommended_food_card_data_container.dart';
+
+import '../../data/models/recommended_food_item_model.dart';
 
 class RecommendedFoodCard extends StatelessWidget {
-  const RecommendedFoodCard({super.key});
+  final RecommendedFoodItemModel mealModel;
+
+  const RecommendedFoodCard({super.key, required this.mealModel});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
-      width: double.infinity,
-      clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
-        color: AppColors.bgFill,
-        borderRadius: BorderRadius.circular(20),
-      ),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(16),
       child: Stack(
-        alignment: Alignment.centerRight,
         children: [
-          Transform.translate(
-            offset: const Offset(130, 0),
-            child: Transform.rotate(
-              angle: 1,
-              child: Container(
-                width: 700,
-                height: 160,
-                color: AppColors.lightGreen,
-              ),
-            ),
+          Image.asset(
+            mealModel.image,
+            fit: BoxFit.fitWidth,
+            width: double.infinity,
           ),
-          Transform.translate(
-            offset: const Offset(-30, 40),
-            child: Transform.scale(
-              scale: 1.4,
-              child: Image.asset(
-                AppAssets.meal,
-                height: 180,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 14),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 20,
-              children: [
-                SizedBox(
-                  width: 140,
-                  child: Text(
-                    'Discover the perfect food for your mood',
-                    style: AppStyles.medium14.copyWith(
-                      color: AppColors.linkGray,
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: AppTextButton(
-                    horizontalPadding: 20,
-                    verticalPadding: 10,
-                    borderRadius: 12,
-                    onPressed: () {
-                      context.push(Routes.mealsRecommendationsView);
-                    },
-                    child: Text(
-                      'Explore now',
-                      style: AppStyles.extraBold12.copyWith(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: RecommendedFoodCardDataContainer(title: mealModel.name),
           ),
         ],
       ),
