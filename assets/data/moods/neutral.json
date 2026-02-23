@@ -33,7 +33,7 @@
       },
       {
         "id": "nt_meal_003",
-        "name": "Baked Cod with Sweet Potato",
+        "name": "Baked Cod",
         "nutrients": ["omega3", "complex_carbs", "vitamin_a"],
         "effects": "Excellent for cognitive maintenance and steady metabolic rate.",
         "macros": {
@@ -43,7 +43,7 @@
           "fats": 8.5
         },
         "tags": ["healthy", "balanced"],
-        "image": "assets/images/meals/neutral/baked_cod_sweet_potato.webp",
+        "image": "assets/images/meals/neutral/baked_cod.webp",
         "meal_time": ["dinner"]
       },
       {
