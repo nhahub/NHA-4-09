@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/constants/constants.dart';
 
 import '../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../core/theming/app_styles.dart';
@@ -33,7 +34,10 @@ class RecommendedFoodCardDataContainer extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 16, bottom: 25),
+          padding: const EdgeInsets.only(
+            left: kAppSectionSpacing,
+            bottom: kAppSectionSpacing,
+          ),
           child: Text(
             title,
             softWrap: true,

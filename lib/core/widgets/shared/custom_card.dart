@@ -44,7 +44,7 @@ class CustomCard extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(22),
-              child: CategoryContainer(categoryTitle: mediaEntity.category),
+              child: TagContainer(categoryTitle: mediaEntity.category),
             ),
             const Center(child: PlayButton()),
           ],

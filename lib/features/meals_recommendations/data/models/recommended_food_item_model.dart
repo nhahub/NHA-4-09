@@ -1,25 +1,28 @@
 import 'package:json_annotation/json_annotation.dart';
-
+import 'package:moodly/features/meals_recommendations/data/models/macros_model.dart';
 part 'recommended_food_item_model.g.dart';
 
 @JsonSerializable()
 class RecommendedFoodItemModel {
   final String id;
   final String name;
-  final String type;
   final List<String> nutrients;
-  final List<String> effects;
+  @JsonKey(name: 'meal_time')
+  final List<String> mealTime;
+  final String effects;
+  final MacrosModel macros;
   final List<String> tags;
   final String image;
 
   RecommendedFoodItemModel({
     required this.id,
     required this.name,
-    required this.type,
     required this.nutrients,
     required this.effects,
     required this.tags,
     required this.image,
+    required this.macros,
+    required this.mealTime,
   });
 
   factory RecommendedFoodItemModel.fromJson(Map<String, dynamic> json) =>

@@ -4,323 +4,533 @@
       {
         "id": "ag_meal_001",
         "name": "Grilled Salmon with Steamed Veggies",
-        "type": "meal",
         "nutrients": ["omega3", "protein", "vitamins"],
-        "effects": ["mood_calm", "stress_relief"],
+        "effects": "Omega-3 supports brain regulation. Helps control anger and emotional stress.",
+        "macros": {
+          "kcal": 412,
+          "carbohydrates": 18.4,
+          "proteins": 34.6,
+          "fats": 22.1
+        },
         "tags": ["healthy"],
-        "image": "assets/images/meals/angry/grilled_salmon_with_steamed_veggies.webp"
+        "image": "assets/images/meals/angry/grilled_salmon_with_steamed_veggies.webp",
+        "meal_time": ["lunch", "dinner"]
       },
       {
         "id": "ag_meal_002",
         "name": "Lentil and Vegetable Soup",
-        "type": "meal",
         "nutrients": ["fiber", "iron", "magnesium"],
-        "effects": ["calming", "stress_relief"],
+        "effects": "Magnesium supports nervous stability. Helps calm emotional reactions.",
+        "macros": {
+          "kcal": 287,
+          "carbohydrates": 42.3,
+          "proteins": 18.9,
+          "fats": 4.1
+        },
         "tags": ["vegan"],
-        "image": "assets/images/meals/angry/lentil_and_vegetable_soup.webp"
+        "image": "assets/images/meals/angry/lentil_and_vegetable_soup.webp",
+        "meal_time": ["lunch", "dinner"]
       },
       {
         "id": "ag_meal_003",
         "name": "Quinoa Salad with Avocado",
-        "type": "meal",
         "nutrients": ["protein", "magnesium", "healthy_fats"],
-        "effects": ["mood_calm"],
+        "effects": "Healthy fats regulate stress response. Supports emotional balance.",
+        "macros": {
+          "kcal": 368,
+          "carbohydrates": 39.2,
+          "proteins": 11.4,
+          "fats": 18.7
+        },
         "tags": ["vegan"],
-        "image": "assets/images/meals/angry/quinoa_salad_with_avocado.webp"
+        "image": "assets/images/meals/angry/quinoa_salad_with_avocado.webp",
+        "meal_time": ["lunch", "dinner"]
       },
       {
         "id": "ag_meal_004",
         "name": "Grilled Chicken with Rice",
-        "type": "meal",
         "nutrients": ["protein", "complex_carbs"],
-        "effects": ["stress_relief"],
+        "effects": "Stable carbs improve serotonin levels. Reduces tension and irritability.",
+        "macros": {
+          "kcal": 445,
+          "carbohydrates": 48.6,
+          "proteins": 36.2,
+          "fats": 9.8
+        },
         "tags": ["healthy"],
-        "image": "assets/images/meals/angry/grilled_chicken_with_rice.webp"
+        "image": "assets/images/meals/angry/grilled_chicken_with_rice.webp",
+        "meal_time": ["lunch", "dinner"]
       },
       {
         "id": "ag_meal_005",
         "name": "Vegetable Stir Fry with Tofu",
-        "type": "meal",
         "nutrients": ["protein", "fiber"],
-        "effects": ["stress_relief"],
+        "effects": "Plant proteins support brain chemistry. Helps ease emotional pressure.",
+        "macros": {
+          "kcal": 332,
+          "carbohydrates": 28.7,
+          "proteins": 19.3,
+          "fats": 14.6
+        },
         "tags": ["vegan"],
-        "image": "assets/images/meals/angry/vegetable_stir_fry_with_tofu.webp"
+        "image": "assets/images/meals/angry/vegetable_stir_fry_with_tofu.webp",
+        "meal_time": ["lunch", "dinner"]
       },
       {
         "id": "ag_meal_006",
         "name": "Whole Wheat Pasta with Pesto",
-        "type": "meal",
         "nutrients": ["complex_carbs", "healthy_fats"],
-        "effects": ["calming"],
+        "effects": "Slow digestion carbs stabilize mood. Improves emotional control.",
+        "macros": {
+          "kcal": 458,
+          "carbohydrates": 56.4,
+          "proteins": 14.1,
+          "fats": 17.9
+        },
         "tags": ["vegetarian"],
-        "image": "assets/images/meals/angry/whole_wheat_pasta_with_pesto.webp"
+        "image": "assets/images/meals/angry/whole_wheat_pasta_with_pesto.webp",
+        "meal_time": ["lunch", "dinner"]
       },
       {
         "id": "ag_meal_007",
         "name": "Egg and Avocado Toast",
-        "type": "meal",
         "nutrients": ["protein", "healthy_fats"],
-        "effects": ["mood_calm"],
+        "effects": "Brain-supporting fats improve mood regulation. Enhances calmness.",
+        "macros": {
+          "kcal": 354,
+          "carbohydrates": 29.1,
+          "proteins": 14.7,
+          "fats": 20.3
+        },
         "tags": ["breakfast"],
-        "image": "assets/images/meals/angry/egg_and_avocado_toast.webp"
+        "image": "assets/images/meals/angry/egg_and_avocado_toast.webp",
+        "meal_time": ["breakfast"]
       },
       {
         "id": "ag_meal_008",
         "name": "Spinach and Chickpea Bowl",
-        "type": "meal",
         "nutrients": ["fiber", "iron", "magnesium"],
-        "effects": ["stress_relief"],
+        "effects": "Minerals support nervous relaxation. Reduces inner stress.",
+        "macros": {
+          "kcal": 315,
+          "carbohydrates": 44.8,
+          "proteins": 13.9,
+          "fats": 6.7
+        },
         "tags": ["vegan"],
-        "image": "assets/images/meals/angry/spinach_and_chickpea_bowl.webp"
+        "image": "assets/images/meals/angry/spinach_and_chickpea_bowl.webp",
+        "meal_time": ["lunch", "dinner"]
       },
       {
         "id": "ag_meal_009",
         "name": "Rice Sushi Rolls",
-        "type": "meal",
         "nutrients": ["complex_carbs", "protein"],
-        "effects": ["calming"],
+        "effects": "Balanced nutrients support emotional stability. Lowers irritability.",
+        "macros": {
+          "kcal": 372,
+          "carbohydrates": 58.3,
+          "proteins": 11.8,
+          "fats": 7.2
+        },
         "tags": ["healthy"],
-        "image": "assets/images/meals/angry/rice_sushi_rolls.webp"
+        "image": "assets/images/meals/angry/rice_sushi_rolls.webp",
+        "meal_time": ["lunch", "dinner"]
       },
       {
         "id": "ag_meal_010",
         "name": "Vegetable Soup",
-        "type": "meal",
         "nutrients": ["fiber", "vitamins"],
-        "effects": ["calming"],
+        "effects": "Light nutrition supports mental calm. Helps emotional comfort.",
+        "macros": {
+          "kcal": 182,
+          "carbohydrates": 28.6,
+          "proteins": 6.4,
+          "fats": 3.2
+        },
         "tags": ["vegan"],
-        "image": "assets/images/meals/angry/vegetable_soup.webp"
+        "image": "assets/images/meals/angry/vegetable_soup.webp",
+        "meal_time": ["lunch", "dinner"]
       }
     ],
     "snacks": [
       {
         "id": "ag_snack_001",
         "name": "Dark Chocolate",
-        "type": "snack",
         "nutrients": ["magnesium", "antioxidants"],
-        "effects": ["mood_boost", "stress_relief"],
+        "effects": "Stimulates feel-good hormones. Improves emotional state.",
+        "macros": {
+          "kcal": 172,
+          "carbohydrates": 13.6,
+          "proteins": 2.1,
+          "fats": 12.4
+        },
         "tags": ["comfort"],
-        "image": "assets/images/meals/angry/dark_chocolate.webp"
+        "image": "assets/images/meals/angry/dark_chocolate.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "ag_snack_002",
         "name": "Mixed Nuts",
-        "type": "snack",
         "nutrients": ["magnesium", "healthy_fats"],
-        "effects": ["calming"],
+        "effects": "Nervous system support nutrients. Improves emotional stability.",
+        "macros": {
+          "kcal": 196,
+          "carbohydrates": 8.4,
+          "proteins": 6.1,
+          "fats": 16.7
+        },
         "tags": ["quick"],
-        "image": "assets/images/meals/angry/mixed_nuts.webp"
+        "image": "assets/images/meals/angry/mixed_nuts.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "ag_snack_003",
         "name": "Banana",
-        "type": "snack",
         "nutrients": ["magnesium"],
-        "effects": ["energy_stable"],
+        "effects": "Regulates blood sugar response. Prevents mood fluctuations.",
+        "macros": {
+          "kcal": 105,
+          "carbohydrates": 27.0,
+          "proteins": 1.3,
+          "fats": 0.4
+        },
         "tags": ["quick"],
-        "image": "assets/images/meals/angry/banana.webp"
+        "image": "assets/images/meals/angry/banana.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "ag_snack_004",
         "name": "Trail Mix",
-        "type": "snack",
         "nutrients": ["protein", "magnesium"],
-        "effects": ["energy_stable"],
+        "effects": "Sustained energy improves mental focus. Reduces nervous tension.",
+        "macros": {
+          "kcal": 210,
+          "carbohydrates": 22.5,
+          "proteins": 5.4,
+          "fats": 11.9
+        },
         "tags": ["quick"],
-        "image": "assets/images/meals/angry/trail_mix.webp"
+        "image": "assets/images/meals/angry/trail_mix.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "ag_snack_005",
         "name": "Apple Slices with Peanut Butter",
-        "type": "snack",
         "nutrients": ["fiber", "healthy_fats"],
-        "effects": ["calming"],
+        "effects": "Slow digestion effect calms stress response. Supports emotional balance.",
+        "macros": {
+          "kcal": 198,
+          "carbohydrates": 24.1,
+          "proteins": 4.2,
+          "fats": 9.7
+        },
         "tags": ["healthy"],
-        "image": "assets/images/meals/angry/apple_slices_with_peanut_butter.webp"
+        "image": "assets/images/meals/angry/apple_slices_with_peanut_butter.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "ag_snack_006",
         "name": "Carrot",
-        "type": "snack",
         "nutrients": ["fiber", "magnesium"],
-        "effects": ["calming"],
+        "effects": "Supports nervous system recovery. Reduces agitation.",
+        "macros": {
+          "kcal": 41,
+          "carbohydrates": 9.6,
+          "proteins": 0.9,
+          "fats": 0.2
+        },
         "tags": ["vegan"],
-        "image": "assets/images/meals/angry/carrot.webp"
+        "image": "assets/images/meals/angry/carrot.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "ag_snack_007",
         "name": "Cucumber Slices",
-        "type": "snack",
         "nutrients": ["magnesium"],
-        "effects": ["stress_relief"],
+        "effects": "Hydration improves nervous signaling. Lowers stress sensitivity.",
+        "macros": {
+          "kcal": 16,
+          "carbohydrates": 3.8,
+          "proteins": 0.8,
+          "fats": 0.1
+        },
         "tags": ["vegan"],
-        "image": "assets/images/meals/angry/cucumber_slices.webp"
+        "image": "assets/images/meals/angry/cucumber_slices.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "ag_snack_008",
         "name": "Greek Yogurt with Honey",
-        "type": "snack",
         "nutrients": ["protein", "probiotics"],
-        "effects": ["calming"],
-        "tags": ["healthy"],
-        "image": "assets/images/meals/angry/greek_yogurt_with_honey.webp"
+        "effects": "Gut-brain support improves mood. Enhances calm feeling.",
+        "macros": {
+          "kcal": 156,
+          "carbohydrates": 17.4,
+          "proteins": 10.3,
+          "fats": 4.1
+        },
+        "tags": ["healthy", "breakfast"],
+        "image": "assets/images/meals/angry/greek_yogurt_with_honey.webp",
+        "meal_time": ["breakfast", "snack"]
       },
       {
         "id": "ag_snack_009",
         "name": "Oat Energy Balls",
-        "type": "snack",
         "nutrients": ["fiber", "complex_carbs"],
-        "effects": ["energy_stable"],
+        "effects": "Steady energy flow prevents emotional crashes. Stabilizes mood.",
+        "macros": {
+          "kcal": 182,
+          "carbohydrates": 26.8,
+          "proteins": 5.1,
+          "fats": 6.7
+        },
         "tags": ["healthy"],
-        "image": "assets/images/meals/angry/oat_energy_balls.webp"
+        "image": "assets/images/meals/angry/oat_energy_balls.webp",
+        "meal_time": ["snack"]
       },
       {
         "id": "ag_snack_010",
         "name": "Dark Chocolate with Nuts",
-        "type": "snack",
         "nutrients": ["magnesium", "antioxidants"],
-        "effects": ["mood_boost"],
+        "effects": "Mood hormones stimulation. Improves emotional comfort.",
+        "macros": {
+          "kcal": 214,
+          "carbohydrates": 16.9,
+          "proteins": 3.4,
+          "fats": 14.8
+        },
         "tags": ["comfort"],
-        "image": "assets/images/meals/angry/dark_chocolate_with_nuts.webp"
+        "image": "assets/images/meals/angry/dark_chocolate_with_nuts.webp",
+        "meal_time": ["snack"]
       }
     ],
     "drinks": [
       {
         "id": "ag_drink_001",
         "name": "Green Tea",
-        "type": "drink",
         "nutrients": ["antioxidants", "l_theanine"],
-        "effects": ["calming", "focus"],
+        "effects": "Neuro-relaxing compounds calm the mind. Reduces anger response.",
+        "macros": {
+          "kcal": 2,
+          "carbohydrates": 0.4,
+          "proteins": 0.3,
+          "fats": 0.0
+        },
         "tags": ["herbal"],
-        "image": "assets/images/meals/angry/green_tea.webp"
+        "image": "assets/images/meals/angry/green_tea.webp",
+        "meal_time": ["drink", "snack"]
       },
       {
         "id": "ag_drink_002",
         "name": "Chamomile Tea",
-        "type": "drink",
         "nutrients": ["antioxidants"],
-        "effects": ["calming", "stress_relief"],
+        "effects": "Natural brain relaxant. Supports emotional calm.",
+        "macros": {
+          "kcal": 1,
+          "carbohydrates": 0.2,
+          "proteins": 0.1,
+          "fats": 0.0
+        },
         "tags": ["herbal"],
-        "image": "assets/images/meals/angry/chamomile_tea.webp"
+        "image": "assets/images/meals/angry/chamomile_tea.webp",
+        "meal_time": ["drink", "snack"]
       },
       {
         "id": "ag_drink_003",
         "name": "Peppermint Tea",
-        "type": "drink",
         "nutrients": ["antioxidants"],
-        "effects": ["calming"],
+        "effects": "Nervous soothing effect. Reduces emotional pressure.",
+        "macros": {
+          "kcal": 2,
+          "carbohydrates": 0.3,
+          "proteins": 0.1,
+          "fats": 0.0
+        },
         "tags": ["herbal"],
-        "image": "assets/images/meals/angry/peppermint_tea.webp"
+        "image": "assets/images/meals/angry/peppermint_tea.webp",
+        "meal_time": ["drink", "snack"]
       },
       {
         "id": "ag_drink_004",
         "name": "Warm Turmeric Milk",
-        "type": "drink",
         "nutrients": ["antioxidants", "calcium"],
-        "effects": ["calming"],
+        "effects": "Brain inflammation reduction. Improves emotional balance.",
+        "macros": {
+          "kcal": 148,
+          "carbohydrates": 11.7,
+          "proteins": 7.9,
+          "fats": 8.2
+        },
         "tags": ["night"],
-        "image": "assets/images/meals/angry/warm_turmeric_milk.webp"
+        "image": "assets/images/meals/angry/warm_turmeric_milk.webp",
+        "meal_time": ["drink", "night"]
       },
       {
         "id": "ag_drink_005",
         "name": "Lemon Water",
-        "type": "drink",
         "nutrients": ["vitamin_c"],
-        "effects": ["energy_boost"],
+        "effects": "Hydration improves mental clarity. Supports mood regulation.",
+        "macros": {
+          "kcal": 6,
+          "carbohydrates": 1.9,
+          "proteins": 0.1,
+          "fats": 0.0
+        },
         "tags": ["hydration"],
-        "image": "assets/images/meals/angry/lemon_water.webp"
+        "image": "assets/images/meals/angry/lemon_water.webp",
+        "meal_time": ["drink", "snack"]
       },
       {
         "id": "ag_drink_006",
         "name": "Berry Smoothie",
-        "type": "drink",
         "nutrients": ["vitamins", "antioxidants"],
-        "effects": ["energy_boost"],
-        "tags": ["healthy"],
-        "image": "assets/images/meals/angry/berry_smoothie.webp"
+        "effects": "Brain antioxidant support. Enhances positive mood.",
+        "macros": {
+          "kcal": 186,
+          "carbohydrates": 34.2,
+          "proteins": 3.1,
+          "fats": 2.4
+        },
+        "tags": ["healthy", "breakfast"],
+        "image": "assets/images/meals/angry/berry_smoothie.webp",
+        "meal_time": ["breakfast", "drink", "snack"]
       },
       {
         "id": "ag_drink_007",
         "name": "Coconut Water",
-        "type": "drink",
         "nutrients": ["electrolytes"],
-        "effects": ["hydration", "stress_relief"],
+        "effects": "Electrolyte balance improves nerve signals. Reduces stress.",
+        "macros": {
+          "kcal": 46,
+          "carbohydrates": 9.3,
+          "proteins": 1.7,
+          "fats": 0.5
+        },
         "tags": ["healthy"],
-        "image": "assets/images/meals/angry/coconut_water.webp"
+        "image": "assets/images/meals/angry/coconut_water.webp",
+        "meal_time": ["drink", "snack"]
       },
       {
         "id": "ag_drink_008",
         "name": "Milk with Honey",
-        "type": "drink",
         "nutrients": ["tryptophan", "calcium"],
-        "effects": ["calming", "sleep_support"],
+        "effects": "Serotonin support nutrients. Improves relaxation.",
+        "macros": {
+          "kcal": 164,
+          "carbohydrates": 18.9,
+          "proteins": 8.4,
+          "fats": 6.1
+        },
         "tags": ["night"],
-        "image": "assets/images/meals/angry/milk_with_honey.webp"
+        "image": "assets/images/meals/angry/milk_with_honey.webp",
+        "meal_time": ["drink", "night"]
       },
       {
         "id": "ag_drink_009",
         "name": "Herbal Relaxing Tea",
-        "type": "drink",
         "nutrients": ["antioxidants"],
-        "effects": ["stress_relief"],
+        "effects": "Nervous calming herbs. Reduces emotional tension.",
+        "macros": {
+          "kcal": 1,
+          "carbohydrates": 0.2,
+          "proteins": 0.1,
+          "fats": 0.0
+        },
         "tags": ["herbal"],
-        "image": "assets/images/meals/angry/herbal_relaxing_tea.webp"
+        "image": "assets/images/meals/angry/herbal_relaxing_tea.webp",
+        "meal_time": ["drink", "snack"]
       },
       {
         "id": "ag_drink_010",
         "name": "Chamomile Lemon Tea",
-        "type": "drink",
         "nutrients": ["antioxidants"],
-        "effects": ["calming"],
+        "effects": "Brain soothing effect. Enhances calm mood.",
+        "macros": {
+          "kcal": 3,
+          "carbohydrates": 0.6,
+          "proteins": 0.1,
+          "fats": 0.0
+        },
         "tags": ["herbal"],
-        "image": "assets/images/meals/angry/chamomile_lemon_tea.webp"
+        "image": "assets/images/meals/angry/chamomile_lemon_tea.webp",
+        "meal_time": ["drink", "snack"]
       }
     ],
     "avoid": [
       {
         "id": "ag_avoid_001",
         "name": "Caffeine",
-        "type": "avoid",
         "nutrients": ["stimulants"],
-        "effects": ["increase_anxiety", "increase_heart_rate", "agitation"],
+        "effects": "Overactivates the nervous system. Increases anger and agitation.",
+        "macros": {
+          "kcal": 2,
+          "carbohydrates": 0.0,
+          "proteins": 0.3,
+          "fats": 0.0
+        },
         "tags": ["drink", "stimulant"],
-        "image": "assets/images/meals/angry/caffeine.webp"
+        "image": "assets/images/meals/angry/caffeine.webp",
+        "meal_time": ["avoid"]
       },
       {
         "id": "ag_avoid_002",
         "name": "Alcohol",
-        "type": "avoid",
-        "nutrients": ["toxins"],
-        "effects": ["mood_instability", "dehydration", "poor_sleep"],
-        "tags": ["drink", "alcoholic"],
-        "image": "assets/images/meals/angry/alcohol.webp"
+        "nutrients": ["ethanol"],
+        "effects": "Alters brain chemistry. Can provoke anger and mood swings.",
+        "macros": {
+          "kcal": 150,
+          "carbohydrates": 5.0,
+          "proteins": 0.0,
+          "fats": 0.0
+        },
+        "tags": ["drink", "stimulant"],
+        "image": "assets/images/meals/angry/alcohol.webp",
+        "meal_time": ["avoid"]
       },
       {
         "id": "ag_avoid_003",
-        "name": "Fast Food",
-        "type": "avoid",
-        "nutrients": ["trans_fats", "sodium", "preservatives"],
-        "effects": ["inflammation", "low_energy", "mood_crash"],
-        "tags": ["junk_food", "processed"],
-        "image": "assets/images/meals/angry/fast_food.webp"
+        "name": "Sugary Snacks",
+        "nutrients": ["sugar"],
+        "effects": "Rapid blood sugar spikes increase irritability.",
+        "macros": {
+          "kcal": 140,
+          "carbohydrates": 35.0,
+          "proteins": 0.0,
+          "fats": 0.0
+        },
+        "tags": ["snack"],
+        "image": "assets/images/meals/angry/sugary_snacks.webp",
+        "meal_time": ["avoid"]
       },
       {
         "id": "ag_avoid_004",
-        "name": "Sugary Snacks",
-        "type": "avoid",
-        "nutrients": ["refined_sugar"],
-        "effects": ["energy_spikes", "energy_crash", "irritability"],
-        "tags": ["sweets", "processed"],
-        "image": "assets/images/meals/angry/sugary_snacks.webp"
+        "name": "Fast Food",
+        "nutrients": ["trans_fats", "additives"],
+        "effects": "Promotes inflammation. Can worsen mood swings.",
+        "macros": {
+          "kcal": 250,
+          "carbohydrates": 30.0,
+          "proteins": 2.0,
+          "fats": 14.0
+        },
+        "tags": ["snack"],
+        "image": "assets/images/meals/angry/fast_food.webp",
+        "meal_time": ["avoid"]
       },
       {
         "id": "ag_avoid_005",
         "name": "Energy Drinks",
-        "type": "avoid",
-        "nutrients": ["caffeine", "sugar", "stimulants"],
-        "effects": ["nervousness", "agitation", "sleep_disruption"],
+        "nutrients": ["caffeine", "sugar"],
+        "effects": "High stimulation. Triggers anxiety and anger.",
+        "macros": {
+          "kcal": 110,
+          "carbohydrates": 28.0,
+          "proteins": 0.0,
+          "fats": 0.0
+        },
         "tags": ["drink", "stimulant"],
-        "image": "assets/images/meals/angry/energy_drinks.webp"
+        "image": "assets/images/meals/angry/energy_drinks.webp",
+        "meal_time": ["avoid"]
       }
     ]
   }

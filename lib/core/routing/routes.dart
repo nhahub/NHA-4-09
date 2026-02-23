@@ -25,4 +25,5 @@ class Routes {
   static const String recommendationsView = '/recommendationsView';
   static const String waterTrackingView = '/waterTrackingView';
   static const String recommendedFoodView = '/recommendedFoodView';
+  static const String recommendedFoodDetailsView = '/recommendedFoodDetailsView';
 }

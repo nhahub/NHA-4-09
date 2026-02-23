@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/constants.dart';
+import '../../../../core/extensions/context_extensions.dart';
+import '../../../../core/routing/routes.dart';
 import '../../data/models/recommended_food_item_model.dart';
 import 'recommended_food_card.dart';
 
@@ -24,11 +26,21 @@ class RecommendedFoodListView extends StatelessWidget {
           separatorBuilder: (context, index) => const SizedBox(height: 8),
           itemCount: food.length,
           itemBuilder: (context, index) {
-            return Padding(
-              padding: index == food.length - 1
-                  ? const EdgeInsets.only(bottom: 12)
-                  : EdgeInsets.zero,
-              child: RecommendedFoodCard(mealModel: food[index]),
+            return GestureDetector(
+              onTap: () {
+                context.push(
+                  Routes.recommendedFoodDetailsView,
+                  args: food[index],
+                );
+              },
+              child: Padding(
+                padding: index == food.length - 1
+                    ? const EdgeInsets.only(bottom: 16)
+                    : EdgeInsets.zero,
+                child: RecommendedFoodCard(
+                  recommendedFoodItemModel: food[index],
+                ),
+              ),
             );
           },
         ),
