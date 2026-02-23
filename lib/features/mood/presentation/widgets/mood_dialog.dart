@@ -34,7 +34,7 @@ class MoodDialog extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
             ),
             insetPadding: const EdgeInsets.symmetric(
-              horizontal: kAppHorizontalPadding,
+              horizontal: kAppHorizontalPadding - 4,
             ),
             child: MoodDialogContent(isDailyMood: isDailyMood),
           ),

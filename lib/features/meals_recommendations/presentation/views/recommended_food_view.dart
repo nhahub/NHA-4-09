@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/constants/constants.dart';
+import '../../../../core/enums/fade_position.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/widgets/custom_circular_progress_indicator.dart';
+import '../../../../core/widgets/fade_scrollable.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
+import '../../../meditations/presentation/widgets/categories_section/categories_section.dart';
 import '../../domain/enums/food_type.dart';
-import '../../domain/enums/mood_type.dart';
 import '../manager/recommended_food_cubit/recommended_food_cubit.dart';
 import '../widgets/recommended_food_list_view.dart';
-import '../../../meditations/presentation/widgets/categories_section/categories_section.dart';
-import '../../../../core/enums/fade_position.dart';
-import '../../../../core/widgets/fade_scrollable.dart';
 
 class RecommendedFoodView extends StatefulWidget {
   const RecommendedFoodView({super.key});
@@ -45,7 +45,6 @@ class _RecommendedFoodViewState extends State<RecommendedFoodView> {
                 onCategorySelected: (FoodType foodType) {
                   context.read<RecommendedFoodCubit>().getRecommendedFood(
                     foodType: foodType,
-                    moodType: MoodType.angry,
                   );
                   WidgetsBinding.instance.addPostFrameCallback((_) {
                     if (_scrollController.hasClients) {

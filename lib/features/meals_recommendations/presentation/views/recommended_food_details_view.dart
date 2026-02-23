@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/constants/constants.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../../data/models/recommended_food_item_model.dart';
-import '../widgets/macros_section.dart';
 import '../widgets/effects_section.dart';
+import '../widgets/macros_section.dart';
 import '../widgets/meal_time_section.dart';
 import '../widgets/nutrients_section.dart';
 import '../widgets/recommended_food_card.dart';

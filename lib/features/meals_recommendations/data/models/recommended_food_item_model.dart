@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import 'macros_model.dart';
+
 part 'recommended_food_item_model.g.dart';
 
 @JsonSerializable()

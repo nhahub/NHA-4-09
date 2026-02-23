@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/helpers/get_random_color.dart';
 import '../../../../core/widgets/shared/category_container.dart';
 import 'custom_details_header.dart';

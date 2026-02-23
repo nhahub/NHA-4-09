@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-
+import '../../../mood/data/services/mood_local_service.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/networking/api_error_handler.dart';
 import '../../domain/enums/food_type.dart';
@@ -14,12 +14,13 @@ class RecommendedFoodRepo {
   RecommendedFoodRepo({required this.localService});
 
   Future<Either<Failure, List<RecommendedFoodItemModel>>> getRecommendedFood({
-    required MoodType moodType,
     required FoodType foodType,
   }) async {
     try {
+      final String selectedDailyMood =
+          MoodLocalService.getSelectedDailyMood() ?? "Calm";
       final data = await localService.getRecommendedFoodData(
-        moodType: moodType,
+        moodType: moodTypeFromString(selectedDailyMood),
       );
       return right(data.getListByFoodType(foodType: foodType));
     } catch (e) {

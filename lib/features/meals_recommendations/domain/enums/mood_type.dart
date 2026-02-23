@@ -3,13 +3,13 @@ enum MoodType { angry, anxious, neutral, calm, happy }
 String moodTypeToString(MoodType mood) {
   switch (mood) {
     case MoodType.angry:
-      return 'Angry';
+      return 'angry';
     case MoodType.anxious:
-      return 'Anxious';
+      return 'anxious';
     case MoodType.neutral:
-      return 'Neutral';
+      return 'neutral';
     case MoodType.calm:
-      return 'Calm';
+      return 'calm';
     case MoodType.happy:
       return 'happy';
   }

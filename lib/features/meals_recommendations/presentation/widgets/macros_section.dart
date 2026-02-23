@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../data/models/macros_model.dart';
-import 'macros_details.dart';
-import 'custom_details_header.dart';
 
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/app_styles.dart';
+import '../../data/models/macros_model.dart';
+import 'custom_details_header.dart';
+import 'macros_details.dart';
 
 class MacrosSection extends StatelessWidget {
   final MacrosModel macros;
