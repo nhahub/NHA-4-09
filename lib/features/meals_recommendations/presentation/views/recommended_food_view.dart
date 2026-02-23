@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/constants/constants.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/widgets/custom_circular_progress_indicator.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
@@ -79,6 +80,18 @@ class _RecommendedFoodViewState extends State<RecommendedFoodView> {
                       return RecommendedFoodListView(
                         food: loadedState.recommendedFoodList,
                         controller: _scrollController,
+                      );
+                    case const (GetRecommendedFoodFailureState):
+                      final GetRecommendedFoodFailureState failureState =
+                          state as GetRecommendedFoodFailureState;
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: kAppHorizontalPadding,
+                        ),
+                        child: Text(
+                          failureState.message,
+                          textAlign: TextAlign.center,
+                        ),
                       );
 
                     default:

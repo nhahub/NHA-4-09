@@ -490,9 +490,8 @@
       {
         "id": "ag_avoid_003",
         "name": "Sugary Snacks",
-        "type": "avoid",
         "nutrients": ["sugar"],
-        "effects": ["Rapid blood sugar spikes increase irritability."],
+        "effects": "Rapid blood sugar spikes increase irritability.",
         "macros": {
           "kcal": 140,
           "carbohydrates": 35.0,
