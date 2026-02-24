@@ -15,13 +15,19 @@ class MealTimeSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const CustomDetailsHeader(title: "Meal Time"),
-        Row(
+        Wrap(
           spacing: 8,
+          runSpacing: 8,
           children: mealTime
               .map(
                 (nutrient) => CategoryContainer(
                   categoryTitle: nutrient,
-                  color: getRandomColor(index: mealTime.indexOf(nutrient)),
+                  containerColor: getRandomContainerColor(
+                    index: mealTime.indexOf(nutrient),
+                  ),
+                  textColor: getRandomTextColor(
+                    index: mealTime.indexOf(nutrient),
+                  ),
                 ),
               )
               .toList(),

@@ -25,8 +25,10 @@ class RecommendedFoodDetailsView extends StatelessWidget {
       body: SafeArea(
         top: false,
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: kAppHorizontalPadding,
+          padding: const EdgeInsets.only(
+            left: kAppHorizontalPadding,
+            right: kAppHorizontalPadding,
+            bottom: 8,
           ),
           child: SingleChildScrollView(
             child: Column(

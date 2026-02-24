@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/theming/app_colors.dart';
 
-import '../theming/app_colors.dart';
-
-Color getRandomColor({required int index}) {
+Color getRandomContainerColor({required int index}) {
   final colors = [
-    const Color(0xff2b7fff),
-    const Color(0xffad46ff),
-    const Color(0xff00c950),
+    const Color(0xffddeff9),
+    const Color(0xfffceee1),
+    const Color(0xfff5eafa),
+    const Color.fromARGB(255, 245, 219, 220),
+  ];
+
+  return colors[index % colors.length];
+}
+
+Color getRandomTextColor({required int index}) {
+  final colors = [
+    const Color(0xff37b4f4),
+    const Color(0xffe58522),
+    const Color(0xffc990ef),
     AppColors.red,
   ];
 

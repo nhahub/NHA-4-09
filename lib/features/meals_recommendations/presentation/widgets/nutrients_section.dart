@@ -15,13 +15,19 @@ class NutrientsSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const CustomDetailsHeader(title: "Nutrients"),
-        Row(
+        Wrap(
           spacing: 8,
+          runSpacing: 8,
           children: nutrients
               .map(
                 (nutrient) => CategoryContainer(
                   categoryTitle: nutrient,
-                  color: getRandomColor(index: nutrients.indexOf(nutrient)),
+                  containerColor: getRandomContainerColor(
+                    index: nutrients.indexOf(nutrient),
+                  ),
+                  textColor: getRandomTextColor(
+                    index: nutrients.indexOf(nutrient),
+                  ),
                 ),
               )
               .toList(),
