@@ -12,17 +12,16 @@ class WeeklyMoodGraph extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      spacing: 16,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomCircleButton(icon: AppAssets.arrowLeftIosIcon, onTap: () {}),
-            const Spacer(),
             const Text("April 21-27", style: AppStyles.extraBold15),
-            const Spacer(),
             CustomCircleButton(icon: AppAssets.arrowRightIosIcon, onTap: () {}),
           ],
         ),
-        const SizedBox(height: 16),
         CustomMoodProgressGraph(moodData: weekMood, barWidth: 33.39),
       ],
     );

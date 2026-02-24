@@ -6,7 +6,7 @@ Color getRandomContainerColor({required int index}) {
     const Color(0xffddeff9),
     const Color(0xfffceee1),
     const Color(0xfff5eafa),
-    const Color.fromARGB(255, 245, 219, 220),
+    const Color(0xffF5DBDC),
   ];
 
   return colors[index % colors.length];

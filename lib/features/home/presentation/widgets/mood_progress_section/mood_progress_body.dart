@@ -12,11 +12,8 @@ class MoodProgressBody extends StatelessWidget {
     return const Padding(
       padding: EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
       child: Column(
-        children: [
-          MoodTrackerWidget(),
-          SizedBox(height: 16),
-          MoodRecommendationsContainer(),
-        ],
+        spacing: 16,
+        children: [MoodTrackerWidget(), MoodRecommendationsContainer()],
       ),
     );
   }
