@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_info_section.dart';
+import 'package:moodly/features/therapist/presentation/widgets/therapist_details/therapist_info_section.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../home/data/models/therapist_model.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
-import '../widgets/therapist_about_section.dart';
-import '../widgets/therapist_contact_section.dart';
-import '../widgets/therapist_header.dart';
-import '../widgets/therapist_image.dart';
-import '../widgets/therapist_rating_section.dart';
+import '../widgets/therapist_details/therapist_about_section.dart';
+import '../widgets/therapist_details/therapist_contact_section.dart';
+import '../widgets/therapist_details/therapist_header.dart';
+import '../widgets/therapist_details/therapist_image.dart';
+import '../widgets/therapist_details/therapist_rating_section.dart';
 
 class TherapistDetailsView extends StatelessWidget {
   final TherapistModel therapistModel;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moodly/core/theming/app_colors.dart';
 
-import '../../../../core/theming/app_styles.dart';
+import '../../../../../core/theming/app_styles.dart';
 
 class TherapistSpeciality extends StatefulWidget {
   const TherapistSpeciality({super.key, required this.speciality});

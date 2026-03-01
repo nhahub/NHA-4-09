@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moodly/core/theming/app_assets.dart';
 import 'package:moodly/features/home/data/models/therapist_model.dart';
-import 'package:moodly/features/therapist/presentation/widgets/info_card.dart';
+import 'package:moodly/features/therapist/presentation/widgets/therapist_details/info_card.dart';
 
 class TherapistInfoSection extends StatelessWidget {
   final TherapistModel therapistModel;

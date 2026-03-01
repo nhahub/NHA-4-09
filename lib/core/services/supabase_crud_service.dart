@@ -11,18 +11,25 @@ class SupabaseCRUDService {
     await client.from(table).insert(data);
   }
 
-  /// Read / Get data
   Future<List<Map<String, dynamic>>> getData({
     required String table,
     String? orderBy,
     bool ascending = true,
     int? limit,
+    Map<String, dynamic>? filters,
   }) async {
     dynamic query = client.from(table).select();
+
+    if (filters != null) {
+      filters.forEach((key, value) {
+        query = query.eq(key, value);
+      });
+    }
 
     if (orderBy != null) {
       query = query.order(orderBy, ascending: ascending);
     }
+
     if (limit != null) {
       query = query.limit(limit);
     }
@@ -65,5 +72,43 @@ class SupabaseCRUDService {
     required dynamic idValue,
   }) async {
     await client.from(table).delete().eq(idColumn, idValue);
+  }
+
+  /// Realtime
+  Stream<List<Map<String, dynamic>>> listenToTable({
+    required String table,
+    required List<String> primaryKey,
+    Map<String, dynamic>? filters,
+    String? orderBy,
+    bool ascending = true,
+  }) {
+    final query =
+        client.from(table).stream(primaryKey: primaryKey)
+            as Stream<List<Map<String, dynamic>>>;
+
+    Stream<List<Map<String, dynamic>>> stream = query;
+
+    if (filters != null) {
+      filters.forEach((key, value) {
+        stream = stream.map(
+          (list) => list.where((row) => row[key] == value).toList(),
+        );
+      });
+    }
+
+    if (orderBy != null) {
+      stream = stream.map((list) {
+        list.sort((a, b) {
+          final aVal = a[orderBy];
+          final bVal = b[orderBy];
+          if (aVal is Comparable && bVal is Comparable) {
+            return ascending ? aVal.compareTo(bVal) : bVal.compareTo(aVal);
+          }
+          return 0;
+        });
+        return list;
+      });
+    }
+    return stream;
   }
 }

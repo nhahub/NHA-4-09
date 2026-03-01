@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/routing/routes.dart';
-import '../../../../core/theming/app_assets.dart';
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/app_styles.dart';
-import '../../../home/data/models/therapist_model.dart';
-import '../../../home/presentation/widgets/sessions_for_you_section/contact_widget.dart';
+import '../../../../../core/extensions/context_extensions.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../../../../core/theming/app_assets.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/app_styles.dart';
+import '../../../../home/data/models/therapist_model.dart';
+import '../../../../home/presentation/widgets/sessions_for_you_section/contact_widget.dart';
 import 'contact_button.dart';
 
 class TherapistContactSection extends StatelessWidget {
@@ -32,7 +32,7 @@ class TherapistContactSection extends StatelessWidget {
             ContactButton(
               icon: Icons.email,
               onPressed: () {
-                context.push(Routes.chatDoctorView);
+                context.push(Routes.therapistChatView);
               },
               color: AppColors.orange,
             ),

@@ -1,4 +1,6 @@
 import 'package:get_it/get_it.dart';
+import 'package:moodly/features/therapist/data/repos/chat_repo.dart';
+import 'package:moodly/features/therapist/data/services/chat_service.dart';
 
 import '../../features/Community/data/services/audio_player_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -70,6 +72,14 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<RecommendedFoodRepo>(
     () => RecommendedFoodRepo(localService: getIt()),
   );
+
+  // Chat Repo
+  getIt.registerLazySingleton<ChatService>(
+    () => ChatService(supabaseCRUDService: getIt()),
+  );
+
+  // Chat Repo
+  getIt.registerLazySingleton<ChatRepo>(() => ChatRepo(chatService: getIt()));
 
   // Audio Player Service
   getIt.registerFactory(() => AudioPlayerService());

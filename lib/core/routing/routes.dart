@@ -20,7 +20,7 @@ class Routes {
   static const String videoView = '/videoView';
   static const String audioView = '/audioView';
   static const String therapistDetailsView = '/therapistDetailsView';
-  static const String chatDoctorView = '/chatDoctorView';
+  static const String therapistChatView = '/therapistChatView';
   static const String liveView = '/liveView';
   static const String therapistRatingsView = '/therapistRatingsView';
   static const String recommendationsView = '/recommendationsView';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:moodly/features/therapist/data/repos/chat_repo.dart';
+import 'package:moodly/features/therapist/presentation/manager/chat_cubit/chat_cubit.dart';
 import '../../features/Community/data/services/audio_player_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
@@ -18,8 +19,8 @@ import '../../features/home/data/models/therapist_model.dart';
 import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
 import '../../features/home/presentation/views/all_available_sessions_view.dart';
 import '../../features/home/presentation/views/all_meditations_view.dart';
-import '../../features/home/presentation/views/chat_doctor_view.dart';
-import '../../features/home/presentation/views/live_view.dart';
+import '../../features/therapist/presentation/views/therapist_chat_view.dart';
+import '../../features/therapist/presentation/views/live_view.dart';
 import '../../features/home/presentation/views/recommendations_view.dart';
 import '../../features/home/presentation/views/water_tracking_view.dart';
 import '../../features/main/presentation/views/main_view.dart';
@@ -187,8 +188,15 @@ class AppRouter {
               TherapistDetailsView(therapistModel: sessionsForYouModel),
         );
 
-      case Routes.chatDoctorView:
-        return MaterialPageRoute(builder: (context) => const ChatDoctorView());
+      case Routes.therapistChatView:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                ChatCubit(chatRepo: getIt.get<ChatRepo>())
+                  ..loadMessages(roomId: ""),
+            child: const TherapistChatView(roomId: "", currentUserId: ""),
+          ),
+        );
 
       case Routes.liveView:
         return MaterialPageRoute(builder: (context) => const LiveView());
