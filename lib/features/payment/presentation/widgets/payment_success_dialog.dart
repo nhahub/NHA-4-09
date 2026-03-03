@@ -26,13 +26,13 @@ class PaymentSuccessDialog extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             Text(
-              "!تم الدفع بنجاح",
+              "Payment Successful",
               textAlign: TextAlign.center,
               style: AppStyles.extraBold27,
             ),
             const SizedBox(height: 16),
             const Text(
-              "وسيتم ارسال التذكر على الواتساب الخاص بك او الايميل الشخصي",
+              "The ticket will be sent to your WhatsApp or personal email",
               textAlign: TextAlign.center,
               style: AppStyles.medium14,
             ),
@@ -41,7 +41,7 @@ class PaymentSuccessDialog extends StatelessWidget {
               width: double.infinity,
               child: AppTextButton(
                 onPressed: () => Navigator.pop(context),
-                buttonText: "عرض التذكرة",
+                buttonText: "View Ticket",
               ),
             ),
           ],
