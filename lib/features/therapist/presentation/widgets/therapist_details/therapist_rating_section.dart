@@ -9,11 +9,13 @@ import 'custom_rating.dart';
 class TherapistRatingSection extends StatelessWidget {
   final double rating;
   final int ratingCount;
+  final String therapistId;
 
   const TherapistRatingSection({
     super.key,
     required this.rating,
     required this.ratingCount,
+    required this.therapistId,
   });
 
   @override
@@ -33,7 +35,7 @@ class TherapistRatingSection extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            context.push(Routes.therapistRatingsView);
+            context.push(Routes.therapistRatingsView, args: therapistId);
           },
           child: Text(
             "See all reviews",
