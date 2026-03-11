@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_details/therapist_info_section.dart';
+import '../widgets/therapist_details/therapist_info_section.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../data/models/therapist_model.dart';
@@ -37,8 +37,8 @@ class TherapistDetailsView extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               TherapistRatingSection(
-                rating: therapistModel.rating.rating,
-                ratingCount: therapistModel.rating.ratingCount,
+                rating: therapistModel.ratingSummary.rating,
+                ratingCount: therapistModel.ratingSummary.totalCount,
               ),
               const Divider(color: AppColors.lightGrey, height: 30),
               TherapistInfoSection(therapistModel: therapistModel),

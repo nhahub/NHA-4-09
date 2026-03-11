@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/therapist/presentation/manager/therapist_rating_cubit/therapist_rating_cubit.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_ratings/rating_summary.dart';
+import '../../manager/therapist_rating_cubit/therapist_rating_cubit.dart';
+import 'rating_summary.dart';
 
 class RatingSummaryBlocBuilder extends StatelessWidget {
   const RatingSummaryBlocBuilder({super.key});

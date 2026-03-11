@@ -1,16 +1,18 @@
-import '../../../../core/constants/constants.dart';
+import '../models/therapist_model.dart';
+
 import '../../../../core/services/supabase_crud_service.dart';
 
 class TherapistService {
   final SupabaseCRUDService supabaseCRUDService;
   TherapistService({required this.supabaseCRUDService});
 
-  Future<List<Map<String, dynamic>>> getTherapists() async {
-    final data = await supabaseCRUDService.getData(
-      table: kTherapistsTable,
-      orderBy: 'created_at',
-      ascending: false,
-    );
-    return data.isNotEmpty ? data : [];
+  Future<List<TherapistModel>> getTherapists() async {
+    final data = await supabaseCRUDService.client
+        .from('therapists_with_rating')
+        .select();
+
+    return (data as List)
+        .map((row) => TherapistModel.fromJson(row as Map<String, dynamic>))
+        .toList();
   }
 }

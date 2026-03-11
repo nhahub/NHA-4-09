@@ -19,6 +19,9 @@ TherapistModel _$TherapistModelFromJson(Map<String, dynamic> json) =>
       yearsOfExperience: json['years_of_experience'] as num,
       language: json['language'] as String,
       location: json['location'] as String,
+      ratingSummary: TherapistRatingSummary.fromJson(
+        json['ratingSummary'] as Map<String, dynamic>,
+      ),
     );
 
 Map<String, dynamic> _$TherapistModelToJson(TherapistModel instance) =>
@@ -34,4 +37,5 @@ Map<String, dynamic> _$TherapistModelToJson(TherapistModel instance) =>
       'years_of_experience': instance.yearsOfExperience,
       'language': instance.language,
       'location': instance.location,
+      'ratingSummary': instance.ratingSummary,
     };

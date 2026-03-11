@@ -15,7 +15,7 @@ class TherapistCoverInfo extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(20),
-          child: Image.asset(
+          child: Image.network(
             sessionsForYouModel.image,
             fit: BoxFit.cover,
             height: 180.33,
@@ -25,7 +25,7 @@ class TherapistCoverInfo extends StatelessWidget {
         Positioned(
           top: 16,
           left: 16,
-          child: RatingContainer(sessionsForYouModel: sessionsForYouModel),
+          child: RatingContainer(therapistModel: sessionsForYouModel),
         ),
         if (sessionsForYouModel.discount != 0)
           Positioned(

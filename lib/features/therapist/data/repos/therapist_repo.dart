@@ -1,8 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:moodly/features/therapist/data/models/therapist_model.dart';
-import 'package:moodly/features/therapist/data/services/therapist_service.dart';
+
 import '../../../../core/errors/failure.dart';
+import '../../../../core/helpers/logger.dart';
 import '../../../../core/networking/api_error_handler.dart';
+import '../models/therapist_model.dart';
+import '../services/therapist_service.dart';
 
 class TherapistRepo {
   final TherapistService therapistService;
@@ -11,15 +13,12 @@ class TherapistRepo {
 
   Future<Either<Failure, List<TherapistModel>>> getTherapists() async {
     try {
-      final List<Map<String, dynamic>> data = await therapistService
+      final List<TherapistModel> therapists = await therapistService
           .getTherapists();
-
-      final List<TherapistModel> therapists = data
-          .map((e) => TherapistModel.fromJson(e))
-          .toList();
 
       return right(therapists);
     } catch (e) {
+      Logger.log(e.toString());
       return left(ApiErrorHandler.handle(error: e));
     }
   }

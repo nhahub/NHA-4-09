@@ -9,14 +9,14 @@ import 'therapist_cover_info.dart';
 import 'therapist_details.dart';
 
 class SessionsForYouCard extends StatelessWidget {
-  final TherapistModel sessionsForYouModel;
-  const SessionsForYouCard({super.key, required this.sessionsForYouModel});
+  final TherapistModel therapistModel;
+  const SessionsForYouCard({super.key, required this.therapistModel});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(Routes.therapistDetailsView, args: sessionsForYouModel);
+        context.push(Routes.therapistDetailsView, args: therapistModel);
       },
       child: Container(
         width: 284.52,
@@ -31,8 +31,8 @@ class SessionsForYouCard extends StatelessWidget {
         child: Column(
           spacing: 4,
           children: [
-            TherapistCoverInfo(sessionsForYouModel: sessionsForYouModel),
-            TherapistDetails(sessionsForYouModel: sessionsForYouModel),
+            TherapistCoverInfo(sessionsForYouModel: therapistModel),
+            TherapistDetails(sessionsForYouModel: therapistModel),
           ],
         ),
       ),

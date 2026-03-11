@@ -16,14 +16,12 @@ class VerticalPaddingList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SliverList.separated(
-        itemCount: itemCount,
-        separatorBuilder: (_, __) => const SizedBox(height: 12),
-        itemBuilder: (context, index) {
-          return itemBuilder(context, index);
-        },
-      ),
+    return SliverList.separated(
+      itemCount: itemCount,
+      separatorBuilder: (_, __) => const SizedBox(height: 12),
+      itemBuilder: (context, index) {
+        return itemBuilder(context, index);
+      },
     );
   }
 }

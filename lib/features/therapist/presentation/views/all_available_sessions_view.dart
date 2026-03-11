@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/constants/constants.dart';
-import '../../../../core/widgets/vertical_padding_list.dart.dart';
-import '../../data/models/therapist_model.dart';
-import '../widgets/sessions_for_you_section/sessions_for_you_card.dart';
+import '../widgets/therapists/get_all_therapists_bloc_builder.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 
 class AllAvailableSessionsView extends StatelessWidget {
@@ -11,32 +7,13 @@ class AllAvailableSessionsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
         bottom: false,
         child: CustomScrollView(
           slivers: [
-            const SliverToBoxAdapter(
-              child: BackButtonAppbar(title: "All Sessions"),
-            ),
-            SliverPadding(
-              padding: const EdgeInsets.only(
-                left: kAppHorizontalPadding,
-                right: kAppVerticalPadding,
-                bottom: 44,
-              ),
-              sliver: VerticalPaddingList(
-                itemCount: therapistsData.length,
-                itemBuilder: (context, index) {
-                  return SizedBox(
-                    height: 382,
-                    child: SessionsForYouCard(
-                      sessionsForYouModel: therapistsData[index],
-                    ),
-                  );
-                },
-              ),
-            ),
+            SliverToBoxAdapter(child: BackButtonAppbar(title: "All Sessions")),
+            GetAllTherapistsBlocBuilder(),
           ],
         ),
       ),

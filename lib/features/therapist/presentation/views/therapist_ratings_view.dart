@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/therapist/presentation/manager/therapist_rating_cubit/therapist_rating_cubit.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_ratings/rating_card.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_ratings/rating_summary_bloc_builder.dart';
+import '../manager/therapist_rating_cubit/therapist_rating_cubit.dart';
+import '../widgets/therapist_ratings/rating_card.dart';
+import '../widgets/therapist_ratings/rating_summary_bloc_builder.dart';
 
 class TherapistRatingsView extends StatelessWidget {
   final String therapistId;
@@ -11,7 +11,7 @@ class TherapistRatingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<TherapistRatingCubit>().getRatings(therapistId);
+    context.read<TherapistRatingCubit>().getRatings(therapistId: therapistId);
 
     return Scaffold(
       appBar: AppBar(title: const Text("Ratings & Reviews")),

@@ -1,7 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
+
+import 'therapist_rating_summary.dart';
+
 part 'therapist_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class TherapistModel {
   final String id;
   final String image;
@@ -17,6 +20,7 @@ class TherapistModel {
   final num yearsOfExperience;
   final String language;
   final String location;
+  final TherapistRatingSummary ratingSummary;
 
   const TherapistModel({
     required this.id,
@@ -30,6 +34,7 @@ class TherapistModel {
     required this.yearsOfExperience,
     required this.language,
     required this.location,
+    required this.ratingSummary,
   });
 
   /// live price after discount (1 decimal)
@@ -40,7 +45,6 @@ class TherapistModel {
   num get chatPriceAfterDiscount =>
       num.parse((chatPrice * (1 - discount / 100)).toStringAsFixed(1));
 
-  /// JSON serialization
   factory TherapistModel.fromJson(Map<String, dynamic> json) =>
       _$TherapistModelFromJson(json);
 

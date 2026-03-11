@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/therapist/data/models/therapist_rating_model.dart';
+import '../../../data/models/therapist_rating_model.dart';
 
 class RatingDistribution extends StatelessWidget {
   final List<TherapistRatingModel> ratings;

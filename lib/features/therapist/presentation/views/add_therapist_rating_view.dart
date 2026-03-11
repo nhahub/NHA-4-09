@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/therapist/presentation/manager/therapist_rating_cubit/therapist_rating_cubit.dart';
+import '../manager/therapist_rating_cubit/therapist_rating_cubit.dart';
 
 class AddTherapistRatingView extends StatefulWidget {
   final String therapistId;

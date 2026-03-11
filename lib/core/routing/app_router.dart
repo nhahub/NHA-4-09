@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/therapist/data/repos/chat_repo.dart';
-import 'package:moodly/features/therapist/data/repos/therapist_rating_repo.dart';
-import 'package:moodly/features/therapist/presentation/manager/chat_cubit/chat_cubit.dart';
-import 'package:moodly/features/therapist/presentation/manager/therapist_rating_cubit/therapist_rating_cubit.dart';
+import '../../features/therapist/data/repos/chat_repo.dart';
+import '../../features/therapist/data/repos/therapist_rating_repo.dart';
+import '../../features/therapist/data/repos/therapist_repo.dart';
+import '../../features/therapist/presentation/manager/chat_cubit/chat_cubit.dart';
+import '../../features/therapist/presentation/manager/therapist_cubit/therapist_cubit.dart';
+import '../../features/therapist/presentation/manager/therapist_rating_cubit/therapist_rating_cubit.dart';
 import '../../features/Community/data/services/audio_player_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
@@ -244,7 +246,11 @@ class AppRouter {
 
       case Routes.allAvailableSessionsView:
         return MaterialPageRoute(
-          builder: (context) => const AllAvailableSessionsView(),
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                TherapistCubit(therapistRepo: getIt.get<TherapistRepo>())..getTherapists(),
+            child: const AllAvailableSessionsView(),
+          ),
         );
 
       default:

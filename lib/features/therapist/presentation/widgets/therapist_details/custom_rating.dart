@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moodly/core/functions/get_user.dart';
-import 'package:moodly/features/therapist/presentation/manager/therapist_rating_cubit/therapist_rating_cubit.dart';
+import '../../../../../core/functions/get_user.dart';
+import '../../manager/therapist_rating_cubit/therapist_rating_cubit.dart';
 import '../../../../../core/theming/app_assets.dart';
 
 class CustomRating extends StatelessWidget {
