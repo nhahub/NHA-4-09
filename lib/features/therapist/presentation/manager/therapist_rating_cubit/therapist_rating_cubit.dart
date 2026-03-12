@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moodly/core/functions/get_user.dart';
+import 'package:uuid/uuid.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../data/models/therapist_rating_model.dart';
 import '../../../data/repos/therapist_rating_repo.dart';
@@ -87,9 +88,9 @@ class TherapistRatingCubit extends Cubit<TherapistRatingState> {
     final num rating = currentState.userRating;
 
     emit(AddTherapistRatingsLoadingState());
-
+    const uuid = Uuid();
     final TherapistRatingModel therapistRatingModel = TherapistRatingModel(
-      id: "fdfdfgffdh",
+      id: uuid.v4(),
       therapistId: therapistId,
       userId: getUser()!.userId,
       userName: getUser()!.name ?? '',

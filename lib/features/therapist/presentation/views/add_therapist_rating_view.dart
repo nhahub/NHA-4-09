@@ -17,7 +17,7 @@ class AddTherapistRatingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const BackButtonAppbar(title: "Add Rating"),
+      appBar: const BackButtonAppbar(title: "Add Review"),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
         child: BlocListener<TherapistRatingCubit, TherapistRatingState>(
@@ -25,14 +25,17 @@ class AddTherapistRatingView extends StatelessWidget {
             if (state is GetTherapistRatingsLoadedState) {
               confirmDialog(
                 context: context,
-                title: "Review Added",
-                message: "Review Added",
+                title: "Done!",
+                message: "We are very grateful for your review",
                 onConfirm: () {
+                  context.pop();
                   context.pop();
                 },
               );
             } else if (state is AddTherapistRatingsFailureState) {
               errorDialog(context: context, message: state.error);
+            } else {
+              const SizedBox.shrink();
             }
           },
           child: Column(

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/functions/get_user.dart';
+import 'package:moodly/core/theming/app_colors.dart';
+import 'package:moodly/core/widgets/user_avatar.dart';
+import '../../../../../core/theming/app_styles.dart';
 import '../../../data/models/therapist_rating_model.dart';
 import 'rating_stars.dart';
+import 'package:intl/intl.dart';
 
 class RatingCard extends StatelessWidget {
   final TherapistRatingModel rating;
@@ -9,52 +14,39 @@ class RatingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(14),
-      margin: const EdgeInsets.only(bottom: 12),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(14),
-        color: Colors.white,
-        boxShadow: const [BoxShadow(blurRadius: 6, color: Colors.black12)],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          /// USER INFO
-          Row(
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        UserAvatar(
+          name: getUser()?.name ?? "",
+          savedColor: 1,
+          fontSize: 20,
+          radius: 20,
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            spacing: 2,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CircleAvatar(
-                radius: 18,
-                backgroundImage: NetworkImage(rating.userAvatar!),
-                child: rating.userAvatar == null
-                    ? Text(rating.userName.substring(0, 1))
-                    : null,
+              Text(rating.userName, style: AppStyles.extraBold16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  RatingStars(rating: rating.rating.toInt()),
+                  Text(
+                    DateFormat('MMM d, yyyy').format(rating.createdAt),
+                    style: AppStyles.medium14.copyWith(
+                      color: AppColors.bodyGray,
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Text(
-                  rating.userName,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              Text(
-                "${rating.createdAt.day}/${rating.createdAt.month}",
-                style: const TextStyle(color: Colors.grey),
-              ),
+              Text(rating.review, style: AppStyles.regular14),
             ],
           ),
-
-          const SizedBox(height: 8),
-
-          /// STARS
-          RatingStars(rating: rating.rating.toInt()),
-
-          const SizedBox(height: 8),
-
-          /// REVIEW
-          Text(rating.review, style: const TextStyle(height: 1.4)),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
