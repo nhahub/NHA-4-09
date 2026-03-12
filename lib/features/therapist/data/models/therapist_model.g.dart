@@ -37,5 +37,5 @@ Map<String, dynamic> _$TherapistModelToJson(TherapistModel instance) =>
       'years_of_experience': instance.yearsOfExperience,
       'language': instance.language,
       'location': instance.location,
-      'ratingSummary': instance.ratingSummary,
+      'ratingSummary': instance.ratingSummary.toJson(),
     };

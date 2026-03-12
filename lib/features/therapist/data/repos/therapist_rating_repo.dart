@@ -38,6 +38,7 @@ class TherapistRatingRepo {
       await therapistRatingService.addRating(data: rating.toJson());
       return right(null);
     } catch (e) {
+      Logger.log(e.toString());
       return left(ApiErrorHandler.handle(error: e));
     }
   }

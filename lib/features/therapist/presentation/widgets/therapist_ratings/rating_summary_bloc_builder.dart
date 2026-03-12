@@ -10,15 +10,15 @@ class RatingSummaryBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TherapistRatingCubit, TherapistRatingState>(
       builder: (context, state) {
-        if (state is TherapistRatingLoading) {
+        if (state is AddTherapistRatingsLoadingState) {
           return const Center(child: CircularProgressIndicator());
         }
 
-        if (state is TherapistRatingFailure) {
+        if (state is AddTherapistRatingsFailureState) {
           return Center(child: Text(state.error));
         }
 
-        if (state is TherapistRatingLoaded) {
+        if (state is GetTherapistRatingsLoadedState) {
           final ratings = state.ratings;
           final avg = state.average ?? 0.0;
           final count = state.totalCount ?? ratings.length;

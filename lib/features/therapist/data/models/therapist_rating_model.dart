@@ -9,9 +9,11 @@ class TherapistRatingModel {
   final String therapistId;
   @JsonKey(name: 'user_id')
   final String userId;
-  final int rating;
+  final num rating;
   final String review;
-  final String? userName;
+  @JsonKey(name: 'user_name')
+  final String userName;
+  @JsonKey(name: 'user_avatar')
   final String? userAvatar;
   @JsonKey(name: 'created_at')
   final DateTime createdAt;
@@ -22,8 +24,8 @@ class TherapistRatingModel {
     required this.userId,
     required this.rating,
     required this.review,
-    this.userName,
-    this.userAvatar,
+    required this.userName,
+    required this.userAvatar,
     required this.createdAt,
   });
 

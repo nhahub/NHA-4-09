@@ -18,6 +18,7 @@ class AppTextFormField extends StatelessWidget {
     required this.validator,
     this.textInputType,
     this.prefixIcon,
+    this.maxLines,
   });
   final TextEditingController? controller;
   final EdgeInsetsGeometry? contentPadding;
@@ -31,6 +32,7 @@ class AppTextFormField extends StatelessWidget {
   final TextStyle? textStyle;
   final Function(String?) validator;
   final TextInputType? textInputType;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,7 @@ class AppTextFormField extends StatelessWidget {
       cursorColor: AppColors.brandGreen,
       keyboardType: textInputType ?? TextInputType.name,
       controller: controller,
+      maxLines: maxLines,
       decoration: InputDecoration(
         prefixIconConstraints: const BoxConstraints(
           minWidth: 20,

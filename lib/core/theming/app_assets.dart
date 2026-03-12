@@ -98,9 +98,6 @@ class AppAssets {
   static const String commentImg1 = 'assets/mock_images/comment_img1.jpg';
   static const String commentImg2 = 'assets/mock_images/comment_img2.jpg';
   static const String commentImg3 = 'assets/mock_images/comment_img3.jpg';
-  static const String doctor1 = 'assets/mock_images/doctor1.jpg';
-  static const String doctor2 = 'assets/mock_images/doctor2.jpg';
-  static const String doctor3 = 'assets/mock_images/doctor3.jpg';
   static const String meditation1 = 'assets/mock_images/meditation1.jpg';
   static const String meditation2 = 'assets/mock_images/meditation2.jpg';
   static const String meditation3 = 'assets/mock_images/meditation3.jpg';

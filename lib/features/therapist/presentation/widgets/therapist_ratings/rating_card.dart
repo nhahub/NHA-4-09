@@ -25,17 +25,15 @@ class RatingCard extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 18,
-                backgroundImage: rating.userAvatar != null
-                    ? NetworkImage(rating.userAvatar!)
-                    : null,
+                backgroundImage: NetworkImage(rating.userAvatar!),
                 child: rating.userAvatar == null
-                    ? Text(rating.userName?.substring(0, 1) ?? "U")
+                    ? Text(rating.userName.substring(0, 1))
                     : null,
               ),
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
-                  rating.userName ?? "User",
+                  rating.userName,
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
@@ -49,7 +47,7 @@ class RatingCard extends StatelessWidget {
           const SizedBox(height: 8),
 
           /// STARS
-          RatingStars(rating: rating.rating),
+          RatingStars(rating: rating.rating.toInt()),
 
           const SizedBox(height: 8),
 

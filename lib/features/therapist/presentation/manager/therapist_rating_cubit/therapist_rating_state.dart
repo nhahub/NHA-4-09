@@ -7,31 +7,32 @@ sealed class TherapistRatingState extends Equatable {
   List<Object> get props => [];
 }
 
-class TherapistRatingInitial extends TherapistRatingState {}
+class GetTherapistRatingsLoading extends TherapistRatingState {}
 
-class TherapistRatingLoading extends TherapistRatingState {}
+class AddTherapistRatingsAddedState extends TherapistRatingState {
+  
+}
 
-class TherapistRatingLoaded extends TherapistRatingState {
+class GetTherapistRatingsLoadedState extends TherapistRatingState {
   final List<TherapistRatingModel> ratings;
   final double? average;
   final int? totalCount;
-  final double? userRating;
+  final num userRating;
 
-  const TherapistRatingLoaded({
+  const GetTherapistRatingsLoadedState({
     required this.ratings,
     required this.average,
     required this.totalCount,
-    this.userRating,
+    required this.userRating,
   });
 
-
-  TherapistRatingLoaded copyWith({
+  GetTherapistRatingsLoadedState copyWith({
     List<TherapistRatingModel>? ratings,
     double? average,
     int? totalCount,
-    double? userRating,
+    num? userRating,
   }) {
-    return TherapistRatingLoaded(
+    return GetTherapistRatingsLoadedState(
       ratings: ratings ?? this.ratings,
       average: average ?? this.average,
       totalCount: totalCount ?? this.totalCount,
@@ -40,8 +41,16 @@ class TherapistRatingLoaded extends TherapistRatingState {
   }
 }
 
-class TherapistRatingFailure extends TherapistRatingState {
+class GetTherapistRatingsFailureState extends TherapistRatingState {
   final String error;
 
-  const TherapistRatingFailure({required this.error});
+  const GetTherapistRatingsFailureState({required this.error});
+}
+
+class AddTherapistRatingsLoadingState extends TherapistRatingState {}
+
+class AddTherapistRatingsFailureState extends TherapistRatingState {
+  final String error;
+
+  const AddTherapistRatingsFailureState({required this.error});
 }

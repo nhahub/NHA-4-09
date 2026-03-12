@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moodly/features/therapist/presentation/manager/therapist_rating_cubit/therapist_rating_cubit.dart';
 import '../../../../../core/theming/app_assets.dart';
 
 class CustomRating extends StatelessWidget {
   const CustomRating({
     super.key,
     required this.isEditable,
-    required this.userRating,
+    this.userRating,
+    this.onRatingUpdate,
+    this.itemSize = 14,
   });
   final bool isEditable;
   final double? userRating;
+  final double itemSize;
+  final void Function(double)? onRatingUpdate;
 
   @override
   Widget build(BuildContext context) {
     return IgnorePointer(
       ignoring: !isEditable,
       child: RatingBar.builder(
-        initialRating: userRating ?? 0,
+        initialRating: userRating?.toDouble() ?? 0.0,
         updateOnDrag: isEditable,
         glow: false,
         minRating: 1,
@@ -27,16 +29,16 @@ class CustomRating extends StatelessWidget {
         direction: Axis.horizontal,
         allowHalfRating: true,
         itemCount: 5,
-        itemSize: 14,
+        itemSize: itemSize,
         itemPadding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 0),
         itemBuilder: (context, _) {
           return SvgPicture.asset(AppAssets.starIcon);
         },
         onRatingUpdate: (value) {
           if (isEditable) {
-            context.read<TherapistRatingCubit>().updateUserRating(
-              rating: value,
-            );
+            if (onRatingUpdate != null) {
+              onRatingUpdate!(value);
+            }
           }
         },
       ),

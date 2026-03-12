@@ -206,17 +206,6 @@ class AppRouter {
               TherapistDetailsView(therapistModel: therapistModel),
         );
 
-      case Routes.addtherapistRatingView:
-        final String therapistId = settings.arguments as String;
-        return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => TherapistRatingCubit(
-              therapistRatingRepo: getIt.get<TherapistRatingRepo>(),
-            ),
-            child: AddTherapistRatingView(therapistId: therapistId),
-          ),
-        );
-
       case Routes.therapistRatingsView:
         final String therapistId = settings.arguments as String;
         return MaterialPageRoute(
@@ -226,6 +215,19 @@ class AppRouter {
             )..getRatings(therapistId: therapistId),
             child: TherapistRatingsView(therapistId: therapistId),
           ),
+        );
+
+      case Routes.addtherapistRatingView:
+        final args = settings.arguments as Map<String, dynamic>;
+        final String therapistId = args['therapistId'];
+        final TherapistRatingCubit cubit = args['cubit'];
+        return MaterialPageRoute(
+          builder: (context) {
+            return BlocProvider.value(
+              value: cubit,
+              child: AddTherapistRatingView(therapistId: therapistId),
+            );
+          },
         );
 
       case Routes.recommendationsView:

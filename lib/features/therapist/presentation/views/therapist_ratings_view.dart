@@ -17,15 +17,15 @@ class TherapistRatingsView extends StatelessWidget {
       appBar: const BackButtonAppbar(title: "Ratings & Reviews"),
       body: BlocBuilder<TherapistRatingCubit, TherapistRatingState>(
         builder: (context, state) {
-          if (state is TherapistRatingLoading) {
+          if (state is AddTherapistRatingsLoadingState) {
             return const Center(child: CircularProgressIndicator());
           }
 
-          if (state is TherapistRatingFailure) {
+          if (state is AddTherapistRatingsFailureState) {
             return Center(child: Text(state.error));
           }
 
-          if (state is TherapistRatingLoaded) {
+          if (state is GetTherapistRatingsLoadedState) {
             final ratings = state.ratings;
 
             return Padding(
