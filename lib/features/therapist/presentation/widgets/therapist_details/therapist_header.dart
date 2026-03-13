@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_details/therapist_speciality.dart';
+
 import '../../../../../core/theming/app_styles.dart';
+import 'therapist_speciality.dart';
 
 class TherapistHeader extends StatelessWidget {
   final String name;

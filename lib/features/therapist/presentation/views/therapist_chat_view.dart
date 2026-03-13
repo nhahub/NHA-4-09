@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/features/therapist/presentation/manager/chat_cubit/chat_cubit.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_chat/chat_input_field.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_chat/messages_list.dart';
-
+import '../../../../core/theming/app_colors.dart';
+import '../manager/chat_cubit/chat_cubit.dart';
+import '../widgets/therapist_chat/chat_input_field.dart';
+import '../widgets/therapist_chat/messages_list.dart';
 import '../../../../core/widgets/custom_circular_progress_indicator.dart';
 
 class TherapistChatView extends StatelessWidget {

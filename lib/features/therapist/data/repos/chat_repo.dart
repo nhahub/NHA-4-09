@@ -35,27 +35,26 @@ class ChatRepo {
     }
   }
 
-Stream<Either<Failure, List<MessageModel>>> listenToMessages({
-  required String roomId,
-}) {
-  return chatService.listenToMessages(roomId).map((data) {
-    try {
-      final messages = data
-          .map((e) => MessageModel.fromJson(e))
-          .toList();
+  Stream<Either<Failure, List<MessageModel>>> listenToMessages({
+    required String roomId,
+  }) {
+    return chatService
+        .listenToMessages(roomId)
+        .map((data) {
+          try {
+            final messages = data.map((e) => MessageModel.fromJson(e)).toList();
 
-      return right<Failure, List<MessageModel>>(messages);
-    } catch (e) {
-      return left<Failure, List<MessageModel>>(
-        ApiErrorHandler.handle(error: e),
-      );
-    }
-  }).handleError((error) {
-    return left<Failure, List<MessageModel>>(
-      ApiErrorHandler.handle(error: error),
-    );
-  });
-}
-
-
+            return right<Failure, List<MessageModel>>(messages);
+          } catch (e) {
+            return left<Failure, List<MessageModel>>(
+              ApiErrorHandler.handle(error: e),
+            );
+          }
+        })
+        .handleError((error) {
+          return left<Failure, List<MessageModel>>(
+            ApiErrorHandler.handle(error: error),
+          );
+        });
+  }
 }

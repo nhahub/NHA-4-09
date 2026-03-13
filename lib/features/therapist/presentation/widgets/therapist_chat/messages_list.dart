@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/therapist/data/models/message_model.dart';
+import '../../../data/models/message_model.dart';
 import 'chat_bubble.dart';
 
 class MessagesList extends StatelessWidget {

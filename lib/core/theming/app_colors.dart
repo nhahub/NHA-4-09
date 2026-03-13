@@ -15,4 +15,16 @@ class AppColors {
   static const Color yellow = Color(0xffffEB3B);
   static const Color red = Color(0xffEA7173);
   static const Color orange = Color(0xfff6b554);
+
+  static final List<Color> profileAvatarColors = [
+    const Color(0xff1cb0f6),
+    const Color(0xff58a700),
+    const Color(0xffff4b4c),
+    const Color(0xffff9600),
+    const Color(0xffce82ff),
+  ];
+  static Color getColorFromId({required String id}) {
+    final index = id.hashCode % profileAvatarColors.length;
+    return profileAvatarColors[index];
+  }
 }

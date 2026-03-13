@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../therapist/data/repos/therapist_repo.dart';
+import '../../../therapist/presentation/manager/therapist_cubit/therapist_cubit.dart';
 
 import '../../../../core/services/get_it_service.dart';
 import '../../../Community/presentation/views/community_view.dart';
@@ -22,9 +24,17 @@ class _MainViewState extends State<MainView> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = [
-    BlocProvider(
-      create: (context) =>
-          WaterTrackingCubit(waterRepo: getIt.get<WaterRepo>())..loadData(),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              WaterTrackingCubit(waterRepo: getIt.get<WaterRepo>())..loadData(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              TherapistCubit(therapistRepo: getIt.get<TherapistRepo>())..getTherapists(),
+        ),
+      ],
       child: const HomeView(key: ValueKey('home')),
     ),
     const CommunityView(key: ValueKey('community')),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/features/home/data/models/therapist_model.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_details/info_card.dart';
+import '../../../../../core/theming/app_assets.dart';
+import '../../../data/models/therapist_model.dart';
+import 'info_card.dart';
 
 class TherapistInfoSection extends StatelessWidget {
   final TherapistModel therapistModel;
@@ -15,17 +15,17 @@ class TherapistInfoSection extends StatelessWidget {
         alignment: WrapAlignment.center,
         children: [
           InfoCard(
-            infoIcon: AppAssets.officeBag,
+            infoIcon: AppAssets.officeBagIcon,
             infoValue: "${therapistModel.yearsOfExperience} Years",
             infoTitle: "Experience",
           ),
           InfoCard(
-            infoIcon: AppAssets.language,
+            infoIcon: AppAssets.languageIcon,
             infoValue: therapistModel.language,
             infoTitle: "Language",
           ),
           InfoCard(
-            infoIcon: AppAssets.location,
+            infoIcon: AppAssets.locationIcon,
             infoValue: therapistModel.location,
             infoTitle: "Location",
           ),

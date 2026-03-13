@@ -45,9 +45,11 @@ class AppAssets {
   static const String rewardIcon = 'assets/svgs/reward.svg';
   static const String increaseIcon = 'assets/svgs/increase.svg';
   static const String targetIcon = 'assets/svgs/target.svg';
-  static const String officeBag = 'assets/svgs/office_bag.svg';
-  static const String language = 'assets/svgs/language.svg';
-  static const String location = 'assets/svgs/location.svg';
+  static const String officeBagIcon = 'assets/svgs/office_bag.svg';
+  static const String languageIcon = 'assets/svgs/language.svg';
+  static const String locationIcon = 'assets/svgs/location.svg';
+  static const String humanIcon = 'assets/svgs/human.svg';
+  static const String anonymousIcon = 'assets/svgs/anonymous.svg';
 
   // Images
   static const String start = 'assets/images/start.png';
@@ -84,7 +86,8 @@ class AppAssets {
   static const String trueCheckBox = 'assets/images/true_check_box.png';
   static const String premiumShadow = 'assets/images/premium_shadow.png';
   static const String circleCheckBox = 'assets/images/circle_check_box.png';
-
+  static const String dummyImage =
+      "http://edenchristianacademy.co.nz/wp-content/uploads/2013/11/dummy-image-square.jpg";
   // Mock Images
   static const String avatar1 = 'assets/mock_images/avatar1.jpg';
   static const String avatar2 = 'assets/mock_images/avatar2.jpg';
@@ -97,9 +100,6 @@ class AppAssets {
   static const String commentImg1 = 'assets/mock_images/comment_img1.jpg';
   static const String commentImg2 = 'assets/mock_images/comment_img2.jpg';
   static const String commentImg3 = 'assets/mock_images/comment_img3.jpg';
-  static const String doctor1 = 'assets/mock_images/doctor1.jpg';
-  static const String doctor2 = 'assets/mock_images/doctor2.jpg';
-  static const String doctor3 = 'assets/mock_images/doctor3.jpg';
   static const String meditation1 = 'assets/mock_images/meditation1.jpg';
   static const String meditation2 = 'assets/mock_images/meditation2.jpg';
   static const String meditation3 = 'assets/mock_images/meditation3.jpg';

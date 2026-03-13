@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/home/data/models/therapist_model.dart';
-import 'package:moodly/features/home/presentation/widgets/sessions_for_you_section/discount_container.dart';
+import '../../../data/models/therapist_model.dart';
+import '../sessions_for_you_section/discount_container.dart';
 
 class TherapistImage extends StatelessWidget {
   final TherapistModel therapistModel;
@@ -13,7 +13,7 @@ class TherapistImage extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(20),
-          child: Image.asset(
+          child: Image.network(
             therapistModel.image,
             fit: BoxFit.cover,
             height: 200,

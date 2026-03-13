@@ -59,6 +59,12 @@ abstract class AppStyles {
     fontFamily: "Nunito",
     letterSpacing: -0.2,
   );
+  static const TextStyle medium16 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeightHelper.medium,
+    fontFamily: "SFPro",
+    letterSpacing: -0.2,
+  );
   static const TextStyle medium15 = TextStyle(
     fontSize: 15,
     fontWeight: FontWeightHelper.medium,

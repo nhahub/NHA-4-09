@@ -8,9 +8,9 @@ import '../../../../../core/theming/app_styles.dart';
 import '../../../data/models/therapist_model.dart';
 
 class RatingContainer extends StatelessWidget {
-  const RatingContainer({super.key, required this.sessionsForYouModel});
+  const RatingContainer({super.key, required this.therapistModel});
 
-  final TherapistModel sessionsForYouModel;
+  final TherapistModel therapistModel;
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +26,12 @@ class RatingContainer extends StatelessWidget {
           SvgPicture.asset(AppAssets.starIcon, width: 12),
           const SizedBox(width: 5),
           Text(
-            "${sessionsForYouModel.rating.rating}",
+            "${therapistModel.ratingSummary.rating}",
             style: AppStyles.extraBold14.copyWith(color: Colors.white),
           ),
           const SizedBox(width: 3),
           Text(
-            "(${sessionsForYouModel.rating.ratingCount})",
+            "(${therapistModel.ratingSummary.totalCount})",
             style: AppStyles.medium14WithShadow.copyWith(
               color: Colors.white.withAlpha(alphaFromPercentage(80)),
             ),

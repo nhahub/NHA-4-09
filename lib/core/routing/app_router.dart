@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/therapist/data/repos/chat_repo.dart';
-import 'package:moodly/features/therapist/presentation/manager/chat_cubit/chat_cubit.dart';
+import 'package:moodly/features/therapist/presentation/views/add_therapist_rating_view.dart';
+import '../../features/therapist/data/repos/chat_repo.dart';
+import '../../features/therapist/data/repos/therapist_rating_repo.dart';
+import '../../features/therapist/data/repos/therapist_repo.dart';
+import '../../features/therapist/presentation/manager/chat_cubit/chat_cubit.dart';
+import '../../features/therapist/presentation/manager/therapist_cubit/therapist_cubit.dart';
+import '../../features/therapist/presentation/manager/therapist_rating_cubit/therapist_rating_cubit.dart';
 import '../../features/Community/data/services/audio_player_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
@@ -15,9 +20,9 @@ import '../../features/auth/presentation/views/register_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/auth/presentation/views/start_view.dart';
 import '../../features/chatbot/presentation/views/chatbot_view.dart';
-import '../../features/home/data/models/therapist_model.dart';
+import '../../features/therapist/data/models/therapist_model.dart';
 import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
-import '../../features/home/presentation/views/all_available_sessions_view.dart';
+import '../../features/therapist/presentation/views/all_therapists_view.dart';
 import '../../features/home/presentation/views/all_meditations_view.dart';
 import '../../features/therapist/presentation/views/therapist_chat_view.dart';
 import '../../features/therapist/presentation/views/live_view.dart';
@@ -180,14 +185,6 @@ class AppRouter {
           ),
         );
 
-      case Routes.therapistDetailsView:
-        final TherapistModel sessionsForYouModel =
-            settings.arguments as TherapistModel;
-        return MaterialPageRoute(
-          builder: (context) =>
-              TherapistDetailsView(therapistModel: sessionsForYouModel),
-        );
-
       case Routes.therapistChatView:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
@@ -201,9 +198,36 @@ class AppRouter {
       case Routes.liveView:
         return MaterialPageRoute(builder: (context) => const LiveView());
 
-      case Routes.therapistRatingsView:
+      case Routes.therapistDetailsView:
+        final TherapistModel therapistModel =
+            settings.arguments as TherapistModel;
         return MaterialPageRoute(
-          builder: (context) => const TherapistRatingsView(),
+          builder: (context) =>
+              TherapistDetailsView(therapistModel: therapistModel),
+        );
+
+      case Routes.therapistRatingsView:
+        final String therapistId = settings.arguments as String;
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => TherapistRatingCubit(
+              therapistRatingRepo: getIt.get<TherapistRatingRepo>(),
+            )..getRatings(therapistId: therapistId),
+            child: TherapistRatingsView(therapistId: therapistId),
+          ),
+        );
+
+      case Routes.addtherapistRatingView:
+        final args = settings.arguments as Map<String, dynamic>;
+        final String therapistId = args['therapistId'];
+        final TherapistRatingCubit cubit = args['cubit'];
+        return MaterialPageRoute(
+          builder: (context) {
+            return BlocProvider.value(
+              value: cubit,
+              child: AddTherapistRatingView(therapistId: therapistId),
+            );
+          },
         );
 
       case Routes.recommendationsView:
@@ -237,7 +261,12 @@ class AppRouter {
 
       case Routes.allAvailableSessionsView:
         return MaterialPageRoute(
-          builder: (context) => const AllAvailableSessionsView(),
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                TherapistCubit(therapistRepo: getIt.get<TherapistRepo>())
+                  ..getTherapists(),
+            child: const AllTherapistsView(),
+          ),
         );
 
       default:
