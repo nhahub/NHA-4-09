@@ -18,7 +18,7 @@ class TherapistRatingCubit extends Cubit<TherapistRatingState> {
     : super(AddTherapistRatingsLoadingState());
 
   Future<void> getRatings({required String therapistId}) async {
-    await sub?.cancel();
+    emit(GetTherapistRatingsLoadingState());
 
     final result = await therapistRatingRepo.getRatings(
       therapistId: therapistId,
@@ -26,60 +26,22 @@ class TherapistRatingCubit extends Cubit<TherapistRatingState> {
 
     result.fold(
       (failure) {
-        if (!isClosed) {
-          emit(AddTherapistRatingsFailureState(error: failure.message));
-        }
+        emit(GetTherapistRatingsFailureState(error: failure.message));
       },
       (ratings) {
-        if (!isClosed) {
-          emit(
-            GetTherapistRatingsLoadedState(
-              ratings: ratings,
-              average: ratings.isNotEmpty
-                  ? ratings.map((e) => e.rating).reduce((a, b) => a + b) /
-                        ratings.length
-                  : 0,
-              totalCount: ratings.length,
-              userRating: 0,
-            ),
-          );
-        }
+        emit(
+          GetTherapistRatingsLoadedState(
+            ratings: ratings,
+            average: ratings.isNotEmpty
+                ? ratings.map((e) => e.rating).reduce((a, b) => a + b) /
+                      ratings.length
+                : 0,
+            totalCount: ratings.length,
+            userRating: 0,
+          ),
+        );
       },
     );
-
-    /// realtime listener
-    sub = therapistRatingRepo.listenToRatings(therapistId: therapistId).listen((
-      either,
-    ) {
-      if (isClosed) return;
-
-      either.fold(
-        (failure) {
-          if (!isClosed) {
-            emit(GetTherapistRatingsFailureState(error: failure.message));
-          }
-        },
-        (ratings) {
-          if (!isClosed) {
-            final currentUserRating = state is GetTherapistRatingsLoadedState
-                ? (state as GetTherapistRatingsLoadedState).userRating
-                : null;
-
-            emit(
-              GetTherapistRatingsLoadedState(
-                ratings: ratings,
-                average: ratings.isNotEmpty
-                    ? ratings.map((e) => e.rating).reduce((a, b) => a + b) /
-                          ratings.length
-                    : 0,
-                totalCount: ratings.length,
-                userRating: currentUserRating ?? 0,
-              ),
-            );
-          }
-        },
-      );
-    });
   }
 
   Future<void> addRating({
@@ -132,11 +94,5 @@ class TherapistRatingCubit extends Cubit<TherapistRatingState> {
         emit(currentState.copyWith(userRating: rating));
       }
     }
-  }
-
-  @override
-  Future<void> close() async {
-    await sub?.cancel();
-    return super.close();
   }
 }

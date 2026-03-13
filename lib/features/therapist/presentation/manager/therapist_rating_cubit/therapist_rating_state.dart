@@ -7,7 +7,7 @@ sealed class TherapistRatingState extends Equatable {
   List<Object?> get props => [];
 }
 
-class GetTherapistRatingsLoading extends TherapistRatingState {}
+class GetTherapistRatingsLoadingState extends TherapistRatingState {}
 
 class AddTherapistRatingsAddedState extends TherapistRatingState {}
 
