@@ -25,6 +25,7 @@ const int kMaxCups = 8;
 const String kQuestionnaireAnswersTable = "questionnaire_answers";
 const String kMoodTable = "moods";
 const String kTherapistsTable = "therapists";
+const String kChatRoomsTable = "chat_rooms";
 const String kMessagesTable = "messages";
 const String kTherapistReviewsTable = "therapist_ratings";
 

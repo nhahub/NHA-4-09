@@ -188,12 +188,13 @@ class AppRouter {
         );
 
       case Routes.therapistChatView:
+        final String therapistId = settings.arguments as String;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) =>
                 ChatCubit(chatRepo: getIt.get<ChatRepo>())
-                  ..loadMessages(roomId: ""),
-            child: const TherapistChatView(roomId: "", currentUserId: ""),
+                  ..loadMessages(therapistId: therapistId),
+            child: const TherapistChatView(),
           ),
         );
 

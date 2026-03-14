@@ -8,8 +8,8 @@ import '../../../data/models/therapist_model.dart';
 import 'contact_widget.dart';
 
 class TherapistDetails extends StatelessWidget {
-  const TherapistDetails({super.key, required this.sessionsForYouModel});
-  final TherapistModel sessionsForYouModel;
+  const TherapistDetails({super.key, required this.therapistModel});
+  final TherapistModel therapistModel;
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +22,12 @@ class TherapistDetails extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(sessionsForYouModel.name, style: AppStyles.extraBold15),
+          Text(therapistModel.name, style: AppStyles.extraBold15),
           const SizedBox(height: 2),
           SizedBox(
             height: 3 * 20,
             child: Text(
-              sessionsForYouModel.speciality,
+              therapistModel.speciality,
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
               style: AppStyles.medium15.copyWith(
@@ -39,17 +39,17 @@ class TherapistDetails extends StatelessWidget {
           const SizedBox(height: 12),
           ContactWidget(
             icon: AppAssets.chatIcon,
-            price: sessionsForYouModel.chatPrice,
-            discount: sessionsForYouModel.discount,
-            priceAfterDiscount: sessionsForYouModel.chatPriceAfterDiscount,
+            price: therapistModel.chatPrice,
+            discount: therapistModel.discount,
+            priceAfterDiscount: therapistModel.chatPriceAfterDiscount,
             iconSize: 20,
           ),
           const SizedBox(height: 8),
           ContactWidget(
             icon: AppAssets.phoneIcon,
-            price: sessionsForYouModel.livePrice,
-            discount: sessionsForYouModel.discount,
-            priceAfterDiscount: sessionsForYouModel.livePriceAfterDiscount,
+            price: therapistModel.livePrice,
+            discount: therapistModel.discount,
+            priceAfterDiscount: therapistModel.livePriceAfterDiscount,
             iconSize: 17,
             additionalWidth: 12,
           ),

@@ -45,7 +45,7 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
 
     emit(AddTherapistReviewLoadingState());
 
-    final newReview = createTherapistReview(
+    final TherapistReviewModel newReview = createTherapistReview(
       therapistId: therapistId,
       reviewText: review,
       rating: currentState.userRating.toInt(),
@@ -73,13 +73,13 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
 
     emit(UpdateTherapistReviewLoadingState());
 
-    final updatedReview = createTherapistReview(
+    final TherapistReviewModel updatedReview = createTherapistReview(
       id: reviewModel.id,
       therapistId: reviewModel.therapistId,
       reviewText: review,
       rating: currentState.userRating.toInt(),
       displayAnonymously: displayAnonymously,
-      createdAt: reviewModel.createdAt,
+      createdAt: DateTime.now(),
     );
 
     final result = await therapistRatingRepo.updateReview(

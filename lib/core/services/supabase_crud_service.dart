@@ -3,12 +3,25 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class SupabaseCRUDService {
   final SupabaseClient client = Supabase.instance.client;
 
-  /// Create / Add data
+  /// Add data
   Future<void> addData({
     required String table,
     required Map<String, dynamic> data,
   }) async {
     await client.from(table).insert(data);
+  }
+
+  /// Add data and return id
+  Future<String> addDataAndReturnId({
+    required String table,
+    required Map<String, dynamic> data,
+  }) async {
+    final response = await client
+        .from(table)
+        .insert(data)
+        .select('id')
+        .single();
+    return response['id'];
   }
 
   Future<List<Map<String, dynamic>>> getData({

@@ -32,7 +32,7 @@ class SessionsForYouCard extends StatelessWidget {
           spacing: 4,
           children: [
             TherapistCoverInfo(sessionsForYouModel: therapistModel),
-            TherapistDetails(sessionsForYouModel: therapistModel),
+            TherapistDetails(therapistModel: therapistModel),
           ],
         ),
       ),

@@ -33,7 +33,7 @@ class TherapistContactSection extends StatelessWidget {
             ContactButton(
               icon: Icons.email,
               onPressed: () {
-                context.push(Routes.therapistChatView);
+                context.push(Routes.therapistChatView, args: therapistModel.id);
               },
               color: AppColors.orange,
             ),
