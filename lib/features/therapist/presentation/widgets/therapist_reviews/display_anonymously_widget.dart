@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_ratings/display_anonymously_item.dart';
+import 'package:moodly/features/therapist/presentation/widgets/therapist_reviews/display_anonymously_item.dart';
 
 class DisplayAnonymouslyWidget extends StatefulWidget {
   final ValueChanged<int> onSelectionChanged;

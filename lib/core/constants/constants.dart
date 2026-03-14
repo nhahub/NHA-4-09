@@ -26,7 +26,7 @@ const String kQuestionnaireAnswersTable = "questionnaire_answers";
 const String kMoodTable = "moods";
 const String kTherapistsTable = "therapists";
 const String kMessagesTable = "messages";
-const String kTherapistRatingsTable = "therapist_ratings";
+const String kTherapistReviewsTable = "therapist_ratings";
 
 // Premium
 const bool kIsPremium = true;

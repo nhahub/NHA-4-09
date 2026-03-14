@@ -4,10 +4,10 @@ import 'package:moodly/core/helpers/alpha_from_percent.dart';
 import 'package:moodly/core/theming/app_assets.dart';
 import 'package:moodly/core/theming/app_colors.dart';
 import 'package:moodly/core/theming/app_styles.dart';
-import '../../../data/models/therapist_rating_model.dart';
+import '../../../data/models/therapist_review_model.dart';
 
 class RatingDistribution extends StatelessWidget {
-  final List<TherapistRatingModel> ratings;
+  final List<TherapistReviewModel> ratings;
 
   const RatingDistribution({super.key, required this.ratings});
 

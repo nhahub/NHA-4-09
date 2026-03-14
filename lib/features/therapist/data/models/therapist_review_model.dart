@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'therapist_rating_model.g.dart';
+part 'therapist_review_model.g.dart';
 
 @JsonSerializable()
-class TherapistRatingModel {
+class TherapistReviewModel {
   final String id;
   @JsonKey(name: 'therapist_id')
   final String therapistId;
@@ -18,7 +18,7 @@ class TherapistRatingModel {
   @JsonKey(name: 'created_at')
   final DateTime createdAt;
 
-  TherapistRatingModel({
+  TherapistReviewModel({
     required this.id,
     required this.therapistId,
     required this.userId,
@@ -29,8 +29,8 @@ class TherapistRatingModel {
     required this.createdAt,
   });
 
-  factory TherapistRatingModel.fromJson(Map<String, dynamic> json) =>
-      _$TherapistRatingModelFromJson(json);
+  factory TherapistReviewModel.fromJson(Map<String, dynamic> json) =>
+      _$TherapistReviewModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TherapistRatingModelToJson(this);
+  Map<String, dynamic> toJson() => _$TherapistReviewModelToJson(this);
 }

@@ -1,9 +1,9 @@
 import 'package:get_it/get_it.dart';
 import '../../features/therapist/data/repos/chat_repo.dart';
-import '../../features/therapist/data/repos/therapist_rating_repo.dart';
+import '../../features/therapist/data/repos/therapist_reviews_repo.dart';
 import '../../features/therapist/data/repos/therapist_repo.dart';
 import '../../features/therapist/data/services/chat_service.dart';
-import '../../features/therapist/data/services/therapist_rating_service.dart';
+import '../../features/therapist/data/services/therapist_reviews_service.dart';
 import '../../features/therapist/data/services/therapist_service.dart';
 
 import '../../features/Community/data/services/audio_player_service.dart';
@@ -83,13 +83,13 @@ Future<void> setupGetIt() async {
   );
 
   // Therapist Rating Repo
-  getIt.registerLazySingleton<TherapistRatingRepo>(
-    () => TherapistRatingRepo(therapistRatingService: getIt()),
+  getIt.registerLazySingleton<TherapistReviewsRepo>(
+    () => TherapistReviewsRepo(therapistReviewsService: getIt()),
   );
 
   // Therapist Rating Service
-  getIt.registerLazySingleton<TherapistRatingService>(
-    () => TherapistRatingService(supabaseCRUDService: getIt()),
+  getIt.registerLazySingleton<TherapistReviewsService>(
+    () => TherapistReviewsService(supabaseCRUDService: getIt()),
   );
 
   // Therapist Rating Service

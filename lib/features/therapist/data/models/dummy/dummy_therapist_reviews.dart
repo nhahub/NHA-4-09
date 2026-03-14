@@ -1,10 +1,10 @@
-import 'package:moodly/features/therapist/data/models/therapist_rating_model.dart';
+import 'package:moodly/features/therapist/data/models/therapist_review_model.dart';
 import 'package:moodly/core/theming/app_assets.dart';
 
-class DummyTherapistRatings {
-  static List<TherapistRatingModel> dummyRatings = List.generate(
+class DummyTherapistReviews {
+  static List<TherapistReviewModel> dummyReviews = List.generate(
     5,
-    (index) => TherapistRatingModel(
+    (index) => TherapistReviewModel(
       id: "rating_$index",
       therapistId: "therapist_${index % 3}",
       userId: "user_$index",

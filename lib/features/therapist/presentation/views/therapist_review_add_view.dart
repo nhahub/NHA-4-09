@@ -5,13 +5,13 @@ import 'package:moodly/core/extensions/context_extensions.dart';
 import 'package:moodly/core/functions/confirm_dialog.dart';
 import 'package:moodly/core/functions/error_dialog.dart';
 import 'package:moodly/features/home/presentation/widgets/shared/back_button_appbar.dart';
-import 'package:moodly/features/therapist/presentation/manager/therapist_rating_cubit/therapist_rating_cubit.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_ratings/add_therapist_rating_view_body.dart';
+import 'package:moodly/features/therapist/presentation/manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
+import 'package:moodly/features/therapist/presentation/widgets/therapist_reviews/add_therapist_review_view_body.dart';
 
-class AddTherapistRatingView extends StatelessWidget {
+class TherapistReviewAddView extends StatelessWidget {
   final String therapistId;
 
-  const AddTherapistRatingView({super.key, required this.therapistId});
+  const TherapistReviewAddView({super.key, required this.therapistId});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +19,9 @@ class AddTherapistRatingView extends StatelessWidget {
       appBar: const BackButtonAppbar(title: "Add Review"),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
-        child: BlocListener<TherapistRatingCubit, TherapistRatingState>(
+        child: BlocListener<TherapistReviewsCubit, TherapistReviewsState>(
           listener: (context, state) {
-            if (state is AddTherapistRatingsAddedState) {
+            if (state is AddTherapistReviewAddedState) {
               confirmDialog(
                 context: context,
                 title: "Done!",
@@ -35,7 +35,7 @@ class AddTherapistRatingView extends StatelessWidget {
               errorDialog(context: context, message: state.error);
             }
           },
-          child: AddTherapistRatingViewBody(therapistId: therapistId),
+          child: AddTherapistReviewViewBody(therapistId: therapistId),
         ),
       ),
     );
