@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+import 'package:moodly/core/extensions/context_extensions.dart';
+import 'package:moodly/core/widgets/custom_dialog.dart';
+import 'package:moodly/features/therapist/presentation/manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
+
+import '../../../../../core/theming/app_colors.dart';
+
+Future<void> deleteReviewDialog({
+  required BuildContext context,
+  required TherapistReviewsCubit cubit,
+  required String ratingId,
+  required String therapistId,
+}) {
+  return showDialog(
+    context: context,
+    builder: (dialogContext) {
+      return CustomDialog(
+        buttonText: "Delete",
+        bodyContent: "Are you sure you want to delete this review?",
+        title: "Delete Review?",
+        buttonColor: AppColors.darkRed,
+        onPressed: () async {
+          dialogContext.pop();
+          cubit.deleteReview(ratingId: ratingId, therapistId: therapistId);
+        },
+      );
+    },
+  );
+}

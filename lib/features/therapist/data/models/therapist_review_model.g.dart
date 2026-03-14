@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'therapist_rating_model.dart';
+part of 'therapist_review_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-TherapistRatingModel _$TherapistRatingModelFromJson(
+TherapistReviewModel _$TherapistReviewModelFromJson(
   Map<String, dynamic> json,
-) => TherapistRatingModel(
+) => TherapistReviewModel(
   id: json['id'] as String,
   therapistId: json['therapist_id'] as String,
   userId: json['user_id'] as String,
@@ -19,8 +19,8 @@ TherapistRatingModel _$TherapistRatingModelFromJson(
   createdAt: DateTime.parse(json['created_at'] as String),
 );
 
-Map<String, dynamic> _$TherapistRatingModelToJson(
-  TherapistRatingModel instance,
+Map<String, dynamic> _$TherapistReviewModelToJson(
+  TherapistReviewModel instance,
 ) => <String, dynamic>{
   'id': instance.id,
   'therapist_id': instance.therapistId,

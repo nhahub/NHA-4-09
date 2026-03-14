@@ -5,6 +5,12 @@ import 'app_colors.dart';
 import 'font_weight_helper.dart';
 
 abstract class AppStyles {
+  static const TextStyle extraBold40 = TextStyle(
+    fontSize: 40,
+    fontWeight: FontWeightHelper.extraBold,
+    fontFamily: "Nunito",
+    letterSpacing: -1,
+  );
   static const TextStyle extraBold27 = TextStyle(
     fontSize: 27,
     fontWeight: FontWeightHelper.extraBold,
@@ -27,6 +33,12 @@ abstract class AppStyles {
     fontSize: 20,
     fontWeight: FontWeightHelper.bold,
     fontFamily: "Nunito",
+    letterSpacing: -0.2,
+  );
+  static const TextStyle regular17 = TextStyle(
+    fontSize: 17,
+    fontWeight: FontWeightHelper.regular,
+    fontFamily: "SFPro",
     letterSpacing: -0.2,
   );
   static const TextStyle extraBold17 = TextStyle(

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moodly/core/extensions/context_extensions.dart';
 import 'package:moodly/core/routing/routes.dart';
 import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/features/therapist/presentation/manager/therapist_rating_cubit/therapist_rating_cubit.dart';
+import 'package:moodly/features/therapist/presentation/manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
 
 class AddTherapistRatingButton extends StatelessWidget {
   const AddTherapistRatingButton({super.key, required this.therapistId});
@@ -17,9 +17,10 @@ class AddTherapistRatingButton extends StatelessWidget {
       elevation: 1,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(555)),
       onPressed: () {
-        final cubit = context.read<TherapistRatingCubit>();
+        final TherapistReviewsCubit cubit = context
+            .read<TherapistReviewsCubit>();
         context.push(
-          Routes.addtherapistRatingView,
+          Routes.therapistRatingAddView,
           args: {'therapistId': therapistId, 'cubit': cubit},
         );
       },

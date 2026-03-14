@@ -26,7 +26,7 @@ class RatingContainer extends StatelessWidget {
           SvgPicture.asset(AppAssets.starIcon, width: 12),
           const SizedBox(width: 5),
           Text(
-            "${therapistModel.ratingSummary.rating}",
+            therapistModel.ratingSummary.rating.toStringAsFixed(1),
             style: AppStyles.extraBold14.copyWith(color: Colors.white),
           ),
           const SizedBox(width: 3),

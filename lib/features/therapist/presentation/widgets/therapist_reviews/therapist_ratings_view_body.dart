@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/therapist/data/models/therapist_rating_model.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_ratings/rating_card.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_ratings/rating_summary.dart';
+import 'package:moodly/features/therapist/data/models/therapist_review_model.dart';
+import 'package:moodly/features/therapist/presentation/widgets/therapist_reviews/rating_card.dart';
+import 'package:moodly/features/therapist/presentation/widgets/therapist_reviews/rating_summary.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/theming/app_colors.dart';
@@ -15,7 +15,7 @@ class TherapistRatingsViewBody extends StatelessWidget {
     required this.count,
   });
 
-  final List<TherapistRatingModel> ratings;
+  final List<TherapistReviewModel> ratings;
   final double avg;
   final int count;
   final bool isLoading;
@@ -35,10 +35,10 @@ class TherapistRatingsViewBody extends StatelessWidget {
               child: ListView.separated(
                 itemCount: ratings.length,
                 separatorBuilder: (context, index) {
-                  return const Divider(height: 50, color: AppColors.lightGrey);
+                  return const Divider(height: 40, color: AppColors.lightGrey);
                 },
                 itemBuilder: (context, index) {
-                  return RatingCard(rating: ratings[index]);
+                  return RatingCard(therapistRatingModel: ratings[index]);
                 },
               ),
             ),

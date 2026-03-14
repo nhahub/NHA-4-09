@@ -23,9 +23,11 @@ class Routes {
   static const String therapistChatView = '/therapistChatView';
   static const String liveView = '/liveView';
   static const String therapistRatingsView = '/therapistRatingsView';
-  static const String addtherapistRatingView = '/addtherapistRatingView';
+  static const String therapistRatingAddView = '/therapistRatingAddView';
+  static const String therapistRatingUpdateView = '/therapistRatingUpdateView';
   static const String recommendationsView = '/recommendationsView';
   static const String waterTrackingView = '/waterTrackingView';
   static const String recommendedFoodView = '/recommendedFoodView';
-  static const String recommendedFoodDetailsView = '/recommendedFoodDetailsView';
+  static const String recommendedFoodDetailsView =
+      '/recommendedFoodDetailsView';
 }

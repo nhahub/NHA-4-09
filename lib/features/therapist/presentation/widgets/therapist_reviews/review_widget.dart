@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-
+import 'package:moodly/core/theming/app_styles.dart';
 import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/theming/app_styles.dart';
 
-class TherapistAboutSection extends StatefulWidget {
-  final String about;
+class ReviewWidget extends StatefulWidget {
+  final String review;
 
-  const TherapistAboutSection({super.key, required this.about});
+  const ReviewWidget({super.key, required this.review});
 
   @override
-  State<TherapistAboutSection> createState() => _TherapistAboutSectionState();
+  State<ReviewWidget> createState() => _ReviewWidgetState();
 }
 
-class _TherapistAboutSectionState extends State<TherapistAboutSection> {
+class _ReviewWidgetState extends State<ReviewWidget> {
   bool isExpanded = false;
 
   @override
@@ -20,8 +19,6 @@ class _TherapistAboutSectionState extends State<TherapistAboutSection> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("About", style: AppStyles.extraBold20),
-        const SizedBox(height: 4),
         GestureDetector(
           onTap: () {
             setState(() {
@@ -29,13 +26,12 @@ class _TherapistAboutSectionState extends State<TherapistAboutSection> {
             });
           },
           child: Text(
-            widget.about,
+            widget.review,
             maxLines: isExpanded ? null : 2,
             overflow: isExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
-            style: AppStyles.medium15.copyWith(color: AppColors.lightGrey),
+            style: AppStyles.regular14,
           ),
         ),
-
         const SizedBox(height: 4),
 
         GestureDetector(

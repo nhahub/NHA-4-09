@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/therapist/presentation/views/add_therapist_rating_view.dart';
+import 'package:moodly/features/therapist/data/models/therapist_review_model.dart';
+import 'package:moodly/features/therapist/presentation/views/therapist_review_add_view.dart';
+import 'package:moodly/features/therapist/presentation/views/therapist_review_update_view.dart';
 import '../../features/therapist/data/repos/chat_repo.dart';
-import '../../features/therapist/data/repos/therapist_rating_repo.dart';
+import '../../features/therapist/data/repos/therapist_reviews_repo.dart';
 import '../../features/therapist/data/repos/therapist_repo.dart';
 import '../../features/therapist/presentation/manager/chat_cubit/chat_cubit.dart';
 import '../../features/therapist/presentation/manager/therapist_cubit/therapist_cubit.dart';
-import '../../features/therapist/presentation/manager/therapist_rating_cubit/therapist_rating_cubit.dart';
+import '../../features/therapist/presentation/manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
 import '../../features/Community/data/services/audio_player_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
@@ -50,7 +52,7 @@ import '../../features/profile/presentation/views/privacy_policy_view.dart';
 import '../../features/profile/presentation/views/profile_view.dart';
 import '../../features/profile/presentation/views/terms_and_conditions_view.dart';
 import '../../features/therapist/presentation/views/therapist_details_view.dart';
-import '../../features/therapist/presentation/views/therapist_ratings_view.dart';
+import '../../features/therapist/presentation/views/therapist_reviews_view.dart';
 import '../services/app_launch_decider.dart';
 import '../services/get_it_service.dart';
 import '../views/video_view.dart';
@@ -210,22 +212,40 @@ class AppRouter {
         final String therapistId = settings.arguments as String;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => TherapistRatingCubit(
-              therapistRatingRepo: getIt.get<TherapistRatingRepo>(),
-            )..getRatings(therapistId: therapistId),
-            child: TherapistRatingsView(therapistId: therapistId),
+            create: (context) => TherapistReviewsCubit(
+              therapistRatingRepo: getIt.get<TherapistReviewsRepo>(),
+            )..getReviews(therapistId: therapistId),
+            child: TherapistReviewsView(therapistId: therapistId),
           ),
         );
 
-      case Routes.addtherapistRatingView:
+      case Routes.therapistRatingAddView:
         final args = settings.arguments as Map<String, dynamic>;
         final String therapistId = args['therapistId'];
-        final TherapistRatingCubit cubit = args['cubit'];
+        final TherapistReviewsCubit cubit = args['cubit'];
         return MaterialPageRoute(
           builder: (context) {
             return BlocProvider.value(
               value: cubit,
-              child: AddTherapistRatingView(therapistId: therapistId),
+              child: TherapistReviewAddView(therapistId: therapistId),
+            );
+          },
+        );
+
+      case Routes.therapistRatingUpdateView:
+        final args = settings.arguments as Map<String, dynamic>;
+        final String therapistId = args['therapistId'];
+        final TherapistReviewModel oldTherapistReviewMode =
+            args['oldTherapistReviewModel'] as TherapistReviewModel;
+        final TherapistReviewsCubit cubit = args['cubit'];
+        return MaterialPageRoute(
+          builder: (context) {
+            return BlocProvider.value(
+              value: cubit,
+              child: TherapistReviewUpdateView(
+                therapistId: therapistId,
+                oldTherapistReviewModel: oldTherapistReviewMode,
+              ),
             );
           },
         );

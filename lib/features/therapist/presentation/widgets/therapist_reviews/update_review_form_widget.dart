@@ -4,22 +4,38 @@ import 'package:moodly/core/extensions/string_extensions.dart';
 import 'package:moodly/core/widgets/app_text_button.dart';
 import 'package:moodly/core/widgets/app_text_form_field.dart';
 import 'package:moodly/core/widgets/custom_circular_progress_indicator.dart';
-import 'package:moodly/features/therapist/presentation/manager/therapist_rating_cubit/therapist_rating_cubit.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_ratings/display_anonymously_widget.dart';
+import 'package:moodly/features/therapist/data/models/therapist_review_model.dart';
+import 'package:moodly/features/therapist/presentation/manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
+import 'package:moodly/features/therapist/presentation/widgets/therapist_reviews/display_anonymously_widget.dart';
 
-class AddReviewFormWidget extends StatefulWidget {
+class UpdateReviewFormWidget extends StatefulWidget {
+  final TherapistReviewModel oldTherapistReviewModel;
   final String therapistId;
 
-  const AddReviewFormWidget({super.key, required this.therapistId});
+  const UpdateReviewFormWidget({
+    super.key,
+    required this.therapistId,
+    required this.oldTherapistReviewModel,
+  });
 
   @override
-  State<AddReviewFormWidget> createState() => _AddReviewFormWidgetState();
+  State<UpdateReviewFormWidget> createState() => _UpdateReviewFormWidgetState();
 }
 
-class _AddReviewFormWidgetState extends State<AddReviewFormWidget> {
+class _UpdateReviewFormWidgetState extends State<UpdateReviewFormWidget> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController reviewController = TextEditingController();
+  late TextEditingController reviewController;
+
   int selectedAnonymousIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    reviewController = TextEditingController(
+      text: widget.oldTherapistReviewModel.review,
+    );
+  }
+
   @override
   void dispose() {
     reviewController.dispose();
@@ -51,20 +67,20 @@ class _AddReviewFormWidgetState extends State<AddReviewFormWidget> {
             },
           ),
           const SizedBox(height: 60),
-          BlocBuilder<TherapistRatingCubit, TherapistRatingState>(
+          BlocBuilder<TherapistReviewsCubit, TherapistReviewsState>(
             buildWhen: (previous, current) =>
-                current is AddTherapistRatingsLoadingState,
+                current is UpdateTherapistRatingsLoadingState,
             builder: (context, state) {
               return IgnorePointer(
-                ignoring: state is AddTherapistRatingsLoadingState,
+                ignoring: state is UpdateTherapistRatingsLoadingState,
                 child: SizedBox(
                   width: double.infinity,
                   child: AppTextButton(
                     onPressed: () {
-                      validateThenSubmitReview(context);
+                      validateThenUpdateReview(context);
                     },
-                    buttonText: "Submit",
-                    child: state is AddTherapistRatingsLoadingState
+                    buttonText: "Update Review",
+                    child: state is UpdateTherapistRatingsLoadingState
                         ? const CustomCircularProgressIndicator()
                         : null,
                   ),
@@ -77,12 +93,15 @@ class _AddReviewFormWidgetState extends State<AddReviewFormWidget> {
     );
   }
 
-  void validateThenSubmitReview(BuildContext context) {
+  void validateThenUpdateReview(BuildContext context) {
     if (formKey.currentState!.validate()) {
-      context.read<TherapistRatingCubit>().addRating(
+      context.read<TherapistReviewsCubit>().updateReview(
         displayAnonymously: selectedAnonymousIndex == 1,
-        therapistId: widget.therapistId,
+        id: widget.oldTherapistReviewModel.id,
+        therapistId: widget.oldTherapistReviewModel.therapistId,
+        userId: widget.oldTherapistReviewModel.userId,
         review: reviewController.text,
+        createdAt: widget.oldTherapistReviewModel.createdAt,
       );
     }
   }
