@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import '../../../../../core/theming/app_assets.dart';
 
 class CustomRating extends StatelessWidget {

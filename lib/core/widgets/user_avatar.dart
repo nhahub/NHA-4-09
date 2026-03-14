@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moodly/core/functions/get_user.dart';
-import 'package:moodly/core/theming/app_assets.dart';
+import '../functions/get_user.dart';
+import '../theming/app_assets.dart';
 
 import '../theming/app_colors.dart';
 

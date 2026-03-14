@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_details/custom_rating.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../therapist_details/custom_rating.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../../data/models/therapist_review_model.dart';
 import 'rating_distribution.dart';

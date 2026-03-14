@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/therapist/data/models/therapist_review_model.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_reviews/rating_card.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_reviews/rating_summary.dart';
+import '../../../data/models/therapist_review_model.dart';
+import 'review_card.dart';
+import 'rating_summary.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/theming/app_colors.dart';
 
-class TherapistRatingsViewBody extends StatelessWidget {
-  const TherapistRatingsViewBody({
+class TherapistReviewsViewBody extends StatelessWidget {
+  const TherapistReviewsViewBody({
     super.key,
     required this.ratings,
     this.isLoading = false,
@@ -38,7 +38,7 @@ class TherapistRatingsViewBody extends StatelessWidget {
                   return const Divider(height: 40, color: AppColors.lightGrey);
                 },
                 itemBuilder: (context, index) {
-                  return RatingCard(therapistRatingModel: ratings[index]);
+                  return ReviewCard(therapistRatingModel: ratings[index]);
                 },
               ),
             ),

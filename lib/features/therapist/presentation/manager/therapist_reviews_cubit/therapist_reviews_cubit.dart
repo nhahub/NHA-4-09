@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/functions/get_user.dart';
+import '../../../../../core/functions/get_user.dart';
 import 'package:uuid/uuid.dart';
 import '../../../data/models/therapist_review_model.dart';
 import '../../../data/repos/therapist_reviews_repo.dart';
@@ -11,7 +11,7 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
   final TherapistReviewsRepo therapistRatingRepo;
 
   TherapistReviewsCubit({required this.therapistRatingRepo})
-    : super(AddTherapistRatingsLoadingState());
+    : super(AddTherapistReviewLoadingState());
 
   Future<void> getReviews({required String therapistId}) async {
     emit(GetTherapistReviewsLoadingState());
@@ -22,18 +22,20 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
 
     result.fold(
       (failure) {
-        emit(GetTherapistRatingsFailureState(error: failure.message));
+        emit(GetTherapistReviewsFailureState(errorMessage: failure.message));
       },
-      (ratings) {
+      (reviews) {
+        final hasUserRated = _checkIfUserRated(reviews);
         emit(
-          GetTherapistReviewsLoadedState(
-            therapistReviewModel: ratings,
-            average: ratings.isNotEmpty
-                ? ratings.map((e) => e.rating).reduce((a, b) => a + b) /
-                      ratings.length
+          GetTherapistReviewsSuccessState(
+            therapistReviewModel: reviews,
+            average: reviews.isNotEmpty
+                ? reviews.map((e) => e.rating).reduce((a, b) => a + b) /
+                      reviews.length
                 : 0,
-            totalCount: ratings.length,
+            totalCount: reviews.length,
             userRating: 0,
+            hasUserRated: hasUserRated,
           ),
         );
       },
@@ -45,13 +47,13 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
     required String review,
     bool displayAnonymously = false,
   }) async {
-    if (state is! GetTherapistReviewsLoadedState) return;
+    if (state is! GetTherapistReviewsSuccessState) return;
 
-    final currentState = state as GetTherapistReviewsLoadedState;
+    final currentState = state as GetTherapistReviewsSuccessState;
 
     final num rating = currentState.userRating;
 
-    emit(AddTherapistRatingsLoadingState());
+    emit(AddTherapistReviewLoadingState());
     const uuid = Uuid();
     final TherapistReviewModel therapistRatingModel = TherapistReviewModel(
       id: uuid.v4(),
@@ -70,10 +72,10 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
 
     result.fold(
       (failure) {
-        emit(AddTherapistRatingsFailureState(error: failure.message));
+        emit(AddTherapistReviewFailureState(errorMessage: failure.message));
       },
       (_) {
-        emit(AddTherapistReviewAddedState());
+        emit(AddTherapistReviewSuccessState());
         getReviews(therapistId: therapistId);
       },
     );
@@ -88,13 +90,13 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
 
     bool displayAnonymously = false,
   }) async {
-    if (state is! GetTherapistReviewsLoadedState) return;
+    if (state is! GetTherapistReviewsSuccessState) return;
 
-    final currentState = state as GetTherapistReviewsLoadedState;
+    final currentState = state as GetTherapistReviewsSuccessState;
 
     final num rating = currentState.userRating;
 
-    emit(UpdateTherapistRatingsLoadingState());
+    emit(UpdateTherapistReviewLoadingState());
 
     final result = await therapistRatingRepo.updateReview(
       therapistReviewModel: TherapistReviewModel(
@@ -111,10 +113,10 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
 
     result.fold(
       (failure) {
-        emit(UpdateTherapistRatingsFailureState(error: failure.message));
+        emit(UpdateTherapistReviewFailureState(errorMessage: failure.message));
       },
       (_) {
-        emit(UpdateTherapistRatingState());
+        emit(UpdateTherapistReviewSuccessState());
         getReviews(therapistId: therapistId);
       },
     );
@@ -124,27 +126,35 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
     required String ratingId,
     required String therapistId,
   }) async {
-    if (state is! GetTherapistReviewsLoadedState) return;
+    if (state is! GetTherapistReviewsSuccessState) return;
 
-    emit(DeleteTherapistRatingsLoadingState());
+    emit(DeleteTherapistReviewLoadingState());
 
     final result = await therapistRatingRepo.deleteReview(ratingId: ratingId);
 
     result.fold(
       (failure) {
-        emit(DeleteTherapistRatingsFailureState(error: failure.message));
+        emit(DeleteTherapistReviewFailureState(errorMessage: failure.message));
       },
       (_) {
-        emit(DeleteTherapistRatingState());
+        emit(DeleteTherapistReviewSuccessState());
         getReviews(therapistId: therapistId);
       },
     );
   }
 
   void updateUserRating({required num rating}) {
-    if (state is GetTherapistReviewsLoadedState) {
-      final currentState = state as GetTherapistReviewsLoadedState;
+    if (state is GetTherapistReviewsSuccessState) {
+      final currentState = state as GetTherapistReviewsSuccessState;
       emit(currentState.copyWith(userRating: rating));
     }
+  }
+
+  bool _checkIfUserRated(List<TherapistReviewModel> reviews) {
+    final userId = getUser()?.userId;
+
+    if (userId == null) return false;
+
+    return reviews.any((review) => review.userId == userId);
   }
 }

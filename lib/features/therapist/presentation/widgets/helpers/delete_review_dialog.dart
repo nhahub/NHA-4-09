@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/extensions/context_extensions.dart';
-import 'package:moodly/core/widgets/custom_dialog.dart';
-import 'package:moodly/features/therapist/presentation/manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
+import '../../../../../core/extensions/context_extensions.dart';
+import '../../../../../core/widgets/custom_dialog.dart';
+import '../../manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
 
 import '../../../../../core/theming/app_colors.dart';
 

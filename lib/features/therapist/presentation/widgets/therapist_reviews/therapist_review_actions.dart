@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/features/therapist/data/models/therapist_review_model.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_reviews/delete_review_dialog.dart';
+import '../../../../../core/theming/app_assets.dart';
+import '../../../../../core/theming/app_styles.dart';
+import '../../../data/models/therapist_review_model.dart';
+import '../helpers/delete_review_dialog.dart';
 import '../../manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/extensions/context_extensions.dart';
@@ -47,6 +47,7 @@ class TherapistReviewActions extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                const SizedBox(height: 8),
                 ListTile(
                   leading: SvgPicture.asset(
                     AppAssets.editIcon,

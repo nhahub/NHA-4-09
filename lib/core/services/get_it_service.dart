@@ -1,10 +1,4 @@
 import 'package:get_it/get_it.dart';
-import '../../features/therapist/data/repos/chat_repo.dart';
-import '../../features/therapist/data/repos/therapist_reviews_repo.dart';
-import '../../features/therapist/data/repos/therapist_repo.dart';
-import '../../features/therapist/data/services/chat_service.dart';
-import '../../features/therapist/data/services/therapist_reviews_service.dart';
-import '../../features/therapist/data/services/therapist_service.dart';
 
 import '../../features/Community/data/services/audio_player_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -17,6 +11,12 @@ import '../../features/mood/data/services/mood_remote_service.dart';
 import '../../features/onboarding/data/Services/questionnaire_service.dart';
 import '../../features/onboarding/data/repos/questionnaire_repo.dart';
 import '../../features/profile/data/repos/settings_repo.dart';
+import '../../features/therapist/data/repos/chat_repo.dart';
+import '../../features/therapist/data/repos/therapist_repo.dart';
+import '../../features/therapist/data/repos/therapist_reviews_repo.dart';
+import '../../features/therapist/data/services/chat_service.dart';
+import '../../features/therapist/data/services/therapist_reviews_service.dart';
+import '../../features/therapist/data/services/therapist_service.dart';
 import 'supabase_auth_service.dart';
 import 'supabase_crud_service.dart';
 

@@ -1,6 +1,5 @@
-import '../models/therapist_model.dart';
-
 import '../../../../core/services/supabase_crud_service.dart';
+import '../models/therapist_model.dart';
 
 class TherapistService {
   final SupabaseCRUDService supabaseCRUDService;

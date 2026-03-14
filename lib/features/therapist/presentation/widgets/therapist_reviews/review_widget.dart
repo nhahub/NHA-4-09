@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/theming/app_styles.dart';
+import '../../../../../core/theming/app_styles.dart';
 import '../../../../../core/theming/app_colors.dart';
 
 class ReviewWidget extends StatefulWidget {

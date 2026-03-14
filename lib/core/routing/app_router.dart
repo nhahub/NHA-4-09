@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/therapist/data/models/therapist_review_model.dart';
-import 'package:moodly/features/therapist/presentation/views/therapist_review_add_view.dart';
-import 'package:moodly/features/therapist/presentation/views/therapist_review_update_view.dart';
+import '../../features/therapist/data/models/therapist_review_model.dart';
+import '../../features/therapist/presentation/views/therapist_review_add_view.dart';
+import '../../features/therapist/presentation/views/therapist_review_update_view.dart';
 import '../../features/therapist/data/repos/chat_repo.dart';
 import '../../features/therapist/data/repos/therapist_reviews_repo.dart';
 import '../../features/therapist/data/repos/therapist_repo.dart';

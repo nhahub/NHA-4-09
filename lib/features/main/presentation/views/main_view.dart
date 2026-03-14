@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../therapist/data/repos/therapist_repo.dart';
-import '../../../therapist/presentation/manager/therapist_cubit/therapist_cubit.dart';
 
 import '../../../../core/services/get_it_service.dart';
 import '../../../Community/presentation/views/community_view.dart';
@@ -11,6 +9,8 @@ import '../../../home/presentation/manager/cups_of_water_cubit/water_tracking_cu
 import '../../../home/presentation/views/home_view.dart';
 import '../../../meditations/presentation/views/meditations_view.dart';
 import '../../../profile/presentation/views/profile_view.dart';
+import '../../../therapist/data/repos/therapist_repo.dart';
+import '../../../therapist/presentation/manager/therapist_cubit/therapist_cubit.dart';
 import '../widgets/main_nav_bar.dart';
 
 class MainView extends StatefulWidget {

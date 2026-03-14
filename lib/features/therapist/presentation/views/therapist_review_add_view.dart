@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/core/extensions/context_extensions.dart';
-import 'package:moodly/core/functions/confirm_dialog.dart';
-import 'package:moodly/core/functions/error_dialog.dart';
-import 'package:moodly/features/home/presentation/widgets/shared/back_button_appbar.dart';
-import 'package:moodly/features/therapist/presentation/manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_reviews/add_therapist_review_view_body.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../core/extensions/context_extensions.dart';
+import '../../../../core/functions/confirm_dialog.dart';
+import '../../../../core/functions/error_dialog.dart';
+import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
+import '../manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
+import '../widgets/therapist_reviews/add_therapist_review_view_body.dart';
 
 class TherapistReviewAddView extends StatelessWidget {
   final String therapistId;
@@ -21,7 +21,7 @@ class TherapistReviewAddView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
         child: BlocListener<TherapistReviewsCubit, TherapistReviewsState>(
           listener: (context, state) {
-            if (state is AddTherapistReviewAddedState) {
+            if (state is AddTherapistReviewSuccessState) {
               confirmDialog(
                 context: context,
                 title: "Done!",
@@ -31,8 +31,8 @@ class TherapistReviewAddView extends StatelessWidget {
                   context.pop();
                 },
               );
-            } else if (state is AddTherapistRatingsFailureState) {
-              errorDialog(context: context, message: state.error);
+            } else if (state is AddTherapistReviewFailureState) {
+              errorDialog(context: context, message: state.errorMessage);
             }
           },
           child: AddTherapistReviewViewBody(therapistId: therapistId),

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/extensions/string_extensions.dart';
-import 'package:moodly/core/widgets/app_text_button.dart';
-import 'package:moodly/core/widgets/app_text_form_field.dart';
-import 'package:moodly/core/widgets/custom_circular_progress_indicator.dart';
-import 'package:moodly/features/therapist/data/models/therapist_review_model.dart';
-import 'package:moodly/features/therapist/presentation/manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_reviews/display_anonymously_widget.dart';
+
+import '../../../../../core/extensions/string_extensions.dart';
+import '../../../../../core/widgets/app_text_button.dart';
+import '../../../../../core/widgets/app_text_form_field.dart';
+import '../../../../../core/widgets/custom_circular_progress_indicator.dart';
+import '../../../data/models/therapist_review_model.dart';
+import '../../manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
+import 'display_anonymously_widget.dart';
 
 class UpdateReviewFormWidget extends StatefulWidget {
   final TherapistReviewModel oldTherapistReviewModel;
@@ -69,10 +70,10 @@ class _UpdateReviewFormWidgetState extends State<UpdateReviewFormWidget> {
           const SizedBox(height: 60),
           BlocBuilder<TherapistReviewsCubit, TherapistReviewsState>(
             buildWhen: (previous, current) =>
-                current is UpdateTherapistRatingsLoadingState,
+                current is UpdateTherapistReviewLoadingState,
             builder: (context, state) {
               return IgnorePointer(
-                ignoring: state is UpdateTherapistRatingsLoadingState,
+                ignoring: state is UpdateTherapistReviewLoadingState,
                 child: SizedBox(
                   width: double.infinity,
                   child: AppTextButton(
@@ -80,7 +81,7 @@ class _UpdateReviewFormWidgetState extends State<UpdateReviewFormWidget> {
                       validateThenUpdateReview(context);
                     },
                     buttonText: "Update Review",
-                    child: state is UpdateTherapistRatingsLoadingState
+                    child: state is UpdateTherapistReviewLoadingState
                         ? const CustomCircularProgressIndicator()
                         : null,
                   ),
