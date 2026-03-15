@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/meditations/presentation/views/video_view.dart';
 import '../../features/Community/presentation/views/add_community_post_view.dart';
 
 import '../../features/meditations/data/services/audio_player_service.dart';
@@ -57,7 +58,6 @@ import '../../features/therapist/presentation/views/therapist_review_update_view
 import '../../features/therapist/presentation/views/therapist_reviews_view.dart';
 import '../services/app_launch_decider.dart';
 import '../services/get_it_service.dart';
-import '../views/video_view.dart';
 import 'routes.dart';
 
 class AppRouter {

@@ -44,7 +44,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
               child: Row(
                 children: [
                   Text(title, style: AppStyles.extraBold27),
-                  const SizedBox(width: 16),
+                  const SizedBox(width: 10),
                   isPremium ? const PremiumContainer() : const FreeContainer(),
                   const Spacer(),
                   icon != null
