@@ -1,5 +1,5 @@
-import 'package:moodly/features/therapist/data/models/therapist_review_model.dart';
-import 'package:moodly/core/theming/app_assets.dart';
+import '../../../../../core/theming/app_assets.dart';
+import '../therapist_review_model.dart';
 
 class DummyTherapistReviews {
   static List<TherapistReviewModel> dummyReviews = List.generate(

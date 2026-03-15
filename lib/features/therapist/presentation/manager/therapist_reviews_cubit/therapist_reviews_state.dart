@@ -7,21 +7,24 @@ sealed class TherapistReviewsState extends Equatable {
   List<Object?> get props => [];
 }
 
+/// -------------------------
+/// Get Reviews States
+/// -------------------------
 class GetTherapistReviewsLoadingState extends TherapistReviewsState {}
 
-class AddTherapistReviewAddedState extends TherapistReviewsState {}
-
-class GetTherapistReviewsLoadedState extends TherapistReviewsState {
+class GetTherapistReviewsSuccessState extends TherapistReviewsState {
   final List<TherapistReviewModel> therapistReviewModel;
   final double? average;
   final int? totalCount;
   final num userRating;
+  final bool hasUserRated;
 
-  const GetTherapistReviewsLoadedState({
+  const GetTherapistReviewsSuccessState({
     required this.therapistReviewModel,
-    required this.average,
-    required this.totalCount,
+    this.average,
+    this.totalCount,
     required this.userRating,
+    required this.hasUserRated,
   });
 
   @override
@@ -30,15 +33,17 @@ class GetTherapistReviewsLoadedState extends TherapistReviewsState {
     average,
     totalCount,
     userRating,
+    hasUserRated,
   ];
 
-  GetTherapistReviewsLoadedState copyWith({
+  GetTherapistReviewsSuccessState copyWith({
     List<TherapistReviewModel>? ratings,
     double? average,
     int? totalCount,
     num? userRating,
   }) {
-    return GetTherapistReviewsLoadedState(
+    return GetTherapistReviewsSuccessState(
+      hasUserRated: hasUserRated,
       therapistReviewModel: ratings ?? therapistReviewModel,
       average: average ?? this.average,
       totalCount: totalCount ?? this.totalCount,
@@ -47,36 +52,59 @@ class GetTherapistReviewsLoadedState extends TherapistReviewsState {
   }
 }
 
-class GetTherapistRatingsFailureState extends TherapistReviewsState {
-  final String error;
+class GetTherapistReviewsFailureState extends TherapistReviewsState {
+  final String errorMessage;
 
-  const GetTherapistRatingsFailureState({required this.error});
+  const GetTherapistReviewsFailureState({required this.errorMessage});
+
+  @override
+  List<Object?> get props => [errorMessage];
 }
 
-class AddTherapistRatingsLoadingState extends TherapistReviewsState {}
+/// -------------------------
+/// Add Review States
+/// -------------------------
+class AddTherapistReviewLoadingState extends TherapistReviewsState {}
 
-class AddTherapistRatingsFailureState extends TherapistReviewsState {
-  final String error;
+class AddTherapistReviewSuccessState extends TherapistReviewsState {}
 
-  const AddTherapistRatingsFailureState({required this.error});
+class AddTherapistReviewFailureState extends TherapistReviewsState {
+  final String errorMessage;
+
+  const AddTherapistReviewFailureState({required this.errorMessage});
+
+  @override
+  List<Object?> get props => [errorMessage];
 }
 
-class UpdateTherapistRatingsLoadingState extends TherapistReviewsState {}
+/// -------------------------
+/// Update Review States
+/// -------------------------
+class UpdateTherapistReviewLoadingState extends TherapistReviewsState {}
 
-class UpdateTherapistRatingState extends TherapistReviewsState {}
+class UpdateTherapistReviewSuccessState extends TherapistReviewsState {}
 
-class UpdateTherapistRatingsFailureState extends TherapistReviewsState {
-  final String error;
+class UpdateTherapistReviewFailureState extends TherapistReviewsState {
+  final String errorMessage;
 
-  const UpdateTherapistRatingsFailureState({required this.error});
+  const UpdateTherapistReviewFailureState({required this.errorMessage});
+
+  @override
+  List<Object?> get props => [errorMessage];
 }
 
-class DeleteTherapistRatingsLoadingState extends TherapistReviewsState {}
+/// -------------------------
+/// Delete Review States
+/// -------------------------
+class DeleteTherapistReviewLoadingState extends TherapistReviewsState {}
 
-class DeleteTherapistRatingState extends TherapistReviewsState {}
+class DeleteTherapistReviewSuccessState extends TherapistReviewsState {}
 
-class DeleteTherapistRatingsFailureState extends TherapistReviewsState {
-  final String error;
+class DeleteTherapistReviewFailureState extends TherapistReviewsState {
+  final String errorMessage;
 
-  const DeleteTherapistRatingsFailureState({required this.error});
+  const DeleteTherapistReviewFailureState({required this.errorMessage});
+
+  @override
+  List<Object?> get props => [errorMessage];
 }

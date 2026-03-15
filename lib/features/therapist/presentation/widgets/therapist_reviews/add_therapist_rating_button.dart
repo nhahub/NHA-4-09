@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/extensions/context_extensions.dart';
-import 'package:moodly/core/routing/routes.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/features/therapist/presentation/manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
+import '../../../../../core/widgets/custom_floating_action_button.dart';
+import '../../../../../core/extensions/context_extensions.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
 
 class AddTherapistRatingButton extends StatelessWidget {
   const AddTherapistRatingButton({super.key, required this.therapistId});
@@ -12,11 +12,8 @@ class AddTherapistRatingButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
-      backgroundColor: AppColors.lightGreen,
-      elevation: 1,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(555)),
-      onPressed: () {
+    return CustomFloatingActionButton(
+      onTap: () {
         final TherapistReviewsCubit cubit = context
             .read<TherapistReviewsCubit>();
         context.push(
@@ -24,7 +21,6 @@ class AddTherapistRatingButton extends StatelessWidget {
           args: {'therapistId': therapistId, 'cubit': cubit},
         );
       },
-      child: const Icon(Icons.add, color: Colors.white),
     );
   }
 }

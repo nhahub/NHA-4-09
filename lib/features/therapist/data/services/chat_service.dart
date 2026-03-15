@@ -1,5 +1,6 @@
 import '../../../../core/constants/constants.dart';
 import '../../../../core/services/supabase_crud_service.dart';
+import '../models/chat_room_model.dart';
 
 class ChatService {
   final SupabaseCRUDService supabaseCRUDService;
@@ -25,5 +26,29 @@ class ChatService {
       filters: {'room_id': roomId},
       orderBy: 'created_at',
     );
+  }
+
+  Future<String> getOrCreateRoom({
+    required String userId,
+    required String therapistId,
+  }) async {
+    // Check if room exists
+    final rooms = await supabaseCRUDService.getData(
+      table: kChatRoomsTable,
+      filters: {'user_id': userId, 'therapist_id': therapistId},
+    );
+
+    if (rooms.isNotEmpty) {
+      final room = ChatRoomModel.fromJson(rooms.first);
+      return room.id;
+    }
+
+    // Create new room
+    final roomId = await supabaseCRUDService.addDataAndReturnId(
+      table: kChatRoomsTable,
+      data: {'user_id': userId, 'therapist_id': therapistId},
+    );
+
+    return roomId;
   }
 }

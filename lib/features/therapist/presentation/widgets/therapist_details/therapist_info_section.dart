@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/theming/app_assets.dart';
 import '../../../data/models/therapist_model.dart';
 import 'info_card.dart';

@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/errors/failure.dart';
+import '../../../../core/functions/get_user.dart';
 import '../../../../core/networking/api_error_handler.dart';
 import '../models/message_model.dart';
 import '../services/chat_service.dart';
@@ -9,6 +10,20 @@ class ChatRepo {
   final ChatService chatService;
 
   ChatRepo({required this.chatService});
+
+  Future<Either<Failure, String>> getOrCreateRoom({
+    required String therapistId,
+  }) async {
+    try {
+      final roomId = await chatService.getOrCreateRoom(
+        userId: getUser()!.userId,
+        therapistId: therapistId,
+      );
+      return right(roomId);
+    } catch (e) {
+      return left(ApiErrorHandler.handle(error: e));
+    }
+  }
 
   Future<Either<Failure, List<MessageModel>>> getMessages({
     required String roomId,

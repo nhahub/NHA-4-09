@@ -12,6 +12,7 @@ class Routes {
   static const String subscribeView = '/subscribeView';
   static const String mainView = '/mainView';
   static const String homeView = '/homeView';
+  static const String addCommunityPostView = '/addCommunityPostView';
   static const String meditationsView = '/meditationsView';
   static const String allMeditationsView = '/allMeditationsView';
   static const String allAvailableSessionsView = '/allAvailableSessionsView';

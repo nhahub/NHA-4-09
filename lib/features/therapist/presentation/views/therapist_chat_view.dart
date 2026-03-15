@@ -1,25 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/theming/app_colors.dart';
+import '../../../../core/widgets/custom_circular_progress_indicator.dart';
+import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../manager/chat_cubit/chat_cubit.dart';
 import '../widgets/therapist_chat/chat_input_field.dart';
 import '../widgets/therapist_chat/messages_list.dart';
-import '../../../../core/widgets/custom_circular_progress_indicator.dart';
 
 class TherapistChatView extends StatelessWidget {
-  final String roomId;
-  final String currentUserId;
-
-  const TherapistChatView({
-    super.key,
-    required this.roomId,
-    required this.currentUserId,
-  });
+  const TherapistChatView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Chat with Therapist")),
+      appBar: const BackButtonAppbar(title: "Chat with Therapist"),
       body: SafeArea(
         child: Column(
           children: [
@@ -41,7 +36,6 @@ class TherapistChatView extends StatelessWidget {
                     });
                     return MessagesList(
                       messages: state.messages,
-                      currentUserId: currentUserId,
                       controller: controller,
                     );
                   } else if (state is ChatFailureState) {
@@ -51,11 +45,10 @@ class TherapistChatView extends StatelessWidget {
                 },
               ),
             ),
+            const SizedBox(height: 15),
             ChatInputField(
               onSend: (text) {
                 context.read<ChatCubit>().sendMessage(
-                  roomId: roomId,
-                  senderId: currentUserId,
                   senderType: "user",
                   text: text,
                 );

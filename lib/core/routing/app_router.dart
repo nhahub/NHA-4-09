@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/therapist/data/models/therapist_review_model.dart';
-import 'package:moodly/features/therapist/presentation/views/therapist_review_add_view.dart';
-import 'package:moodly/features/therapist/presentation/views/therapist_review_update_view.dart';
-import '../../features/therapist/data/repos/chat_repo.dart';
-import '../../features/therapist/data/repos/therapist_reviews_repo.dart';
-import '../../features/therapist/data/repos/therapist_repo.dart';
-import '../../features/therapist/presentation/manager/chat_cubit/chat_cubit.dart';
-import '../../features/therapist/presentation/manager/therapist_cubit/therapist_cubit.dart';
-import '../../features/therapist/presentation/manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
-import '../../features/Community/data/services/audio_player_service.dart';
+import '../../features/Community/presentation/views/add_community_post_view.dart';
+
+import '../../features/meditations/data/services/audio_player_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
 import '../../features/auth/presentation/manager/login_cubit/login_cubit.dart';
@@ -22,12 +15,8 @@ import '../../features/auth/presentation/views/register_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/auth/presentation/views/start_view.dart';
 import '../../features/chatbot/presentation/views/chatbot_view.dart';
-import '../../features/therapist/data/models/therapist_model.dart';
 import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
-import '../../features/therapist/presentation/views/all_therapists_view.dart';
 import '../../features/home/presentation/views/all_meditations_view.dart';
-import '../../features/therapist/presentation/views/therapist_chat_view.dart';
-import '../../features/therapist/presentation/views/live_view.dart';
 import '../../features/home/presentation/views/recommendations_view.dart';
 import '../../features/home/presentation/views/water_tracking_view.dart';
 import '../../features/main/presentation/views/main_view.dart';
@@ -51,7 +40,20 @@ import '../../features/profile/data/repos/settings_repo.dart';
 import '../../features/profile/presentation/views/privacy_policy_view.dart';
 import '../../features/profile/presentation/views/profile_view.dart';
 import '../../features/profile/presentation/views/terms_and_conditions_view.dart';
+import '../../features/therapist/data/models/therapist_model.dart';
+import '../../features/therapist/data/models/therapist_review_model.dart';
+import '../../features/therapist/data/repos/chat_repo.dart';
+import '../../features/therapist/data/repos/therapist_repo.dart';
+import '../../features/therapist/data/repos/therapist_reviews_repo.dart';
+import '../../features/therapist/presentation/manager/chat_cubit/chat_cubit.dart';
+import '../../features/therapist/presentation/manager/therapist_cubit/therapist_cubit.dart';
+import '../../features/therapist/presentation/manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
+import '../../features/therapist/presentation/views/all_therapists_view.dart';
+import '../../features/therapist/presentation/views/live_view.dart';
+import '../../features/therapist/presentation/views/therapist_chat_view.dart';
 import '../../features/therapist/presentation/views/therapist_details_view.dart';
+import '../../features/therapist/presentation/views/therapist_review_add_view.dart';
+import '../../features/therapist/presentation/views/therapist_review_update_view.dart';
 import '../../features/therapist/presentation/views/therapist_reviews_view.dart';
 import '../services/app_launch_decider.dart';
 import '../services/get_it_service.dart';
@@ -163,6 +165,11 @@ class AppRouter {
           ),
         );
 
+      case Routes.addCommunityPostView:
+        return MaterialPageRoute(
+          builder: (context) => const AddCommunityPostView(),
+        );
+
       case Routes.meditationsView:
         return MaterialPageRoute(builder: (context) => const MeditationsView());
 
@@ -188,12 +195,13 @@ class AppRouter {
         );
 
       case Routes.therapistChatView:
+        final String therapistId = settings.arguments as String;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) =>
                 ChatCubit(chatRepo: getIt.get<ChatRepo>())
-                  ..loadMessages(roomId: ""),
-            child: const TherapistChatView(roomId: "", currentUserId: ""),
+                  ..loadMessages(therapistId: therapistId),
+            child: const TherapistChatView(),
           ),
         );
 

@@ -18,7 +18,7 @@ Color getRandomTextColor({required int index}) {
     const Color(0xff37b4f4),
     const Color(0xffe58522),
     const Color(0xffc990ef),
-    AppColors.red,
+    AppColors.lighterRed,
   ];
 
   return colors[index % colors.length];

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../../core/widgets/horizontal_padding_list.dart';
 import '../../../data/models/dummy/dummy_therapists.dart';
 import '../../manager/therapist_cubit/therapist_cubit.dart';
-import '../../../../../core/widgets/horizontal_padding_list.dart';
 import 'sessions_for_you_card.dart';
 
 class SessionsForYouListView extends StatelessWidget {

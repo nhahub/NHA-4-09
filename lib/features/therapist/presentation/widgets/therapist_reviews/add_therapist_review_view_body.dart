@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/features/therapist/presentation/manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_details/custom_rating.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_reviews/add_review_form_widget.dart';
+
+import '../../../../../core/theming/app_styles.dart';
+import '../../manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
+import '../therapist_details/custom_rating.dart';
+import 'add_review_form_widget.dart';
 
 class AddTherapistReviewViewBody extends StatelessWidget {
   const AddTherapistReviewViewBody({super.key, required this.therapistId});

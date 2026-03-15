@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/extensions/string_extensions.dart';
-import 'package:moodly/core/widgets/app_text_button.dart';
-import 'package:moodly/core/widgets/app_text_form_field.dart';
-import 'package:moodly/core/widgets/custom_circular_progress_indicator.dart';
-import 'package:moodly/features/therapist/presentation/manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_reviews/display_anonymously_widget.dart';
+
+import '../../../../../core/extensions/string_extensions.dart';
+import '../../../../../core/widgets/app_text_button.dart';
+import '../../../../../core/widgets/app_text_form_field.dart';
+import '../../../../../core/widgets/custom_circular_progress_indicator.dart';
+import '../../manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
+import 'display_anonymously_widget.dart';
 
 class AddReviewFormWidget extends StatefulWidget {
   final String therapistId;
@@ -53,10 +54,12 @@ class _AddReviewFormWidgetState extends State<AddReviewFormWidget> {
           const SizedBox(height: 60),
           BlocBuilder<TherapistReviewsCubit, TherapistReviewsState>(
             buildWhen: (previous, current) =>
-                current is AddTherapistRatingsLoadingState,
+                current is AddTherapistReviewLoadingState ||
+                current is AddTherapistReviewFailureState ||
+                current is AddTherapistReviewSuccessState,
             builder: (context, state) {
               return IgnorePointer(
-                ignoring: state is AddTherapistRatingsLoadingState,
+                ignoring: state is AddTherapistReviewLoadingState,
                 child: SizedBox(
                   width: double.infinity,
                   child: AppTextButton(
@@ -64,7 +67,7 @@ class _AddReviewFormWidgetState extends State<AddReviewFormWidget> {
                       validateThenSubmitReview(context);
                     },
                     buttonText: "Submit",
-                    child: state is AddTherapistRatingsLoadingState
+                    child: state is AddTherapistReviewLoadingState
                         ? const CustomCircularProgressIndicator()
                         : null,
                   ),

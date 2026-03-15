@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import '../widgets/therapist_details/therapist_info_section.dart';
+
 import '../../../../core/constants/constants.dart';
 import '../../../../core/theming/app_colors.dart';
-import '../../data/models/therapist_model.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
+import '../../data/models/therapist_model.dart';
 import '../widgets/therapist_details/therapist_about_section.dart';
 import '../widgets/therapist_details/therapist_contact_section.dart';
 import '../widgets/therapist_details/therapist_header.dart';
 import '../widgets/therapist_details/therapist_image.dart';
+import '../widgets/therapist_details/therapist_info_section.dart';
 import '../widgets/therapist_details/therapist_rating_section.dart';
 
 class TherapistDetailsView extends StatelessWidget {
