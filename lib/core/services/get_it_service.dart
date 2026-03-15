@@ -1,11 +1,11 @@
 import 'package:get_it/get_it.dart';
 
-import '../../features/Community/data/services/audio_player_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/home/data/repos/quote_repo_impl.dart';
 import '../../features/home/data/repos/water_repo.dart';
 import '../../features/meals_recommendations/data/local_service/recommended_food_local_service.dart';
 import '../../features/meals_recommendations/data/repos/recommended_food_repo.dart';
+import '../../features/meditations/data/services/audio_player_service.dart';
 import '../../features/mood/data/repos/mood_repo.dart';
 import '../../features/mood/data/services/mood_remote_service.dart';
 import '../../features/onboarding/data/Services/questionnaire_service.dart';

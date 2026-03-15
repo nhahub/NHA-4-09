@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/functions/get_user.dart';
 
+import '../../../../../core/functions/get_user.dart';
 import '../../../data/models/message_model.dart';
 import 'chat_bubble.dart';
 

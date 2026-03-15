@@ -1,7 +1,6 @@
-import 'package:moodly/features/therapist/data/models/chat_room_model.dart';
-
 import '../../../../core/constants/constants.dart';
 import '../../../../core/services/supabase_crud_service.dart';
+import '../models/chat_room_model.dart';
 
 class ChatService {
   final SupabaseCRUDService supabaseCRUDService;

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/home/presentation/widgets/shared/back_button_appbar.dart';
+
 import '../../../../core/theming/app_colors.dart';
+import '../../../../core/widgets/custom_circular_progress_indicator.dart';
+import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../manager/chat_cubit/chat_cubit.dart';
 import '../widgets/therapist_chat/chat_input_field.dart';
 import '../widgets/therapist_chat/messages_list.dart';
-import '../../../../core/widgets/custom_circular_progress_indicator.dart';
 
 class TherapistChatView extends StatelessWidget {
   const TherapistChatView({super.key});

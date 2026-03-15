@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../../data/models/therapist_review_model.dart';
-import 'review_card.dart';
-import 'rating_summary.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/theming/app_colors.dart';
+import '../../../data/models/therapist_review_model.dart';
+import 'rating_summary.dart';
+import 'review_card.dart';
 
 class TherapistReviewsViewBody extends StatelessWidget {
   const TherapistReviewsViewBody({

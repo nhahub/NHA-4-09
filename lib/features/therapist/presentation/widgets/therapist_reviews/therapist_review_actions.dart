@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../../../../../core/extensions/context_extensions.dart';
+import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_assets.dart';
+import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../../data/models/therapist_review_model.dart';
-import '../helpers/delete_review_dialog.dart';
 import '../../manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
-import '../../../../../core/routing/routes.dart';
-import '../../../../../core/extensions/context_extensions.dart';
-import '../../../../../core/theming/app_colors.dart';
+import '../helpers/delete_review_dialog.dart';
 
 class TherapistReviewActions extends StatelessWidget {
   final TherapistReviewModel oldTherapistReviewModel;
@@ -77,13 +78,15 @@ class TherapistReviewActions extends StatelessWidget {
                     width: 20,
                     height: 20,
                     colorFilter: const ColorFilter.mode(
-                      AppColors.red,
+                      AppColors.lighterRed,
                       BlendMode.srcIn,
                     ),
                   ),
                   title: Text(
                     'Delete Review',
-                    style: AppStyles.regular17.copyWith(color: AppColors.red),
+                    style: AppStyles.regular17.copyWith(
+                      color: AppColors.lighterRed,
+                    ),
                   ),
                   onTap: () {
                     context.pop();

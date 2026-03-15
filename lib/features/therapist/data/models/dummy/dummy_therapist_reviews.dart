@@ -1,5 +1,5 @@
-import '../therapist_review_model.dart';
 import '../../../../../core/theming/app_assets.dart';
+import '../therapist_review_model.dart';
 
 class DummyTherapistReviews {
   static List<TherapistReviewModel> dummyReviews = List.generate(

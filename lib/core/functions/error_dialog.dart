@@ -27,7 +27,9 @@ class ErrorDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      insetPadding: const EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
+      insetPadding: const EdgeInsets.symmetric(
+        horizontal: kAppHorizontalPadding,
+      ),
 
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       elevation: 0,
@@ -54,7 +56,11 @@ class ErrorDialog extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(Icons.error_outline, color: AppColors.red, size: 48),
+          const Icon(
+            Icons.error_outline,
+            color: AppColors.lighterRed,
+            size: 48,
+          ),
           const SizedBox(height: 16),
           Text(message, style: AppStyles.bold20, textAlign: TextAlign.center),
           const SizedBox(height: 20),

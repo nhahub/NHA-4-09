@@ -1,6 +1,5 @@
-import 'package:moodly/features/therapist/data/models/therapist_review_model.dart';
-
 import '../../../../core/functions/get_user.dart';
+import '../../data/models/therapist_review_model.dart';
 
 double calculateAverageRating(List<TherapistReviewModel> reviews) {
   if (reviews.isEmpty) return 0.0;

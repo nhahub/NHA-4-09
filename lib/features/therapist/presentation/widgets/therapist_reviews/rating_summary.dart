@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/theming/app_colors.dart';
-import '../therapist_details/custom_rating.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../../data/models/therapist_review_model.dart';
+import '../therapist_details/custom_rating.dart';
 import 'rating_distribution.dart';
 
 class RatingSummary extends StatelessWidget {
