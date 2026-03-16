@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/app_styles.dart';
 import '../../../../core/widgets/app_text_button.dart';
@@ -41,7 +42,7 @@ class PaymentSuccessDialog extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: AppTextButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => context.pop(),
                 buttonText: "View Ticket",
               ),
             ),

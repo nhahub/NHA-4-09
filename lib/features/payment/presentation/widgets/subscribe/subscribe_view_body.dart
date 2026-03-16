@@ -4,7 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/routing/routes.dart';
+import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/widgets/app_text_button.dart';
+import '../../../../../core/widgets/custom_circular_progress_indicator.dart';
 import '../../../data/models/card_model.dart';
 import '../../manager/payment_cubit/payment_cubit.dart';
 import '../../manager/payment_cubit/payment_state.dart';
@@ -141,7 +143,11 @@ class _SubscribeViewBodyState extends State<SubscribeViewBody> {
             ),
 
             if (state is PaymentLoading)
-              const Center(child: CircularProgressIndicator()),
+              const Center(
+                child: CustomCircularProgressIndicator(
+                  color: AppColors.lightGreen,
+                ),
+              ),
 
             Align(
               alignment: Alignment.bottomCenter,

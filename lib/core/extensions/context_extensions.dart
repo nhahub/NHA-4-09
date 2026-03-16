@@ -21,8 +21,8 @@ extension NavigationExtension on BuildContext {
   }
 
   /// pop
-  void pop<T>([T? result]) {
-    Navigator.of(this).pop<T>(result);
+  void pop<T>([T? result ]) {
+    Navigator.of(this).pop<T>(result,);
   }
 
   /// can pop
