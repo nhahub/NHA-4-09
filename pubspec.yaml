@@ -85,7 +85,6 @@ flutter:
     - assets/images/meals/calm/
     - assets/images/meals/neutral/
     - assets/mock_images/
-    - .env
 
   fonts:
     - family: SFPro
