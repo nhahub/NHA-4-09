@@ -7,15 +7,27 @@ import '../../../../../core/theming/app_styles.dart';
 import '../../../../../core/widgets/app_text_button.dart';
 import '../../../data/models/payment_types_model.dart';
 
-class ChoosePaymentType extends StatelessWidget {
-  const ChoosePaymentType({
-    super.key,
-    required this.selectedIndex,
-    required this.onSelect,
-  });
+class ChoosePaymentType extends StatefulWidget {
+  const ChoosePaymentType({super.key, required this.onChanged});
+  final ValueChanged<double> onChanged;
 
-  final int selectedIndex;
-  final ValueChanged<int> onSelect;
+  @override
+  State<ChoosePaymentType> createState() => _ChoosePaymentTypeState();
+}
+
+class _ChoosePaymentTypeState extends State<ChoosePaymentType> {
+  int selectedIndex = 0; // Default selection
+
+  @override
+  void initState() {
+    super.initState();
+    // Notify initial value
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (paymentTypes.isNotEmpty) {
+        widget.onChanged(paymentTypes[selectedIndex].price);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +57,12 @@ class ChoosePaymentType extends StatelessWidget {
             final isSelected = selectedIndex == index;
 
             return GestureDetector(
-              onTap: () => onSelect(index),
+              onTap: () {
+                setState(() {
+                  selectedIndex = index;
+                });
+                widget.onChanged(type.price);
+              },
               child: Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
