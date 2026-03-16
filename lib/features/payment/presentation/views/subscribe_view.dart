@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/theming/app_styles.dart';
 import '../manager/payment_cubit/payment_cubit.dart';
@@ -28,7 +29,7 @@ class SubscribeView extends StatelessWidget {
                 BlendMode.srcIn,
               ),
             ),
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(),
           ),
           title: const Text("Payment", style: AppStyles.extraBold20),
           centerTitle: true,

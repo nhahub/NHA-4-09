@@ -1,9 +1,9 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import '../../../../core/constants/app_keys.dart';
 import '../../../../core/functions/get_user.dart';
 
 class ZegoCallService {
-  static int get appID => int.parse(dotenv.env['ZEGO_APP_ID']!);
-  static String get appSign => dotenv.env['ZEGO_APP_SIGN']!;
+  static int get appID => int.parse(AppKeys.zegoAppId);
+  static String get appSign => AppKeys.zegoAppSign;
   static String get userID => getUser()!.userId;
   static String get userName => getUser()!.name!;
 }
