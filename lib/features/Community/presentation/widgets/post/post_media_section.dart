@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/theming/app_styles.dart';
+
 import '../../../../../core/helpers/alpha_from_percent.dart';
+import '../../../../../core/theming/app_styles.dart';
 
 class PostMedia extends StatelessWidget {
   final List<String> images;
