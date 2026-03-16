@@ -50,7 +50,7 @@ import '../../features/therapist/presentation/manager/chat_cubit/chat_cubit.dart
 import '../../features/therapist/presentation/manager/therapist_cubit/therapist_cubit.dart';
 import '../../features/therapist/presentation/manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
 import '../../features/therapist/presentation/views/all_therapists_view.dart';
-import '../../features/therapist/presentation/views/live_view.dart';
+import '../../features/therapist/presentation/views/therapist_live_view.dart';
 import '../../features/therapist/presentation/views/therapist_chat_view.dart';
 import '../../features/therapist/presentation/views/therapist_details_view.dart';
 import '../../features/therapist/presentation/views/therapist_review_add_view.dart';
@@ -205,8 +205,11 @@ class AppRouter {
           ),
         );
 
-      case Routes.liveView:
-        return MaterialPageRoute(builder: (context) => const LiveView());
+      case Routes.therapistLiveView:
+        final String callID = settings.arguments as String;
+        return MaterialPageRoute(
+          builder: (context) => TherapistLiveView(callID: callID),
+        );
 
       case Routes.therapistDetailsView:
         final TherapistModel therapistModel =
