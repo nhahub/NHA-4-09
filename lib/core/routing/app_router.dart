@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/meditations/presentation/views/video_view.dart';
+import '../../features/meditations/presentation/views/video_view.dart';
 import '../../features/Community/presentation/views/add_community_post_view.dart';
 
 import '../../features/meditations/data/services/audio_player_service.dart';

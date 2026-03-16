@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../data/models/post_model.dart';
 
 class PostUserAvatar extends StatelessWidget {
