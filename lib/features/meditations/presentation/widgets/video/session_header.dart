@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/meditations/data/models/meditation_session.dart';
+import '../../../data/models/meditation_session.dart';
 
 class SessionHeader extends StatefulWidget {
   final MeditationSession session;

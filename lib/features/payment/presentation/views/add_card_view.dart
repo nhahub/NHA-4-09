@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/theming/app_styles.dart';
 import '../widgets/add_card/add_card_view_body.dart';
@@ -15,7 +16,10 @@ class AddCardView extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: SvgPicture.asset(AppAssets.arrowLeftIcon, color: Colors.black),
+          icon: SvgPicture.asset(
+            AppAssets.arrowLeftIosIcon,
+            colorFilter: const ColorFilter.mode(Colors.black, BlendMode.srcIn),
+          ),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(

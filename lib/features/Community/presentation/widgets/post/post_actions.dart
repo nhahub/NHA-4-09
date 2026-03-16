@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_colors.dart';
-import 'action_item.dart';
 import '../../../data/models/post_model.dart';
+import 'action_item.dart';
 
 class PostActions extends StatelessWidget {
   final PostModel post;

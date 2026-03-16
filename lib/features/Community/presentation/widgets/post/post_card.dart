@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'post_user_avatar.dart';
+
 import '../../../data/models/post_model.dart';
-import 'post_content.dart';
-import 'post_media_section.dart';
-import 'post_header.dart';
 import 'post_actions.dart';
+import 'post_content.dart';
+import 'post_header.dart';
+import 'post_media_section.dart';
+import 'post_user_avatar.dart';
 
 class PostCard extends StatelessWidget {
   final PostModel postModel;

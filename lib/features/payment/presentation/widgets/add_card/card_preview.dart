@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moodly/core/theming/app_assets.dart';
+import '../../../../../core/theming/app_assets.dart';
  
 class CardPreview extends StatelessWidget {
   final String holderName;
@@ -28,7 +28,7 @@ class CardPreview extends StatelessWidget {
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xff32B453).withOpacity(0.3),
+            color: const Color(0xff32B453).withAlpha(30),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -50,9 +50,12 @@ class CardPreview extends StatelessWidget {
                 ),
               ),
               SvgPicture.asset(
-                AppAssets.zenspunLogo,
+                AppAssets.moodlyLogo,
                 width: 40,
-                color: Colors.white,
+                colorFilter: const ColorFilter.mode(
+                  Colors.white,
+                  BlendMode.srcIn,
+                ),
               ),
             ],
           ),
@@ -71,7 +74,7 @@ class CardPreview extends StatelessWidget {
               Text(
                 "Holder Name",
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.7),
+                  color: Colors.white.withAlpha(70),
                   fontSize: 10,
                 ),
               ),

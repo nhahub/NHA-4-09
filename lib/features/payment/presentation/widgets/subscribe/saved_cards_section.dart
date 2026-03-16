@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/features/payment/data/models/card_model.dart';
 
+import '../../../../../core/theming/app_assets.dart';
+import '../../../../../core/theming/app_styles.dart';
+import '../../../data/models/card_model.dart';
 import '../payment_method_item.dart';
 
 class SavedCardsSection extends StatelessWidget {

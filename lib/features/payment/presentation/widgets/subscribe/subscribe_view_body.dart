@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:moodly/core/routing/routes.dart';
-import 'package:moodly/core/widgets/app_text_button.dart';
-import 'package:moodly/features/payment/data/models/card_model.dart';
-import 'package:moodly/features/payment/presentation/manager/payment_cubit/payment_state.dart';
-import 'package:moodly/features/payment/presentation/widgets/add_card/card_preview.dart';
-import 'package:moodly/features/payment/presentation/widgets/payment_success_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../../core/extensions/context_extensions.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../../../../core/widgets/app_text_button.dart';
+import '../../../data/models/card_model.dart';
 import '../../manager/payment_cubit/payment_cubit.dart';
+import '../../manager/payment_cubit/payment_state.dart';
+import '../add_card/card_preview.dart';
+import '../payment_success_dialog.dart';
 import 'payment_methods_section.dart';
 import 'saved_cards_section.dart';
 

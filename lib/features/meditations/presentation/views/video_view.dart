@@ -1,12 +1,14 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:moodly/features/meditations/data/models/meditation_session.dart';
-import 'package:moodly/features/meditations/presentation/widgets/video/about_session_card.dart';
-import 'package:moodly/features/meditations/presentation/widgets/video/audio_progress_bar.dart';
-import 'package:moodly/features/meditations/presentation/widgets/video/main_controls.dart';
-import 'package:moodly/features/meditations/presentation/widgets/video/secondary_controls.dart';
-import 'package:moodly/features/meditations/presentation/widgets/video/session_details_card.dart';
-import 'package:moodly/features/meditations/presentation/widgets/video/session_header.dart';
+
+import '../../data/models/meditation_session.dart';
+import '../widgets/video/about_session_card.dart';
+import '../widgets/video/audio_progress_bar.dart';
+import '../widgets/video/main_controls.dart';
+import '../widgets/video/secondary_controls.dart';
+import '../widgets/video/session_details_card.dart';
+import '../widgets/video/session_header.dart';
 
 class VideoView extends StatefulWidget {
   final MeditationSession session;

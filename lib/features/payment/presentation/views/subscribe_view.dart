@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/theming/app_styles.dart';
 import '../manager/payment_cubit/payment_cubit.dart';
@@ -21,12 +22,15 @@ class SubscribeView extends StatelessWidget {
           elevation: 0,
           leading: IconButton(
             icon: SvgPicture.asset(
-              AppAssets.arrowLeftIcon,
-              color: Colors.black,
+              AppAssets.arrowLeftIosIcon,
+              colorFilter: const ColorFilter.mode(
+                Colors.black,
+                BlendMode.srcIn,
+              ),
             ),
             onPressed: () => Navigator.pop(context),
           ),
-          title: Text("Payment", style: AppStyles.extraBold20),
+          title: const Text("Payment", style: AppStyles.extraBold20),
           centerTitle: true,
           actions: [
             IconButton(

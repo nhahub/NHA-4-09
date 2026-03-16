@@ -30,4 +30,4 @@ const String kMessagesTable = "messages";
 const String kTherapistReviewsTable = "therapist_ratings";
 
 // Premium
-const bool kIsPremium = true;
+const bool kIsPremium = false;

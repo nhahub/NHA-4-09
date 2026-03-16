@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/app_styles.dart';
 import '../../../../core/widgets/app_text_button.dart';
@@ -25,7 +26,7 @@ class PaymentSuccessDialog extends StatelessWidget {
               child: const Icon(Icons.check, color: Colors.white, size: 40),
             ),
             const SizedBox(height: 24),
-            Text(
+            const Text(
               "Payment Successful",
               textAlign: TextAlign.center,
               style: AppStyles.extraBold27,

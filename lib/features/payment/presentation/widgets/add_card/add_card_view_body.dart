@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/widgets/app_text_button.dart';
-import 'package:moodly/features/payment/data/models/card_model.dart';
+import '../../../../../core/widgets/app_text_button.dart';
+import '../../../data/models/card_model.dart';
 
 import 'card_preview.dart';
 import 'custom_card_text_field.dart';

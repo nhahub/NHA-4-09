@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/meditations/presentation/views/video_view.dart';
+import '../../features/meditations/presentation/views/video_view.dart';
+import '../../features/payment/presentation/views/add_card_view.dart';
 import '../../features/Community/presentation/views/add_community_post_view.dart';
 
 import '../../features/meditations/data/services/audio_player_service.dart';
@@ -181,6 +182,9 @@ class AppRouter {
 
       case Routes.videoView:
         return MaterialPageRoute(builder: (context) => const VideoView());
+
+      case Routes.addCardView:
+        return MaterialPageRoute(builder: (context) => const AddCardView());
 
       case Routes.audioView:
         final AudioEntity audioEntity = settings.arguments as AudioEntity;
