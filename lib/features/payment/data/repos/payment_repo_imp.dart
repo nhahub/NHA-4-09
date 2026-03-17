@@ -2,8 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paymob/billing_data.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:moodly/core/helpers/logger.dart';
-import 'package:moodly/features/payment/data/services/paymob_service.dart';
+import 'package:moodly/features/payment/data/models/card_model.dart';
+import 'package:moodly/features/payment/data/services/cards_local_service.dart';
+import '../services/paymob_service.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/networking/api_error_handler.dart';
 import '../../../../core/networking/api_error_model.dart';
@@ -11,13 +12,18 @@ import '../models/stripe/create_customer_input_model.dart';
 import '../models/stripe/payment_intent_input_model.dart';
 import '../models/stripe/stripe_customer_model/stripe_customer_model.dart';
 import '../services/stripe_service.dart';
-import 'payment_repo.dart';
+import '../../domain/repos/payment_repo.dart';
 
 class PaymentRepoImp extends PaymentRepo {
+  final CardsLocalService local;
   final StripeService stripeService;
   final PaymobService paymobService;
 
-  PaymentRepoImp({required this.stripeService, required this.paymobService});
+  PaymentRepoImp({
+    required this.stripeService,
+    required this.paymobService,
+    required this.local,
+  });
 
   @override
   Future<Either<Failure, void>> makePayment({
@@ -32,7 +38,6 @@ class PaymentRepoImp extends PaymentRepo {
       final String msg = e.error.message ?? "Payment failed. Please try again.";
       return left(ApiErrorModel(message: msg));
     } catch (e) {
-      Logger.log(e.toString());
       return left(ApiErrorHandler.handle(error: e));
     }
   }
@@ -49,6 +54,16 @@ class PaymentRepoImp extends PaymentRepo {
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));
     }
+  }
+
+  @override
+  Future<List<CardModel>> getSavedCards() {
+    return local.getSavedCards();
+  }
+
+  @override
+  Future<void> saveCards(List<CardModel> cards) {
+    return local.saveCards(cards);
   }
 
   @override

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/widgets/app_text_button.dart';
 import '../../../data/models/card_model.dart';
-
 import 'card_preview.dart';
 import 'custom_card_text_field.dart';
 

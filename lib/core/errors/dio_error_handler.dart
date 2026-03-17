@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:moodly/core/networking/api_error_model.dart';
+import '../networking/api_error_model.dart';
 
 class DioErrorHandler {
   static ApiErrorModel handle(DioException error) {

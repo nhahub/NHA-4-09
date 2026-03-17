@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paymob/billing_data.dart';
-import '../models/stripe/create_customer_input_model.dart';
-import '../models/stripe/payment_intent_input_model.dart';
-import '../models/stripe/stripe_customer_model/stripe_customer_model.dart';
+import 'package:moodly/features/payment/data/models/card_model.dart';
+import '../../data/models/stripe/create_customer_input_model.dart';
+import '../../data/models/stripe/payment_intent_input_model.dart';
+import '../../data/models/stripe/stripe_customer_model/stripe_customer_model.dart';
 import '../../../../core/errors/failure.dart';
 
 abstract class PaymentRepo {
@@ -14,6 +15,10 @@ abstract class PaymentRepo {
   Future<Either<Failure, StripeCustomerModel>> createCustomer({
     required CreateCustomerInputModel createCustomerInputModel,
   });
+
+  Future<List<CardModel>> getSavedCards();
+
+  Future<void> saveCards(List<CardModel> cards);
 
   Future<Either<Failure, void>> payWithPaymob({
     required BuildContext context,

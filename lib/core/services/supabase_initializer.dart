@@ -1,4 +1,4 @@
-import 'package:moodly/core/constants/app_keys.dart';
+import '../constants/app_keys.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseInitializer {

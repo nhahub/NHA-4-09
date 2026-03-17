@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/payment/data/models/payment_method_model.dart';
+import '../../../data/models/payment_method_model.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../payment_method_item.dart';

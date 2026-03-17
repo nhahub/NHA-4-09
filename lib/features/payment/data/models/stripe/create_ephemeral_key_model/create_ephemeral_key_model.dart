@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import 'associated_object_model.dart';
 
 part 'create_ephemeral_key_model.g.dart';

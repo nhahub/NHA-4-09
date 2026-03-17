@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:moodly/features/payment/data/repos/payment_repo.dart';
-import 'package:moodly/features/payment/data/services/stripe_service.dart';
+import '../../features/payment/data/services/cards_local_service.dart';
+import '../../features/payment/domain/repos/payment_repo.dart';
+import '../../features/payment/data/services/stripe_service.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/home/data/repos/quote_repo_impl.dart';
@@ -39,9 +40,16 @@ Future<void> setupGetIt() async {
   // Paymob Service
   getIt.registerLazySingleton<PaymobService>(() => PaymobService());
 
+  // Cards Local Service
+  getIt.registerLazySingleton<CardsLocalService>(() => CardsLocalService());
+
   // CheckoutRepo
   getIt.registerLazySingleton<PaymentRepo>(
-    () => PaymentRepoImp(stripeService: getIt(), paymobService: getIt()),
+    () => PaymentRepoImp(
+      stripeService: getIt(),
+      paymobService: getIt(),
+      local: getIt(),
+    ),
   );
   // Supabase CRUD Service
   getIt.registerLazySingleton<SupabaseCRUDService>(() => SupabaseCRUDService());

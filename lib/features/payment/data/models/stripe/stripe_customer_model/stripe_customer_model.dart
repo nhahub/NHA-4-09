@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import 'invoice_settings_model.dart';
 
 part 'stripe_customer_model.g.dart';

@@ -1,3 +1,5 @@
+import 'package:flutter_stripe/flutter_stripe.dart';
+
 import '../../../../core/constants/app_keys.dart';
 import '../models/stripe/create_customer_input_model.dart';
 import '../models/stripe/create_ephemeral_key_model/create_ephemeral_key_model.dart';
@@ -6,7 +8,6 @@ import '../models/stripe/payment_intent_input_model.dart';
 import '../models/stripe/payment_intent_model/payment_intent_model.dart';
 import '../models/stripe/stripe_customer_model/stripe_customer_model.dart';
 import 'api_service.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
 
 class StripeService {
   final ApiService apiService;

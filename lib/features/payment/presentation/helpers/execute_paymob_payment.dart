@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paymob/billing_data.dart';
-import 'package:moodly/features/payment/data/models/card_model.dart';
-import 'package:moodly/features/payment/presentation/manager/payment_cubit/payment_cubit.dart';
+import '../../data/models/card_model.dart';
+import '../manager/payment_cubit/payment_cubit.dart';
 
 void executePaymobPayment({
   required BuildContext context,

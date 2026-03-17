@@ -89,7 +89,7 @@ class _ChoosePaymentTypeState extends State<ChoosePaymentType> {
                     const SizedBox(width: 12),
 
                     Text(
-                      "${type.price} RON",
+                      "${type.price} USD",
                       style: AppStyles.extraBold16.copyWith(
                         color: isSelected ? Colors.black : Colors.white,
                       ),

@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:moodly/core/errors/dio_error_handler.dart';
-import 'package:moodly/core/networking/api_error_model.dart';
+import '../errors/dio_error_handler.dart';
+import 'api_error_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../errors/auth_error.dart';
 import '../errors/database_error.dart';

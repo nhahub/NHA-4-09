@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/functions/error_dialog.dart';
-import 'package:moodly/features/payment/presentation/helpers/execute_paymob_payment.dart';
-import 'package:moodly/features/payment/presentation/helpers/execute_stripe_payment.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../../core/functions/error_dialog.dart';
+import '../../../data/models/paybal/payment_transaction_model.dart';
+import '../../../data/models/payment_transaction_mock.dart';
+import '../../helpers/execute_paymob_payment.dart';
+import '../../helpers/execute_paypal_payment.dart';
+import '../../helpers/execute_stripe_payment.dart';
 
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/routing/routes.dart';
@@ -18,64 +20,12 @@ import '../payment_success_dialog.dart';
 import 'payment_methods_section.dart';
 import 'saved_cards_section.dart';
 
-class SubscribeViewBody extends StatefulWidget {
+class SubscribeViewBody extends StatelessWidget {
   final double price;
   const SubscribeViewBody({super.key, required this.price});
 
   @override
-  State<SubscribeViewBody> createState() => _SubscribeViewBodyState();
-}
-
-class _SubscribeViewBodyState extends State<SubscribeViewBody> {
-  int selectedMethodIndex = 0;
-  List<CardModel> savedCards = [];
-  int selectedSavedCardIndex = -1;
-  bool isLoadingCards = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadSavedCards();
-  }
-
-  Future<void> _loadSavedCards() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      final String? cardsJson = prefs.getString('saved_cards');
-      if (cardsJson != null) {
-        setState(() {
-          savedCards = CardModel.decode(cardsJson);
-          if (savedCards.isNotEmpty) {
-            selectedMethodIndex = 3;
-            selectedSavedCardIndex = 0;
-          }
-        });
-      }
-    } catch (e) {
-      debugPrint("Error loading cards: $e");
-    } finally {
-      setState(() => isLoadingCards = false);
-    }
-  }
-
-  Future<void> _saveCards() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('saved_cards', CardModel.encode(savedCards));
-  }
-
-  @override
   Widget build(BuildContext context) {
-    CardModel? currentCard =
-        (selectedMethodIndex == 3 &&
-            selectedSavedCardIndex != -1 &&
-            savedCards.length > selectedSavedCardIndex)
-        ? savedCards[selectedSavedCardIndex]
-        : null;
-
-    if (isLoadingCards) {
-      return const Center(child: CircularProgressIndicator());
-    }
-
     return BlocConsumer<PaymentCubit, PaymentState>(
       listener: (context, state) {
         if (state is PaymentSuccessState) {
@@ -89,56 +39,59 @@ class _SubscribeViewBodyState extends State<SubscribeViewBody> {
         }
       },
       builder: (context, state) {
+        // Default values
+        List<CardModel> savedCards = [];
+        int selectedMethodIndex = -1;
+        int selectedSavedCardIndex = -1;
+
+        if (state is PaymentUpdatedState) {
+          savedCards = state.savedCards;
+          selectedMethodIndex = state.selectedMethodIndex;
+          selectedSavedCardIndex = state.selectedSavedCardIndex;
+        }
+
+        final currentCard =
+            (selectedMethodIndex == 3 &&
+                selectedSavedCardIndex != -1 &&
+                savedCards.length > selectedSavedCardIndex)
+            ? savedCards[selectedSavedCardIndex]
+            : null;
+
         return Stack(
           children: [
             SingleChildScrollView(
-              padding: const EdgeInsets.all(24.0),
+              padding: const EdgeInsets.all(24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Dynamic Card Preview
                   if (currentCard != null)
                     CardPreview(
                       holderName: currentCard.holderName,
                       cardNumber: currentCard.cardNumber,
                     ),
 
-                  // Payment Methods Section
                   PaymentMethodsSection(
                     selectedMethodIndex: selectedMethodIndex,
-                    onMethodSelected: (index) {
-                      setState(() {
-                        selectedMethodIndex = index;
-                        selectedSavedCardIndex = -1;
-                      });
-                    },
+                    onMethodSelected: (index) =>
+                        context.read<PaymentCubit>().selectMethod(index),
                     onAddCardTap: () async {
                       final result = await context.push(Routes.addCardView);
                       if (result != null && result is CardModel) {
-                        setState(() {
-                          savedCards.add(result);
-                          selectedMethodIndex = 3;
-                          selectedSavedCardIndex = savedCards.length - 1;
-                        });
-                        _saveCards();
+                        // ignore: use_build_context_synchronously
+                        context.read<PaymentCubit>().addCard(result);
                       }
                     },
                   ),
 
-                  // Saved Cards Section
                   SavedCardsSection(
                     savedCards: savedCards,
                     selectedMethodIndex: selectedMethodIndex,
                     selectedSavedCardIndex: selectedSavedCardIndex,
-                    onCardSelected: (index) {
-                      setState(() {
-                        selectedMethodIndex = 3;
-                        selectedSavedCardIndex = index;
-                      });
-                    },
+                    onCardSelected: (index) =>
+                        context.read<PaymentCubit>().selectCard(index),
                   ),
 
-                  const SizedBox(height: 100), // Space for button
+                  const SizedBox(height: 100),
                 ],
               ),
             ),
@@ -153,7 +106,7 @@ class _SubscribeViewBodyState extends State<SubscribeViewBody> {
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.all(24),
                 child: SizedBox(
                   width: double.infinity,
                   child: AppTextButton(
@@ -166,32 +119,30 @@ class _SubscribeViewBodyState extends State<SubscribeViewBody> {
                         );
                         return;
                       }
+
                       switch (selectedMethodIndex) {
                         case 0:
-                          // executePayPalPayment(
-                          //   context: context,
-                          //   paymentTransactionModel: PaymentTransactionModel(
-                          //     amount: AmountModel(total: total, currency: currency, details: details),
-                          //     description: "Subscribe",
-                          //     itemList: ,
-                          //   ),
-                          // );
-
+                          final mockPayment = PaymentTransactionMock
+                              .mockPaymentTransactionModel;
+                          executePayPalPayment(
+                            context: context,
+                            paymentTransactionModel: PaymentTransactionModel(
+                              amount: mockPayment.amount,
+                              description: "Subscribe",
+                              itemList: mockPayment.itemList,
+                            ),
+                          );
                           break;
                         case 1:
-                          executeStripePayment(
-                            context: context,
-                            price: widget.price,
-                          );
+                          executeStripePayment(context: context, price: price);
                           break;
                         case 2:
                           executePaymobPayment(
                             context: context,
                             currentCard: currentCard,
-                            price: widget.price,
+                            price: price,
                           );
                           break;
-                        default:
                       }
                     },
                     buttonText: "Continue",

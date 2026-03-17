@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
-import '../models/stripe/create_ephemeral_key_model/create_ephemeral_key_model.dart';
-import '../models/stripe/stripe_customer_model/stripe_customer_model.dart';
-import '../models/stripe/payment_intent_model/payment_intent_model.dart';
-import '../../../../core/networking/api_constants.dart';
 import 'package:retrofit/retrofit.dart';
+
+import '../../../../core/networking/api_constants.dart';
+import '../models/stripe/create_ephemeral_key_model/create_ephemeral_key_model.dart';
+import '../models/stripe/payment_intent_model/payment_intent_model.dart';
+import '../models/stripe/stripe_customer_model/stripe_customer_model.dart';
+
 part 'api_service.g.dart';
 
 @RestApi(baseUrl: ApiConstants.stripeBaseUrl)

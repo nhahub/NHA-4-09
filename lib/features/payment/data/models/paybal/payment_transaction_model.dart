@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import 'amount_model.dart';
 import 'item_list_model.dart';
 

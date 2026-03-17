@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import '../../../../../core/theming/app_assets.dart';
 
 class CardPreview extends StatelessWidget {
