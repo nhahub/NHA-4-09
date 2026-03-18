@@ -10,7 +10,7 @@ class SubscriptionService {
 
   SubscriptionService({required this.supabaseCRUDService});
 
-  Future<String> createSubscription({
+  Future<SubscriptionModel> createSubscription({
     required String type, // monthly / yearly
   }) async {
     final startDate = DateTime.now();
@@ -28,13 +28,17 @@ class SubscriptionService {
       status: 'active',
     );
 
-    final String status = await supabaseCRUDService.addDataAndReturnField(
-      field: 'status',
-      table: kSubscriptionsTable,
-      data: subscription.toJson(),
+    final Map<String, dynamic> data = await supabaseCRUDService
+        .addDataAndReturnRow(
+          table: kSubscriptionsTable,
+          data: subscription.toJson(),
+        );
+
+    final SubscriptionModel subscriptionModel = SubscriptionModel.fromJson(
+      data,
     );
 
-    return status;
+    return subscriptionModel;
   }
 
   Future<SubscriptionModel?> getUserActiveSubscription() async {

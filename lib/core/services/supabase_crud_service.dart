@@ -25,6 +25,15 @@ class SupabaseCRUDService {
     return response[field].toString();
   }
 
+  Future<Map<String, dynamic>> addDataAndReturnRow({
+    required String table,
+    required Map<String, dynamic> data,
+  }) async {
+    final response = await client.from(table).insert(data).select('*').single();
+
+    return Map<String, dynamic>.from(response);
+  }
+
   Future<List<Map<String, dynamic>>> getData({
     required String table,
     String? orderBy,

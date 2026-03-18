@@ -8,6 +8,7 @@ const String kUserData = "userData";
 const String kHasSeenOnboarding = "hasSeenOnboarding";
 const String kSavedCards = "saved_cards";
 const String kSubscriptionStatus = "subscription_status";
+const String kSubscriptionEndDate = "subscription_end_date";
 
 const String kHasSelectedDailyMood = "hasSelectedDailyMood";
 const String kSelectedDailyMood = "selectedDailyMood";

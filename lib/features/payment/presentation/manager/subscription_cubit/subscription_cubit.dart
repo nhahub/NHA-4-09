@@ -15,10 +15,8 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
   Future<void> loadSubscription() async {
     emit(SubscriptionLoadingState());
 
-    final String? cachedStatus = subscriptionRepo.getCachedStatus();
-    if (cachedStatus != null) {
-      emit(SubscriptionSuccessState(isPremium: cachedStatus == 'active'));
-    }
+    final bool isActive = subscriptionRepo.isSubscriptionActive();
+    emit(SubscriptionSuccessState(isPremium: isActive));
 
     final Either<Failure, SubscriptionModel?> result = await subscriptionRepo
         .getUserActiveSubscription();

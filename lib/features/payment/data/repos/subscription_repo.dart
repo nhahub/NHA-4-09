@@ -11,17 +11,19 @@ class SubscriptionRepo {
 
   SubscriptionRepo({required this.subscriptionService});
 
-  Future<Either<Failure, String>> createSubscription({
+  Future<Either<Failure, void>> createSubscription({
     required String type,
   }) async {
     try {
-      final String status = await subscriptionService.createSubscription(
-        type: type,
+      final SubscriptionModel subscriptionModel = await subscriptionService
+          .createSubscription(type: type);
+
+      await cacheSubscription(
+        status: subscriptionModel.status,
+        endDate: subscriptionModel.endDate,
       );
 
-      await addCachedStatus(status: status);
-
-      return right(status);
+      return right(null);
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));
     }
@@ -34,7 +36,10 @@ class SubscriptionRepo {
           .getUserActiveSubscription();
 
       if (subscription != null) {
-        await addCachedStatus(status: subscription.status);
+        await cacheSubscription(
+          status: subscription.status,
+          endDate: subscription.endDate,
+        );
       }
 
       return right(subscription);
@@ -43,12 +48,25 @@ class SubscriptionRepo {
     }
   }
 
-  String? getCachedStatus() {
-    return CacheHelper.getString(key: kSubscriptionStatus);
+  Future<void> cacheSubscription({
+    required String status,
+    required DateTime endDate,
+  }) async {
+    await CacheHelper.set(key: kSubscriptionStatus, value: status);
+    await CacheHelper.set(
+      key: kSubscriptionEndDate,
+      value: endDate.toIso8601String(),
+    );
   }
 
-  Future<void> addCachedStatus({required String status}) {
-    CacheHelper.set(key: kSubscriptionStatus, value: status);
-    return Future.value();
+  bool isSubscriptionActive() {
+    final status = CacheHelper.getString(key: kSubscriptionStatus);
+    final endDateString = CacheHelper.getString(key: kSubscriptionEndDate);
+
+    if (status != 'active' || endDateString == null) return false;
+
+    final endDate = DateTime.parse(endDateString);
+
+    return DateTime.now().isBefore(endDate);
   }
 }
