@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/theming/app_assets.dart';
+
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
-
+import '../../../data/models/payment_method_model.dart';
 import '../payment_method_item.dart';
 
 class PaymentMethodsSection extends StatelessWidget {
@@ -16,12 +16,6 @@ class PaymentMethodsSection extends StatelessWidget {
     required this.onMethodSelected,
     required this.onAddCardTap,
   });
-
-  static final List<Map<String, dynamic>> paymentMethods = [
-    {'title': 'Paypal', 'icon': AppAssets.appleIcon, 'isSvg': true},
-    {'title': 'Google Pay', 'icon': AppAssets.googleIcon, 'isSvg': true},
-    {'title': 'Apple Pay', 'icon': AppAssets.appleIcon, 'isSvg': true},
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -47,12 +41,14 @@ class PaymentMethodsSection extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         ...List.generate(paymentMethods.length, (index) {
+          final PaymentMethodModel method = paymentMethods[index];
+
           return PaymentMethodItem(
-            title: paymentMethods[index]['title'],
-            iconPath: paymentMethods[index]['icon'],
+            title: method.title,
+            iconPath: method.icon,
             isSelected: selectedMethodIndex == index,
             onTap: () => onMethodSelected(index),
-            isSvg: paymentMethods[index]['isSvg'],
+            isSvg: method.isSvg,
           );
         }),
       ],

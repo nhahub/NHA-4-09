@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/widgets/app_text_button.dart';
 import '../../../data/models/card_model.dart';
-
 import 'card_preview.dart';
 import 'custom_card_text_field.dart';
 
@@ -36,6 +36,7 @@ class _AddCardViewBodyState extends State<AddCardViewBody> {
         key: _formKey,
         child: Column(
           children: [
+            const SizedBox(height: 85),
             // Card Preview Section
             CardPreview(
               holderName: holderNameController.text,

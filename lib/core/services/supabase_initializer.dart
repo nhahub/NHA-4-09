@@ -1,12 +1,12 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../constants/constants.dart';
+import '../constants/app_keys.dart';
 
 class SupabaseInitializer {
   static Future<void> init() async {
     await Supabase.initialize(
-      url: AppConstants.supabaseUrl,
-      anonKey: AppConstants.supabaseAnonKey,
+      url: ApiKeys.supabaseUrl,
+      anonKey: ApiKeys.supabaseAnonKey,
     );
   }
 }

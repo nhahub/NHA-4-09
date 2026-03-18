@@ -1,38 +1,127 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_paymob/flutter_paymob.dart';
-
+import 'package:flutter_paymob/billing_data.dart';
+import '../../../../../core/errors/failure.dart';
+import '../../../data/models/card_model.dart';
+import '../../../data/models/stripe/payment_intent_input_model.dart';
+import '../../../data/repos/subscription_repo.dart';
+import '../../../domain/repos/payment_repo.dart';
 import 'payment_state.dart';
 
 class PaymentCubit extends Cubit<PaymentState> {
-  PaymentCubit() : super(PaymentInitial());
+  final PaymentRepo paymentRepo;
+  final SubscriptionRepo subscriptionRepo;
 
-  Future<void> initiatePayment({
+  List<CardModel> savedCards = [];
+  int selectedMethodIndex = -1;
+  int selectedSavedCardIndex = -1;
+
+  PaymentCubit({required this.paymentRepo, required this.subscriptionRepo})
+    : super(PaymentInitialState());
+
+  Future<void> initiatePaymobPayment({
     required BuildContext context,
     required double amount,
-    required String firstName,
-    required String lastName,
-    required String email,
-    required String phoneNumber,
+    required BillingData billingData,
+    required String type,
   }) async {
-    emit(PaymentLoading());
+    emit(PaymentLoadingState());
+
+    final result = await paymentRepo.payWithPaymob(
+      context: context,
+      amount: amount,
+      billingData: billingData,
+    );
+    result.fold(
+      (failure) => emit(PaymentFailureState(errorMessage: failure.message)),
+      (success) {
+        subscriptionRepo.createSubscription(
+          type: type,
+          transactionId: success.transactionID!,
+        );
+        emit(const PaymentSuccessState(paymentToken: "Payment Successful"));
+      },
+    );
+  }
+
+  Future<void> makePaymentWithStripe({
+    required PaymentIntentInputModel paymentIntentInputModel,
+  }) async {
+    emit(PaymentLoadingState());
+
+    Either<Failure, void> response = await paymentRepo.makePayment(
+      paymentIntentInputModel: paymentIntentInputModel,
+    );
+
+    return response.fold(
+      (failure) => emit(PaymentFailureState(errorMessage: failure.message)),
+      (success) =>
+          emit(const PaymentSuccessState(paymentToken: "Payment Successful")),
+    );
+  }
+
+  void selectMethod(int index) {
+    selectedMethodIndex = index;
+    selectedSavedCardIndex = -1;
+    emit(
+      PaymentUpdatedState(
+        savedCards: savedCards,
+        selectedMethodIndex: selectedMethodIndex,
+        selectedSavedCardIndex: selectedSavedCardIndex,
+      ),
+    );
+  }
+
+  void selectCard(int index) {
+    selectedMethodIndex = 3;
+    selectedSavedCardIndex = index;
+    emit(
+      PaymentUpdatedState(
+        savedCards: savedCards,
+        selectedMethodIndex: selectedMethodIndex,
+        selectedSavedCardIndex: selectedSavedCardIndex,
+      ),
+    );
+  }
+
+  Future<void> addCard(CardModel card) async {
+    savedCards.add(card);
+    selectedMethodIndex = 3;
+    selectedSavedCardIndex = savedCards.length - 1;
+
+    await paymentRepo.saveCards(savedCards);
+
+    emit(
+      PaymentUpdatedState(
+        savedCards: savedCards,
+        selectedMethodIndex: selectedMethodIndex,
+        selectedSavedCardIndex: selectedSavedCardIndex,
+      ),
+    );
+  }
+
+  Future<void> loadSavedCards() async {
+    if (savedCards.isNotEmpty) return;
+
+    emit(PaymentLoadingState());
 
     try {
-      // Trigger payment using payWithCard for version 1.0.8
-      FlutterPaymob.instance.payWithCard(
-        context: context,
-        currency: "EGP",
-        amount: amount,
-        onPayment: (response) {
-          if (response.success) {
-            emit(const PaymentSuccess("Payment Successful"));
-          } else {
-            emit(PaymentFailure(response.message ?? "Payment Failed"));
-          }
-        },
+      savedCards = await paymentRepo.getSavedCards();
+      if (savedCards.isNotEmpty && selectedSavedCardIndex == -1) {
+        selectedMethodIndex = 3;
+        selectedSavedCardIndex = -1;
+      }
+
+      emit(
+        PaymentUpdatedState(
+          savedCards: savedCards,
+          selectedMethodIndex: selectedMethodIndex,
+          selectedSavedCardIndex: selectedSavedCardIndex,
+        ),
       );
     } catch (e) {
-      emit(PaymentFailure(e.toString()));
+      emit(PaymentFailureState(errorMessage: e.toString()));
     }
   }
 }

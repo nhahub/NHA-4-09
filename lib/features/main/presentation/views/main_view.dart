@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/payment/data/repos/subscription_repo.dart';
+import 'package:moodly/features/payment/presentation/manager/subscription_cubit/subscription_cubit.dart';
 
 import '../../../../core/services/get_it_service.dart';
 import '../../../Community/presentation/views/community_view.dart';
@@ -23,26 +25,6 @@ class MainView extends StatefulWidget {
 class _MainViewState extends State<MainView> {
   int _currentIndex = 0;
 
-  final List<Widget> _screens = [
-    MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) =>
-              WaterTrackingCubit(waterRepo: getIt.get<WaterRepo>())..loadData(),
-        ),
-        BlocProvider(
-          create: (context) =>
-              TherapistCubit(therapistRepo: getIt.get<TherapistRepo>())..getTherapists(),
-        ),
-      ],
-      child: const HomeView(key: ValueKey('home')),
-    ),
-    const CommunityView(key: ValueKey('community')),
-    const MeditationsView(key: ValueKey('meditations')),
-    const ChatbotView(key: ValueKey('chatbot')),
-    const ProfileView(key: ValueKey('profile')),
-  ];
-
   void _onTabSelected(int index) {
     setState(() {
       _currentIndex = index;
@@ -51,38 +33,93 @@ class _MainViewState extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            AnimatedSwitcher(
-              duration: const Duration(milliseconds: 400),
-              switchInCurve: Curves.easeIn,
-              switchOutCurve: Curves.easeOut,
-              transitionBuilder: (child, animation) {
-                final offsetAnimation = Tween<Offset>(
-                  begin: const Offset(1, 0),
-                  end: Offset.zero,
-                ).animate(animation);
-                return SlideTransition(position: offsetAnimation, child: child);
-              },
-              child: IndexedStack(
-                key: ValueKey(_currentIndex),
-                index: _currentIndex,
-                children: _screens,
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: MainNavBar(
-                selectedIndex: _currentIndex,
-                onTap: _onTabSelected,
-              ),
-            ),
-          ],
-        ),
+    return BlocProvider(
+      create: (context) =>
+          SubscriptionCubit(subscriptionRepo: getIt.get<SubscriptionRepo>())
+            ..loadSubscription(),
+      child: Builder(
+        builder: (context) {
+          return BlocSelector<SubscriptionCubit, SubscriptionState, bool>(
+            selector: (state) =>
+                state is SubscriptionSuccessState ? state.isPremium : false,
+            builder: (context, isPremium) {
+              final List<Widget> screens = [
+                MultiBlocProvider(
+                  providers: [
+                    BlocProvider(
+                      create: (_) =>
+                          WaterTrackingCubit(waterRepo: getIt.get<WaterRepo>())
+                            ..loadData(),
+                    ),
+                    BlocProvider(
+                      create: (_) => TherapistCubit(
+                        therapistRepo: getIt.get<TherapistRepo>(),
+                      )..getTherapists(),
+                    ),
+                  ],
+                  child: HomeView(
+                    key: const ValueKey('home'),
+                    isPremium: isPremium,
+                  ),
+                ),
+                CommunityView(
+                  key: const ValueKey('community'),
+                  isPremium: isPremium,
+                ),
+                MeditationsView(
+                  key: const ValueKey('meditations'),
+                  isPremium: isPremium,
+                ),
+                ChatbotView(
+                  key: const ValueKey('chatbot'),
+                  isPremium: isPremium,
+                ),
+                ProfileView(
+                  key: const ValueKey('profile'),
+                  isPremium: isPremium,
+                ),
+              ];
+
+              return Scaffold(
+                body: SafeArea(
+                  child: Stack(
+                    children: [
+                      AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 400),
+                        switchInCurve: Curves.easeIn,
+                        switchOutCurve: Curves.easeOut,
+                        transitionBuilder: (child, animation) {
+                          final offsetAnimation = Tween<Offset>(
+                            begin: const Offset(1, 0),
+                            end: Offset.zero,
+                          ).animate(animation);
+                          return SlideTransition(
+                            position: offsetAnimation,
+                            child: child,
+                          );
+                        },
+                        child: IndexedStack(
+                          key: ValueKey(_currentIndex),
+                          index: _currentIndex,
+                          children: screens,
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        child: MainNavBar(
+                          selectedIndex: _currentIndex,
+                          onTap: _onTabSelected,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
+        },
       ),
     );
   }

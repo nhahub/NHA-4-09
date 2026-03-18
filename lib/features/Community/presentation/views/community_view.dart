@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/constants/constants.dart';
 import '../../../../core/enums/fade_position.dart';
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/widgets/custom_appbar.dart';
@@ -9,8 +7,8 @@ import '../widgets/add_community_post_button.dart';
 import '../widgets/community_view_body.dart';
 
 class CommunityView extends StatelessWidget {
-  final bool isPremium = kIsPremium;
-  const CommunityView({super.key});
+  final bool isPremium;
+  const CommunityView({super.key, required this.isPremium});
 
   @override
   Widget build(BuildContext context) {

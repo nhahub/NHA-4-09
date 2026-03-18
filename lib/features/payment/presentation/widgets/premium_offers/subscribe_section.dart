@@ -15,15 +15,17 @@ class SubscribeSection extends StatefulWidget {
 
 class _SubscribeSectionState extends State<SubscribeSection> {
   double selectedPrice = 0.0;
+  String selectedType = "";
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         ChoosePaymentType(
-          onChanged: (price) {
+          onChanged: (type) {
             setState(() {
-              selectedPrice = price;
+              selectedPrice = type.price;
+              selectedType = type.type;
             });
           },
         ),
@@ -36,7 +38,7 @@ class _SubscribeSectionState extends State<SubscribeSection> {
             onPressed: () {
               context.pushReplacement(
                 Routes.subscribeView,
-                args: selectedPrice,
+                args: {"price": selectedPrice, "type": selectedType},
               );
             },
             child: const Text(

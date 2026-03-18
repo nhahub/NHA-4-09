@@ -52,6 +52,9 @@ class AppAssets {
   static const String anonymousIcon = 'assets/svgs/anonymous.svg';
   static const String trashIcon = 'assets/svgs/trash.svg';
   static const String editIcon = 'assets/svgs/edit.svg';
+  static const String paypalLogo = 'assets/svgs/paypal_logo.svg';
+  static const String stripeLogo = 'assets/svgs/stripe_logo.svg';
+  static const String paymobLogo = 'assets/svgs/paymob_logo.svg';
 
   // Images
   static const String start = 'assets/images/start.png';

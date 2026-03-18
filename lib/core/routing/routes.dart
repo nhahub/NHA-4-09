@@ -32,4 +32,5 @@ class Routes {
   static const String recommendedFoodDetailsView =
       '/recommendedFoodDetailsView';
   static const String addCardView = '/addCardView';
+  static const String thankYouView = '/thankYouView';
 }

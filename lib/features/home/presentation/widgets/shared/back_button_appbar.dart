@@ -10,8 +10,12 @@ import '../../../../../core/widgets/fade_scrollable.dart';
 
 class BackButtonAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
+  final IconData? endIcon;
+  final VoidCallback? onEndTap;
+
   static const double height = 80;
-  const BackButtonAppbar({super.key, this.title});
+
+  const BackButtonAppbar({super.key, this.title, this.endIcon, this.onEndTap});
 
   @override
   Size get preferredSize => const Size.fromHeight(height);
@@ -29,22 +33,42 @@ class BackButtonAppbar extends StatelessWidget implements PreferredSizeWidget {
               fadePosition: FadePosition.top,
               child: SizedBox.expand(),
             ),
+
+            /// 🔹 Title في النص الحقيقي
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 60),
+                child: Text(
+                  title ?? "",
+                  style: AppStyles.extraBold20,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+
+            /// 🔹 Back button (left)
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: kAppHorizontalPadding,
               ),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   context.canPop
                       ? CustomCircleButton(
                           icon: AppAssets.arrowLeftIosIcon,
-                          onTap: () {
-                            context.pop();
-                          },
+                          onTap: () => context.pop(),
                         )
-                      : const SizedBox.shrink(),
-                  SizedBox(width: context.canPop ? 15 : kAppHorizontalPadding),
-                  Text(title ?? "", style: AppStyles.extraBold21),
+                      : const SizedBox(),
+
+                  /// 🔹 End icon (right)
+                  endIcon != null
+                      ? GestureDetector(
+                          onTap: onEndTap ?? () {},
+                          child: Icon(endIcon!, size: 20, color: Colors.black),
+                        )
+                      : const SizedBox(),
                 ],
               ),
             ),

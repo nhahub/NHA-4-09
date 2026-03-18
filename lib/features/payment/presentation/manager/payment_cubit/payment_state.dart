@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import '../../../data/models/card_model.dart';
+
 abstract class PaymentState extends Equatable {
   const PaymentState();
 
@@ -7,23 +9,42 @@ abstract class PaymentState extends Equatable {
   List<Object?> get props => [];
 }
 
-class PaymentInitial extends PaymentState {}
+class PaymentInitialState extends PaymentState {}
 
-class PaymentLoading extends PaymentState {}
+class PaymentLoadingState extends PaymentState {}
 
-class PaymentSuccess extends PaymentState {
+class PaymentUpdatedState extends PaymentState {
+  final List<CardModel> savedCards;
+  final int selectedMethodIndex;
+  final int selectedSavedCardIndex;
+
+  const PaymentUpdatedState({
+    required this.savedCards,
+    required this.selectedMethodIndex,
+    required this.selectedSavedCardIndex,
+  });
+
+  @override
+  List<Object?> get props => [
+    savedCards,
+    selectedMethodIndex,
+    selectedSavedCardIndex,
+  ];
+}
+
+class PaymentSuccessState extends PaymentState {
   final String paymentToken;
 
-  const PaymentSuccess(this.paymentToken);
+  const PaymentSuccessState({required this.paymentToken});
 
   @override
   List<Object?> get props => [paymentToken];
 }
 
-class PaymentFailure extends PaymentState {
+class PaymentFailureState extends PaymentState {
   final String errorMessage;
 
-  const PaymentFailure(this.errorMessage);
+  const PaymentFailureState({required this.errorMessage});
 
   @override
   List<Object?> get props => [errorMessage];
