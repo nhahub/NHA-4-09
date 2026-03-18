@@ -7,6 +7,7 @@ import '../manager/payment_cubit/payment_cubit.dart';
 void executePaymobPayment({
   required BuildContext context,
   required double price,
+  required String type,
   required CardModel? currentCard,
 }) {
   context.read<PaymentCubit>().initiatePaymobPayment(
@@ -20,5 +21,6 @@ void executePaymobPayment({
       email: "user@example.com",
       phoneNumber: "+201234567890",
     ),
+    type: type,
   );
 }

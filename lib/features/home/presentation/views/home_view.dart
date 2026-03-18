@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/constants/constants.dart';
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/widgets/custom_appbar.dart';
 import '../../../mood/presentation/helpers/mood_helper.dart';
 import '../widgets/daily_stats_section/shared/home_view_body.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+  final bool isPremium;
+  const HomeView({super.key, required this.isPremium});
 
   @override
   State<HomeView> createState() => _HomeViewState();
 }
 
 class _HomeViewState extends State<HomeView> {
-  final bool isPremium = kIsPremium;
-
   @override
   void initState() {
     super.initState();
@@ -28,11 +25,11 @@ class _HomeViewState extends State<HomeView> {
       extendBodyBehindAppBar: true,
       appBar: CustomAppbar(
         title: "Home",
-        isPremium: isPremium,
+        isPremium: widget.isPremium,
         icon: AppAssets.slidersHorizontalIcon,
         onTap: () {},
       ),
-      body: HomeViewBody(isPremium: isPremium),
+      body: HomeViewBody(isPremium: widget.isPremium),
     );
   }
 }

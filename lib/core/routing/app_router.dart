@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../features/payment/data/repos/subscription_repo.dart';
 import '../../features/payment/presentation/manager/payment_cubit/payment_cubit.dart';
 import '../../features/meditations/presentation/views/video_view.dart';
 import '../../features/payment/domain/repos/payment_repo.dart';
@@ -18,7 +19,6 @@ import '../../features/auth/presentation/views/login_view.dart';
 import '../../features/auth/presentation/views/register_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/auth/presentation/views/start_view.dart';
-import '../../features/chatbot/presentation/views/chatbot_view.dart';
 import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
 import '../../features/home/presentation/views/all_meditations_view.dart';
 import '../../features/home/presentation/views/recommendations_view.dart';
@@ -33,7 +33,6 @@ import '../../features/meals_recommendations/presentation/views/recommended_food
 import '../../features/meditations/domain/audio_entity.dart';
 import '../../features/meditations/presentation/manager/cubit/audio_cubit.dart';
 import '../../features/meditations/presentation/views/audio_view.dart';
-import '../../features/meditations/presentation/views/meditations_view.dart';
 import '../../features/onboarding/data/repos/questionnaire_repo.dart';
 import '../../features/onboarding/presentation/manager/onboarding_cubit/onboarding_cubit.dart';
 import '../../features/onboarding/presentation/manager/questionnaire_cubit/questionnaire_cubit.dart';
@@ -42,7 +41,6 @@ import '../../features/payment/presentation/views/premium_view.dart';
 import '../../features/payment/presentation/views/subscribe_view.dart';
 import '../../features/profile/data/repos/settings_repo.dart';
 import '../../features/profile/presentation/views/privacy_policy_view.dart';
-import '../../features/profile/presentation/views/profile_view.dart';
 import '../../features/profile/presentation/views/terms_and_conditions_view.dart';
 import '../../features/therapist/data/models/therapist_model.dart';
 import '../../features/therapist/data/models/therapist_review_model.dart';
@@ -173,15 +171,6 @@ class AppRouter {
           builder: (context) => const AddCommunityPostView(),
         );
 
-      case Routes.meditationsView:
-        return MaterialPageRoute(builder: (context) => const MeditationsView());
-
-      case Routes.chatbotView:
-        return MaterialPageRoute(builder: (context) => const ChatbotView());
-
-      case Routes.profileView:
-        return MaterialPageRoute(builder: (context) => const ProfileView());
-
       case Routes.videoView:
         return MaterialPageRoute(builder: (context) => const VideoView());
 
@@ -279,13 +268,16 @@ class AppRouter {
         );
 
       case Routes.subscribeView:
-        final double price = settings.arguments as double;
+        final args = settings.arguments as Map<String, dynamic>;
+        final double price = args['price'] as double;
+        final String type = args['type'] as String;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) =>
-                PaymentCubit(paymentRepo: getIt.get<PaymentRepo>())
-                  ..loadSavedCards(),
-            child: SubscribeView(price: price),
+            create: (context) => PaymentCubit(
+              paymentRepo: getIt.get<PaymentRepo>(),
+              subscriptionRepo: getIt.get<SubscriptionRepo>(),
+            )..loadSavedCards(),
+            child: SubscribeView(price: price, type: type),
           ),
         );
 

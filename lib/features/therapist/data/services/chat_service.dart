@@ -44,7 +44,8 @@ class ChatService {
     }
 
     // Create new room
-    final roomId = await supabaseCRUDService.addDataAndReturnId(
+    final roomId = await supabaseCRUDService.addDataAndReturnField(
+      field: 'id',
       table: kChatRoomsTable,
       data: {'user_id': userId, 'therapist_id': therapistId},
     );

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paymob/billing_data.dart';
+import 'package:flutter_paymob/paymob_response.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import '../models/card_model.dart';
 import '../services/cards_local_service.dart';
@@ -68,16 +69,13 @@ class PaymentRepoImp extends PaymentRepo {
     return local.saveCards(cards);
   }
 
-
-
-
   @override
-  Future<Either<Failure, String?>> payWithPaymob({
+  Future<Either<Failure, PaymentPaymobResponse>> payWithPaymob({
     required BuildContext context,
     required double amount,
     required BillingData billingData,
   }) async {
-    final completer = Completer<Either<Failure, String?>>();
+    final completer = Completer<Either<Failure, PaymentPaymobResponse>>();
 
     try {
       await paymobService.payWithCard(
@@ -86,7 +84,7 @@ class PaymentRepoImp extends PaymentRepo {
         billingData: billingData,
         onPayment: (result) {
           if (result.success == true) {
-            completer.complete(right(result.message));
+            completer.complete(right(result));
           } else if (result.success == false) {
             completer.complete(
               left(

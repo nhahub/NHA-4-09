@@ -11,6 +11,7 @@ class PaymentHandler {
   static void handle({
     required BuildContext context,
     required double price,
+    required String type,
     required int selectedMethodIndex,
     required CardModel? currentCard,
   }) {
@@ -45,6 +46,7 @@ class PaymentHandler {
           context: context,
           currentCard: currentCard,
           price: price,
+          type: type,
         );
         break;
     }

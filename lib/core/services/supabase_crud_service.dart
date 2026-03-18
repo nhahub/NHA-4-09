@@ -11,17 +11,18 @@ class SupabaseCRUDService {
     await client.from(table).insert(data);
   }
 
-  /// Add data and return id
-  Future<String> addDataAndReturnId({
+  // Add data and return field
+  Future<String> addDataAndReturnField({
     required String table,
+    required String field,
     required Map<String, dynamic> data,
   }) async {
     final response = await client
         .from(table)
         .insert(data)
-        .select('id')
+        .select(field)
         .single();
-    return response['id'];
+    return response[field].toString();
   }
 
   Future<List<Map<String, dynamic>>> getData({

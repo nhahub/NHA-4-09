@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/constants/constants.dart';
 import '../../../../core/enums/fade_position.dart';
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/widgets/custom_appbar.dart';
@@ -16,8 +14,8 @@ import '../widgets/recommended_for_you_section/recommended_for_you_section.dart'
 import '../widgets/your_daily_routine_section/your_daily_routine_section.dart';
 
 class MeditationsView extends StatelessWidget {
-  final bool isPremium = kIsPremium;
-  const MeditationsView({super.key});
+  final bool isPremium;
+  const MeditationsView({super.key, required this.isPremium});
 
   @override
   Widget build(BuildContext context) {

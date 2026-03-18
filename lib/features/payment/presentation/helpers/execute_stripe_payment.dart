@@ -8,7 +8,7 @@ void executeStripePayment({
   required double price,
 }) {
   int amount = (price * 100).round();
-  context.read<PaymentCubit>().makePayment(
+  context.read<PaymentCubit>().makePaymentWithStripe(
     paymentIntentInputModel: PaymentIntentInputModel(
       amount: amount.toString(),
       currency: 'USD',

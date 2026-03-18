@@ -12,7 +12,9 @@ import '../../manager/payment_cubit/payment_state.dart';
 
 class SubscribeViewBody extends StatelessWidget {
   final double price;
-  const SubscribeViewBody({super.key, required this.price});
+  final String type;
+
+  const SubscribeViewBody({super.key, required this.price, required this.type});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class SubscribeViewBody extends StatelessWidget {
 
             if (state is PaymentLoadingState) const LoadingOverlay(),
 
-            SubscribeButton(price: price, state: state),
+            SubscribeButton(price: price, state: state, type: type),
           ],
         );
       },

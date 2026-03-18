@@ -7,9 +7,15 @@ import '../../manager/payment_cubit/payment_state.dart';
 
 class SubscribeButton extends StatelessWidget {
   final double price;
+  final String type;
   final PaymentState state;
 
-  const SubscribeButton({super.key, required this.price, required this.state});
+  const SubscribeButton({
+    super.key,
+    required this.price,
+    required this.state,
+    required this.type,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +34,7 @@ class SubscribeButton extends StatelessWidget {
               price: price,
               selectedMethodIndex: data.selectedMethodIndex,
               currentCard: currentCard,
+              type: type,
             ),
             buttonText: "Continue",
           ),

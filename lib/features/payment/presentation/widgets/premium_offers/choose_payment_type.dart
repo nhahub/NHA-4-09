@@ -9,7 +9,7 @@ import '../../../data/models/payment_types_model.dart';
 
 class ChoosePaymentType extends StatefulWidget {
   const ChoosePaymentType({super.key, required this.onChanged});
-  final ValueChanged<double> onChanged;
+  final ValueChanged<PaymentTypesModel> onChanged;
 
   @override
   State<ChoosePaymentType> createState() => _ChoosePaymentTypeState();
@@ -24,7 +24,7 @@ class _ChoosePaymentTypeState extends State<ChoosePaymentType> {
     // Notify initial value
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (paymentTypes.isNotEmpty) {
-        widget.onChanged(paymentTypes[selectedIndex].price);
+        widget.onChanged(paymentTypes[selectedIndex]);
       }
     });
   }
@@ -61,7 +61,7 @@ class _ChoosePaymentTypeState extends State<ChoosePaymentType> {
                 setState(() {
                   selectedIndex = index;
                 });
-                widget.onChanged(type.price);
+                widget.onChanged(type);
               },
               child: Container(
                 padding: const EdgeInsets.all(16),

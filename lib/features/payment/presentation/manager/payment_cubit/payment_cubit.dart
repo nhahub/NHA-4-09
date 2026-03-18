@@ -5,22 +5,26 @@ import 'package:flutter_paymob/billing_data.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../data/models/card_model.dart';
 import '../../../data/models/stripe/payment_intent_input_model.dart';
+import '../../../data/repos/subscription_repo.dart';
 import '../../../domain/repos/payment_repo.dart';
 import 'payment_state.dart';
 
 class PaymentCubit extends Cubit<PaymentState> {
   final PaymentRepo paymentRepo;
+  final SubscriptionRepo subscriptionRepo;
 
   List<CardModel> savedCards = [];
   int selectedMethodIndex = -1;
   int selectedSavedCardIndex = -1;
 
-  PaymentCubit({required this.paymentRepo}) : super(PaymentInitialState());
+  PaymentCubit({required this.paymentRepo, required this.subscriptionRepo})
+    : super(PaymentInitialState());
 
   Future<void> initiatePaymobPayment({
     required BuildContext context,
     required double amount,
     required BillingData billingData,
+    required String type,
   }) async {
     emit(PaymentLoadingState());
 
@@ -29,15 +33,19 @@ class PaymentCubit extends Cubit<PaymentState> {
       amount: amount,
       billingData: billingData,
     );
-
     result.fold(
       (failure) => emit(PaymentFailureState(errorMessage: failure.message)),
-      (_) =>
-          emit(const PaymentSuccessState(paymentToken: "Payment Successful")),
+      (success) {
+        subscriptionRepo.createSubscription(
+          type: type,
+          transactionId: success.transactionID!,
+        );
+        emit(const PaymentSuccessState(paymentToken: "Payment Successful"));
+      },
     );
   }
 
-  Future<void> makePayment({
+  Future<void> makePaymentWithStripe({
     required PaymentIntentInputModel paymentIntentInputModel,
   }) async {
     emit(PaymentLoadingState());
