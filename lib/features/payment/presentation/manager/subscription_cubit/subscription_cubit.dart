@@ -26,8 +26,13 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
         emit(SubscriptionFailureState(message: failure.message));
       },
       (subscription) {
-        final status = subscription?.status ?? 'inactive';
-        emit(SubscriptionSuccessState(isPremium: status == 'active'));
+        subscriptionRepo.cacheSubscription(
+          status: subscription?.status ?? 'inactive',
+          endDate: subscription?.endDate ?? DateTime.now(),
+        );
+        emit(
+          SubscriptionSuccessState(isPremium: subscription?.status == 'active'),
+        );
       },
     );
   }
