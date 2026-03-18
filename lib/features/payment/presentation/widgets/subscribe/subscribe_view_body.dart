@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/functions/confirm_dialog.dart';
-import 'loading_overlay.dart';
-import 'subscribe_button.dart';
-import 'subscribe_content.dart';
 import '../../../../../core/functions/error_dialog.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../manager/payment_cubit/payment_cubit.dart';
 import '../../manager/payment_cubit/payment_state.dart';
+import 'loading_overlay.dart';
+import 'subscribe_button.dart';
+import 'subscribe_content.dart';
 
 class SubscribeViewBody extends StatelessWidget {
   final double price;

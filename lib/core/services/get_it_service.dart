@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:moodly/features/payment/data/services/subscription_service.dart';
+import '../../features/payment/data/services/subscription_service.dart';
 import '../../features/payment/data/repos/subscription_repo.dart';
 import '../../features/payment/data/services/cards_local_service.dart';
 import '../../features/payment/domain/repos/payment_repo.dart';

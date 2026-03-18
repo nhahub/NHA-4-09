@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../features/payment/data/repos/subscription_repo.dart';
-import '../../features/payment/presentation/manager/payment_cubit/payment_cubit.dart';
-import '../../features/meditations/presentation/views/video_view.dart';
-import '../../features/payment/domain/repos/payment_repo.dart';
-import '../../features/payment/presentation/views/add_card_view.dart';
-import '../../features/Community/presentation/views/add_community_post_view.dart';
 
-import '../../features/meditations/data/services/audio_player_service.dart';
+import '../../features/Community/presentation/views/add_community_post_view.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
 import '../../features/auth/presentation/manager/login_cubit/login_cubit.dart';
-import '../../features/auth/presentation/manager/logout_cubit/logout_cubit.dart';
 import '../../features/auth/presentation/manager/register_cubit/register_cubit.dart';
 import '../../features/auth/presentation/manager/reset_password_cubit/reset_password_cubit.dart';
 import '../../features/auth/presentation/views/forgot_password_view.dart';
@@ -30,13 +23,19 @@ import '../../features/meals_recommendations/domain/enums/food_type.dart';
 import '../../features/meals_recommendations/presentation/manager/recommended_food_cubit/recommended_food_cubit.dart';
 import '../../features/meals_recommendations/presentation/views/recommended_food_details_view.dart';
 import '../../features/meals_recommendations/presentation/views/recommended_food_view.dart';
+import '../../features/meditations/data/services/audio_player_service.dart';
 import '../../features/meditations/domain/audio_entity.dart';
 import '../../features/meditations/presentation/manager/cubit/audio_cubit.dart';
 import '../../features/meditations/presentation/views/audio_view.dart';
+import '../../features/meditations/presentation/views/video_view.dart';
 import '../../features/onboarding/data/repos/questionnaire_repo.dart';
 import '../../features/onboarding/presentation/manager/onboarding_cubit/onboarding_cubit.dart';
 import '../../features/onboarding/presentation/manager/questionnaire_cubit/questionnaire_cubit.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
+import '../../features/payment/data/repos/subscription_repo.dart';
+import '../../features/payment/domain/repos/payment_repo.dart';
+import '../../features/payment/presentation/manager/payment_cubit/payment_cubit.dart';
+import '../../features/payment/presentation/views/add_card_view.dart';
 import '../../features/payment/presentation/views/premium_view.dart';
 import '../../features/payment/presentation/views/subscribe_view.dart';
 import '../../features/profile/data/repos/settings_repo.dart';
@@ -51,9 +50,9 @@ import '../../features/therapist/presentation/manager/chat_cubit/chat_cubit.dart
 import '../../features/therapist/presentation/manager/therapist_cubit/therapist_cubit.dart';
 import '../../features/therapist/presentation/manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
 import '../../features/therapist/presentation/views/all_therapists_view.dart';
-import '../../features/therapist/presentation/views/therapist_live_view.dart';
 import '../../features/therapist/presentation/views/therapist_chat_view.dart';
 import '../../features/therapist/presentation/views/therapist_details_view.dart';
+import '../../features/therapist/presentation/views/therapist_live_view.dart';
 import '../../features/therapist/presentation/views/therapist_review_add_view.dart';
 import '../../features/therapist/presentation/views/therapist_review_update_view.dart';
 import '../../features/therapist/presentation/views/therapist_reviews_view.dart';
@@ -130,13 +129,7 @@ class AppRouter {
         );
 
       case Routes.mainView:
-        return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) =>
-                LogoutCubit(settingsRepo: getIt.get<SettingsRepo>()),
-            child: const MainView(),
-          ),
-        );
+        return MaterialPageRoute(builder: (context) => const MainView());
 
       case Routes.waterTrackingView:
         final cubit = settings.arguments as WaterTrackingCubit;
