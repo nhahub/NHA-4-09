@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../data/models/meditation_session.dart';
 
 class SessionDetailsCard extends StatelessWidget {

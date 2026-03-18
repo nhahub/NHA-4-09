@@ -36,6 +36,7 @@ class _AddCardViewBodyState extends State<AddCardViewBody> {
         key: _formKey,
         child: Column(
           children: [
+            const SizedBox(height: 85),
             // Card Preview Section
             CardPreview(
               holderName: holderNameController.text,

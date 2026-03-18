@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 
 import '../../../../core/theming/app_styles.dart';
+import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 
 class ThankYouView extends StatelessWidget {
   const ThankYouView({super.key});

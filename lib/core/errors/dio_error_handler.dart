@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+
 import '../networking/api_error_model.dart';
 
 class DioErrorHandler {

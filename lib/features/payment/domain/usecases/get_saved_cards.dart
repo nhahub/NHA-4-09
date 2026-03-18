@@ -1,5 +1,5 @@
-import 'package:moodly/features/payment/data/models/card_model.dart';
-import 'package:moodly/features/payment/domain/repos/payment_repo.dart';
+import '../../data/models/card_model.dart';
+import '../repos/payment_repo.dart';
 
 class GetSavedCards {
   final PaymentRepo repo;

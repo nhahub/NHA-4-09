@@ -1,9 +1,11 @@
+import 'dart:async';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paymob/billing_data.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:moodly/features/payment/data/models/card_model.dart';
-import 'package:moodly/features/payment/data/services/cards_local_service.dart';
+import '../models/card_model.dart';
+import '../services/cards_local_service.dart';
 import '../services/paymob_service.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/networking/api_error_handler.dart';
@@ -66,25 +68,38 @@ class PaymentRepoImp extends PaymentRepo {
     return local.saveCards(cards);
   }
 
+
+
+
   @override
-  Future<Either<Failure, void>> payWithPaymob({
+  Future<Either<Failure, String?>> payWithPaymob({
     required BuildContext context,
     required double amount,
     required BillingData billingData,
   }) async {
+    final completer = Completer<Either<Failure, String?>>();
+
     try {
       await paymobService.payWithCard(
         context: context,
         amount: amount,
-        onResult: (success, message) {
-          if (!success) {
-            throw Exception(message ?? "Payment Failed");
+        billingData: billingData,
+        onPayment: (result) {
+          if (result.success == true) {
+            completer.complete(right(result.message));
+          } else if (result.success == false) {
+            completer.complete(
+              left(
+                ApiErrorHandler.handle(
+                  error: Exception(result.message ?? "Payment Failed"),
+                ),
+              ),
+            );
           }
         },
-        billingData: billingData,
       );
 
-      return right(null);
+      return completer.future;
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));
     }
