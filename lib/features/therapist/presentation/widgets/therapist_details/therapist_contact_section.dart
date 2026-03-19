@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../core/extensions/context_extensions.dart';
-import '../../../../../core/functions/get_user.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../../data/models/therapist_model.dart';
-import '../helpers/call_id_utils.dart';
-import '../sessions_for_you_section/contact_widget.dart';
+import '../../../../home/presentation/widgets/sessions_for_you_section/contact_widget.dart';
 import 'contact_button.dart';
 
 class TherapistContactSection extends StatelessWidget {
@@ -35,7 +32,11 @@ class TherapistContactSection extends StatelessWidget {
             ContactButton(
               icon: Icons.email,
               onPressed: () {
-                context.push(Routes.therapistChatView, args: therapistModel.id);
+                context.push(
+                  Routes.bookingCheckoutView,
+                  args: {'therapist': therapistModel, 'type': 'chat'},
+                );
+                // context.push(Routes.therapistChatView, args: therapistModel.id);
               },
               color: AppColors.orange,
             ),
@@ -55,11 +56,15 @@ class TherapistContactSection extends StatelessWidget {
             ContactButton(
               icon: Icons.call,
               onPressed: () {
-                final String callID = generateCallID(
-                  therapistId: therapistModel.id,
-                  userId: getUser()!.userId,
+                context.push(
+                  Routes.bookingCheckoutView,
+                  args: {'therapist': therapistModel, 'type': 'call'},
                 );
-                context.push(Routes.therapistLiveView, args: callID);
+                // final String callID = generateCallID(
+                //   therapistId: therapistModel.id,
+                //   userId: getUser()!.userId,
+                // );
+                // context.push(Routes.therapistLiveView, args: callID);
               },
               color: AppColors.lightGreen,
             ),

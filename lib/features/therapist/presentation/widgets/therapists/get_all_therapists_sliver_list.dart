@@ -3,7 +3,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/widgets/vertical_padding_list.dart.dart';
 import '../../../data/models/therapist_model.dart';
-import '../sessions_for_you_section/sessions_for_you_card.dart';
+import '../../../../home/presentation/widgets/sessions_for_you_section/sessions_for_you_card.dart';
 
 class GetAllTherapistsSliverList extends StatelessWidget {
   final List<TherapistModel> therapists;

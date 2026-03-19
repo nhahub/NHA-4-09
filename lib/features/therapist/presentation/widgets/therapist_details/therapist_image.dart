@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../data/models/therapist_model.dart';
-import '../sessions_for_you_section/discount_container.dart';
+import '../../../../home/presentation/widgets/sessions_for_you_section/discount_container.dart';
 
 class TherapistImage extends StatelessWidget {
   final TherapistModel therapistModel;

@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
-import '../../../data/models/therapist_model.dart';
+import '../../../../therapist/data/models/therapist_model.dart';
 
 class DiscountContainer extends StatelessWidget {
   final bool isPaidUser = true;

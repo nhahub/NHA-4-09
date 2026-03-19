@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../data/models/therapist_model.dart';
+import '../../../../therapist/data/models/therapist_model.dart';
 import 'discount_container.dart';
 import 'rating_container.dart';
 

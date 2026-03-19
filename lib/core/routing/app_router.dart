@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/therapist/presentation/manager/booking_cubit/booking_cubit.dart';
+import 'package:moodly/features/therapist/presentation/views/booking_checkout_view.dart';
 
 import '../../features/Community/presentation/views/add_community_post_view.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -271,6 +273,19 @@ class AppRouter {
               subscriptionRepo: getIt.get<SubscriptionRepo>(),
             )..loadSavedCards(),
             child: SubscribeView(price: price, type: type),
+          ),
+        );
+
+      case Routes.bookingCheckoutView:
+        final args = settings.arguments as Map<String, dynamic>;
+        final TherapistModel therapistModel =
+            args['therapist'] as TherapistModel;
+        final String type = args['type'] as String;
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                BookingCubit(therapist: therapistModel)..selectType(type),
+            child: BookingCheckoutView(therapist: therapistModel),
           ),
         );
 
