@@ -1,27 +1,56 @@
 import 'package:dartz/dartz.dart';
-import '../../../../core/constants/constants.dart';
+import 'package:moodly/features/payment/data/models/subscription_model.dart';
+import 'package:moodly/features/payment/data/services/subscription_local_service.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/networking/api_error_handler.dart';
-import '../../../../core/services/cache_helper.dart';
-import '../models/subscription_model.dart';
-import '../services/subscription_service.dart';
+import '../services/subscription_remote_service.dart';
 
 class SubscriptionRepo {
-  final SubscriptionService subscriptionService;
+  final SubscriptionLocalService local;
+  final SubscriptionRemoteService remote;
 
-  SubscriptionRepo({required this.subscriptionService});
+  SubscriptionRepo({required this.local, required this.remote});
+
+  Future<Either<Failure, bool>> checkSubscription() async {
+    try {
+      final localStatus = local.getStatus();
+      final localEndDate = local.getEndDate();
+
+      if (localStatus != null && localEndDate != null) {
+        final isActive = _isLocalActive(localStatus, localEndDate);
+
+        if (!isActive) {
+          await remote.deleteUserSubscription();
+        }
+
+        return right(isActive);
+      }
+
+      final SubscriptionModel? remoteSub = await remote.getUserSubscription();
+
+      if (remoteSub != null) {
+        await local.cacheSubscription(
+          status: remoteSub.status,
+          endDate: remoteSub.endDate,
+        );
+
+        return right(_isLocalActive(remoteSub.status, remoteSub.endDate));
+      }
+
+      return right(false);
+    } catch (e) {
+      return left(ApiErrorHandler.handle(error: e));
+    }
+  }
+
 
   Future<Either<Failure, void>> createSubscription({
     required String type,
   }) async {
     try {
-      final SubscriptionModel subscriptionModel = await subscriptionService
-          .createSubscription(type: type);
+      final sub = await remote.createUserSubscription(type: type);
 
-      await cacheSubscription(
-        status: subscriptionModel.status,
-        endDate: subscriptionModel.endDate,
-      );
+      await local.cacheSubscription(status: sub.status, endDate: sub.endDate);
 
       return right(null);
     } catch (e) {
@@ -29,44 +58,12 @@ class SubscriptionRepo {
     }
   }
 
-  Future<Either<Failure, SubscriptionModel?>>
-  getUserActiveSubscription() async {
-    try {
-      final subscription = await subscriptionService
-          .getUserActiveSubscription();
-
-      if (subscription != null) {
-        await cacheSubscription(
-          status: subscription.status,
-          endDate: subscription.endDate,
-        );
-      }
-
-      return right(subscription);
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
+  bool _isLocalActive(String status, DateTime endDate) {
+    if (DateTime.now().isAfter(endDate)) {
+      local.markInactive();
+      return false;
     }
-  }
 
-  Future<void> cacheSubscription({
-    required String status,
-    required DateTime endDate,
-  }) async {
-    await CacheHelper.set(key: kSubscriptionStatus, value: status);
-    await CacheHelper.set(
-      key: kSubscriptionEndDate,
-      value: endDate.toIso8601String(),
-    );
-  }
-
-  bool isSubscriptionActive() {
-    final status = CacheHelper.getString(key: kSubscriptionStatus);
-    final endDateString = CacheHelper.getString(key: kSubscriptionEndDate);
-
-    if (status != 'active' || endDateString == null) return false;
-
-    final endDate = DateTime.parse(endDateString);
-
-    return DateTime.now().isBefore(endDate);
+    return status == 'active';
   }
 }

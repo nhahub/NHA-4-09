@@ -5,12 +5,12 @@ import 'package:uuid/uuid.dart';
 
 import '../../../../core/services/supabase_crud_service.dart';
 
-class SubscriptionService {
+class SubscriptionRemoteService {
   final SupabaseCRUDService supabaseCRUDService;
 
-  SubscriptionService({required this.supabaseCRUDService});
+  SubscriptionRemoteService({required this.supabaseCRUDService});
 
-  Future<SubscriptionModel> createSubscription({
+  Future<SubscriptionModel> createUserSubscription({
     required String type, // monthly / yearly
   }) async {
     final startDate = DateTime.now();
@@ -41,19 +41,24 @@ class SubscriptionService {
     return subscriptionModel;
   }
 
-  Future<SubscriptionModel?> getUserActiveSubscription() async {
-    final data = await supabaseCRUDService.getData(
+  Future<SubscriptionModel?> getUserSubscription() async {
+    final Map<String, dynamic>? data = await supabaseCRUDService.getSingleRow(
       table: kSubscriptionsTable,
-      filters: {'user_id': getUser()!.userId, 'status': 'active'},
+      whereColumn: "user_id",
+      whereValue: getUser()!.userId,
     );
 
-    if (data.isEmpty) return null;
-
-    // Get active subscription
-    final subscription = data
-        .map((e) => SubscriptionModel.fromJson(e))
-        .firstWhere((sub) => sub.isActive);
+    if (data == null) return null;
+    final SubscriptionModel subscription = SubscriptionModel.fromJson(data);
 
     return subscription;
+  }
+
+  Future<void> deleteUserSubscription() async {
+    await supabaseCRUDService.deleteData(
+      table: kSubscriptionsTable,
+      idColumn: "user_id",
+      idValue: getUser()!.userId,
+    );
   }
 }
