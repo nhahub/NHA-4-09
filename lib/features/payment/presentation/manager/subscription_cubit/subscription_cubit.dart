@@ -1,9 +1,6 @@
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../data/models/subscription_model.dart';
 import '../../../data/repos/subscription_repo.dart';
-import '../../../../../core/errors/failure.dart';
 part 'subscription_state.dart';
 
 class SubscriptionCubit extends Cubit<SubscriptionState> {
@@ -12,27 +9,32 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
   SubscriptionCubit({required this.subscriptionRepo})
     : super(SubscriptionInitialState());
 
-  Future<void> loadSubscription() async {
+  Future<void> checkSubscription() async {
     emit(SubscriptionLoadingState());
 
-    final bool isActive = subscriptionRepo.isSubscriptionActive();
-    emit(SubscriptionSuccessState(isPremium: isActive));
-
-    final Either<Failure, SubscriptionModel?> result = await subscriptionRepo
-        .getUserActiveSubscription();
+    final result = await subscriptionRepo.checkSubscription();
 
     result.fold(
       (failure) {
         emit(SubscriptionFailureState(message: failure.message));
       },
-      (subscription) {
-        subscriptionRepo.cacheSubscription(
-          status: subscription?.status ?? 'inactive',
-          endDate: subscription?.endDate ?? DateTime.now(),
-        );
-        emit(
-          SubscriptionSuccessState(isPremium: subscription?.status == 'active'),
-        );
+      (isPremium) {
+        emit(SubscriptionSuccessState(isPremium: isPremium));
+      },
+    );
+  }
+
+  Future<void> createSubscription(String type) async {
+    emit(SubscriptionLoadingState());
+
+    final result = await subscriptionRepo.createSubscription(type: type);
+
+    result.fold(
+      (failure) {
+        emit(SubscriptionFailureState(message: failure.message));
+      },
+      (_) {
+        emit(const SubscriptionSuccessState(isPremium: true));
       },
     );
   }

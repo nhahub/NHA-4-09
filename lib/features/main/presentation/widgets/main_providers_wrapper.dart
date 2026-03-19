@@ -17,7 +17,7 @@ class MainProvidersWrapper extends StatelessWidget {
         BlocProvider(
           create: (_) =>
               SubscriptionCubit(subscriptionRepo: getIt.get<SubscriptionRepo>())
-                ..loadSubscription(),
+                ..checkSubscription(),
         ),
         BlocProvider(create: (_) => MainCubit()),
       ],

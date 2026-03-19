@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import '../../features/payment/data/services/subscription_service.dart';
+import 'package:moodly/features/payment/data/services/subscription_local_service.dart';
+import '../../features/payment/data/services/subscription_remote_service.dart';
 import '../../features/payment/data/repos/subscription_repo.dart';
 import '../../features/payment/data/services/cards_local_service.dart';
 import '../../features/payment/domain/repos/payment_repo.dart';
@@ -45,14 +46,19 @@ Future<void> setupGetIt() async {
   // Cards Local Service
   getIt.registerLazySingleton<CardsLocalService>(() => CardsLocalService());
 
-  // Subscription Service
-  getIt.registerLazySingleton<SubscriptionService>(
-    () => SubscriptionService(supabaseCRUDService: getIt()),
+  // Subscription Remote Service
+  getIt.registerLazySingleton<SubscriptionRemoteService>(
+    () => SubscriptionRemoteService(supabaseCRUDService: getIt()),
+  );
+
+  // Subscription Local Service
+  getIt.registerLazySingleton<SubscriptionLocalService>(
+    () => SubscriptionLocalService(),
   );
 
   // Subscription Repo
   getIt.registerLazySingleton<SubscriptionRepo>(
-    () => SubscriptionRepo(subscriptionService: getIt()),
+    () => SubscriptionRepo(local: getIt(), remote: getIt()),
   );
 
   // CheckoutRepo
