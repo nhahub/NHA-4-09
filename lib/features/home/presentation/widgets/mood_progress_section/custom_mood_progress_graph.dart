@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/theming/app_styles.dart';
-import '../../../data/models/mood_chart.dart';
+import '../../../../mood/data/models/mood_chart.dart';
 import 'graph_column.dart';
 import 'grid_painter.dart';
 
 class CustomMoodProgressGraph extends StatelessWidget {
   final List<MoodChart> moodData;
   final double barWidth;
+  final bool isLoading;
 
   const CustomMoodProgressGraph({
     super.key,
     required this.moodData,
     required this.barWidth,
+    this.isLoading = false,
   });
 
   static const double maxY = 4;
@@ -54,6 +56,7 @@ class CustomMoodProgressGraph extends StatelessWidget {
                       child: GraphColumn(
                         barWidth: barWidth,
                         barHeight: barHeight,
+                        isLoading: isLoading,
                       ),
                     ),
 

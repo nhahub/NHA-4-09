@@ -8,13 +8,22 @@ class GraphColumn extends StatelessWidget {
     super.key,
     required this.barWidth,
     required this.barHeight,
+    this.isLoading = false,
   });
 
   final double barWidth;
   final double barHeight;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      return Container(
+        width: barWidth,
+        height: barHeight,
+        color: Colors.grey[300],
+      );
+    }
     return Container(
       width: barWidth,
       height: barHeight,

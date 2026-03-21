@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:moodly/features/payment/data/services/subscription_local_service.dart';
+import '../../features/mood/data/services/mood_progress_service.dart';
+import '../../features/payment/data/services/subscription_local_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../../features/home/data/repos/mood_progress_repo.dart';
+import '../../features/mood/data/repos/mood_progress_repo.dart';
 import '../../features/payment/data/services/subscription_remote_service.dart';
 import '../../features/payment/data/repos/subscription_repo.dart';
 import '../../features/payment/data/services/cards_local_service.dart';
@@ -151,9 +152,14 @@ Future<void> setupGetIt() async {
     () => TherapistRepo(therapistService: getIt()),
   );
 
-  // Mood Repo
+  // Mood Progress Service
+  getIt.registerLazySingleton<MoodProgressService>(
+    () => MoodProgressService(supabase: supabase),
+  );
+
+  // Mood Progress Repo
   getIt.registerLazySingleton<MoodProgressRepo>(
-    () => MoodProgressRepo(supabase: supabase),
+    () => MoodProgressRepo(moodProgressService: getIt()),
   );
 
   // Chat Repo

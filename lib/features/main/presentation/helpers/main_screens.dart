@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+
 import '../../../Community/presentation/views/community_view.dart';
+import '../../../chatbot/presentation/views/chatbot_view.dart';
+import '../../../meditations/presentation/views/meditations_view.dart';
 import '../widgets/home_providers_wrapper.dart';
 import '../widgets/profile_providers_wrapper.dart';
-import '../../../meditations/presentation/views/meditations_view.dart';
-import '../../../chatbot/presentation/views/chatbot_view.dart';
 
 class MainScreens {
   static List<Widget> build({required bool isPremium}) {

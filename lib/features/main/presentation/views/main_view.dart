@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../payment/presentation/manager/subscription_cubit/subscription_cubit.dart';
 import '../helpers/main_screens.dart';
 import '../manager/main_cubit/main_cubit.dart';
 import '../widgets/main_nav_bar.dart';
 import '../widgets/main_providers_wrapper.dart';
-import '../../../payment/presentation/manager/subscription_cubit/subscription_cubit.dart';
 
 class MainView extends StatelessWidget {
   const MainView({super.key});

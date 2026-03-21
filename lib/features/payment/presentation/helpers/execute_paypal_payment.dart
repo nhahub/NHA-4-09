@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
-import 'package:moodly/core/functions/confirm_dialog.dart';
-import 'package:moodly/core/services/get_it_service.dart';
-import 'package:moodly/features/payment/data/repos/subscription_repo.dart';
+import '../../../../core/functions/confirm_dialog.dart';
+import '../../../../core/services/get_it_service.dart';
+import '../../data/repos/subscription_repo.dart';
 
 import '../../../../core/constants/app_keys.dart';
 import '../../../../core/extensions/context_extensions.dart';

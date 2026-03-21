@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/payment/presentation/helpers/paypal_transaction_builder.dart';
+import 'paypal_transaction_builder.dart';
 import '../../../../core/functions/build_snack_bar.dart';
 import '../../data/models/card_model.dart';
 import 'execute_paymob_payment.dart';

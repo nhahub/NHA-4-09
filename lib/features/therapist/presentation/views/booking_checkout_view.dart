@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/core/widgets/app_text_button.dart';
-import 'package:moodly/features/home/presentation/widgets/shared/back_button_appbar.dart';
-import 'package:moodly/features/therapist/data/models/therapist_model.dart';
-import 'package:moodly/features/therapist/presentation/manager/booking_cubit/booking_cubit.dart';
-import 'package:moodly/features/therapist/presentation/widgets/booking/select_session_type_widget.dart';
-import 'package:moodly/features/therapist/presentation/widgets/booking/session_price.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../core/widgets/app_text_button.dart';
+import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
+import '../../data/models/therapist_model.dart';
+import '../manager/booking_cubit/booking_cubit.dart';
+import '../widgets/booking/select_session_type_widget.dart';
+import '../widgets/booking/session_price.dart';
 import '../../../../../core/theming/app_styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,9 +1,9 @@
-import '../../../../core/constants/constants.dart';
-import '../../../../core/functions/get_user.dart';
-import '../models/subscription_model.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../../../core/constants/constants.dart';
+import '../../../../core/functions/get_user.dart';
 import '../../../../core/services/supabase_crud_service.dart';
+import '../models/subscription_model.dart';
 
 class SubscriptionRemoteService {
   final SupabaseCRUDService supabaseCRUDService;

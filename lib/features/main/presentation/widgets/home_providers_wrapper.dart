@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../mood/data/repos/mood_progress_repo.dart';
+import '../../../mood/presentation/manager/mood_progress_cubit/mood_progress_cubit.dart';
 import '../../../../core/services/get_it_service.dart';
 import '../../../home/data/repos/water_repo.dart';
 import '../../../home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
@@ -24,6 +26,11 @@ class HomeProvidersWrapper extends StatelessWidget {
           create: (_) =>
               TherapistCubit(therapistRepo: getIt.get<TherapistRepo>())
                 ..getTherapists(),
+        ),
+        BlocProvider(
+          create: (_) => MoodProgressCubit(
+            moodProgressRepo: getIt.get<MoodProgressRepo>(),
+          ),
         ),
       ],
       child: HomeView(key: const ValueKey('home'), isPremium: isPremium),

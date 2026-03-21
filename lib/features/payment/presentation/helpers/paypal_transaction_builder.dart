@@ -1,8 +1,8 @@
-import 'package:moodly/features/payment/data/models/paybal/amount_details_model.dart';
-import 'package:moodly/features/payment/data/models/paybal/amount_model.dart';
-import 'package:moodly/features/payment/data/models/paybal/item_list_model.dart';
-import 'package:moodly/features/payment/data/models/paybal/item_model.dart';
-import 'package:moodly/features/payment/data/models/paybal/payment_transaction_model.dart';
+import '../../data/models/paybal/amount_details_model.dart';
+import '../../data/models/paybal/amount_model.dart';
+import '../../data/models/paybal/item_list_model.dart';
+import '../../data/models/paybal/item_model.dart';
+import '../../data/models/paybal/payment_transaction_model.dart';
 
 PaymentTransactionModel buildPaypalTransaction({
   required double price,
