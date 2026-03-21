@@ -64,7 +64,9 @@ class CustomMoodProgressGraph extends StatelessWidget {
                     Positioned(
                       left: left + (barWidth / 2) - 12, // center emoji
                       bottom: bottom + barHeight + 4,
-                      child: Image.asset(mood.emoji, width: 24, height: 24),
+                      child: mood.value == 0
+                          ? const SizedBox.shrink()
+                          : Image.asset(mood.emoji, width: 24, height: 24),
                     ),
 
                     /// Day title

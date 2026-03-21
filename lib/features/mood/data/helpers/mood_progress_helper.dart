@@ -1,7 +1,7 @@
 import '../../../home/domain/enums/emoji_range.dart';
 
 class MoodProgressHelper {
-  static String mapMoodToEmoji(String mood) {
+  static String mapMoodToEmoji({required String mood}) {
     switch (mood) {
       case 'Angry':
         return EmojiRange.veryBad.emoji;
