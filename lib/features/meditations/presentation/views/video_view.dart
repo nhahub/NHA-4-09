@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:moodly/core/constants/constants.dart';
+import 'package:moodly/features/home/presentation/widgets/shared/back_button_appbar.dart';
 
 import '../../data/models/meditation_session.dart';
 import '../widgets/video/about_session_card.dart';
@@ -96,7 +98,10 @@ class _VideoViewState extends State<VideoView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF7F8FA),
-      appBar: _buildAppBar(context),
+      appBar: const BackButtonAppbar(
+        title: "Meditation",
+        endIcon: Icons.more_horiz_rounded,
+      ),
       body: ValueListenableBuilder<bool>(
         valueListenable: _isPlaying,
         builder: (context, isPlaying, _) {
@@ -105,8 +110,7 @@ class _VideoViewState extends State<VideoView> {
             builder: (context, elapsed, _) {
               return SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 18,
-                  vertical: 12,
+                  horizontal: kAppHorizontalPadding,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -178,50 +182,6 @@ class _VideoViewState extends State<VideoView> {
           );
         },
       ),
-    );
-  }
-
-  PreferredSizeWidget _buildAppBar(BuildContext context) {
-    return AppBar(
-      backgroundColor: const Color(0xFFF7F8FA),
-      elevation: 0,
-      scrolledUnderElevation: 0,
-      leadingWidth: 52,
-      leading: Padding(
-        padding: const EdgeInsets.only(left: 12),
-        child: IconButton(
-          onPressed: () => Navigator.of(context).maybePop(),
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: Color(0xFF1A1A1A),
-            size: 20,
-          ),
-          tooltip: 'Back',
-        ),
-      ),
-      title: const Text(
-        'Meditation',
-        style: TextStyle(
-          color: Color(0xFF1A1A1A),
-          fontWeight: FontWeight.w700,
-          fontSize: 17,
-        ),
-      ),
-      centerTitle: true,
-      actions: [
-        Padding(
-          padding: const EdgeInsets.only(right: 14),
-          child: IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.more_horiz_rounded,
-              color: Color(0xFF1A1A1A),
-              size: 24,
-            ),
-            tooltip: 'More',
-          ),
-        ),
-      ],
     );
   }
 }
