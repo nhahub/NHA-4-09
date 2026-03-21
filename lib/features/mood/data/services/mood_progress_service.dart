@@ -1,4 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
+
 import '../../../../core/functions/get_user.dart';
 
 class MoodProgressService {

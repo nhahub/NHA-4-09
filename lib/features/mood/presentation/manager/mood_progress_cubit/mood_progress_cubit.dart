@@ -1,9 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../../core/errors/failure.dart';
 import '../../../data/models/mood_chart.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../data/repos/mood_progress_repo.dart';
+
 part 'mood_progress_state.dart';
 
 class MoodProgressCubit extends Cubit<MoodProgressState> {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/helpers/alpha_from_percent.dart';
-import '../../../../../core/theming/app_colors.dart';
+import '../../../../../../core/helpers/alpha_from_percent.dart';
+import '../../../../../../core/theming/app_colors.dart';
 
 class GraphColumn extends StatelessWidget {
   const GraphColumn({

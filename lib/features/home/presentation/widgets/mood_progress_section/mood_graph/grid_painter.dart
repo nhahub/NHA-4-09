@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/theming/app_colors.dart';
+import '../../../../../../core/theming/app_colors.dart';
 
 /// ================= Grid Painter =================
 class GridPainter extends CustomPainter {

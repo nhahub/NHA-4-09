@@ -4,91 +4,92 @@ import '../helpers/data_helper.dart';
 import '../models/mood_chart.dart';
 
 class MoodChartMapper {
+  // --- Helper to parse various date formats ---
+  static DateTime? _parseDate(dynamic rawDate) {
+    if (rawDate == null) return null;
+    if (rawDate is DateTime) return rawDate;
+    if (rawDate is String) return DateTime.tryParse(rawDate);
+    if (rawDate is Map && rawDate.containsKey('value')) {
+      return DateTime.tryParse(rawDate['value']);
+    }
+    return null;
+  }
+
+  // --- Helper to create a MoodChart with defaults ---
+  static MoodChart _buildChart({
+    required String label,
+    double value = 0,
+    String? emoji,
+  }) {
+    return MoodChart(
+      label: label,
+      value: value,
+      emoji: emoji ?? MoodProgressHelper.defaultEmoji,
+    );
+  }
+
+  // --- Map week data ---
   static List<MoodChart> mapWeek(List<dynamic> data) {
-    final Map<int, MoodChart> result = {};
+    final Map<int, MoodChart> weekMap = {};
 
     for (var item in data) {
-      final date = DateTime.parse(item['day']);
-      final weekday = date.weekday;
+      final date = _parseDate(item['day']);
+      if (date == null) continue;
 
-      result[weekday] = MoodChart(
+      final weekday = date.weekday;
+      weekMap[weekday] = _buildChart(
         label: DateHelper.getDayName(weekday),
         value: (item['count'] as int).toDouble(),
-        emoji: MoodProgressHelper.mapMoodToEmoji( mood: item['current_mood']),
+        emoji: MoodProgressHelper.mapMoodToEmoji(mood: item['current_mood']),
       );
     }
 
+    // Ensure all 7 days are present
     return List.generate(7, (index) {
       final day = index + 1;
-
-      return result[day] ??
-          MoodChart(
-            label: DateHelper.getDayName(day),
-            value: 0,
-            emoji: MoodProgressHelper.defaultEmoji,
-          );
+      return weekMap[day] ?? _buildChart(label: DateHelper.getDayName(day));
     });
   }
 
+  // --- Map month data ---
   static List<MoodChart> mapMonth(List<dynamic> data) {
     final Map<int, double> weekValues = {};
+    final Map<int, dynamic> moodMap = {};
 
     for (var item in data) {
-      var rawDate = item['week_start'];
-      DateTime date;
-
-      if (rawDate is String) {
-        date = DateTime.parse(rawDate);
-      } else if (rawDate is DateTime) {
-        date = rawDate;
-      } else if (rawDate is Map && rawDate.containsKey('value')) {
-        date = DateTime.parse(rawDate['value']);
-      } else {
-        continue;
-      }
+      final date = _parseDate(item['week_start']);
+      if (date == null) continue;
 
       final weekOfMonth = ((date.day - 1) ~/ 7) + 1;
-
       weekValues[weekOfMonth] =
           (weekValues[weekOfMonth] ?? 0) + (item['count'] as int).toDouble();
+      moodMap[weekOfMonth] = item['current_mood'];
     }
 
     return List.generate(4, (index) {
       final week = index + 1;
-
-      return weekValues[week] != null
-          ? MoodChart(
-              label: 'Week $week',
-              value: min(weekValues[week] ?? 0, 4),
-              emoji: MoodProgressHelper.mapMoodToEmoji(mood : data[index]['current_mood']),
-            )
-          : MoodChart(
-              label: 'Week $week',
-              value: 0,
-              emoji: MoodProgressHelper.defaultEmoji,
-            );
+      final value = weekValues[week] != null ? min(weekValues[week]!, 4) : 0;
+      final emoji = weekValues[week] != null
+          ? MoodProgressHelper.mapMoodToEmoji(mood: moodMap[week])
+          : null;
+      return _buildChart(
+        label: 'Week $week',
+        value: value.toDouble(),
+        emoji: emoji,
+      );
     });
   }
 
-  static List<MoodChart> mapYear(var data) {
-    final Map<int, MoodChart> monthValues = {};
+  // --- Map year data ---
+  static List<MoodChart> mapYear(List<dynamic> data) {
+    final Map<int, MoodChart> monthMap = {};
 
     for (var item in data) {
-      final rawDate = item['month_start'];
-
-      DateTime date;
-      if (rawDate is String) {
-        date = DateTime.parse(rawDate);
-      } else if (rawDate is DateTime) {
-        date = rawDate;
-      } else if (rawDate is Map && rawDate.containsKey('value')) {
-        date = DateTime.parse(rawDate['value']);
-      } else {
-        continue;
-      }
+      final date = _parseDate(item['month_start']);
+      if (date == null) continue;
 
       final month = date.month;
-      monthValues[month] = MoodChart(
+      monthMap[month] = _buildChart(
         label: DateHelper.getMonthName(month),
         value: (item['count'] as int).toDouble() % 5,
         emoji: MoodProgressHelper.mapMoodToEmoji(mood: item['current_mood']),
@@ -97,12 +98,8 @@ class MoodChartMapper {
 
     return List.generate(12, (index) {
       final month = index + 1;
-      return monthValues[month] ??
-          MoodChart(
-            label: DateHelper.getMonthName(month),
-            value: 0,
-            emoji: MoodProgressHelper.defaultEmoji,
-          );
+      return monthMap[month] ??
+          _buildChart(label: DateHelper.getMonthName(month));
     });
   }
 }
