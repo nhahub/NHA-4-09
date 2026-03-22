@@ -14,7 +14,7 @@ import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/auth/presentation/views/start_view.dart';
 import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
 import '../../features/home/presentation/views/all_meditations_view.dart';
-import '../../features/home/presentation/views/recommendations_view.dart';
+import '../../features/mood/presentation/views/recommendations_view.dart';
 import '../../features/home/presentation/views/water_tracking_view.dart';
 import '../../features/main/presentation/views/main_view.dart';
 import '../../features/meals_recommendations/data/models/recommended_food_item_model.dart';
