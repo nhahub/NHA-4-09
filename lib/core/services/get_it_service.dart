@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:moodly/features/mood/data/services/recommendation_local_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -10,6 +11,7 @@ import '../../features/meals_recommendations/data/repos/recommended_food_repo.da
 import '../../features/meditations/data/services/audio_player_service.dart';
 import '../../features/mood/data/repos/mood_progress_repo.dart';
 import '../../features/mood/data/repos/mood_repo.dart';
+import '../../features/mood/data/repos/recommendation_repo.dart';
 import '../../features/mood/data/services/mood_progress_service.dart';
 import '../../features/mood/data/services/mood_remote_service.dart';
 import '../../features/onboarding/data/Services/questionnaire_service.dart';
@@ -160,6 +162,15 @@ Future<void> setupGetIt() async {
   // Mood Progress Repo
   getIt.registerLazySingleton<MoodProgressRepo>(
     () => MoodProgressRepo(moodProgressService: getIt()),
+  );
+
+  // Recommendation Local Service
+  getIt.registerLazySingleton<RecommendationLocalService>(
+    () => RecommendationLocalService(),
+  );
+  // Recommendation Repo
+  getIt.registerLazySingleton<RecommendationRepo>(
+    () => RecommendationRepo(recommendationLocalService: getIt()),
   );
 
   // Chat Repo

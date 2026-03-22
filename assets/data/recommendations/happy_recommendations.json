@@ -1,0 +1,50 @@
+{
+  "calm": {
+    "title": "You seem to be in a calm state.",
+    "description": "Being calm is an optimal state for learning, creativity, and emotional regulation. These practices help maintain and deepen your sense of well-being.",
+    "avoid": "Avoid overstimulation such as loud noises, multitasking, or excessive caffeine which may disrupt calmness.",
+    "suggestions": "Engage in 10–15 minutes of mindfulness, meditation, or gentle stretching to reinforce parasympathetic activation.",
+    "sections": [
+      {
+        "category": "Maintain Physiological Calm",
+        "items": [
+          "Practice slow diaphragmatic breathing to sustain parasympathetic activation",
+          "Perform gentle neck and shoulder stretches to release micro-tension",
+          "Drink water mindfully, noticing each sip to anchor presence",
+          "Take short breaks from screens to prevent cognitive fatigue",
+          "Engage in light aerobic movement (e.g., walking) to sustain heart rate stability"
+        ]
+      },
+      {
+        "category": "Mindfulness and Awareness",
+        "items": [
+          "Observe your surroundings for 5 minutes with non-judgmental attention",
+          "Practice body scan meditation to notice subtle sensations without reacting",
+          "Label your emotions if they arise: 'I am feeling content' or 'I notice calmness'",
+          "Focus on the breath for 3–5 minutes, counting inhalations and exhalations",
+          "Engage in mindful listening to ambient sounds, music, or nature"
+        ]
+      },
+      {
+        "category": "Cognitive Reinforcement",
+        "items": [
+          "Journal positive experiences or gratitude moments to deepen calmness",
+          "Reflect on recent challenges overcome to reinforce self-efficacy",
+          "Use imagery: visualize a safe, serene environment to stabilize mood",
+          "Set gentle intentions for the day or evening to align actions with calmness",
+          "Notice automatic thoughts and let them pass without judgment"
+        ]
+      },
+      {
+        "category": "Behavioral and Environmental Support",
+        "items": [
+          "Maintain a quiet, organized environment to reduce potential stressors",
+          "Engage in low-intensity hobbies (drawing, reading, gardening) to sustain calm",
+          "Limit exposure to notifications or alerts that may trigger stress",
+          "Practice consistent sleep routine to preserve nervous system balance",
+          "Connect with others in supportive, low-pressure social interactions"
+        ]
+      }
+    ]
+  }
+}

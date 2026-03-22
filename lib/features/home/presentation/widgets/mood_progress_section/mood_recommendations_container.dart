@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:moodly/features/home/presentation/widgets/mood_progress_section/recommendation_bloc_builder.dart';
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/theming/app_styles.dart';
-import 'see_recommendations_button.dart';
 
 class MoodRecommendationsContainer extends StatelessWidget {
   const MoodRecommendationsContainer({super.key});
@@ -34,22 +32,8 @@ class MoodRecommendationsContainer extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            "It seems like you had a harder time.",
-            style: AppStyles.extraBold15,
-          ),
-          const SizedBox(height: 4),
-          Text(
-            "In recent days, your emotional state has been lower than your usual average.",
-            style: AppStyles.medium14.copyWith(color: AppColors.bodyGray),
-          ),
-          const SizedBox(height: 16),
-          const SeeRecommendationsButton(),
-        ],
-      ),
+
+      child: const RecommendationBlocBuilder(),
     );
   }
 }

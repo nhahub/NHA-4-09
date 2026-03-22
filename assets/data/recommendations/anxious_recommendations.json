@@ -1,0 +1,50 @@
+{
+  "anxious": {
+    "title": "It seems you're feeling anxious.",
+    "description": "Anxiety is a natural response to perceived threats, but chronic activation can strain your body. These interventions help regulate the nervous system and calm your mind.",
+    "avoid": "Avoid excessive caffeine, multitasking under stress, doom-scrolling, and rumination on 'what if' scenarios.",
+    "suggestions": "Try a 10-minute guided grounding or mindfulness exercise to reduce cortisol and normalize heart rate before sleep.",
+    "sections": [
+      {
+        "category": "Immediate Physiological Reset",
+        "items": [
+          "Practice 4–7–8 breathing to stimulate the parasympathetic nervous system",
+          "Splash cool water on your face to trigger the mammalian dive reflex",
+          "Engage in 'Box Breathing' (inhale 4s, hold 4s, exhale 4s, hold 4s)",
+          "Perform a brief body scan to notice tension areas",
+          "Change your physical environment (step outside or move to a different room)"
+        ]
+      },
+      {
+        "category": "Grounding and Sensory Regulation",
+        "items": [
+          "Use the 5-4-3-2-1 grounding method (identify 5 things you see, 4 hear, 3 touch, 2 smell, 1 taste)",
+          "Hold a cold object in your hand to anchor your attention in the present",
+          "Slowly sip water, noticing each sensation to engage interoception",
+          "Light stretching or gentle yoga to release muscle tension",
+          "Walk mindfully for 5–10 minutes focusing on steps and breath"
+        ]
+      },
+      {
+        "category": "Cognitive Reframing",
+        "items": [
+          "Write down anxious thoughts and challenge their accuracy (CBT approach)",
+          "Label your feelings: 'I notice I'm feeling anxious' to create psychological distance",
+          "Apply the 'Worst Case–Most Likely–Best Case' analysis to reduce catastrophic thinking",
+          "Shift focus from uncontrollable factors to actions within your control",
+          "Use thought-stopping: acknowledge the thought, then redirect to grounding or task-focused activity"
+        ]
+      },
+      {
+        "category": "Behavioral and Lifestyle Supports",
+        "items": [
+          "Schedule worry time: allow 10–15 minutes to process anxious thoughts deliberately",
+          "Engage in moderate physical activity (e.g., brisk walk) to reduce adrenaline",
+          "Practice consistent sleep hygiene to support nervous system regulation",
+          "Limit exposure to anxiety-triggering media before bedtime",
+          "Connect briefly with a supportive person or social group"
+        ]
+      }
+    ]
+  }
+}

@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:flutter/services.dart';
-
 import '../../domain/enums/mood_type.dart';
 import '../models/recommended_food_lists_model.dart';
 

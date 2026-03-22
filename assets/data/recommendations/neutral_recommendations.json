@@ -1,0 +1,50 @@
+{
+  "neutral": {
+    "title": "You seem to be in a neutral state.",
+    "description": "Neutral moods provide a stable foundation for focus, learning, and self-reflection. Maintaining this balance is important for resilience.",
+    "avoid": "Avoid overexposure to stimulating content, multitasking under stress, or skipping mindful pauses that maintain equilibrium.",
+    "suggestions": "Engage in brief mindfulness exercises or light movement to sustain balance and prevent drift toward stress or boredom.",
+    "sections": [
+      {
+        "category": "Physiological Regulation",
+        "items": [
+          "Practice gentle diaphragmatic breathing to maintain calm alertness",
+          "Perform light stretching to release subtle tension in neck, shoulders, and back",
+          "Take a short walk or move intentionally to keep circulation active",
+          "Hydrate mindfully to support cognitive and bodily function",
+          "Pause every hour for 1–2 minutes to reset posture and attention"
+        ]
+      },
+      {
+        "category": "Cognitive Awareness",
+        "items": [
+          "Notice current thoughts and label them without judgment",
+          "Reflect on tasks or goals with objective evaluation",
+          "Engage in brief journaling to capture observations or insights",
+          "Use structured thinking exercises like pros/cons or priority lists",
+          "Practice a 1–2 minute mental check-in: How am I feeling and what do I need?"
+        ]
+      },
+      {
+        "category": "Mindful Engagement",
+        "items": [
+          "Observe surroundings for subtle sensory details to anchor awareness",
+          "Focus on a single task mindfully to enhance flow and reduce distraction",
+          "Engage in brief creative activity (sketching, writing, or music) to stimulate positive engagement",
+          "Use mindful listening in conversations to strengthen social presence",
+          "Notice body sensations periodically to stay connected to your internal state"
+        ]
+      },
+      {
+        "category": "Behavioral and Lifestyle Supports",
+        "items": [
+          "Maintain consistent sleep and meal schedules to stabilize mood",
+          "Engage in light to moderate physical activity daily for energy balance",
+          "Limit overexposure to digital notifications or news feeds",
+          "Connect periodically with supportive peers or colleagues for grounding",
+          "Schedule brief restorative breaks (meditation, breathing, or nature exposure)"
+        ]
+      }
+    ]
+  }
+}

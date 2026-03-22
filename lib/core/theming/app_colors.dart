@@ -13,10 +13,13 @@ class AppColors {
   static const Color shadow = Color(0xff0B1324);
   static const Color buttonBlack = Color(0xff191C24);
   static const Color darkRed = Color(0xffdb2323);
+  static const Color darkerRed = Color(0xffAC3434);
   static const Color lightRed = Color(0xffDD4A4A);
   static const Color lighterRed = Color(0xffEA7173);
   static const Color yellow = Color(0xffffEB3B);
   static const Color orange = Color(0xfff6b554);
+  static const Color darkBlue = Color(0xff015E59);
+  static const Color lighterBlue = Color(0xffA1EAE3);
 
   static final List<Color> profileAvatarColors = [
     const Color(0xff1cb0f6),

@@ -1,0 +1,49 @@
+{
+  "angry": {
+    "title": "It seems you've had a challenging day.",
+    "description": "Anger is a natural signal, but it's physically taxing. Let's help your nervous system return to a state of calm.",
+    "avoid": "Excessive caffeine, high-intensity scrolling, and ruminating on the trigger.",
+    "suggestions": "Try a 10-minute progressive muscle relaxation (PMR) to lower cortisol levels before sleep.",
+    "sections": [
+      {
+        "category": "Immediate Physiological Reset",
+        "items": [
+          "Practice 4–7–8 breathing to activate the Vagus nerve",
+          "Splash ice-cold water on your face (Dive Reflex)",
+          "Slowly drink a glass of cold water",
+          "Count backwards from 20 to engage the prefrontal cortex",
+          "Change your physical environment immediately"
+        ]
+      },
+      {
+        "category": "Physical Release",
+        "items": [
+          "Progressive muscle relaxation (tense for 5s, release for 10s)",
+          "Short burst of activity (20 jumping jacks) to channel adrenaline",
+          "Use a stress ball to release motor tension",
+          "Gently stretch your neck and jaw (common tension spots)",
+          "Shake your limbs to discharge 'fight-or-flight' energy"
+        ]
+      },
+      {
+        "category": "Cognitive Reframing",
+        "items": [
+          "Brain dump: Write without filtering to externalize the anger",
+          "Apply the 'Rule of 5': Will this matter in 5 days? 5 months?",
+          "Shift from 'Why me?' to 'What is the most helpful next step?'",
+          "Identify the root: Is this anger, or is it underlying hurt/fatigue?",
+          "Label the emotion: 'I am feeling anger' (creates psychological distance)"
+        ]
+      },
+      {
+        "category": "Interpersonal Boundaries",
+        "items": [
+          "Use 'I' statements (e.g., 'I feel overwhelmed') to avoid defensiveness",
+          "Implement a 'Communication Timeout' until your heart rate drops",
+          "Lower your volume and slow your speaking rate intentionally",
+          "Pause for 3 seconds before responding to any provocation"
+        ]
+      }
+    ]
+  }
+}
