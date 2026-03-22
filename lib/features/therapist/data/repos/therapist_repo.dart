@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/errors/failure.dart';
-import '../../../../core/helpers/logger.dart';
 import '../../../../core/networking/api_error_handler.dart';
 import '../models/therapist_model.dart';
 import '../services/therapist_service.dart';
@@ -18,7 +17,6 @@ class TherapistRepo {
 
       return right(therapists);
     } catch (e) {
-      Logger.log(e.toString());
       return left(ApiErrorHandler.handle(error: e));
     }
   }

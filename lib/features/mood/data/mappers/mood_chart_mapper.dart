@@ -37,9 +37,18 @@ class MoodChartMapper {
       if (date == null) continue;
 
       final weekday = date.weekday;
+      final itemCount = item['count'] as int;
+      double value = 0;
+      if (itemCount == 0) {
+        value = 0;
+      } else if (itemCount > 4) {
+        value = 4;
+      } else {
+        value = itemCount.toDouble();
+      }
       weekMap[weekday] = _buildChart(
         label: DateHelper.getDayName(weekday),
-        value: (item['count'] as int).toDouble(),
+        value: value,
         emoji: MoodProgressHelper.mapMoodToEmoji(mood: item['current_mood']),
       );
     }

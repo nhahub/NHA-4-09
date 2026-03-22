@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/errors/failure.dart';
-import '../../../../core/helpers/logger.dart';
 import '../../../../core/networking/api_error_handler.dart';
 import '../Services/questionnaire_service.dart';
 import '../models/question_model.dart';
@@ -35,7 +34,6 @@ class QuestionnaireRepo {
       await _questionnaireService.updateUserStatus();
       return right(null);
     } catch (e) {
-      Logger.log(e.toString());
       return left(ApiErrorHandler.handle(error: e));
     }
   }

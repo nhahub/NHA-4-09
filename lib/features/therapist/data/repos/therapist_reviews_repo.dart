@@ -1,7 +1,5 @@
 import 'package:dartz/dartz.dart';
-
 import '../../../../core/errors/failure.dart';
-import '../../../../core/helpers/logger.dart';
 import '../../../../core/networking/api_error_handler.dart';
 import '../models/therapist_review_model.dart';
 import '../services/therapist_reviews_service.dart';
@@ -50,7 +48,6 @@ class TherapistReviewsRepo {
       );
       return right(null);
     } catch (e) {
-      Logger.log(e.toString());
       return left(ApiErrorHandler.handle(error: e));
     }
   }
