@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/home/presentation/widgets/mood_progress_section/range_button.dart';
 import '../../manager/booking_cubit/booking_cubit.dart';
-
-import '../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
 
@@ -20,28 +19,26 @@ class SelectSessionTypeWidget extends StatelessWidget {
       children: [
         const Text("Select session type:", style: AppStyles.extraBold16),
         const SizedBox(height: 8),
-        Row(
-          children: [
-            ChoiceChip(
-              label: const Text("Chat"),
-              selected: state.selectedType == 'chat',
-              selectedColor: AppColors.bgFill,
-              backgroundColor: AppColors.bodyGray.withAlpha(
-                alphaFromPercentage(6),
+        Container(
+          padding: const EdgeInsets.all(4),
+          decoration: BoxDecoration(
+            color: AppColors.bgFill,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Row(
+            children: [
+              RangeButton(
+                title: "Chat",
+                isSelected: state.selectedType == 'chat',
+                onTap: () => cubit.selectType('chat'),
               ),
-              onSelected: (_) => cubit.selectType('chat'),
-            ),
-            const SizedBox(width: 12),
-            ChoiceChip(
-              label: const Text("Call"),
-              selected: state.selectedType == 'call',
-              selectedColor: AppColors.bgFill,
-              backgroundColor: AppColors.bodyGray.withAlpha(
-                alphaFromPercentage(6),
+              RangeButton(
+                title: "Call",
+                isSelected: state.selectedType == 'call',
+                onTap: () => cubit.selectType('call'),
               ),
-              onSelected: (_) => cubit.selectType('call'),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     );

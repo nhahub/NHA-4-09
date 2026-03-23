@@ -51,7 +51,7 @@ import '../../features/therapist/presentation/manager/chat_cubit/chat_cubit.dart
 import '../../features/therapist/presentation/manager/therapist_cubit/therapist_cubit.dart';
 import '../../features/therapist/presentation/manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
 import '../../features/therapist/presentation/views/all_therapists_view.dart';
-import '../../features/therapist/presentation/views/booking_checkout_view.dart';
+import '../../features/therapist/presentation/views/booking_session_view.dart';
 import '../../features/therapist/presentation/views/therapist_chat_view.dart';
 import '../../features/therapist/presentation/views/therapist_details_view.dart';
 import '../../features/therapist/presentation/views/therapist_live_view.dart';
@@ -278,7 +278,7 @@ class AppRouter {
           ),
         );
 
-      case Routes.bookingCheckoutView:
+      case Routes.bookingSessionView:
         final args = settings.arguments as Map<String, dynamic>;
         final TherapistModel therapistModel =
             args['therapist'] as TherapistModel;
@@ -287,7 +287,7 @@ class AppRouter {
           builder: (context) => BlocProvider(
             create: (context) =>
                 BookingCubit(therapist: therapistModel)..selectType(type),
-            child: BookingCheckoutView(therapist: therapistModel),
+            child: BookingSessionView(therapist: therapistModel),
           ),
         );
 

@@ -34,7 +34,7 @@ class TherapistContactSection extends StatelessWidget {
               icon: Icons.email,
               onPressed: () {
                 context.push(
-                  Routes.bookingCheckoutView,
+                  Routes.bookingSessionView,
                   args: {'therapist': therapistModel, 'type': 'chat'},
                 );
                 // context.push(Routes.therapistChatView, args: therapistModel.id);
@@ -58,7 +58,7 @@ class TherapistContactSection extends StatelessWidget {
               icon: Icons.call,
               onPressed: () {
                 context.push(
-                  Routes.bookingCheckoutView,
+                  Routes.bookingSessionView,
                   args: {'therapist': therapistModel, 'type': 'call'},
                 );
                 // final String callID = generateCallID(
