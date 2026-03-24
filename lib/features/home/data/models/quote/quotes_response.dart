@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:moodly/features/home/data/models/quote/quote_model.dart';
 
-part '../quotes_response.g.dart';
+part 'quotes_response.g.dart';
 
 @JsonSerializable()
 class QuotesResponse {

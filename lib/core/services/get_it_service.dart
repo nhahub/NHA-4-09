@@ -28,9 +28,11 @@ import '../../features/payment/data/services/subscription_local_service.dart';
 import '../../features/payment/data/services/subscription_remote_service.dart';
 import '../../features/payment/domain/repos/payment_repo.dart';
 import '../../features/profile/data/repos/settings_repo.dart';
+import '../../features/therapist/data/repos/availability_repo.dart';
 import '../../features/therapist/data/repos/chat_repo.dart';
 import '../../features/therapist/data/repos/therapist_repo.dart';
 import '../../features/therapist/data/repos/therapist_reviews_repo.dart';
+import '../../features/therapist/data/services/availability_service.dart';
 import '../../features/therapist/data/services/chat_service.dart';
 import '../../features/therapist/data/services/therapist_reviews_service.dart';
 import '../../features/therapist/data/services/therapist_service.dart';
@@ -178,6 +180,16 @@ Future<void> setupGetIt() async {
   // Recommendation Repo
   getIt.registerLazySingleton<RecommendationRepo>(
     () => RecommendationRepo(recommendationLocalService: getIt()),
+  );
+
+  // Availability Service
+  getIt.registerLazySingleton<AvailabilityService>(
+    () => AvailabilityService(supabaseCRUDService: getIt()),
+  );
+
+  // Availability Repo
+  getIt.registerLazySingleton<AvailabilityRepo>(
+    () => AvailabilityRepo(availabilityService: getIt()),
   );
 
   // Booking Repo

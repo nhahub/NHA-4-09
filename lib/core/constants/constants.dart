@@ -27,3 +27,4 @@ const String kChatRoomsTable = "chat_rooms";
 const String kMessagesTable = "messages";
 const String kTherapistReviewsTable = "therapist_ratings";
 const String kSubscriptionsTable = "subscriptions";
+const String kTimeSlotsTable = "time_slots";

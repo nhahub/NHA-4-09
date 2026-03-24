@@ -28,13 +28,15 @@ void executePayPalPayment({
         note: "Contact us for any questions on your order.",
         onSuccess: (Map params) async {
           await cubit.handlePostPayment();
-          confirmDialog(
-            // ignore: use_build_context_synchronously
-            context: context,
-            title: "Payment Successful",
-            message: "Your payment was successful. Thank you for your support!",
-            onConfirm: () => context.pushAndRemoveUntil(Routes.mainView),
-          );
+          if (context.mounted) {
+            confirmDialog(
+              context: context,
+              title: "Payment Successful",
+              message:
+                  "Your payment was successful. Thank you for your support!",
+              onConfirm: () => context.pushAndRemoveUntil(Routes.mainView),
+            );
+          }
         },
         onError: (error) {
           context.pop();

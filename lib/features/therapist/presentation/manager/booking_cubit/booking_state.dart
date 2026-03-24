@@ -2,13 +2,20 @@ part of 'booking_cubit.dart';
 
 class BookingState extends Equatable {
   final TherapistModel therapist;
-  final String selectedType;
-  final num price;
-  final num priceAfterDiscount;
+  final Map<int, List<TimeSlotModel>>
+  availableSlots; // dayOfWeek -> List of slots
+  final int? selectedDay;
+  final TimeSlotModel? selectedSlot;
+  final String? selectedType;
+  final double price;
+  final double priceAfterDiscount;
 
   const BookingState({
     required this.therapist,
-    required this.selectedType,
+    required this.availableSlots,
+    this.selectedDay,
+    this.selectedSlot,
+    this.selectedType,
     required this.price,
     required this.priceAfterDiscount,
   });
@@ -16,19 +23,28 @@ class BookingState extends Equatable {
   factory BookingState.initial({required TherapistModel therapist}) {
     return BookingState(
       therapist: therapist,
-      selectedType: 'chat',
-      price: therapist.chatPrice,
-      priceAfterDiscount: therapist.chatPriceAfterDiscount,
+      availableSlots: const {},
+      selectedDay: null,
+      selectedSlot: null,
+      selectedType: null,
+      price: 0,
+      priceAfterDiscount: 0,
     );
   }
 
   BookingState copyWith({
+    Map<int, List<TimeSlotModel>>? availableSlots,
+    int? selectedDay,
+    TimeSlotModel? selectedSlot,
     String? selectedType,
-    num? price,
-    num? priceAfterDiscount,
+    double? price,
+    double? priceAfterDiscount,
   }) {
     return BookingState(
       therapist: therapist,
+      availableSlots: availableSlots ?? this.availableSlots,
+      selectedDay: selectedDay ?? this.selectedDay,
+      selectedSlot: selectedSlot ?? this.selectedSlot,
       selectedType: selectedType ?? this.selectedType,
       price: price ?? this.price,
       priceAfterDiscount: priceAfterDiscount ?? this.priceAfterDiscount,
@@ -38,6 +54,9 @@ class BookingState extends Equatable {
   @override
   List<Object?> get props => [
     therapist,
+    availableSlots,
+    selectedDay,
+    selectedSlot,
     selectedType,
     price,
     priceAfterDiscount,

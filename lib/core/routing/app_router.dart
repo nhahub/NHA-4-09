@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moodly/features/mood/data/models/recommendation_model.dart';
+import 'package:moodly/features/therapist/data/repos/availability_repo.dart';
 import '../../features/Community/presentation/views/add_community_post_view.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
@@ -290,7 +291,12 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) =>
-                BookingCubit(therapist: therapistModel)..selectType(type),
+                BookingCubit(
+                    therapist: therapistModel,
+                    availabilityRepo: getIt.get<AvailabilityRepo>(),
+                  )
+                  ..selectType(type)
+                  ..getAvailableSlots(),
             child: BookingSessionView(therapist: therapistModel),
           ),
         );
