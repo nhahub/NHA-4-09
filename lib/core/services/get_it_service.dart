@@ -33,6 +33,7 @@ import '../../features/therapist/data/repos/chat_repo.dart';
 import '../../features/therapist/data/repos/therapist_repo.dart';
 import '../../features/therapist/data/repos/therapist_reviews_repo.dart';
 import '../../features/therapist/data/services/availability_service.dart';
+import '../../features/therapist/data/services/booking_service.dart';
 import '../../features/therapist/data/services/chat_service.dart';
 import '../../features/therapist/data/services/therapist_reviews_service.dart';
 import '../../features/therapist/data/services/therapist_service.dart';
@@ -192,8 +193,15 @@ Future<void> setupGetIt() async {
     () => AvailabilityRepo(availabilityService: getIt()),
   );
 
+  // Booking Service
+  getIt.registerLazySingleton<BookingService>(
+    () => BookingService(supabaseCRUDService: getIt()),
+  );
+
   // Booking Repo
-  getIt.registerLazySingleton<BookingRepo>(() => BookingRepo());
+  getIt.registerLazySingleton<BookingRepo>(
+    () => BookingRepo(bookingService: getIt()),
+  );
 
   // Chat Repo
   getIt.registerLazySingleton<ChatRepo>(() => ChatRepo(chatService: getIt()));

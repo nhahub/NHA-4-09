@@ -20,6 +20,9 @@ class PaymentCubit extends Cubit<PaymentState> {
 
   final double price;
   final String? type;
+  final String? sessionType;
+  final String? slotId;
+  final String? therapistId;
 
   List<CardModel> savedCards = [];
   int selectedMethodIndex = -1;
@@ -31,6 +34,9 @@ class PaymentCubit extends Cubit<PaymentState> {
     required this.bookingRepo,
     required this.price,
     this.type,
+    this.sessionType,
+    this.slotId,
+    this.therapistId,
   }) : super(PaymentInitialState());
 
   Future<void> payWithPaymob({
@@ -88,7 +94,12 @@ class PaymentCubit extends Cubit<PaymentState> {
     if (type != null) {
       await subscriptionRepo.createSubscription(type: type!);
     } else {
-      await bookingRepo.createBooking();
+      await bookingRepo.bookingSession(
+        therapistId: therapistId!,
+        slotId: slotId!,
+        sessionType: sessionType!,
+        price: price,
+      );
     }
     emit(const PaymentSuccessState(paymentToken: "Payment Successful"));
   }

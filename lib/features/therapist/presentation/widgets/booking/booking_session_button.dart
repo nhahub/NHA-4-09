@@ -21,7 +21,7 @@ class BookingSessionButton extends StatelessWidget {
           builder: (context, state) {
             return AppTextButton(
               onPressed: () {
-                validateThenBook(context, state);
+                validateThenBookSession(context, state);
               },
               buttonText: "Book Now",
             );
@@ -31,7 +31,7 @@ class BookingSessionButton extends StatelessWidget {
     );
   }
 
-  void validateThenBook(BuildContext context, BookingState state) {
+  void validateThenBookSession(BuildContext context, BookingState state) {
     if (state.selectedType == null) {
       return warningSnackBar(
         context: context,
@@ -50,6 +50,14 @@ class BookingSessionButton extends StatelessWidget {
       );
     }
 
-    context.push(Routes.subscribeView, args: {"price": state.price.toDouble()});
+    context.push(
+      Routes.subscribeView,
+      args: {
+        "price": state.price.toDouble(),
+        "sessionType": state.selectedType,
+        "therapistId": state.therapist.id,
+        "slotId": state.selectedSlot!.id,
+      },
+    );
   }
 }

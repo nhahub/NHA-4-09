@@ -270,6 +270,9 @@ class AppRouter {
         final args = settings.arguments as Map<String, dynamic>;
         final double price = args['price'] as double;
         final String? type = args['type'] as String?;
+        final String? sessionType = args['sessionType'] as String?;
+        final String? slotId = args['slotId'] as String?;
+        final String? therapistId = args['therapistId'] as String?;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) => PaymentCubit(
@@ -278,6 +281,9 @@ class AppRouter {
               bookingRepo: getIt.get<BookingRepo>(),
               price: price,
               type: type,
+              sessionType: sessionType,
+              slotId: slotId,
+              therapistId: therapistId,
             )..loadSavedCards(),
             child: const SubscribeView(),
           ),

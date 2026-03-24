@@ -23,15 +23,13 @@ class DateSelectorWidget extends StatelessWidget {
             final days = state.availableSlots.keys.toList();
             if (state is BookingLoadingState) {
               return const DateSelectorListView(
-                days: [1, 2, 3, 4, 5],
+                days: [0, 1, 2, 3, 4, 5],
                 isLoading: true,
               );
             } else {
-              
               return DateSelectorListView(
                 days: days,
                 selectedDay: state.selectedDay,
-                
               );
             }
           },
