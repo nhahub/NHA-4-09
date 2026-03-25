@@ -57,6 +57,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           ),
           isObscureText: widget.isPasswordObscureText,
           controller: widget.passwordController,
+          maxLines: 1,
           suffixIcon: IconButton(
             onPressed: () {
               setState(() {
