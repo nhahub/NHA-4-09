@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/theming/app_colors.dart';
-import 'expandable_item.dart';
 
 import '../../../../../core/helpers/alpha_from_percent.dart';
+import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../../data/models/recommendation_model.dart';
+import 'expandable_item.dart';
 
 class ActivePracticeCard extends StatelessWidget {
   const ActivePracticeCard({super.key, required this.recommendationSection});

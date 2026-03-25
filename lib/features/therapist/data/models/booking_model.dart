@@ -29,7 +29,7 @@ class BookingModel {
   final String therapistSpeciality;
 
   @JsonKey(name: 'therapist_image')
-  final String? therapistImage;
+  final String therapistImage;
 
   @JsonKey(name: 'slot_id')
   final String slotId;

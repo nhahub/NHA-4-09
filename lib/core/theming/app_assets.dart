@@ -58,6 +58,8 @@ class AppAssets {
   static const String avoidIcon = 'assets/svgs/avoid.svg';
   static const String suggestionIcon = 'assets/svgs/suggestion.svg';
   static const String meetingIcon = 'assets/svgs/meeting.svg';
+  static const String videoCallIcon = 'assets/svgs/video_call.svg';
+  static const String timeIcon = 'assets/svgs/time.svg';
 
   // Images
   static const String start = 'assets/images/start.png';

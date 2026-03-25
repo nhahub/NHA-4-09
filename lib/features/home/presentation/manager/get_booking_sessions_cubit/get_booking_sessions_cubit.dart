@@ -32,6 +32,7 @@ class GetBookingSessionsCubit extends Cubit<GetBookingSessionsState> {
     required String bookingId,
     required String slotId,
   }) async {
+    emit(CancelBookingSessionsLoadingState());
     final Either<Failure, void> response = await bookingRepo.cancelSession(
       bookingId: bookingId,
       slotId: slotId,

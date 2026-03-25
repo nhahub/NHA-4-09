@@ -18,8 +18,9 @@ class BookedSessionsListView extends StatelessWidget {
     return Skeletonizer(
       containersColor: Colors.grey[50],
       enabled: isLoading,
-      child: ListView.builder(
+      child: ListView.separated(
         itemCount: bookings.length,
+        separatorBuilder: (context, index) => const SizedBox(height: 12),
         itemBuilder: (context, index) {
           return BookedSessionCard(bookingModel: bookings[index]);
         },

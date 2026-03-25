@@ -18,7 +18,7 @@ BookingModel _$BookingModelFromJson(Map<String, dynamic> json) => BookingModel(
   therapistId: json['therapist_id'] as String,
   therapistName: json['therapist_name'] as String,
   therapistSpeciality: json['therapist_speciality'] as String,
-  therapistImage: json['therapist_image'] as String?,
+  therapistImage: json['therapist_image'] as String,
   slotId: json['slot_id'] as String,
   slotStartTime: DateTime.parse(json['slot_start_time'] as String),
   slotEndTime: DateTime.parse(json['slot_end_time'] as String),

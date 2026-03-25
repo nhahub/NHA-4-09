@@ -7,7 +7,6 @@ class DummyBookedSessions {
     (index) => BookingModel(
       id: "",
       userId: "",
-
       sessionType: "",
       therapistId: '',
       therapistName: '',
@@ -16,6 +15,9 @@ class DummyBookedSessions {
       slotId: '',
       slotStartTime: DateTime.now(),
       slotEndTime: DateTime.now(),
+      price: 0,
+      status: "",
+      createdAt: DateTime.now(),
     ),
   );
 }

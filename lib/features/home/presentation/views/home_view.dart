@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import '../widgets/sessions_for_you_section/sessions_floating_action_button.dart';
+
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/widgets/custom_appbar.dart';
 import '../../../mood/presentation/helpers/mood_helper.dart';
 import '../widgets/daily_stats_section/shared/home_view_body.dart';
+import '../widgets/sessions_for_you_section/sessions_floating_action_button.dart';
 
 class HomeView extends StatefulWidget {
   final bool isPremium;

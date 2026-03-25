@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../home/presentation/widgets/mood_progress_section/switch_button.dart';
+
 import '../../../../../core/constants/constants.dart';
-import '../../manager/booking_cubit/booking_cubit.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
+import '../../../../home/presentation/widgets/mood_progress_section/switch_button.dart';
+import '../../manager/booking_cubit/booking_cubit.dart';
 
 class SelectSessionTypeWidget extends StatelessWidget {
   const SelectSessionTypeWidget({super.key});

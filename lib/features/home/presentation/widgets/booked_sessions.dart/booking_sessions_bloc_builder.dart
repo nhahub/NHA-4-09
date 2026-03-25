@@ -12,22 +12,22 @@ class BookingSessionsBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GetBookingSessionsCubit, GetBookingSessionsState>(
       builder: (context, state) {
-        switch (state.runtimeType) {
-          case const (GetBookingSessionsLoadingState):
+        switch (state) {
+          case GetBookingSessionsLoadingState _:
             return BookedSessionsListView(
               bookings: DummyBookedSessions.dummyBookedSessions,
               isLoading: true,
             );
 
-          case const (GetBookingSessionsSuccessState):
-            final loadedState = state as GetBookingSessionsSuccessState;
+          case GetBookingSessionsSuccessState _:
+            final loadedState = state;
             if (loadedState.bookings.isEmpty) {
               return const Center(child: Text("No Bookings"));
             }
             return BookedSessionsListView(bookings: loadedState.bookings);
 
-          case const (GetBookingSessionsFailureState):
-            final errorState = state as GetBookingSessionsFailureState;
+          case GetBookingSessionsFailureState _:
+            final errorState = state;
             return Center(
               child: Text(
                 errorState.errorMessage,

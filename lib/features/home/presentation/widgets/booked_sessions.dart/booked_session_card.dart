@@ -33,6 +33,7 @@ class BookedSessionCard extends StatelessWidget {
           ],
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             BookedSessionHeader(bookingModel: bookingModel),
             const SizedBox(height: 10),
