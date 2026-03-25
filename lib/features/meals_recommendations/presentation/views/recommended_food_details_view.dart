@@ -35,7 +35,7 @@ class RecommendedFoodDetailsView extends StatelessWidget {
               spacing: 16,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 85),
+                const SizedBox(height: 110),
                 RecommendedFoodCard(
                   withpush: false,
                   recommendedFoodItemModel: recommendedFoodItemModel,
