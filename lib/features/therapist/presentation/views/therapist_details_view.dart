@@ -31,7 +31,7 @@ class TherapistDetailsView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 105),
+                const SizedBox(height: 125),
                 TherapistImage(therapistModel: therapistModel),
                 const SizedBox(height: 20),
                 TherapistHeader(

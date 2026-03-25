@@ -14,6 +14,7 @@ class TherapistDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       padding: const EdgeInsets.all(kAppSectionSpacing),
       decoration: BoxDecoration(
         color: Colors.white,
