@@ -1,6 +1,8 @@
 import 'dart:convert';
+
 import 'package:flutter/services.dart';
-import 'package:moodly/features/mood/data/models/recommendation_model.dart';
+
+import '../models/recommendation_model.dart';
 
 class RecommendationLocalService {
   Future<RecommendationModel> getRecommendationData({

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../widgets/sessions_for_you_section/sessions_floating_action_button.dart';
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/widgets/custom_appbar.dart';
 import '../../../mood/presentation/helpers/mood_helper.dart';
@@ -24,6 +24,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
+      floatingActionButton: const SessionsFloatingActionButton(),
       appBar: CustomAppbar(
         title: "Home",
         isPremium: widget.isPremium,
@@ -34,3 +35,5 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 }
+
+

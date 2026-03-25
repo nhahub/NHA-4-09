@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/home/presentation/widgets/mood_progress_section/recommendation_bloc_builder.dart';
+
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../core/theming/app_colors.dart';
+import 'recommendation_bloc_builder.dart';
 
 class MoodRecommendationsContainer extends StatelessWidget {
   const MoodRecommendationsContainer({super.key});

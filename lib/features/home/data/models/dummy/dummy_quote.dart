@@ -1,4 +1,4 @@
-import 'package:moodly/features/home/data/models/quote/quote_model.dart';
+import '../quote/quote_model.dart';
 
 class DummyQuote {
   static const QuoteModel dummyQuote = QuoteModel(

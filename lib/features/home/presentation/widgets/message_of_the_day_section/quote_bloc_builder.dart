@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/home/presentation/manager/quote_cubit/quote_cubit.dart';
-import 'package:moodly/features/home/presentation/widgets/message_of_the_day_section/quote_shape.dart';
+
 import '../../../data/models/dummy/dummy_quote.dart';
 import '../../../data/models/quote/quote_model.dart';
+import '../../manager/quote_cubit/quote_cubit.dart';
+import 'quote_shape.dart';
 
 class QuoteBlocBuilder extends StatelessWidget {
   const QuoteBlocBuilder({super.key});

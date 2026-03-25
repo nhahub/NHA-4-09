@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paymob/billing_data.dart';
 
 import '../../../../../core/errors/failure.dart';
+import '../../../../therapist/data/models/booking_model.dart';
 import '../../../../therapist/data/repos/booking_repo.dart';
 import '../../../data/models/card_model.dart';
 import '../../../data/models/paybal/payment_transaction_model.dart';
@@ -20,6 +21,9 @@ class PaymentCubit extends Cubit<PaymentState> {
 
   final double price;
   final String? type;
+  final String? sessionType;
+  final BookingTherapist? therapist;
+  final BookingSlot? slot;
 
   List<CardModel> savedCards = [];
   int selectedMethodIndex = -1;
@@ -31,6 +35,9 @@ class PaymentCubit extends Cubit<PaymentState> {
     required this.bookingRepo,
     required this.price,
     this.type,
+    this.sessionType,
+    this.slot,
+    this.therapist,
   }) : super(PaymentInitialState());
 
   Future<void> payWithPaymob({
@@ -88,7 +95,12 @@ class PaymentCubit extends Cubit<PaymentState> {
     if (type != null) {
       await subscriptionRepo.createSubscription(type: type!);
     } else {
-      await bookingRepo.createBooking();
+      await bookingRepo.bookingSession(
+        therapist: therapist!,
+        slot: slot!,
+        sessionType: sessionType!,
+        price: price,
+      );
     }
     emit(const PaymentSuccessState(paymentToken: "Payment Successful"));
   }

@@ -1,4 +1,4 @@
-import 'package:moodly/features/mood/data/models/recommendation_model.dart';
+import '../recommendation_model.dart';
 
 class DummyRecommendation {
   static final RecommendationModel recommendationDummyModel = RecommendationModel(

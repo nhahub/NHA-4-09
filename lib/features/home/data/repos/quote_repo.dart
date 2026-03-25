@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:moodly/features/home/data/services/quotes_local_service.dart';
+
 import '../../../../core/constants/constants.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/networking/api_error_handler.dart';
 import '../../../../core/services/cache_helper.dart';
 import '../models/quote/quote_model.dart';
+import '../services/quotes_local_service.dart';
 
 class QuoteRepo {
   final QuotesLocalService quotesLocalService;

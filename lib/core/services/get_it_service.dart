@@ -1,7 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:moodly/features/mood/data/services/recommendation_local_service.dart';
-import 'package:moodly/features/therapist/data/repos/booking_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -16,6 +14,7 @@ import '../../features/mood/data/repos/mood_repo.dart';
 import '../../features/mood/data/repos/recommendation_repo.dart';
 import '../../features/mood/data/services/mood_progress_service.dart';
 import '../../features/mood/data/services/mood_remote_service.dart';
+import '../../features/mood/data/services/recommendation_local_service.dart';
 import '../../features/onboarding/data/Services/questionnaire_service.dart';
 import '../../features/onboarding/data/repos/questionnaire_repo.dart';
 import '../../features/payment/data/repos/payment_repo_imp.dart';
@@ -28,9 +27,13 @@ import '../../features/payment/data/services/subscription_local_service.dart';
 import '../../features/payment/data/services/subscription_remote_service.dart';
 import '../../features/payment/domain/repos/payment_repo.dart';
 import '../../features/profile/data/repos/settings_repo.dart';
+import '../../features/therapist/data/repos/availability_repo.dart';
+import '../../features/therapist/data/repos/booking_repo.dart';
 import '../../features/therapist/data/repos/chat_repo.dart';
 import '../../features/therapist/data/repos/therapist_repo.dart';
 import '../../features/therapist/data/repos/therapist_reviews_repo.dart';
+import '../../features/therapist/data/services/availability_service.dart';
+import '../../features/therapist/data/services/booking_service.dart';
 import '../../features/therapist/data/services/chat_service.dart';
 import '../../features/therapist/data/services/therapist_reviews_service.dart';
 import '../../features/therapist/data/services/therapist_service.dart';
@@ -180,8 +183,25 @@ Future<void> setupGetIt() async {
     () => RecommendationRepo(recommendationLocalService: getIt()),
   );
 
+  // Availability Service
+  getIt.registerLazySingleton<AvailabilityService>(
+    () => AvailabilityService(supabaseCRUDService: getIt()),
+  );
+
+  // Availability Repo
+  getIt.registerLazySingleton<AvailabilityRepo>(
+    () => AvailabilityRepo(availabilityService: getIt()),
+  );
+
+  // Booking Service
+  getIt.registerLazySingleton<BookingService>(
+    () => BookingService(supabaseCRUDService: getIt()),
+  );
+
   // Booking Repo
-  getIt.registerLazySingleton<BookingRepo>(() => BookingRepo());
+  getIt.registerLazySingleton<BookingRepo>(
+    () => BookingRepo(bookingService: getIt()),
+  );
 
   // Chat Repo
   getIt.registerLazySingleton<ChatRepo>(() => ChatRepo(chatService: getIt()));

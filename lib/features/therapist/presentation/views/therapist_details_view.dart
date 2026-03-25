@@ -22,34 +22,37 @@ class TherapistDetailsView extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: const BackButtonAppbar(title: "Therapist Details"),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: kAppHorizontalPadding,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 105),
-              TherapistImage(therapistModel: therapistModel),
-              const SizedBox(height: 20),
-              TherapistHeader(
-                name: therapistModel.name,
-                speciality: therapistModel.speciality,
-              ),
-              const SizedBox(height: 4),
-              TherapistRatingSection(
-                rating: therapistModel.ratingSummary.rating,
-                ratingCount: therapistModel.ratingSummary.totalCount,
-                therapistId: therapistModel.id,
-              ),
-              const Divider(color: AppColors.lightGrey, height: 30),
-              TherapistInfoSection(therapistModel: therapistModel),
-              const SizedBox(height: 16),
-              TherapistAboutSection(about: therapistModel.about),
-              const SizedBox(height: 16),
-              TherapistContactSection(therapistModel: therapistModel),
-              const SizedBox(height: 30),
-            ],
+        child: SafeArea(
+          top: false,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: kAppHorizontalPadding,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 105),
+                TherapistImage(therapistModel: therapistModel),
+                const SizedBox(height: 20),
+                TherapistHeader(
+                  name: therapistModel.name,
+                  speciality: therapistModel.speciality,
+                ),
+                const SizedBox(height: 4),
+                TherapistRatingSection(
+                  rating: therapistModel.ratingSummary.rating,
+                  ratingCount: therapistModel.ratingSummary.totalCount,
+                  therapistId: therapistModel.id,
+                ),
+                const Divider(color: AppColors.lightGrey, height: 30),
+                TherapistInfoSection(therapistModel: therapistModel),
+                const SizedBox(height: 16),
+                TherapistAboutSection(about: therapistModel.about),
+                const SizedBox(height: 16),
+                TherapistContactSection(therapistModel: therapistModel),
+                const SizedBox(height: 16),
+              ],
+            ),
           ),
         ),
       ),

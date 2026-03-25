@@ -7,7 +7,8 @@ import '../theming/app_colors.dart';
 
 class CustomFloatingActionButton extends StatelessWidget {
   final VoidCallback onTap;
-  const CustomFloatingActionButton({super.key, required this.onTap});
+  final String? icon;
+  const CustomFloatingActionButton({super.key, required this.onTap, this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +60,7 @@ class CustomFloatingActionButton extends StatelessWidget {
         ),
 
         child: SvgPicture.asset(
-          AppAssets.addIcon,
+          icon ?? AppAssets.addIcon,
           width: 22,
           height: 22,
           colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),

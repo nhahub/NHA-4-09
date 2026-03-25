@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
-import 'package:moodly/features/payment/presentation/manager/payment_cubit/payment_cubit.dart';
+
 import '../../../../core/constants/app_keys.dart';
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/functions/confirm_dialog.dart';
 import '../../../../core/routing/routes.dart';
 import '../../data/models/paybal/payment_transaction_model.dart';
+import '../manager/payment_cubit/payment_cubit.dart';
 
 void executePayPalPayment({
   required BuildContext context,
@@ -28,13 +29,15 @@ void executePayPalPayment({
         note: "Contact us for any questions on your order.",
         onSuccess: (Map params) async {
           await cubit.handlePostPayment();
-          confirmDialog(
-            // ignore: use_build_context_synchronously
-            context: context,
-            title: "Payment Successful",
-            message: "Your payment was successful. Thank you for your support!",
-            onConfirm: () => context.pushAndRemoveUntil(Routes.mainView),
-          );
+          if (context.mounted) {
+            confirmDialog(
+              context: context,
+              title: "Payment Successful",
+              message:
+                  "Your payment was successful. Thank you for your support!",
+              onConfirm: () => context.pushAndRemoveUntil(Routes.mainView),
+            );
+          }
         },
         onError: (error) {
           context.pop();

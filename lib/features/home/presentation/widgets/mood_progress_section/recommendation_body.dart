@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/features/home/presentation/widgets/mood_progress_section/see_recommendations_button.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/app_styles.dart';
 import '../../../../mood/data/models/recommendation_model.dart';
+import 'see_recommendations_button.dart';
 
 class RecommendationBody extends StatelessWidget {
   final RecommendationModel recommendationModel;

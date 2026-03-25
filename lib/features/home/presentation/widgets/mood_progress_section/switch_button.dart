@@ -4,12 +4,12 @@ import '../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
 
-class RangeButton extends StatelessWidget {
+class SwitchButton extends StatelessWidget {
   final String title;
   final bool isSelected;
   final VoidCallback onTap;
 
-  const RangeButton({
+  const SwitchButton({
     super.key,
     required this.title,
     required this.isSelected,

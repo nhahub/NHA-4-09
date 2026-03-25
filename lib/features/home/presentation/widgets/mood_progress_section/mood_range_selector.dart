@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../domain/enums/mood_time_range.dart';
 import '../../manager/mood_range_cubit/mood_range_cubit.dart';
-import 'range_button.dart';
+import 'switch_button.dart';
 
 class MoodRangeSelector extends StatelessWidget {
   const MoodRangeSelector({super.key});
@@ -21,20 +21,20 @@ class MoodRangeSelector extends StatelessWidget {
           ),
           child: Row(
             children: [
-              RangeButton(
+              SwitchButton(
                 title: MoodPeriod.week.title,
                 isSelected: selectedRange == MoodPeriod.week,
                 onTap: () =>
                     context.read<MoodRangeCubit>().changeRange(MoodPeriod.week),
               ),
-              RangeButton(
+              SwitchButton(
                 title: MoodPeriod.month.title,
                 isSelected: selectedRange == MoodPeriod.month,
                 onTap: () => context.read<MoodRangeCubit>().changeRange(
                   MoodPeriod.month,
                 ),
               ),
-              RangeButton(
+              SwitchButton(
                 title: MoodPeriod.year.title,
                 isSelected: selectedRange == MoodPeriod.year,
                 onTap: () =>

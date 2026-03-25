@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/features/home/presentation/widgets/shared/back_button_appbar.dart';
-import 'package:moodly/features/mood/data/models/recommendation_model.dart';
-import 'package:moodly/features/mood/presentation/widgets/recommendations/active_practice_card.dart';
-import 'package:moodly/features/mood/presentation/widgets/recommendations/avoid_card.dart';
-import 'package:moodly/features/mood/presentation/widgets/recommendations/suggestion_card.dart';
+
+import '../../../../core/constants/constants.dart';
+import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
+import '../../data/models/recommendation_model.dart';
+import '../widgets/recommendations/active_practice_card.dart';
+import '../widgets/recommendations/avoid_card.dart';
+import '../widgets/recommendations/suggestion_card.dart';
 
 class RecommendationsView extends StatelessWidget {
   final RecommendationModel recommendationModel;

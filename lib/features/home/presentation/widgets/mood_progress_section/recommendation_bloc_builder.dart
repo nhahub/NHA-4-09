@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/home/presentation/widgets/mood_progress_section/recommendation_body.dart';
-import 'package:moodly/features/mood/presentation/manager/recommendation_cubit/recommendation_cubit.dart';
 
 import '../../../../mood/data/models/dummy/dummy_recommendation.dart';
+import '../../../../mood/presentation/manager/recommendation_cubit/recommendation_cubit.dart';
+import 'recommendation_body.dart';
 
 class RecommendationBlocBuilder extends StatelessWidget {
   const RecommendationBlocBuilder({super.key});

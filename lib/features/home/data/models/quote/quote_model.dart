@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part '../quote_model.g.dart';
+part 'quote_model.g.dart';
 
 @JsonSerializable()
 class QuoteModel {

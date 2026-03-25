@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_assets.dart';
-import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
+import '../../../../../core/widgets/app_text_button.dart';
 import '../../../../home/presentation/widgets/sessions_for_you_section/contact_widget.dart';
 import '../../../data/models/therapist_model.dart';
-import 'contact_button.dart';
 
 class TherapistContactSection extends StatelessWidget {
   final TherapistModel therapistModel;
@@ -16,12 +15,13 @@ class TherapistContactSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: 8,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("Contact me", style: AppStyles.extraBold20),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        const Text("Sessions Prices", style: AppStyles.extraBold20),
+        const SizedBox(height: 12),
+        Wrap(
+          spacing: 16,
+          runSpacing: 12,
           children: [
             ContactWidget(
               icon: AppAssets.chatIcon,
@@ -30,22 +30,6 @@ class TherapistContactSection extends StatelessWidget {
               priceAfterDiscount: therapistModel.chatPriceAfterDiscount,
               iconSize: 20,
             ),
-            ContactButton(
-              icon: Icons.email,
-              onPressed: () {
-                context.push(
-                  Routes.bookingSessionView,
-                  args: {'therapist': therapistModel, 'type': 'chat'},
-                );
-                // context.push(Routes.therapistChatView, args: therapistModel.id);
-              },
-              color: AppColors.orange,
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
             ContactWidget(
               icon: AppAssets.phoneIcon,
               price: therapistModel.livePrice,
@@ -54,22 +38,20 @@ class TherapistContactSection extends StatelessWidget {
               iconSize: 17,
               additionalWidth: 12,
             ),
-            ContactButton(
-              icon: Icons.call,
-              onPressed: () {
-                context.push(
-                  Routes.bookingSessionView,
-                  args: {'therapist': therapistModel, 'type': 'call'},
-                );
-                // final String callID = generateCallID(
-                //   therapistId: therapistModel.id,
-                //   userId: getUser()!.userId,
-                // );
-                // context.push(Routes.therapistLiveView, args: callID);
-              },
-              color: AppColors.lightGreen,
-            ),
           ],
+        ),
+        const SizedBox(height: 16),
+        SizedBox(
+          width: double.infinity,
+          child: AppTextButton(
+            onPressed: () {
+              context.push(
+                Routes.bookingSessionView,
+                args: {'therapist': therapistModel},
+              );
+            },
+            buttonText: "Book a session",
+          ),
         ),
       ],
     );

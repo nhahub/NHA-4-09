@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/mood/data/models/recommendation_model.dart';
+
 import '../../features/Community/presentation/views/add_community_post_view.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
@@ -13,8 +13,9 @@ import '../../features/auth/presentation/views/register_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/auth/presentation/views/start_view.dart';
 import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
+import '../../features/home/presentation/manager/get_booking_sessions_cubit/get_booking_sessions_cubit.dart';
+import '../../features/home/presentation/views/all_booking_sessions_view.dart';
 import '../../features/home/presentation/views/all_meditations_view.dart';
-import '../../features/mood/presentation/views/recommendations_view.dart';
 import '../../features/home/presentation/views/water_tracking_view.dart';
 import '../../features/main/presentation/views/main_view.dart';
 import '../../features/meals_recommendations/data/models/recommended_food_item_model.dart';
@@ -28,6 +29,8 @@ import '../../features/meditations/domain/audio_entity.dart';
 import '../../features/meditations/presentation/manager/cubit/audio_cubit.dart';
 import '../../features/meditations/presentation/views/audio_view.dart';
 import '../../features/meditations/presentation/views/video_view.dart';
+import '../../features/mood/data/models/recommendation_model.dart';
+import '../../features/mood/presentation/views/recommendations_view.dart';
 import '../../features/onboarding/data/repos/questionnaire_repo.dart';
 import '../../features/onboarding/presentation/manager/onboarding_cubit/onboarding_cubit.dart';
 import '../../features/onboarding/presentation/manager/questionnaire_cubit/questionnaire_cubit.dart';
@@ -41,8 +44,10 @@ import '../../features/payment/presentation/views/subscribe_view.dart';
 import '../../features/profile/data/repos/settings_repo.dart';
 import '../../features/profile/presentation/views/privacy_policy_view.dart';
 import '../../features/profile/presentation/views/terms_and_conditions_view.dart';
+import '../../features/therapist/data/models/booking_model.dart';
 import '../../features/therapist/data/models/therapist_model.dart';
 import '../../features/therapist/data/models/therapist_review_model.dart';
+import '../../features/therapist/data/repos/availability_repo.dart';
 import '../../features/therapist/data/repos/booking_repo.dart';
 import '../../features/therapist/data/repos/chat_repo.dart';
 import '../../features/therapist/data/repos/therapist_repo.dart';
@@ -269,6 +274,10 @@ class AppRouter {
         final args = settings.arguments as Map<String, dynamic>;
         final double price = args['price'] as double;
         final String? type = args['type'] as String?;
+        final String? sessionType = args['sessionType'] as String?;
+        final BookingSlot? slot = args['slot'] as BookingSlot?;
+        final BookingTherapist? therapist =
+            args['therapist'] as BookingTherapist?;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) => PaymentCubit(
@@ -277,6 +286,9 @@ class AppRouter {
               bookingRepo: getIt.get<BookingRepo>(),
               price: price,
               type: type,
+              sessionType: sessionType,
+              slot: slot,
+              therapist: therapist,
             )..loadSavedCards(),
             child: const SubscribeView(),
           ),
@@ -286,12 +298,23 @@ class AppRouter {
         final args = settings.arguments as Map<String, dynamic>;
         final TherapistModel therapistModel =
             args['therapist'] as TherapistModel;
-        final String type = args['type'] as String;
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => BookingCubit(
+              therapist: therapistModel,
+              availabilityRepo: getIt.get<AvailabilityRepo>(),
+            )..getAvailableSlots(),
+            child: BookingSessionView(therapist: therapistModel),
+          ),
+        );
+
+      case Routes.allBookingSessionsView:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) =>
-                BookingCubit(therapist: therapistModel)..selectType(type),
-            child: BookingSessionView(therapist: therapistModel),
+                GetBookingSessionsCubit(bookingRepo: getIt.get<BookingRepo>())
+                  ..getBookingSessions(),
+            child: const AllBookingSessionsView(),
           ),
         );
 

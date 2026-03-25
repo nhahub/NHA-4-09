@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../../../domain/enums/mood_time_range.dart';
-import 'custom_mood_progress_graph.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+
 import '../../../../../mood/data/models/mood_chart.dart';
 import '../../../../../mood/presentation/manager/mood_progress_cubit/mood_progress_cubit.dart';
 import '../../../../../therapist/data/models/dummy/dummy_mood_data.dart';
-import 'package:skeletonizer/skeletonizer.dart';
+import '../../../../domain/enums/mood_time_range.dart';
+import 'custom_mood_progress_graph.dart';
 
 class MoodGraphContent extends StatelessWidget {
   final MoodPeriod period;

@@ -33,4 +33,5 @@ class Routes {
       '/recommendedFoodDetailsView';
   static const String addCardView = '/addCardView';
   static const String bookingSessionView = '/bookingSessionView';
+  static const String allBookingSessionsView = '/allbookingSessionsView';
 }

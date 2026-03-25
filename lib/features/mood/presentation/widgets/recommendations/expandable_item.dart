@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/theming/app_colors.dart';
-import 'package:moodly/features/mood/data/models/recommendation_model.dart';
 
+import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
+import '../../../data/models/recommendation_model.dart';
 
 class ExpandableItem extends StatelessWidget {
   final RecommendationSection recommendationSection;

@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/features/home/presentation/widgets/shared/back_button_appbar.dart';
 
+import '../../../../core/constants/constants.dart';
+import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../../data/models/meditation_session.dart';
 import '../widgets/video/about_session_card.dart';
 import '../widgets/video/audio_progress_bar.dart';

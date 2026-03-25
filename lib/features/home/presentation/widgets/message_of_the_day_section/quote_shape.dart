@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/home/presentation/widgets/message_of_the_day_section/main_card.dart';
-import 'package:moodly/features/home/presentation/widgets/message_of_the_day_section/rotated_gradient_card.dart';
-import 'package:moodly/features/home/presentation/widgets/message_of_the_day_section/rotated_inner_shadow_card.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../data/models/quote/quote_model.dart';
+import 'main_card.dart';
+import 'rotated_gradient_card.dart';
+import 'rotated_inner_shadow_card.dart';
 
 class QuoteShape extends StatelessWidget {
   final QuoteModel dailyQuote;

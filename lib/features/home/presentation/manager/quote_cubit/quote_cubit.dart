@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/home/data/models/quote/quote_model.dart';
-import 'package:moodly/features/home/data/repos/quote_repo.dart';
+import '../../../data/models/quote/quote_model.dart';
+import '../../../data/repos/quote_repo.dart';
 import '../../../../../core/errors/failure.dart';
 part 'quote_state.dart';
 

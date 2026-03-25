@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:moodly/features/mood/data/services/mood_local_service.dart';
-import 'package:moodly/features/mood/data/services/recommendation_local_service.dart';
+import '../services/mood_local_service.dart';
+import '../services/recommendation_local_service.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/networking/api_error_handler.dart';
 import '../models/recommendation_model.dart';

@@ -57,6 +57,7 @@ class AppAssets {
   static const String paymobLogo = 'assets/svgs/paymob_logo.svg';
   static const String avoidIcon = 'assets/svgs/avoid.svg';
   static const String suggestionIcon = 'assets/svgs/suggestion.svg';
+  static const String meetingIcon = 'assets/svgs/meeting.svg';
 
   // Images
   static const String start = 'assets/images/start.png';

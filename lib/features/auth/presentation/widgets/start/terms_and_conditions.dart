@@ -13,7 +13,7 @@ class TermsAndConditions extends StatelessWidget {
     return Text.rich(
       textAlign: TextAlign.center,
       TextSpan(
-        text: "By continuing, you agree to Zenspun's ",
+        text: "By continuing, you agree to Moodly's ",
         style: const TextStyle(color: AppColors.bodyGray, fontSize: 14),
         children: [
           TextSpan(
