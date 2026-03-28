@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../../../../core/enums/fade_position.dart';
+import '../../../../core/extensions/sliver_extension.dart';
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/widgets/custom_appbar.dart';
 import '../../../../core/widgets/custom_overlay_widget.dart';
@@ -32,36 +32,32 @@ class MeditationsView extends StatelessWidget {
         fadePosition: FadePosition.bottom,
         child: CustomScrollView(
           slivers: [
-            const SliverToBoxAdapter(child: SizedBox(height: 80)),
-            SliverToBoxAdapter(
-              child: CategoriesSection<Category>(
-                categories: Category.values,
-                getTitle: (cat) => cat.title,
-                onCategorySelected: (Category category) {},
-              ),
-            ),
-            const SliverToBoxAdapter(child: VerticalSpace()),
-            const SliverToBoxAdapter(child: RecommendedForYouSection()),
-            const SliverToBoxAdapter(child: VerticalSpace()),
+            space(height: 80),
+            CategoriesSection<Category>(
+              categories: Category.values,
+              getTitle: (cat) => cat.title,
+              onCategorySelected: (Category category) {},
+            ).toSliver(),
+            space(),
+            const RecommendedForYouSection().toSliver(),
+            space(),
             if (isPremium) ...[
-              const SliverToBoxAdapter(child: PopularCategoriesSection()),
-              const SliverToBoxAdapter(child: VerticalSpace()),
+              const PopularCategoriesSection().toSliver(),
+              space(),
             ],
             isPremium
-                ? const SliverToBoxAdapter(child: YourDailyRoutineSection())
-                : const SliverToBoxAdapter(
-                    child: CustomOverlayWidget(
-                      height: 320,
-                      child: YourDailyRoutineSection(),
-                    ),
-                  ),
+                ? const YourDailyRoutineSection().toSliver()
+                : const CustomOverlayWidget(
+                    height: 320,
+                    child: YourDailyRoutineSection(),
+                  ).toSliver(),
             if (isPremium) ...[
-              const SliverToBoxAdapter(child: VerticalSpace()),
-              const SliverToBoxAdapter(child: AsmrSection()),
-              const SliverToBoxAdapter(child: VerticalSpace()),
-              const SliverToBoxAdapter(child: NewArrivalsSection()),
+              space(),
+              const AsmrSection().toSliver(),
+              space(),
+              const NewArrivalsSection().toSliver(),
             ],
-            const SliverToBoxAdapter(child: SizedBox(height: 120)),
+            space(height: 120),
           ],
         ),
       ),
