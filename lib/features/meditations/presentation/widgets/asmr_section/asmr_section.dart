@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/meditations/presentation/widgets/asmr_section/asmr_bloc_builder.dart';
+import 'asmr_bloc_builder.dart';
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/widgets/app_section_header.dart';
 

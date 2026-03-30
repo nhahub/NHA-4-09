@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/home/presentation/widgets/shared/back_button_appbar.dart';
+import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 
 class TermsAndConditionsView extends StatelessWidget {
   const TermsAndConditionsView({super.key});

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../manager/booking_cubit/booking_cubit.dart';

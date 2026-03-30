@@ -7,8 +7,6 @@ sealed class RecommendedFoodState extends Equatable {
   List<Object?> get props => [];
 }
 
-class GetRecommendedFoodInitialState extends RecommendedFoodState {}
-
 class GetRecommendedFoodLoadingState extends RecommendedFoodState {}
 
 class GetRecommendedFoodSuccessState extends RecommendedFoodState {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/meditations/presentation/manager/audio_cubit/audio_cubit.dart';
-import 'package:moodly/features/meditations/presentation/widgets/asmr_section/asmr_list_view.dart';
+import '../../manager/audio_cubit/audio_cubit.dart';
+import 'asmr_list_view.dart';
 import '../../../data/models/audio_model.dart';
 import '../../../data/models/dummy/dummy_audio.dart';
 
@@ -20,7 +20,7 @@ class AsmrBlocBuilder extends StatelessWidget {
             );
           case AudioLoadedSuccessState(tracks: final List<AudioModel> tracks):
             return AsmrListView(tracks: tracks);
-          case AudioFailureState(message: final msg):
+          case AudioFailureState(message: final String msg):
             return Text(msg);
         }
       },

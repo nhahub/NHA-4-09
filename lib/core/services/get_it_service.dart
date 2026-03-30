@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:moodly/features/meditations/data/repos/audio_repo.dart';
-import 'package:moodly/features/meditations/data/services/audio_service.dart';
+import '../../features/meditations/data/repos/audio_repo.dart';
+import '../../features/meditations/data/services/audio_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -28,7 +28,7 @@ import '../../features/payment/data/services/stripe_service.dart';
 import '../../features/payment/data/services/subscription_local_service.dart';
 import '../../features/payment/data/services/subscription_remote_service.dart';
 import '../../features/payment/domain/repos/payment_repo.dart';
-import '../../features/profile/data/repos/settings_repo.dart';
+import '../../features/settings/data/repos/settings_repo.dart';
 import '../../features/therapist/data/repos/availability_repo.dart';
 import '../../features/therapist/data/repos/booking_repo.dart';
 import '../../features/therapist/data/repos/chat_repo.dart';

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:moodly/core/models/media_model.dart';
+import '../../../../core/models/media_model.dart';
 
 part 'audio_model.g.dart';
 

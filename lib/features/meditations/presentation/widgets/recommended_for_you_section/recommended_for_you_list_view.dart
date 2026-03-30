@@ -7,10 +7,13 @@ import '../../../../../core/widgets/shared/custom_card.dart';
 import '../../../data/mock_data/recommended_for_you_data.dart';
 
 class RecommendedForYouListView extends StatelessWidget {
-  const RecommendedForYouListView({super.key});
+  final bool isLoading;
+
+  const RecommendedForYouListView({super.key, this.isLoading = false});
   @override
   Widget build(BuildContext context) {
     return HorizontalPaddingList(
+      isLoading: isLoading,
       height: 254,
       itemCount: recommendedForYouData.length,
       itemBuilder: (context, index) {

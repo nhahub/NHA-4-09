@@ -1,5 +1,5 @@
-import 'package:moodly/features/meditations/data/models/audio_model.dart';
 import '../../../../../core/theming/app_assets.dart';
+import '../audio_model.dart';
 
 class DummyTracks {
   static List<AudioModel> dummyTracks = List.generate(

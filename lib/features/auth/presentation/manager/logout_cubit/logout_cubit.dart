@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/errors/failure.dart';
-import '../../../../profile/data/repos/settings_repo.dart';
+import '../../../../settings/data/repos/settings_repo.dart';
 
 part 'logout_state.dart';
 

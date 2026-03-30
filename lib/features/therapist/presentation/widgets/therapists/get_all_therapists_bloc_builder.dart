@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/therapist/data/models/therapist_model.dart';
 
 import '../../../../../core/constants/constants.dart';
 import '../../../data/models/dummy/dummy_therapists.dart';
@@ -19,29 +20,27 @@ class GetAllTherapistsBlocBuilder extends StatelessWidget {
       ),
       sliver: BlocBuilder<TherapistCubit, TherapistState>(
         builder: (context, state) {
-          switch (state.runtimeType) {
-            case const (GetTherapistsLoadingState):
+          switch (state) {
+            case GetTherapistsLoadingState():
               return GetAllTherapistsSliverList(
-                isLoading: state is GetTherapistsLoadingState,
+                isLoading: true,
                 therapists: DummyTherapists.dummyTherapists,
               );
-            case const (GetTherapistsLoadedState):
-              final loadedState = state as GetTherapistsLoadedState;
-              return GetAllTherapistsSliverList(
-                therapists: loadedState.therapists,
-              );
-            case const (GetTherapistFailureState):
-              final errorState = state as GetTherapistFailureState;
+
+            case GetTherapistsLoadedState(
+              :final List<TherapistModel> therapists,
+            ):
+              return GetAllTherapistsSliverList(therapists: therapists);
+
+            case GetTherapistFailureState(:final String errorMsg):
               return SliverToBoxAdapter(
                 child: Center(
                   child: Text(
-                    errorState.errorMsg,
+                    errorMsg,
                     style: const TextStyle(color: Colors.red),
                   ),
                 ),
               );
-            default:
-              return const SliverToBoxAdapter();
           }
         },
       ),

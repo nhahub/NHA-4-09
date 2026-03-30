@@ -7,10 +7,12 @@ import '../../../../../core/widgets/shared/custom_card.dart';
 import '../../../data/mock_data/your_daily_routine_data.dart';
 
 class YourDailyRoutineListView extends StatelessWidget {
-  const YourDailyRoutineListView({super.key});
+  final bool isLoading;
+  const YourDailyRoutineListView({super.key, this.isLoading = false});
   @override
   Widget build(BuildContext context) {
     return HorizontalPaddingList(
+      isLoading: isLoading,
       height: 254,
       itemCount: yourDailyRoutineData.length,
       itemBuilder: (context, index) {

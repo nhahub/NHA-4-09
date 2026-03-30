@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../Community/presentation/views/community_view.dart';
 
 class CommunityProvidersWrapper extends StatelessWidget {

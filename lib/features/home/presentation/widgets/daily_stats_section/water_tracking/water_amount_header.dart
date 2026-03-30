@@ -16,36 +16,39 @@ class WaterAmountHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WaterTrackingCubit, WaterCupsModel>(
-      builder: (context, state) {
-        return Row(
-          children: [
-            Text(
-              "Water",
-              style: AppStyles.medium15.copyWith(color: AppColors.bodyGray),
-            ),
-            const SizedBox(width: 10),
-            Text("${state.formattedAmount}L", style: AppStyles.extraBold21),
-            const SizedBox(width: 5),
-            Text(
-              "/ 2L",
-              style: AppStyles.extraBold15.copyWith(color: AppColors.bodyGray),
-            ),
-            if (isWithArrow) ...[
-              const Spacer(),
-              InkWell(
-                onTap: () {
-                  context.push(
-                    Routes.waterTrackingView,
-                    args: context.read<WaterTrackingCubit>(),
-                  );
-                },
-                child: SvgPicture.asset(AppAssets.arrowRightIosIcon),
-              ),
-            ],
-          ],
-        );
-      },
+    return Row(
+      children: [
+        Text(
+          "Water",
+          style: AppStyles.medium15.copyWith(color: AppColors.bodyGray),
+        ),
+        const SizedBox(width: 10),
+        BlocBuilder<WaterTrackingCubit, WaterCupsModel>(
+          builder: (context, state) {
+            return Text(
+              "${state.formattedAmount}L",
+              style: AppStyles.extraBold21,
+            );
+          },
+        ),
+        const SizedBox(width: 5),
+        Text(
+          "/ 2L",
+          style: AppStyles.extraBold15.copyWith(color: AppColors.bodyGray),
+        ),
+        if (isWithArrow) ...[
+          const Spacer(),
+          InkWell(
+            onTap: () {
+              context.push(
+                Routes.waterTrackingView,
+                args: context.read<WaterTrackingCubit>(),
+              );
+            },
+            child: SvgPicture.asset(AppAssets.arrowRightIosIcon),
+          ),
+        ],
+      ],
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/theming/app_colors.dart';
 
 import '../../../../../core/constants/constants.dart';
+import '../../../../../core/theming/app_colors.dart';
 import '../../../../therapist/data/models/booking_model.dart';
 
 class BookedSessionAvatar extends StatelessWidget {

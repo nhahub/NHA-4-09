@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 
-class VerticalSpace extends StatelessWidget {
-  const VerticalSpace({super.key});
+import '../extensions/sliver_extension.dart';
 
-  @override
-  Widget build(BuildContext context) {
-    return const SizedBox(height: 20);
-  }
-}
+Widget space({double height = 20}) => SizedBox(height: height).toSliver();

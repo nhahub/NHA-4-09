@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/constants/constants.dart';
-import '../../../data/services/audio_player_service.dart';
 import '../../../data/models/audio_model.dart';
+import '../../../data/services/audio_player_service.dart';
 import 'audio_info.dart';
 import 'audio_progress_bar.dart';
 import 'player_controls.dart';

@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:moodly/features/meditations/data/models/audio_model.dart';
-import 'package:moodly/features/meditations/data/services/audio_service.dart';
+import '../models/audio_model.dart';
+import '../services/audio_service.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/networking/api_error_handler.dart';

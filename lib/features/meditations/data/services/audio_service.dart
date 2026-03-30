@@ -1,4 +1,4 @@
-import 'package:moodly/core/constants/constants.dart';
+import '../../../../core/constants/constants.dart';
 
 import '../../../../core/services/supabase_crud_service.dart';
 import '../models/audio_model.dart';

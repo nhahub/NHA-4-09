@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/meditations/data/models/audio_model.dart';
+import '../../../data/models/audio_model.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/widgets/horizontal_padding_list.dart';
