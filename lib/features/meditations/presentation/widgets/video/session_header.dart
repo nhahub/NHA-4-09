@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/models/meditation_session.dart';
@@ -43,7 +44,6 @@ class _SessionHeaderState extends State<SessionHeader> {
       // Show pause icon and keep it visible.
       setState(() => _overlayOpacity = 1.0);
     }
-
   }
 
   IconData get _overlayIcon =>
@@ -85,11 +85,7 @@ class _SessionHeaderState extends State<SessionHeader> {
                       color: Colors.black.withValues(alpha: 0.38),
                       shape: BoxShape.circle,
                     ),
-                    child: Icon(
-                      _overlayIcon,
-                      color: Colors.white,
-                      size: 34,
-                    ),
+                    child: Icon(_overlayIcon, color: Colors.white, size: 34),
                   ),
                 ),
               ),
@@ -133,29 +129,37 @@ class _SessionHeaderState extends State<SessionHeader> {
 
 class _BackgroundImage extends StatelessWidget {
   final String? imageUrl;
+
   const _BackgroundImage({this.imageUrl});
+
+  static const _fallbackColor = Color(0xFF2D4A6E);
 
   @override
   Widget build(BuildContext context) {
-    if (imageUrl == null || imageUrl!.isEmpty) {
-      return Container(color: const Color(0xFF2D4A6E));
+    final url = imageUrl;
+
+    if (url == null || url.isEmpty) {
+      return Container(color: _fallbackColor);
     }
-    return Image.network(
-      imageUrl!,
+
+    return CachedNetworkImage(
+      imageUrl: url,
       fit: BoxFit.cover,
-      errorBuilder: (_, __, ___) => Container(
-        color: const Color(0xFF2D4A6E),
+
+      placeholder: (context, url) => Container(
+        color: _fallbackColor,
+        child: const Center(
+          child: CircularProgressIndicator(
+            color: Colors.white54,
+            strokeWidth: 2,
+          ),
+        ),
+      ),
+
+      errorWidget: (context, url, error) => Container(
+        color: _fallbackColor,
         child: const Icon(Icons.image_not_supported, color: Colors.white54),
       ),
-      loadingBuilder: (_, child, loadingProgress) {
-        if (loadingProgress == null) return child;
-        return Container(
-          color: const Color(0xFF2D4A6E),
-          child: const Center(
-            child: CircularProgressIndicator(color: Colors.white54),
-          ),
-        );
-      },
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/helpers/alpha_from_percent.dart';
@@ -15,10 +16,16 @@ class PostMedia extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         child: AspectRatio(
           aspectRatio: 1.6,
-          child: Image.network(
-            images.first,
+          child: CachedNetworkImage(
+            imageUrl: images.first,
             fit: BoxFit.cover,
             width: double.infinity,
+            placeholder: (context, url) =>
+                Container(color: Colors.grey.shade300),
+            errorWidget: (context, url, error) => Container(
+              color: Colors.grey,
+              child: const Icon(Icons.broken_image),
+            ),
           ),
         ),
       );
@@ -42,7 +49,16 @@ class PostMedia extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              Image.network(images[index], fit: BoxFit.cover),
+              CachedNetworkImage(
+                imageUrl: images[index],
+                fit: BoxFit.cover,
+                placeholder: (context, url) =>
+                    Container(color: Colors.grey.shade300),
+                errorWidget: (context, url, error) => Container(
+                  color: Colors.grey,
+                  child: const Icon(Icons.broken_image),
+                ),
+              ),
               if (isLast)
                 Container(
                   color: Colors.black.withAlpha(alphaFromPercentage(50)),

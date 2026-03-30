@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../core/constants/constants.dart';
-import '../../../../../core/theming/app_colors.dart';
 import '../../../../therapist/data/models/booking_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
 
 class BookedSessionAvatar extends StatelessWidget {
   const BookedSessionAvatar({super.key, required this.bookingModel});
@@ -11,41 +11,37 @@ class BookedSessionAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final imageUrl = bookingModel.therapistImage.isNotEmpty
+        ? bookingModel.therapistImage
+        : kImagePlaceHolder;
+
     return CircleAvatar(
       radius: 30,
       backgroundColor: Colors.grey[200],
       child: ClipOval(
-        child: Image.network(
-          bookingModel.therapistImage.isNotEmpty
-              ? bookingModel.therapistImage
-              : kImagePlaceHolder,
+        child: CachedNetworkImage(
+          imageUrl: imageUrl,
           width: 60,
           height: 60,
           fit: BoxFit.cover,
-          cacheWidth: 180,
-          cacheHeight: 180,
 
-          loadingBuilder: (context, child, loadingProgress) {
-            if (loadingProgress == null) return child;
-            return Center(
-              child: CircularProgressIndicator(
-                color: AppColors.brandGreen,
-                strokeWidth: 2,
-                value: loadingProgress.expectedTotalBytes != null
-                    ? loadingProgress.cumulativeBytesLoaded /
-                          loadingProgress.expectedTotalBytes!
-                    : null,
-              ),
-            );
-          },
-          errorBuilder: (context, error, stackTrace) {
-            return Container(
-              width: 60,
-              height: 60,
-              color: Colors.grey[300],
-              child: const Icon(Icons.person, color: Colors.grey),
-            );
-          },
+          placeholder: (context, url) => const Center(
+            child: SizedBox(
+              width: 18,
+              height: 18,
+              child: CircularProgressIndicator(strokeWidth: 2),
+            ),
+          ),
+
+          errorWidget: (context, url, error) => Container(
+            width: 60,
+            height: 60,
+            color: Colors.grey[300],
+            child: const Icon(
+              Icons.person,
+              color: Colors.grey,
+            ),
+          ),
         ),
       ),
     );

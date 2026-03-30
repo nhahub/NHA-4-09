@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/models/post_model.dart';
@@ -12,9 +13,26 @@ class PostUserAvatar extends StatelessWidget {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        CircleAvatar(
-          radius: 20,
-          backgroundImage: NetworkImage(postModel.userAvatar),
+        ClipOval(
+          child: CachedNetworkImage(
+            imageUrl: postModel.userAvatar,
+            width: 40,
+            height: 40,
+            fit: BoxFit.cover,
+            // While the image is loading, show a placeholder
+            placeholder: (context, url) => Container(
+              width: 40,
+              height: 40,
+              color: Colors.grey.shade300,
+              child: const Icon(Icons.person, size: 18, color: Colors.white),
+            ),
+            errorWidget: (context, url, error) => Container(
+              width: 40,
+              height: 40,
+              color: Colors.grey,
+              child: const Icon(Icons.person),
+            ),
+          ),
         ),
         if (postModel.isPremium)
           Positioned(

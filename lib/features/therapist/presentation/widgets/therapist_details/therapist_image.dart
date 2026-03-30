@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../home/presentation/widgets/sessions_for_you_section/discount_container.dart';
@@ -14,13 +15,27 @@ class TherapistImage extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(20),
-          child: Image.network(
-            therapistModel.image,
+          child: CachedNetworkImage(
+            imageUrl: therapistModel.image,
             fit: BoxFit.cover,
             height: 200,
             width: double.infinity,
+
+            placeholder: (context, url) => Container(
+              height: 200,
+              width: double.infinity,
+              color: Colors.grey.shade300,
+            ),
+
+            errorWidget: (context, url, error) => Container(
+              height: 200,
+              width: double.infinity,
+              color: Colors.grey,
+              child: const Icon(Icons.broken_image),
+            ),
           ),
         ),
+
         if (therapistModel.discount != 0)
           Positioned(
             bottom: 16,

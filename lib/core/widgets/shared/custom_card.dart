@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/widgets/shared/adaptive_image.dart';
 
 import '../../models/media_model.dart';
 import 'card_description_container.dart';
@@ -19,23 +20,23 @@ class CustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ImageProvider imageProvider;
-    if (mediaEntity.coverUrl.startsWith('http')) {
-      imageProvider = NetworkImage(mediaEntity.coverUrl);
-    } else {
-      imageProvider = AssetImage(mediaEntity.coverUrl);
-    }
+    final width = cardWidth ?? 242;
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: cardWidth ?? 242,
+        width: width,
         decoration: BoxDecoration(
-          image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
           color: Colors.grey.shade300,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Stack(
           children: [
+            AdaptiveImage(
+              imageUrl: mediaEntity.coverUrl,
+              width: width,
+              height: double.infinity,
+              borderRadius: BorderRadius.circular(16),
+            ),
             Positioned(
               bottom: 0,
               left: 0,

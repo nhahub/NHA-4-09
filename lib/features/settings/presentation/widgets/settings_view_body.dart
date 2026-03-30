@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/functions/get_user.dart';
+import 'package:moodly/core/widgets/user_avatar.dart';
 
 import '../../../../core/enums/fade_position.dart';
 import '../../../../core/widgets/fade_scrollable.dart';
@@ -13,6 +15,12 @@ class SettingsViewBody extends StatelessWidget {
       fadePosition: FadePosition.bottom,
       child: Column(
         children: [
+          UserAvatar(
+            name: getUser()?.name ?? '',
+            radius: 32,
+            fontSize: 30,
+            imageUrl: getUser()?.image,
+          ),
           IconButton(
             onPressed: () {
               logoutDialog(context);
