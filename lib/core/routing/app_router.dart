@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/settings/presentation/views/subscription_management_view.dart';
 
 import '../../features/Community/presentation/views/add_community_post_view.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -42,6 +43,8 @@ import '../../features/payment/presentation/views/add_card_view.dart';
 import '../../features/payment/presentation/views/premium_view.dart';
 import '../../features/payment/presentation/views/subscribe_view.dart';
 import '../../features/settings/data/repos/settings_repo.dart';
+import '../../features/settings/presentation/views/about_view.dart';
+import '../../features/settings/presentation/views/edit_profile_view.dart';
 import '../../features/settings/presentation/views/privacy_policy_view.dart';
 import '../../features/settings/presentation/views/terms_and_conditions_view.dart';
 import '../../features/therapist/data/models/booking_model.dart';
@@ -332,6 +335,17 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => const AllMeditationsView(),
         );
+
+      case Routes.editProfileView:
+        return MaterialPageRoute(builder: (context) => const EditProfileView());
+
+      case Routes.subscriptionManagementView:
+        return MaterialPageRoute(
+          builder: (context) => const SubscriptionManagementView(),
+        );
+
+      case Routes.aboutView:
+        return MaterialPageRoute(builder: (context) => const AboutView());
 
       case Routes.allAvailableSessionsView:
         return MaterialPageRoute(

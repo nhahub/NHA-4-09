@@ -33,6 +33,7 @@ class SettingsView extends StatelessWidget {
             color: AppColors.brandGreen,
           ),
           child: Scaffold(
+            extendBodyBehindAppBar: true,
             appBar: CustomAppbar(
               title: "Settings",
               isPremium: isPremium,

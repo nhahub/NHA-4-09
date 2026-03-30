@@ -23,6 +23,8 @@ class UserAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = radius! * 2;
+
     if (isAnonymous) {
       return CircleAvatar(
         backgroundColor: AppColors.getColorFromId(id: getUser()!.userId),
@@ -35,21 +37,37 @@ class UserAvatar extends StatelessWidget {
         ),
       );
     }
-    if (imageUrl != null) {
+    if (imageUrl != null && imageUrl!.isNotEmpty) {
       return CircleAvatar(
-        backgroundColor: AppColors.lightGrey,
         radius: radius,
+        backgroundColor: AppColors.lightGrey,
         child: ClipOval(
           child: CachedNetworkImage(
             imageUrl: imageUrl!,
-            fit: BoxFit.fill,
-            width: radius! * 2,
-            height: radius! * 2,
-            errorWidget: (context, url, error) => const Icon(Icons.error),
+            width: size,
+            height: size,
+            fit: BoxFit.cover,
+
+            placeholder: (context, url) => Container(
+              width: size,
+              height: size,
+              color: AppColors.lightGrey,
+              child: const Center(
+                child: CircularProgressIndicator(strokeWidth: 2),
+              ),
+            ),
+
+            errorWidget: (context, url, error) => Container(
+              width: size,
+              height: size,
+              color: AppColors.lightGrey,
+              child: const Icon(Icons.person),
+            ),
           ),
         ),
       );
     }
+
     final String initial = name.isNotEmpty ? name[0].toUpperCase() : "?";
 
     return CircleAvatar(

@@ -60,6 +60,14 @@ class AppAssets {
   static const String meetingIcon = 'assets/svgs/meeting.svg';
   static const String videoCallIcon = 'assets/svgs/video_call.svg';
   static const String timeIcon = 'assets/svgs/time.svg';
+  static const String profileIcon = 'assets/svgs/profile.svg';
+  static const String logoutIcon = 'assets/svgs/logout.svg';
+  static const String aboutIcon = 'assets/svgs/about.svg';
+  static const String rateIcon = 'assets/svgs/rate.svg';
+  static const String privacyPolicyIcon = 'assets/svgs/privacy_policy.svg';
+  static const String termsAndConditionsIcon =
+      'assets/svgs/terms_and_conditions.svg';
+  static const String subscriptionIcon = 'assets/svgs/subscription.svg';
 
   // Images
   static const String start = 'assets/images/start.png';
@@ -122,10 +130,5 @@ class AppAssets {
   static const String routine2 = 'assets/mock_images/routine2.jpg';
   static const String routine3 = 'assets/mock_images/routine3.jpg';
   static const String routine4 = 'assets/mock_images/routine4.jpg';
-  static const String situation1 = 'assets/mock_images/situation1.jpg';
-  static const String situation2 = 'assets/mock_images/situation2.jpg';
-  static const String situation3 = 'assets/mock_images/situation3.jpg';
-  static const String situation4 = 'assets/mock_images/situation4.jpg';
-  static const String situation5 = 'assets/mock_images/situation5.jpg';
   static const String meal = 'assets/images/meal.png';
 }
