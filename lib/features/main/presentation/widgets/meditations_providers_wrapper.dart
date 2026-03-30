@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../meditations/presentation/manager/audio_cubit/audio_cubit.dart';
-import '../../../meditations/presentation/views/meditations_view.dart';
+
 import '../../../../core/services/get_it_service.dart';
 import '../../../meditations/data/repos/audio_repo.dart';
+import '../../../meditations/presentation/manager/audio_cubit/audio_cubit.dart';
+import '../../../meditations/presentation/views/meditations_view.dart';
 
 class MeditationsProvidersWrapper extends StatelessWidget {
   final bool isPremium;

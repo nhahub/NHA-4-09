@@ -1,7 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
 import '../../../../../core/constants/constants.dart';
 import '../../../../therapist/data/models/booking_model.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 
 class BookedSessionAvatar extends StatelessWidget {

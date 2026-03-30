@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/widgets/shared/adaptive_image.dart';
+import 'adaptive_image.dart';
 
 import '../../models/media_model.dart';
 import 'card_description_container.dart';

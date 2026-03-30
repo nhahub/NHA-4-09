@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../functions/format_duration.dart';
 
+import '../../functions/format_duration.dart';
 import '../../helpers/alpha_from_percent.dart';
 import '../../theming/app_styles.dart' show AppStyles;
 

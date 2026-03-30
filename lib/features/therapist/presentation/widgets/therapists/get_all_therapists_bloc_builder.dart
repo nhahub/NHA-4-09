@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/therapist/data/models/therapist_model.dart';
+import '../../../data/models/therapist_model.dart';
 
 import '../../../../../core/constants/constants.dart';
 import '../../../data/models/dummy/dummy_therapists.dart';

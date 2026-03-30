@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'booked_session_avatar.dart';
-import 'cancel_session_button.dart';
+
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../../../therapist/data/models/booking_model.dart';
+import 'booked_session_avatar.dart';
+import 'cancel_session_button.dart';
 
 class BookedSessionHeader extends StatelessWidget {
   const BookedSessionHeader({super.key, required this.bookingModel});

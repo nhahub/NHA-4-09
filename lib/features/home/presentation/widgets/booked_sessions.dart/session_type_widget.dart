@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../../../therapist/data/models/booking_model.dart';
 
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_colors.dart';
+import '../../../../therapist/data/models/booking_model.dart';
 
 class SessionTypeWidget extends StatelessWidget {
   const SessionTypeWidget({super.key, required this.bookingModel});

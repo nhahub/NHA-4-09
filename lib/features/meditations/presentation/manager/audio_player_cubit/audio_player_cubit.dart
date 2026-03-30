@@ -1,8 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../../core/errors/audio_error.dart';
-import '../../../data/services/audio_player_service.dart';
 import '../../../data/models/audio_model.dart';
+import '../../../data/services/audio_player_service.dart';
+
 part 'audio_player_state.dart';
 
 class AudioPlayerCubit extends Cubit<AudioPlayerState> {

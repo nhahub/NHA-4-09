@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/meals_recommendations/data/models/recommended_food_item_model.dart';
+import '../../data/models/recommended_food_item_model.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/enums/fade_position.dart';
