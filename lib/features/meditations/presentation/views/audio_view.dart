@@ -6,6 +6,8 @@ import '../../../../core/functions/error_dialog.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/widgets/custom_circular_progress_indicator.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
+import '../../data/models/audio_model.dart';
+import '../../data/services/audio_player_service.dart';
 import '../manager/audio_player_cubit/audio_player_cubit.dart';
 import '../widgets/audio/audio_view_body.dart';
 
@@ -36,8 +38,8 @@ class AudioView extends StatelessWidget {
                   ),
                 );
               case AudioPlayerInitState(
-                audioService: final service,
-                audioModel: final model,
+                audioService: final AudioPlayerService service,
+                audioModel: final AudioModel model,
               ):
                 return AudioViewBody(audioService: service, audioModel: model);
               default:

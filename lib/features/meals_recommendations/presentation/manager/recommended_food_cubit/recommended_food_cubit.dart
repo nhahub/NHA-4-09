@@ -13,11 +13,9 @@ class RecommendedFoodCubit extends Cubit<RecommendedFoodState> {
   final RecommendedFoodRepo recommendedFoodRepo;
 
   RecommendedFoodCubit({required this.recommendedFoodRepo})
-    : super(GetRecommendedFoodInitialState());
+    : super(GetRecommendedFoodLoadingState());
 
   Future<void> getRecommendedFood({required FoodType foodType}) async {
-    emit(GetRecommendedFoodLoadingState());
-
     final Either<Failure, List<RecommendedFoodItemModel>> response =
         await recommendedFoodRepo.getRecommendedFood(foodType: foodType);
 

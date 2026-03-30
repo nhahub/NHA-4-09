@@ -20,7 +20,7 @@ class AsmrBlocBuilder extends StatelessWidget {
             );
           case AudioLoadedSuccessState(tracks: final List<AudioModel> tracks):
             return AsmrListView(tracks: tracks);
-          case AudioFailureState(message: final msg):
+          case AudioFailureState(message: final String msg):
             return Text(msg);
         }
       },

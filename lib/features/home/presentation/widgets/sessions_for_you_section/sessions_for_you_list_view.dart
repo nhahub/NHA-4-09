@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/widgets/horizontal_padding_list.dart';
 import '../../../../therapist/data/models/dummy/dummy_therapists.dart';
+import '../../../../therapist/data/models/therapist_model.dart';
 import '../../../../therapist/presentation/manager/therapist_cubit/therapist_cubit.dart';
 import 'sessions_for_you_card.dart';
 
@@ -13,11 +14,11 @@ class SessionsForYouListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TherapistCubit, TherapistState>(
       builder: (context, state) {
-        switch (state.runtimeType) {
-          case const (GetTherapistsLoadingState):
+        switch (state) {
+          case GetTherapistsLoadingState():
             return HorizontalPaddingList(
               height: 382,
-              isLoading: state is GetTherapistsLoadingState,
+              isLoading: true,
               itemCount: DummyTherapists.dummyTherapists.length,
               itemBuilder: (context, index) {
                 return SessionsForYouCard(
@@ -25,30 +26,26 @@ class SessionsForYouListView extends StatelessWidget {
                 );
               },
             );
-          case const (GetTherapistsLoadedState):
-            final loadedState = state as GetTherapistsLoadedState;
+
+          case GetTherapistsLoadedState(:final List<TherapistModel> therapists):
             return HorizontalPaddingList(
               height: 382,
-              itemCount: loadedState.therapists.length,
+              itemCount: therapists.length,
               itemBuilder: (context, index) {
-                return SessionsForYouCard(
-                  therapistModel: loadedState.therapists[index],
-                );
+                return SessionsForYouCard(therapistModel: therapists[index]);
               },
             );
-          case const (GetTherapistFailureState):
-            final errorState = state as GetTherapistFailureState;
+
+          case GetTherapistFailureState(:final String errorMsg):
             return SizedBox(
               height: 382,
               child: Center(
                 child: Text(
-                  errorState.errorMsg,
+                  errorMsg,
                   style: const TextStyle(color: Colors.red),
                 ),
               ),
             );
-          default:
-            return const SizedBox.shrink();
         }
       },
     );

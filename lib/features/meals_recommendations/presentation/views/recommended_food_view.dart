@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/meals_recommendations/data/models/recommended_food_item_model.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/enums/fade_position.dart';
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/widgets/custom_circular_progress_indicator.dart';
 import '../../../../core/widgets/fade_scrollable.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../../../meditations/presentation/widgets/categories_section/categories_section.dart';
+import '../../data/models/dummy/dummy_recommended_food_items.dart';
 import '../../domain/enums/food_type.dart';
 import '../manager/recommended_food_cubit/recommended_food_cubit.dart';
 import '../widgets/recommended_food_list_view.dart';
@@ -60,42 +60,30 @@ class _RecommendedFoodViewState extends State<RecommendedFoodView> {
               const SizedBox(height: 10),
               BlocBuilder<RecommendedFoodCubit, RecommendedFoodState>(
                 builder: (context, state) {
-                  switch (state.runtimeType) {
-                    case const (GetRecommendedFoodInitialState):
-                      return const Center(
-                        child: CustomCircularProgressIndicator(
-                          color: AppColors.brandGreen,
-                        ),
-                      );
-                    case const (GetRecommendedFoodLoadingState):
-                      return const Center(
-                        child: CustomCircularProgressIndicator(
-                          color: AppColors.brandGreen,
-                        ),
-                      );
-                    case const (GetRecommendedFoodSuccessState):
-                      final GetRecommendedFoodSuccessState loadedState =
-                          state as GetRecommendedFoodSuccessState;
+                  switch (state) {
+                    case GetRecommendedFoodLoadingState():
                       return RecommendedFoodListView(
-                        food: loadedState.recommendedFoodList,
+                        food: DummyRecommendedFoodItems.dummyFoodItems,
+                        controller: _scrollController,
+                        isLoading: true,
+                      );
+
+                    case GetRecommendedFoodSuccessState(
+                      :final List<RecommendedFoodItemModel> recommendedFoodList,
+                    ):
+                      return RecommendedFoodListView(
+                        food: recommendedFoodList,
                         controller: _scrollController,
                       );
-                    case const (GetRecommendedFoodFailureState):
-                      final GetRecommendedFoodFailureState failureState =
-                          state as GetRecommendedFoodFailureState;
+
+                    case GetRecommendedFoodFailureState(:final message):
                       return Padding(
                         padding: const EdgeInsets.symmetric(
                           horizontal: kAppHorizontalPadding,
                         ),
-                        child: Text(
-                          failureState.message,
-                          textAlign: TextAlign.center,
-                        ),
+                        child: Text(message, textAlign: TextAlign.center),
                       );
-
-                    default:
                   }
-                  return const SizedBox.shrink();
                 },
               ),
             ],

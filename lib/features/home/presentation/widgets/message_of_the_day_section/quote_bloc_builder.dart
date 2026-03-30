@@ -13,18 +13,18 @@ class QuoteBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<QuoteCubit, QuoteState>(
       builder: (context, state) {
-        if (state is QuoteLoadingState) {
-          return const QuoteShape(
-            dailyQuote: DummyQuote.dummyQuote,
-            isLoading: true,
-          );
-        } else if (state is QuoteSuccessLoadedState) {
-          final QuoteModel dailyQuote = state.quoteModel;
-          return QuoteShape(dailyQuote: dailyQuote);
-        } else if (state is QuoteFailureState) {
-          return Center(child: Text(state.errorMessage));
-        } else {
-          return const SizedBox.shrink();
+        switch (state) {
+          case QuoteLoadingState():
+            return const QuoteShape(
+              dailyQuote: DummyQuote.dummyQuote,
+              isLoading: true,
+            );
+
+          case QuoteSuccessLoadedState(:final QuoteModel quoteModel):
+            return QuoteShape(dailyQuote: quoteModel);
+
+          case QuoteFailureState(:final String errorMessage):
+            return Center(child: Text(errorMessage));
         }
       },
     );

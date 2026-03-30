@@ -1,13 +1,4 @@
-enum Category {
-  all,
-  sleep,
-  anxiety,
-  focus,
-  relaxation,
-  selfEsteem,
-  motivation,
-  shortSleeping,
-}
+enum Category { all, sleep, anxiety, focus, relaxation, motivation }
 
 extension CategoryExtension on Category {
   String get title {
@@ -22,12 +13,8 @@ extension CategoryExtension on Category {
         return "Focus";
       case Category.relaxation:
         return "Relaxation";
-      case Category.selfEsteem:
-        return "Self Esteem";
       case Category.motivation:
         return "Motivation";
-      case Category.shortSleeping:
-        return "Short (<5 min)";
     }
   }
 }
