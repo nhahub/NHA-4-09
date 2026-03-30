@@ -41,9 +41,9 @@ import '../../features/payment/presentation/manager/payment_cubit/payment_cubit.
 import '../../features/payment/presentation/views/add_card_view.dart';
 import '../../features/payment/presentation/views/premium_view.dart';
 import '../../features/payment/presentation/views/subscribe_view.dart';
-import '../../features/profile/data/repos/settings_repo.dart';
-import '../../features/profile/presentation/views/privacy_policy_view.dart';
-import '../../features/profile/presentation/views/terms_and_conditions_view.dart';
+import '../../features/settings/data/repos/settings_repo.dart';
+import '../../features/settings/presentation/views/privacy_policy_view.dart';
+import '../../features/settings/presentation/views/terms_and_conditions_view.dart';
 import '../../features/therapist/data/models/booking_model.dart';
 import '../../features/therapist/data/models/therapist_model.dart';
 import '../../features/therapist/data/models/therapist_review_model.dart';
