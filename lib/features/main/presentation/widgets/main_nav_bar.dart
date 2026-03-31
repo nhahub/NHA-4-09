@@ -22,7 +22,7 @@ class MainNavBar extends StatelessWidget {
       AppAssets.usersIcon,
       AppAssets.playCircleIcon,
       AppAssets.chatIcon,
-      AppAssets.userCircleIcon,
+      AppAssets.settingsIcon,
     ];
 
     return Container(
