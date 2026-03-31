@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/functions/get_user.dart';
-import 'package:moodly/features/settings/data/models/app_rating_model.dart';
+import '../../../../../core/functions/get_user.dart';
+import '../../../data/models/app_rating_model.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../data/repos/app_rating_repo.dart';

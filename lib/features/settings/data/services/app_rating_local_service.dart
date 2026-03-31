@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:moodly/features/settings/data/models/app_rating_model.dart';
+import '../models/app_rating_model.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/services/cache_helper.dart';

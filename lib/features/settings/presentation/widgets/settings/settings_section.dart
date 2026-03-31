@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
+import '../../../../../core/constants/constants.dart';
 import '../../helpers/handle_settings_action.dart';
 import 'custom_settings_tile.dart';
 import '../../../../../core/theming/app_styles.dart';

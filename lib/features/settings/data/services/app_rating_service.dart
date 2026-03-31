@@ -1,6 +1,6 @@
-import 'package:moodly/core/functions/get_user.dart';
-import 'package:moodly/core/services/supabase_crud_service.dart';
-import 'package:moodly/features/settings/data/models/app_rating_model.dart';
+import '../../../../core/functions/get_user.dart';
+import '../../../../core/services/supabase_crud_service.dart';
+import '../models/app_rating_model.dart';
 
 import '../../../../core/constants/constants.dart';
 

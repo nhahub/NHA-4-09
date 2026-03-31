@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'adaptive_image.dart';
 
 import '../../models/media_model.dart';
+import 'adaptive_image.dart';
 import 'card_description_container.dart';
 import 'category_container.dart';
 import 'play_button.dart';

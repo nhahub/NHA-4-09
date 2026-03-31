@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/settings/presentation/helpers/feedback_validator.dart';
-import 'package:moodly/features/settings/presentation/widgets/feedback/rating_error_text.dart';
+import '../../helpers/feedback_validator.dart';
+import 'rating_error_text.dart';
 import 'feedback_rating.dart';
 import 'feedback_text_field.dart';
 import 'feedback_submit_button.dart';

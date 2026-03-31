@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../settings/presentation/views/settings_view.dart';
 
 class SettingsProvidersWrapper extends StatelessWidget {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../data/models/recommended_food_item_model.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/enums/fade_position.dart';
@@ -8,6 +7,7 @@ import '../../../../core/widgets/fade_scrollable.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../../../meditations/presentation/widgets/categories_section/categories_section.dart';
 import '../../data/models/dummy/dummy_recommended_food_items.dart';
+import '../../data/models/recommended_food_item_model.dart';
 import '../../domain/enums/food_type.dart';
 import '../manager/recommended_food_cubit/recommended_food_cubit.dart';
 import '../widgets/recommended_food_list_view.dart';

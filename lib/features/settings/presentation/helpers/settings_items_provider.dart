@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../data/models/settings_item_model.dart';
-import '../../domain/entities/settings_action_type.dart';
+
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/theming/app_colors.dart';
+import '../../data/models/settings_item_model.dart';
+import '../../domain/entities/settings_action_type.dart';
 
 List<SettingsItemModel> getSettingsItems() {
   return const [

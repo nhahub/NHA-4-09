@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/widgets/app_text_button.dart';
-import 'package:moodly/core/widgets/custom_circular_progress_indicator.dart';
+import '../../../../../core/widgets/app_text_button.dart';
+import '../../../../../core/widgets/custom_circular_progress_indicator.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/functions/confirm_dialog.dart';
 import '../../../../../core/functions/error_dialog.dart';

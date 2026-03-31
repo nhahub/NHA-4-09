@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:moodly/features/settings/data/models/app_rating_model.dart';
-import 'package:moodly/features/settings/data/services/app_rating_local_service.dart';
-import 'package:moodly/features/settings/data/services/app_rating_service.dart';
+import '../models/app_rating_model.dart';
+import '../services/app_rating_local_service.dart';
+import '../services/app_rating_service.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/networking/api_error_handler.dart';

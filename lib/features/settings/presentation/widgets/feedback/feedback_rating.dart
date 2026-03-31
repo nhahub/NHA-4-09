@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/therapist/presentation/widgets/therapist_details/custom_rating.dart';
+import '../../../../therapist/presentation/widgets/therapist_details/custom_rating.dart';
 import '../../manager/app_rating_cubit/app_rating_cubit.dart';
 
 class FeedbackRating extends StatelessWidget {

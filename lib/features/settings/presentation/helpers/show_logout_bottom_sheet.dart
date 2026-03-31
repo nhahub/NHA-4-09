@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/services/get_it_service.dart';
-import 'package:moodly/features/auth/presentation/manager/logout_cubit/logout_cubit.dart';
-import 'package:moodly/features/settings/presentation/widgets/logout/logout_bottom_sheet.dart';
+import '../../../../core/services/get_it_service.dart';
+import '../../../auth/presentation/manager/logout_cubit/logout_cubit.dart';
+import '../widgets/logout/logout_bottom_sheet.dart';
 
 import '../../data/repos/settings_repo.dart';
 
