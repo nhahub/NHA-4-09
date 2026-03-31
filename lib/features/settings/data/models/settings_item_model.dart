@@ -9,6 +9,7 @@ class SettingsItemModel {
   final Color? iconColor;
   final double? iconSize;
   final Color? iconBackgroundColor;
+  final bool withTrailing;
 
   const SettingsItemModel({
     required this.title,
@@ -17,5 +18,6 @@ class SettingsItemModel {
     this.iconColor,
     this.iconSize,
     this.iconBackgroundColor,
+    this.withTrailing = true,
   });
 }

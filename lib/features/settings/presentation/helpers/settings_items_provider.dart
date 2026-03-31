@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../data/models/settings_item_model.dart';
-import '../../domain/entities/settings_action_type.dart';
+
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/theming/app_colors.dart';
+import '../../data/models/settings_item_model.dart';
+import '../../domain/entities/settings_action_type.dart';
 
 List<SettingsItemModel> getSettingsItems() {
   return const [
@@ -10,11 +11,6 @@ List<SettingsItemModel> getSettingsItems() {
       title: "My Account",
       icon: AppAssets.profileIcon,
       action: SettingsActionType.myAccount,
-    ),
-    SettingsItemModel(
-      title: "Rate Us",
-      icon: AppAssets.rateIcon,
-      action: SettingsActionType.rateUs,
     ),
     SettingsItemModel(
       title: "Subscription Management",
@@ -40,9 +36,16 @@ List<SettingsItemModel> getSettingsItems() {
       action: SettingsActionType.about,
     ),
     SettingsItemModel(
+      title: "Rate Us",
+      icon: AppAssets.rateIcon,
+      action: SettingsActionType.rateUs,
+      withTrailing: false,
+    ),
+    SettingsItemModel(
       title: "Log Out",
       icon: AppAssets.logoutIcon,
       action: SettingsActionType.logout,
+      withTrailing: false,
       iconColor: Colors.red,
       iconSize: 16,
       iconBackgroundColor: AppColors.moreLighterRed,

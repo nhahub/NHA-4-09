@@ -14,6 +14,7 @@ const String kSubscriptionEndDate = "subscription_end_date";
 
 const String kHasSelectedDailyMood = "hasSelectedDailyMood";
 const String kSelectedDailyMood = "selectedDailyMood";
+const String kAppUserRating = "app_user_rating";
 
 const String kDailyWaterCups = 'daily_water_cups';
 const String kLastWaterDate = 'last_water_date';
@@ -30,5 +31,6 @@ const String kSubscriptionsTable = "subscriptions";
 const String kTimeSlotsTable = "time_slots";
 const String kBookingsTable = "bookings";
 const String kSoundTherapyTracksTable = "sound_therapy_tracks";
+const String kAppRatingsTable = "app_ratings";
 
 const String kImagePlaceHolder = "https://placehold.co/600x400";

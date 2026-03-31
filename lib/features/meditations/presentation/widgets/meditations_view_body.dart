@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+
+import '../../../../core/extensions/sliver_extension.dart';
 import '../../../../core/widgets/custom_overlay_widget.dart';
+import '../../../../core/widgets/vertical_space.dart';
+import '../../data/models/category_enum.dart';
 import 'asmr_section/asmr_section.dart';
 import 'categories_section/categories_section.dart';
 import 'new_arrivals_section/new_arrivals_section.dart';
 import 'popular_categories_section/popular_categories_section.dart';
 import 'recommended_for_you_section/recommended_for_you_section.dart';
 import 'your_daily_routine_section/your_daily_routine_section.dart';
-import '../../../../core/extensions/sliver_extension.dart';
-import '../../../../core/widgets/vertical_space.dart';
-import '../../data/models/category_enum.dart';
 
 class MeditationsViewBody extends StatelessWidget {
   const MeditationsViewBody({super.key, required this.isPremium});

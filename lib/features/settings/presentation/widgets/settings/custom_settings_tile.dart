@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../../../../core/constants/constants.dart';
 
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/app_styles.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/app_styles.dart';
 
 class CustomSettingsTile extends StatelessWidget {
   final String title;
@@ -11,6 +12,7 @@ class CustomSettingsTile extends StatelessWidget {
   final double? iconSize;
   final Color? iconColor;
   final Color? iconBackGroundColor;
+  final bool withTrailing;
   const CustomSettingsTile({
     required this.onTap,
     required this.title,
@@ -18,18 +20,21 @@ class CustomSettingsTile extends StatelessWidget {
     this.iconColor,
     this.iconSize = 20,
     this.iconBackGroundColor,
+    this.withTrailing = true,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: EdgeInsets.zero,
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: kAppHorizontalPadding,
+      ),
       splashColor: Colors.transparent,
       onTap: onTap,
       leading: CircleAvatar(
         backgroundColor:
-            iconBackGroundColor ?? AppColors.lightGrey.withAlpha(40),
+            iconBackGroundColor ?? AppColors.lightGreen.withAlpha(30),
         child: SvgPicture.asset(
           icon,
           width: iconSize,
@@ -41,11 +46,13 @@ class CustomSettingsTile extends StatelessWidget {
         ),
       ),
       title: Text(title, style: AppStyles.medium16),
-      trailing: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(333),
-        child: const Icon(Icons.chevron_right, color: AppColors.bodyGray),
-      ),
+      trailing: withTrailing
+          ? InkWell(
+              onTap: onTap,
+              borderRadius: BorderRadius.circular(333),
+              child: const Icon(Icons.chevron_right, color: AppColors.bodyGray),
+            )
+          : null,
     );
   }
 }

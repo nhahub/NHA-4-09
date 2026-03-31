@@ -34,6 +34,15 @@ class SupabaseCRUDService {
     return Map<String, dynamic>.from(response);
   }
 
+  /// Upsert data (insert or update on conflict)
+  Future<void> upsertData({
+    required String table,
+    required Map<String, dynamic> data,
+    String? onConflict,
+  }) async {
+    await client.from(table).upsert(data, onConflict: onConflict);
+  }
+
   Future<List<Map<String, dynamic>>> getData({
     required String table,
     String? orderBy,

@@ -28,7 +28,10 @@ import '../../features/payment/data/services/stripe_service.dart';
 import '../../features/payment/data/services/subscription_local_service.dart';
 import '../../features/payment/data/services/subscription_remote_service.dart';
 import '../../features/payment/domain/repos/payment_repo.dart';
+import '../../features/settings/data/repos/app_rating_repo.dart';
 import '../../features/settings/data/repos/settings_repo.dart';
+import '../../features/settings/data/services/app_rating_local_service.dart';
+import '../../features/settings/data/services/app_rating_service.dart';
 import '../../features/therapist/data/repos/availability_repo.dart';
 import '../../features/therapist/data/repos/booking_repo.dart';
 import '../../features/therapist/data/repos/chat_repo.dart';
@@ -216,6 +219,24 @@ Future<void> setupGetIt() async {
   // Audio Repo
   getIt.registerLazySingleton<AudioRepo>(
     () => AudioRepo(audioService: getIt()),
+  );
+
+  // App Rating Service
+  getIt.registerLazySingleton<AppRatingService>(
+    () => AppRatingService(supabaseCRUDService: getIt()),
+  );
+
+  // App Rating Local Service
+  getIt.registerLazySingleton<AppRatingLocalService>(
+    () => AppRatingLocalService(),
+  );
+
+  // App Rating Repo
+  getIt.registerLazySingleton<AppRatingRepo>(
+    () => AppRatingRepo(
+      appRatingService: getIt(),
+      appRatingLocalService: getIt(),
+    ),
   );
 
   // Audio Player Service

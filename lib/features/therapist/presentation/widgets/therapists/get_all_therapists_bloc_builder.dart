@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../data/models/therapist_model.dart';
 
 import '../../../../../core/constants/constants.dart';
 import '../../../data/models/dummy/dummy_therapists.dart';
+import '../../../data/models/therapist_model.dart';
 import '../../manager/therapist_cubit/therapist_cubit.dart';
 import 'get_all_therapists_sliver_list.dart';
 
