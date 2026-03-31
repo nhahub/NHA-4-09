@@ -8,7 +8,7 @@ class SubscriptionManagementView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: BackButtonAppbar(title: "Subscription Management"),
+      appBar: BackButtonAppbar(title: "Upgrade"),
       body: Center(child: Text("Subscription Management content goes here.")),
     );
   }
