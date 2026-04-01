@@ -31,7 +31,7 @@ class UserAccountListTile extends StatelessWidget {
           name: getUser()?.name ?? '',
           radius: 32,
           fontSize: 30,
-          imageUrl: getUser()?.image,
+          imageUrl: getUser()?.picture,
         ),
       ),
     );

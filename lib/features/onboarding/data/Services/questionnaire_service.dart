@@ -21,6 +21,6 @@ class QuestionnaireService {
   }
 
   Future<void> updateUserStatus() async {
-    await _supabaseAuthService.editUserProfile(data: {"is_old_user": true});
+    await _supabaseAuthService.updateUserProfile(data: {"is_old_user": true});
   }
 }

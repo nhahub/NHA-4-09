@@ -83,12 +83,21 @@ class SupabaseAuthService {
     await _supabase.auth.signOut();
   }
 
-  // Reset Password
-  Future<void> resetPassword({required String newPassword}) async {
-    await _supabase.auth.updateUser(UserAttributes(password: newPassword));
-  }
-
-  Future<void> editUserProfile({required Map<String, dynamic> data}) async {
-    await _supabase.auth.updateUser(UserAttributes(data: data));
+  // Edit User Profile
+  Future<UserResponse> updateUserProfile({
+    String? email,
+    String? phone,
+    String? password,
+    Map<String, dynamic>? data,
+  }) async {
+    UserResponse userResponse = await _supabase.auth.updateUser(
+      UserAttributes(
+        email: email,
+        phone: phone,
+        password: password,
+        data: data,
+      ),
+    );
+    return userResponse;
   }
 }

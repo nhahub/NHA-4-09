@@ -18,7 +18,7 @@ TherapistReviewModel createTherapistReview({
     therapistId: therapistId,
     userId: user.userId,
     userName: displayAnonymously ? 'Anonymous' : user.name ?? '',
-    userAvatar: displayAnonymously ? null : user.image,
+    userAvatar: displayAnonymously ? null : user.picture,
     rating: rating.toInt(),
     review: reviewText,
     createdAt: createdAt ?? DateTime.now(),
