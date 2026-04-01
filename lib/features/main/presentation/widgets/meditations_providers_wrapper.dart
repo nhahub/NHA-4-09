@@ -19,10 +19,7 @@ class MeditationsProvidersWrapper extends StatelessWidget {
               AudioCubit(audioRepo: getIt.get<AudioRepo>())..getAudioTracks(),
         ),
       ],
-      child: MeditationsView(
-        key: const ValueKey('meditations'),
-        isPremium: isPremium,
-      ),
+      child: MeditationsView(isPremium: isPremium),
     );
   }
 }

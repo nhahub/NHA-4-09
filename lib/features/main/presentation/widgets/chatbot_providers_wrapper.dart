@@ -9,6 +9,6 @@ class ChatbotProvidersWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChatbotView(key: const ValueKey('chatbot'), isPremium: isPremium);
+    return ChatbotView(isPremium: isPremium);
   }
 }

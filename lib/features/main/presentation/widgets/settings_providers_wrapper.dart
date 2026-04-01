@@ -8,6 +8,6 @@ class SettingsProvidersWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SettingsView(key: const ValueKey('Settings'), isPremium: isPremium);
+    return SettingsView(isPremium: isPremium);
   }
 }

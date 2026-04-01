@@ -17,7 +17,7 @@ class MainView extends StatelessWidget {
         selector: (state) =>
             state is SubscriptionSuccessState ? state.isPremium : false,
         builder: (context, isPremium) {
-          final screens = MainScreens.build(isPremium: isPremium);
+          final List<Widget> screens = MainScreens.build(isPremium: isPremium);
 
           return BlocBuilder<MainCubit, int>(
             builder: (context, currentIndex) {
@@ -28,7 +28,6 @@ class MainView extends StatelessWidget {
                       AnimatedSwitcher(
                         duration: const Duration(milliseconds: 400),
                         child: IndexedStack(
-                          key: ValueKey(currentIndex),
                           index: currentIndex,
                           children: screens,
                         ),

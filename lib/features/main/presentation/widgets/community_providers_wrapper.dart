@@ -8,9 +8,6 @@ class CommunityProvidersWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CommunityView(
-      key: const ValueKey('community'),
-      isPremium: isPremium,
-    );
+    return CommunityView(isPremium: isPremium);
   }
 }

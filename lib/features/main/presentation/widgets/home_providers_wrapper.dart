@@ -48,7 +48,7 @@ class HomeProvidersWrapper extends StatelessWidget {
           )..getRecommendationData(),
         ),
       ],
-      child: HomeView(key: const ValueKey('home'), isPremium: isPremium),
+      child: HomeView(isPremium: isPremium),
     );
   }
 }
