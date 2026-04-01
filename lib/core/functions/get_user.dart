@@ -6,6 +6,7 @@ import '../models/user_data_model.dart';
 import '../services/cache_helper.dart';
 
 UserDataModel? getUser() {
+  
   final jsonString = CacheHelper.getString(key: kUserData);
   if (jsonString.isNullOrEmpty()) {
     return null;

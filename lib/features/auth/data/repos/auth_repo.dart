@@ -26,6 +26,7 @@ class AuthRepo {
           userDataModel: UserDataModel(
             userId: response.user!.id,
             email: response.user!.email,
+            phone: response.user!.userMetadata!['phone'],
             name: response.user!.userMetadata!['name'],
             isOldUser: response.user!.userMetadata!['is_old_user'],
           ),
@@ -47,6 +48,8 @@ class AuthRepo {
             userId: response.user!.id,
             email: response.user!.email,
             name: response.user!.userMetadata!['full_name'],
+            picture: response.user!.userMetadata!['picture'],
+            phone: response.user!.userMetadata!['phone'],
             isOldUser: response.user!.userMetadata!['is_old_user'],
           ),
         );
@@ -72,6 +75,7 @@ class AuthRepo {
         userDataModel: UserDataModel(
           userId: response.user!.id,
           email: response.user!.email,
+          phone: response.user!.userMetadata!['phone'],
           name: response.user!.userMetadata!['name'],
           isOldUser: response.user!.userMetadata!['is_old_user'],
         ),

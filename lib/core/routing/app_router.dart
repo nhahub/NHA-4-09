@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/settings/presentation/manager/update_profile_cubit/update_profile_cubit.dart';
 
 import '../../features/community/presentation/views/add_community_post_view.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -336,7 +337,13 @@ class AppRouter {
         );
 
       case Routes.editProfileView:
-        return MaterialPageRoute(builder: (context) => const EditProfileView());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                UpdateProfileCubit(settingsRepo: getIt.get<SettingsRepo>()),
+            child: const EditProfileView(),
+          ),
+        );
 
       case Routes.aboutView:
         return MaterialPageRoute(builder: (context) => const AboutView());
