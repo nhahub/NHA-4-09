@@ -1,5 +1,3 @@
-import 'package:uuid/uuid.dart';
-
 import '../../../../core/constants/constants.dart';
 import '../../../../core/functions/get_user.dart';
 import '../../../../core/services/supabase_crud_service.dart';
@@ -18,9 +16,7 @@ class SubscriptionRemoteService {
         ? startDate.add(const Duration(days: 30))
         : startDate.add(const Duration(days: 365));
 
-    const uuid = Uuid();
     final subscription = SubscriptionModel(
-      id: uuid.v4(),
       userId: getUser()!.userId,
       type: type,
       startDate: startDate,
@@ -29,9 +25,10 @@ class SubscriptionRemoteService {
     );
 
     final Map<String, dynamic> data = await supabaseCRUDService
-        .addDataAndReturnRow(
+        .upsertDataAndReturnRow(
           table: kSubscriptionsTable,
           data: subscription.toJson(),
+          onConflict: 'user_id',
         );
 
     final SubscriptionModel subscriptionModel = SubscriptionModel.fromJson(

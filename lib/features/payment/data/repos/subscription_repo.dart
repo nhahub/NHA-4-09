@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:moodly/core/helpers/logger.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/networking/api_error_handler.dart';
@@ -14,8 +15,8 @@ class SubscriptionRepo {
 
   Future<Either<Failure, bool>> checkSubscription() async {
     try {
-      final localStatus = local.getStatus();
-      final localEndDate = local.getEndDate();
+      final localStatus = local.getSubscription()?.status;
+      final localEndDate = local.getSubscription()?.endDate;
 
       if (localStatus != null && localEndDate != null) {
         final isActive = _isLocalActive(localStatus, localEndDate);
@@ -30,10 +31,7 @@ class SubscriptionRepo {
       final SubscriptionModel? remoteSub = await remote.getUserSubscription();
 
       if (remoteSub != null) {
-        await local.cacheSubscription(
-          status: remoteSub.status,
-          endDate: remoteSub.endDate,
-        );
+        await local.cacheSubscription(subscriptionModel: remoteSub);
 
         return right(_isLocalActive(remoteSub.status, remoteSub.endDate));
       }
@@ -44,17 +42,19 @@ class SubscriptionRepo {
     }
   }
 
-
   Future<Either<Failure, void>> createSubscription({
     required String type,
   }) async {
     try {
-      final sub = await remote.createUserSubscription(type: type);
+      final SubscriptionModel sub = await remote.createUserSubscription(
+        type: type,
+      );
 
-      await local.cacheSubscription(status: sub.status, endDate: sub.endDate);
+      await local.cacheSubscription(subscriptionModel: sub);
 
       return right(null);
     } catch (e) {
+      Logger.log("Error creating subscription: $e");
       return left(ApiErrorHandler.handle(error: e));
     }
   }

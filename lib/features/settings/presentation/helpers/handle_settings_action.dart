@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/features/settings/presentation/helpers/show_upgrade_subscription_bottom_sheet.dart';
 import 'show_feedback_bottom_sheet.dart';
 
 import '../../../../core/extensions/context_extensions.dart';
@@ -15,10 +16,6 @@ void handleSettingsAction({
       context.push(Routes.editProfileView);
       break;
 
-    case SettingsActionType.subscription:
-      context.push(Routes.subscriptionManagementView);
-      break;
-
     case SettingsActionType.privacy:
       context.push(Routes.privacyPolicyView);
       break;
@@ -29,6 +26,10 @@ void handleSettingsAction({
 
     case SettingsActionType.about:
       context.push(Routes.aboutView);
+      break;
+
+    case SettingsActionType.subscription:
+      showUpgradeSubscriptionBottomSheet(context: context);
       break;
 
     case SettingsActionType.rateUs:

@@ -8,7 +8,6 @@ part of 'subscription_model.dart';
 
 SubscriptionModel _$SubscriptionModelFromJson(Map<String, dynamic> json) =>
     SubscriptionModel(
-      id: json['id'] as String,
       userId: json['user_id'] as String,
       type: json['type'] as String,
       startDate: DateTime.parse(json['start_date'] as String),
@@ -18,7 +17,6 @@ SubscriptionModel _$SubscriptionModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$SubscriptionModelToJson(SubscriptionModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'user_id': instance.userId,
       'type': instance.type,
       'start_date': instance.startDate.toIso8601String(),

@@ -35,7 +35,6 @@ class Routes {
   static const String bookingSessionView = '/bookingSessionView';
   static const String allBookingSessionsView = '/allbookingSessionsView';
   static const String editProfileView = '/editProfileView';
-  static const String subscriptionManagementView =
-      '/subscriptionManagementView';
+
   static const String aboutView = '/aboutView';
 }

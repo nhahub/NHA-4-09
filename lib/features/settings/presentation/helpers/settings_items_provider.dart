@@ -12,12 +12,7 @@ List<SettingsItemModel> getSettingsItems() {
       icon: AppAssets.profileIcon,
       action: SettingsActionType.myAccount,
     ),
-    SettingsItemModel(
-      title: "Subscription Management",
-      icon: AppAssets.subscriptionIcon,
-      action: SettingsActionType.subscription,
-      iconSize: 18,
-    ),
+
     SettingsItemModel(
       title: "Privacy Policy",
       icon: AppAssets.privacyPolicyIcon,
@@ -34,6 +29,13 @@ List<SettingsItemModel> getSettingsItems() {
       title: "About",
       icon: AppAssets.aboutIcon,
       action: SettingsActionType.about,
+    ),
+    SettingsItemModel(
+      title: "Upgrade Subscription",
+      icon: AppAssets.subscriptionIcon,
+      action: SettingsActionType.subscription,
+      iconSize: 18,
+      withTrailing: false,
     ),
     SettingsItemModel(
       title: "Rate Us",

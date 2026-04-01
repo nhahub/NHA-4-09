@@ -43,6 +43,21 @@ class SupabaseCRUDService {
     await client.from(table).upsert(data, onConflict: onConflict);
   }
 
+  /// Upsert single data (insert or update on conflict) and return the row
+  Future<Map<String, dynamic>> upsertDataAndReturnRow({
+    required String table,
+    required Map<String, dynamic> data,
+    String? onConflict,
+  }) async {
+    final response = await client
+        .from(table)
+        .upsert(data, onConflict: onConflict)
+        .select()
+        .maybeSingle();
+
+    return response!;
+  }
+
   Future<List<Map<String, dynamic>>> getData({
     required String table,
     String? orderBy,

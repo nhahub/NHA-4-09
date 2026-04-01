@@ -1,34 +1,43 @@
+import 'dart:convert';
+
+import 'package:moodly/features/payment/data/models/subscription_model.dart';
+
 import '../../../../core/constants/constants.dart';
 import '../../../../core/services/cache_helper.dart';
 
 class SubscriptionLocalService {
   Future<void> cacheSubscription({
-    required String status,
-    required DateTime endDate,
+    required SubscriptionModel subscriptionModel,
   }) async {
-    await CacheHelper.set(key: kSubscriptionStatus, value: status);
-    await CacheHelper.set(
-      key: kSubscriptionEndDate,
-      value: endDate.toIso8601String(),
-    );
+    final String jsonString = jsonEncode(subscriptionModel.toJson());
+    await CacheHelper.set(key: kSubscriptionModel, value: jsonString);
   }
 
-  String? getStatus() {
-    return CacheHelper.getString(key: kSubscriptionStatus);
-  }
+  SubscriptionModel? getSubscription() {
+    final jsonString = CacheHelper.getString(key: kSubscriptionModel);
 
-  DateTime? getEndDate() {
-    final date = CacheHelper.getString(key: kSubscriptionEndDate);
-    if (date == null) return null;
-    return DateTime.parse(date);
+    if (jsonString == null) return null;
+
+    final jsonMap = jsonDecode(jsonString);
+    return SubscriptionModel.fromJson(jsonMap);
   }
 
   Future<void> markInactive() async {
-    await CacheHelper.set(key: kSubscriptionStatus, value: 'inactive');
+    final current = getSubscription();
+    if (current == null) return;
+
+    final updated = SubscriptionModel(
+      userId: current.userId,
+      type: current.type,
+      startDate: current.startDate,
+      endDate: current.endDate,
+      status: 'inactive',
+    );
+
+    await cacheSubscription(subscriptionModel: updated);
   }
 
   Future<void> clear() async {
-    await CacheHelper.delete(key: kSubscriptionStatus);
-    await CacheHelper.delete(key: kSubscriptionEndDate);
+    await CacheHelper.delete(key: kSubscriptionModel);
   }
 }

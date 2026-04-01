@@ -10,6 +10,16 @@ class PaymentTypesModel {
     this.discount,
     required this.duration,
   });
+  static double getFinalPrice(PaymentTypesModel model) {
+    if (model.discount == null) return model.price;
+
+    final discountValue =
+        double.tryParse(model.discount!.replaceAll('%', '')) ?? 0;
+
+    final discountAmount = model.price * (discountValue / 100);
+
+    return model.price - discountAmount;
+  }
 }
 
 const List<PaymentTypesModel> paymentTypes = [

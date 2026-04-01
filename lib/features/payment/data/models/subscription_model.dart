@@ -4,7 +4,6 @@ part 'subscription_model.g.dart';
 
 @JsonSerializable()
 class SubscriptionModel {
-  final String id;
   @JsonKey(name: 'user_id')
   final String userId;
   final String type;
@@ -15,7 +14,6 @@ class SubscriptionModel {
   final String status;
 
   SubscriptionModel({
-    required this.id,
     required this.userId,
     required this.type,
     required this.startDate,
