@@ -22,9 +22,9 @@ class QuoteShape extends StatelessWidget {
       enabled: isLoading,
       child: Stack(
         children: [
-          RotatedGradientCard(dailyQuote: dailyQuote),
-          RotatedInnerShadowCard(dailyQuote: dailyQuote),
-          MainCard(dailyQuote: dailyQuote),
+          RotatedGradientCard(dailyQuote: dailyQuote, isLoading: isLoading),
+          RotatedInnerShadowCard(dailyQuote: dailyQuote, isLoading: isLoading),
+          MainCard(dailyQuote: dailyQuote, isLoading: isLoading),
         ],
       ),
     );
