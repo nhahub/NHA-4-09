@@ -22,8 +22,8 @@ class NavWidget extends StatelessWidget {
 
     return SvgPicture.asset(
       icons[index],
-      width: 28,
-      height: 28,
+      width: index == 4 ? 24 : 28,
+      height: index == 4 ? 24 : 28,
       colorFilter: ColorFilter.mode(
         isSelected
             ? Colors.white

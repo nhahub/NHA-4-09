@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/home/presentation/widgets/message_of_the_day_section/loading_card.dart';
+import 'loading_card.dart';
 
 import '../../../../../core/theming/app_colors.dart';
 import '../../../data/models/quote/quote_model.dart';

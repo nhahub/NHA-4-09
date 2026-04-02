@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/theming/app_assets.dart';
-import 'package:moodly/features/home/data/models/quote/quote_model.dart';
-import 'package:moodly/features/home/presentation/widgets/message_of_the_day_section/card_dot.dart';
-import 'package:moodly/features/home/presentation/widgets/message_of_the_day_section/card_quote.dart';
+import '../../../../../core/theming/app_assets.dart';
+import '../../../data/models/quote/quote_model.dart';
+import 'card_dot.dart';
+import 'card_quote.dart';
 
 class CardContant extends StatelessWidget {
   final bool isExpanded;

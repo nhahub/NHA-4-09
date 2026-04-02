@@ -13,7 +13,7 @@ class DummyRecommendedFoodItems {
       effects:
           "Helps improve energy levels, supports digestion, and boosts immunity.",
       tags: ["healthy", "low_calorie", "balanced"],
-      image: AppAssets.dummyImage,
+      image: AppAssets.dummyImageAsset,
       macros: MacrosModel(kcal: 0, carbohydrates: 0, proteins: 0, fats: 0),
     ),
   );

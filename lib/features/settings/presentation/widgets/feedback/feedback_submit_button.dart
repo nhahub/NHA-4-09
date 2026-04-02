@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/widgets/app_text_button.dart';
-import '../../../../../core/widgets/custom_circular_progress_indicator.dart';
+
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/functions/confirm_dialog.dart';
 import '../../../../../core/functions/error_dialog.dart';
+import '../../../../../core/widgets/app_text_button.dart';
+import '../../../../../core/widgets/custom_circular_progress_indicator.dart';
 import '../../manager/app_rating_cubit/app_rating_cubit.dart';
 
 class FeedbackSubmitButton extends StatelessWidget {

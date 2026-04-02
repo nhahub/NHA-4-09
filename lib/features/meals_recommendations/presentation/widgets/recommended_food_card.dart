@@ -31,6 +31,19 @@ class RecommendedFoodCard extends StatelessWidget {
             recommendedFoodItemModel.image,
             fit: BoxFit.fitWidth,
             width: double.infinity,
+            frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+              if (wasSynchronouslyLoaded) return child;
+              return AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                child: frame != null
+                    ? child
+                    : Container(
+                        width: double.infinity,
+                        height: 200,
+                        color: Colors.grey[300],
+                      ),
+              );
+            },
           ),
           Padding(
             padding: const EdgeInsets.only(

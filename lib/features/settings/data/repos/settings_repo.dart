@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:moodly/core/models/user_data_model.dart';
+import '../../../../core/models/user_data_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../core/errors/failure.dart';

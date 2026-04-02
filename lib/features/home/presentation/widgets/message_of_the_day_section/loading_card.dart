@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/home/data/models/quote/quote_model.dart';
-import 'package:moodly/features/home/presentation/widgets/message_of_the_day_section/card_quote.dart';
-import 'package:moodly/features/home/presentation/widgets/message_of_the_day_section/message_of_the_day_section.dart';
+import '../../../data/models/quote/quote_model.dart';
+import 'card_quote.dart';
+import 'message_of_the_day_section.dart';
 
 class LoadingCard extends StatelessWidget {
   const LoadingCard({super.key, required this.dailyQuote});
