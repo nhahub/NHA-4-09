@@ -4,7 +4,7 @@ import '../../features/settings/data/repos/privacy_policy_repo.dart';
 import '../../features/settings/data/repos/terms_repo.dart';
 import '../../features/settings/presentation/manager/privacy_policy_cubit/privacy_policy_cubit.dart';
 import '../../features/settings/presentation/manager/terms_cubit/terms_cubit.dart';
-import '../../features/settings/presentation/views/profile.dart';
+import '../../features/settings/presentation/views/update_profile_view.dart';
 import '../../features/settings/presentation/manager/update_profile_cubit/update_profile_cubit.dart';
 
 import '../../features/community/presentation/views/add_community_post_view.dart';
@@ -354,7 +354,7 @@ class AppRouter {
           builder: (context) => BlocProvider(
             create: (context) =>
                 UpdateProfileCubit(settingsRepo: getIt.get<SettingsRepo>()),
-            child: const MyAccountScreen(),
+            child: const UpdateProfileView(),
           ),
         );
 

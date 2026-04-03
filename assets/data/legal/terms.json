@@ -59,7 +59,10 @@
     },
     {
       "title": "8. Contact Us:",
-      "paragraphs": ["If you have questions, contact us at:", "moodlyapp.com"]
+      "paragraphs": [
+        "If you have questions, contact us at:",
+        "support@moodly.app"
+      ]
     }
   ]
 }

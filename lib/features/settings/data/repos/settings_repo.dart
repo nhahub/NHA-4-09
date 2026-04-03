@@ -2,8 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../core/errors/failure.dart';
-import '../../../../core/functions/get_user.dart';
-import '../../../../core/models/user_data_model.dart';
 import '../../../../core/networking/api_error_handler.dart';
 import '../../../../core/services/supabase_auth_service.dart';
 
@@ -37,17 +35,6 @@ class SettingsRepo {
             password: password,
             data: {"name": name, "is_old_user": isOldUser, "image": image},
           );
-
-      await saveUserDataLocal(
-        userDataModel: UserDataModel(
-          userId: userResponse.user!.id,
-          email: userResponse.user!.email,
-          phone: userResponse.user!.userMetadata!['phone'],
-          name: userResponse.user!.userMetadata!['name'],
-          picture: userResponse.user!.userMetadata!['image'],
-          isOldUser: userResponse.user!.userMetadata!['is_old_user'],
-        ),
-      );
       return right(userResponse);
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));
