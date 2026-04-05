@@ -35,10 +35,10 @@ class BookingModel {
   final String slotId;
 
   @JsonKey(name: 'slot_start_time')
-  final DateTime slotStartTime;
+  final DateTime? slotStartTime;
 
   @JsonKey(name: 'slot_end_time')
-  final DateTime slotEndTime;
+  final DateTime? slotEndTime;
 
   BookingModel({
     required this.id,

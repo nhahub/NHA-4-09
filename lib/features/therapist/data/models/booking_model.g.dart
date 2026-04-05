@@ -20,8 +20,12 @@ BookingModel _$BookingModelFromJson(Map<String, dynamic> json) => BookingModel(
   therapistSpeciality: json['therapist_speciality'] as String,
   therapistImage: json['therapist_image'] as String,
   slotId: json['slot_id'] as String,
-  slotStartTime: DateTime.parse(json['slot_start_time'] as String),
-  slotEndTime: DateTime.parse(json['slot_end_time'] as String),
+  slotStartTime: json['slot_start_time'] == null
+      ? null
+      : DateTime.parse(json['slot_start_time'] as String),
+  slotEndTime: json['slot_end_time'] == null
+      ? null
+      : DateTime.parse(json['slot_end_time'] as String),
 );
 
 Map<String, dynamic> _$BookingModelToJson(BookingModel instance) =>
@@ -37,6 +41,6 @@ Map<String, dynamic> _$BookingModelToJson(BookingModel instance) =>
       'therapist_speciality': instance.therapistSpeciality,
       'therapist_image': instance.therapistImage,
       'slot_id': instance.slotId,
-      'slot_start_time': instance.slotStartTime.toIso8601String(),
-      'slot_end_time': instance.slotEndTime.toIso8601String(),
+      'slot_start_time': instance.slotStartTime?.toIso8601String(),
+      'slot_end_time': instance.slotEndTime?.toIso8601String(),
     };

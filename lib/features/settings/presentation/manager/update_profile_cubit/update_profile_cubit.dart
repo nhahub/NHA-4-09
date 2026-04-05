@@ -15,6 +15,11 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
 
   UpdateProfileCubit({required this.settingsRepo})
     : super(UpdateProfileState(userDataModel: getUser()));
+  String? phoneNumber;
+
+  void setPhoneNumber(String number) {
+    phoneNumber = number;
+  }
 
   Future<void> updateUserProfile({
     String? email,
@@ -49,7 +54,9 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
           email: userResponse.user!.email,
           phone: userResponse.user!.userMetadata!['phone'],
           name: userResponse.user!.userMetadata!['name'],
-          picture: userResponse.user!.userMetadata!['image'],
+          picture:
+              userResponse.user!.userMetadata!['image'] ??
+              userResponse.user!.userMetadata!['picture'],
           isOldUser: userResponse.user!.userMetadata!['is_old_user'],
         );
 

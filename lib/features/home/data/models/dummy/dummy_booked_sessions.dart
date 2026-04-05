@@ -1,4 +1,4 @@
-import '../../../../../core/constants/constants.dart';
+import 'package:moodly/core/theming/app_assets.dart';
 import '../../../../therapist/data/models/booking_model.dart';
 
 class DummyBookedSessions {
@@ -11,7 +11,7 @@ class DummyBookedSessions {
       therapistId: '',
       therapistName: '',
       therapistSpeciality: '',
-      therapistImage: kImagePlaceHolder,
+      therapistImage: AppAssets.dummyImage,
       slotId: '',
       slotStartTime: DateTime.now(),
       slotEndTime: DateTime.now(),

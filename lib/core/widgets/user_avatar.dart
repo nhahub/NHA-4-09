@@ -37,7 +37,8 @@ class UserAvatar extends StatelessWidget {
         ),
       );
     }
-    if (imageUrl != null && imageUrl!.isNotEmpty) {
+
+    if (imageUrl != null) {
       return CircleAvatar(
         radius: radius,
         backgroundColor: AppColors.lightGrey,
@@ -70,17 +71,21 @@ class UserAvatar extends StatelessWidget {
 
     final String initial = name.isNotEmpty ? name[0].toUpperCase() : "?";
 
-    return CircleAvatar(
-      radius: radius,
-      backgroundColor: AppColors.getColorFromId(id: getUser()!.userId),
-      child: Text(
-        initial,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: fontSize,
-          fontWeight: FontWeight.bold,
+    if (imageUrl == null) {
+      return CircleAvatar(
+        radius: radius,
+        backgroundColor: AppColors.getColorFromId(id: getUser()!.userId),
+        child: Text(
+          initial,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: fontSize,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-      ),
-    );
+      );
+    }
+
+    return const SizedBox.shrink();
   }
 }

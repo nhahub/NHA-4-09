@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/helpers/logger.dart';
+import 'package:moodly/features/settings/presentation/widgets/update_profile/phone_field.dart';
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/functions/confirm_dialog.dart';
@@ -13,8 +15,6 @@ import '../../../../../core/widgets/user_avatar.dart';
 import '../../../../auth/presentation/widgets/Register/name_text_field.dart';
 import '../../../../auth/presentation/widgets/shared/password_text_field.dart';
 import '../../manager/update_profile_cubit/update_profile_cubit.dart';
-import 'phone_text_field.dart';
-
 import '../../../../auth/presentation/widgets/shared/email_text_field.dart';
 
 class UpdateProfileForm extends StatefulWidget {
@@ -28,7 +28,7 @@ class _UpdateProfileFormState extends State<UpdateProfileForm> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
+  // final TextEditingController phoneController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
@@ -36,7 +36,7 @@ class _UpdateProfileFormState extends State<UpdateProfileForm> {
     emailController.dispose();
     passwordController.dispose();
     nameController.dispose();
-    phoneController.dispose();
+    // phoneController.dispose();
     super.dispose();
   }
 
@@ -60,7 +60,6 @@ class _UpdateProfileFormState extends State<UpdateProfileForm> {
         if (user != null && nameController.text.isEmpty) {
           nameController.text = user.name ?? "";
           emailController.text = user.email ?? "";
-          phoneController.text = user.phone ?? "";
         }
         return Padding(
           padding: const EdgeInsets.symmetric(
@@ -87,7 +86,9 @@ class _UpdateProfileFormState extends State<UpdateProfileForm> {
                   const SizedBox(height: 20),
                   EmailTextField(emailController: emailController),
                   const SizedBox(height: 20),
-                  PhoneTextField(phoneController: phoneController),
+                  // PhoneTextField(phoneController: phoneController),
+                  const PhoneField<UpdateProfileCubit>(),
+
                   const SizedBox(height: 20),
                   PasswordTextField(
                     passwordController: passwordController,
@@ -122,14 +123,27 @@ class _UpdateProfileFormState extends State<UpdateProfileForm> {
   }
 
   validateThenEditProfile(BuildContext context) {
-    context.read<UpdateProfileCubit>().updateUserProfile(
-      name: nameController.text.trim(),
-      email: emailController.text.trim(),
-      phone: phoneController.text.trim(),
-      password: passwordController.text.isEmpty
-          ? null
-          : passwordController.text.trim(),
-    );
-    if (formKey.currentState!.validate()) {}
+    if (formKey.currentState!.validate()) {
+      final cubit = context.read<UpdateProfileCubit>();
+      final user = cubit.state.userDataModel;
+      final String? newPhone = cubit.phoneNumber;
+      Logger.log("New phone number: $newPhone");
+
+      context.read<UpdateProfileCubit>().updateUserProfile(
+        name: nameController.text.trim() == user?.name
+            ? null
+            : nameController.text.trim(),
+
+        // email: emailController.text.trim() == user?.email
+        //     ? null
+        //     : emailController.text.trim(),
+
+        // phone: newPhone == user?.phone ? null : newPhone,
+
+        // password: passwordController.text.isEmpty
+        //     ? null
+        //     : passwordController.text.trim(),
+      );
+    }
   }
 }
