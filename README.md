@@ -71,34 +71,88 @@ The app combines mood tracking, guided meditation, personalized recommendations,
 ## 📱 Preview  
 
 ### Cover App Preview  
-![Cover App Preview](assets/moodly_app/1.png)  
+![Cover App Preview](assets/moodly_app_presentation/1.png)  
 
-### Onboarding Screens  
-![Onboarding Screens](assets/moodly_app/2.png)  
+### Welcome To Moodly  
+![Welcome To Moodly](assets/moodly_app_presentation/2.png)  
 
-### Questionnaire Screens  
-![Questionnaire Screens](assets/moodly_app/3.png)  
+### Auth Screens  
+![Auth Screens](assets/moodly_app_presentation/3.png)  
 
-### Home Screen  
-![Home Screen](assets/moodly_app/4.png)  
+### Questionnaire Screens 
+![Questionnaire Screens](assets/moodly_app_presentation/4.png)  
 
-### Mood Recommendations  
-![Mood Recommendations](assets/moodly_app/5.png)  
+### Premium Screen
+![Premium Screen](assets/moodly_app_presentation/4.png)  
 
-### Meditation Screens  
-![Meditation Screens](assets/moodly_app/6.png)  
+### Home Screen 
+![Home Screen](assets/moodly_app_presentation/5.png)  
 
-### Therapist Screens  
-![Therapist Screens](assets/moodly_app/7.png)  
+### Water Tracking Screen 
+![Water Tracking Screen](assets/moodly_app_presentation/6.png)  
 
 ### Chat & Community  
-![Chat & Community](assets/moodly_app/8.png)  
+![Chat & Community](assets/moodly_app_presentation/7.png)  
 
 ### Payment Screens  
-![Payment Screens](assets/moodly_app/9.png)  
+![Payment Screens](assets/moodly_app_presentation/8.png)  
 
-### Profile & Settings  
-![Profile & Settings](assets/moodly_app/10.png)  
+### Recommended Food Screens  
+![Recommended Food Screens](assets/moodly_app_presentation/9.png)  
+
+### Food Detailes Screens  
+![Food Detailes Screens](assets/moodly_app_presentation/10.png)  
+
+### Mood Recommendations Screen  
+![Mood Recommendations Screen](assets/moodly_app_presentation/11.png)  
+
+### Meditation Screens  
+![Meditation Screens](assets/moodly_app_presentation/12.png)  
+
+### Therapist Screens  
+![Therapist Screens](assets/moodly_app_presentation/13.png)  
+
+### Therapist Reviews Screens  
+![Therapist Reviews Screens](assets/moodly_app_presentation/14.png)  
+
+### Booking Sessions Screens  
+![Booking Sessions Screens](assets/moodly_app_presentation/15.png)  
+
+### Live Screen  
+![Live Screen](assets/moodly_app_presentation/16.png)  
+
+### Chat Screen  
+![Chat Screen](assets/moodly_app_presentation/17.png)  
+
+### Community Screen  
+![Community Screen](assets/moodly_app_presentation/18.png)  
+
+### Meditations Screen  
+![Meditations Screen](assets/moodly_app_presentation/19.png)  
+
+### Audio Screen  
+![Audio Screen](assets/moodly_app_presentation/20.png)  
+
+### Chatbot Screen  
+![Chatbot Screen](assets/moodly_app_presentation/21.png)  
+
+### Payment Screens  
+![Payment Screens](assets/moodly_app_presentation/22.png)  
+
+### Settings Screen  
+![Settings Screen](assets/moodly_app_presentation/23.png)  
+
+### Profile Screen  
+![Profile Screen](assets/moodly_app_presentation/24.png)  
+
+### Settings Screens Continue  
+![Settings Screens Continue](assets/moodly_app_presentation/25.png)  
+
+### Logout Screen  
+![Logout Screen](assets/moodly_app_presentation/26.png)  
+
+### Thank You  
+![Thank You](assets/moodly_app_presentation/27.png)  
 
 ---
 
