@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:moodly/core/functions/user_data_local.dart';
-import 'package:moodly/core/helpers/logger.dart';
 import 'package:moodly/core/networking/api_error_handler.dart';
 import 'package:moodly/features/auth/data/services/user_data_service.dart';
 
@@ -25,10 +24,9 @@ class UserDataRepo {
     }
   }
 
-  Future<Either<Failure, UserDataModel>> getUserData() async {
+  Future<Either<Failure, UserDataModel?>> getUserData() async {
     try {
-      final UserDataModel response = await userDataService.getUserData();
-      Logger.log("User data From repo: ${response.name}");
+      final UserDataModel? response = await userDataService.getUserData();
       return right(response);
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));

@@ -19,13 +19,14 @@ class UserDataService {
     return UserDataModel.fromJson(userData);
   }
 
-  Future<UserDataModel> getUserData() async {
+  Future<UserDataModel?> getUserData() async {
     final Map<String, dynamic>? userData = await supabaseCRUDService
         .getSingleRow(
           table: kUserDataTable,
           whereColumn: "id",
           whereValue: supabaseCRUDService.getCurrentUserId(),
         );
-    return UserDataModel.fromJson(userData!);
+
+    return UserDataModel?.fromJson(userData!);
   }
 }
