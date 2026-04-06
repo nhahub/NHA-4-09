@@ -3,6 +3,8 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class SupabaseCRUDService {
   final SupabaseClient client = Supabase.instance.client;
 
+  getCurrentUserId() => client.auth.currentUser?.id;
+
   /// Add data
   Future<void> addData({
     required String table,

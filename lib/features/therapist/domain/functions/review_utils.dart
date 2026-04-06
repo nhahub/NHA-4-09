@@ -1,4 +1,4 @@
-import '../../../../core/functions/get_user.dart';
+import '../../../../core/functions/user_data_local.dart';
 import '../../data/models/therapist_review_model.dart';
 
 double calculateAverageRating(List<TherapistReviewModel> reviews) {

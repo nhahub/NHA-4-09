@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:moodly/features/auth/data/repos/user_data_repo.dart';
+import 'package:moodly/features/auth/data/services/user_data_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -46,7 +48,7 @@ import '../../features/therapist/data/services/booking_service.dart';
 import '../../features/therapist/data/services/chat_service.dart';
 import '../../features/therapist/data/services/therapist_reviews_service.dart';
 import '../../features/therapist/data/services/therapist_service.dart';
-import 'supabase_auth_service.dart';
+import '../../features/auth/data/services/supabase_auth_service.dart';
 import 'supabase_crud_service.dart';
 
 final getIt = GetIt.instance;
@@ -252,6 +254,16 @@ Future<void> setupGetIt() async {
 
   // Terms Local Service
   getIt.registerLazySingleton<TermsLocalService>(() => TermsLocalService());
+
+  // User Data Service
+  getIt.registerLazySingleton<UserDataService>(
+    () => UserDataService(supabaseCRUDService: getIt()),
+  );
+
+  // User Data Repo
+  getIt.registerLazySingleton<UserDataRepo>(
+    () => UserDataRepo(userDataService: getIt()),
+  );
 
   // App Rating Repo
   getIt.registerLazySingleton<AppRatingRepo>(

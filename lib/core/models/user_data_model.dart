@@ -10,8 +10,12 @@ class UserDataModel {
   final String? email;
   final String? phone;
   final String? picture;
+  @JsonKey(name: 'user_type')
+  final String? userType;
   @JsonKey(name: 'is_old_user')
-  final bool? isOldUser;
+  final bool isOldUser;
+  @JsonKey(name: 'created_at')
+  final DateTime? createdAt;
 
   UserDataModel({
     required this.userId,
@@ -19,7 +23,9 @@ class UserDataModel {
     this.email,
     this.phone,
     this.picture,
-    this.isOldUser,
+    this.isOldUser = false,
+    this.userType = 'user',
+    this.createdAt,
   });
 
   factory UserDataModel.fromJson(Map<String, dynamic> json) =>

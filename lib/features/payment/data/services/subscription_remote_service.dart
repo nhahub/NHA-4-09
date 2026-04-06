@@ -1,5 +1,5 @@
 import '../../../../core/constants/constants.dart';
-import '../../../../core/functions/get_user.dart';
+import '../../../../core/functions/user_data_local.dart';
 import '../../../../core/services/supabase_crud_service.dart';
 import '../models/subscription_model.dart';
 

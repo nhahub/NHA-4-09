@@ -1,19 +1,16 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/functions/get_user.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-
+import 'package:moodly/features/auth/data/repos/user_data_repo.dart';
+import '../../../../../core/functions/user_data_local.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../../../core/models/user_data_model.dart';
-import '../../../data/repos/settings_repo.dart';
-
 part 'update_profile_state.dart';
 
 class UpdateProfileCubit extends Cubit<UpdateProfileState> {
-  final SettingsRepo settingsRepo;
+  final UserDataRepo userDataRepo;
 
-  UpdateProfileCubit({required this.settingsRepo})
+  UpdateProfileCubit({required this.userDataRepo})
     : super(UpdateProfileState(userDataModel: getUser()));
   String? phoneNumber;
 
@@ -22,23 +19,22 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
   }
 
   Future<void> updateUserProfile({
-    String? email,
     String? phone,
-    String? password,
     String? name,
-    String? image,
+    String? picture,
   }) async {
     emit(
       UpdateProfileState(userDataModel: state.userDataModel, isLoading: true),
     );
 
-    final Either<Failure, UserResponse> userResponse = await settingsRepo
-        .updateUserProfile(
-          email: email,
-          phone: phone,
-          password: password,
-          name: name,
-          image: image,
+    final Either<Failure, UserDataModel> userResponse = await userDataRepo
+        .updateUserData(
+          userDataModel: UserDataModel(
+            userId: getUser()!.userId,
+            phone: phone ?? getUser()!.phone,
+            name: name ?? getUser()!.name,
+            picture: picture ?? getUser()!.picture,
+          ),
         );
     return userResponse.fold(
       (failure) => emit(
@@ -48,16 +44,12 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
           error: failure.message,
         ),
       ),
-      (userResponse) async {
+      (userData) async {
         final UserDataModel userDataModel = UserDataModel(
-          userId: userResponse.user!.id,
-          email: userResponse.user!.email,
-          phone: userResponse.user!.userMetadata!['phone'],
-          name: userResponse.user!.userMetadata!['name'],
-          picture:
-              userResponse.user!.userMetadata!['image'] ??
-              userResponse.user!.userMetadata!['picture'],
-          isOldUser: userResponse.user!.userMetadata!['is_old_user'],
+          userId: userData.userId,
+          phone: userData.phone,
+          name: userData.name,
+          picture: userData.picture,
         );
 
         await saveUserDataLocal(userDataModel: userDataModel);

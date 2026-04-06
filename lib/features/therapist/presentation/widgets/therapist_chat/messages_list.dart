@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../../../../core/functions/get_user.dart';
+import '../../../../../core/functions/user_data_local.dart';
 import '../../../data/models/message_model.dart';
 import 'chat_bubble.dart';
 

@@ -19,10 +19,7 @@ class SupabaseAuthService {
     await _supabase.auth.signInWithOAuth(
       OAuthProvider.google,
       redirectTo: 'moodly://auth/callback',
-      queryParams: const {
-        // Force account chooser each time
-        'prompt': 'select_account',
-      },
+      queryParams: const {'prompt': 'select_account'},
     );
 
     // Wait for auth state change
@@ -53,19 +50,10 @@ class SupabaseAuthService {
   Future<AuthResponse> register({
     required String email,
     required String password,
-    required String name,
   }) async {
     final response = await _supabase.auth.signUp(
       email: email,
       password: password,
-      data: {
-        'name': name,
-        "is_old_user": false,
-        "image": "",
-        "phone": "",
-        "birth_date": "",
-        "gender": "",
-      },
     );
     return response;
   }

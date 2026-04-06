@@ -37,6 +37,7 @@ class EmailTextField extends StatelessWidget {
               ),
             ),
           ),
+          maxLines: 1,
           controller: emailController,
           validator: (value) {
             if (value == null || value.isEmpty) {

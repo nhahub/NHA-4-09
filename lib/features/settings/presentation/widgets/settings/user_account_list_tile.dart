@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/extensions/context_extensions.dart';
-import '../../../../../core/functions/get_user.dart';
+import '../../../../../core/functions/user_data_local.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../../../../core/widgets/user_avatar.dart';

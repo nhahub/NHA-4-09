@@ -1,27 +1,21 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/models/user_data_model.dart';
+import 'package:moodly/features/auth/data/repos/user_data_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../core/errors/failure.dart';
+import '../../../../../core/functions/user_data_local.dart';
 import '../../../data/repos/auth_repo.dart';
 
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
+  final UserDataRepo userDataRepo;
   final AuthRepo authRepo;
-  LoginCubit({required this.authRepo}) : super(LoginInitialState());
-
-  bool _isOldUser(AuthResponse response) {
-    final dynamic value = response.user?.userMetadata?['is_old_user'];
-    if (value is bool) {
-      return value;
-    }
-    if (value is String) {
-      return value.toLowerCase() == 'true';
-    }
-    return false;
-  }
+  LoginCubit({required this.authRepo, required this.userDataRepo})
+    : super(LoginInitialState());
 
   // Login
   Future<void> loginWithEmail({
@@ -35,8 +29,10 @@ class LoginCubit extends Cubit<LoginState> {
 
     return response.fold(
       (failure) => emit(LoginFailureState(message: failure.message)),
-      (response) {
-        return emit(LoginSuccessState(isOldUser: _isOldUser(response)));
+      (response) async {
+        final bool success = await _ensureUserLoaded();
+        if (!success) return;
+        emit(LoginSuccessState(isOldUser: getUser()!.isOldUser));
       },
     );
   }
@@ -49,12 +45,59 @@ class LoginCubit extends Cubit<LoginState> {
 
     return response.fold(
       (failure) => emit(LoginFailureState(message: failure.message)),
-      (response) {
-        if (response == null) {
+      (authResponse) async {
+        if (authResponse == null) {
           return emit(LoginInitialState());
         } else {
-          return emit(LoginSuccessState(isOldUser: _isOldUser(response)));
+          final Either<Failure, UserDataModel> result = await userDataRepo
+              .getUserData();
+
+          await result.fold(
+            (failure) async {
+              emit(LoginFailureState(message: failure.message));
+            },
+            (userData) async {
+              userData.isOldUser == false
+                  ? await _updateUserData(authResponse)
+                  : null;
+              await saveUserDataLocal(userDataModel: userData);
+            },
+          );
+
+          emit(LoginSuccessState(isOldUser: getUser()!.isOldUser));
         }
+      },
+    );
+  }
+
+  Future<void> _updateUserData(AuthResponse authResponse) async {
+    if (getUser() == null) {
+      await userDataRepo.updateUserData(
+        userDataModel: UserDataModel(
+          userId: authResponse.user!.id,
+          name: authResponse.user!.userMetadata!['full_name'],
+          email: authResponse.user!.email,
+          picture: authResponse.user!.userMetadata!['avatar_url'],
+          createdAt: authResponse.user!.userMetadata!['created_at'],
+        ),
+      );
+    }
+  }
+
+  Future<bool> _ensureUserLoaded() async {
+    if (getUser() != null) return true;
+
+    final Either<Failure, UserDataModel> result = await userDataRepo
+        .getUserData();
+
+    return await result.fold(
+      (failure) async {
+        emit(LoginFailureState(message: failure.message));
+        return false;
+      },
+      (userData) async {
+        await saveUserDataLocal(userDataModel: userData);
+        return true;
       },
     );
   }

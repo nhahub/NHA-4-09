@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/errors/failure.dart';
-import '../../../../core/functions/get_user.dart';
+import '../../../../core/functions/user_data_local.dart';
 import '../../../../core/networking/api_error_handler.dart';
 import '../models/message_model.dart';
 import '../services/chat_service.dart';

@@ -31,5 +31,6 @@ const String kTimeSlotsTable = "time_slots";
 const String kBookingsTable = "bookings";
 const String kSoundTherapyTracksTable = "sound_therapy_tracks";
 const String kAppRatingsTable = "app_ratings";
+const String kUserDataTable = "user_data";
 
 const String kImagePlaceHolder = "https://placehold.co/600x400";

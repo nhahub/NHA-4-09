@@ -1,6 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../../../core/functions/get_user.dart';
+import '../../../../core/functions/user_data_local.dart';
 
 class MoodProgressService {
   final SupabaseClient supabase;

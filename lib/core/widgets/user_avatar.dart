@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../functions/get_user.dart';
+import '../functions/user_data_local.dart';
 import '../theming/app_assets.dart';
 import '../theming/app_colors.dart';
 

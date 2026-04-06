@@ -1,6 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/functions/user_data_local.dart';
+import 'package:moodly/core/models/user_data_model.dart';
+import 'package:moodly/features/auth/data/repos/user_data_repo.dart';
 
 import '../../../../../core/errors/failure.dart';
 import '../../../data/models/question_model.dart';
@@ -11,10 +14,13 @@ part 'questionnaire_state.dart';
 
 class QuestionnaireCubit extends Cubit<QuestionnaireState> {
   final QuestionnaireRepo _questionnaireRepo;
+  final UserDataRepo userDataRepo;
 
-  QuestionnaireCubit({required QuestionnaireRepo questionnaireRepo})
-    : _questionnaireRepo = questionnaireRepo,
-      super(QuestionnaireInitialState());
+  QuestionnaireCubit({
+    required QuestionnaireRepo questionnaireRepo,
+    required this.userDataRepo,
+  }) : _questionnaireRepo = questionnaireRepo,
+       super(QuestionnaireInitialState());
 
   List<QuestionModel> getQuestions() {
     final List<QuestionModel> result = _questionnaireRepo.getQuestions();
@@ -46,7 +52,20 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
 
     result.fold(
       (failure) => emit(QuestionnaireFailureState(message: failure.message)),
-      (_) => emit(QuestionnaireUploadedState()),
+      (_) async {
+        await userDataRepo.updateUserData(
+          userDataModel: UserDataModel(
+            name: getUser()!.name,
+            email: getUser()!.email,
+            picture: getUser()!.picture,
+            phone: getUser()!.phone,
+            createdAt: getUser()!.createdAt,
+            userId: getUser()!.userId,
+            isOldUser: true,
+          ),
+        );
+        return emit(QuestionnaireUploadedState());
+      },
     );
   }
 }

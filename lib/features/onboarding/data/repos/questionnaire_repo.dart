@@ -22,16 +22,6 @@ class QuestionnaireRepo {
   ) async {
     try {
       await _questionnaireService.saveQuestionnaireAnswers(model);
-      await updateUserDataRemote();
-      return right(null);
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
-  }
-
-  Future<Either<Failure, void>> updateUserDataRemote() async {
-    try {
-      await _questionnaireService.updateUserStatus();
       return right(null);
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));

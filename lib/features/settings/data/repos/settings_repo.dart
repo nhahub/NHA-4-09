@@ -1,9 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-
 import '../../../../core/errors/failure.dart';
+import '../../../../core/functions/user_data_local.dart';
 import '../../../../core/networking/api_error_handler.dart';
-import '../../../../core/services/supabase_auth_service.dart';
+import '../../../auth/data/services/supabase_auth_service.dart';
 
 class SettingsRepo {
   final SupabaseAuthService supabaseAuthService;
@@ -13,29 +12,8 @@ class SettingsRepo {
   Future<Either<Failure, void>> logout() async {
     try {
       await supabaseAuthService.logout();
+      await removeUserDataLocal();
       return right(null);
-    } catch (e) {
-      return left(ApiErrorHandler.handle(error: e));
-    }
-  }
-
-  Future<Either<Failure, UserResponse>> updateUserProfile({
-    String? email,
-    String? phone,
-    String? password,
-    String? name,
-    String? image,
-    bool? isOldUser,
-  }) async {
-    try {
-      final UserResponse userResponse = await supabaseAuthService
-          .updateUserProfile(
-            email: email,
-            phone: phone,
-            password: password,
-            data: {"name": name, "is_old_user": isOldUser, "image": image},
-          );
-      return right(userResponse);
     } catch (e) {
       return left(ApiErrorHandler.handle(error: e));
     }
