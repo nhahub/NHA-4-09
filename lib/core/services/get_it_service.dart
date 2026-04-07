@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:moodly/core/services/supabase_storage_service.dart';
 import 'package:moodly/features/auth/data/repos/user_data_repo.dart';
 import 'package:moodly/features/auth/data/services/user_data_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -54,9 +55,16 @@ import 'supabase_crud_service.dart';
 final getIt = GetIt.instance;
 
 Future<void> setupGetIt() async {
-  final SupabaseClient supabase = Supabase.instance.client;
+  // Supabase
+  getIt.registerLazySingleton<SupabaseClient>(() => Supabase.instance.client);
+
   // ApiService
   getIt.registerLazySingleton<ApiService>(() => ApiService(Dio()));
+
+  // Supabase Storage Service
+  getIt.registerLazySingleton<SupabaseStorageService>(
+    () => SupabaseStorageService(client: getIt()),
+  );
 
   // Stripe Service
   getIt.registerLazySingleton<StripeService>(
@@ -92,7 +100,9 @@ Future<void> setupGetIt() async {
     ),
   );
   // Supabase CRUD Service
-  getIt.registerLazySingleton<SupabaseCRUDService>(() => SupabaseCRUDService());
+  getIt.registerLazySingleton<SupabaseCRUDService>(
+    () => SupabaseCRUDService(client: getIt()),
+  );
 
   // Questionnaire Service
   getIt.registerLazySingleton<QuestionnaireService>(
@@ -177,7 +187,7 @@ Future<void> setupGetIt() async {
 
   // Mood Progress Service
   getIt.registerLazySingleton<MoodProgressService>(
-    () => MoodProgressService(supabase: supabase),
+    () => MoodProgressService(supabase: getIt()),
   );
 
   // Mood Progress Repo

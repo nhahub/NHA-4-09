@@ -1,7 +1,9 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseCRUDService {
-  final SupabaseClient client = Supabase.instance.client;
+  final SupabaseClient client;
+
+  SupabaseCRUDService({required this.client});
 
   getCurrentUserId() => client.auth.currentUser?.id;
 
