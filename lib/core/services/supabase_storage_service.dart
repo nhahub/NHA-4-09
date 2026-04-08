@@ -1,6 +1,4 @@
 import 'dart:io';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:path/path.dart' as b;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseStorageService {
@@ -8,66 +6,51 @@ class SupabaseStorageService {
 
   SupabaseStorageService({required this.client});
 
-  createBuckets({required String bucketName}) async {
-    List<Bucket> bucket = await client.storage.listBuckets();
+  Future<void> createBucket({required String bucketName}) async {
+    final List<Bucket> buckets = await client.storage.listBuckets();
 
-    bool isBucketExist = false;
+    final bool isBucketExist = buckets.any((bucket) => bucket.id == bucketName);
 
-    for (Bucket mybucket in bucket) {
-      if (mybucket.id == bucketName) {
-        isBucketExist = true;
-        break;
-      }
-    }
     if (!isBucketExist) {
       await client.storage.createBucket(bucketName);
     }
   }
 
-  Future<File> uploadFile({
+  Future<String> uploadFile({
     required File file,
-    required String path,
-    String? uid,
+    required String filePath,
+    required String userId,
+    required String bucketName,
   }) async {
-    String fileName = b.basename(file.path);
-    if (uid == null) {
-      String urlToSupabase = await client.storage
-          .from(kBucketName)
-          .upload('$path/$fileName', file);
-      return File(urlToSupabase);
-    } else {
-      String urlToSupabase = await client.storage
-          .from(kBucketName)
-          .upload('$path/$uid$fileName', file);
-      return File(urlToSupabase);
-    }
+    // final String fileName = b.basename(file.path);
+
+    final String finalName = "$userId.jpg";
+    final String finalFilePath = "$filePath/$finalName";
+
+    await client.storage
+        .from(bucketName)
+        .upload(
+          finalFilePath,
+          file,
+          fileOptions: const FileOptions(upsert: true),
+        );
+
+    final String publicUrl = getFileUrl(
+      filePath: finalFilePath,
+      bucketName: bucketName,
+    );
+
+    return publicUrl;
   }
 
-  Future<String> getImage({
-    required File file,
-    required String path,
-    String? uid,
-  }) async {
-    String fileName = b.basename(file.path);
-    if (uid == null) {
-      String urlFromSupabase = client.storage
-          .from(kBucketName)
-          .getPublicUrl('$path/$fileName');
-      return urlFromSupabase;
-    } else {
-      String urlFromSupabase = client.storage
-          .from(kBucketName)
-          .getPublicUrl('$path/$uid$fileName');
-      return urlFromSupabase;
-    }
+  String getFileUrl({required String filePath, required String bucketName}) {
+    return client.storage.from(bucketName).getPublicUrl(filePath);
   }
 
   Future<void> deleteImageFromStorage({
-    required String bucket,
+    required String bucketName,
     required String filePath,
   }) async {
-    final supabase = Supabase.instance.client;
-
-    await supabase.storage.from(bucket).remove([filePath]);
+    await client.storage.from(bucketName).remove([filePath]);
   }
 }

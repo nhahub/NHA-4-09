@@ -3,6 +3,8 @@ import 'package:get_it/get_it.dart';
 import 'package:moodly/core/services/supabase_storage_service.dart';
 import 'package:moodly/features/auth/data/repos/user_data_repo.dart';
 import 'package:moodly/features/auth/data/services/user_data_service.dart';
+import 'package:moodly/features/settings/data/repos/images_repo.dart';
+import 'package:moodly/features/settings/data/repos/profile_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -281,6 +283,19 @@ Future<void> setupGetIt() async {
       appRatingService: getIt(),
       appRatingLocalService: getIt(),
     ),
+  );
+
+  // Images Repo
+  getIt.registerLazySingleton<ImagesRepo>(
+    () => ImagesRepo(
+      supabaseStorageService: getIt(),
+      supabaseCRUDService: getIt(),
+    ),
+  );
+
+  // Profile Repo
+  getIt.registerLazySingleton<ProfileRepo>(
+    () => ProfileRepo(userDataRepo: getIt(), imagesRepo: getIt()),
   );
 
   // Audio Player Service

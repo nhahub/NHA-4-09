@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moodly/features/settings/presentation/widgets/update_profile/phone_field.dart';
@@ -37,7 +39,7 @@ class _UpdateProfileFormState extends State<UpdateProfileForm> {
       listener: (context, state) {
         if (state.error != null) {
           errorDialog(context: context, message: state.error!);
-        } else if (state.userDataModel != null && state.isLoading == false) {
+        } else if (state.isSuccess) {
           confirmDialog(
             context: context,
             title: "Success",
@@ -61,10 +63,23 @@ class _UpdateProfileFormState extends State<UpdateProfileForm> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  UserAvatar(name: user?.name ?? "", imageUrl: user?.picture),
+                  state.file != null
+                      ? CircleAvatar(
+                          radius: 45,
+                          backgroundColor: AppColors.lightGrey,
+                          backgroundImage: FileImage(state.file!),
+                        )
+                      : UserAvatar(
+                          name: user?.name ?? "",
+                          imageUrl: user?.picture,
+                        ),
                   const SizedBox(height: 5),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context
+                          .read<UpdateProfileCubit>()
+                          .pickProfileImageFromGallery();
+                    },
                     child: Text(
                       "Change Picture",
                       style: AppStyles.regular14.copyWith(
@@ -74,16 +89,13 @@ class _UpdateProfileFormState extends State<UpdateProfileForm> {
                   ),
                   NameTextField(nameController: nameController),
                   const SizedBox(height: 20),
-                  // EmailTextField(emailController: emailController),
-                  // const SizedBox(height: 20),
-                  // PhoneTextField(phoneController: phoneController),
-                  const PhoneField<UpdateProfileCubit>(),
-                  // const SizedBox(height: 20),
-                  // PasswordTextField(
-                  //   passwordController: passwordController,
-                  //   text: "Password",
-                  //   hintText: "Enter your password",
-                  // ),
+                  PhoneField(
+                    onInputChanged: (phone) {
+                      context.read<UpdateProfileCubit>().updatePhoneNumber(
+                        phone,
+                      );
+                    },
+                  ),
                   const SizedBox(height: 40),
                   BlocBuilder<UpdateProfileCubit, UpdateProfileState>(
                     builder: (context, state) {
@@ -115,13 +127,26 @@ class _UpdateProfileFormState extends State<UpdateProfileForm> {
     if (formKey.currentState!.validate()) {
       final cubit = context.read<UpdateProfileCubit>();
       final user = cubit.state.userDataModel;
-      final String? newPhone = cubit.phoneNumber;
+      final String? newPhone = cubit.state.phoneNumber;
+      final String? oldNumber = user?.phone;
+      final File? file = cubit.state.file;
 
-      context.read<UpdateProfileCubit>().updateUserFields(
+      // context.read<UpdateProfileCubit>().updateUserFields(
+      //   name: nameController.text.trim() == user?.name
+      //       ? null
+      //       : nameController.text.trim(),
+      //   phone: newPhone == oldNumber ? null : newPhone,
+      // );
+
+      // file != null
+      //     ? context.read<UpdateProfileCubit>().changeProfileImageFromGallery()
+      //     : null;
+      context.read<UpdateProfileCubit>().updateProfile(
         name: nameController.text.trim() == user?.name
             ? null
             : nameController.text.trim(),
-        phone: newPhone == user?.phone ? null : newPhone,
+        phone: newPhone == oldNumber ? null : newPhone,
+        file: file,
       );
     }
   }

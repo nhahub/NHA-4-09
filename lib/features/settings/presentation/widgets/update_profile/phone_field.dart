@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:moodly/core/theming/app_styles.dart';
 import '../../../../../core/functions/user_data_local.dart';
 import '../../../../../core/theming/app_colors.dart';
 
-class PhoneField<T extends Cubit> extends StatefulWidget {
-  const PhoneField({super.key});
+class PhoneField extends StatefulWidget {
+  final void Function(String phone)? onInputChanged;
+  const PhoneField({super.key, required this.onInputChanged});
 
   @override
-  State<PhoneField<T>> createState() => _PhoneFieldState<T>();
+  State<PhoneField> createState() => _PhoneFieldState();
 }
 
-class _PhoneFieldState<T extends Cubit> extends State<PhoneField<T>> {
+class _PhoneFieldState extends State<PhoneField> {
   late final TextEditingController _phoneNumberController;
   PhoneNumber initialNumber = PhoneNumber(isoCode: 'EG');
 
@@ -36,7 +36,6 @@ class _PhoneFieldState<T extends Cubit> extends State<PhoneField<T>> {
   }
 
   bool _isValid = false;
-  String? _fullNumber;
 
   @override
   void dispose() {
@@ -75,7 +74,7 @@ class _PhoneFieldState<T extends Cubit> extends State<PhoneField<T>> {
       inputDecoration: InputDecoration(
         hintText: 'Phone Number',
         hintStyle: AppStyles.medium15.copyWith(color: AppColors.linkGray),
-        
+
         focusedBorder: buildOutLineInputBorder(
           borderColor: AppColors.lightGrey,
         ),
@@ -91,12 +90,8 @@ class _PhoneFieldState<T extends Cubit> extends State<PhoneField<T>> {
       ),
 
       onInputChanged: (PhoneNumber number) {
-        _fullNumber = number.phoneNumber;
-
-        final cubit = context.read<T>();
-        final method = cubit as dynamic;
-
-        method.setPhoneNumber(_fullNumber);
+        final phone = number.phoneNumber ?? '';
+        widget.onInputChanged?.call(phone);
       },
 
       onInputValidated: (bool isValid) {
