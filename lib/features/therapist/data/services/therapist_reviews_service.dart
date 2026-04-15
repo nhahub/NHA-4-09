@@ -1,3 +1,5 @@
+import 'package:moodly/features/therapist/data/models/therapist_review_model.dart';
+
 import '../../../../core/constants/constants.dart';
 import '../../../../core/services/supabase_crud_service.dart';
 
@@ -7,20 +9,26 @@ class TherapistReviewsService {
   TherapistReviewsService({required SupabaseCRUDService supabaseCRUDService})
     : _supabaseCRUDService = supabaseCRUDService;
 
-  Future<List<Map<String, dynamic>>> getReviews({
+  Future<List<TherapistReviewModel>> getReviews({
     required String therapistId,
   }) async {
-    final data = await _supabaseCRUDService.getData(
+    final List<Map<String, dynamic>> data = await _supabaseCRUDService.getData(
       table: kTherapistReviewsTable,
       filters: {'therapist_id': therapistId},
       orderBy: 'created_at',
       ascending: false,
     );
-    return data.isNotEmpty ? data : [];
+
+    data.isEmpty ? [] : data;
+    final List<TherapistReviewModel> ratings = data
+        .map((e) => TherapistReviewModel.fromJson(e))
+        .toList();
+
+    return ratings;
   }
 
-  Future<void> addReview({required Map<String, dynamic> data}) {
-    return _supabaseCRUDService.addData(
+  Future<void> addReview({required Map<String, dynamic> data}) async {
+    await _supabaseCRUDService.addData(
       table: kTherapistReviewsTable,
       data: data,
     );

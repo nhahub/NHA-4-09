@@ -27,8 +27,6 @@ class _UpdateReviewFormWidgetState extends State<UpdateReviewFormWidget> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late TextEditingController reviewController;
 
-  int selectedAnonymousIndex = 0;
-
   @override
   void initState() {
     super.initState();
@@ -60,22 +58,12 @@ class _UpdateReviewFormWidgetState extends State<UpdateReviewFormWidget> {
             },
           ),
           const SizedBox(height: 30),
-          DisplayAnonymouslyWidget(
-            onSelectionChanged: (int index) {
-              setState(() {
-                selectedAnonymousIndex = index;
-              });
-            },
-          ),
+          const DisplayAnonymouslyWidget(),
           const SizedBox(height: 60),
           BlocBuilder<TherapistReviewsCubit, TherapistReviewsState>(
-            buildWhen: (previous, current) =>
-                current is UpdateTherapistReviewLoadingState ||
-                current is UpdateTherapistReviewFailureState ||
-                current is UpdateTherapistReviewSuccessState,
             builder: (context, state) {
               return IgnorePointer(
-                ignoring: state is UpdateTherapistReviewLoadingState,
+                ignoring: state.status.isLoading,
                 child: SizedBox(
                   width: double.infinity,
                   child: AppTextButton(
@@ -83,7 +71,7 @@ class _UpdateReviewFormWidgetState extends State<UpdateReviewFormWidget> {
                       validateThenUpdateReview(context);
                     },
                     buttonText: "Update Review",
-                    child: state is UpdateTherapistReviewLoadingState
+                    child: state.status.isLoading
                         ? const CustomCircularProgressIndicator()
                         : null,
                   ),
@@ -99,7 +87,6 @@ class _UpdateReviewFormWidgetState extends State<UpdateReviewFormWidget> {
   void validateThenUpdateReview(BuildContext context) {
     if (formKey.currentState!.validate()) {
       context.read<TherapistReviewsCubit>().updateReview(
-        displayAnonymously: selectedAnonymousIndex == 1,
         reviewModel: widget.oldTherapistReviewModel,
         review: reviewController.text,
       );

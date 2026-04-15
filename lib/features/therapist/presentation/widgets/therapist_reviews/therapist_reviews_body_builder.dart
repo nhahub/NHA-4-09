@@ -12,8 +12,8 @@ class TherapistReviewsBodyBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    switch (state) {
-      case GetTherapistReviewsLoadingState():
+    switch (state.status) {
+      case TherapistReviewsStatus.loading:
         return TherapistReviewsViewBody(
           ratings: DummyTherapistReviews.dummyReviews,
           isLoading: true,
@@ -21,22 +21,18 @@ class TherapistReviewsBodyBuilder extends StatelessWidget {
           count: 0,
         );
 
-      case GetTherapistReviewsFailureState():
-        final failureState = state as GetTherapistReviewsFailureState;
-        return Center(child: Text(failureState.errorMessage));
+      case TherapistReviewsStatus.failure:
+        return Center(child: Text(state.error!));
 
-      case GetTherapistReviewsSuccessState():
-        final successState = state as GetTherapistReviewsSuccessState;
-        if (successState.therapistReviewModel.isEmpty) {
+      case TherapistReviewsStatus.success:
+        if (state.reviews.isEmpty) {
           return const NoReviewsWidget();
         }
 
         return TherapistReviewsViewBody(
-          ratings: successState.therapistReviewModel,
-          avg: successState.average ?? 0,
-          count:
-              successState.totalCount ??
-              successState.therapistReviewModel.length,
+          ratings: state.reviews,
+          avg: state.average ?? 0,
+          count: state.totalCount ?? 0,
         );
 
       default:

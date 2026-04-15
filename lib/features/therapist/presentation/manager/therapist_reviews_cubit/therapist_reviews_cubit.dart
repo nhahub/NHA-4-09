@@ -14,27 +14,31 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
 
   TherapistReviewsCubit({required TherapistReviewsRepo therapistRatingRepo})
     : _therapistRatingRepo = therapistRatingRepo,
-      super(AddTherapistReviewLoadingState());
+      super(
+        const TherapistReviewsState(status: TherapistReviewsStatus.initial),
+      );
 
   Future<void> getReviews({required String therapistId}) async {
-    emit(GetTherapistReviewsLoadingState());
+    emit(state.copyWith(status: TherapistReviewsStatus.loading));
 
     try {
       final List<TherapistReviewModel> reviews = await _therapistRatingRepo
           .getReviews(therapistId: therapistId);
       emit(
-        GetTherapistReviewsSuccessState(
-          therapistReviewModel: reviews,
+        state.copyWith(
+          status: TherapistReviewsStatus.success,
+          reviews: reviews,
           average: calculateAverageRating(reviews),
           totalCount: reviews.length,
-          userRating: 0,
+          userRating: state.userRating,
           hasUserRated: hasUserRated(reviews),
         ),
       );
     } catch (e) {
       emit(
-        GetTherapistReviewsFailureState(
-          errorMessage: ApiErrorHandler.handle(error: e).message,
+        state.copyWith(
+          status: TherapistReviewsStatus.failure,
+          error: ApiErrorHandler.handle(error: e).message,
         ),
       );
     }
@@ -43,28 +47,34 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
   Future<void> addReview({
     required String therapistId,
     required String review,
-    bool displayAnonymously = false,
   }) async {
-    if (state is! GetTherapistReviewsSuccessState) return;
-    final currentState = state as GetTherapistReviewsSuccessState;
-
-    emit(AddTherapistReviewLoadingState());
+    emit(state.copyWith(status: TherapistReviewsStatus.loading));
 
     try {
       final TherapistReviewModel newReview = createTherapistReview(
         therapistId: therapistId,
         reviewText: review,
-        rating: currentState.userRating.toInt(),
-        displayAnonymously: displayAnonymously,
+        rating: state.userRating.toInt(),
+        displayAnonymously: state.displayAnonymously,
       );
+      final List<TherapistReviewModel> updatedList = [...state.reviews];
+      updatedList.add(newReview);
 
       await _therapistRatingRepo.addReview(rating: newReview);
-      await getReviews(therapistId: therapistId);
-      emit(AddTherapistReviewSuccessState());
+      emit(
+        state.copyWith(
+          reviews: updatedList,
+          totalCount: (state.totalCount ?? 0) + 1,
+          average: calculateAverageRating(updatedList),
+          hasUserRated: hasUserRated(updatedList),
+          status: TherapistReviewsStatus.success,
+        ),
+      );
     } catch (e) {
       emit(
-        AddTherapistReviewFailureState(
-          errorMessage: ApiErrorHandler.handle(error: e).message,
+        state.copyWith(
+          status: TherapistReviewsStatus.failure,
+          error: ApiErrorHandler.handle(error: e).message,
         ),
       );
     }
@@ -73,20 +83,20 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
   Future<void> updateReview({
     required TherapistReviewModel reviewModel,
     required String review,
-    bool displayAnonymously = false,
   }) async {
-    if (state is! GetTherapistReviewsSuccessState) return;
-    final currentState = state as GetTherapistReviewsSuccessState;
-
-    emit(UpdateTherapistReviewLoadingState());
+    emit(state.copyWith(status: TherapistReviewsStatus.loading));
 
     try {
+      final int finalRating = state.userRating == 0
+          ? reviewModel.rating.toInt()
+          : state.userRating.toInt();
+
       final TherapistReviewModel updatedReview = createTherapistReview(
         id: reviewModel.id,
         therapistId: reviewModel.therapistId,
         reviewText: review,
-        rating: currentState.userRating.toInt(),
-        displayAnonymously: displayAnonymously,
+        rating: finalRating,
+        displayAnonymously: state.displayAnonymously,
         createdAt: DateTime.now(),
       );
 
@@ -94,12 +104,24 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
         therapistReviewModel: updatedReview,
       );
 
-      await getReviews(therapistId: reviewModel.therapistId);
-      emit(UpdateTherapistReviewSuccessState());
+      final List<TherapistReviewModel> updatedList = state.reviews.map((r) {
+        return r.id == updatedReview.id ? updatedReview : r;
+      }).toList();
+
+      emit(
+        state.copyWith(
+          reviews: updatedList,
+          average: calculateAverageRating(updatedList),
+          hasUserRated: hasUserRated(updatedList),
+          userRating: finalRating,
+          status: TherapistReviewsStatus.success,
+        ),
+      );
     } catch (e) {
       emit(
-        UpdateTherapistReviewFailureState(
-          errorMessage: ApiErrorHandler.handle(error: e).message,
+        state.copyWith(
+          status: TherapistReviewsStatus.failure,
+          error: ApiErrorHandler.handle(error: e).message,
         ),
       );
     }
@@ -109,26 +131,51 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
     required String ratingId,
     required String therapistId,
   }) async {
-    if (state is! GetTherapistReviewsSuccessState) return;
-
-    emit(DeleteTherapistReviewLoadingState());
+    emit(state.copyWith(status: TherapistReviewsStatus.loading));
     try {
       await _therapistRatingRepo.deleteReview(ratingId: ratingId);
-      await getReviews(therapistId: therapistId);
-      emit(DeleteTherapistReviewSuccessState());
+
+      final updatedList = state.reviews.where((r) => r.id != ratingId).toList();
+      emit(
+        state.copyWith(
+          reviews: updatedList,
+          totalCount: ((state.totalCount ?? 1) - 1)
+              .clamp(0, double.infinity)
+              .toInt(),
+          average: calculateAverageRating(updatedList),
+          hasUserRated: hasUserRated(updatedList),
+          status: TherapistReviewsStatus.success,
+        ),
+      );
     } catch (e) {
       emit(
-        DeleteTherapistReviewFailureState(
-          errorMessage: ApiErrorHandler.handle(error: e).message,
+        state.copyWith(
+          status: TherapistReviewsStatus.failure,
+          error: ApiErrorHandler.handle(error: e).message,
         ),
       );
     }
   }
 
   void updateUserRating({required num rating}) {
-    if (state is GetTherapistReviewsSuccessState) {
-      final currentState = state as GetTherapistReviewsSuccessState;
-      emit(currentState.copyWith(userRating: rating));
-    }
+    emit(
+      state.copyWith(
+        status: TherapistReviewsStatus.initial,
+        userRating: rating,
+      ),
+    );
+  }
+
+  void updateDisplayAnonymously({
+    required bool displayAnonymously,
+    required int selectedAnonymousIndex,
+  }) {
+    emit(
+      state.copyWith(
+        status: TherapistReviewsStatus.initial,
+        displayAnonymously: displayAnonymously,
+        selectedAnonymousIndex: selectedAnonymousIndex,
+      ),
+    );
   }
 }

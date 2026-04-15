@@ -44,22 +44,12 @@ class _AddReviewFormWidgetState extends State<AddReviewFormWidget> {
             },
           ),
           const SizedBox(height: 30),
-          DisplayAnonymouslyWidget(
-            onSelectionChanged: (int index) {
-              setState(() {
-                selectedAnonymousIndex = index;
-              });
-            },
-          ),
+          const DisplayAnonymouslyWidget(),
           const SizedBox(height: 60),
           BlocBuilder<TherapistReviewsCubit, TherapistReviewsState>(
-            buildWhen: (previous, current) =>
-                current is AddTherapistReviewLoadingState ||
-                current is AddTherapistReviewFailureState ||
-                current is AddTherapistReviewSuccessState,
             builder: (context, state) {
               return IgnorePointer(
-                ignoring: state is AddTherapistReviewLoadingState,
+                ignoring: state.status.isLoading,
                 child: SizedBox(
                   width: double.infinity,
                   child: AppTextButton(
@@ -67,7 +57,7 @@ class _AddReviewFormWidgetState extends State<AddReviewFormWidget> {
                       validateThenSubmitReview(context);
                     },
                     buttonText: "Submit",
-                    child: state is AddTherapistReviewLoadingState
+                    child: state.status.isLoading
                         ? const CustomCircularProgressIndicator()
                         : null,
                   ),
@@ -83,7 +73,6 @@ class _AddReviewFormWidgetState extends State<AddReviewFormWidget> {
   void validateThenSubmitReview(BuildContext context) {
     if (formKey.currentState!.validate()) {
       context.read<TherapistReviewsCubit>().addReview(
-        displayAnonymously: selectedAnonymousIndex == 1,
         therapistId: widget.therapistId,
         review: reviewController.text,
       );

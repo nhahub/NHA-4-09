@@ -22,7 +22,7 @@ class TherapistReviewAddView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
         child: BlocListener<TherapistReviewsCubit, TherapistReviewsState>(
           listener: (context, state) {
-            if (state is AddTherapistReviewSuccessState) {
+            if (state.status.isSuccess) {
               confirmDialog(
                 context: context,
                 title: "Done!",
@@ -32,8 +32,8 @@ class TherapistReviewAddView extends StatelessWidget {
                   context.pop();
                 },
               );
-            } else if (state is AddTherapistReviewFailureState) {
-              errorDialog(context: context, message: state.errorMessage);
+            } else if (state.status.isFailure) {
+              errorDialog(context: context, message: state.error!);
             }
           },
           child: AddTherapistReviewViewBody(therapistId: therapistId),

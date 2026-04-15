@@ -11,13 +11,8 @@ class TherapistReviewsRepo {
   Future<List<TherapistReviewModel>> getReviews({
     required String therapistId,
   }) async {
-    final List<Map<String, dynamic>> data = await _therapistReviewsService
+    final List<TherapistReviewModel> ratings = await _therapistReviewsService
         .getReviews(therapistId: therapistId);
-
-    final List<TherapistReviewModel> ratings = data
-        .map((e) => TherapistReviewModel.fromJson(e))
-        .toList();
-
     return ratings;
   }
 

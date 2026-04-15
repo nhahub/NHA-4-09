@@ -17,8 +17,7 @@ class TherapistReviewsView extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: const BackButtonAppbar(title: "Ratings & Reviews"),
-          floatingActionButton:
-              state is GetTherapistReviewsSuccessState && !state.hasUserRated
+          floatingActionButton: state.status.isSuccess && !state.hasUserRated
               ? AddTherapistRatingButton(therapistId: therapistId)
               : null,
 
