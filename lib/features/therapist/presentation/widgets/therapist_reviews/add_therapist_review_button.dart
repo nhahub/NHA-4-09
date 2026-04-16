@@ -6,8 +6,8 @@ import '../../../../../core/routing/routes.dart';
 import '../../../../../core/widgets/custom_floating_action_button.dart';
 import '../../manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
 
-class AddTherapistRatingButton extends StatelessWidget {
-  const AddTherapistRatingButton({super.key, required this.therapistId});
+class AddTherapistReviewButton extends StatelessWidget {
+  const AddTherapistReviewButton({super.key, required this.therapistId});
 
   final String therapistId;
 

@@ -28,7 +28,7 @@ class ReviewCard extends StatelessWidget {
             children: [
               ReviewHeader(therapistRatingModel: therapistRatingModel),
               const SizedBox(height: 6),
-              ReviewWidget(review: therapistRatingModel.review),
+              ExpandableText(text: therapistRatingModel.review),
             ],
           ),
         ),

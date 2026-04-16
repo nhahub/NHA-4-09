@@ -1,13 +1,16 @@
-import 'package:equatable/equatable.dart';
+// import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moodly/core/networking/api_error_handler.dart';
-
 import '../../../data/models/therapist_review_model.dart';
 import '../../../data/repos/therapist_reviews_repo.dart';
 import '../../../domain/functions/create_review_model.dart';
 import '../../../domain/functions/review_utils.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'therapist_reviews_state.dart';
+
+part 'therapist_reviews_cubit.freezed.dart'; 
+
 
 class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
   final TherapistReviewsRepo _therapistRatingRepo;
@@ -57,6 +60,7 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
         rating: state.userRating.toInt(),
         displayAnonymously: state.displayAnonymously,
       );
+      
       final List<TherapistReviewModel> updatedList = [...state.reviews];
       updatedList.add(newReview);
 

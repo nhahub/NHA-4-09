@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../core/extensions/string_extensions.dart';
 import '../../../../../core/widgets/app_text_button.dart';
 import '../../../../../core/widgets/app_text_form_field.dart';
