@@ -29,15 +29,15 @@ class MeditationsViewBody extends StatelessWidget {
         space(),
         const RecommendedForYouSection().toSliver(),
         space(),
-        if (isPremium) ...[const PodcastSection().toSliver(), space()],
         isPremium
             ? const YourDailyRoutineSection().toSliver()
             : const CustomOverlayWidget(
                 height: 320,
                 child: YourDailyRoutineSection(),
               ).toSliver(),
+        space(),
+        if (isPremium) ...[const PodcastSection().toSliver(), space()],
         if (isPremium) ...[
-          space(),
           const AsmrSection().toSliver(),
           space(),
           const NewArrivalsSection().toSliver(),
