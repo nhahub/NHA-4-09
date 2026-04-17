@@ -1,8 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/networking/api_error_handler.dart';
+
+import '../../../../../core/networking/api_error_handler.dart';
 import '../../../../therapist/data/models/booking_model.dart';
 import '../../../../therapist/data/repos/booking_repo.dart';
+
 part 'get_booking_sessions_state.dart';
 
 class GetBookingSessionsCubit extends Cubit<GetBookingSessionsState> {
@@ -13,6 +15,7 @@ class GetBookingSessionsCubit extends Cubit<GetBookingSessionsState> {
 
   Future<void> getBookingSessions() async {
     emit(GetBookingSessionsLoadingState());
+    
     try {
       final List<BookingModel> bookings = await _bookingRepo
           .getBookingSessions();

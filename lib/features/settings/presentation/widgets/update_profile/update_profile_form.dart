@@ -1,10 +1,8 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'change_picture_button.dart';
-import 'profile_avatar.dart';
-import 'profile_email_section.dart';
-import 'profile_phone_field.dart';
+
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/functions/confirm_dialog.dart';
@@ -14,6 +12,10 @@ import '../../../../../core/widgets/app_text_button.dart';
 import '../../../../../core/widgets/custom_circular_progress_indicator.dart';
 import '../../../../auth/presentation/widgets/Register/name_text_field.dart';
 import '../../manager/update_profile_cubit/update_profile_cubit.dart';
+import 'change_picture_button.dart';
+import 'profile_avatar.dart';
+import 'profile_email_section.dart';
+import 'profile_phone_field.dart';
 
 class UpdateProfileForm extends StatefulWidget {
   const UpdateProfileForm({super.key});

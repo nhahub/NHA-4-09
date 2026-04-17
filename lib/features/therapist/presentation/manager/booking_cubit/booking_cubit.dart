@@ -1,8 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../data/models/therapist_model.dart';
 import '../../../data/models/time_slot_model.dart';
 import '../../../data/repos/availability_repo.dart';
+
 part 'booking_state.dart';
 
 class BookingCubit extends Cubit<BookingState> {

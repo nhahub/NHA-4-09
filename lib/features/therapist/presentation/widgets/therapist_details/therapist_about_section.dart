@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/widgets/expandable_text.dart';
 
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
+import '../../../../../core/widgets/expandable_text.dart';
 
 class TherapistAboutSection extends StatelessWidget {
   final String about;

@@ -7,7 +7,7 @@ import '../../data/models/category_enum.dart';
 import 'asmr_section/asmr_section.dart';
 import 'categories_section/categories_section.dart';
 import 'new_arrivals_section/new_arrivals_section.dart';
-import 'popular_categories_section/popular_categories_section.dart';
+import 'podcast_section/podcast_section.dart';
 import 'recommended_for_you_section/recommended_for_you_section.dart';
 import 'your_daily_routine_section/your_daily_routine_section.dart';
 
@@ -29,10 +29,7 @@ class MeditationsViewBody extends StatelessWidget {
         space(),
         const RecommendedForYouSection().toSliver(),
         space(),
-        if (isPremium) ...[
-          const PopularCategoriesSection().toSliver(),
-          space(),
-        ],
+        if (isPremium) ...[const PodcastSection().toSliver(), space()],
         isPremium
             ? const YourDailyRoutineSection().toSliver()
             : const CustomOverlayWidget(

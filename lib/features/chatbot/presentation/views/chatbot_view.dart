@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/extensions/context_extensions.dart';
+import '../../../../core/extensions/context_extensions.dart';
 
 class ChatbotView extends StatefulWidget {
   const ChatbotView({super.key});

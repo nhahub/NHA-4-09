@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../manager/update_profile_cubit/update_profile_cubit.dart';
 
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/routing/routes.dart';
 import '../../domain/entities/settings_action_type.dart';
+import '../manager/update_profile_cubit/update_profile_cubit.dart';
 import 'show_feedback_bottom_sheet.dart';
 import 'show_logout_bottom_sheet.dart';
 import 'show_upgrade_subscription_bottom_sheet.dart';

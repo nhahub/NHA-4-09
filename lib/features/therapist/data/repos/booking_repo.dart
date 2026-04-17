@@ -1,4 +1,5 @@
 import 'package:uuid/uuid.dart';
+
 import '../../../../core/functions/user_data_local.dart';
 import '../models/booking_model.dart';
 import '../services/booking_service.dart';

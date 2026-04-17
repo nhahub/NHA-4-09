@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paymob/billing_data.dart';
-import 'package:moodly/core/networking/api_error_handler.dart';
+import '../../../../../core/networking/api_error_handler.dart';
 import '../../../../therapist/data/models/booking_model.dart';
 import '../../../../therapist/data/repos/booking_repo.dart';
 import '../../../data/models/card_model.dart';

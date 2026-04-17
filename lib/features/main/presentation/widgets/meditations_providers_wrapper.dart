@@ -15,8 +15,9 @@ class MeditationsProvidersWrapper extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) =>
-              AudioCubit(audioRepo: getIt.get<AudioRepo>())..getAudioTracks(),
+          create: (context) => AudioCubit(audioRepo: getIt.get<AudioRepo>())
+            ..getASMRTracks()
+            ..getPodcastTracks(),
         ),
       ],
       child: MeditationsView(isPremium: isPremium),

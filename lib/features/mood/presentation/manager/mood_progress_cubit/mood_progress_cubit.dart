@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/networking/api_error_handler.dart';
+import '../../../../../core/networking/api_error_handler.dart';
 import '../../../data/models/mood_chart.dart';
 import '../../../data/repos/mood_progress_repo.dart';
 part 'mood_progress_state.dart';

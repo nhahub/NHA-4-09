@@ -8,9 +8,18 @@ class AudioService {
   AudioService({required SupabaseCRUDService supabaseCRUDService})
     : _supabaseCRUDService = supabaseCRUDService;
 
-  Future<List<AudioModel>> getAudioTracks() async {
+  Future<List<AudioModel>> getASMRTracks() async {
     final List<Map<String, dynamic>> data = await _supabaseCRUDService.getData(
       table: kSoundTherapyTracksTable,
+      ascending: true,
+    );
+
+    return data.map((item) => AudioModel.fromJson(item)).toList();
+  }
+
+  Future<List<AudioModel>> getPodcastTracks() async {
+    final List<Map<String, dynamic>> data = await _supabaseCRUDService.getData(
+      table: kPodcastTable,
       ascending: true,
     );
 

@@ -1,4 +1,4 @@
-import 'package:moodly/features/therapist/data/models/therapist_review_model.dart';
+import '../models/therapist_review_model.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/services/supabase_crud_service.dart';

@@ -6,8 +6,14 @@ class AudioRepo {
   AudioRepo({required AudioService audioService})
     : _audioService = audioService;
 
-  Future<List<AudioModel>> getAudioTracks() async {
-    final List<AudioModel> tracks = await _audioService.getAudioTracks();
-    return tracks;
+  Future<List<AudioModel>> getASMRTracks() async {
+    final List<AudioModel> asmrTracks = await _audioService.getASMRTracks();
+    return asmrTracks;
+  }
+
+  Future<List<AudioModel>> getPodcastTracks() async {
+    final List<AudioModel> podcastTracks = await _audioService
+        .getPodcastTracks();
+    return podcastTracks;
   }
 }

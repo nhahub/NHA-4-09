@@ -1,9 +1,59 @@
+import 'package:moodly/features/meditations/data/models/audio_model.dart';
 import '../../../../core/theming/app_assets.dart';
-import '../models/popular_categories_model.dart';
 
-const List<PopularCategoriesModel> popularCategoriesData = [
-  PopularCategoriesModel(imagePath: AppAssets.category1, title: 'Anxiety'),
-  PopularCategoriesModel(imagePath: AppAssets.category2, title: 'Self-Esteem'),
-  PopularCategoriesModel(imagePath: AppAssets.category3, title: 'Focus'),
-  PopularCategoriesModel(imagePath: AppAssets.category4, title: 'Sleep'),
+const List<AudioModel> podcastData = [
+  AudioModel(
+    audioUrl: "",
+    coverUrl: AppAssets.category1,
+    category: "Meditation",
+    title: "Anger management",
+    duration: 12,
+    id: "1",
+    createdAt: "11/11/2022",
+  ),
+  AudioModel(
+    audioUrl: "",
+    coverUrl: AppAssets.category2,
+    category: "Meditation",
+    title: "Anger management",
+    duration: 12,
+    id: "1",
+    createdAt: "11/11/2022",
+  ),
+  AudioModel(
+    audioUrl: "",
+    coverUrl: AppAssets.category3,
+    category: "Meditation",
+    title: "Anger management",
+    duration: 12,
+    id: "1",
+    createdAt: "11/11/2022",
+  ),
+  AudioModel(
+    audioUrl: "",
+    coverUrl: AppAssets.category4,
+    category: "Meditation",
+    title: "Anger management",
+    duration: 12,
+    id: "1",
+    createdAt: "11/11/2022",
+  ),
+  AudioModel(
+    audioUrl: "",
+    coverUrl: AppAssets.category1,
+    category: "Meditation",
+    title: "Anger management",
+    duration: 12,
+    id: "1",
+    createdAt: "11/11/2022",
+  ),
+  AudioModel(
+    audioUrl: "",
+    coverUrl: AppAssets.category2,
+    category: "Meditation",
+    title: "Anger management",
+    duration: 12,
+    id: "1",
+    createdAt: "11/11/2022",
+  ),
 ];

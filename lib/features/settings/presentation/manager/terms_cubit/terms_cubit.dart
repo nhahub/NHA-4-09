@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/networking/api_error_handler.dart';
+import '../../../../../core/networking/api_error_handler.dart';
 import '../../../data/models/legal_data_model.dart';
 import '../../../data/repos/terms_repo.dart';
 

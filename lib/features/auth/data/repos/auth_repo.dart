@@ -1,5 +1,5 @@
-import 'package:moodly/core/models/user_data_model.dart';
-import 'package:moodly/features/auth/data/repos/user_data_repo.dart';
+import '../../../../core/models/user_data_model.dart';
+import 'user_data_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../core/functions/user_data_local.dart';
 import '../services/supabase_auth_service.dart';

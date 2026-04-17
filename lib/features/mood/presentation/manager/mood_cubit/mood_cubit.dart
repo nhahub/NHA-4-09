@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/networking/api_error_handler.dart';
+import '../../../../../core/networking/api_error_handler.dart';
 import '../../../data/models/feeling_today_model.dart';
 import '../../../data/repos/mood_repo.dart';
 import '../../../data/services/mood_local_service.dart';

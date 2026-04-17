@@ -1,15 +1,15 @@
 // import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:moodly/core/networking/api_error_handler.dart';
+
 import '../../../data/models/therapist_review_model.dart';
 import '../../../data/repos/therapist_reviews_repo.dart';
 import '../../../domain/functions/create_review_model.dart';
 import '../../../domain/functions/review_utils.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'therapist_reviews_state.dart';
-
-part 'therapist_reviews_cubit.freezed.dart'; 
+part 'therapist_reviews_cubit.freezed.dart';
+part 'therapist_reviews_state.dart'; 
 
 
 class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {

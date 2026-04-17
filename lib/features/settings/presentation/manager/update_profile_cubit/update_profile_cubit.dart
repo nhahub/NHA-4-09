@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/networking/api_error_handler.dart';
+import '../../../../../core/networking/api_error_handler.dart';
 import '../../../data/repos/update_profile_repo.dart';
 import '../../helpers/image_picker_helper.dart';
 import '../../../../../core/functions/user_data_local.dart';

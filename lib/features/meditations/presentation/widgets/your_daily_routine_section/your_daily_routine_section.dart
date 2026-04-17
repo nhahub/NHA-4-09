@@ -10,10 +10,10 @@ class YourDailyRoutineSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Column(
+      spacing: kAppSectionSpacing,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AppSectionHeader(title: "Your daily routine"),
-        SizedBox(height: kAppSectionSpacing),
         YourDailyRoutineListView(),
       ],
     );

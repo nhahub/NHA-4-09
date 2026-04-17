@@ -1,10 +1,11 @@
 import 'dart:io';
-import '../../../../core/models/user_data_model.dart';
-import '../../../auth/data/services/user_data_service.dart';
-import '../../../../core/functions/user_data_local.dart';
+
 import '../../../../core/constants/constants.dart';
+import '../../../../core/functions/user_data_local.dart';
+import '../../../../core/models/user_data_model.dart';
 import '../../../../core/services/supabase_crud_service.dart';
 import '../../../../core/services/supabase_storage_service.dart';
+import '../../../auth/data/services/user_data_service.dart';
 
 class UpdateProfileRepo {
   final UserDataService _userDataService;
