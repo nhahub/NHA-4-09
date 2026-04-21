@@ -27,8 +27,7 @@ class MeditationsViewBody extends StatelessWidget {
           onCategorySelected: (Category category) {},
         ).toSliver(),
         space(),
-        const RecommendedBooksSection().toSliver(),
-        space(),
+
         isPremium
             ? const YourDailyRoutineSection().toSliver()
             : const CustomOverlayWidget(
@@ -39,6 +38,8 @@ class MeditationsViewBody extends StatelessWidget {
         if (isPremium) ...[const PodcastSection().toSliver(), space()],
         if (isPremium) ...[
           const AsmrSection().toSliver(),
+          space(),
+          const RecommendedBooksSection().toSliver(),
           space(),
           const NewArrivalsSection().toSliver(),
         ],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/meditations/data/models/book_model.dart';
+import 'package:moodly/features/meditations/presentation/views/book_details_view.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/data/repos/user_data_repo.dart';
@@ -367,6 +369,12 @@ class AppRouter {
 
       case Routes.chatbotView:
         return MaterialPageRoute(builder: (context) => const ChatbotView());
+
+      case Routes.bookDetailsView:
+        final BookModel book = settings.arguments as BookModel;
+        return MaterialPageRoute(
+          builder: (context) => BookDetailsView(book: book),
+        );
 
       case Routes.allAvailableSessionsView:
         return MaterialPageRoute(
