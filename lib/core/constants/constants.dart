@@ -21,6 +21,7 @@ const int kMaxCups = 8;
 
 const String kRecommendedBooksBox = "recommended_books_box";
 const String kRecommendedBooks = "recommended_books";
+const String kCachedMood = "cached_mood";
 
 // Tables
 const String kQuestionnaireAnswersTable = "questionnaire_answers";

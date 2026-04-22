@@ -10,11 +10,16 @@ part 'mood_state.dart';
 
 class MoodCubit extends Cubit<MoodState> {
   final MoodRepo _moodRepo;
+  final MoodLocalService _moodLocalService;
+
   int? _selectedIndex;
 
-  MoodCubit({required MoodRepo moodRepo})
-    : _moodRepo = moodRepo,
-      super(MoodInitialState());
+  MoodCubit({
+    required MoodRepo moodRepo,
+    required MoodLocalService moodLocalService,
+  }) : _moodRepo = moodRepo,
+       _moodLocalService = moodLocalService,
+       super(MoodInitialState());
 
   void selectMood({required int index}) {
     if (_selectedIndex == index) return;
@@ -35,7 +40,7 @@ class MoodCubit extends Cubit<MoodState> {
         currentMood: feelingTodayData[_selectedIndex!].feeling,
       );
       if (isDailyMood) {
-        MoodLocalService.setSelectedDailyMood(
+        _moodLocalService.setSelectedDailyMood(
           dailyMood: feelingTodayData[_selectedIndex!].feeling,
         );
       }

@@ -6,6 +6,7 @@ import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/functions/error_dialog.dart';
 import '../../../../core/services/get_it_service.dart';
 import '../../data/repos/mood_repo.dart';
+import '../../data/services/mood_local_service.dart';
 import '../manager/mood_cubit/mood_cubit.dart';
 import 'mood_dialog_content.dart';
 
@@ -16,7 +17,10 @@ class MoodDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => MoodCubit(moodRepo: getIt.get<MoodRepo>()),
+      create: (_) => MoodCubit(
+        moodRepo: getIt.get<MoodRepo>(),
+        moodLocalService: getIt.get<MoodLocalService>(),
+      ),
       child: BlocListener<MoodCubit, MoodState>(
         listener: (context, state) {
           if (state is MoodSavedState) {

@@ -7,14 +7,33 @@ import '../services/recommended_books_remote_service.dart';
 class RecommendedBooksRepo {
   final RecommendedBooksRemoteService _recommendedBooksRemoteService;
   final RecommendedBooksLocalService _recommendedBooksLocalService;
+  final MoodLocalService _moodLocalService;
 
   RecommendedBooksRepo({
     required RecommendedBooksRemoteService recommendedBooksRemoteService,
     required RecommendedBooksLocalService recommendedBooksLocalService,
+    required MoodLocalService moodLocalService,
   }) : _recommendedBooksRemoteService = recommendedBooksRemoteService,
-       _recommendedBooksLocalService = recommendedBooksLocalService;
+       _recommendedBooksLocalService = recommendedBooksLocalService,
+       _moodLocalService = moodLocalService;
 
   Future<List<BookModel>> getRecommendedBooks() async {
+    // Get current mood
+    final String currentMood =
+        _moodLocalService.getSelectedDailyMood() ?? "calm";
+
+    final String mood = _getMoodCategory(currentMood: currentMood);
+
+    // Get cached mood
+    final String? cachedMood = await _recommendedBooksLocalService
+        .getCachedMood();
+
+    // If cached mood is not equal to current mood remove cached data
+    if (cachedMood != currentMood) {
+      await _recommendedBooksLocalService.clearRecommendedBooks();
+      await _recommendedBooksLocalService.saveMood(currentMood);
+    }
+
     // Try to get data from cache first
     final List<BookModel>? recommendedCachedBooks =
         await _recommendedBooksLocalService.getRecommendedBooks();
@@ -22,10 +41,6 @@ class RecommendedBooksRepo {
     if (recommendedCachedBooks != null && recommendedCachedBooks.isNotEmpty) {
       return recommendedCachedBooks;
     }
-
-    final String currentMood =
-        MoodLocalService.getSelectedDailyMood() ?? "calm";
-    final String mood = _getMoodCategory(currentMood: currentMood);
 
     //  No data in cache, fetch from remote
     final BooksResponse booksResponse = await _recommendedBooksRemoteService
@@ -35,6 +50,7 @@ class RecommendedBooksRepo {
           key: ApiKeys.googleBooksApiKey,
         );
 
+    // Save data to cache
     await _recommendedBooksLocalService.cacheRecommendedBooks(
       recommendedBooks: booksResponse.items!,
     );

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:moodly/features/home/data/services/water_local_service.dart';
 import 'package:moodly/features/meditations/data/services/recommended_books_local_service.dart';
 import 'package:moodly/features/meditations/data/services/recommended_books_remote_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -22,6 +23,7 @@ import '../../features/meditations/data/services/audio_service.dart';
 import '../../features/mood/data/repos/mood_progress_repo.dart';
 import '../../features/mood/data/repos/mood_repo.dart';
 import '../../features/mood/data/repos/recommendation_repo.dart';
+import '../../features/mood/data/services/mood_local_service.dart';
 import '../../features/mood/data/services/mood_progress_service.dart';
 import '../../features/mood/data/services/mood_remote_service.dart';
 import '../../features/mood/data/services/recommendation_local_service.dart';
@@ -131,7 +133,12 @@ Future<void> setupGetIt() async {
   );
 
   // Water Repo
-  getIt.registerLazySingleton<WaterRepo>(() => WaterRepo());
+  getIt.registerLazySingleton<WaterLocalService>(() => WaterLocalService());
+
+  // Water Repo
+  getIt.registerLazySingleton<WaterRepo>(
+    () => WaterRepo(waterLocalService: getIt()),
+  );
 
   // Supabase Auth Service
   getIt.registerLazySingleton<SupabaseAuthService>(
@@ -165,7 +172,7 @@ Future<void> setupGetIt() async {
 
   // Recommended Food Repo
   getIt.registerLazySingleton<RecommendedFoodRepo>(
-    () => RecommendedFoodRepo(localService: getIt()),
+    () => RecommendedFoodRepo(localService: getIt(), moodLocalService: getIt()),
   );
 
   // Chat Repo
@@ -209,7 +216,10 @@ Future<void> setupGetIt() async {
   );
   // Recommendation Repo
   getIt.registerLazySingleton<RecommendationRepo>(
-    () => RecommendationRepo(recommendationLocalService: getIt()),
+    () => RecommendationRepo(
+      recommendationLocalService: getIt(),
+      moodLocalService: getIt(),
+    ),
   );
 
   // Availability Service
@@ -306,11 +316,15 @@ Future<void> setupGetIt() async {
     () => RecommendedBooksRemoteService(getIt()),
   );
 
+  // Mood Local Service
+  getIt.registerLazySingleton<MoodLocalService>(() => MoodLocalService());
+
   // Recommended Books Repo
   getIt.registerLazySingleton<RecommendedBooksRepo>(
     () => RecommendedBooksRepo(
       recommendedBooksLocalService: getIt(),
       recommendedBooksRemoteService: getIt(),
+      moodLocalService: getIt(),
     ),
   );
 

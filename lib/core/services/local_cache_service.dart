@@ -20,6 +20,20 @@ class LocalCacheService<T> {
     await box.put(key, list);
   }
 
+  Future<void> save({
+    required String key,
+    required String boxName,
+    required dynamic value,
+  }) async {
+    final box = Hive.box(boxName);
+    await box.put(key, value);
+  }
+
+  Future<dynamic> get({required String key, required String boxName}) async {
+    final box = Hive.box(boxName);
+    return box.get(key);
+  }
+
   Future<void> clear({required String key, required String boxName}) async {
     final box = Hive.box(boxName);
     await box.delete(key);

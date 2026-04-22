@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/services/get_it_service.dart';
 import '../../data/services/mood_local_service.dart';
 import '../widgets/mood_dialog.dart';
 
 void openDailyMoodDialog(BuildContext context) {
+  final MoodLocalService moodLocalService = getIt.get<MoodLocalService>();
+
   WidgetsBinding.instance.addPostFrameCallback((_) {
-    if (!MoodLocalService.hasSelectedDailyMood()) {
+    if (!moodLocalService.hasSelectedDailyMood()) {
       showDialog(
         barrierDismissible: false,
         context: context,
@@ -27,6 +30,4 @@ void openAfterSessionMoodDialog(BuildContext context) {
       },
     );
   });
-
-  
 }

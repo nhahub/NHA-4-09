@@ -41,4 +41,19 @@ class RecommendedBooksLocalService {
       boxName: kRecommendedBooksBox,
     );
   }
+
+  Future<void> saveMood(String mood) async {
+    await _localCacheService.save(
+      key: kCachedMood,
+      boxName: kRecommendedBooksBox,
+      value: mood,
+    );
+  }
+
+  Future<String?> getCachedMood() async {
+    return await _localCacheService.get(
+      key: kCachedMood,
+      boxName: kRecommendedBooksBox,
+    );
+  }
 }
