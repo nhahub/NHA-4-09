@@ -1,9 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:just_audio/just_audio.dart';
-import '../../features/home/data/services/water_local_service.dart';
-import '../../features/meditations/data/services/recommended_books_local_service.dart';
-import '../../features/meditations/data/services/recommended_books_remote_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -13,6 +10,7 @@ import '../../features/auth/data/services/user_data_service.dart';
 import '../../features/home/data/repos/quote_repo.dart';
 import '../../features/home/data/repos/water_repo.dart';
 import '../../features/home/data/services/quotes_local_service.dart';
+import '../../features/home/data/services/water_local_service.dart';
 import '../../features/meals_recommendations/data/local_service/recommended_food_local_service.dart';
 import '../../features/meals_recommendations/data/repos/recommended_food_repo.dart';
 import '../../features/meditations/data/models/book_model.dart';
@@ -20,6 +18,8 @@ import '../../features/meditations/data/repos/audio_repo.dart';
 import '../../features/meditations/data/repos/recommended_books_repo.dart';
 import '../../features/meditations/data/services/audio_player_service.dart';
 import '../../features/meditations/data/services/audio_service.dart';
+import '../../features/meditations/data/services/recommended_books_local_service.dart';
+import '../../features/meditations/data/services/recommended_books_remote_service.dart';
 import '../../features/mood/data/repos/mood_progress_repo.dart';
 import '../../features/mood/data/repos/mood_repo.dart';
 import '../../features/mood/data/repos/recommendation_repo.dart';

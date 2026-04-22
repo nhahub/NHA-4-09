@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-part 'book_model.g.dart';
 
+part 'book_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class BookModel {
@@ -27,6 +27,7 @@ class BookModel {
 
   Map<String, dynamic> toJson() => _$BookModelToJson(this);
 }
+
 @JsonSerializable(explicitToJson: true)
 class BooksResponse {
   final List<BookModel>? items;
@@ -38,6 +39,7 @@ class BooksResponse {
 
   Map<String, dynamic> toJson() => _$BooksResponseToJson(this);
 }
+
 @JsonSerializable(explicitToJson: true)
 class VolumeInfo {
   final String? title;
@@ -127,18 +129,68 @@ class ImageLinks {
   Map<String, dynamic> toJson() => _$ImageLinksToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class SaleInfo {
   final String? country;
   final String? saleability;
   final bool? isEbook;
+  final Price? listPrice;
+  final Price? retailPrice;
+  final String? buyLink;
+  final List<Offer>? offers;
 
-  SaleInfo({this.country, this.saleability, this.isEbook});
+  SaleInfo({
+    this.country,
+    this.saleability,
+    this.isEbook,
+    this.listPrice,
+    this.retailPrice,
+    this.buyLink,
+    this.offers,
+  });
 
   factory SaleInfo.fromJson(Map<String, dynamic> json) =>
       _$SaleInfoFromJson(json);
 
   Map<String, dynamic> toJson() => _$SaleInfoToJson(this);
+}
+
+@JsonSerializable()
+class Price {
+  final double? amount;
+  final String? currencyCode;
+
+  Price({this.amount, this.currencyCode});
+
+  factory Price.fromJson(Map<String, dynamic> json) => _$PriceFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PriceToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Offer {
+  final int? finskyOfferType;
+  final PriceMicros? listPrice;
+  final PriceMicros? retailPrice;
+
+  Offer({this.finskyOfferType, this.listPrice, this.retailPrice});
+
+  factory Offer.fromJson(Map<String, dynamic> json) => _$OfferFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OfferToJson(this);
+}
+
+@JsonSerializable()
+class PriceMicros {
+  final int? amountInMicros;
+  final String? currencyCode;
+
+  PriceMicros({this.amountInMicros, this.currencyCode});
+
+  factory PriceMicros.fromJson(Map<String, dynamic> json) =>
+      _$PriceMicrosFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PriceMicrosToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -180,8 +232,7 @@ class Epub {
 
   Epub({this.isAvailable, this.acsTokenLink});
 
-  factory Epub.fromJson(Map<String, dynamic> json) =>
-      _$EpubFromJson(json);
+  factory Epub.fromJson(Map<String, dynamic> json) => _$EpubFromJson(json);
 
   Map<String, dynamic> toJson() => _$EpubToJson(this);
 }
@@ -192,8 +243,7 @@ class Pdf {
 
   Pdf({this.isAvailable});
 
-  factory Pdf.fromJson(Map<String, dynamic> json) =>
-      _$PdfFromJson(json);
+  factory Pdf.fromJson(Map<String, dynamic> json) => _$PdfFromJson(json);
 
   Map<String, dynamic> toJson() => _$PdfToJson(this);
 }

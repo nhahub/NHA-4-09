@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+
+import '../../../../../core/constants/constants.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/routing/routes.dart';
-import '../../../data/models/book_model.dart';
-import '../../../../../core/constants/constants.dart';
 import '../../../../../core/widgets/shared/adaptive_image.dart';
 import '../../../../../core/widgets/shared/card_description_container.dart';
+import '../../../data/models/book_model.dart';
 
 class BookCard extends StatelessWidget {
   final BookModel book;

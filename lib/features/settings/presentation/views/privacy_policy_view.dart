@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/widgets/custom_error_widget.dart';
+import '../../../../core/widgets/custom_error_widget.dart';
 
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../../data/models/dummy/dummy_legal_data.dart';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/widgets/shared/adaptive_image.dart';
 
 class BookImage extends StatelessWidget {
@@ -8,7 +9,7 @@ class BookImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.sizeOf(context).width * 0.5,
+      width: MediaQuery.sizeOf(context).width * 0.4,
       child: AspectRatio(
         aspectRatio: 2 / 3,
         child: AdaptiveImage(

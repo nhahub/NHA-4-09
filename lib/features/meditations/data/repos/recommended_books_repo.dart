@@ -1,4 +1,4 @@
-import 'package:moodly/core/helpers/logger.dart';
+import '../../../../core/helpers/logger.dart';
 
 import '../../../../core/constants/app_keys.dart';
 import '../models/book_model.dart';

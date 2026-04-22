@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../features/meditations/data/models/book_model.dart';
-import '../../features/meditations/presentation/views/book_details_view.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/data/repos/user_data_repo.dart';
@@ -29,9 +27,11 @@ import '../../features/meals_recommendations/presentation/manager/recommended_fo
 import '../../features/meals_recommendations/presentation/views/recommended_food_details_view.dart';
 import '../../features/meals_recommendations/presentation/views/recommended_food_view.dart';
 import '../../features/meditations/data/models/audio_model.dart';
+import '../../features/meditations/data/models/book_model.dart';
 import '../../features/meditations/data/services/audio_player_service.dart';
 import '../../features/meditations/presentation/manager/audio_player_cubit/audio_player_cubit.dart';
 import '../../features/meditations/presentation/views/audio_view.dart';
+import '../../features/meditations/presentation/views/book_details_view.dart';
 import '../../features/meditations/presentation/views/video_view.dart';
 import '../../features/mood/data/models/recommendation_model.dart';
 import '../../features/mood/presentation/views/recommendations_view.dart';

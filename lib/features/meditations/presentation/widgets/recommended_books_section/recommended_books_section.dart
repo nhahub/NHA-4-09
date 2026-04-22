@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'recommended_books_bloc_builder.dart';
+
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/widgets/app_section_header.dart';
+import 'recommended_books_bloc_builder.dart';
 
 class RecommendedBooksSection extends StatelessWidget {
   const RecommendedBooksSection({super.key});

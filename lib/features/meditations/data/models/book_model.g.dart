@@ -129,13 +129,64 @@ SaleInfo _$SaleInfoFromJson(Map<String, dynamic> json) => SaleInfo(
   country: json['country'] as String?,
   saleability: json['saleability'] as String?,
   isEbook: json['isEbook'] as bool?,
+  listPrice: json['listPrice'] == null
+      ? null
+      : Price.fromJson(json['listPrice'] as Map<String, dynamic>),
+  retailPrice: json['retailPrice'] == null
+      ? null
+      : Price.fromJson(json['retailPrice'] as Map<String, dynamic>),
+  buyLink: json['buyLink'] as String?,
+  offers: (json['offers'] as List<dynamic>?)
+      ?.map((e) => Offer.fromJson(e as Map<String, dynamic>))
+      .toList(),
 );
 
 Map<String, dynamic> _$SaleInfoToJson(SaleInfo instance) => <String, dynamic>{
   'country': instance.country,
   'saleability': instance.saleability,
   'isEbook': instance.isEbook,
+  'listPrice': instance.listPrice?.toJson(),
+  'retailPrice': instance.retailPrice?.toJson(),
+  'buyLink': instance.buyLink,
+  'offers': instance.offers?.map((e) => e.toJson()).toList(),
 };
+
+Price _$PriceFromJson(Map<String, dynamic> json) => Price(
+  amount: (json['amount'] as num?)?.toDouble(),
+  currencyCode: json['currencyCode'] as String?,
+);
+
+Map<String, dynamic> _$PriceToJson(Price instance) => <String, dynamic>{
+  'amount': instance.amount,
+  'currencyCode': instance.currencyCode,
+};
+
+Offer _$OfferFromJson(Map<String, dynamic> json) => Offer(
+  finskyOfferType: (json['finskyOfferType'] as num?)?.toInt(),
+  listPrice: json['listPrice'] == null
+      ? null
+      : PriceMicros.fromJson(json['listPrice'] as Map<String, dynamic>),
+  retailPrice: json['retailPrice'] == null
+      ? null
+      : PriceMicros.fromJson(json['retailPrice'] as Map<String, dynamic>),
+);
+
+Map<String, dynamic> _$OfferToJson(Offer instance) => <String, dynamic>{
+  'finskyOfferType': instance.finskyOfferType,
+  'listPrice': instance.listPrice?.toJson(),
+  'retailPrice': instance.retailPrice?.toJson(),
+};
+
+PriceMicros _$PriceMicrosFromJson(Map<String, dynamic> json) => PriceMicros(
+  amountInMicros: (json['amountInMicros'] as num?)?.toInt(),
+  currencyCode: json['currencyCode'] as String?,
+);
+
+Map<String, dynamic> _$PriceMicrosToJson(PriceMicros instance) =>
+    <String, dynamic>{
+      'amountInMicros': instance.amountInMicros,
+      'currencyCode': instance.currencyCode,
+    };
 
 AccessInfo _$AccessInfoFromJson(Map<String, dynamic> json) => AccessInfo(
   country: json['country'] as String?,

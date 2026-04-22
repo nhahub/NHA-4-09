@@ -12,7 +12,7 @@ class BookDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExpandableText(
       text: description,
-      maxLines: 4,
+      maxLines: 5,
       style: AppStyles.medium15.copyWith(color: AppColors.bodyGray),
     );
   }

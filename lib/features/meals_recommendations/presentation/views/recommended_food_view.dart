@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/enums/fade_position.dart';
 import '../../../../core/widgets/custom_error_widget.dart';
 import '../../../../core/widgets/fade_scrollable.dart';

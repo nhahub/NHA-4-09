@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/routing/routes.dart';
+import '../../../../../core/widgets/horizontal_padding_list.dart';
 import '../../../../../core/widgets/shared/custom_card.dart';
 import '../../../data/models/audio_model.dart';
-import '../../../../../core/widgets/horizontal_padding_list.dart';
 
 class PodcastListView extends StatelessWidget {
   final List<AudioModel> podcastTracks;

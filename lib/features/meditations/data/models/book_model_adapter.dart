@@ -1,5 +1,7 @@
 import 'dart:convert';
+
 import 'package:hive_ce_flutter/hive_ce_flutter.dart';
+
 import 'book_model.dart';
 
 class BookModelAdapter extends TypeAdapter<BookModel> {

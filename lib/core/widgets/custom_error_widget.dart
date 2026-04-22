@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/theming/app_styles.dart';
+import '../theming/app_styles.dart';
 
 class CustomErrorWidget extends StatelessWidget {
   final String message;
