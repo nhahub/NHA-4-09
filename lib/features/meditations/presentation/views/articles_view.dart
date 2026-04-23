@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../../../core/models/media_model.dart';
 import '../../../../core/widgets/shared/adaptive_image.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
-import '../widgets/articles_section/article_content.dart';
-import '../widgets/articles_section/swipe_widget.dart';
+import '../../data/models/article_model.dart';
+import '../widgets/recommended_articles_section/article_content.dart';
+import '../widgets/recommended_articles_section/swipe_widget.dart';
 
 class ArticlesView extends StatefulWidget {
-  final MediaModel article;
+  final ArticleModel article;
   const ArticlesView({super.key, required this.article});
 
   @override
@@ -29,7 +29,7 @@ class _ArticlesViewState extends State<ArticlesView> {
       body: Stack(
         children: [
           AdaptiveImage(
-            imageUrl: widget.article.coverUrl,
+            imageUrl: widget.article.articleImage,
             height: double.infinity,
             fit: BoxFit.fill,
           ),

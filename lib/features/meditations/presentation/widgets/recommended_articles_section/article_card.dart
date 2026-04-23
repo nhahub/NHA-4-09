@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import '../../../../../core/extensions/context_extensions.dart';
-import '../../../../../core/models/media_model.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/widgets/shared/adaptive_image.dart';
 import '../../../../../core/widgets/shared/card_description_container.dart';
 import '../../../../../core/widgets/shared/category_container.dart';
+import '../../../data/models/article_model.dart';
 
 class ArticleCard extends StatelessWidget {
-  final MediaModel article;
+  final ArticleModel article;
   const ArticleCard({super.key, required this.article});
 
   @override
@@ -24,7 +24,7 @@ class ArticleCard extends StatelessWidget {
         child: Stack(
           children: [
             AdaptiveImage(
-              imageUrl: article.coverUrl,
+              imageUrl: article.articleImage,
               height: double.infinity,
               borderRadius: BorderRadius.circular(16),
               fit: BoxFit.fill,

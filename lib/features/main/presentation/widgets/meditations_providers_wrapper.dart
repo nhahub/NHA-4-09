@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/services/get_it_service.dart';
 import '../../../meditations/data/repos/audio_repo.dart';
+import '../../../meditations/data/repos/recommended_articles_repo.dart';
 import '../../../meditations/data/repos/recommended_books_repo.dart';
 import '../../../meditations/presentation/manager/asmr_cubit/asmr_cubit.dart';
 import '../../../meditations/presentation/manager/podcast_cubit/podcast_cubit.dart';
+import '../../../meditations/presentation/manager/recommended_articles_cubit/recommended_articles_cubit.dart';
 import '../../../meditations/presentation/manager/recommended_books_cubit/recommended_books_cubit.dart';
 import '../../../meditations/presentation/views/meditations_view.dart';
 
@@ -30,6 +32,11 @@ class MeditationsProvidersWrapper extends StatelessWidget {
           create: (context) => RecommendedBooksCubit(
             recommendedBooksRepo: getIt.get<RecommendedBooksRepo>(),
           )..getRecommendedBooks(),
+        ),
+        BlocProvider(
+          create: (context) => RecommendedArticlesCubit(
+            recommendedArticlesRepo: getIt.get<RecommendedArticlesRepo>(),
+          )..getRecommendedArticles(),
         ),
       ],
       child: MeditationsView(isPremium: isPremium),

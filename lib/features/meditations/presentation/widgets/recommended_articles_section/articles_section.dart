@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/widgets/app_section_header.dart';
-import 'articles_grid_view.dart';
+import 'recommended_articles_bloc_builder.dart';
 
 class ArticlesSection extends StatelessWidget {
   const ArticlesSection({super.key});
@@ -14,7 +14,7 @@ class ArticlesSection extends StatelessWidget {
       children: [
         AppSectionHeader(title: "Articles"),
         SizedBox(height: kAppSectionSpacing),
-        ArticlesGridView(),
+        RecommendedArticlesBlocBuilder(),
       ],
     );
   }

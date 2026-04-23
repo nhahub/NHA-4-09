@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/meditations/presentation/widgets/articles_section/article_card.dart';
+import 'package:moodly/features/meditations/presentation/widgets/recommended_articles_section/article_card.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/constants/constants.dart';
-import '../../../data/mock_data/new_arrivals_data.dart';
+import '../../../data/models/article_model.dart';
 
-class ArticlesGridView extends StatelessWidget {
+class RecommendedArticlesGridView extends StatelessWidget {
+  final List<ArticleModel> recommendedArticles;
+
   final bool isLoading;
-  const ArticlesGridView({super.key, this.isLoading = false});
+  const RecommendedArticlesGridView({
+    super.key,
+    this.isLoading = false,
+    required this.recommendedArticles,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +32,9 @@ class ArticlesGridView extends StatelessWidget {
             mainAxisSpacing: 8,
           ),
           itemBuilder: (context, index) {
-            return ArticleCard(article: newArrivalsData[index]);
+            return ArticleCard(article: recommendedArticles[index]);
           },
-          itemCount: newArrivalsData.length,
+          itemCount: recommendedArticles.length,
         ),
       ),
     );

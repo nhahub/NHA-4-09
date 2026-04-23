@@ -1,5 +1,3 @@
-import '../../../../core/helpers/logger.dart';
-
 import '../../../../core/constants/app_keys.dart';
 import '../models/book_model.dart';
 import '../services/recommended_books_local_service.dart';
@@ -23,8 +21,6 @@ class RecommendedBooksRepo {
     // Get current mood
     final String currentMood =
         _moodLocalService.getSelectedDailyMood() ?? "calm";
-
-    Logger.log(currentMood);
 
     final String mood = _getMoodCategory(currentMood: currentMood);
 

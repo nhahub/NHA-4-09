@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:moodly/core/constants/constants.dart';
 import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/features/meditations/presentation/widgets/articles_section/article_header.dart';
-import '../../../../../core/models/media_model.dart';
+import 'package:moodly/features/meditations/presentation/widgets/recommended_articles_section/article_header.dart';
+import '../../../data/models/article_model.dart';
 
 class ArticleContent extends StatelessWidget {
-  const ArticleContent({super.key, required this.article});
+  final ArticleModel article;
 
-  final MediaModel article;
+  const ArticleContent({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +20,13 @@ class ArticleContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const ArticleHeader(),
+          ArticleHeader(article: article),
           const SizedBox(height: 10),
-          Text(article.title * 2, style: AppStyles.extraBold17),
+          Text(article.title, style: AppStyles.extraBold17),
           const SizedBox(height: 10),
-          const Expanded(
+          Expanded(
             child: SingleChildScrollView(
-              child: Text("Article content here...", style: AppStyles.medium15),
+              child: Markdown(data: article.content),
             ),
           ),
         ],

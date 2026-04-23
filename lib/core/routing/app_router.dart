@@ -27,6 +27,7 @@ import '../../features/meals_recommendations/domain/enums/food_type.dart';
 import '../../features/meals_recommendations/presentation/manager/recommended_food_cubit/recommended_food_cubit.dart';
 import '../../features/meals_recommendations/presentation/views/recommended_food_details_view.dart';
 import '../../features/meals_recommendations/presentation/views/recommended_food_view.dart';
+import '../../features/meditations/data/models/article_model.dart';
 import '../../features/meditations/data/models/audio_model.dart';
 import '../../features/meditations/data/models/book_model.dart';
 import '../../features/meditations/data/services/audio_player_service.dart';
@@ -76,7 +77,6 @@ import '../../features/therapist/presentation/views/therapist_live_view.dart';
 import '../../features/therapist/presentation/views/therapist_review_add_view.dart';
 import '../../features/therapist/presentation/views/therapist_review_update_view.dart';
 import '../../features/therapist/presentation/views/therapist_reviews_view.dart';
-import '../models/media_model.dart';
 import '../services/app_launch_decider.dart';
 import '../services/get_it_service.dart';
 import 'routes.dart';
@@ -373,7 +373,7 @@ class AppRouter {
         return MaterialPageRoute(builder: (context) => const ChatbotView());
 
       case Routes.articlesView:
-        final MediaModel article = settings.arguments as MediaModel;
+        final ArticleModel article = settings.arguments as ArticleModel;
         return MaterialPageRoute(
           builder: (context) => ArticlesView(article: article),
         );

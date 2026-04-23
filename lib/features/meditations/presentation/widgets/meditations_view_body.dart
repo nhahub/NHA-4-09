@@ -6,7 +6,7 @@ import '../../../../core/widgets/vertical_space.dart';
 import '../../data/models/category_enum.dart';
 import 'asmr_section/asmr_section.dart';
 import 'categories_section/categories_section.dart';
-import 'articles_section/articles_section.dart';
+import 'recommended_articles_section/articles_section.dart';
 import 'podcast_section/podcast_section.dart';
 import 'recommended_books_section/recommended_books_section.dart';
 import 'your_daily_routine_section/your_daily_routine_section.dart';
