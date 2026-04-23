@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/meditations/presentation/views/articles_view.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/data/repos/user_data_repo.dart';
@@ -75,6 +76,7 @@ import '../../features/therapist/presentation/views/therapist_live_view.dart';
 import '../../features/therapist/presentation/views/therapist_review_add_view.dart';
 import '../../features/therapist/presentation/views/therapist_review_update_view.dart';
 import '../../features/therapist/presentation/views/therapist_reviews_view.dart';
+import '../models/media_model.dart';
 import '../services/app_launch_decider.dart';
 import '../services/get_it_service.dart';
 import 'routes.dart';
@@ -369,6 +371,12 @@ class AppRouter {
 
       case Routes.chatbotView:
         return MaterialPageRoute(builder: (context) => const ChatbotView());
+
+      case Routes.articlesView:
+        final MediaModel article = settings.arguments as MediaModel;
+        return MaterialPageRoute(
+          builder: (context) => ArticlesView(article: article),
+        );
 
       case Routes.bookDetailsView:
         final BookModel book = settings.arguments as BookModel;

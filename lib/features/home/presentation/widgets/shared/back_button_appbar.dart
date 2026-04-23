@@ -12,10 +12,21 @@ class BackButtonAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
   final IconData? endIcon;
   final VoidCallback? onEndTap;
+  final bool withFade;
+  final Color? backgroundcolor;
+  final Color? titleColor;
 
   static const double height = 80;
 
-  const BackButtonAppbar({super.key, this.title, this.endIcon, this.onEndTap});
+  const BackButtonAppbar({
+    super.key,
+    this.title,
+    this.endIcon,
+    this.onEndTap,
+    this.withFade = true,
+    this.backgroundcolor,
+    this.titleColor,
+  });
 
   @override
   Size get preferredSize => const Size.fromHeight(height);
@@ -29,25 +40,26 @@ class BackButtonAppbar extends StatelessWidget implements PreferredSizeWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            const FadeScrollable(
-              fadePosition: FadePosition.top,
-              child: SizedBox.expand(),
-            ),
+            if (withFade)
+              const FadeScrollable(
+                fadePosition: FadePosition.top,
+                child: SizedBox.expand(),
+              ),
 
-            /// 🔹 Title في النص الحقيقي
             Center(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 60),
                 child: Text(
                   title ?? "",
-                  style: AppStyles.extraBold20,
+                  style: AppStyles.extraBold20.copyWith(
+                    color: titleColor ?? Colors.black,
+                  ),
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
             ),
 
-            /// 🔹 Back button (left)
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: kAppHorizontalPadding,
@@ -59,10 +71,10 @@ class BackButtonAppbar extends StatelessWidget implements PreferredSizeWidget {
                       ? CustomCircleButton(
                           icon: AppAssets.arrowLeftIosIcon,
                           onTap: () => context.pop(),
+                          backgroundcolor: backgroundcolor,
                         )
                       : const SizedBox(),
 
-                  /// 🔹 End icon (right)
                   endIcon != null
                       ? GestureDetector(
                           onTap: onEndTap ?? () {},

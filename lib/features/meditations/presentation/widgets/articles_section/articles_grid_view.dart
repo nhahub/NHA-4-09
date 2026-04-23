@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/features/meditations/presentation/widgets/articles_section/article_card.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
 import '../../../../../core/constants/constants.dart';
-import '../../../../../core/extensions/context_extensions.dart';
-import '../../../../../core/routing/routes.dart';
-import '../../../../../core/widgets/shared/custom_card.dart';
 import '../../../data/mock_data/new_arrivals_data.dart';
 
-class NewArrivalsGridView extends StatelessWidget {
+class ArticlesGridView extends StatelessWidget {
   final bool isLoading;
-  const NewArrivalsGridView({super.key, this.isLoading = false});
+  const ArticlesGridView({super.key, this.isLoading = false});
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +26,7 @@ class NewArrivalsGridView extends StatelessWidget {
             mainAxisSpacing: 8,
           ),
           itemBuilder: (context, index) {
-            return CustomCard(
-              mediaEntity: newArrivalsData[index],
-              onTap: () {
-                context.push(Routes.audioView, args: newArrivalsData[index]);
-              },
-            );
+            return ArticleCard(article: newArrivalsData[index]);
           },
           itemCount: newArrivalsData.length,
         ),
