@@ -1,4 +1,4 @@
-import 'package:moodly/core/extensions/string_extensions.dart';
+// import 'package:moodly/core/extensions/string_extensions.dart';
 import 'package:moodly/features/meditations/data/services/recommended_articles_remote_service.dart';
 
 import '../../../mood/data/services/mood_local_service.dart';
@@ -34,8 +34,8 @@ class RecommendedArticlesRepo {
     }
 
     // Try to get data from cache first
-    final List<ArticleModel>? recommendedCachedArticles =
-        await _recommendedArticlesLocalService.getRecommendedArticles();
+    // final List<ArticleModel>? recommendedCachedArticles =
+    //     await _recommendedArticlesLocalService.getRecommendedArticles();
 
     // if (recommendedCachedArticles != null &&
     //     recommendedCachedArticles.isNotEmpty) {
