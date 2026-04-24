@@ -52,6 +52,6 @@ class ArticleContent extends StatelessWidget {
   }
 
   String _getPreview(String text) {
-    return text.length > 220 ? "${text.substring(0, 220)}..." : text;
+    return text.length > 150 ? "${text.substring(0, 150)}..." : text;
   }
 }
