@@ -21,9 +21,7 @@ class _ArticlesViewState extends State<ArticlesView> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: const BackButtonAppbar(
-        title: "Article",
         withFade: false,
-        titleColor: Colors.white,
         backgroundcolor: Color(0xffdfdfdb),
       ),
       body: Stack(
@@ -49,7 +47,10 @@ class _ArticlesViewState extends State<ArticlesView> {
                   color: Color(0xfff6f8fa),
                   borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                 ),
-                child: ArticleContent(article: widget.article),
+                child: ArticleContent(
+                  article: widget.article,
+                  sheetHeight: sheetHeight,
+                ),
               ),
             ),
           ),

@@ -20,7 +20,7 @@ class ArticleModel {
   @JsonKey(name: 'published_at')
   final String publishedAt;
 
-  ArticleModel({
+  const ArticleModel({
     required this.id,
     required this.title,
     required this.content,

@@ -7,30 +7,51 @@ import '../../../data/models/article_model.dart';
 
 class ArticleContent extends StatelessWidget {
   final ArticleModel article;
+  final double sheetHeight;
 
-  const ArticleContent({super.key, required this.article});
+  const ArticleContent({
+    super.key,
+    required this.article,
+    required this.sheetHeight,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final bool enableScroll = sheetHeight > 0.8;
+    final bool isCollapsed = sheetHeight == 0.4;
+
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: kAppHorizontalPadding,
         vertical: kAppVerticalPadding,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ArticleHeader(article: article),
-          const SizedBox(height: 10),
-          Text(article.title, style: AppStyles.extraBold17),
-          const SizedBox(height: 10),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Markdown(data: article.content),
+      child: CustomScrollView(
+        physics: enableScroll
+            ? const BouncingScrollPhysics()
+            : const NeverScrollableScrollPhysics(),
+        slivers: [
+          SliverToBoxAdapter(child: ArticleHeader(article: article)),
+          const SliverToBoxAdapter(child: SizedBox(height: 10)),
+          SliverToBoxAdapter(
+            child: Text(article.title, style: AppStyles.extraBold21),
+          ),
+          const SliverToBoxAdapter(child: SizedBox(height: 10)),
+          SliverToBoxAdapter(
+            child: Markdown(
+              data: isCollapsed
+                  ? _getPreview(article.content)
+                  : article.content,
+              padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
             ),
           ),
         ],
       ),
     );
+  }
+
+  String _getPreview(String text) {
+    return text.length > 220 ? "${text.substring(0, 220)}..." : text;
   }
 }
