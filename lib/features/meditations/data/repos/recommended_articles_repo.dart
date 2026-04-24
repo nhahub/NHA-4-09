@@ -37,15 +37,16 @@ class RecommendedArticlesRepo {
     final List<ArticleModel>? recommendedCachedArticles =
         await _recommendedArticlesLocalService.getRecommendedArticles();
 
-    if (recommendedCachedArticles != null &&
-        recommendedCachedArticles.isNotEmpty) {
-      return recommendedCachedArticles;
-    }
+    // if (recommendedCachedArticles != null &&
+    //     recommendedCachedArticles.isNotEmpty) {
+    //   return recommendedCachedArticles;
+    // }
 
     //  No data in cache, fetch from remote
     final List<ArticleModel> recommendedArticles =
         await _recommendedArticlesRemoteService.getRecommendedArticles(
-          mood: currentMood.capitalize(),
+          // mood: currentMood.capitalize(),
+          mood: "Anxious",
         );
 
     // Save data to cache

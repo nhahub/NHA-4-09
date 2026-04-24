@@ -10,7 +10,7 @@ List<ArticleModel> recommendedArticlesData = [
     authorImage: AppAssets.avatar1,
     articleImage: AppAssets.newArrival1,
     category: "Anxiety",
-    publishedAt: DateTime.now().toString(),
+    publishedAt: DateTime.now(),
   ),
   ArticleModel(
     id: "2",
@@ -20,7 +20,7 @@ List<ArticleModel> recommendedArticlesData = [
     authorImage: AppAssets.avatar2,
     articleImage: AppAssets.newArrival2,
     category: "Anxiety",
-    publishedAt: DateTime.now().toString(),
+    publishedAt: DateTime.now(),
   ),
   ArticleModel(
     id: "3",
@@ -30,7 +30,7 @@ List<ArticleModel> recommendedArticlesData = [
     authorImage: AppAssets.avatar3,
     articleImage: AppAssets.newArrival3,
     category: "Anxiety",
-    publishedAt: DateTime.now().toString(),
+    publishedAt: DateTime.now(),
   ),
   ArticleModel(
     id: "4",
@@ -40,7 +40,7 @@ List<ArticleModel> recommendedArticlesData = [
     authorImage: AppAssets.avatar4,
     articleImage: AppAssets.newArrival4,
     category: "Anxiety",
-    publishedAt: DateTime.now().toString(),
+    publishedAt: DateTime.now(),
   ),
 ];
 

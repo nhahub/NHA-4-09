@@ -14,7 +14,7 @@ ArticleModel _$ArticleModelFromJson(Map<String, dynamic> json) => ArticleModel(
   authorImage: json['author_image'] as String,
   articleImage: json['article_image'] as String,
   category: json['category'] as String,
-  publishedAt: json['published_at'] as String,
+  publishedAt: DateTime.parse(json['published_at'] as String),
 );
 
 Map<String, dynamic> _$ArticleModelToJson(ArticleModel instance) =>
@@ -26,5 +26,5 @@ Map<String, dynamic> _$ArticleModelToJson(ArticleModel instance) =>
       'author_name': instance.authorName,
       'author_image': instance.authorImage,
       'article_image': instance.articleImage,
-      'published_at': instance.publishedAt,
+      'published_at': instance.publishedAt.toIso8601String(),
     };

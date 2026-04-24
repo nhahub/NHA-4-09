@@ -15,7 +15,7 @@ class ArticleHeader extends StatelessWidget {
     return Row(
       children: [
         UserAvatar(
-          // imageUrl: article.authorImage,
+          imageUrl: article.authorImage,
           name: article.authorName,
           radius: 20,
           fontSize: 20,

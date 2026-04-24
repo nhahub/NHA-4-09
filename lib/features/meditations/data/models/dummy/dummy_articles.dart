@@ -3,7 +3,7 @@ import 'package:moodly/features/meditations/data/models/article_model.dart';
 class DummyArticles {
   static List<ArticleModel> dummyArticles = List.generate(
     6,
-    (index) => const ArticleModel(
+    (index) => ArticleModel(
       id: "",
       title: "",
       content: "",
@@ -11,7 +11,7 @@ class DummyArticles {
       authorImage: "",
       articleImage: "",
       category: "",
-      publishedAt: "",
+      publishedAt: DateTime.now(),
     ),
   );
 }

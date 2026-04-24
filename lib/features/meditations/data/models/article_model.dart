@@ -18,7 +18,7 @@ class ArticleModel {
   final String articleImage;
 
   @JsonKey(name: 'published_at')
-  final String publishedAt;
+  final DateTime publishedAt;
 
   const ArticleModel({
     required this.id,
