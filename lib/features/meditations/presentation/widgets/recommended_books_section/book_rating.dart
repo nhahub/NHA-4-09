@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'star_rating.dart';
+
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
+import 'star_rating.dart';
 
 class BookRating extends StatelessWidget {
   final String rating;

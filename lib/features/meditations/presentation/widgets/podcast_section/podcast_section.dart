@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'podcast_bloc_builder.dart';
 
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/widgets/app_section_header.dart';
+import 'podcast_bloc_builder.dart';
 
 class PodcastSection extends StatelessWidget {
   const PodcastSection({super.key});

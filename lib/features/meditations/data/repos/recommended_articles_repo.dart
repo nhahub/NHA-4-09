@@ -1,7 +1,5 @@
-import 'package:moodly/core/extensions/string_extensions.dart';
-import 'package:moodly/core/helpers/logger.dart';
-import 'package:moodly/features/meditations/data/services/recommended_articles_remote_service.dart';
-
+import '../../../../core/extensions/string_extensions.dart';
+import '../services/recommended_articles_remote_service.dart';
 import '../../../mood/data/services/mood_local_service.dart';
 import '../models/article_model.dart';
 import '../services/recommended_articles_local_service.dart';
@@ -23,13 +21,10 @@ class RecommendedArticlesRepo {
     // Get current mood
     final String currentMood =
         _moodLocalService.getSelectedDailyMood() ?? "calm";
-    Logger.log(currentMood);
 
     // Get cached mood
     final String? cachedMood = await _recommendedArticlesLocalService
         .getCachedMood();
-
-    Logger.log(cachedMood ?? "null");
 
     // If cached mood is not equal to current mood remove cached data
     if (cachedMood != currentMood) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/extensions/published_date.dart';
 import '../../../data/models/book_model.dart';
 import 'book_price.dart';

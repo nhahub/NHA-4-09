@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/extensions/string_extensions.dart';
 import '../../../data/models/book_model.dart';
 import 'info_item.dart';

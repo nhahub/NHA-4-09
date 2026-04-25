@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
-import 'package:moodly/core/constants/constants.dart';
-import 'package:moodly/core/theming/app_styles.dart';
-import 'package:moodly/features/meditations/presentation/widgets/recommended_articles_section/article_header.dart';
+import '../../../../../core/constants/constants.dart';
+import '../../../../../core/theming/app_styles.dart';
+import 'article_header.dart';
 import '../../../data/models/article_model.dart';
 
 class ArticleContent extends StatelessWidget {

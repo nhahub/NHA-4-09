@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/meditations/presentation/widgets/recommended_articles_section/article_card.dart';
+import 'article_card.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/constants/constants.dart';
 import '../../../data/models/article_model.dart';

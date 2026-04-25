@@ -1,5 +1,5 @@
-import 'package:moodly/core/services/supabase_crud_service.dart';
-import 'package:moodly/features/meditations/data/models/article_model.dart';
+import '../../../../core/services/supabase_crud_service.dart';
+import '../models/article_model.dart';
 import '../../../../core/constants/constants.dart';
 
 class RecommendedArticlesRemoteService {

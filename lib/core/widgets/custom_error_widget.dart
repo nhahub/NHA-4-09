@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../theming/app_styles.dart';
 
 class CustomErrorWidget extends StatelessWidget {

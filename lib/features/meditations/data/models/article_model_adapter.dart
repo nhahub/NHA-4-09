@@ -1,5 +1,7 @@
 import 'dart:convert';
+
 import 'package:hive_ce_flutter/hive_ce_flutter.dart';
+
 import 'article_model.dart';
 
 class ArticleModelAdapter extends TypeAdapter<ArticleModel> {

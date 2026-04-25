@@ -1,4 +1,4 @@
-import 'package:moodly/features/meditations/data/models/article_model.dart';
+import '../article_model.dart';
 
 class DummyArticles {
   static List<ArticleModel> dummyArticles = List.generate(

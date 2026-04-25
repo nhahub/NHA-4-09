@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/meditations/data/models/article_model.dart';
+import '../../../data/models/article_model.dart';
 import '../../../../../core/extensions/date_format_extensions.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
