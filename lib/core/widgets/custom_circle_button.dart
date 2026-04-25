@@ -6,9 +6,15 @@ import '../helpers/alpha_from_percent.dart';
 import '../theming/app_colors.dart';
 
 class CustomCircleButton extends StatelessWidget {
-  const CustomCircleButton({super.key, this.onTap, required this.icon});
+  const CustomCircleButton({
+    super.key,
+    this.onTap,
+    required this.icon,
+    this.backgroundcolor,
+  });
   final VoidCallback? onTap;
   final String icon;
+  final Color? backgroundcolor;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -22,7 +28,7 @@ class CustomCircleButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: backgroundcolor ?? Colors.white,
           shape: BoxShape.circle,
           border: Border.all(
             color: AppColors.borderButton.withAlpha(alphaFromPercentage(6)),

@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:moodly/features/meditations/data/models/article_model.dart';
+import 'package:moodly/features/meditations/data/repos/recommended_articles_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -18,6 +20,8 @@ import '../../features/meditations/data/repos/audio_repo.dart';
 import '../../features/meditations/data/repos/recommended_books_repo.dart';
 import '../../features/meditations/data/services/audio_player_service.dart';
 import '../../features/meditations/data/services/audio_service.dart';
+import '../../features/meditations/data/services/recommended_articles_local_service.dart';
+import '../../features/meditations/data/services/recommended_articles_remote_service.dart';
 import '../../features/meditations/data/services/recommended_books_local_service.dart';
 import '../../features/meditations/data/services/recommended_books_remote_service.dart';
 import '../../features/mood/data/repos/mood_progress_repo.dart';
@@ -305,6 +309,10 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<LocalCacheService<BookModel>>(
     () => LocalCacheService<BookModel>(),
   );
+  // Local Cache
+  getIt.registerLazySingleton<LocalCacheService<ArticleModel>>(
+    () => LocalCacheService<ArticleModel>(),
+  );
 
   // Recommended Books Local Service
   getIt.registerLazySingleton<RecommendedBooksLocalService>(
@@ -324,6 +332,25 @@ Future<void> setupGetIt() async {
     () => RecommendedBooksRepo(
       recommendedBooksLocalService: getIt(),
       recommendedBooksRemoteService: getIt(),
+      moodLocalService: getIt(),
+    ),
+  );
+
+  // Recommended Articles Remote Service
+  getIt.registerLazySingleton<RecommendedArticlesRemoteService>(
+    () => RecommendedArticlesRemoteService(supabaseCRUDService: getIt()),
+  );
+
+  // Recommended Articles Local Service
+  getIt.registerLazySingleton<RecommendedArticlesLocalService>(
+    () => RecommendedArticlesLocalService(localCacheService: getIt()),
+  );
+
+  // Recommended Articles Repo
+  getIt.registerLazySingleton<RecommendedArticlesRepo>(
+    () => RecommendedArticlesRepo(
+      recommendedArticlesRemoteService: getIt(),
+      recommendedArticlesLocalService: getIt(),
       moodLocalService: getIt(),
     ),
   );

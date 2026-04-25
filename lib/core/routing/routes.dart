@@ -37,4 +37,5 @@ class Routes {
   static const String editProfileView = '/editProfileView';
   static const String bookDetailsView = '/bookDetailsView';
   static const String aboutView = '/aboutView';
+  static const String articlesView = '/articlesView';
 }

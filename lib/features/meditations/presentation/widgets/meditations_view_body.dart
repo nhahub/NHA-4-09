@@ -6,7 +6,7 @@ import '../../../../core/widgets/vertical_space.dart';
 import '../../data/models/category_enum.dart';
 import 'asmr_section/asmr_section.dart';
 import 'categories_section/categories_section.dart';
-import 'new_arrivals_section/new_arrivals_section.dart';
+import 'recommended_articles_section/articles_section.dart';
 import 'podcast_section/podcast_section.dart';
 import 'recommended_books_section/recommended_books_section.dart';
 import 'your_daily_routine_section/your_daily_routine_section.dart';
@@ -27,7 +27,8 @@ class MeditationsViewBody extends StatelessWidget {
           onCategorySelected: (Category category) {},
         ).toSliver(),
         space(),
-
+        const PodcastSection().toSliver(),
+        space(),
         isPremium
             ? const YourDailyRoutineSection().toSliver()
             : const CustomOverlayWidget(
@@ -35,13 +36,12 @@ class MeditationsViewBody extends StatelessWidget {
                 child: YourDailyRoutineSection(),
               ).toSliver(),
         space(),
-        if (isPremium) ...[const PodcastSection().toSliver(), space()],
         if (isPremium) ...[
           const AsmrSection().toSliver(),
           space(),
           const RecommendedBooksSection().toSliver(),
           space(),
-          const NewArrivalsSection().toSliver(),
+          const ArticlesSection().toSliver(),
         ],
         space(height: 120),
       ],

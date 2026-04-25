@@ -10,19 +10,14 @@ class RecommendedBooksLocalService {
   }) : _localCacheService = localCacheService;
 
   Future<List<BookModel>?> getRecommendedBooks() async {
-    try {
-      final List<BookModel>? list = await _localCacheService.getList(
-        key: kRecommendedBooks,
-        boxName: kRecommendedBooksBox,
-      );
-      if (list == null) {
-        return null;
-      }
-      return list;
-    } catch (e) {
-      await clearRecommendedBooks();
+    final List<BookModel>? list = await _localCacheService.getList(
+      key: kRecommendedBooks,
+      boxName: kRecommendedBooksBox,
+    );
+    if (list == null) {
       return null;
     }
+    return list;
   }
 
   Future<void> cacheRecommendedBooks({

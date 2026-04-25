@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/meditations/presentation/views/articles_view.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/data/repos/user_data_repo.dart';
@@ -26,6 +27,7 @@ import '../../features/meals_recommendations/domain/enums/food_type.dart';
 import '../../features/meals_recommendations/presentation/manager/recommended_food_cubit/recommended_food_cubit.dart';
 import '../../features/meals_recommendations/presentation/views/recommended_food_details_view.dart';
 import '../../features/meals_recommendations/presentation/views/recommended_food_view.dart';
+import '../../features/meditations/data/models/article_model.dart';
 import '../../features/meditations/data/models/audio_model.dart';
 import '../../features/meditations/data/models/book_model.dart';
 import '../../features/meditations/data/services/audio_player_service.dart';
@@ -369,6 +371,12 @@ class AppRouter {
 
       case Routes.chatbotView:
         return MaterialPageRoute(builder: (context) => const ChatbotView());
+
+      case Routes.articlesView:
+        final ArticleModel article = settings.arguments as ArticleModel;
+        return MaterialPageRoute(
+          builder: (context) => ArticlesView(article: article),
+        );
 
       case Routes.bookDetailsView:
         final BookModel book = settings.arguments as BookModel;

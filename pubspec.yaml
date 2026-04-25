@@ -41,6 +41,7 @@ dependencies:
   flutter_bloc: ^9.1.1
   flutter_dotenv: ^6.0.0
   flutter_inner_shadow: ^0.0.1
+  flutter_markdown_plus: ^1.0.7
   flutter_native_splash: ^2.4.7
   flutter_paymob: ^1.0.8
   flutter_paypal_payment: ^1.0.8

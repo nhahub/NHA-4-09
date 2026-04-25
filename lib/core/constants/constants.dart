@@ -21,6 +21,10 @@ const int kMaxCups = 8;
 
 const String kRecommendedBooksBox = "recommended_books_box";
 const String kRecommendedBooks = "recommended_books";
+
+const String kRecommendedArticlesBox = "recommended_articles_box";
+const String kRecommendedArticles = "recommended_articles";
+
 const String kCachedMood = "cached_mood";
 
 // Tables
@@ -37,6 +41,7 @@ const String kSoundTherapyTracksTable = "sound_therapy_tracks";
 const String kAppRatingsTable = "app_ratings";
 const String kUserDataTable = "user_data";
 const String kPodcastTable = "podcasts";
+const String kArticlesTable = "articles";
 
 const String kUsersImagesBucket = "users_images";
 const String kProfileImagesPath = "images/profile";
