@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/widgets/horizontal_padding_list.dart';
-import '../../../data/mock_data/meditations_for_you_data.dart';
-import 'activity_card.dart';
+
+import '../../../data/models/activity/activity_model.dart';
 
 class ActivitiesListView extends StatelessWidget {
-  const ActivitiesListView({super.key});
+  final List<ActivityModel> activities;
+  final bool isLoading;
+  const ActivitiesListView({
+    super.key,
+    required this.activities,
+    this.isLoading = false,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return HorizontalPaddingList(
-      height: 254,
-      itemCount: activityCategoryModelData.length,
-      itemBuilder: (context, index) {
-        return ActivityCard(
-          activityCategoryModel: activityCategoryModelData[index],
-        );
-      },
-    );
+    return Container();
   }
 }

@@ -42,6 +42,8 @@ const String kAppRatingsTable = "app_ratings";
 const String kUserDataTable = "user_data";
 const String kPodcastTable = "podcasts";
 const String kArticlesTable = "articles";
+const String kActivitiesTable = "activities";
+const String kActivityCategoriesTable = "activity_categories";
 
 const String kUsersImagesBucket = "users_images";
 const String kProfileImagesPath = "images/profile";

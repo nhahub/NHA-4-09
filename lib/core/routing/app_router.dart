@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../features/home/presentation/manager/activities_cubit/activities_cubit.dart';
 import '../../features/meditations/presentation/views/articles_view.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -352,7 +353,16 @@ class AppRouter {
         );
 
       case Routes.activitiesView:
-        return MaterialPageRoute(builder: (context) => const ActivitiesView());
+        final args = settings.arguments as Map<String, dynamic>;
+        final cubit = args['cubit'] as ActivitiesCubit;
+        final String categoryId = args['categoryId'] as String;
+
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider.value(
+            value: cubit,
+            child: ActivitiesView(categoryId: categoryId),
+          ),
+        );
 
       case Routes.editProfileView:
         final cubit = settings.arguments as UpdateProfileCubit;

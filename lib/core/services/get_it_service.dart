@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:just_audio/just_audio.dart';
+import '../../features/home/data/repos/activities_repo.dart';
+import '../../features/home/data/services/activities_remote_service.dart';
 import '../../features/meditations/data/models/article_model.dart';
 import '../../features/meditations/data/repos/recommended_articles_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -322,6 +324,16 @@ Future<void> setupGetIt() async {
   // Recommended Books Remote Service
   getIt.registerLazySingleton<RecommendedBooksRemoteService>(
     () => RecommendedBooksRemoteService(getIt()),
+  );
+
+  // Activities Remote Service
+  getIt.registerLazySingleton<ActivitiesRemoteService>(
+    () => ActivitiesRemoteService(supabaseCRUDService: getIt()),
+  );
+
+  // Activities Repo
+  getIt.registerLazySingleton<ActivitiesRepo>(
+    () => ActivitiesRepo(activitiesRemoteService: getIt()),
   );
 
   // Mood Local Service

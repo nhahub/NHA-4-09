@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/services/get_it_service.dart';
+import '../../../home/data/repos/activities_repo.dart';
 import '../../../home/data/repos/quote_repo.dart';
 import '../../../home/data/repos/water_repo.dart';
+import '../../../home/presentation/manager/activities_cubit/activities_cubit.dart';
 import '../../../home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
 import '../../../home/presentation/manager/quote_cubit/quote_cubit.dart';
 import '../../../home/presentation/views/home_view.dart';
@@ -46,6 +48,11 @@ class HomeProvidersWrapper extends StatelessWidget {
           create: (_) => RecommendationCubit(
             recommendationRepo: getIt.get<RecommendationRepo>(),
           )..getRecommendationData(),
+        ),
+        BlocProvider(
+          create: (_) =>
+              ActivitiesCubit(activitiesRepo: getIt.get<ActivitiesRepo>())
+                ..getActivitiesCategories(),
         ),
       ],
       child: HomeView(isPremium: isPremium),

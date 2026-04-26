@@ -68,12 +68,13 @@ class SupabaseCRUDService {
 
   Future<List<Map<String, dynamic>>> getData({
     required String table,
+    String select = '*',
     String? orderBy,
     bool ascending = true,
     int? limit,
     Map<String, dynamic>? filters,
   }) async {
-    dynamic query = _client.from(table).select();
+    dynamic query = _client.from(table).select(select);
 
     if (filters != null) {
       filters.forEach((key, value) {
