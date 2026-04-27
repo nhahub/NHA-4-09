@@ -30,7 +30,6 @@ class AdaptiveImage extends StatelessWidget {
               height: height,
               fit: fit,
               fadeInDuration: const Duration(milliseconds: 200),
-
               placeholder: (context, url) => Container(
                 width: width,
                 height: height,

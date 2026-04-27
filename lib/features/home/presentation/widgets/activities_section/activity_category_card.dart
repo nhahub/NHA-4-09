@@ -43,6 +43,24 @@ class ActivityCategoryCard extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: CachedNetworkImage(
                 imageUrl: activityCategoryModel.imageUrl,
+                fadeInDuration: const Duration(milliseconds: 200),
+                placeholder: (context, url) => Container(
+                  color: Colors.grey.shade300,
+                  child: const Center(
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  ),
+                ),
+
+                errorWidget: (context, url, error) => Container(
+                  color: Colors.grey,
+                  child: const Icon(Icons.broken_image),
+                ),
+
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(image: imageProvider),
+                  ),
+                ),
               ),
             ),
           ],
