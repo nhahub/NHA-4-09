@@ -1,6 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:moodly/core/helpers/alpha_from_percent.dart';
 import 'package:moodly/features/home/data/models/activity/activity_category_model.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/routing/routes.dart';
@@ -23,49 +24,29 @@ class ActivityCategoryCard extends StatelessWidget {
           args: {'categoryId': categoryId, 'cubit': cubit},
         );
       },
-      child: AspectRatio(
-        aspectRatio: 242 / 254,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            gradient: const LinearGradient(
-              colors: [
-                Color.fromARGB(255, 217, 253, 226),
-                Color.fromARGB(255, 176, 247, 195),
-              ],
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
+      child: Container(
+        width: 284.52,
+        decoration: BoxDecoration(
+          color: const Color(0xffCDD8B7).withAlpha(alphaFromPercentage(38)),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(22),
+              child: CategoryContainer(
+                categoryTitle: activityCategoryModel.name,
+              ),
             ),
-          ),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 30),
-                child: CircleAvatar(
-                  backgroundColor: Color.fromARGB(255, 221, 250, 223),
-                  radius: 80,
-                ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: CachedNetworkImage(
+                imageUrl: activityCategoryModel.imageUrl,
+                // width: 300,
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 30),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: SvgPicture.asset(
-                    activityCategoryModel.imageUrl,
-                    width: 140,
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 22,
-                top: 22,
-                child: CategoryContainer(
-                  categoryTitle: activityCategoryModel.name,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
