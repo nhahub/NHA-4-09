@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moodly/core/constants/constants.dart';
 import '../../../data/models/activity/activity_model.dart';
+import 'activity_dots_indicator.dart';
 import 'activity_item.dart';
 import 'navigation_buttons.dart';
 
@@ -60,9 +61,9 @@ class _ActivitiesPageViewState extends State<ActivitiesPageView> {
               },
             ),
           ),
-      
+
           const SizedBox(height: 16),
-      
+
           NavigationButtons(
             onNext: next,
             onPrevious: previous,
@@ -70,10 +71,12 @@ class _ActivitiesPageViewState extends State<ActivitiesPageView> {
             isLast: currentIndex == widget.activities.length - 1,
             hasMultiple: hasMultiple,
           ),
-      
-          const SizedBox(height: 100),
+          const SizedBox(height: 20),
+          ActivityDotsIndicator(widget: widget, currentIndex: currentIndex),
+          const SizedBox(height: 50),
         ],
       ),
     );
   }
 }
+

@@ -17,7 +17,6 @@ class ActivitiesRemoteService {
       table: kActivitiesTable,
       filters: {'category_id': categoryId},
     );
-
     return data.map((item) => ActivityModel.fromJson(item)).toList();
   }
 
