@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/meditations/data/repos/podcast_repo.dart';
 
 import '../../../../core/services/get_it_service.dart';
-import '../../../meditations/data/repos/audio_repo.dart';
+import '../../../meditations/data/repos/asmr_repo.dart';
 import '../../../meditations/data/repos/recommended_articles_repo.dart';
 import '../../../meditations/data/repos/recommended_books_repo.dart';
 import '../../../meditations/data/repos/recommended_videos_repo.dart';
@@ -23,12 +24,12 @@ class MeditationsProvidersWrapper extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) =>
-              PodcastCubit(audioRepo: getIt.get<AudioRepo>())
+              PodcastCubit(podcastRepo: getIt.get<PodcastRepo>())
                 ..getPodcastTracks(),
         ),
         BlocProvider(
           create: (context) =>
-              AsmrCubit(audioRepo: getIt.get<AudioRepo>())..getASMRTracks(),
+              AsmrCubit(audioRepo: getIt.get<AsmrRepo>())..getASMRTracks(),
         ),
         BlocProvider(
           create: (context) => RecommendedBooksCubit(

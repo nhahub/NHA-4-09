@@ -1,4 +1,4 @@
-import '../mock_data/your_daily_routine_data.dart';
+import '../mock_data/recommended_videos_data.dart';
 import '../models/video_model.dart';
 import '../../../../core/services/supabase_crud_service.dart';
 
@@ -18,6 +18,6 @@ class RecommendedVideosRemoteService {
     // );
 
     // return data.map((item) => MediaModel.fromJson(item)).toList();
-    return yourDailyRoutineData;
+    return recommendedVideosData;
   }
 }

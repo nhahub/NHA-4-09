@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:moodly/features/meditations/data/repos/podcast_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -17,12 +18,13 @@ import '../../features/meals_recommendations/data/local_service/recommended_food
 import '../../features/meals_recommendations/data/repos/recommended_food_repo.dart';
 import '../../features/meditations/data/models/article_model.dart';
 import '../../features/meditations/data/models/book_model.dart';
-import '../../features/meditations/data/repos/audio_repo.dart';
+import '../../features/meditations/data/repos/asmr_repo.dart';
 import '../../features/meditations/data/repos/recommended_articles_repo.dart';
 import '../../features/meditations/data/repos/recommended_books_repo.dart';
 import '../../features/meditations/data/repos/recommended_videos_repo.dart';
 import '../../features/meditations/data/services/audio_player_service.dart';
-import '../../features/meditations/data/services/audio_service.dart';
+import '../../features/meditations/data/services/asmr_service.dart';
+import '../../features/meditations/data/services/podcast_service.dart';
 import '../../features/meditations/data/services/recommended_articles_local_service.dart';
 import '../../features/meditations/data/services/recommended_articles_remote_service.dart';
 import '../../features/meditations/data/services/recommended_books_local_service.dart';
@@ -253,14 +255,22 @@ Future<void> setupGetIt() async {
   // Chat Repo
   getIt.registerLazySingleton<ChatRepo>(() => ChatRepo(chatService: getIt()));
 
-  // Audio Service
-  getIt.registerLazySingleton<AudioService>(
-    () => AudioService(supabaseCRUDService: getIt()),
+  // ASMR Service
+  getIt.registerLazySingleton<AsmrService>(
+    () => AsmrService(supabaseCRUDService: getIt()),
   );
 
-  // Audio Repo
-  getIt.registerLazySingleton<AudioRepo>(
-    () => AudioRepo(audioService: getIt()),
+  // ASMR Repo
+  getIt.registerLazySingleton<AsmrRepo>(() => AsmrRepo(asmrService: getIt()));
+
+  // Podcast Service
+  getIt.registerLazySingleton<PodcastService>(
+    () => PodcastService(supabaseCRUDService: getIt()),
+  );
+
+  // Podcast Repo
+  getIt.registerLazySingleton<PodcastRepo>(
+    () => PodcastRepo(podcastService: getIt()),
   );
 
   // App Rating Service

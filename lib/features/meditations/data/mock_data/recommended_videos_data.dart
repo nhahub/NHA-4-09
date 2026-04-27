@@ -1,7 +1,7 @@
 import '../../../../core/theming/app_assets.dart';
 import '../models/video_model.dart';
 
-const List<VideoModel> yourDailyRoutineData = [
+const List<VideoModel> recommendedVideosData = [
   VideoModel(
     coverUrl: AppAssets.routine1,
     category: 'Motivation',

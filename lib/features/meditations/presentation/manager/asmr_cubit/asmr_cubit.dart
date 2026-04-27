@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/networking/api_error_handler.dart';
 import '../../../data/models/audio_model.dart';
-import '../../../data/repos/audio_repo.dart';
+import '../../../data/repos/asmr_repo.dart';
 
 part 'asmr_state.dart';
 
 class AsmrCubit extends Cubit<AsmrState> {
-  final AudioRepo _audioRepo;
+  final AsmrRepo _audioRepo;
 
-  AsmrCubit({required AudioRepo audioRepo})
+  AsmrCubit({required AsmrRepo audioRepo})
     : _audioRepo = audioRepo,
       super(AsmrLoadingState());
 
