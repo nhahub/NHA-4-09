@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/theming/app_assets.dart';
 import '../../../../core/widgets/custom_appbar.dart';
 import '../../../mood/presentation/helpers/mood_helper.dart';
 import '../widgets/daily_stats_section/shared/home_view_body.dart';
@@ -26,15 +24,8 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       floatingActionButton: const SessionsFloatingActionButton(),
-      appBar: CustomAppbar(
-        title: "Home",
-        isPremium: widget.isPremium,
-        icon: AppAssets.slidersHorizontalIcon,
-        onTap: () {},
-      ),
+      appBar: CustomAppbar(title: "Home", isPremium: widget.isPremium),
       body: HomeViewBody(isPremium: widget.isPremium),
     );
   }
 }
-
-

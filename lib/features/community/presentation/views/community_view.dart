@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import '../../../../core/enums/fade_position.dart';
-import '../../../../core/theming/app_assets.dart';
 import '../../../../core/widgets/custom_appbar.dart';
 import '../../../../core/widgets/fade_scrollable.dart';
 import '../widgets/add_community_post_button.dart';
@@ -16,12 +14,7 @@ class CommunityView extends StatelessWidget {
     return Scaffold(
       floatingActionButton: const AddCommunityPostButton(),
       extendBodyBehindAppBar: true,
-      appBar: CustomAppbar(
-        title: "Community",
-        isPremium: isPremium,
-        icon: AppAssets.searchIcon,
-        onTap: () {},
-      ),
+      appBar: CustomAppbar(title: "Community", isPremium: isPremium),
       body: const FadeScrollable(
         fadePosition: FadePosition.bottom,
         child: CommunityViewBody(),
