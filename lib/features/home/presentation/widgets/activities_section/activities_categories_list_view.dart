@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../../../core/widgets/horizontal_padding_list.dart';
-import '../../../data/mock_data/activity_category_data.dart';
 import '../../../data/models/activity/activity_category_model.dart';
 import 'activity_category_card.dart';
 
@@ -18,10 +17,10 @@ class ActivitiesCategoriesListView extends StatelessWidget {
     return HorizontalPaddingList(
       isLoading: isLoading,
       height: 254,
-      itemCount: activityCategoryModelData.length,
+      itemCount: activityCategories.length,
       itemBuilder: (context, index) {
         return ActivityCategoryCard(
-          activityCategoryModel: activityCategoryModelData[index],
+          activityCategoryModel: activityCategories[index],
         );
       },
     );
