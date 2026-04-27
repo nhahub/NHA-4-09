@@ -28,7 +28,7 @@ class _ActivitiesViewState extends State<ActivitiesView> {
       appBar: BackButtonAppbar(title: "Activities"),
       body: SafeArea(
         bottom: false,
-        child: Column(children: [ActivitiesBlocBuilder()]),
+        child: ActivitiesBlocBuilder(),
       ),
     );
   }

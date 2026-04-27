@@ -43,7 +43,6 @@ class ActivityCategoryCard extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: CachedNetworkImage(
                 imageUrl: activityCategoryModel.imageUrl,
-                // width: 300,
               ),
             ),
           ],

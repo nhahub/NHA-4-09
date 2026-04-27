@@ -4,7 +4,7 @@ import '../../../../../core/widgets/custom_error_widget.dart';
 import '../../../data/models/dummy/dummy_activities.dart';
 import '../../../data/models/activity/activity_model.dart';
 import '../../manager/activities_cubit/activities_cubit.dart';
-import 'activities_list_view.dart';
+import 'activities_page_view.dart';
 
 class ActivitiesBlocBuilder extends StatelessWidget {
   const ActivitiesBlocBuilder({super.key});
@@ -15,14 +15,14 @@ class ActivitiesBlocBuilder extends StatelessWidget {
       builder: (context, state) {
         switch (state) {
           case ActivitiesLoadingState():
-            return ActivitiesListView(
+            return ActivitiesPageView(
               activities: DummyActivities.dummyActivities,
               isLoading: true,
             );
           case ActivitiesLoadedState(
             activities: final List<ActivityModel> activities,
           ):
-            return ActivitiesListView(activities: activities);
+            return ActivitiesPageView(activities: activities);
           case ActivitiesFailureState(message: final String message):
             return CustomErrorWidget(message: message);
 
