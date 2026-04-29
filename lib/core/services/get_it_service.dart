@@ -18,6 +18,7 @@ import '../../features/meals_recommendations/data/local_service/recommended_food
 import '../../features/meals_recommendations/data/repos/recommended_food_repo.dart';
 import '../../features/meditations/data/models/article_model.dart';
 import '../../features/meditations/data/models/book_model.dart';
+import '../../features/meditations/data/models/video_model.dart';
 import '../../features/meditations/data/repos/asmr_repo.dart';
 import '../../features/meditations/data/repos/recommended_articles_repo.dart';
 import '../../features/meditations/data/repos/recommended_books_repo.dart';
@@ -383,6 +384,11 @@ Future<void> setupGetIt() async {
   // Recommended Videos Remote Service
   getIt.registerLazySingleton<RecommendedVideosRemoteService>(
     () => RecommendedVideosRemoteService(supabaseCRUDService: getIt()),
+  );
+
+  // Local Cache Service Video Model
+  getIt.registerLazySingleton<LocalCacheService<VideoModel>>(
+    () => LocalCacheService<VideoModel>(),
   );
 
   // Recommended Videos Local Service

@@ -31,6 +31,8 @@ class DescriptionData extends StatelessWidget {
             style:
                 titleStyle ??
                 AppStyles.extraBold15WithShadow.copyWith(color: Colors.white),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 5),
           withDuration == true
