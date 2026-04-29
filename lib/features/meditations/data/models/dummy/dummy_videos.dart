@@ -11,6 +11,7 @@ class DummyVideos {
       coverUrl: AppAssets.dummyImage,
       duration: 180 + index * 15,
       category: "Meditation",
+      description: "",
       createdAt: "",
     ),
   );

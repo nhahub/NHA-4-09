@@ -14,6 +14,7 @@ VideoModel _$VideoModelFromJson(Map<String, dynamic> json) => VideoModel(
   duration: (json['duration'] as num).toDouble(),
   id: json['id'] as String,
   createdAt: json['created_at'] as String,
+  description: json['description'] as String,
 );
 
 Map<String, dynamic> _$VideoModelToJson(VideoModel instance) =>
@@ -25,4 +26,5 @@ Map<String, dynamic> _$VideoModelToJson(VideoModel instance) =>
       'duration': instance.duration,
       'created_at': instance.createdAt,
       'video_url': instance.videoUrl,
+      'description': instance.description,
     };

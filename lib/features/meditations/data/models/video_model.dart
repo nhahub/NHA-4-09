@@ -8,6 +8,7 @@ part 'video_model.g.dart';
 class VideoModel extends MediaModel {
   @JsonKey(name: 'video_url')
   final String videoUrl;
+  final String description;
 
   const VideoModel({
     required this.videoUrl,
@@ -17,6 +18,7 @@ class VideoModel extends MediaModel {
     required super.duration,
     required super.id,
     required super.createdAt,
+    required this.description,
   });
 
   factory VideoModel.fromJson(Map<String, dynamic> json) =>
