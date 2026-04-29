@@ -18,6 +18,8 @@ class RecommendedVideosRemoteService {
     // );
 
     // return data.map((item) => MediaModel.fromJson(item)).toList();
-    return recommendedVideosData;
+    return recommendedVideosData
+        .where((video) => video.category == mood)
+        .toList();
   }
 }
