@@ -24,7 +24,7 @@ class RecommendedVideosListView extends StatelessWidget {
         return CustomCard(
           mediaEntity: recommendedVideos[index],
           onTap: () {
-            context.push(Routes.videoView);
+            context.push(Routes.videoView, args: recommendedVideos[index]);
           },
         );
       },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/home/presentation/manager/activities_cubit/activities_cubit.dart';
+import '../../features/meditations/data/models/video_model.dart';
 import '../../features/meditations/presentation/views/articles_view.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -188,7 +189,11 @@ class AppRouter {
         );
 
       case Routes.videoView:
-        return MaterialPageRoute(builder: (context) => const VideoView());
+        final VideoModel videoModel = settings.arguments as VideoModel;
+
+        return MaterialPageRoute(
+          builder: (context) => VideoView(videoModel: videoModel),
+        );
 
       case Routes.addCardView:
         return MaterialPageRoute(builder: (context) => const AddCardView());

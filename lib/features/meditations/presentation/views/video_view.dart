@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:moodly/features/meditations/data/models/video_model.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
@@ -13,9 +14,14 @@ import '../widgets/video/session_details_card.dart';
 import '../widgets/video/session_header.dart';
 
 class VideoView extends StatefulWidget {
+  final VideoModel videoModel;
   final MeditationSession session;
 
-  const VideoView({super.key, this.session = kDefaultMeditationSession});
+  const VideoView({
+    super.key,
+    this.session = kDefaultMeditationSession,
+    required this.videoModel,
+  });
 
   @override
   State<VideoView> createState() => _VideoViewState();
