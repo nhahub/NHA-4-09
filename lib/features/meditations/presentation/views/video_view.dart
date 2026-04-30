@@ -1,192 +1,34 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:moodly/features/meditations/data/models/video_model.dart';
-
 import '../../../../core/constants/constants.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
-import '../../data/models/meditation_session.dart';
-import '../widgets/video/about_session_card.dart';
-import '../widgets/video/audio_progress_bar.dart';
-import '../widgets/video/main_controls.dart';
-import '../widgets/video/secondary_controls.dart';
-import '../widgets/video/session_details_card.dart';
-import '../widgets/video/session_header.dart';
+import '../../data/models/video_model.dart';
+import '../widgets/recommended_videos_section/about_session_section.dart';
+import '../widgets/recommended_videos_section/session_details_section.dart';
+import '../widgets/recommended_videos_section/video_section.dart';
 
-class VideoView extends StatefulWidget {
+class VideoView extends StatelessWidget {
   final VideoModel videoModel;
-  final MeditationSession session;
 
-  const VideoView({
-    super.key,
-    this.session = kDefaultMeditationSession,
-    required this.videoModel,
-  });
-
-  @override
-  State<VideoView> createState() => _VideoViewState();
-}
-
-class _VideoViewState extends State<VideoView> {
-  late final ValueNotifier<int> _elapsedSeconds;
-  late final ValueNotifier<bool> _isPlaying;
-  Timer? _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    _elapsedSeconds = ValueNotifier<int>(85); // start at 1:25 to match ref
-    _isPlaying = ValueNotifier<bool>(false);
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    _elapsedSeconds.dispose();
-    _isPlaying.dispose();
-    super.dispose();
-  }
-
-  void _startTimer() {
-    _timer?.cancel();
-    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
-      final next = _elapsedSeconds.value + 1;
-      if (next >= widget.session.durationSeconds) {
-        _elapsedSeconds.value = widget.session.durationSeconds;
-        _pausePlayback();
-      } else {
-        _elapsedSeconds.value = next;
-      }
-    });
-  }
-
-  void _pausePlayback() {
-    _timer?.cancel();
-    _isPlaying.value = false;
-  }
-
-  void _togglePlayPause() {
-    if (_isPlaying.value) {
-      _pausePlayback();
-    } else {
-      _isPlaying.value = true;
-      _startTimer();
-    }
-  }
-
-  void _handleImageTap() {
-    // Tap image while playing → show pause icon overlay (handled in SessionHeader)
-    // Toggle play/pause on tap.
-    _togglePlayPause();
-  }
-
-  void _skipForward() {
-    final next = (_elapsedSeconds.value + 10).clamp(
-      0,
-      widget.session.durationSeconds,
-    );
-    _elapsedSeconds.value = next;
-  }
-
-  void _skipBackward() {
-    final next = (_elapsedSeconds.value - 10).clamp(
-      0,
-      widget.session.durationSeconds,
-    );
-    _elapsedSeconds.value = next;
-  }
-
-  void _handleSeek(int seconds) {
-    _elapsedSeconds.value = seconds.clamp(0, widget.session.durationSeconds);
-  }
+  const VideoView({super.key, required this.videoModel});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF7F8FA),
-      appBar: const BackButtonAppbar(
-        title: "Meditation",
-        endIcon: Icons.more_horiz_rounded,
-      ),
-      body: ValueListenableBuilder<bool>(
-        valueListenable: _isPlaying,
-        builder: (context, isPlaying, _) {
-          return ValueListenableBuilder<int>(
-            valueListenable: _elapsedSeconds,
-            builder: (context, elapsed, _) {
-              return SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: kAppHorizontalPadding,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // 1. Session Header
-                    SessionHeader(
-                      session: widget.session,
-                      isPlaying: isPlaying,
-                      onImageTap: _handleImageTap,
-                    ),
-
-                    const SizedBox(height: 18),
-
-                    // 2. Audio Progress Bar
-                    AudioProgressBar(
-                      elapsedSeconds: elapsed,
-                      totalSeconds: widget.session.durationSeconds,
-                      onSeek: _handleSeek,
-                    ),
-
-                    const SizedBox(height: 20),
-
-                    // 3. Main Controls
-                    MainControls(
-                      isPlaying: isPlaying,
-                      onPlayPause: _togglePlayPause,
-                      onSkipForward: _skipForward,
-                      onSkipBackward: _skipBackward,
-                    ),
-
-                    const SizedBox(height: 20),
-
-                    // 4. Secondary Controls
-                    const SecondaryControls(),
-
-                    const SizedBox(height: 28),
-
-                    // 5. About Session
-                    const Text(
-                      'About this session',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w800,
-                        color: Color(0xFF1A1A1A),
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    AboutSessionCard(session: widget.session),
-
-                    const SizedBox(height: 24),
-
-                    // 6. Session Details
-                    const Text(
-                      'Session details',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w800,
-                        color: Color(0xFF1A1A1A),
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    SessionDetailsCard(session: widget.session),
-
-                    const SizedBox(height: 32),
-                  ],
-                ),
-              );
-            },
-          );
-        },
+      appBar: const BackButtonAppbar(title: "Session"),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: kAppHorizontalPadding),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            VideoSection(videoModel: videoModel),
+            const SizedBox(height: 28),
+            AboutSessionSection(description: videoModel.description),
+            const SizedBox(height: 24),
+            SessionDetailsSection(videoModel: videoModel),
+            const SizedBox(height: 32),
+          ],
+        ),
       ),
     );
   }

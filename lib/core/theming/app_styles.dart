@@ -52,6 +52,12 @@ abstract class AppStyles {
     fontFamily: "Nunito",
     letterSpacing: -0.2,
   );
+  static const TextStyle extraBold18 = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeightHelper.extraBold,
+    fontFamily: "Nunito",
+    letterSpacing: -0.2,
+  );
   static const TextStyle semiBold17 = TextStyle(
     fontSize: 17,
     fontWeight: FontWeightHelper.semiBold,
@@ -93,6 +99,11 @@ abstract class AppStyles {
     fontFamily: "Nunito",
     letterSpacing: -0.2,
   );
+  static const TextStyle bold15 = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeightHelper.bold,
+    fontFamily: "SFPro",
+  );
   static const TextStyle bold14 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeightHelper.bold,
@@ -106,6 +117,11 @@ abstract class AppStyles {
   static const TextStyle regular14 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeightHelper.regular,
+    fontFamily: "SFPro",
+  );
+  static const TextStyle semiBold13 = TextStyle(
+    fontSize: 13,
+    fontWeight: FontWeightHelper.semiBold,
     fontFamily: "SFPro",
   );
   static const TextStyle medium13 = TextStyle(

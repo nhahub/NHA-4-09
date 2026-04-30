@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/enums/fade_position.dart';
 import '../../../../core/widgets/custom_appbar.dart';
 import '../../../../core/widgets/fade_scrollable.dart';
-import '../widgets/meditations_view_body.dart';
+import '../widgets/shared/meditations_view_body.dart';
 
 class MeditationsView extends StatelessWidget {
   final bool isPremium;

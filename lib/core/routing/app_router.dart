@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/home/presentation/manager/activities_cubit/activities_cubit.dart';
 import '../../features/meditations/data/models/video_model.dart';
+import '../../features/meditations/presentation/manager/video_player_cubit/video_player_cubit.dart';
 import '../../features/meditations/presentation/views/articles_view.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
@@ -192,7 +193,11 @@ class AppRouter {
         final VideoModel videoModel = settings.arguments as VideoModel;
 
         return MaterialPageRoute(
-          builder: (context) => VideoView(videoModel: videoModel),
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                VideoPlayerCubit()..init(url: videoModel.videoUrl),
+            child: VideoView(videoModel: videoModel),
+          ),
         );
 
       case Routes.addCardView:
