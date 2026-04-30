@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/meditations/presentation/widgets/recommended_videos_section/secondary_button.dart';
+import 'package:moodly/features/meditations/presentation/widgets/recommended_videos_section/control_button.dart';
+
+import '../../../../../core/theming/app_styles.dart';
 
 class SecondaryControls extends StatelessWidget {
   final bool isMuted;
@@ -36,7 +38,7 @@ class SecondaryControls extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         /// Volume
-        SecondaryButton(
+        ControlButton(
           isActive: isMuted,
           onTap: onVolumeToggle,
           child: AnimatedSwitcher(
@@ -51,26 +53,17 @@ class SecondaryControls extends StatelessWidget {
         ),
 
         /// Speed
-        SecondaryButton(
+        ControlButton(
           isActive: speed != 1.0,
           onTap: () {
             final next = _getNextSpeed(speed);
             onSpeedChanged(next);
           },
-          child: Center(
-            child: Text(
-              speedLabel,
-              style: const TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w600,
-                color: Color(0xFF333333),
-              ),
-            ),
-          ),
+          child: Center(child: Text(speedLabel, style: AppStyles.semiBold13)),
         ),
 
         /// Fullscreen
-        SecondaryButton(
+        ControlButton(
           isActive: isFullscreen,
           onTap: onFullscreenToggle,
           child: AnimatedSwitcher(

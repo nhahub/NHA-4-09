@@ -1,8 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../../data/models/video_model.dart';
+import 'background_image.dart';
+import 'bottom_gradient.dart';
 
 class SessionHeader extends StatefulWidget {
   final VideoModel videoModel;
@@ -64,10 +65,10 @@ class _SessionHeaderState extends State<SessionHeader> {
               if (widget.videoPlayerWidget != null)
                 widget.videoPlayerWidget!
               else
-                _BackgroundImage(imageUrl: widget.videoModel.coverUrl),
+                BackgroundImage(imageUrl: widget.videoModel.coverUrl),
 
               // Dark gradient overlay (bottom)
-              _BottomGradient(),
+              const BottomGradient(),
 
               // Centered play/pause overlay icon
               Center(
@@ -91,84 +92,31 @@ class _SessionHeaderState extends State<SessionHeader> {
                 left: 16,
                 right: 16,
                 bottom: 16,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.videoModel.title,
-                      style: AppStyles.extraBold18.copyWith(
-                        color: Colors.white,
+                child: AnimatedOpacity(
+                  opacity: _overlayOpacity,
+                  duration: const Duration(milliseconds: 250),
+                  child: Column(
+                    spacing: 4,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.videoModel.title,
+                        style: AppStyles.extraBold18.copyWith(
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      '${widget.videoModel.duration.toInt()} min',
-                      style: AppStyles.medium14.copyWith(
-                        color: AppColors.lightGrey,
+                      Text(
+                        '${widget.videoModel.duration.toInt()} min',
+                        style: AppStyles.medium14.copyWith(
+                          color: AppColors.lightGrey,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class _BackgroundImage extends StatelessWidget {
-  final String? imageUrl;
-
-  const _BackgroundImage({this.imageUrl});
-
-  static const _fallbackColor = Color(0xFF2D4A6E);
-
-  @override
-  Widget build(BuildContext context) {
-    final url = imageUrl;
-
-    if (url == null || url.isEmpty) {
-      return Container(color: _fallbackColor);
-    }
-
-    return CachedNetworkImage(
-      imageUrl: url,
-      fit: BoxFit.cover,
-
-      placeholder: (context, url) => Container(
-        color: _fallbackColor,
-        child: const Center(
-          child: CircularProgressIndicator(
-            color: Colors.white54,
-            strokeWidth: 2,
-          ),
-        ),
-      ),
-
-      errorWidget: (context, url, error) => Container(
-        color: _fallbackColor,
-        child: const Icon(Icons.image_not_supported, color: Colors.white54),
-      ),
-    );
-  }
-}
-
-class _BottomGradient extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.transparent,
-            Colors.black.withValues(alpha: 0.20),
-            Colors.black.withValues(alpha: 0.60),
-          ],
-          stops: const [0.4, 0.7, 1.0],
         ),
       ),
     );

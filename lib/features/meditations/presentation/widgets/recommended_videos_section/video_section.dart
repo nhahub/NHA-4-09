@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../data/models/video_model.dart';
 import '../../manager/video_player_cubit/video_player_cubit.dart';
-import 'audio_progress_bar.dart';
+import 'video_progress_bar.dart';
 import 'main_controls.dart';
 import 'secondary_controls.dart';
 import 'session_header.dart';
@@ -31,7 +31,7 @@ class VideoSection extends StatelessWidget {
                   ? Chewie(controller: cubit.chewieController!)
                   : null,
             ),
-            AudioProgressBar(
+            VideoProgressBar(
               elapsedSeconds: state.position,
               totalSeconds: state.isInitialized
                   ? state.duration
@@ -39,16 +39,16 @@ class VideoSection extends StatelessWidget {
               onSeek: (value) => cubit.seek(seconds: value),
             ),
             MainControls(
-              isPlaying: state.isPlaying,
               onPlayPause: cubit.togglePlayPause,
               onSkipForward: cubit.skipForward,
               onSkipBackward: cubit.skipBackward,
+              isPlaying: state.isPlaying,
             ),
             SecondaryControls(
-              isMuted: state.isMuted,
               onVolumeToggle: cubit.toggleVolume,
               onFullscreenToggle: cubit.toggleFullscreen,
               onSpeedChanged: (value) => cubit.changeSpeed(speed: value),
+              isMuted: state.isMuted,
               isFullscreen: state.isFullscreen,
               speed: state.speed,
             ),

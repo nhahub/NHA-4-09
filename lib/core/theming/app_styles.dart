@@ -119,6 +119,11 @@ abstract class AppStyles {
     fontWeight: FontWeightHelper.regular,
     fontFamily: "SFPro",
   );
+  static const TextStyle semiBold13 = TextStyle(
+    fontSize: 13,
+    fontWeight: FontWeightHelper.semiBold,
+    fontFamily: "SFPro",
+  );
   static const TextStyle medium13 = TextStyle(
     fontSize: 13,
     fontWeight: FontWeightHelper.medium,
