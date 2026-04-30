@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/extensions/sliver_extension.dart';
 import '../../../../core/widgets/custom_overlay_widget.dart';
 import '../../../../core/widgets/vertical_space.dart';
-import '../../data/models/category_enum.dart';
 import 'asmr_section/asmr_section.dart';
-import 'categories_section/categories_section.dart';
 import 'podcast_section/podcast_section.dart';
 import 'recommended_articles_section/articles_section.dart';
 import 'recommended_books_section/recommended_books_section.dart';
@@ -21,12 +19,6 @@ class MeditationsViewBody extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         space(height: 80),
-        CategoriesSection<Category>(
-          categories: Category.values,
-          getTitle: (cat) => cat.title,
-          onCategorySelected: (Category category) {},
-        ).toSliver(),
-        space(),
         const PodcastSection().toSliver(),
         space(),
         isPremium

@@ -72,28 +72,39 @@ class _SecondaryButtonState extends State<_SecondaryButton> {
 }
 
 class SecondaryControls extends StatefulWidget {
-  const SecondaryControls({super.key});
+  final bool isMuted;
+  final VoidCallback onVolumeToggle;
+  final VoidCallback onFullscreenToggle;
+  final ValueChanged<double> onSpeedChanged;
+
+  const SecondaryControls({
+    super.key,
+    required this.isMuted,
+    required this.onVolumeToggle,
+    required this.onFullscreenToggle,
+    required this.onSpeedChanged,
+  });
 
   @override
   State<SecondaryControls> createState() => _SecondaryControlsState();
 }
 
 class _SecondaryControlsState extends State<SecondaryControls> {
-  bool _volumeActive = false;
-  bool _speedActive = false;
   bool _fullscreenActive = false;
 
   // Speed cycle: 0.5x, 1x, 1.5x, 2x
-  final List<String> _speeds = ['0.5x', '1x', '1.5x', '2x'];
+  final List<double> _speeds = [0.5, 1.0, 1.5, 2.0];
+  final List<String> _speedLabels = ['0.5x', '1x', '1.5x', '2x'];
   int _speedIndex = 1; // default = "1x"
 
-  String get _currentSpeed => _speeds[_speedIndex];
+  String get _currentSpeed => _speedLabels[_speedIndex];
+  bool get _speedActive => _speedIndex != 1;
 
   void _cycleSpeed() {
     setState(() {
       _speedIndex = (_speedIndex + 1) % _speeds.length;
-      _speedActive = _speedIndex != 1; // active when not default
     });
+    widget.onSpeedChanged(_speeds[_speedIndex]);
   }
 
   @override
@@ -103,13 +114,13 @@ class _SecondaryControlsState extends State<SecondaryControls> {
       children: [
         // Volume button
         _SecondaryButton(
-          isActive: _volumeActive,
-          onTap: () => setState(() => _volumeActive = !_volumeActive),
+          isActive: widget.isMuted,
+          onTap: widget.onVolumeToggle,
           child: AnimatedSwitcher(
             duration: const Duration(milliseconds: 200),
             child: Icon(
-              _volumeActive ? Icons.volume_off_rounded : Icons.volume_up_rounded,
-              key: ValueKey(_volumeActive),
+              widget.isMuted ? Icons.volume_off_rounded : Icons.volume_up_rounded,
+              key: ValueKey(widget.isMuted),
               color: const Color(0xFF333333),
               size: 22,
             ),
@@ -139,7 +150,10 @@ class _SecondaryControlsState extends State<SecondaryControls> {
         // Fullscreen button
         _SecondaryButton(
           isActive: _fullscreenActive,
-          onTap: () => setState(() => _fullscreenActive = !_fullscreenActive),
+          onTap: () {
+            setState(() => _fullscreenActive = !_fullscreenActive);
+            widget.onFullscreenToggle();
+          },
           child: AnimatedSwitcher(
             duration: const Duration(milliseconds: 200),
             child: Icon(

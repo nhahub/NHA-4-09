@@ -1,18 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../data/models/meditation_session.dart';
+import '../../../data/models/video_model.dart';
 
 class SessionHeader extends StatefulWidget {
-  final MeditationSession session;
+  final VideoModel videoModel;
   final bool isPlaying;
   final VoidCallback onImageTap;
+  final Widget? videoPlayerWidget;
 
   const SessionHeader({
     super.key,
-    required this.session,
+    required this.videoModel,
     required this.isPlaying,
     required this.onImageTap,
+    this.videoPlayerWidget,
   });
 
   @override
@@ -60,18 +62,14 @@ class _SessionHeaderState extends State<SessionHeader> {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              // Background image
-              _BackgroundImage(imageUrl: widget.session.imageUrl),
+              // Background image or Video Player
+              if (widget.videoPlayerWidget != null)
+                widget.videoPlayerWidget!
+              else
+                _BackgroundImage(imageUrl: widget.videoModel.coverUrl),
 
               // Dark gradient overlay (bottom)
               _BottomGradient(),
-
-              // Category badge
-              Positioned(
-                top: 14,
-                left: 14,
-                child: _CategoryBadge(label: widget.session.category),
-              ),
 
               // Centered play/pause overlay icon
               Center(
@@ -99,7 +97,7 @@ class _SessionHeaderState extends State<SessionHeader> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.session.title,
+                      widget.videoModel.title,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
@@ -109,7 +107,7 @@ class _SessionHeaderState extends State<SessionHeader> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      widget.session.formattedDuration,
+                      '${widget.videoModel.duration.toInt()} min',
                       style: const TextStyle(
                         color: Colors.white70,
                         fontSize: 13,
@@ -178,30 +176,6 @@ class _BottomGradient extends StatelessWidget {
             Colors.black.withValues(alpha: 0.60),
           ],
           stops: const [0.4, 0.7, 1.0],
-        ),
-      ),
-    );
-  }
-}
-
-class _CategoryBadge extends StatelessWidget {
-  final String label;
-  const _CategoryBadge({required this.label});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-      decoration: BoxDecoration(
-        color: const Color(0xFF3DBE7E),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text(
-        label,
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 12,
-          fontWeight: FontWeight.w600,
         ),
       ),
     );

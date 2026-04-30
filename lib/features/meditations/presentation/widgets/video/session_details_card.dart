@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../../../data/models/meditation_session.dart';
+import '../../../data/models/video_model.dart';
 
 class SessionDetailsCard extends StatelessWidget {
-  final MeditationSession session;
+  final VideoModel videoModel;
 
-  const SessionDetailsCard({super.key, required this.session});
+  const SessionDetailsCard({super.key, required this.videoModel});
 
   @override
   Widget build(BuildContext context) {
-    final durationLabel =
-        '${session.durationSeconds ~/ 60} minutes';
+    final durationLabel = '${videoModel.duration.toInt()} minutes';
 
     return Container(
       width: double.infinity,
@@ -26,50 +25,21 @@ class SessionDetailsCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
+      child: Row(
         children: [
-          // Row 1: Duration | Level
-          Row(
-            children: [
-              Expanded(
-                child: _DetailItem(
-                  label: 'Duration',
-                  labelColor: const Color(0xFF3DBE7E),
-                  value: durationLabel,
-                ),
-              ),
-              Expanded(
-                child: _DetailItem(
-                  label: 'Level',
-                  labelColor: const Color(0xFFE6A817),
-                  value: session.level,
-                ),
-              ),
-            ],
+          Expanded(
+            child: _DetailItem(
+              label: 'Duration',
+              labelColor: const Color(0xFF3DBE7E),
+              value: durationLabel,
+            ),
           ),
-
-          const SizedBox(height: 20),
-          const Divider(height: 1, color: Color(0xFFF2F2F2)),
-          const SizedBox(height: 20),
-
-          // Row 2: Focus | Type
-          Row(
-            children: [
-              Expanded(
-                child: _DetailItem(
-                  label: 'Focus',
-                  labelColor: const Color(0xFF3DBE7E),
-                  value: session.focus,
-                ),
-              ),
-              Expanded(
-                child: _DetailItem(
-                  label: 'Type',
-                  labelColor: const Color(0xFFE6A817),
-                  value: session.type,
-                ),
-              ),
-            ],
+          Expanded(
+            child: _DetailItem(
+              label: 'Category',
+              labelColor: const Color(0xFFE6A817),
+              value: videoModel.category,
+            ),
           ),
         ],
       ),

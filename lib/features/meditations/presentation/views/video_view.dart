@@ -1,11 +1,9 @@
-import 'dart:async';
-
+import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
-import 'package:moodly/features/meditations/data/models/video_model.dart';
-
+import 'package:video_player/video_player.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
-import '../../data/models/meditation_session.dart';
+import '../../data/models/video_model.dart';
 import '../widgets/video/about_session_card.dart';
 import '../widgets/video/audio_progress_bar.dart';
 import '../widgets/video/main_controls.dart';
@@ -15,11 +13,9 @@ import '../widgets/video/session_header.dart';
 
 class VideoView extends StatefulWidget {
   final VideoModel videoModel;
-  final MeditationSession session;
 
   const VideoView({
     super.key,
-    this.session = kDefaultMeditationSession,
     required this.videoModel,
   });
 
@@ -30,74 +26,113 @@ class VideoView extends StatefulWidget {
 class _VideoViewState extends State<VideoView> {
   late final ValueNotifier<int> _elapsedSeconds;
   late final ValueNotifier<bool> _isPlaying;
-  Timer? _timer;
+
+  VideoPlayerController? _videoPlayerController;
+  ChewieController? _chewieController;
+  bool _isVideoInitialized = false;
+  bool _isMuted = false;
 
   @override
   void initState() {
     super.initState();
-    _elapsedSeconds = ValueNotifier<int>(85); // start at 1:25 to match ref
+    _elapsedSeconds = ValueNotifier<int>(0);
     _isPlaying = ValueNotifier<bool>(false);
+    _initVideoPlayer(widget.videoModel.videoUrl);
+  }
+
+  Future<void> _initVideoPlayer(String videoUrl) async {
+    try {
+      _videoPlayerController = VideoPlayerController.networkUrl(
+        Uri.parse(videoUrl),
+      );
+      await _videoPlayerController!.initialize();
+
+      _chewieController = ChewieController(
+        videoPlayerController: _videoPlayerController!,
+        autoPlay: true,
+        looping: false,
+        showControls: false,
+      );
+
+      _videoPlayerController!.addListener(() {
+        if (mounted) {
+          _isPlaying.value = _videoPlayerController!.value.isPlaying;
+          _elapsedSeconds.value =
+              _videoPlayerController!.value.position.inSeconds;
+        }
+      });
+
+      setState(() {
+        _isVideoInitialized = true;
+        _isPlaying.value = true;
+      });
+    } catch (e) {
+      debugPrint("Error loading video: $e");
+    }
   }
 
   @override
   void dispose() {
-    _timer?.cancel();
+    _videoPlayerController?.dispose();
+    _chewieController?.dispose();
     _elapsedSeconds.dispose();
     _isPlaying.dispose();
     super.dispose();
   }
 
-  void _startTimer() {
-    _timer?.cancel();
-    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
-      final next = _elapsedSeconds.value + 1;
-      if (next >= widget.session.durationSeconds) {
-        _elapsedSeconds.value = widget.session.durationSeconds;
-        _pausePlayback();
-      } else {
-        _elapsedSeconds.value = next;
-      }
-    });
-  }
-
-  void _pausePlayback() {
-    _timer?.cancel();
-    _isPlaying.value = false;
-  }
-
   void _togglePlayPause() {
-    if (_isPlaying.value) {
-      _pausePlayback();
-    } else {
-      _isPlaying.value = true;
-      _startTimer();
+    if (_videoPlayerController != null) {
+      if (_videoPlayerController!.value.isPlaying) {
+        _videoPlayerController!.pause();
+      } else {
+        _videoPlayerController!.play();
+      }
     }
   }
 
   void _handleImageTap() {
-    // Tap image while playing → show pause icon overlay (handled in SessionHeader)
-    // Toggle play/pause on tap.
     _togglePlayPause();
   }
 
   void _skipForward() {
-    final next = (_elapsedSeconds.value + 10).clamp(
-      0,
-      widget.session.durationSeconds,
-    );
-    _elapsedSeconds.value = next;
+    if (_videoPlayerController != null) {
+      final position = _videoPlayerController!.value.position;
+      _videoPlayerController!.seekTo(position + const Duration(seconds: 10));
+    }
   }
 
   void _skipBackward() {
-    final next = (_elapsedSeconds.value - 10).clamp(
-      0,
-      widget.session.durationSeconds,
-    );
-    _elapsedSeconds.value = next;
+    if (_videoPlayerController != null) {
+      final position = _videoPlayerController!.value.position;
+      _videoPlayerController!.seekTo(position - const Duration(seconds: 10));
+    }
   }
 
   void _handleSeek(int seconds) {
-    _elapsedSeconds.value = seconds.clamp(0, widget.session.durationSeconds);
+    if (_videoPlayerController != null) {
+      _videoPlayerController!.seekTo(Duration(seconds: seconds));
+    }
+  }
+
+  void _toggleVolume() {
+    if (_videoPlayerController != null) {
+      setState(() {
+        _isMuted = !_isMuted;
+        _videoPlayerController!.setVolume(_isMuted ? 0.0 : 1.0);
+      });
+    }
+  }
+
+  void _toggleFullscreen() {
+    if (_chewieController != null) {
+      _chewieController!.enterFullScreen();
+    }
+  }
+
+  void _changeSpeed(double speed) {
+    if (_videoPlayerController != null) {
+      _videoPlayerController!.setPlaybackSpeed(speed);
+    }
   }
 
   @override
@@ -106,7 +141,6 @@ class _VideoViewState extends State<VideoView> {
       backgroundColor: const Color(0xFFF7F8FA),
       appBar: const BackButtonAppbar(
         title: "Meditation",
-        endIcon: Icons.more_horiz_rounded,
       ),
       body: ValueListenableBuilder<bool>(
         valueListenable: _isPlaying,
@@ -123,9 +157,13 @@ class _VideoViewState extends State<VideoView> {
                   children: [
                     // 1. Session Header
                     SessionHeader(
-                      session: widget.session,
+                      videoModel: widget.videoModel,
                       isPlaying: isPlaying,
                       onImageTap: _handleImageTap,
+                      videoPlayerWidget: _isVideoInitialized &&
+                              _chewieController != null
+                          ? Chewie(controller: _chewieController!)
+                          : null,
                     ),
 
                     const SizedBox(height: 18),
@@ -133,7 +171,9 @@ class _VideoViewState extends State<VideoView> {
                     // 2. Audio Progress Bar
                     AudioProgressBar(
                       elapsedSeconds: elapsed,
-                      totalSeconds: widget.session.durationSeconds,
+                      totalSeconds: _isVideoInitialized
+                          ? _videoPlayerController!.value.duration.inSeconds
+                          : widget.videoModel.duration.toInt() * 60,
                       onSeek: _handleSeek,
                     ),
 
@@ -150,7 +190,12 @@ class _VideoViewState extends State<VideoView> {
                     const SizedBox(height: 20),
 
                     // 4. Secondary Controls
-                    const SecondaryControls(),
+                    SecondaryControls(
+                      isMuted: _isMuted,
+                      onVolumeToggle: _toggleVolume,
+                      onFullscreenToggle: _toggleFullscreen,
+                      onSpeedChanged: _changeSpeed,
+                    ),
 
                     const SizedBox(height: 28),
 
@@ -164,7 +209,7 @@ class _VideoViewState extends State<VideoView> {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    AboutSessionCard(session: widget.session),
+                    AboutSessionCard(videoModel: widget.videoModel),
 
                     const SizedBox(height: 24),
 
@@ -178,7 +223,7 @@ class _VideoViewState extends State<VideoView> {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    SessionDetailsCard(session: widget.session),
+                    SessionDetailsCard(videoModel: widget.videoModel),
 
                     const SizedBox(height: 32),
                   ],
