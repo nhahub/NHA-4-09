@@ -14,10 +14,10 @@ class RecommendedBooksCubit extends Cubit<RecommendedBooksState> {
     : _recommendedBooksRepo = recommendedBooksRepo,
       super(RecommendedBooksLoadingState());
 
-  void getRecommendedBooks() async {
+  void getRecommendedBooks({required String currentMood}) async {
     try {
       final List<BookModel> books = await _recommendedBooksRepo
-          .getRecommendedBooks();
+          .getRecommendedBooks(currentMood: currentMood);
       emit(RecommendedBooksLoadedState(recommendedBooks: books));
     } catch (e) {
       emit(

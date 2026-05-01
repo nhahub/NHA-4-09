@@ -164,7 +164,7 @@ Future<void> setupGetIt() async {
 
   // Mood Local Service
   getIt.registerLazySingleton<MoodLocalService>(() => MoodLocalService());
-  
+
   // Mood Repo
   getIt.registerLazySingleton<MoodRepo>(
     () => MoodRepo(moodRemoteService: getIt(), moodLocalService: getIt()),
@@ -231,10 +231,7 @@ Future<void> setupGetIt() async {
   );
   // Recommendation Repo
   getIt.registerLazySingleton<RecommendationRepo>(
-    () => RecommendationRepo(
-      recommendationLocalService: getIt(),
-      moodLocalService: getIt(),
-    ),
+    () => RecommendationRepo(recommendationLocalService: getIt()),
   );
 
   // Availability Service
@@ -358,7 +355,6 @@ Future<void> setupGetIt() async {
     () => RecommendedBooksRepo(
       recommendedBooksLocalService: getIt(),
       recommendedBooksRemoteService: getIt(),
-      moodLocalService: getIt(),
     ),
   );
 
@@ -377,7 +373,6 @@ Future<void> setupGetIt() async {
     () => RecommendedArticlesRepo(
       recommendedArticlesRemoteService: getIt(),
       recommendedArticlesLocalService: getIt(),
-      moodLocalService: getIt(),
     ),
   );
 
@@ -401,7 +396,6 @@ Future<void> setupGetIt() async {
     () => RecommendedVideosRepo(
       recommendedVideosRemoteService: getIt(),
       recommendedVideosLocalService: getIt(),
-      moodLocalService: getIt(),
     ),
   );
 

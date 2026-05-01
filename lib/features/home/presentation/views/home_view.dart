@@ -16,7 +16,9 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
-    openDailyMoodDialog(context);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      openDailyMoodDialog(context);
+    });
   }
 
   @override

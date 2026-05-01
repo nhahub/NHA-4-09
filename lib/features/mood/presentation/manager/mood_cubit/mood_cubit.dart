@@ -36,15 +36,12 @@ class MoodCubit extends Cubit<MoodState> {
     emit(MoodSavingState());
 
     try {
-      await _moodRepo.saveCurrentMood(
-        currentMood: feelingTodayData[_selectedIndex!].feeling,
-      );
+      final String currentMood = feelingTodayData[_selectedIndex!].feeling;
+      await _moodRepo.saveCurrentMood(currentMood: currentMood);
       if (isDailyMood) {
-        _moodLocalService.setSelectedDailyMood(
-          dailyMood: feelingTodayData[_selectedIndex!].feeling,
-        );
+        _moodLocalService.setSelectedDailyMood(dailyMood: currentMood);
       }
-      emit(MoodSavedState());
+      emit(MoodSavedState(currentMood: currentMood));
     } catch (e) {
       emit(MoodFailedState(message: ApiErrorHandler.handle(error: e).message));
     }
@@ -53,5 +50,9 @@ class MoodCubit extends Cubit<MoodState> {
   void resetSelectedIndex() {
     _selectedIndex = null;
     emit(MoodInitialState());
+  }
+
+  void emitMoodFromCache({required String currentMood}) {
+    emit(MoodSavedState(currentMood: currentMood));
   }
 }

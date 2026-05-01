@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moodly/features/meditations/data/repos/podcast_repo.dart';
-
 import '../../../../core/services/get_it_service.dart';
 import '../../../meditations/data/repos/asmr_repo.dart';
 import '../../../meditations/data/repos/recommended_articles_repo.dart';
@@ -13,6 +12,7 @@ import '../../../meditations/presentation/manager/recommended_articles_cubit/rec
 import '../../../meditations/presentation/manager/recommended_books_cubit/recommended_books_cubit.dart';
 import '../../../meditations/presentation/manager/recommended_videos_cubit/recommended_videos_cubit.dart';
 import '../../../meditations/presentation/views/meditations_view.dart';
+import '../../../mood/presentation/manager/mood_cubit/mood_cubit.dart';
 
 class MeditationsProvidersWrapper extends StatelessWidget {
   final bool isPremium;
@@ -34,20 +34,36 @@ class MeditationsProvidersWrapper extends StatelessWidget {
         BlocProvider(
           create: (context) => RecommendedBooksCubit(
             recommendedBooksRepo: getIt.get<RecommendedBooksRepo>(),
-          )..getRecommendedBooks(),
+          ),
         ),
         BlocProvider(
           create: (context) => RecommendedArticlesCubit(
             recommendedArticlesRepo: getIt.get<RecommendedArticlesRepo>(),
-          )..getRecommendedArticles(),
+          ),
         ),
         BlocProvider(
           create: (context) => RecommendedVideosCubit(
             recommendedVideosRepo: getIt.get<RecommendedVideosRepo>(),
-          )..getRecommendedVideos(),
+          ),
         ),
       ],
-      child: MeditationsView(isPremium: isPremium),
+      child: BlocListener<MoodCubit, MoodState>(
+        listener: (context, state) {
+          if (state is MoodSavedState) {
+            final String currentMood = state.currentMood;
+            context.read<RecommendedVideosCubit>().getRecommendedVideos(
+              currentMood: currentMood,
+            );
+            context.read<RecommendedArticlesCubit>().getRecommendedArticles(
+              currentMood: currentMood,
+            );
+            context.read<RecommendedBooksCubit>().getRecommendedBooks(
+              currentMood: currentMood,
+            );
+          }
+        },
+        child: MeditationsView(isPremium: isPremium),
+      ),
     );
   }
 }

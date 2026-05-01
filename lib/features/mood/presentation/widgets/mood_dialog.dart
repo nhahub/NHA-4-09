@@ -4,9 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/functions/error_dialog.dart';
-import '../../../../core/services/get_it_service.dart';
-import '../../data/repos/mood_repo.dart';
-import '../../data/services/mood_local_service.dart';
 import '../manager/mood_cubit/mood_cubit.dart';
 import 'mood_dialog_content.dart';
 
@@ -16,32 +13,26 @@ class MoodDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => MoodCubit(
-        moodRepo: getIt.get<MoodRepo>(),
-        moodLocalService: getIt.get<MoodLocalService>(),
-      ),
-      child: BlocListener<MoodCubit, MoodState>(
-        listener: (context, state) {
-          if (state is MoodSavedState) {
-            context.pop();
-          } else if (state is MoodFailedState) {
-            context.read<MoodCubit>().resetSelectedIndex();
-            errorDialog(context: context, message: state.message);
-          }
-        },
-        child: PopScope(
-          canPop: false,
-          child: Dialog(
-            backgroundColor: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            insetPadding: const EdgeInsets.symmetric(
-              horizontal: kAppHorizontalPadding - 4,
-            ),
-            child: MoodDialogContent(isDailyMood: isDailyMood),
+    return BlocListener<MoodCubit, MoodState>(
+      listener: (context, state) {
+        if (state is MoodSavedState) {
+          context.pop();
+        } else if (state is MoodFailedState) {
+          context.read<MoodCubit>().resetSelectedIndex();
+          errorDialog(context: context, message: state.message);
+        }
+      },
+      child: PopScope(
+        canPop: false,
+        child: Dialog(
+          backgroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
           ),
+          insetPadding: const EdgeInsets.symmetric(
+            horizontal: kAppHorizontalPadding - 4,
+          ),
+          child: MoodDialogContent(isDailyMood: isDailyMood),
         ),
       ),
     );

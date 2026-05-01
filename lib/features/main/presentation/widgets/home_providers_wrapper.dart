@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/mood/presentation/manager/mood_cubit/mood_cubit.dart';
 
 import '../../../../core/services/get_it_service.dart';
 import '../../../home/data/repos/activities_repo.dart';
@@ -47,7 +48,7 @@ class HomeProvidersWrapper extends StatelessWidget {
         BlocProvider(
           create: (_) => RecommendationCubit(
             recommendationRepo: getIt.get<RecommendationRepo>(),
-          )..getRecommendationData(),
+          ),
         ),
         BlocProvider(
           create: (_) =>
@@ -55,7 +56,17 @@ class HomeProvidersWrapper extends StatelessWidget {
                 ..getActivitiesCategories(),
         ),
       ],
-      child: HomeView(isPremium: isPremium),
+      child: BlocListener<MoodCubit, MoodState>(
+        listener: (context, state) {
+          if (state is MoodSavedState) {
+            final String currentMood = state.currentMood;
+            context.read<RecommendationCubit>().getRecommendationData(
+              currentMood: currentMood,
+            );
+          }
+        },
+        child: HomeView(isPremium: isPremium),
+      ),
     );
   }
 }

@@ -15,10 +15,12 @@ class RecommendedArticlesCubit extends Cubit<RecommendedArticlesState> {
   }) : _recommendedArticlesRepo = recommendedArticlesRepo,
        super(RecommendedArticlesLoadingState());
 
-  void getRecommendedArticles() async {
+  void getRecommendedArticles({required String currentMood}) async {
     try {
       final List<ArticleModel> recommendedArticles =
-          await _recommendedArticlesRepo.getRecommendedArticles();
+          await _recommendedArticlesRepo.getRecommendedArticles(
+            currentMood: currentMood,
+          );
       emit(
         RecommendedArticlesLoadedState(
           recommendedArticles: recommendedArticles,

@@ -19,7 +19,10 @@ class MoodSelectedState extends MoodState {
 
 class MoodSavingState extends MoodState {}
 
-class MoodSavedState extends MoodState {}
+class MoodSavedState extends MoodState {
+  final String currentMood;
+  const MoodSavedState({required this.currentMood});
+}
 
 class MoodFailedState extends MoodState {
   final String message;

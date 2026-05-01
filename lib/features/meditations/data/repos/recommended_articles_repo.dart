@@ -1,5 +1,4 @@
 import '../../../../core/extensions/string_extensions.dart';
-import '../../../mood/data/services/mood_local_service.dart';
 import '../models/article_model.dart';
 import '../services/recommended_articles_local_service.dart';
 import '../services/recommended_articles_remote_service.dart';
@@ -7,21 +6,16 @@ import '../services/recommended_articles_remote_service.dart';
 class RecommendedArticlesRepo {
   final RecommendedArticlesRemoteService _recommendedArticlesRemoteService;
   final RecommendedArticlesLocalService _recommendedArticlesLocalService;
-  final MoodLocalService _moodLocalService;
 
   RecommendedArticlesRepo({
     required RecommendedArticlesRemoteService recommendedArticlesRemoteService,
     required RecommendedArticlesLocalService recommendedArticlesLocalService,
-    required MoodLocalService moodLocalService,
   }) : _recommendedArticlesRemoteService = recommendedArticlesRemoteService,
-       _recommendedArticlesLocalService = recommendedArticlesLocalService,
-       _moodLocalService = moodLocalService;
+       _recommendedArticlesLocalService = recommendedArticlesLocalService;
 
-  Future<List<ArticleModel>> getRecommendedArticles() async {
-    // Get current mood
-    final String currentMood =
-        _moodLocalService.getSelectedDailyMood() ?? "calm";
-
+  Future<List<ArticleModel>> getRecommendedArticles({
+    required String currentMood,
+  }) async {
     // Get cached mood
     final String? cachedMood = await _recommendedArticlesLocalService
         .getCachedMood();

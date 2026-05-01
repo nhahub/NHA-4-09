@@ -14,10 +14,10 @@ class RecommendedVideosCubit extends Cubit<RecommendedVideosState> {
     : _recommendedVideosRepo = recommendedVideosRepo,
       super(RecommendedVideosLoadingState());
 
-  Future<void> getRecommendedVideos() async {
+  Future<void> getRecommendedVideos({required String currentMood}) async {
     try {
       final List<VideoModel> recommendedVideos = await _recommendedVideosRepo
-          .getRecommendedVideos();
+          .getRecommendedVideos(currentMood: currentMood);
       emit(RecommendedVideosLoadedState(recommendedVideos: recommendedVideos));
     } catch (e) {
       emit(

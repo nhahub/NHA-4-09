@@ -14,10 +14,10 @@ class RecommendationCubit extends Cubit<RecommendationState> {
     : _recommendationRepo = recommendationRepo,
       super(RecommendationLoadingState());
 
-  void getRecommendationData() async {
+  void getRecommendationData({required String currentMood}) async {
     try {
       final RecommendationModel recommendationModel = await _recommendationRepo
-          .getRecommendationData();
+          .getRecommendationData(currentMood: currentMood);
       emit(
         RecommendationSuccessLoadedState(
           recommendationModel: recommendationModel,
