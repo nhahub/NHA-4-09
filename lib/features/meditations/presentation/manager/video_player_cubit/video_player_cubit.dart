@@ -1,34 +1,24 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moodly/core/networking/api_error_handler.dart';
-import 'package:video_player/video_player.dart';
+import '../../../data/services/video_player_service.dart';
 part 'video_player_state.dart';
 
 class VideoPlayerCubit extends Cubit<VideoPlayerState> {
-  VideoPlayerCubit() : super(const VideoPlayerState());
+  final VideoPlayerService _service;
 
-  VideoPlayerController? videoController;
-  ChewieController? chewieController;
+  VideoPlayerCubit({required VideoPlayerService service})
+    : _service = service,
+      super(const VideoPlayerState());
 
   Future<void> init({required String url}) async {
     try {
-      videoController = VideoPlayerController.networkUrl(Uri.parse(url));
-      await videoController!.initialize();
-
-      chewieController = ChewieController(
-        videoPlayerController: videoController!,
-        autoPlay: false,
-        looping: false,
-        showControls: false,
-      );
-
-      videoController!.addListener(_listener);
+      await _service.init(url, _listener);
 
       emit(
         state.copyWith(
           isInitialized: true,
-          isPlaying: true,
-          duration: videoController!.value.duration.inSeconds,
+          duration: _service.duration.inSeconds,
         ),
       );
     } catch (e) {
@@ -37,72 +27,50 @@ class VideoPlayerCubit extends Cubit<VideoPlayerState> {
   }
 
   void _listener() {
-    if (videoController == null) return;
-
     emit(
       state.copyWith(
-        isPlaying: videoController!.value.isPlaying,
-        position: videoController!.value.position.inSeconds,
+        isPlaying: _service.isPlaying,
+        position: _service.position.inSeconds,
       ),
     );
   }
 
   void togglePlayPause() {
-    if (videoController == null) return;
-
-    if (videoController!.value.isPlaying) {
-      videoController!.pause();
-    } else {
-      videoController!.play();
-    }
+    _service.isPlaying ? _service.pause() : _service.play();
   }
 
   void skipForward() {
-    if (videoController == null) return;
-
-    final position = videoController!.value.position;
-    videoController!.seekTo(position + const Duration(seconds: 10));
+    _service.seek(_service.position + const Duration(seconds: 10));
   }
 
   void skipBackward() {
-    if (videoController == null) return;
-
-    final position = videoController!.value.position;
-    videoController!.seekTo(position - const Duration(seconds: 10));
+    _service.seek(_service.position - const Duration(seconds: 10));
   }
 
   void seek({required int seconds}) {
-    if (videoController == null) return;
-
-    videoController!.seekTo(Duration(seconds: seconds));
+    _service.seek(Duration(seconds: seconds));
   }
 
   void toggleVolume() {
-    if (videoController == null) return;
-
     final newMuted = !state.isMuted;
-
-    videoController!.setVolume(newMuted ? 0.0 : 1.0);
-
+    _service.setVolume(newMuted);
     emit(state.copyWith(isMuted: newMuted));
   }
 
-  void toggleFullscreen() {
-    chewieController?.enterFullScreen();
-  }
-
   void changeSpeed({required double speed}) {
-    if (videoController == null) return;
-
-    videoController!.setPlaybackSpeed(speed);
-
+    _service.setSpeed(speed);
     emit(state.copyWith(speed: speed));
   }
 
+  void toggleFullscreen() {
+    _service.toggleFullscreen();
+  }
+
+  ChewieController? get chewieController => _service.chewie;
+
   @override
   Future<void> close() {
-    videoController?.dispose();
-    chewieController?.dispose();
+    _service.dispose();
     return super.close();
   }
 }

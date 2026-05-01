@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/home/presentation/manager/activities_cubit/activities_cubit.dart';
 import '../../features/meditations/data/models/video_model.dart';
+import '../../features/meditations/data/services/video_player_service.dart';
 import '../../features/meditations/presentation/manager/video_player_cubit/video_player_cubit.dart';
 import '../../features/meditations/presentation/views/articles_view.dart';
 
@@ -195,7 +196,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) =>
-                VideoPlayerCubit()..init(url: videoModel.videoUrl),
+                VideoPlayerCubit(service: getIt.get<VideoPlayerService>())..init(url: videoModel.videoUrl),
             child: VideoView(videoModel: videoModel),
           ),
         );

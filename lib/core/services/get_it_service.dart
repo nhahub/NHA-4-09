@@ -32,6 +32,7 @@ import '../../features/meditations/data/services/recommended_books_local_service
 import '../../features/meditations/data/services/recommended_books_remote_service.dart';
 import '../../features/meditations/data/services/recommended_videos_local_service.dart';
 import '../../features/meditations/data/services/recommended_videos_remote_service.dart';
+import '../../features/meditations/data/services/video_player_service.dart';
 import '../../features/mood/data/repos/mood_progress_repo.dart';
 import '../../features/mood/data/repos/mood_repo.dart';
 import '../../features/mood/data/repos/recommendation_repo.dart';
@@ -413,4 +414,7 @@ Future<void> setupGetIt() async {
 
   // Audio Player Service
   getIt.registerFactory(() => AudioPlayerService(player: getIt()));
+
+  // Audio Player Service
+  getIt.registerFactory(() => VideoPlayerService());
 }
