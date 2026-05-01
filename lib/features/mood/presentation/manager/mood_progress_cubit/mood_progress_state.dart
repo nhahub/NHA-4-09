@@ -1,33 +1,41 @@
 part of 'mood_progress_cubit.dart';
 
+enum MoodProgressStatus { loading, success, failure }
+
+extension MoodProgressStatusX on MoodProgressStatus {
+  bool get isLoading => this == MoodProgressStatus.loading;
+  bool get isSuccess => this == MoodProgressStatus.success;
+  bool get isFailure => this == MoodProgressStatus.failure;
+}
+
 class MoodProgressState extends Equatable {
+  final MoodProgressStatus status;
   final List<MoodChart>? weekMood;
   final List<MoodChart>? monthMood;
   final List<MoodChart>? yearMood;
-  final bool isLoading;
   final String? failureMessage;
 
   const MoodProgressState({
     this.weekMood,
     this.monthMood,
     this.yearMood,
-    this.isLoading = false,
     this.failureMessage,
+    this.status = MoodProgressStatus.loading,
   });
 
   MoodProgressState copyWith({
     List<MoodChart>? weekMood,
     List<MoodChart>? monthMood,
     List<MoodChart>? yearMood,
-    bool? isLoading,
     String? failureMessage,
+    MoodProgressStatus? status,
   }) {
     return MoodProgressState(
       weekMood: weekMood ?? this.weekMood,
       monthMood: monthMood ?? this.monthMood,
       yearMood: yearMood ?? this.yearMood,
-      isLoading: isLoading ?? this.isLoading,
       failureMessage: failureMessage,
+      status: status ?? this.status,
     );
   }
 
@@ -36,7 +44,7 @@ class MoodProgressState extends Equatable {
     weekMood,
     monthMood,
     yearMood,
-    isLoading,
     failureMessage,
+    status
   ];
 }

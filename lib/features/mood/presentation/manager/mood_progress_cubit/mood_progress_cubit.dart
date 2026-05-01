@@ -16,15 +16,17 @@ class MoodProgressCubit extends Cubit<MoodProgressState> {
 
   // Week
   Future<void> getCurrentWeekMood() async {
-    emit(state.copyWith(isLoading: true, failureMessage: null));
+    emit(state.copyWith(status: MoodProgressStatus.loading));
     try {
       final List<MoodChart> weekMood = await _moodProgressRepo
           .getCurrentWeekMood();
-      emit(state.copyWith(isLoading: false, weekMood: weekMood));
+      emit(
+        state.copyWith(status: MoodProgressStatus.success, weekMood: weekMood),
+      );
     } catch (e) {
       emit(
         state.copyWith(
-          isLoading: false,
+          status: MoodProgressStatus.failure,
           failureMessage: ApiErrorHandler.handle(error: e).message,
         ),
       );
@@ -33,17 +35,21 @@ class MoodProgressCubit extends Cubit<MoodProgressState> {
 
   // Month
   Future<void> getCurrentMonthMood() async {
-    emit(state.copyWith(isLoading: true, failureMessage: null));
-
+    emit(state.copyWith(status: MoodProgressStatus.loading));
     try {
       final List<MoodChart> monthMood = await _moodProgressRepo
           .getCurrentMonthMood();
 
-      emit(state.copyWith(isLoading: false, monthMood: monthMood));
+      emit(
+        state.copyWith(
+          status: MoodProgressStatus.success,
+          monthMood: monthMood,
+        ),
+      );
     } catch (e) {
       emit(
         state.copyWith(
-          isLoading: false,
+          status: MoodProgressStatus.failure,
           failureMessage: ApiErrorHandler.handle(error: e).message,
         ),
       );
@@ -52,16 +58,18 @@ class MoodProgressCubit extends Cubit<MoodProgressState> {
 
   // Year
   Future<void> getCurrentYearMood() async {
-    emit(state.copyWith(isLoading: true, failureMessage: null));
+    emit(state.copyWith(status: MoodProgressStatus.loading));
 
     try {
       final List<MoodChart> yearMood = await _moodProgressRepo
           .getCurrentYearMood();
-      emit(state.copyWith(isLoading: false, yearMood: yearMood));
+      emit(
+        state.copyWith(status: MoodProgressStatus.success, yearMood: yearMood),
+      );
     } catch (e) {
       emit(
         state.copyWith(
-          isLoading: false,
+          status: MoodProgressStatus.failure,
           failureMessage: ApiErrorHandler.handle(error: e).message,
         ),
       );

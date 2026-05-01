@@ -63,6 +63,7 @@ class HomeProvidersWrapper extends StatelessWidget {
             context.read<RecommendationCubit>().getRecommendationData(
               currentMood: currentMood,
             );
+            context.read<MoodProgressCubit>().getCurrentWeekMood();
           }
         },
         child: HomeView(isPremium: isPremium),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../../core/enums/fade_position.dart';
 import '../../../../../../core/widgets/fade_scrollable.dart';
 import '../../../../../meals_recommendations/presentation/widgets/recommended_food_section.dart';

@@ -1,48 +1,48 @@
 {
   "happy": {
-    "title": "You seem to be in a calm state.",
-    "description": "Being calm is an optimal state for learning, creativity, and emotional regulation. These practices help maintain and deepen your sense of well-being.",
-    "avoid": "Avoid overstimulation such as loud noises, multitasking, or excessive caffeine which may disrupt calmness.",
-    "suggestions": "Engage in 10–15 minutes of mindfulness, meditation, or gentle stretching to reinforce parasympathetic activation.",
+    "title": "You appear to be in a positive and emotionally balanced state.",
+    "description": "Happiness supports resilience, creativity, motivation, and stronger social connection. Maintaining this emotional state can improve cognitive performance, overall well-being, and long-term mental health.",
+    "avoid": "Avoid excessive overstimulation, negative self-talk, emotional suppression, or overcommitting yourself, as these may gradually reduce emotional balance and energy.",
+    "suggestions": "Strengthen this positive state through meaningful activities, mindful reflection, healthy social connection, and intentional self-care practices.",
     "sections": [
       {
-        "category": "Maintain Physiological Calm",
+        "category": "Enhance Positive Energy",
         "items": [
-          "Practice slow diaphragmatic breathing to sustain parasympathetic activation",
-          "Perform gentle neck and shoulder stretches to release micro-tension",
-          "Drink water mindfully, noticing each sip to anchor presence",
-          "Take short breaks from screens to prevent cognitive fatigue",
-          "Engage in light aerobic movement (e.g., walking) to sustain heart rate stability"
+          "Engage in activities that naturally increase joy and motivation",
+          "Take short movement breaks such as walking or stretching to maintain energy",
+          "Listen to uplifting music or inspiring content that reinforces positivity",
+          "Spend time outdoors to support mood regulation and mental clarity",
+          "Celebrate small achievements to strengthen feelings of accomplishment"
         ]
       },
       {
-        "category": "Mindfulness and Awareness",
+        "category": "Mindfulness and Emotional Awareness",
         "items": [
-          "Observe your surroundings for 5 minutes with non-judgmental attention",
-          "Practice body scan meditation to notice subtle sensations without reacting",
-          "Label your emotions if they arise: 'I am feeling content' or 'I notice calmness'",
-          "Focus on the breath for 3–5 minutes, counting inhalations and exhalations",
-          "Engage in mindful listening to ambient sounds, music, or nature"
+          "Practice gratitude by identifying moments or people you appreciate",
+          "Pause periodically to notice positive emotions without distraction",
+          "Use mindful breathing to remain emotionally grounded and present",
+          "Reflect on what contributed to your current positive mood",
+          "Allow yourself to fully experience moments of joy without judgment"
         ]
       },
       {
-        "category": "Cognitive Reinforcement",
+        "category": "Cognitive and Emotional Growth",
         "items": [
-          "Journal positive experiences or gratitude moments to deepen calmness",
-          "Reflect on recent challenges overcome to reinforce self-efficacy",
-          "Use imagery: visualize a safe, serene environment to stabilize mood",
-          "Set gentle intentions for the day or evening to align actions with calmness",
-          "Notice automatic thoughts and let them pass without judgment"
+          "Focus on strengths and progress rather than perfection",
+          "Engage in creative thinking, brainstorming, or learning something new",
+          "Use positive visualization to reinforce confidence and optimism",
+          "Write down meaningful goals that align with your personal values",
+          "Encourage supportive internal dialogue and self-compassion"
         ]
       },
       {
-        "category": "Behavioral and Environmental Support",
+        "category": "Lifestyle and Social Well-Being",
         "items": [
-          "Maintain a quiet, organized environment to reduce potential stressors",
-          "Engage in low-intensity hobbies (drawing, reading, gardening) to sustain calm",
-          "Limit exposure to notifications or alerts that may trigger stress",
-          "Practice consistent sleep routine to preserve nervous system balance",
-          "Connect with others in supportive, low-pressure social interactions"
+          "Connect with supportive people who contribute positively to your mood",
+          "Maintain healthy routines including sleep, hydration, and balanced nutrition",
+          "Participate in hobbies or experiences that create fulfillment",
+          "Limit unnecessary stressors or digital overload when possible",
+          "Share positivity through kindness, encouragement, or meaningful conversation"
         ]
       }
     ]

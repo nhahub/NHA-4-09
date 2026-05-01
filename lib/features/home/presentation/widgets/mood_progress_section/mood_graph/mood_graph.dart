@@ -12,21 +12,21 @@ class MoodGraph extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      final cubit = context.read<MoodProgressCubit>();
+    final cubit = context.read<MoodProgressCubit>();
 
     switch (period) {
       case MoodPeriod.week:
-        if (cubit.state.weekMood == null && !cubit.state.isLoading) {
+        if (cubit.state.weekMood == null && !cubit.state.status.isLoading) {
           cubit.getCurrentWeekMood();
         }
         break;
       case MoodPeriod.month:
-        if (cubit.state.monthMood == null && !cubit.state.isLoading) {
+        if (cubit.state.monthMood == null && !cubit.state.status.isLoading) {
           cubit.getCurrentMonthMood();
         }
         break;
       case MoodPeriod.year:
-        if (cubit.state.yearMood == null && !cubit.state.isLoading) {
+        if (cubit.state.yearMood == null && !cubit.state.status.isLoading) {
           cubit.getCurrentYearMood();
         }
         break;

@@ -21,7 +21,7 @@ class MoodGraphContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (state.isLoading && moodData.isEmpty) {
+    if (state.status.isLoading && moodData.isEmpty) {
       return Skeletonizer(
         containersColor: Colors.grey[50],
         enabled: true,
