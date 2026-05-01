@@ -1,6 +1,6 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/networking/api_error_handler.dart';
+import '../../../../../core/networking/api_error_handler.dart';
 import '../../../data/services/video_player_service.dart';
 part 'video_player_state.dart';
 

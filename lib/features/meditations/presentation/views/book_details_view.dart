@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import '../widgets/recommended_books_section/book_info.dart';
-import '../widgets/recommended_books_section/book_publish_data.dart';
-import '../widgets/recommended_books_section/buy_book_button.dart';
+
 import '../../../../core/constants/constants.dart';
-import '../../data/models/book_model.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
+import '../../data/models/book_model.dart';
 import '../widgets/recommended_books_section/book_authors.dart';
 import '../widgets/recommended_books_section/book_description.dart';
 import '../widgets/recommended_books_section/book_image.dart';
+import '../widgets/recommended_books_section/book_info.dart';
+import '../widgets/recommended_books_section/book_publish_data.dart';
 import '../widgets/recommended_books_section/book_title.dart';
+import '../widgets/recommended_books_section/buy_book_button.dart';
 
 class BookDetailsView extends StatelessWidget {
   final BookModel book;

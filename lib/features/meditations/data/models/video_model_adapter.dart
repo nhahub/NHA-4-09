@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:hive_ce_flutter/hive_ce_flutter.dart';
-import 'package:moodly/features/meditations/data/models/video_model.dart';
+import 'video_model.dart';
 
 class VideoModelAdapter extends TypeAdapter<VideoModel> {
   @override

@@ -1,7 +1,6 @@
+import '../../../../core/constants/constants.dart';
 import '../../../../core/services/supabase_crud_service.dart';
 import '../models/activity/activity_category_model.dart';
-
-import '../../../../core/constants/constants.dart';
 import '../models/activity/activity_model.dart';
 
 class ActivitiesRemoteService {

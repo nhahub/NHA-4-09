@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/mood/presentation/manager/mood_cubit/mood_cubit.dart';
+import '../../../mood/presentation/manager/mood_cubit/mood_cubit.dart';
 
 import '../../../../core/services/get_it_service.dart';
 import '../../../home/data/repos/activities_repo.dart';

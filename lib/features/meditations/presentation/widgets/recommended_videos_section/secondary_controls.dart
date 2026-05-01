@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/meditations/presentation/widgets/recommended_videos_section/control_button.dart';
+import 'control_button.dart';
 
 import '../../../../../core/theming/app_styles.dart';
 

@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../features/home/presentation/manager/activities_cubit/activities_cubit.dart';
-import '../../features/meditations/data/models/video_model.dart';
-import '../../features/meditations/data/services/video_player_service.dart';
-import '../../features/meditations/presentation/manager/video_player_cubit/video_player_cubit.dart';
-import '../../features/meditations/presentation/views/articles_view.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/data/repos/user_data_repo.dart';
@@ -19,10 +14,11 @@ import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/auth/presentation/views/start_view.dart';
 import '../../features/chatbot/presentation/views/chatbot_view.dart';
 import '../../features/community/presentation/views/add_community_post_view.dart';
+import '../../features/home/presentation/manager/activities_cubit/activities_cubit.dart';
 import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
 import '../../features/home/presentation/manager/get_booking_sessions_cubit/get_booking_sessions_cubit.dart';
-import '../../features/home/presentation/views/all_booking_sessions_view.dart';
 import '../../features/home/presentation/views/activities_view.dart';
+import '../../features/home/presentation/views/all_booking_sessions_view.dart';
 import '../../features/home/presentation/views/water_tracking_view.dart';
 import '../../features/main/presentation/views/main_view.dart';
 import '../../features/meals_recommendations/data/models/recommended_food_item_model.dart';
@@ -34,8 +30,12 @@ import '../../features/meals_recommendations/presentation/views/recommended_food
 import '../../features/meditations/data/models/article_model.dart';
 import '../../features/meditations/data/models/audio_model.dart';
 import '../../features/meditations/data/models/book_model.dart';
+import '../../features/meditations/data/models/video_model.dart';
 import '../../features/meditations/data/services/audio_player_service.dart';
+import '../../features/meditations/data/services/video_player_service.dart';
 import '../../features/meditations/presentation/manager/audio_player_cubit/audio_player_cubit.dart';
+import '../../features/meditations/presentation/manager/video_player_cubit/video_player_cubit.dart';
+import '../../features/meditations/presentation/views/articles_view.dart';
 import '../../features/meditations/presentation/views/audio_view.dart';
 import '../../features/meditations/presentation/views/book_details_view.dart';
 import '../../features/meditations/presentation/views/video_view.dart';

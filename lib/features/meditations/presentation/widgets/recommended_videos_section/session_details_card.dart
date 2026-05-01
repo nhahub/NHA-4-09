@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/meditations/presentation/widgets/recommended_videos_section/detail_item.dart';
+import 'detail_item.dart';
 
 class SessionDetailsCard extends StatelessWidget {
   final double duration;

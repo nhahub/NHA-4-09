@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/constants/constants.dart';
 import '../../../data/models/activity/activity_model.dart';
 import 'activity_dots_indicator.dart';

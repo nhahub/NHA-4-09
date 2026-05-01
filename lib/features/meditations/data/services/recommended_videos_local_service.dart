@@ -1,4 +1,4 @@
-import 'package:moodly/features/meditations/data/models/video_model.dart';
+import '../models/video_model.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/services/local_cache_service.dart';
 

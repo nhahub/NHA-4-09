@@ -1,6 +1,6 @@
+import '../../../../core/constants/constants.dart';
 import '../../../../core/services/supabase_crud_service.dart';
 import '../models/article_model.dart';
-import '../../../../core/constants/constants.dart';
 
 class RecommendedArticlesRemoteService {
   final SupabaseCRUDService _supabaseCRUDService;

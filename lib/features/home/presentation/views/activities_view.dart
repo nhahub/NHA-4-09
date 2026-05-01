@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../manager/activities_cubit/activities_cubit.dart';
 
+import '../manager/activities_cubit/activities_cubit.dart';
 import '../widgets/activities_section/activities_bloc_builder.dart';
 import '../widgets/shared/back_button_appbar.dart';
 

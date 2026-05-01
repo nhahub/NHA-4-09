@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'activities_categories_list_view.dart';
+
 import '../../../../../core/widgets/custom_error_widget.dart';
 import '../../../data/models/dummy/dummy_activities_categories.dart';
 import '../../manager/activities_cubit/activities_cubit.dart';
+import 'activities_categories_list_view.dart';
 
 class ActivityCategoriesBlocBuilder extends StatelessWidget {
   const ActivityCategoriesBlocBuilder({super.key});

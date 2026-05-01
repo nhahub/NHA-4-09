@@ -1,9 +1,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../../core/networking/api_error_handler.dart';
 import '../../../data/models/activity/activity_category_model.dart';
 import '../../../data/models/activity/activity_model.dart';
 import '../../../data/repos/activities_repo.dart';
+
 part 'activities_state.dart';
 
 class ActivitiesCubit extends Cubit<ActivitiesState> {

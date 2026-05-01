@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/meditations/data/repos/podcast_repo.dart';
+import '../../../meditations/data/repos/podcast_repo.dart';
 import '../../../../core/services/get_it_service.dart';
 import '../../../meditations/data/repos/asmr_repo.dart';
 import '../../../meditations/data/repos/recommended_articles_repo.dart';

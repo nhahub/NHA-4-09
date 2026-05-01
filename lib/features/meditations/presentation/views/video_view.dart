@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/constants/constants.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../../data/models/video_model.dart';

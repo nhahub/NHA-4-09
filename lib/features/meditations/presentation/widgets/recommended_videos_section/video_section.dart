@@ -1,12 +1,13 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../data/models/video_model.dart';
 import '../../manager/video_player_cubit/video_player_cubit.dart';
-import 'video_progress_bar.dart';
 import 'main_controls.dart';
 import 'secondary_controls.dart';
 import 'session_header.dart';
+import 'video_progress_bar.dart';
 
 class VideoSection extends StatelessWidget {
   const VideoSection({super.key, required this.videoModel});

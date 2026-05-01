@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/enums/fade_position.dart';
 import '../../../../core/widgets/custom_appbar.dart';
 import '../../../../core/widgets/fade_scrollable.dart';
