@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moodly/features/therapist/presentation/manager/therapist_cubit/therapist_cubit.dart';
-
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/widgets/custom_dialog.dart';
@@ -9,7 +7,8 @@ import '../../manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
 
 Future<void> deleteReviewDialog({
   required BuildContext context,
-  required TherapistReviewsCubit cubit,
+  required TherapistReviewsCubit therapistReviewsCubit,
+  required TherapistCubit therapistCubit,
   required String ratingId,
   required String therapistId,
 }) {
@@ -23,17 +22,16 @@ Future<void> deleteReviewDialog({
         buttonColor: AppColors.darkRed,
         onPressed: () async {
           dialogContext.pop();
-          final success = await cubit.deleteReview(
+          final success = await therapistReviewsCubit.deleteReview(
             ratingId: ratingId,
             therapistId: therapistId,
           );
 
           if (success) {
-            if (!context.mounted) return;
-
-            context.read<TherapistCubit>().updateReviewsCountAndRating(
+            therapistCubit.updateReviewsCountAndRating(
               therapistId: therapistId,
               change: -1,
+              average: therapistReviewsCubit.state.average,
             );
           }
         },

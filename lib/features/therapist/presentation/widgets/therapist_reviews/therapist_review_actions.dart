@@ -24,7 +24,7 @@ class TherapistReviewActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<TherapistReviewsCubit>();
+    final therapistReviewsCubit = context.read<TherapistReviewsCubit>();
     final therapistCubit = context.read<TherapistCubit>();
 
     return InkWell(
@@ -68,7 +68,7 @@ class TherapistReviewActions extends StatelessWidget {
                       args: {
                         'therapistCubit': therapistCubit,
                         'therapistId': therapistId,
-                        'cubit': cubit,
+                        'cubit': therapistReviewsCubit,
                         'oldTherapistReviewModel': oldTherapistReviewModel,
                       },
                     );
@@ -94,9 +94,10 @@ class TherapistReviewActions extends StatelessWidget {
                     context.pop();
                     deleteReviewDialog(
                       context: context,
-                      cubit: cubit,
+                      therapistReviewsCubit: therapistReviewsCubit,
                       ratingId: oldTherapistReviewModel.id,
                       therapistId: therapistId,
+                      therapistCubit: therapistCubit,
                     );
                   },
                 ),

@@ -27,7 +27,7 @@ class TherapistReviewAddView extends StatelessWidget {
               context.read<TherapistCubit>().updateReviewsCountAndRating(
                 therapistId: therapistId,
                 change: 1,
-                newRatingValue: state.userRating,
+                average: state.average,
               );
               confirmDialog(
                 context: context,

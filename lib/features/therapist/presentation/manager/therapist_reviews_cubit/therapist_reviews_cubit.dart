@@ -63,7 +63,7 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
       final List<TherapistReviewModel> updatedList = [...state.reviews];
       updatedList.add(newReview);
 
-      await _therapistRatingRepo.addReview(rating: newReview);
+      await _therapistRatingRepo.addReview(review: newReview);
 
       emit(
         state.copyWith(
