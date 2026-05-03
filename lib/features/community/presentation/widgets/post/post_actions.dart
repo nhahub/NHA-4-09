@@ -20,7 +20,7 @@ class PostActions extends StatelessWidget {
           children: [
             ActionItem(
               iconSvg: AppAssets.chatCircleIcon,
-              count: post.comments,
+              count: post.commentsCount,
               onTap: () {
                 // Comment action
               },
@@ -35,13 +35,13 @@ class PostActions extends StatelessWidget {
             ),
             const SizedBox(width: 24),
             ActionItem(
-              iconSvg: post.isLiked
+              iconSvg: post.isLikedByCurrentUser
                   ? AppAssets.heartFillIcon
                   : AppAssets.heartIcon,
-              countColor: post.isLiked ? AppColors.lightRed : null,
-              count: post.sharesCount,
+              countColor: post.isLikedByCurrentUser ? AppColors.lightRed : null,
+              count: post.loveCount,
               onTap: () {
-                onLikeTap!();
+                onLikeTap?.call();
               },
             ),
           ],

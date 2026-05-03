@@ -8,6 +8,7 @@ import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/data/repos/user_data_repo.dart';
 import '../../features/auth/data/services/supabase_auth_service.dart';
 import '../../features/auth/data/services/user_data_service.dart';
+import '../../features/community/data/repos/create_post_repo.dart';
 import '../../features/home/data/repos/activities_repo.dart';
 import '../../features/home/data/repos/quote_repo.dart';
 import '../../features/home/data/repos/water_repo.dart';
@@ -312,6 +313,15 @@ Future<void> setupGetIt() async {
   // User Data Repo
   getIt.registerLazySingleton<UserDataRepo>(
     () => UserDataRepo(userDataService: getIt()),
+  );
+
+  // Community Create/Post Repository
+  getIt.registerLazySingleton<CreatePostRepo>(
+    () => CreatePostRepo(
+      supabaseCRUDService: getIt(),
+      supabaseStorageService: getIt(),
+      userDataRepo: getIt(),
+    ),
   );
 
   // App Rating Repo

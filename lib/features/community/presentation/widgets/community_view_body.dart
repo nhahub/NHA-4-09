@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/theming/app_colors.dart';
-import '../../data/models/mock/posts_data.dart';
+import '../manager/community_feed_cubit/community_feed_cubit.dart';
 import 'post/post_card.dart';
 
 class CommunityViewBody extends StatelessWidget {
@@ -20,26 +21,37 @@ class CommunityViewBody extends StatelessWidget {
   // }
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        bottom: 100,
-        left: kAppHorizontalPadding,
-        right: kAppHorizontalPadding,
-      ),
-      child: ListView.separated(
-        itemCount: posts.length,
-        separatorBuilder: (context, index) => const Divider(
-          height: 30,
-          thickness: 1,
-          color: AppColors.dividerColor,
-        ),
-        itemBuilder: (context, index) {
-          return PostCard(
-            postModel: posts[index],
-            // onLikeTap: () => _toggleLike(index),
+    return BlocBuilder<CommunityFeedCubit, CommunityFeedState>(
+      builder: (context, state) {
+        if (state.status == CommunityFeedStatus.loading) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        if (state.status == CommunityFeedStatus.failure) {
+          return Center(
+            child: Text(state.errorMessage ?? 'Failed to load posts'),
           );
-        },
-      ),
+        }
+
+        return Padding(
+          padding: const EdgeInsets.only(
+            bottom: 100,
+            left: kAppHorizontalPadding,
+            right: kAppHorizontalPadding,
+          ),
+          child: ListView.separated(
+            itemCount: state.posts.length,
+            separatorBuilder: (context, index) => const Divider(
+              height: 30,
+              thickness: 1,
+              color: AppColors.dividerColor,
+            ),
+            itemBuilder: (context, index) {
+              return PostCard(postModel: state.posts[index]);
+            },
+          ),
+        );
+      },
     );
   }
 }
