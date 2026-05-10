@@ -29,9 +29,9 @@ class PostCard extends StatelessWidget {
               PostHeader(postModel: postModel),
               const SizedBox(height: 4),
               PostContent(content: postModel.content),
-              if (postModel.images.isNotEmpty) ...[
+              if (postModel.imageUrls.isNotEmpty) ...[
                 const SizedBox(height: 8),
-                PostMedia(images: postModel.images),
+                PostMedia(images: postModel.imageUrls),
               ],
               const SizedBox(height: 8),
               PostActions(post: postModel, onLikeTap: onLikeTap),

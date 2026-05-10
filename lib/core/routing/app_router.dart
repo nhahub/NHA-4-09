@@ -13,6 +13,8 @@ import '../../features/auth/presentation/views/register_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/auth/presentation/views/start_view.dart';
 import '../../features/chatbot/presentation/views/chatbot_view.dart';
+import '../../features/community/data/repos/create_post_repo.dart';
+import '../../features/community/presentation/manager/create_post_cubit/create_post_cubit.dart';
 import '../../features/community/presentation/views/add_community_post_view.dart';
 import '../../features/home/presentation/manager/activities_cubit/activities_cubit.dart';
 import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
@@ -187,7 +189,12 @@ class AppRouter {
 
       case Routes.addCommunityPostView:
         return MaterialPageRoute(
-          builder: (context) => const AddCommunityPostView(),
+          builder: (context) => BlocProvider(
+            create: (context) => CreatePostCubit(
+              createPostRepo: getIt.get<CreatePostRepo>(),
+            ),
+            child: const AddCommunityPostView(),
+          ),
         );
 
       case Routes.videoView:
