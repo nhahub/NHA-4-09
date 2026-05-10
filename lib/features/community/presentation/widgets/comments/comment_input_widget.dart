@@ -31,10 +31,10 @@ class _CommentInputWidgetState extends State<CommentInputWidget> {
     if (_controller.text.trim().isEmpty) return;
 
     context.read<CommentsCubit>().addComment(
-          postId: widget.postId,
-          content: _controller.text.trim(),
-          parentId: widget.replyingToCommentId,
-        );
+      postId: widget.postId,
+      content: _controller.text.trim(),
+      parentId: widget.replyingToCommentId,
+    );
 
     _controller.clear();
     widget.onCancelReply();
@@ -60,7 +60,7 @@ class _CommentInputWidgetState extends State<CommentInputWidget> {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, -5),
           ),
@@ -98,7 +98,9 @@ class _CommentInputWidgetState extends State<CommentInputWidget> {
               // User avatar (Ideally fetched from the current user profile, but we can hardcode a placeholder for the input field or get it from auth service)
               const CircleAvatar(
                 radius: 18,
-                backgroundImage: NetworkImage('https://i.pravatar.cc/150'), // Placeholder for current user
+                backgroundImage: NetworkImage(
+                  'https://i.pravatar.cc/150',
+                ), // Placeholder for current user
                 backgroundColor: AppColors.brandGreen,
               ),
               const SizedBox(width: 12),
