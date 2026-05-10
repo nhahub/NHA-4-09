@@ -140,6 +140,14 @@ class SupabaseCRUDService {
     await _client.from(table).delete().eq(idColumn, idValue);
   }
 
+  /// Delete data by match
+  Future<void> deleteDataByMatch({
+    required String table,
+    required Map<String, dynamic> match,
+  }) async {
+    await _client.from(table).delete().match(match.cast<String, Object>());
+  }
+
   /// Check if row exists
   Future<bool> isRowExists({
     required String table,
