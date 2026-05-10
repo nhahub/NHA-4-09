@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +11,21 @@ class PostMedia extends StatelessWidget {
 
   const PostMedia({super.key, required this.images});
 
+  Widget _buildImage(String path) {
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+      return CachedNetworkImage(
+        imageUrl: path,
+        fit: BoxFit.cover,
+        placeholder: (context, url) => Container(color: Colors.grey.shade300),
+        errorWidget: (context, url, error) => Container(
+          color: Colors.grey,
+          child: const Icon(Icons.broken_image),
+        ),
+      );
+    }
+    return Image.file(File(path), fit: BoxFit.cover);
+  }
+
   @override
   Widget build(BuildContext context) {
     if (images.length == 1) {
@@ -16,17 +33,7 @@ class PostMedia extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         child: AspectRatio(
           aspectRatio: 1.6,
-          child: CachedNetworkImage(
-            imageUrl: images.first,
-            fit: BoxFit.cover,
-            width: double.infinity,
-            placeholder: (context, url) =>
-                Container(color: Colors.grey.shade300),
-            errorWidget: (context, url, error) => Container(
-              color: Colors.grey,
-              child: const Icon(Icons.broken_image),
-            ),
-          ),
+          child: _buildImage(images.first),
         ),
       );
     }
@@ -49,16 +56,7 @@ class PostMedia extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              CachedNetworkImage(
-                imageUrl: images[index],
-                fit: BoxFit.cover,
-                placeholder: (context, url) =>
-                    Container(color: Colors.grey.shade300),
-                errorWidget: (context, url, error) => Container(
-                  color: Colors.grey,
-                  child: const Icon(Icons.broken_image),
-                ),
-              ),
+              _buildImage(images[index]),
               if (isLast)
                 Container(
                   color: Colors.black.withAlpha(alphaFromPercentage(50)),

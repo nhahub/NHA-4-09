@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
-import '../../../../../core/widgets/premium_container.dart';
 import '../../../data/models/post_model.dart';
 import '../../helpers/date_time_extension.dart';
 
@@ -17,18 +16,10 @@ class PostHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
-          children: [
-            Text(
-              '@${postModel.userName}',
-              style: AppStyles.extraBold15,
-              overflow: TextOverflow.ellipsis,
-            ),
-            if (postModel.isPremium) ...[
-              const SizedBox(width: 6),
-              const PremiumContainer(),
-            ],
-          ],
+        Text(
+          '@${postModel.userName}',
+          style: AppStyles.extraBold15,
+          overflow: TextOverflow.ellipsis,
         ),
         Text(
           postModel.createdAt.timeAgo(),

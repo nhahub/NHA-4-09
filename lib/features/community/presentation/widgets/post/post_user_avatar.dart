@@ -10,48 +10,25 @@ class PostUserAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        ClipOval(
-          child: CachedNetworkImage(
-            imageUrl: postModel.userAvatar,
-            width: 40,
-            height: 40,
-            fit: BoxFit.cover,
-            // While the image is loading, show a placeholder
-            placeholder: (context, url) => Container(
-              width: 40,
-              height: 40,
-              color: Colors.grey.shade300,
-              child: const Icon(Icons.person, size: 18, color: Colors.white),
-            ),
-            errorWidget: (context, url, error) => Container(
-              width: 40,
-              height: 40,
-              color: Colors.grey,
-              child: const Icon(Icons.person),
-            ),
-          ),
+    return ClipOval(
+      child: CachedNetworkImage(
+        imageUrl: postModel.userImage,
+        width: 40,
+        height: 40,
+        fit: BoxFit.cover,
+        placeholder: (context, url) => Container(
+          width: 40,
+          height: 40,
+          color: Colors.grey.shade300,
+          child: const Icon(Icons.person, size: 18, color: Colors.white),
         ),
-        if (postModel.isPremium)
-          Positioned(
-            bottom: -2,
-            right: -2,
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-              ),
-              padding: const EdgeInsets.all(1.5),
-              child: const Icon(
-                Icons.check_circle,
-                size: 14,
-                color: Color(0xFF32B453),
-              ),
-            ),
-          ),
-      ],
+        errorWidget: (context, url, error) => Container(
+          width: 40,
+          height: 40,
+          color: Colors.grey,
+          child: const Icon(Icons.person),
+        ),
+      ),
     );
   }
 }
