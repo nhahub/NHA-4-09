@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:uuid/uuid.dart';
-
 import '../../../../core/constants/constants.dart';
 import '../../../../core/models/user_data_model.dart';
 import '../../../../core/services/supabase_crud_service.dart';
@@ -38,7 +37,9 @@ class CreatePostRepo {
 
     final userId = getCurrentUserId() ?? 'anonymous';
     final uploadedUrls = <String>[];
-    await _supabaseStorageService.createBucket(bucketName: kCommunityImagesBucket);
+    await _supabaseStorageService.createBucket(
+      bucketName: kCommunityImagesBucket,
+    );
 
     for (int i = 0; i < files.length; i++) {
       final file = files[i];

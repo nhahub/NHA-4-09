@@ -11,10 +11,9 @@ class CommunityFeedCubit extends Cubit<CommunityFeedState> {
 
   CommunityFeedCubit({required CreatePostRepo createPostRepo})
     : _repo = createPostRepo,
-      super(const CommunityFeedState());
+      super(const CommunityFeedState(status: CommunityFeedStatus.loading));
 
   Future<void> getPosts() async {
-    emit(state.copyWith(status: CommunityFeedStatus.loading, errorMessage: null));
     try {
       final posts = await _repo.getPosts();
       emit(state.copyWith(status: CommunityFeedStatus.success, posts: posts));
