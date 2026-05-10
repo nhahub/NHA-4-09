@@ -4,6 +4,7 @@ import 'package:just_audio/just_audio.dart';
 import '../../features/meditations/data/repos/podcast_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../features/community/data/repositories/comments_repository.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/data/repos/user_data_repo.dart';
 import '../../features/auth/data/services/supabase_auth_service.dart';
@@ -407,6 +408,11 @@ Future<void> setupGetIt() async {
       supabaseStorageService: getIt(),
       supabaseCRUDService: getIt(),
     ),
+  );
+
+  // Comments Repo
+  getIt.registerLazySingleton<CommentsRepository>(
+    () => CommentsRepository(crudService: getIt()),
   );
 
   // Audio Player
