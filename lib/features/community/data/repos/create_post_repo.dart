@@ -1,13 +1,11 @@
 import 'dart:io';
-
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:moodly/core/helpers/logger.dart';
 import 'package:uuid/uuid.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/models/user_data_model.dart';
 import '../../../../core/services/supabase_crud_service.dart';
 import '../../../../core/services/supabase_storage_service.dart';
 import '../../../auth/data/repos/user_data_repo.dart';
-import '../models/mock/posts_data.dart';
 import '../models/post_model.dart';
 
 class CreatePostRepo {
@@ -70,18 +68,7 @@ class CreatePostRepo {
     try {
       await _supabaseCRUDService.addData(
         table: kCommunityPostsTable,
-        data: {
-          'id': post.id,
-          'user_id': post.userId,
-          'user_name': post.userName,
-          'user_image': post.userImage,
-          'content': post.content,
-          'likes_count': post.loveCount,
-          'comments_count': post.commentsCount,
-          'shares_count': post.sharesCount,
-          'created_at': post.createdAt.toIso8601String(),
-          'updated_at': DateTime.now().toIso8601String(),
-        },
+        data: post.toJson(),
       );
 
       if (post.imageUrls.isNotEmpty) {
@@ -98,62 +85,54 @@ class CreatePostRepo {
           );
         }
       }
-    } catch (_) {
-      _localPosts.insert(0, post);
+    } catch (e) {
+      Logger.log(e.toString());
     }
   }
 
   Future<List<PostModel>> getPosts() async {
-    try {
-      final rows = await _supabaseCRUDService.getData(
-        table: kCommunityPostsTable,
-        orderBy: 'created_at',
-        ascending: false,
+    final rows = await _supabaseCRUDService.getData(
+      table: kCommunityPostsTable,
+      orderBy: 'created_at',
+      ascending: false,
+    );
+
+    final postsFromDb = <PostModel>[];
+    for (final row in rows) {
+      final postId = (row['id'] ?? '').toString();
+      final mediaRows = await _supabaseCRUDService.getData(
+        table: kCommunityPostMediaTable,
+        filters: {'post_id': postId},
+        orderBy: 'sort_order',
+        ascending: true,
       );
 
-      final postsFromDb = <PostModel>[];
-      for (final row in rows) {
-        final postId = (row['id'] ?? '').toString();
-        final mediaRows = await _supabaseCRUDService.getData(
-          table: kCommunityPostMediaTable,
-          filters: {'post_id': postId},
-          orderBy: 'sort_order',
-          ascending: true,
-        );
+      final imageUrls = mediaRows
+          .map((e) => (e['media_url'] ?? '').toString())
+          .where((e) => e.isNotEmpty)
+          .toList();
 
-        final imageUrls = mediaRows
-            .map((e) => (e['media_url'] ?? '').toString())
-            .where((e) => e.isNotEmpty)
-            .toList();
-
-        postsFromDb.add(
-          PostModel(
-            id: postId,
-            userId: (row['user_id'] ?? '').toString(),
-            userName: (row['user_name'] ?? '').toString(),
-            userImage: (row['user_image'] ?? '').toString(),
-            content: (row['content'] ?? '').toString(),
-            imageUrls: imageUrls,
-            createdAt:
-                DateTime.tryParse((row['created_at'] ?? '').toString()) ??
-                DateTime.now(),
-            loveCount: ((row['likes_count'] ?? 0) as num).toInt(),
-            commentsCount: ((row['comments_count'] ?? 0) as num).toInt(),
-            sharesCount: ((row['shares_count'] ?? 0) as num).toInt(),
-          ),
-        );
-      }
-
-      if (_localPosts.isNotEmpty) {
-        return [..._localPosts, ...postsFromDb];
-      }
-      return postsFromDb;
-    } on PostgrestException {
-      if (_localPosts.isNotEmpty) return _localPosts;
-      return posts;
-    } catch (_) {
-      if (_localPosts.isNotEmpty) return _localPosts;
-      return posts;
+      postsFromDb.add(
+        PostModel(
+          id: postId,
+          userId: (row['user_id'] ?? '').toString(),
+          userName: (row['user_name'] ?? '').toString(),
+          userImage: (row['user_image'] ?? '').toString(),
+          content: (row['content'] ?? '').toString(),
+          imageUrls: imageUrls,
+          createdAt:
+              DateTime.tryParse((row['created_at'] ?? '').toString()) ??
+              DateTime.now(),
+          loveCount: ((row['likes_count'] ?? 0) as num).toInt(),
+          commentsCount: ((row['comments_count'] ?? 0) as num).toInt(),
+          sharesCount: ((row['shares_count'] ?? 0) as num).toInt(),
+        ),
+      );
     }
+
+    if (_localPosts.isNotEmpty) {
+      return [..._localPosts, ...postsFromDb];
+    }
+    return postsFromDb;
   }
 }

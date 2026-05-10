@@ -1,14 +1,38 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'post_model.g.dart';
+
+@JsonSerializable()
 class PostModel {
   final String id;
+
+  @JsonKey(name: 'user_id')
   final String userId;
+
+  @JsonKey(name: 'user_name')
   final String userName;
+
+  @JsonKey(name: 'user_image')
   final String userImage;
+
   final String content;
+
+  @JsonKey(name: 'image_urls')
   final List<String> imageUrls;
+
+  @JsonKey(name: 'created_at')
   final DateTime createdAt;
+
+  @JsonKey(name: 'love_count')
   final int loveCount;
+
+  @JsonKey(name: 'comments_count')
   final int commentsCount;
+
+  @JsonKey(name: 'shares_count')
   final int sharesCount;
+
+  @JsonKey(name: 'is_liked')
   final bool isLikedByCurrentUser;
 
   const PostModel({
@@ -25,46 +49,10 @@ class PostModel {
     this.isLikedByCurrentUser = false,
   });
 
-  factory PostModel.fromJson(Map<String, dynamic> json) {
-    return PostModel(
-      id: (json['id'] ?? '').toString(),
-      userId: (json['user_id'] ?? json['userId'] ?? '').toString(),
-      userName: (json['user_name'] ?? json['userName'] ?? '').toString(),
-      userImage: (json['user_image'] ?? json['userImage'] ?? '').toString(),
-      content: (json['content'] ?? '').toString(),
-      imageUrls: (json['image_urls'] as List<dynamic>? ?? json['imageUrls'] as List<dynamic>? ?? const [])
-          .map((e) => e.toString())
-          .toList(),
-      createdAt:
-          DateTime.tryParse((json['created_at'] ?? json['createdAt'] ?? '').toString()) ??
-          DateTime.now(),
-      loveCount:
-          ((json['love_count'] ?? json['loveCount'] ?? json['likes_count'] ?? 0)
-                  as num)
-              .toInt(),
-      commentsCount:
-          ((json['comments_count'] ?? json['commentsCount'] ?? 0) as num).toInt(),
-      sharesCount:
-          ((json['shares_count'] ?? json['sharesCount'] ?? 0) as num).toInt(),
-      isLikedByCurrentUser: (json['is_liked'] ?? json['isLikedByCurrentUser'] ?? false) as bool,
-    );
-  }
+  factory PostModel.fromJson(Map<String, dynamic> json) =>
+      _$PostModelFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'user_id': userId,
-      'user_name': userName,
-      'user_image': userImage,
-      'content': content,
-      'image_urls': imageUrls,
-      'created_at': createdAt.toIso8601String(),
-      'love_count': loveCount,
-      'comments_count': commentsCount,
-      'shares_count': sharesCount,
-      'is_liked': isLikedByCurrentUser,
-    };
-  }
+  Map<String, dynamic> toJson() => _$PostModelToJson(this);
 
   PostModel copyWith({
     String? id,
@@ -90,7 +78,8 @@ class PostModel {
       loveCount: loveCount ?? this.loveCount,
       commentsCount: commentsCount ?? this.commentsCount,
       sharesCount: sharesCount ?? this.sharesCount,
-      isLikedByCurrentUser: isLikedByCurrentUser ?? this.isLikedByCurrentUser,
+      isLikedByCurrentUser:
+          isLikedByCurrentUser ?? this.isLikedByCurrentUser,
     );
   }
 }
