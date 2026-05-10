@@ -1,6 +1,12 @@
 part of 'community_feed_cubit.dart';
 
-enum CommunityFeedStatus { initial, loading, success, failure }
+enum CommunityFeedStatus { loading, success, failure }
+
+extension CommunityFeedStatusX on CommunityFeedStatus {
+  bool get isLoading => this == CommunityFeedStatus.loading;
+  bool get isSuccess => this == CommunityFeedStatus.success;
+  bool get isFailure => this == CommunityFeedStatus.failure;
+}
 
 class CommunityFeedState extends Equatable {
   final CommunityFeedStatus status;
@@ -8,7 +14,7 @@ class CommunityFeedState extends Equatable {
   final String? errorMessage;
 
   const CommunityFeedState({
-    this.status = CommunityFeedStatus.initial,
+    this.status = CommunityFeedStatus.loading,
     this.posts = const [],
     this.errorMessage,
   });
