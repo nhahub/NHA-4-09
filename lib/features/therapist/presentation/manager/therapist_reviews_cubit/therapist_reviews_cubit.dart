@@ -9,8 +9,7 @@ import '../../../domain/functions/create_review_model.dart';
 import '../../../domain/functions/review_utils.dart';
 
 part 'therapist_reviews_cubit.freezed.dart';
-part 'therapist_reviews_state.dart'; 
-
+part 'therapist_reviews_state.dart';
 
 class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
   final TherapistReviewsRepo _therapistRatingRepo;
@@ -60,11 +59,12 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
         rating: state.userRating.toInt(),
         displayAnonymously: state.displayAnonymously,
       );
-      
+
       final List<TherapistReviewModel> updatedList = [...state.reviews];
       updatedList.add(newReview);
 
-      await _therapistRatingRepo.addReview(rating: newReview);
+      await _therapistRatingRepo.addReview(review: newReview);
+
       emit(
         state.copyWith(
           reviews: updatedList,
@@ -131,7 +131,7 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
     }
   }
 
-  Future<void> deleteReview({
+  Future<bool> deleteReview({
     required String ratingId,
     required String therapistId,
   }) async {
@@ -151,6 +151,7 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
           status: TherapistReviewsStatus.success,
         ),
       );
+      return true;
     } catch (e) {
       emit(
         state.copyWith(
@@ -159,6 +160,7 @@ class TherapistReviewsCubit extends Cubit<TherapistReviewsState> {
         ),
       );
     }
+    return false;
   }
 
   void updateUserRating({required num rating}) {

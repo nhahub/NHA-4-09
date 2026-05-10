@@ -7,6 +7,7 @@ import '../../../../core/functions/confirm_dialog.dart';
 import '../../../../core/functions/error_dialog.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../../data/models/therapist_review_model.dart';
+import '../manager/therapist_cubit/therapist_cubit.dart';
 import '../manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
 import '../widgets/therapist_reviews/update_therapist_review_view_body.dart';
 
@@ -29,6 +30,11 @@ class TherapistReviewUpdateView extends StatelessWidget {
         child: BlocListener<TherapistReviewsCubit, TherapistReviewsState>(
           listener: (context, state) {
             if (state.status.isSuccess) {
+              context.read<TherapistCubit>().updateReviewsCountAndAverage(
+                therapistId: therapistId,
+                average: state.average,
+                totalCount: state.totalCount!,
+              );
               confirmDialog(
                 context: context,
                 title: "Done!",

@@ -2,7 +2,6 @@ import '../../../../../core/theming/app_assets.dart';
 import '../therapist_model.dart';
 import '../therapist_rating_summary.dart';
 
-
 class DummyTherapists {
   static List<TherapistModel> dummyTherapists = List.generate(
     5,
@@ -19,10 +18,7 @@ class DummyTherapists {
       yearsOfExperience: 8 + index,
       language: "English",
       location: "USA",
-      ratingSummary: TherapistRatingSummary(
-        rating: 4.5,
-        totalCount: 120,
-      ),
+      ratingSummary: const TherapistRatingSummary(rating: 4.5, totalCount: 120),
     ),
   );
 }

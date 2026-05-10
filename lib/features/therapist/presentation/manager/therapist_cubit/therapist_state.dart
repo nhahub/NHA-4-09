@@ -1,24 +1,36 @@
 part of 'therapist_cubit.dart';
 
-sealed class TherapistState extends Equatable {
-  const TherapistState();
+enum TherapistStatus { loading, success, failure }
 
-  @override
-  List<Object> get props => [];
+extension TherapistStatusX on TherapistStatus {
+  bool get isLoading => this == TherapistStatus.loading;
+  bool get isSuccess => this == TherapistStatus.success;
+  bool get isFailure => this == TherapistStatus.failure;
 }
 
-class GetTherapistsLoadingState extends TherapistState {}
+class TherapistState extends Equatable {
+  final TherapistStatus status;
+  final List<TherapistModel>? therapists;
+  final String? error;
 
-class GetTherapistsLoadedState extends TherapistState {
-  final List<TherapistModel> therapists;
-  const GetTherapistsLoadedState({required this.therapists});
-  @override
-  List<Object> get props => [therapists];
-}
+  const TherapistState({
+    this.status = TherapistStatus.loading,
+    this.therapists,
+    this.error,
+  });
 
-class GetTherapistFailureState extends TherapistState {
-  final String errorMsg;
-  const GetTherapistFailureState({required this.errorMsg});
   @override
-  List<Object> get props => [errorMsg];
+  List<Object> get props => [status, therapists ?? [], error ?? ''];
+
+  TherapistState copyWith({
+    TherapistStatus? status,
+    List<TherapistModel>? therapists,
+    String? error,
+  }) {
+    return TherapistState(
+      status: status ?? this.status,
+      therapists: therapists ?? this.therapists,
+      error: error ?? this.error,
+    );
+  }
 }

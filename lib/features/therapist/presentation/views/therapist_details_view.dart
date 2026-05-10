@@ -39,11 +39,7 @@ class TherapistDetailsView extends StatelessWidget {
                   speciality: therapistModel.speciality,
                 ),
                 const SizedBox(height: 4),
-                TherapistRatingSection(
-                  rating: therapistModel.ratingSummary.rating,
-                  ratingCount: therapistModel.ratingSummary.totalCount,
-                  therapistId: therapistModel.id,
-                ),
+                TherapistRatingSection(therapistModel: therapistModel),
                 const Divider(color: AppColors.lightGrey, height: 30),
                 TherapistInfoSection(therapistModel: therapistModel),
                 const SizedBox(height: 16),

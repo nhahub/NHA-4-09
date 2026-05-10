@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/therapist/presentation/manager/therapist_cubit/therapist_cubit.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../core/routing/routes.dart';
@@ -16,7 +17,11 @@ class SessionsForYouCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(Routes.therapistDetailsView, args: therapistModel);
+        final TherapistCubit therapistCubit = context.read<TherapistCubit>();
+        context.push(
+          Routes.therapistDetailsView,
+          args: {'therapistModel': therapistModel, 'cubit': therapistCubit},
+        );
       },
       child: Container(
         width: 284.52,
