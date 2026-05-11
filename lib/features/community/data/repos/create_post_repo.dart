@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:moodly/core/functions/user_data_local.dart';
 import 'package:moodly/core/helpers/logger.dart';
 import 'package:uuid/uuid.dart';
 import '../../../../core/constants/constants.dart';
@@ -21,65 +22,53 @@ class CreatePostRepo {
   }) : _supabaseCRUDService = supabaseCRUDService,
        _supabaseStorageService = supabaseStorageService;
 
-  String? getCurrentUserId() => _supabaseCRUDService.getCurrentUserId();
-
   Future<List<String>> uploadImages(List<File> files) async {
     if (files.isEmpty) return [];
 
-    final userId = getCurrentUserId() ?? 'anonymous';
-    final uploadedUrls = <String>[];
-    await _supabaseStorageService.createBucket(
-      bucketName: kCommunityImagesBucket,
-    );
+    final String userId = getUser()!.userId;
+    final List<String> uploadedUrls = <String>[];
 
     for (int i = 0; i < files.length; i++) {
       final file = files[i];
       final extension = file.path.split('.').last;
       final filePath =
           '$kPostsImagesPath/$userId/${DateTime.now().millisecondsSinceEpoch}_$i.$extension';
-      try {
-        await _supabaseStorageService.uploadFile(
-          file: file,
-          filePath: filePath,
-          bucketName: kCommunityImagesBucket,
-        );
-        uploadedUrls.add(
-          _supabaseStorageService.getFileUrl(
-            filePath: filePath,
-            bucketName: kCommunityImagesBucket,
-          ),
-        );
-      } catch (_) {
-        uploadedUrls.add(file.path);
-      }
+
+      await _supabaseStorageService.uploadFile(
+        file: file,
+        filePath: filePath,
+        bucketName: kCommunityImagesBucket,
+      );
+      final String publicUrl = _supabaseStorageService.getFileUrl(
+        filePath: filePath,
+        bucketName: kCommunityImagesBucket,
+      );
+      Logger.log('Uploaded image to $publicUrl');
+      uploadedUrls.add(publicUrl);
     }
 
     return uploadedUrls;
   }
 
   Future<void> createPost(PostModel post) async {
-    try {
-      await _supabaseCRUDService.addData(
-        table: kCommunityPostsTable,
-        data: post.toJson(),
-      );
+    await _supabaseCRUDService.addData(
+      table: kCommunityPostsTable,
+      data: post.toJson(),
+    );
 
-      if (post.imageUrls.isNotEmpty) {
-        for (int i = 0; i < post.imageUrls.length; i++) {
-          await _supabaseCRUDService.addData(
-            table: kCommunityPostMediaTable,
-            data: {
-              'id': _uuid.v4(),
-              'post_id': post.id,
-              'media_url': post.imageUrls[i],
-              'media_type': 'image',
-              'sort_order': i,
-            },
-          );
-        }
+    if (post.imageUrls.isNotEmpty) {
+      for (int i = 0; i < post.imageUrls.length; i++) {
+        await _supabaseCRUDService.addData(
+          table: kCommunityPostMediaTable,
+          data: {
+            'id': _uuid.v4(),
+            'post_id': post.id,
+            'media_url': post.imageUrls[i],
+            'media_type': 'image',
+            'sort_order': i,
+          },
+        );
       }
-    } catch (e) {
-      Logger.log(e.toString());
     }
   }
 
