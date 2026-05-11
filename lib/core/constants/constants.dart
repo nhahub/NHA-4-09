@@ -50,6 +50,9 @@ const String kActivityCategoriesTable = "activity_categories";
 const String kVideosTable = "videos";
 const String kCommunityPostsTable = "community_posts";
 const String kCommunityPostMediaTable = "community_post_media";
+const String kCommunityCommentsTable = "community_comments";
+const String kCommunityCommentLikesTable = "community_comment_likes";
+const String kProfilesTable = "profiles";
 
 const String kUsersImagesBucket = "users_images";
 const String kProfileImagesPath = "images/profile";

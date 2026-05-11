@@ -8,11 +8,13 @@ class CommentsListView extends StatelessWidget {
   final bool isLoading;
   final List<CommentModel> comments;
   final Map<String, List<CommentModel>> replies;
+  final void Function(String commentId, String userName) onReplyTap;
 
   const CommentsListView({
     super.key,
     required this.comments,
     required this.replies,
+    required this.onReplyTap,
     this.isLoading = false,
   });
 
@@ -32,12 +34,10 @@ class CommentsListView extends StatelessWidget {
           return CommentItem(
             comment: comment,
             replies: repliesByComment,
-            onReplyTap: () => _onReplyTap(comment.id, comment.userName),
+            onReplyTap: () => onReplyTap(comment.id, comment.userName),
           );
         },
       ),
     );
   }
-
-  void _onReplyTap(String id, String userName) {}
 }

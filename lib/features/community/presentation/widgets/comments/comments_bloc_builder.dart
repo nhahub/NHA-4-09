@@ -8,7 +8,9 @@ import '../../manager/comments_cubit/comments_state.dart';
 import 'no_comments_widget.dart';
 
 class CommentsBlocBuilder extends StatelessWidget {
-  const CommentsBlocBuilder({super.key});
+  final void Function(String commentId, String userName) onReplyTap;
+
+  const CommentsBlocBuilder({super.key, required this.onReplyTap});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,7 @@ class CommentsBlocBuilder extends StatelessWidget {
                 comments: DummyComments.dummyComments,
                 replies: const {},
                 isLoading: true,
+                onReplyTap: onReplyTap,
               );
             case CommentsStatus.success:
               if (state.comments!.isEmpty) {
@@ -29,6 +32,7 @@ class CommentsBlocBuilder extends StatelessWidget {
               return CommentsListView(
                 comments: state.comments!,
                 replies: state.replies!,
+                onReplyTap: onReplyTap,
               );
             case CommentsStatus.failure:
               return CustomErrorWidget(

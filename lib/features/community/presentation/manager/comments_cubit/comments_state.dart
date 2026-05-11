@@ -30,12 +30,15 @@ class CommentsState extends Equatable {
     List<CommentModel>? comments,
     Map<String, List<CommentModel>>? replies,
     String? errorMessage,
+    bool clearErrorMessage = false,
   }) {
     return CommentsState(
       status: status ?? this.status,
       comments: comments ?? this.comments,
       replies: replies ?? this.replies,
-      errorMessage: errorMessage ?? this.errorMessage,
+      errorMessage: clearErrorMessage
+          ? null
+          : (errorMessage ?? this.errorMessage),
     );
   }
 }

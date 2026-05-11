@@ -7,7 +7,7 @@ enum CreatePostStatus {
   failure,
 }
 
-extension CommunityFeedStatusX on CreatePostStatus {
+extension CreatePostStatusX on CreatePostStatus {
   bool get isInitial => this == CreatePostStatus.initial;
   bool get isSubmitting => this == CreatePostStatus.submitting;
   bool get isSuccess => this == CreatePostStatus.success;
@@ -38,12 +38,15 @@ class CreatePostState extends Equatable {
     String? content,
     List<File>? selectedImages,
     String? errorMessage,
+    bool clearErrorMessage = false,
   }) {
     return CreatePostState(
       status: status ?? this.status,
       content: content ?? this.content,
       selectedImages: selectedImages ?? this.selectedImages,
-      errorMessage: errorMessage,
+      errorMessage: clearErrorMessage
+          ? null
+          : (errorMessage ?? this.errorMessage),
     );
   }
 }

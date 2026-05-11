@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:moodly/core/functions/user_data_local.dart';
+import 'package:moodly/core/networking/api_error_handler.dart';
 import 'package:uuid/uuid.dart';
 import '../../../data/models/post_model.dart';
 import '../../../data/repos/create_post_repo.dart';
@@ -22,7 +23,13 @@ class CreatePostCubit extends Cubit<CreatePostState> {
        super(const CreatePostState());
 
   void onTextChanged(String value) {
-    emit(state.copyWith(content: value, status: CreatePostStatus.initial));
+    emit(
+      state.copyWith(
+        content: value,
+        status: CreatePostStatus.initial,
+        clearErrorMessage: true,
+      ),
+    );
   }
 
   Future<void> pickImages() async {
@@ -38,6 +45,7 @@ class CreatePostCubit extends Cubit<CreatePostState> {
       state.copyWith(
         selectedImages: [...state.selectedImages, ...selectedNow],
         status: CreatePostStatus.initial,
+        clearErrorMessage: true,
       ),
     );
   }
@@ -46,14 +54,21 @@ class CreatePostCubit extends Cubit<CreatePostState> {
     if (index < 0 || index >= state.selectedImages.length) return;
     final updated = [...state.selectedImages]..removeAt(index);
     emit(
-      state.copyWith(selectedImages: updated, status: CreatePostStatus.initial),
+      state.copyWith(
+        selectedImages: updated,
+        status: CreatePostStatus.initial,
+        clearErrorMessage: true,
+      ),
     );
   }
 
   Future<PostModel?> submitPost() async {
     if (!state.canPost) return null;
     emit(
-      state.copyWith(status: CreatePostStatus.submitting, errorMessage: null),
+      state.copyWith(
+        status: CreatePostStatus.submitting,
+        clearErrorMessage: true,
+      ),
     );
 
     try {
@@ -79,7 +94,7 @@ class CreatePostCubit extends Cubit<CreatePostState> {
       emit(
         state.copyWith(
           status: CreatePostStatus.failure,
-          errorMessage: e.toString(),
+          errorMessage: ApiErrorHandler.handle(error: e).message,
         ),
       );
       return null;

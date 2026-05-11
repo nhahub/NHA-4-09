@@ -1,98 +1,56 @@
 import 'dart:io';
-import 'package:moodly/core/functions/user_data_local.dart';
-import 'package:moodly/core/helpers/logger.dart';
+
 import 'package:uuid/uuid.dart';
-import '../../../../core/constants/constants.dart';
-import '../../../../core/services/supabase_crud_service.dart';
-import '../../../../core/services/supabase_storage_service.dart';
-import '../../../auth/data/repos/user_data_repo.dart';
+
 import '../models/post_model.dart';
+import '../services/community_media_service.dart';
+import '../services/community_posts_remote_service.dart';
 
+/// Coordinates post feed loading and post creation (services own raw I/O).
 class CreatePostRepo {
-  final SupabaseCRUDService _supabaseCRUDService;
-  final SupabaseStorageService _supabaseStorageService;
-
-  final List<PostModel> _localPosts = [];
+  final CommunityPostsRemoteService _postsRemote;
+  final CommunityMediaService _mediaService;
   final Uuid _uuid = const Uuid();
 
   CreatePostRepo({
-    required SupabaseCRUDService supabaseCRUDService,
-    required SupabaseStorageService supabaseStorageService,
-    required UserDataRepo userDataRepo,
-  }) : _supabaseCRUDService = supabaseCRUDService,
-       _supabaseStorageService = supabaseStorageService;
+    required CommunityPostsRemoteService postsRemote,
+    required CommunityMediaService mediaService,
+  }) : _postsRemote = postsRemote,
+       _mediaService = mediaService;
 
   Future<List<String>> uploadImages(List<File> files) async {
-    if (files.isEmpty) return [];
-
-    final String userId = getUser()!.userId;
-    final List<String> uploadedUrls = <String>[];
-
-    for (int i = 0; i < files.length; i++) {
-      final file = files[i];
-      final extension = file.path.split('.').last;
-      final filePath =
-          '$kPostsImagesPath/$userId/${DateTime.now().millisecondsSinceEpoch}_$i.$extension';
-
-      await _supabaseStorageService.uploadFile(
-        file: file,
-        filePath: filePath,
-        bucketName: kCommunityImagesBucket,
-      );
-      final String publicUrl = _supabaseStorageService.getFileUrl(
-        filePath: filePath,
-        bucketName: kCommunityImagesBucket,
-      );
-      Logger.log('Uploaded image to $publicUrl');
-      uploadedUrls.add(publicUrl);
-    }
-
-    return uploadedUrls;
+    return _mediaService.uploadImages(files);
   }
 
   Future<void> createPost(PostModel post) async {
-    await _supabaseCRUDService.addData(
-      table: kCommunityPostsTable,
-      data: post.toJson(),
-    );
+    await _postsRemote.insertPost(post.toJson());
 
     if (post.imageUrls.isNotEmpty) {
       for (int i = 0; i < post.imageUrls.length; i++) {
-        await _supabaseCRUDService.addData(
-          table: kCommunityPostMediaTable,
-          data: {
-            'id': _uuid.v4(),
-            'post_id': post.id,
-            'media_url': post.imageUrls[i],
-            'media_type': 'image',
-            'sort_order': i,
-          },
-        );
+        await _postsRemote.insertPostMediaRow({
+          'id': _uuid.v4(),
+          'post_id': post.id,
+          'media_url': post.imageUrls[i],
+          'media_type': 'image',
+          'sort_order': i,
+        });
       }
     }
   }
 
   Future<List<PostModel>> getPosts() async {
-    final rows = await _supabaseCRUDService.getData(
-      table: kCommunityPostsTable,
-      orderBy: 'created_at',
-      ascending: false,
-    );
+    final rows = await _postsRemote.fetchPostRows();
+    final postIds = rows
+        .map((r) => (r['id'] ?? '').toString())
+        .where((id) => id.isNotEmpty)
+        .toList();
+
+    final mediaByPost = await _postsRemote.fetchMediaUrlsByPostIds(postIds);
 
     final postsFromDb = <PostModel>[];
     for (final row in rows) {
       final postId = (row['id'] ?? '').toString();
-      final mediaRows = await _supabaseCRUDService.getData(
-        table: kCommunityPostMediaTable,
-        filters: {'post_id': postId},
-        orderBy: 'sort_order',
-        ascending: true,
-      );
-
-      final imageUrls = mediaRows
-          .map((e) => (e['media_url'] ?? '').toString())
-          .where((e) => e.isNotEmpty)
-          .toList();
+      final imageUrls = mediaByPost[postId] ?? [];
 
       postsFromDb.add(
         PostModel(
@@ -112,9 +70,6 @@ class CreatePostRepo {
       );
     }
 
-    if (_localPosts.isNotEmpty) {
-      return [..._localPosts, ...postsFromDb];
-    }
     return postsFromDb;
   }
 }

@@ -1,13 +1,14 @@
 import '../models/comment_model.dart';
-import '../../../../core/services/supabase_crud_service.dart';
+import '../services/community_comments_remote_service.dart';
 
-class CommentsRepository {
-  final SupabaseCRUDService _crudService;
+/// Orchestrates community comments (mock vs remote). Raw Supabase I/O lives in
+/// [CommunityCommentsRemoteService].
+class CommentsRepo {
+  final CommunityCommentsRemoteService _remote;
 
-  // Set this to false when your Supabase tables are ready
+  /// Set to false when Supabase tables are ready for production comments.
   static const bool useMockData = true;
 
-  // Mock Data
   static final List<CommentModel> _mockComments = [
     CommentModel(
       id: 'mock_1',
@@ -61,12 +62,12 @@ class CommentsRepository {
     ),
   ];
 
-  CommentsRepository({required SupabaseCRUDService crudService})
-    : _crudService = crudService;
+  CommentsRepo({required CommunityCommentsRemoteService remote})
+    : _remote = remote;
 
   Future<List<CommentModel>> fetchComments(String postId) async {
     if (useMockData) {
-      await Future.delayed(const Duration(milliseconds: 500));
+      await Future<void>.delayed(const Duration(milliseconds: 500));
       final topLevelComments = _mockComments
           .where((c) => c.parentId == null && c.postId == postId)
           .toList();
@@ -74,32 +75,12 @@ class CommentsRepository {
       return topLevelComments;
     }
 
-    final currentUserId = _crudService.getCurrentUserId();
-    final List<Map<String, dynamic>> rawData = await _crudService.getData(
-      table: 'community_comments',
-      select: '*, profiles(name, picture), community_comment_likes(user_id)',
-      filters: {'post_id': postId},
-      orderBy: 'created_at',
-      ascending: false,
-    );
-
-    final topLevelComments = rawData
-        .where((json) => json['parent_id'] == null)
-        .toList();
-
-    return topLevelComments.map((json) {
-      final likes = json['community_comment_likes'] as List<dynamic>? ?? [];
-      final isLikedByMe =
-          currentUserId != null &&
-          likes.any((like) => like['user_id'] == currentUserId);
-
-      return CommentModel.fromJson(json, isLikedByMe: isLikedByMe);
-    }).toList();
+    return _remote.fetchTopLevelComments(postId);
   }
 
   Future<List<CommentModel>> fetchReplies(String commentId) async {
     if (useMockData) {
-      await Future.delayed(const Duration(milliseconds: 500));
+      await Future<void>.delayed(const Duration(milliseconds: 500));
       final replies = _mockComments
           .where((c) => c.parentId == commentId)
           .toList();
@@ -107,23 +88,7 @@ class CommentsRepository {
       return replies;
     }
 
-    final currentUserId = _crudService.getCurrentUserId();
-    final List<Map<String, dynamic>> rawData = await _crudService.getData(
-      table: 'community_comments',
-      select: '*, profiles(name, picture), community_comment_likes(user_id)',
-      filters: {'parent_id': commentId},
-      orderBy: 'created_at',
-      ascending: true,
-    );
-
-    return rawData.map((json) {
-      final likes = json['community_comment_likes'] as List<dynamic>? ?? [];
-      final isLikedByMe =
-          currentUserId != null &&
-          likes.any((like) => like['user_id'] == currentUserId);
-
-      return CommentModel.fromJson(json, isLikedByMe: isLikedByMe);
-    }).toList();
+    return _remote.fetchReplies(commentId);
   }
 
   Future<CommentModel> addComment({
@@ -132,7 +97,7 @@ class CommentsRepository {
     String? parentId,
   }) async {
     if (useMockData) {
-      await Future.delayed(const Duration(milliseconds: 500));
+      await Future<void>.delayed(const Duration(milliseconds: 500));
       final newComment = CommentModel(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
         postId: postId,
@@ -159,33 +124,16 @@ class CommentsRepository {
       return newComment;
     }
 
-    final currentUserId = _crudService.getCurrentUserId();
-    if (currentUserId == null) throw Exception('User not logged in');
-
-    final dataToInsert = {
-      'post_id': postId,
-      'user_id': currentUserId,
-      'content': content,
-      if (parentId != null) 'parent_id': parentId,
-    };
-
-    final insertedRow = await _crudService.addDataAndReturnRow(
-      table: 'community_comments',
-      data: dataToInsert,
+    return _remote.insertComment(
+      postId: postId,
+      content: content,
+      parentId: parentId,
     );
-
-    final profile = await _crudService.getSingleRow(
-      table: 'profiles',
-      filters: {'id': currentUserId},
-    );
-
-    insertedRow['profiles'] = profile;
-    return CommentModel.fromJson(insertedRow, isLikedByMe: false);
   }
 
   Future<bool> toggleLike(String commentId, bool isCurrentlyLiked) async {
     if (useMockData) {
-      await Future.delayed(const Duration(milliseconds: 300));
+      await Future<void>.delayed(const Duration(milliseconds: 300));
       final index = _mockComments.indexWhere((c) => c.id == commentId);
       if (index != -1) {
         final comment = _mockComments[index];
@@ -199,23 +147,12 @@ class CommentsRepository {
       return !isCurrentlyLiked;
     }
 
-    final currentUserId = _crudService.getCurrentUserId();
-    if (currentUserId == null) throw Exception('User not logged in');
-
     try {
-      if (isCurrentlyLiked) {
-        await _crudService.deleteDataByMatch(
-          table: 'community_comment_likes',
-          match: {'comment_id': commentId, 'user_id': currentUserId},
-        );
-      } else {
-        await _crudService.addData(
-          table: 'community_comment_likes',
-          data: {'comment_id': commentId, 'user_id': currentUserId},
-        );
-      }
-      return !isCurrentlyLiked;
-    } catch (e) {
+      return await _remote.toggleLike(
+        commentId: commentId,
+        isCurrentlyLiked: isCurrentlyLiked,
+      );
+    } catch (_) {
       return isCurrentlyLiked;
     }
   }
