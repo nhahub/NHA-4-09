@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:moodly/core/helpers/logger.dart';
 import 'package:uuid/uuid.dart';
 import '../../../../core/constants/constants.dart';
-import '../../../../core/models/user_data_model.dart';
 import '../../../../core/services/supabase_crud_service.dart';
 import '../../../../core/services/supabase_storage_service.dart';
 import '../../../auth/data/repos/user_data_repo.dart';
@@ -11,7 +10,6 @@ import '../models/post_model.dart';
 class CreatePostRepo {
   final SupabaseCRUDService _supabaseCRUDService;
   final SupabaseStorageService _supabaseStorageService;
-  final UserDataRepo _userDataRepo;
 
   final List<PostModel> _localPosts = [];
   final Uuid _uuid = const Uuid();
@@ -21,12 +19,7 @@ class CreatePostRepo {
     required SupabaseStorageService supabaseStorageService,
     required UserDataRepo userDataRepo,
   }) : _supabaseCRUDService = supabaseCRUDService,
-       _supabaseStorageService = supabaseStorageService,
-       _userDataRepo = userDataRepo;
-
-  Future<UserDataModel?> getCurrentUserData() {
-    return _userDataRepo.getUserData();
-  }
+       _supabaseStorageService = supabaseStorageService;
 
   String? getCurrentUserId() => _supabaseCRUDService.getCurrentUserId();
 
@@ -43,7 +36,7 @@ class CreatePostRepo {
       final file = files[i];
       final extension = file.path.split('.').last;
       final filePath =
-          'posts/$userId/${DateTime.now().millisecondsSinceEpoch}_$i.$extension';
+          '$kPostsImagesPath/$userId/${DateTime.now().millisecondsSinceEpoch}_$i.$extension';
       try {
         await _supabaseStorageService.uploadFile(
           file: file,

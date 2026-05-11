@@ -3,12 +3,10 @@ import 'dart:io';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:moodly/core/functions/user_data_local.dart';
 import 'package:uuid/uuid.dart';
-
-import '../../../../../core/models/user_data_model.dart';
 import '../../../data/models/post_model.dart';
 import '../../../data/repos/create_post_repo.dart';
-
 part 'create_post_state.dart';
 
 class CreatePostCubit extends Cubit<CreatePostState> {
@@ -16,25 +14,20 @@ class CreatePostCubit extends Cubit<CreatePostState> {
   final ImagePicker _imagePicker;
   final Uuid _uuid = const Uuid();
 
-  CreatePostCubit({required CreatePostRepo createPostRepo, ImagePicker? imagePicker})
-    : _createPostRepo = createPostRepo,
-      _imagePicker = imagePicker ?? ImagePicker(),
-      super(const CreatePostState()) {
-    initialize();
-  }
-
-  Future<void> initialize() async {
-    emit(state.copyWith(status: CreatePostStatus.loadingUser));
-    final userData = await _createPostRepo.getCurrentUserData();
-    emit(state.copyWith(status: CreatePostStatus.ready, userData: userData));
-  }
+  CreatePostCubit({
+    required CreatePostRepo createPostRepo,
+    ImagePicker? imagePicker,
+  }) : _createPostRepo = createPostRepo,
+       _imagePicker = imagePicker ?? ImagePicker(),
+       super(const CreatePostState());
 
   void onTextChanged(String value) {
-    emit(state.copyWith(content: value, status: CreatePostStatus.ready));
+    emit(state.copyWith(content: value, status: CreatePostStatus.initial));
   }
 
   Future<void> pickImages() async {
-    final int remaining = CreatePostState.maxImages - state.selectedImages.length;
+    final int remaining =
+        CreatePostState.maxImages - state.selectedImages.length;
     if (remaining <= 0) return;
 
     final List<XFile> pickedFiles = await _imagePicker.pickMultiImage();
@@ -44,7 +37,7 @@ class CreatePostCubit extends Cubit<CreatePostState> {
     emit(
       state.copyWith(
         selectedImages: [...state.selectedImages, ...selectedNow],
-        status: CreatePostStatus.ready,
+        status: CreatePostStatus.initial,
       ),
     );
   }
@@ -52,15 +45,19 @@ class CreatePostCubit extends Cubit<CreatePostState> {
   void removeImageAt(int index) {
     if (index < 0 || index >= state.selectedImages.length) return;
     final updated = [...state.selectedImages]..removeAt(index);
-    emit(state.copyWith(selectedImages: updated, status: CreatePostStatus.ready));
+    emit(
+      state.copyWith(selectedImages: updated, status: CreatePostStatus.initial),
+    );
   }
 
   Future<PostModel?> submitPost() async {
     if (!state.canPost) return null;
-    emit(state.copyWith(status: CreatePostStatus.submitting, errorMessage: null));
+    emit(
+      state.copyWith(status: CreatePostStatus.submitting, errorMessage: null),
+    );
 
     try {
-      final String userId = _createPostRepo.getCurrentUserId() ?? '';
+      final String userId = getUser()?.userId ?? '';
       final List<String> imageUrls = await _createPostRepo.uploadImages(
         state.selectedImages,
       );
@@ -68,8 +65,8 @@ class CreatePostCubit extends Cubit<CreatePostState> {
       final post = PostModel(
         id: _uuid.v4(),
         userId: userId,
-        userName: state.userData?.name ?? 'unknown_user',
-        userImage: state.userData?.picture ?? '',
+        userName: getUser()?.name ?? 'unknown_user',
+        userImage: getUser()?.picture ?? '',
         content: state.content.trim(),
         imageUrls: imageUrls,
         createdAt: DateTime.now(),

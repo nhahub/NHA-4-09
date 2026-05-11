@@ -53,6 +53,8 @@ const String kCommunityPostMediaTable = "community_post_media";
 
 const String kUsersImagesBucket = "users_images";
 const String kProfileImagesPath = "images/profile";
-const String kCommunityImagesBucket = "community_images";
+
+const String kCommunityImagesBucket = "images";
+const String kPostsImagesPath = "images/posts";
 
 const String kImagePlaceHolder = "https://placehold.co/600x400";
