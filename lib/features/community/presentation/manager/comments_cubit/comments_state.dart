@@ -1,45 +1,41 @@
 import 'package:equatable/equatable.dart';
 import '../../../data/models/comment_model.dart';
 
-abstract class CommentsState extends Equatable {
-  const CommentsState();
+enum CommentsStatus { loading, success, failure }
 
-  @override
-  List<Object?> get props => [];
+extension CommentsStatusX on CommentsStatus {
+  bool get isLoading => this == CommentsStatus.loading;
+  bool get isSuccess => this == CommentsStatus.success;
+  bool get isFailure => this == CommentsStatus.failure;
 }
 
-class CommentsInitial extends CommentsState {}
+class CommentsState extends Equatable {
+  final CommentsStatus status;
+  final List<CommentModel>? comments;
+  final Map<String, List<CommentModel>>? replies;
+  final String? errorMessage;
 
-class CommentsLoading extends CommentsState {}
-
-class CommentsLoaded extends CommentsState {
-  final List<CommentModel> comments;
-  final Map<String, List<CommentModel>> replies; // Key: parent comment ID
-
-  const CommentsLoaded({
-    required this.comments,
-    required this.replies,
+  const CommentsState({
+    this.status = CommentsStatus.loading,
+    this.comments,
+    this.replies,
+    this.errorMessage,
   });
 
-  CommentsLoaded copyWith({
+  @override
+  List<Object?> get props => [status, comments, replies, errorMessage];
+
+  CommentsState copyWith({
+    CommentsStatus? status,
     List<CommentModel>? comments,
     Map<String, List<CommentModel>>? replies,
+    String? errorMessage,
   }) {
-    return CommentsLoaded(
+    return CommentsState(
+      status: status ?? this.status,
       comments: comments ?? this.comments,
       replies: replies ?? this.replies,
+      errorMessage: errorMessage ?? this.errorMessage,
     );
   }
-
-  @override
-  List<Object?> get props => [comments, replies];
-}
-
-class CommentsError extends CommentsState {
-  final String message;
-
-  const CommentsError(this.message);
-
-  @override
-  List<Object?> get props => [message];
 }

@@ -3,7 +3,7 @@ import '../../../../core/services/supabase_crud_service.dart';
 
 class CommentsRepository {
   final SupabaseCRUDService _crudService;
-  
+
   // Set this to false when your Supabase tables are ready
   static const bool useMockData = true;
 
@@ -13,7 +13,8 @@ class CommentsRepository {
       id: 'mock_1',
       postId: '0',
       userId: 'mock_user_1',
-      content: 'This is so inspiring! I\'ve been working on my mindfulness practice too. How long did it take you to build this habit?',
+      content:
+          'This is so inspiring! I\'ve been working on my mindfulness practice too. How long did it take you to build this habit?',
       createdAt: DateTime.now().subtract(const Duration(minutes: 2)),
       likesCount: 24,
       repliesCount: 1,
@@ -61,12 +62,14 @@ class CommentsRepository {
   ];
 
   CommentsRepository({required SupabaseCRUDService crudService})
-      : _crudService = crudService;
+    : _crudService = crudService;
 
   Future<List<CommentModel>> fetchComments(String postId) async {
     if (useMockData) {
       await Future.delayed(const Duration(milliseconds: 500));
-      final topLevelComments = _mockComments.where((c) => c.parentId == null && c.postId == postId).toList();
+      final topLevelComments = _mockComments
+          .where((c) => c.parentId == null && c.postId == postId)
+          .toList();
       topLevelComments.sort((a, b) => b.createdAt.compareTo(a.createdAt));
       return topLevelComments;
     }
@@ -80,11 +83,14 @@ class CommentsRepository {
       ascending: false,
     );
 
-    final topLevelComments = rawData.where((json) => json['parent_id'] == null).toList();
+    final topLevelComments = rawData
+        .where((json) => json['parent_id'] == null)
+        .toList();
 
     return topLevelComments.map((json) {
       final likes = json['community_comment_likes'] as List<dynamic>? ?? [];
-      final isLikedByMe = currentUserId != null &&
+      final isLikedByMe =
+          currentUserId != null &&
           likes.any((like) => like['user_id'] == currentUserId);
 
       return CommentModel.fromJson(json, isLikedByMe: isLikedByMe);
@@ -94,7 +100,9 @@ class CommentsRepository {
   Future<List<CommentModel>> fetchReplies(String commentId) async {
     if (useMockData) {
       await Future.delayed(const Duration(milliseconds: 500));
-      final replies = _mockComments.where((c) => c.parentId == commentId).toList();
+      final replies = _mockComments
+          .where((c) => c.parentId == commentId)
+          .toList();
       replies.sort((a, b) => a.createdAt.compareTo(b.createdAt));
       return replies;
     }
@@ -110,7 +118,8 @@ class CommentsRepository {
 
     return rawData.map((json) {
       final likes = json['community_comment_likes'] as List<dynamic>? ?? [];
-      final isLikedByMe = currentUserId != null &&
+      final isLikedByMe =
+          currentUserId != null &&
           likes.any((like) => like['user_id'] == currentUserId);
 
       return CommentModel.fromJson(json, isLikedByMe: isLikedByMe);
@@ -142,7 +151,9 @@ class CommentsRepository {
         final parentIndex = _mockComments.indexWhere((c) => c.id == parentId);
         if (parentIndex != -1) {
           final parent = _mockComments[parentIndex];
-          _mockComments[parentIndex] = parent.copyWith(repliesCount: parent.repliesCount + 1);
+          _mockComments[parentIndex] = parent.copyWith(
+            repliesCount: parent.repliesCount + 1,
+          );
         }
       }
       return newComment;
@@ -162,7 +173,7 @@ class CommentsRepository {
       table: 'community_comments',
       data: dataToInsert,
     );
-    
+
     final profile = await _crudService.getSingleRow(
       table: 'profiles',
       filters: {'id': currentUserId},
@@ -180,7 +191,9 @@ class CommentsRepository {
         final comment = _mockComments[index];
         _mockComments[index] = comment.copyWith(
           isLikedByMe: !isCurrentlyLiked,
-          likesCount: isCurrentlyLiked ? comment.likesCount - 1 : comment.likesCount + 1,
+          likesCount: isCurrentlyLiked
+              ? comment.likesCount - 1
+              : comment.likesCount + 1,
         );
       }
       return !isCurrentlyLiked;
@@ -193,18 +206,12 @@ class CommentsRepository {
       if (isCurrentlyLiked) {
         await _crudService.deleteDataByMatch(
           table: 'community_comment_likes',
-          match: {
-            'comment_id': commentId,
-            'user_id': currentUserId,
-          },
+          match: {'comment_id': commentId, 'user_id': currentUserId},
         );
       } else {
         await _crudService.addData(
           table: 'community_comment_likes',
-          data: {
-            'comment_id': commentId,
-            'user_id': currentUserId,
-          },
+          data: {'comment_id': commentId, 'user_id': currentUserId},
         );
       }
       return !isCurrentlyLiked;
