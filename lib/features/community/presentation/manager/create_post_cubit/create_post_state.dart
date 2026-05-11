@@ -1,6 +1,22 @@
 part of 'create_post_cubit.dart';
 
-enum CreatePostStatus { initial, loadingUser, ready, submitting, success, failure }
+enum CreatePostStatus {
+  initial,
+  loadingUser,
+  ready,
+  submitting,
+  success,
+  failure,
+}
+
+extension CommunityFeedStatusX on CreatePostStatus {
+  bool get isInitial => this == CreatePostStatus.initial;
+  bool get isLoadingUser => this == CreatePostStatus.loadingUser;
+  bool get isReady => this == CreatePostStatus.ready;
+  bool get isSubmitting => this == CreatePostStatus.submitting;
+  bool get isSuccess => this == CreatePostStatus.success;
+  bool get isFailure => this == CreatePostStatus.failure;
+}
 
 class CreatePostState extends Equatable {
   static const int maxImages = 4;

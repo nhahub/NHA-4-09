@@ -23,7 +23,7 @@ class _ArticlesViewState extends State<ArticlesView> {
       extendBodyBehindAppBar: true,
       appBar: const BackButtonAppbar(
         withFade: false,
-        backgroundcolor: Color(0xffdfdfdb),
+        backgroundColor: Color(0xffdfdfdb),
       ),
       body: Stack(
         children: [

@@ -13,8 +13,9 @@ class BackButtonAppbar extends StatelessWidget implements PreferredSizeWidget {
   final IconData? endIcon;
   final VoidCallback? onEndTap;
   final bool withFade;
-  final Color? backgroundcolor;
+  final Color? backgroundColor;
   final Color? titleColor;
+  final Widget? actionButton;
 
   static const double height = 80;
 
@@ -24,8 +25,9 @@ class BackButtonAppbar extends StatelessWidget implements PreferredSizeWidget {
     this.endIcon,
     this.onEndTap,
     this.withFade = true,
-    this.backgroundcolor,
+    this.backgroundColor,
     this.titleColor,
+    this.actionButton,
   });
 
   @override
@@ -71,7 +73,7 @@ class BackButtonAppbar extends StatelessWidget implements PreferredSizeWidget {
                       ? CustomCircleButton(
                           icon: AppAssets.arrowLeftIosIcon,
                           onTap: () => context.pop(),
-                          backgroundcolor: backgroundcolor,
+                          backgroundcolor: backgroundColor,
                         )
                       : const SizedBox(),
 
@@ -80,7 +82,8 @@ class BackButtonAppbar extends StatelessWidget implements PreferredSizeWidget {
                           onTap: onEndTap ?? () {},
                           child: Icon(endIcon!, size: 20, color: Colors.black),
                         )
-                      : const SizedBox(),
+                      : const SizedBox.shrink(),
+                  (actionButton ?? const SizedBox.shrink()),
                 ],
               ),
             ),
