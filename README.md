@@ -1,4 +1,4 @@
-# 📦 NHA – Mental Wellness & Therapy App  
+# 📦 Moodly – Mental Wellness & Therapy App  
 
 A modern **Flutter mental wellness application** focused on helping users improve their emotional well-being through mood tracking, therapist interaction, meditation content, and community support.  
 
@@ -8,7 +8,7 @@ Built using **Clean Architecture** with **BLoC/Cubit** state management for scal
 
 # 📖 About  
 
-NHA is an all-in-one mental wellness platform that combines:
+MOODLY is an all-in-one mental wellness platform that combines:
 - Mood tracking
 - Meditation & relaxing content
 - Therapist booking & communication
@@ -151,17 +151,6 @@ Feature
 
 The app uses:
 - **Flutter BLoC / Cubit**
-- Feature-based state management
-- Reactive UI updates
-
-Examples:
-- Authentication Cubits
-- Payment Cubits
-- Community Feed Cubits
-- Therapist Chat Cubits
-- Mood Recommendation Cubits
-- Audio/Video Player Cubits
-
 ---
 
 # 🛠️ Tech Stack  
@@ -217,98 +206,7 @@ lib/features
 ---
 
 # 📸 Screenshots  
-
-## Authentication  
-- Login  
-- Register  
-- Forgot Password  
-- Reset Password  
-
-## Home  
-- Daily Stats  
-- Water Tracking  
-- Mood Progress  
-- Activities  
-
-## Mood  
-- Mood Tracking  
-- Recommendations  
-
-## Meditations  
-- Podcasts  
-- ASMR  
-- Audio Player  
-- Videos  
-- Articles  
-- Books  
-
-## Therapist  
-- Therapist Details  
-- Reviews  
-- Booking  
-- Chat  
-
-## Community  
-- Feed  
-- Posts  
-- Comments  
-
-## Payments  
-- Premium Offers  
-- Stripe & PayPal  
-- Subscription Screens  
-
-## Settings  
-- Profile  
-- Feedback  
-- Privacy Policy  
-- Terms & Conditions  
-
----
-
-# 🚀 Getting Started  
-
-## Prerequisites
-- Flutter SDK
-- Dart SDK
-- Android Studio / VS Code
-- Supabase configuration
-
----
-
-## Installation  
-
-```bash
-git clone https://github.com/nhahub/NHA-4-009.git
-cd NHA-4-009
-flutter pub get
-flutter run
-```
-
----
-
-# 📩 Contact  
-
-## 👨‍💻 Developer
-Karem Motaz  
-
-📧 Email: karemmotaz2929@gmail.com  
-
-🌐 LinkedIn:  
-https://www.linkedin.com/in/karem-motaz-bb55a9213/
-
----
-
-# ⭐ Project Highlights  
-
-- Feature-based scalable architecture  
-- Real-world payment integrations  
-- Modular Cubit state management  
-- Mental wellness focused UX  
-- Rich multimedia experience  
-- Community & therapist ecosystem
-
-## 📱 Preview  
+ 
 
 ### Cover App Preview  
 ![Cover App Preview](assets/moodly_app_presentation/1.png)  
@@ -391,19 +289,15 @@ https://www.linkedin.com/in/karem-motaz-bb55a9213/
 ### Thank You  
 ![Thank You](assets/moodly_app_presentation/27.png)  
 
----
 
-## 🛠️ Tech Stack  
-- **Flutter** (Clean Architecture + BLoC/Cubit)  
-- **Supabase / API** (Authentication & Database)  
-- **Real-time Features** (Chat & Live Sessions)  
+# 📩 Contact  
 
----
+## 👨‍💻 Developer
+Karem Motaz  
 
-## 📩 Contact  
+📧 Email: karemmotaz2929@gmail.com  
 
-If you’d like to collaborate or learn more:  
-📧 Email: [karemmotaz2929@gmail.com]  
-🌐 LinkedIn: [https://www.linkedin.com/in/karem-motaz-bb55a9213/]  
+🌐 LinkedIn:  
+https://www.linkedin.com/in/karem-motaz-bb55a9213/
 
 ---
