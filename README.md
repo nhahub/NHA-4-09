@@ -206,7 +206,6 @@ lib/features
 ---
 
 # 📸 Screenshots  
- 
 
 ### Cover App Preview  
 ![Cover App Preview](assets/moodly_app_presentation/1.png)  
@@ -241,8 +240,8 @@ lib/features
 ### Mood Recommendations Screen  
 ![Mood Recommendations Screen](assets/moodly_app_presentation/11.png)  
 
-### Meditation Screens  
-![Meditation Screens](assets/moodly_app_presentation/12.png)  
+### Activities Screen  
+![Activities Screen](assets/moodly_app_presentation/12.png)  
 
 ### Therapist Screens  
 ![Therapist Screens](assets/moodly_app_presentation/13.png)  
@@ -265,31 +264,43 @@ lib/features
 ### Meditations Screen  
 ![Meditations Screen](assets/moodly_app_presentation/19.png)  
 
-### Audio Screen  
-![Audio Screen](assets/moodly_app_presentation/20.png)  
+### Podcast Screen  
+![Podcast Screen](assets/moodly_app_presentation/20.png)  
 
-### Chatbot Screen  
-![Chatbot Screen](assets/moodly_app_presentation/21.png)  
+### Recommended Videos Screen  
+![Recommended Videos Screen](assets/moodly_app_presentation/21.png)  
 
-### Payment Screens  
-![Payment Screens](assets/moodly_app_presentation/22.png)  
+### ASMR Audios Screen  
+![ASMR Audios Screen](assets/moodly_app_presentation/22.png)  
+
+### Recommended Books Screen  
+![Recommended Books Screen](assets/moodly_app_presentation/23.png)  
+
+### Recommended Articles Screen   
+![Recommended Articles Screen](assets/moodly_app_presentation/24.png)  
+
+### Chatbot Screen   
+![Chatbot Screen](assets/moodly_app_presentation/25.png)  
+
+### Payment Screens   
+![Payment Screens](assets/moodly_app_presentation/26.png)  
 
 ### Settings Screen  
-![Settings Screen](assets/moodly_app_presentation/23.png)  
+![Settings Screen](assets/moodly_app_presentation/27.png)  
 
 ### Profile Screen  
-![Profile Screen](assets/moodly_app_presentation/24.png)  
+![Profile Screen](assets/moodly_app_presentation/28.png)  
 
 ### Settings Screens Continue  
-![Settings Screens Continue](assets/moodly_app_presentation/25.png)  
+![Settings Screens Continue](assets/moodly_app_presentation/29.png)  
 
 ### Logout Screen  
-![Logout Screen](assets/moodly_app_presentation/26.png)  
+![Logout Screen](assets/moodly_app_presentation/30.png)  
 
 ### Thank You  
-![Thank You](assets/moodly_app_presentation/27.png)  
+![Thank You](assets/moodly_app_presentation/31.png)  
 
-
+---
 # 📩 Contact  
 
 ## 👨‍💻 Developer
