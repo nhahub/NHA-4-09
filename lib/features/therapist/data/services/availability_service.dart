@@ -13,7 +13,7 @@ class AvailabilityService {
   }) async {
     final rows = await _supabaseCRUDService.getData(
       table: kTimeSlotsTable,
-      filters: {'therapist_id': therapistId},
+      filters: {'therapist_id': therapistId, 'is_booked': false},
       orderBy: 'start_time',
     );
 
