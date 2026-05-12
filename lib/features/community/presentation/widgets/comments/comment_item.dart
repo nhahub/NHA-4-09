@@ -116,17 +116,18 @@ class _CommentItemState extends State<CommentItem> {
                           ),
                         ],
                         const SizedBox(width: 16),
-                        GestureDetector(
-                          onTap: widget.onReplyTap,
-                          child: const Text(
-                            'Reply',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
+                        if (!widget.isReply)
+                          GestureDetector(
+                            onTap: widget.onReplyTap,
+                            child: const Text(
+                              'Reply',
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
-                        ),
                       ],
                     ),
                     if (!widget.isReply && widget.comment.repliesCount > 0) ...[

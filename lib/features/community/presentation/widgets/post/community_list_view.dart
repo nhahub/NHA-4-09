@@ -9,10 +9,17 @@ import 'post_card.dart';
 class CommunityListView extends StatelessWidget {
   final bool isLoading;
   final List<PostModel> posts;
+  final void Function(PostModel post)? onLikeTap;
+  final void Function(PostModel post)? onRepeatTap;
+  final void Function(PostModel post)? onExportTap;
+
   const CommunityListView({
     super.key,
     required this.posts,
     this.isLoading = false,
+    this.onLikeTap,
+    this.onRepeatTap,
+    this.onExportTap,
   });
 
   @override
@@ -34,7 +41,16 @@ class CommunityListView extends StatelessWidget {
             color: AppColors.dividerColor,
           ),
           itemBuilder: (context, index) {
-            return PostCard(postModel: posts[index]);
+            final post = posts[index];
+            return PostCard(
+              postModel: post,
+              onLikeTap:
+                  onLikeTap != null ? () => onLikeTap!(post) : null,
+              onRepeatTap:
+                  onRepeatTap != null ? () => onRepeatTap!(post) : null,
+              onExportTap:
+                  onExportTap != null ? () => onExportTap!(post) : null,
+            );
           },
         ),
       ),

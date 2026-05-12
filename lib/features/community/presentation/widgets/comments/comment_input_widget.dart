@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/functions/user_data_local.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../manager/comments_cubit/comments_cubit.dart';
 
@@ -49,6 +50,8 @@ class _CommentInputWidgetState extends State<CommentInputWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final user = getUser();
+    final pictureUrl = user?.picture;
     return Container(
       padding: EdgeInsets.only(
         left: 16,
@@ -95,12 +98,11 @@ class _CommentInputWidgetState extends State<CommentInputWidget> {
             ),
           Row(
             children: [
-              // User avatar (Ideally fetched from the current user profile, but we can hardcode a placeholder for the input field or get it from auth service)
-              const CircleAvatar(
+              CircleAvatar(
                 radius: 18,
-                backgroundImage: NetworkImage(
-                  'https://i.pravatar.cc/150',
-                ), // Placeholder for current user
+                backgroundImage: (pictureUrl != null && pictureUrl.isNotEmpty)
+                    ? NetworkImage(pictureUrl)
+                    : null,
                 backgroundColor: AppColors.brandGreen,
               ),
               const SizedBox(width: 12),

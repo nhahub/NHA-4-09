@@ -64,6 +64,16 @@ class CreatePostCubit extends Cubit<CreatePostState> {
 
   Future<PostModel?> submitPost() async {
     if (!state.canPost) return null;
+    final loggedUserId = getUser()?.userId;
+    if (loggedUserId == null || loggedUserId.isEmpty) {
+      emit(
+        state.copyWith(
+          status: CreatePostStatus.failure,
+          errorMessage: 'Please sign in to create a post.',
+        ),
+      );
+      return null;
+    }
     emit(
       state.copyWith(
         status: CreatePostStatus.submitting,
@@ -72,14 +82,13 @@ class CreatePostCubit extends Cubit<CreatePostState> {
     );
 
     try {
-      final String userId = getUser()?.userId ?? '';
       final List<String> imageUrls = await _createPostRepo.uploadImages(
         state.selectedImages,
       );
 
       final post = PostModel(
         id: _uuid.v4(),
-        userId: userId,
+        userId: loggedUserId,
         userName: getUser()?.name ?? 'unknown_user',
         userImage: getUser()?.picture ?? '',
         content: state.content.trim(),

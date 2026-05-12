@@ -1,5 +1,8 @@
 import 'package:equatable/equatable.dart';
 
+import '../../../../core/constants/constants.dart';
+import '../parsers/community_user_join.dart';
+
 class CommentModel extends Equatable {
   final String id;
   final String postId;
@@ -11,7 +14,7 @@ class CommentModel extends Equatable {
   final int repliesCount;
   final bool isLikedByMe;
 
-  // Joined from profiles
+  // Joined from user_data (same source as [UserDataModel] / [UserDataService])
   final String userName;
   final String userAvatar;
 
@@ -30,8 +33,7 @@ class CommentModel extends Equatable {
   });
 
   factory CommentModel.fromJson(Map<String, dynamic> json, {bool isLikedByMe = false}) {
-    // Supabase join from profiles table
-    final profile = json['profiles'] as Map<String, dynamic>?;
+    final joined = communityUserJoinRow(json);
 
     return CommentModel(
       id: json['id'] as String,
@@ -40,11 +42,11 @@ class CommentModel extends Equatable {
       parentId: json['parent_id'] as String?,
       content: json['content'] as String,
       createdAt: DateTime.parse(json['created_at'] as String).toLocal(),
-      likesCount: json['likes_count'] as int? ?? 0,
-      repliesCount: json['replies_count'] as int? ?? 0,
+      likesCount: (json['likes_count'] as num?)?.toInt() ?? 0,
+      repliesCount: (json['replies_count'] as num?)?.toInt() ?? 0,
       isLikedByMe: isLikedByMe,
-      userName: profile?['name'] as String? ?? 'Unknown User',
-      userAvatar: profile?['picture'] as String? ?? 'https://i.pravatar.cc/150', // fallback avatar
+      userName: (joined?['name'] ?? 'Unknown User').toString(),
+      userAvatar: (joined?['picture'] ?? kImagePlaceHolder).toString(),
     );
   }
 

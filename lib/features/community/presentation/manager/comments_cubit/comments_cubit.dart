@@ -71,7 +71,6 @@ class CommentsCubit extends Cubit<CommentsState> {
     String? parentId,
   }) async {
     final snapshot = state;
-    if (snapshot.status != CommentsStatus.success) return;
 
     try {
       final newComment = await _repo.addComment(
@@ -84,6 +83,7 @@ class CommentsCubit extends Cubit<CommentsState> {
         final existing = List<CommentModel>.from(snapshot.comments ?? []);
         emit(
           snapshot.copyWith(
+            status: CommentsStatus.success,
             comments: [newComment, ...existing],
             clearErrorMessage: true,
           ),
@@ -104,6 +104,7 @@ class CommentsCubit extends Cubit<CommentsState> {
 
         emit(
           snapshot.copyWith(
+            status: CommentsStatus.success,
             comments: updatedComments,
             replies: updatedReplies,
             clearErrorMessage: true,
