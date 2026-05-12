@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/routing/routes.dart';
-import '../../../../core/widgets/custom_floating_action_button.dart';
-import '../manager/community_feed_cubit/community_feed_cubit.dart';
+import '../../../../../core/extensions/context_extensions.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../../../../core/widgets/custom_floating_action_button.dart';
+import '../../manager/community_feed_cubit/community_feed_cubit.dart';
 
 class AddCommunityPostButton extends StatelessWidget {
   const AddCommunityPostButton({super.key});

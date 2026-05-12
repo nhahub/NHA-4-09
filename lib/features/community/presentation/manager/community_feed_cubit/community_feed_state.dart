@@ -26,11 +26,14 @@ class CommunityFeedState extends Equatable {
     CommunityFeedStatus? status,
     List<PostModel>? posts,
     String? errorMessage,
+    bool clearErrorMessage = false,
   }) {
     return CommunityFeedState(
       status: status ?? this.status,
       posts: posts ?? this.posts,
-      errorMessage: errorMessage,
+      errorMessage: clearErrorMessage
+          ? null
+          : (errorMessage ?? this.errorMessage),
     );
   }
 }

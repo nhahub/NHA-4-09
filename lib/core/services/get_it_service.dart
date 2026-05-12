@@ -4,7 +4,10 @@ import 'package:just_audio/just_audio.dart';
 import '../../features/meditations/data/repos/podcast_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../features/community/data/repositories/comments_repository.dart';
+import '../../features/community/data/repos/comments_repo.dart';
+import '../../features/community/data/services/community_comments_remote_service.dart';
+import '../../features/community/data/services/community_media_service.dart';
+import '../../features/community/data/services/community_posts_remote_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/data/repos/user_data_repo.dart';
 import '../../features/auth/data/services/supabase_auth_service.dart';
@@ -316,12 +319,20 @@ Future<void> setupGetIt() async {
     () => UserDataRepo(userDataService: getIt()),
   );
 
+  // Community posts & media (remote + storage)
+  getIt.registerLazySingleton<CommunityPostsRemoteService>(
+    () => CommunityPostsRemoteService(client: getIt(), crudService: getIt()),
+  );
+
+  getIt.registerLazySingleton<CommunityMediaService>(
+    () => CommunityMediaService(storageService: getIt()),
+  );
+
   // Community Create/Post Repository
   getIt.registerLazySingleton<CreatePostRepo>(
     () => CreatePostRepo(
-      supabaseCRUDService: getIt(),
-      supabaseStorageService: getIt(),
-      userDataRepo: getIt(),
+      postsRemote: getIt<CommunityPostsRemoteService>(),
+      mediaService: getIt<CommunityMediaService>(),
     ),
   );
 
@@ -420,9 +431,13 @@ Future<void> setupGetIt() async {
     ),
   );
 
-  // Comments Repo
-  getIt.registerLazySingleton<CommentsRepository>(
-    () => CommentsRepository(crudService: getIt()),
+  // Community comments (remote I/O + repo orchestration)
+  getIt.registerLazySingleton<CommunityCommentsRemoteService>(
+    () => CommunityCommentsRemoteService(crudService: getIt()),
+  );
+
+  getIt.registerLazySingleton<CommentsRepo>(
+    () => CommentsRepo(remote: getIt<CommunityCommentsRemoteService>()),
   );
 
   // Audio Player

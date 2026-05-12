@@ -30,10 +30,7 @@ class _CommentItemState extends State<CommentItem> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(
-        left: widget.isReply ? 40.0 : 16.0,
-        right: 16.0,
-      ),
+      padding: EdgeInsets.only(left: widget.isReply ? 40.0 : 16.0, right: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -92,11 +89,11 @@ class _CommentItemState extends State<CommentItem> {
                         GestureDetector(
                           onTap: () {
                             context.read<CommentsCubit>().toggleLike(
-                                  widget.comment.id,
-                                  widget.comment.isLikedByMe,
-                                  isReply: widget.isReply,
-                                  parentId: widget.comment.parentId,
-                                );
+                              widget.comment.id,
+                              widget.comment.isLikedByMe,
+                              isReply: widget.isReply,
+                              parentId: widget.comment.parentId,
+                            );
                           },
                           child: Icon(
                             widget.comment.isLikedByMe
@@ -137,9 +134,9 @@ class _CommentItemState extends State<CommentItem> {
                       GestureDetector(
                         onTap: () {
                           if (!_showReplies) {
-                            context
-                                .read<CommentsCubit>()
-                                .loadReplies(widget.comment.id);
+                            context.read<CommentsCubit>().loadReplies(
+                              widget.comment.id,
+                            );
                           }
                           setState(() {
                             _showReplies = !_showReplies;
@@ -164,14 +161,16 @@ class _CommentItemState extends State<CommentItem> {
           ),
           if (_showReplies && widget.replies.isNotEmpty) ...[
             const SizedBox(height: 12),
-            ...widget.replies.map((reply) => Padding(
-                  padding: const EdgeInsets.only(bottom: 12.0),
-                  child: CommentItem(
-                    comment: reply,
-                    isReply: true,
-                    onReplyTap: widget.onReplyTap,
-                  ),
-                )),
+            ...widget.replies.map(
+              (reply) => Padding(
+                padding: const EdgeInsets.only(bottom: 12.0),
+                child: CommentItem(
+                  comment: reply,
+                  isReply: true,
+                  onReplyTap: widget.onReplyTap,
+                ),
+              ),
+            ),
           ],
         ],
       ),
