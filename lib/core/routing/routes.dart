@@ -38,4 +38,6 @@ class Routes {
   static const String bookDetailsView = '/bookDetailsView';
   static const String aboutView = '/aboutView';
   static const String articlesView = '/articlesView';
+  static const String chatSessionsView = '/chat-sessions';
+
 }

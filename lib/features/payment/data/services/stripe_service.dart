@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
 import '../../../../core/constants/app_keys.dart';
@@ -15,6 +16,7 @@ class StripeService {
   StripeService({required ApiService apiService}) : _apiService = apiService;
 
   static Future<void> init() async {
+    if (kIsWeb)return;
     Stripe.publishableKey = ApiKeys.stripePublishableKey;
   }
 

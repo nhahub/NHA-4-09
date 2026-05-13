@@ -12,7 +12,7 @@ class MainScreens {
       HomeProvidersWrapper(isPremium: isPremium),
       CommunityProvidersWrapper(isPremium: isPremium),
       MeditationsProvidersWrapper(isPremium: isPremium),
-      ChatbotProvidersWrapper(isPremium: isPremium),
+      //ChatbotProvidersWrapper(isPremium: isPremium),
       SettingsProvidersWrapper(isPremium: isPremium),
     ];
   }

@@ -1,46 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/extensions/context_extensions.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/app_styles.dart';
+import '../manager/chatbot_cubit/chatbot_cubit.dart';
+import '../widgets/chat_message_bubble.dart';
+import '../widgets/chat_typing_indicator.dart';
 
 class ChatbotView extends StatefulWidget {
-  const ChatbotView({super.key});
+  final String sessionId;
+  const ChatbotView({super.key, required this.sessionId});
 
   @override
   State<ChatbotView> createState() => _ChatbotViewState();
 }
 
 class _ChatbotViewState extends State<ChatbotView> {
-  final TextEditingController controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
 
-  List<Map<String, dynamic>> messages = [
-    {
-      "text":
-          "Hello there! 👋 I'm Mindy, your mental wellness companion.\nHow can I assist you today?",
-      "isUser": false,
-    },
-    {"text": "I'm here to listen. What's on your mind today?", "isUser": false},
-    {"text": "I've been feeling stressed lately.", "isUser": true},
-    {
-      "text":
-          "That sounds tough. Would you like to try a short breathing exercise?",
-      "isUser": false,
-    },
-  ];
+  @override
+  void initState() {
+    super.initState();
+    context.read<ChatbotCubit>().loadMessages(widget.sessionId);
+  }
 
-  void sendMessage() {
-    if (controller.text.trim().isEmpty) return;
-
-    setState(() {
-      messages.add({"text": controller.text, "isUser": true});
+  void _scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
     });
+  }
 
-    controller.clear();
+  void _sendMessage() {
+    final text = _controller.text.trim();
+    if (text.isEmpty) return;
+    _controller.clear();
+    context.read<ChatbotCubit>().sendMessage(
+          sessionId: widget.sessionId,
+          text: text,
+        );
+    _scrollToBottom();
+  }
 
-    Future.delayed(const Duration(milliseconds: 500), () {
-      setState(() {
-        messages.add({"text": "I'm here for you 💙", "isUser": false});
-      });
-    });
+  @override
+  void dispose() {
+    _controller.dispose();
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -54,148 +67,181 @@ class _ChatbotViewState extends State<ChatbotView> {
           onTap: () => context.pop(),
           child: const Icon(Icons.arrow_back, color: Colors.black),
         ),
-        title: const Text(
-          "Chat with Moodly",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        title: Row(
+          children: [
+            const CircleAvatar(
+              radius: 16,
+              backgroundColor: AppColors.brandGreen,
+              child: Text('M',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold)),
+            ),
+            const SizedBox(width: 8),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Mindy',
+                    style: AppStyles.bold14.copyWith(color: Colors.black)),
+                Text('Mental Wellness AI',
+                    style:
+                        AppStyles.medium15.copyWith(color: Colors.black45)),
+              ],
+            ),
+          ],
         ),
-        actions: const [ChatSettingsWidget()],
-      ),
-
-      body: SafeArea(
-        top: false,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 6, right: 6, top: 20),
-          child: Column(
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: messages.length,
-                  itemBuilder: (context, index) {
-                    final msg = messages[index];
-
-                    return Row(
-                      mainAxisAlignment: msg["isUser"]
-                          ? MainAxisAlignment.end
-                          : MainAxisAlignment.start,
-                      children: [
-                        Flexible(
-                          child: Container(
-                            margin: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 5,
-                            ),
-                            padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                              color: msg["isUser"]
-                                  ? const Color(0xff8BC34A)
-                                  : Colors.white,
-                              borderRadius: BorderRadius.only(
-                                topLeft: const Radius.circular(12),
-                                topRight: const Radius.circular(12),
-                                bottomLeft: msg["isUser"]
-                                    ? const Radius.circular(12)
-                                    : const Radius.circular(0),
-                                bottomRight: msg["isUser"]
-                                    ? const Radius.circular(0)
-                                    : const Radius.circular(12),
-                              ),
-                            ),
-                            child: Text(
-                              msg["text"],
-                              style: TextStyle(
-                                color: msg["isUser"]
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                ),
-              ),
-
-              Container(
-                padding: const EdgeInsets.all(8),
-                color: Colors.white,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        controller: controller,
-                        decoration: InputDecoration(
-                          hintText: "Type a message...",
-                          filled: true,
-                          fillColor: const Color(0xffF0F0F0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25),
-                            borderSide: BorderSide.none,
-                          ),
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.mic_none),
-                      onPressed: () {},
-                    ),
-                    Container(
-                      decoration: const BoxDecoration(
-                        color: Color(0xff7CB342),
-                        shape: BoxShape.circle,
-                      ),
-                      child: IconButton(
-                        icon: const Icon(Icons.send, color: Colors.white),
-                        onPressed: sendMessage,
-                      ),
-                    ),
-                  ],
-                ),
+        actions: [
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.more_vert, color: Colors.black),
+            onSelected: (value) {
+              if (value == 'clear') {
+                context.read<ChatbotCubit>().clearChat(widget.sessionId);
+              }
+            },
+            itemBuilder: (_) => const [
+              PopupMenuItem(
+                value: 'clear',
+                child: Row(children: [
+                  Icon(Icons.delete_outline, size: 18, color: Colors.red),
+                  SizedBox(width: 8),
+                  Text('Clear Chat',
+                      style: TextStyle(color: Colors.red)),
+                ]),
               ),
             ],
           ),
+        ],
+      ),
+      body: SafeArea(
+        top: false,
+        child: BlocConsumer<ChatbotCubit, ChatbotState>(
+          listener: (context, state) {
+            if (state is ChatLoadedState) _scrollToBottom();
+            if (state is ChatFailureState) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.message),
+                  backgroundColor: Colors.red,
+                ),
+              );
+            }
+          },
+          builder: (context, state) {
+            if (state is ChatLoadingState) {
+              return const Center(
+                  child: CircularProgressIndicator(
+                      color: AppColors.brandGreen));
+            }
+
+            if (state is ChatLoadedState) {
+              return Column(
+                children: [
+                  Expanded(
+                    child: state.messages.isEmpty
+                        ? _buildWelcome()
+                        : ListView.builder(
+                            controller: _scrollController,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 16),
+                            itemCount: state.messages.length +
+                                (state.isSending ? 1 : 0),
+                            itemBuilder: (context, index) {
+                              if (state.isSending &&
+                                  index == state.messages.length) {
+                                return const ChatTypingIndicator();
+                              }
+                              return ChatMessageBubble(
+                                  message: state.messages[index]);
+                            },
+                          ),
+                  ),
+                  _buildInput(state.isSending),
+                ],
+              );
+            }
+
+            return const SizedBox();
+          },
         ),
       ),
     );
   }
-}
 
-class ChatSettingsWidget extends StatelessWidget {
-  const ChatSettingsWidget({super.key});
+  Widget _buildWelcome() {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const CircleAvatar(
+              radius: 40,
+              backgroundColor: AppColors.brandGreen,
+              child: Text('M',
+                  style: TextStyle(
+                      fontSize: 36,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold)),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Hi, I\'m Mindy 👋',
+              style: AppStyles.extraBold21.copyWith(color: AppColors.brandGreen),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Your mental wellness companion.\nHow are you feeling today?',
+              textAlign: TextAlign.center,
+              style: AppStyles.medium14.copyWith(color: Colors.black54),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
-  @override
-  Widget build(BuildContext context) {
-    return PopupMenuButton(
-      icon: const Icon(Icons.more_vert, color: Colors.black),
-      itemBuilder: (context) => const [
-        PopupMenuItem(
-          child: Row(
-            children: [
-              Icon(Icons.search, size: 18),
-              SizedBox(width: 8),
-              Text("Search"),
-            ],
+  Widget _buildInput(bool isSending) {
+    return Container(
+      padding: const EdgeInsets.all(8),
+      color: Colors.white,
+      child: Row(
+        children: [
+          Expanded(
+            child: TextField(
+              controller: _controller,
+              enabled: !isSending,
+              onSubmitted: (_) => _sendMessage(),
+              textInputAction: TextInputAction.send,
+              decoration: InputDecoration(
+                hintText: 'Type a message...',
+                filled: true,
+                fillColor: const Color(0xffF0F0F0),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25),
+                  borderSide: BorderSide.none,
+                ),
+                contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 16, vertical: 10),
+              ),
+            ),
           ),
-        ),
-        PopupMenuItem(
-          child: Row(
-            children: [
-              Icon(Icons.upload_file, size: 18),
-              SizedBox(width: 8),
-              Text("Export Chat"),
-            ],
+          const SizedBox(width: 8),
+          Container(
+            decoration: BoxDecoration(
+              color: isSending
+                  ? Colors.grey.shade300
+                  : const Color(0xff7CB342),
+              shape: BoxShape.circle,
+            ),
+            child: IconButton(
+              icon: Icon(
+                isSending ? Icons.hourglass_top : Icons.send,
+                color: Colors.white,
+              ),
+              onPressed: isSending ? null : _sendMessage,
+            ),
           ),
-        ),
-        PopupMenuItem(
-          child: Row(
-            children: [
-              Icon(Icons.delete, size: 18, color: Colors.red),
-              SizedBox(width: 8),
-              Text("Clear Chat", style: TextStyle(color: Colors.red)),
-            ],
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
