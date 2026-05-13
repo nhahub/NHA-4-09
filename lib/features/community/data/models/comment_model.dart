@@ -54,7 +54,7 @@ class CommentModel extends Equatable {
     this.repliesCount = 0,
     this.isLikedByMe = false,
     this.userName = 'Unknown User',
-    this.userAvatar = kImagePlaceHolder,
+    this.userAvatar = "",
   });
 
   factory CommentModel.fromJson(

@@ -2,7 +2,6 @@ import 'dart:io';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/functions/user_data_local.dart';
-import '../../../../core/helpers/logger.dart';
 import '../../../../core/services/supabase_storage_service.dart';
 
 /// Uploads community post images to Supabase storage.
@@ -33,7 +32,6 @@ class CommunityMediaService {
         filePath: filePath,
         bucketName: kCommunityImagesBucket,
       );
-      Logger.log('Uploaded image to $publicUrl');
       uploadedUrls.add(publicUrl);
     }
 
