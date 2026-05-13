@@ -9,8 +9,16 @@ import 'action_item.dart';
 class PostActions extends StatelessWidget {
   final PostModel post;
   final VoidCallback? onLikeTap;
+  final VoidCallback? onRepeatTap;
+  final VoidCallback? onExportTap;
 
-  const PostActions({super.key, required this.post, this.onLikeTap});
+  const PostActions({
+    super.key,
+    required this.post,
+    this.onLikeTap,
+    this.onRepeatTap,
+    this.onExportTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +48,7 @@ class PostActions extends StatelessWidget {
             ActionItem(
               iconSvg: AppAssets.repeatIcon,
               count: post.sharesCount,
-              onTap: () {
-                // Share action
-              },
+              onTap: () => onRepeatTap?.call(),
             ),
             const SizedBox(width: 24),
             ActionItem(
@@ -59,9 +65,7 @@ class PostActions extends StatelessWidget {
         ),
         ActionItem(
           iconSvg: AppAssets.exportIcon,
-          onTap: () {
-            // Share action
-          },
+          onTap: () => onExportTap?.call(),
           withCount: false,
         ),
       ],

@@ -433,7 +433,10 @@ Future<void> setupGetIt() async {
 
   // Community comments (remote I/O + repo orchestration)
   getIt.registerLazySingleton<CommunityCommentsRemoteService>(
-    () => CommunityCommentsRemoteService(crudService: getIt()),
+    () => CommunityCommentsRemoteService(
+      crudService: getIt(),
+      client: getIt(),
+    ),
   );
 
   getIt.registerLazySingleton<CommentsRepo>(

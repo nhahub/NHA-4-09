@@ -10,18 +10,24 @@ import 'post_user_avatar.dart';
 class PostCard extends StatelessWidget {
   final PostModel postModel;
   final VoidCallback? onLikeTap;
+  final VoidCallback? onRepeatTap;
+  final VoidCallback? onExportTap;
 
-  const PostCard({super.key, required this.postModel, this.onLikeTap});
+  const PostCard({
+    super.key,
+    required this.postModel,
+    this.onLikeTap,
+    this.onRepeatTap,
+    this.onExportTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Avatar
         PostUserAvatar(postModel: postModel),
         const SizedBox(width: 16),
-        // Content Column
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +40,12 @@ class PostCard extends StatelessWidget {
                 PostMedia(images: postModel.imageUrls),
               ],
               const SizedBox(height: 8),
-              PostActions(post: postModel, onLikeTap: onLikeTap),
+              PostActions(
+                post: postModel,
+                onLikeTap: onLikeTap,
+                onRepeatTap: onRepeatTap,
+                onExportTap: onExportTap,
+              ),
             ],
           ),
         ),

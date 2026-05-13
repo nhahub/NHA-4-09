@@ -49,7 +49,10 @@ class _CommentsBottomSheetViewState extends State<CommentsBottomSheetView> {
           const DragHandle(),
           const CommentsSheetHeader(),
           const Divider(height: 1, color: AppColors.dividerColor),
-          CommentsBlocBuilder(onReplyTap: _onReplyTap),
+          CommentsBlocBuilder(
+            postId: widget.postId,
+            onReplyTap: _onReplyTap,
+          ),
 
           // Input Area
           CommentInputWidget(

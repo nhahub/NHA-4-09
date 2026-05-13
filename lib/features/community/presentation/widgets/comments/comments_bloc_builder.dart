@@ -2,15 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moodly/core/widgets/custom_error_widget.dart';
 import 'package:moodly/features/community/presentation/widgets/comments/comments_list_view.dart';
-import '../../../data/models/dummy/dummy_comments.dart';
+
+import '../../../data/models/comment_model.dart';
 import '../../manager/comments_cubit/comments_cubit.dart';
 import '../../manager/comments_cubit/comments_state.dart';
 import 'no_comments_widget.dart';
 
+List<CommentModel> _skeletonComments(String postId) {
+  final now = DateTime.now();
+  return List<CommentModel>.generate(
+    4,
+    (i) => CommentModel(
+      id: '__sk__$i',
+      postId: postId,
+      userId: '',
+      content: ' ',
+      createdAt: now,
+      userName: ' ',
+      userAvatar: '',
+    ),
+  );
+}
+
 class CommentsBlocBuilder extends StatelessWidget {
   final void Function(String commentId, String userName) onReplyTap;
+  final String postId;
 
-  const CommentsBlocBuilder({super.key, required this.onReplyTap});
+  const CommentsBlocBuilder({
+    super.key,
+    required this.onReplyTap,
+    required this.postId,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +42,7 @@ class CommentsBlocBuilder extends StatelessWidget {
           switch (state.status) {
             case CommentsStatus.loading:
               return CommentsListView(
-                comments: DummyComments.dummyComments,
+                comments: _skeletonComments(postId),
                 replies: const {},
                 isLoading: true,
                 onReplyTap: onReplyTap,
@@ -32,6 +54,7 @@ class CommentsBlocBuilder extends StatelessWidget {
               return CommentsListView(
                 comments: state.comments!,
                 replies: state.replies!,
+                isLoading: false,
                 onReplyTap: onReplyTap,
               );
             case CommentsStatus.failure:
