@@ -1,12 +1,10 @@
+import 'package:moodly/core/functions/user_data_local.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/services/supabase_crud_service.dart';
 import '../models/comment_model.dart';
 
-/// Supabase reads/writes for community comments (no mock data).
-///
-/// Pagination or richer filters can extend these methods without changing call sites.
 class CommunityCommentsRemoteService {
   final SupabaseCRUDService _crudService;
   final SupabaseClient _client;
@@ -17,8 +15,7 @@ class CommunityCommentsRemoteService {
   }) : _crudService = crudService,
        _client = client;
 
-  static const String _commentSelect =
-      '*, user_data(name, picture), community_comment_likes(user_id)';
+  static const String _commentSelect = '*, community_comment_likes(user_id)';
 
   Future<List<CommentModel>> fetchTopLevelComments(String postId) async {
     final currentUserId = _crudService.getCurrentUserId();
@@ -67,44 +64,41 @@ class CommunityCommentsRemoteService {
     }).toList();
   }
 
-  Future<CommentModel> insertComment({
-    required String postId,
-    required String content,
-    String? parentId,
-  }) async {
-    final currentUserId = _crudService.getCurrentUserId();
-    if (currentUserId == null) {
-      throw Exception('User not logged in');
-    }
+Future<CommentModel> insertComment({
+  required String postId,
+  required String content,
+  String? parentId,
+}) async {
+  final user = getUser();
 
-    final dataToInsert = {
-      'post_id': postId,
-      'user_id': currentUserId,
-      'content': content,
-      if (parentId != null) 'parent_id': parentId,
-    };
+  final dataToInsert = {
+    'post_id': postId,
+    'user_id': user?.userId,
+    'content': content,
+    if (parentId != null) 'parent_id': parentId,
+  };
 
-    final insertedRow = await _crudService.addDataAndReturnRow(
-      table: kCommunityCommentsTable,
-      data: dataToInsert,
-    );
+  final insertedRow = await _crudService.addDataAndReturnRow(
+    table: kCommunityCommentsTable,
+    data: dataToInsert,
+  );
 
-    final profile = await _crudService.getSingleRow(
-      table: kUserDataTable,
-      filters: {'id': currentUserId},
-    );
+  return CommentModel.fromJson(
+    {
+      ...insertedRow,
+      'user_name': user?.name ?? 'Unknown user',
+      'user_avatar': user?.picture ?? '',
+    },
+    isLikedByMe: false,
+  );
+}
 
-    insertedRow['user_data'] = profile;
-    return CommentModel.fromJson(insertedRow, isLikedByMe: false);
-  }
-
-  /// Returns the new liked flag, or [isCurrentlyLiked] if the operation failed.
+  /// Returns the new liked flag
   Future<bool> toggleLike({
     required String commentId,
     required bool isCurrentlyLiked,
   }) async {
-    final currentUserId = _crudService.getCurrentUserId();
-    if (currentUserId == null) throw Exception('User not logged in');
+    final currentUserId = getUser()!.userId;
 
     if (isCurrentlyLiked) {
       await _crudService.deleteDataByMatch(

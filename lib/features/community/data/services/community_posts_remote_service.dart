@@ -1,3 +1,4 @@
+import 'package:moodly/core/functions/user_data_local.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../core/constants/constants.dart';
@@ -23,7 +24,6 @@ content,
 created_at,
 shares_count,
 comments_count,
-user_data(name, picture),
 community_post_likes(user_id)
 ''';
 
@@ -84,18 +84,17 @@ community_post_likes(user_id)
     required String postId,
     required bool isCurrentlyLiked,
   }) async {
-    final uid = _crudService.getCurrentUserId();
-    if (uid == null) throw Exception('User not logged in');
+    final userId = getUser()!.userId;
 
     if (isCurrentlyLiked) {
       await _crudService.deleteDataByMatch(
         table: kCommunityPostLikesTable,
-        match: {'post_id': postId, 'user_id': uid},
+        match: {'post_id': postId, 'user_id': userId},
       );
     } else {
       await _crudService.addData(
         table: kCommunityPostLikesTable,
-        data: {'post_id': postId, 'user_id': uid},
+        data: {'post_id': postId, 'user_id': userId},
       );
     }
   }
@@ -109,7 +108,9 @@ community_post_likes(user_id)
 
   /// Subscribe to feed-related tables; caller owns lifecycle ([RealtimeChannel.unsubscribe]).
   RealtimeChannel subscribeCommunityFeed(void Function() onChanged) {
-    final channel = _client.channel('community-feed-${DateTime.now().millisecondsSinceEpoch}');
+    final channel = _client.channel(
+      'community-feed-${DateTime.now().millisecondsSinceEpoch}',
+    );
 
     void listen(String table) {
       channel.onPostgresChanges(
