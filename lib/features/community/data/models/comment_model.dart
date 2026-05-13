@@ -37,10 +37,10 @@ class CommentModel extends Equatable {
   @JsonKey(includeFromJson: false, includeToJson: false)
   final bool isLikedByMe;
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(name: 'user_name', includeFromJson: false, includeToJson: false)
   final String userName;
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(name: 'user_avatar', includeFromJson: false, includeToJson: false)
   final String userAvatar;
 
   const CommentModel({

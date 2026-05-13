@@ -2,9 +2,8 @@ import 'dart:io';
 
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:uuid/uuid.dart';
-
+import '../../../../core/helpers/logger.dart';
 import '../models/post_model.dart';
-import '../parsers/community_user_join.dart';
 import '../services/community_media_service.dart';
 import '../services/community_posts_remote_service.dart';
 
@@ -46,6 +45,7 @@ class CreatePostRepo {
 
   Future<List<PostModel>> getPosts() async {
     final rows = await _postsRemote.fetchFeedRows();
+    Logger.log('Rows: ${rows.toString()}');
     final currentUserId = _postsRemote.currentUserId;
 
     final postIds = rows
@@ -103,8 +103,8 @@ class CreatePostRepo {
     return PostModel(
       id: postId,
       userId: (row['user_id'] ?? '').toString(),
-      userName: communityUserDisplayName(row),
-      userImage: communityUserPictureUrl(row),
+      userName: (row['user_name'] ?? '').toString(),
+      userImage: (row['user_image'] ?? '').toString(),
       content: (row['content'] ?? '').toString(),
       imageUrls: mediaByPost[postId] ?? [],
       createdAt:

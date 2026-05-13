@@ -16,82 +16,77 @@ class CommunityCommentsRemoteService {
        _client = client;
 
   static const String _commentSelect = '*, community_comment_likes(user_id)';
+  final currentUserId = getUser()!.userId;
 
   Future<List<CommentModel>> fetchTopLevelComments(String postId) async {
-    final currentUserId = _crudService.getCurrentUserId();
-    final response = await _client
-        .from(kCommunityCommentsTable)
-        .select(_commentSelect)
-        .eq('post_id', postId)
-        .isFilter('parent_id', null)
-        .order('created_at', ascending: false);
+    final response = await _crudService.getData(
+      table: kCommunityCommentsTable,
+      select: _commentSelect,
+      orderBy: 'created_at',
+      ascending: false,
+      filters: {'post_id': postId, 'parent_id': null},
+    );
 
     final rawData = List<Map<String, dynamic>>.from(response as List<dynamic>);
 
     return rawData.map((json) {
       final likes = json['community_comment_likes'] as List<dynamic>? ?? [];
-      final isLikedByMe =
-          currentUserId != null &&
-          likes.any((like) {
-            final m = like as Map<String, dynamic>;
-            return m['user_id'] == currentUserId;
-          });
+      final isLikedByMe = likes.any((like) {
+        final m = like as Map<String, dynamic>;
+        return m['user_id'] == currentUserId;
+      });
 
       return CommentModel.fromJson(json, isLikedByMe: isLikedByMe);
     }).toList();
   }
 
   Future<List<CommentModel>> fetchReplies(String parentCommentId) async {
-    final currentUserId = _crudService.getCurrentUserId();
-    final response = await _client
-        .from(kCommunityCommentsTable)
-        .select(_commentSelect)
-        .eq('parent_id', parentCommentId)
-        .order('created_at', ascending: true);
+    final response = await _crudService.getData(
+      table: kCommunityCommentsTable,
+      select: _commentSelect,
+      orderBy: 'created_at',
+      ascending: true,
+      filters: {'parent_id': parentCommentId},
+    );
 
     final rawData = List<Map<String, dynamic>>.from(response as List<dynamic>);
 
     return rawData.map((json) {
       final likes = json['community_comment_likes'] as List<dynamic>? ?? [];
-      final isLikedByMe =
-          currentUserId != null &&
-          likes.any((like) {
-            final m = like as Map<String, dynamic>;
-            return m['user_id'] == currentUserId;
-          });
+      final isLikedByMe = likes.any((like) {
+        final m = like as Map<String, dynamic>;
+        return m['user_id'] == currentUserId;
+      });
 
       return CommentModel.fromJson(json, isLikedByMe: isLikedByMe);
     }).toList();
   }
 
-Future<CommentModel> insertComment({
-  required String postId,
-  required String content,
-  String? parentId,
-}) async {
-  final user = getUser();
+  Future<CommentModel> addComment({
+    required String postId,
+    required String content,
+    String? parentId,
+  }) async {
+    final dataToInsert = {
+      'post_id': postId,
+      'user_id': currentUserId,
+      'content': content,
+      if (parentId != null) 'parent_id': parentId,
+    };
 
-  final dataToInsert = {
-    'post_id': postId,
-    'user_id': user?.userId,
-    'content': content,
-    if (parentId != null) 'parent_id': parentId,
-  };
-
-  final insertedRow = await _crudService.addDataAndReturnRow(
-    table: kCommunityCommentsTable,
-    data: dataToInsert,
-  );
-
-  return CommentModel.fromJson(
-    {
-      ...insertedRow,
-      'user_name': user?.name ?? 'Unknown user',
-      'user_avatar': user?.picture ?? '',
-    },
-    isLikedByMe: false,
-  );
-}
+    final insertedRow = await _crudService.addDataAndReturnRow(
+      table: kCommunityCommentsTable,
+      data: dataToInsert,
+      select: '''
+      *,
+      user_data (
+        name,
+        picture
+      )
+    ''',
+    );
+    return CommentModel.fromJson(insertedRow, isLikedByMe: false);
+  }
 
   /// Returns the new liked flag
   Future<bool> toggleLike({
@@ -114,7 +109,6 @@ Future<CommentModel> insertComment({
     return !isCurrentlyLiked;
   }
 
-  /// Fires when rows for [postId] change (comments CRUD affecting this thread).
   RealtimeChannel subscribeToPostComments(
     String postId,
     void Function() onChanged,
