@@ -3,7 +3,6 @@ import 'package:moodly/features/chatbot/data/models/chat_message_model.dart';
 
 import '../../../../../core/theming/app_styles.dart';
 
-
 class ChatMessageBubble extends StatelessWidget {
   final ChatMessageModel message;
 
@@ -16,28 +15,27 @@ class ChatMessageBubble extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: Row(
-        mainAxisAlignment:
-            isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+        mainAxisAlignment: isUser
+            ? MainAxisAlignment.end
+            : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           if (!isUser) ...[
             const CircleAvatar(
               radius: 14,
               backgroundColor: Color(0xff7CB342),
-              child: Text('M',
-                  style:
-                      TextStyle(color: Colors.white, fontSize: 12)),
+              child: Text(
+                'M',
+                style: TextStyle(color: Colors.white, fontSize: 12),
+              ),
             ),
             const SizedBox(width: 6),
           ],
           Flexible(
             child: Container(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 14, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
               decoration: BoxDecoration(
-                color: isUser
-                    ? const Color(0xff8BC34A)
-                    : Colors.white,
+                color: isUser ? const Color(0xff8BC34A) : Colors.white,
                 borderRadius: BorderRadius.only(
                   topLeft: const Radius.circular(16),
                   topRight: const Radius.circular(16),
@@ -50,7 +48,7 @@ class ChatMessageBubble extends StatelessWidget {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
+                    color: Colors.black.withValues(alpha: 0.05),
                     blurRadius: 4,
                     offset: const Offset(0, 2),
                   ),

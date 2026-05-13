@@ -82,11 +82,11 @@ class ChatbotCubit extends Cubit<ChatbotState> {
 
     try {
       // sendMessage saves user msg, calls API, saves & returns assistant msg
-      final assistantMsg = await _repo.sendMessage(
-        sessionId: sessionId,
-        userText: text,
-        history: currentState.messages, // history WITHOUT the optimistic entry
-      );
+      // final assistantMsg = await _repo.sendMessage(
+      //   sessionId: sessionId,
+      //   userText: text,
+      //   history: currentState.messages, // history WITHOUT the optimistic entry
+      // );
 
       // Replace optimistic user msg with real one from DB + add assistant
       final fresh = await _repo.getMessages(sessionId);

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../widgets/chatbot_providers_wrapper.dart';
 import '../widgets/community_providers_wrapper.dart';
 import '../widgets/home_providers_wrapper.dart';
@@ -12,7 +11,7 @@ class MainScreens {
       HomeProvidersWrapper(isPremium: isPremium),
       CommunityProvidersWrapper(isPremium: isPremium),
       MeditationsProvidersWrapper(isPremium: isPremium),
-      //ChatbotProvidersWrapper(isPremium: isPremium),
+      ChatbotProvidersWrapper(isPremium: isPremium),
       SettingsProvidersWrapper(isPremium: isPremium),
     ];
   }

@@ -36,8 +36,10 @@ class _ChatTypingIndicatorState extends State<ChatTypingIndicator>
           const CircleAvatar(
             radius: 14,
             backgroundColor: Color(0xff7CB342),
-            child: Text('M',
-                style: TextStyle(color: Colors.white, fontSize: 12)),
+            child: Text(
+              'M',
+              style: TextStyle(color: Colors.white, fontSize: 12),
+            ),
           ),
           const SizedBox(width: 6),
           Container(
@@ -52,7 +54,7 @@ class _ChatTypingIndicatorState extends State<ChatTypingIndicator>
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
+                  color: Colors.black.withValues(alpha: 0.05),
                   blurRadius: 4,
                   offset: const Offset(0, 2),
                 ),
@@ -65,10 +67,11 @@ class _ChatTypingIndicatorState extends State<ChatTypingIndicator>
                   mainAxisSize: MainAxisSize.min,
                   children: List.generate(3, (i) {
                     final delay = i / 3;
-                    final value =
-                        ((_controller.value + delay) % 1.0);
+                    final value = ((_controller.value + delay) % 1.0);
                     final opacity =
-                        (0.3 + 0.7 * (value < 0.5 ? value * 2 : (1 - value) * 2))
+                        (0.3 +
+                                0.7 *
+                                    (value < 0.5 ? value * 2 : (1 - value) * 2))
                             .clamp(0.0, 1.0);
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 2),
