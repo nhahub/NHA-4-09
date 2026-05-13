@@ -1,6 +1,5 @@
 import 'package:moodly/core/functions/user_data_local.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
 import '../../../../core/constants/constants.dart';
 import '../../../../core/services/supabase_crud_service.dart';
 import '../models/comment_model.dart';
@@ -15,7 +14,14 @@ class CommunityCommentsRemoteService {
   }) : _crudService = crudService,
        _client = client;
 
-  static const String _commentSelect = '*, community_comment_likes(user_id)';
+  static const String _commentSelect = '''
+  *,
+  community_comment_likes(user_id),
+  user_data (
+    name,
+    picture
+  )
+''';
   final currentUserId = getUser()!.userId;
 
   Future<List<CommentModel>> fetchTopLevelComments(String postId) async {

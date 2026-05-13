@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moodly/core/widgets/user_avatar.dart';
-
 import '../../../../../core/extensions/datetime_extensions.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../data/models/comment_model.dart';
