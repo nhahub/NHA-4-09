@@ -1,27 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../core/widgets/custom_error_widget.dart';
-import '../../../data/models/post_model.dart';
+import '../../../data/models/dummy/dummy_posts.dart';
 import '../../helpers/community_share_helper.dart';
 import '../../manager/community_feed_cubit/community_feed_cubit.dart';
 import 'community_list_view.dart';
 import 'empty_posts_widget.dart';
-
-List<PostModel> _skeletonFeedPlaceholders() {
-  final now = DateTime.now();
-  return List<PostModel>.generate(
-    5,
-    (i) => PostModel(
-      id: '__loading__$i',
-      userId: '',
-      userName: ' ',
-      userImage: '',
-      content: ' ',
-      createdAt: now,
-    ),
-  );
-}
 
 class CommunityBlocBuilder extends StatelessWidget {
   const CommunityBlocBuilder({super.key});
@@ -33,10 +17,7 @@ class CommunityBlocBuilder extends StatelessWidget {
         final cubit = context.read<CommunityFeedCubit>();
         switch (state.status) {
           case CommunityFeedStatus.loading:
-            return CommunityListView(
-              posts: _skeletonFeedPlaceholders(),
-              isLoading: true,
-            );
+            return CommunityListView(posts: DummyPosts.posts, isLoading: true);
           case CommunityFeedStatus.success:
             if (state.posts.isEmpty) {
               return const EmptyPostsWidget();

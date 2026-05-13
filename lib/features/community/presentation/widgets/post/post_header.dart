@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/helpers/logger.dart';
-
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../../data/models/post_model.dart';
@@ -13,7 +11,6 @@ class PostHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Logger.log('Building PostHeader for post: ${postModel.id}, user: ${postModel.userName}');
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

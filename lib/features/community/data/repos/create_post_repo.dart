@@ -2,12 +2,10 @@ import 'dart:io';
 
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:uuid/uuid.dart';
-import '../../../../core/helpers/logger.dart';
 import '../models/post_model.dart';
 import '../services/community_media_service.dart';
 import '../services/community_posts_remote_service.dart';
 
-/// Coordinates post feed loading, likes, shares, and post creation (services own raw I/O).
 class CreatePostRepo {
   final CommunityPostsRemoteService _postsRemote;
   final CommunityMediaService _mediaService;
@@ -45,7 +43,6 @@ class CreatePostRepo {
 
   Future<List<PostModel>> getPosts() async {
     final rows = await _postsRemote.fetchFeedRows();
-    Logger.log('Rows: ${rows.toString()}');
     final currentUserId = _postsRemote.currentUserId;
 
     final postIds = rows
