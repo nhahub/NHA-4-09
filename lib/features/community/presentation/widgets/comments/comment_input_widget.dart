@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/widgets/user_avatar.dart';
 
 import '../../../../../core/functions/user_data_local.dart';
 import '../../../../../core/theming/app_colors.dart';
@@ -98,12 +99,11 @@ class _CommentInputWidgetState extends State<CommentInputWidget> {
             ),
           Row(
             children: [
-              CircleAvatar(
+              UserAvatar(
+                name: user?.name ?? 'User',
+                imageUrl: pictureUrl,
                 radius: 18,
-                backgroundImage: (pictureUrl != null && pictureUrl.isNotEmpty)
-                    ? NetworkImage(pictureUrl)
-                    : null,
-                backgroundColor: AppColors.brandGreen,
+                fontSize: 12,
               ),
               const SizedBox(width: 12),
               Expanded(

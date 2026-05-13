@@ -79,7 +79,9 @@ class SupabaseCRUDService {
 
     if (filters != null) {
       filters.forEach((key, value) {
-        if (value is List) {
+        if (value == null) {
+          query = query.isFilter(key, null);
+        } else if (value is List) {
           query = query.inFilter(key, value);
         } else {
           query = query.eq(key, value);
