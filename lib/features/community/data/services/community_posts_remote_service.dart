@@ -4,7 +4,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/services/supabase_crud_service.dart';
 
-/// Remote persistence and realtime hooks for community posts and media.
 class CommunityPostsRemoteService {
   final SupabaseClient _client;
   final SupabaseCRUDService _crudService;
