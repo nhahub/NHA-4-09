@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/theming/app_colors.dart';
+
 /// Animated "..." typing indicator shown while Mindy is responding.
 class ChatTypingIndicator extends StatefulWidget {
   const ChatTypingIndicator({super.key});
@@ -35,7 +37,7 @@ class _ChatTypingIndicatorState extends State<ChatTypingIndicator>
         children: [
           const CircleAvatar(
             radius: 14,
-            backgroundColor: Color(0xff7CB342),
+            backgroundColor: AppColors.brandGreen,
             child: Text(
               'M',
               style: TextStyle(color: Colors.white, fontSize: 12),
@@ -79,7 +81,7 @@ class _ChatTypingIndicatorState extends State<ChatTypingIndicator>
                         opacity: opacity,
                         child: const CircleAvatar(
                           radius: 4,
-                          backgroundColor: Color(0xff8BC34A),
+                          backgroundColor: AppColors.brandGreen,
                         ),
                       ),
                     );

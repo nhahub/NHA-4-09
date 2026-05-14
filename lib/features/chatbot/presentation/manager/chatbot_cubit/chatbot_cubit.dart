@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/functions/user_data_local.dart';
 
 import '../../../../../core/networking/api_error_handler.dart';
 import '../../../data/models/chat_message_model.dart';
@@ -12,8 +13,8 @@ class ChatbotCubit extends Cubit<ChatbotState> {
   final ChatbotRepo _repo;
 
   ChatbotCubit({required ChatbotRepo repo})
-      : _repo = repo,
-        super(ChatSessionsLoadingState());
+    : _repo = repo,
+      super(ChatSessionsLoadingState());
 
   // ── Sessions ───────────────────────────────────────────────────────────────
 
@@ -23,8 +24,11 @@ class ChatbotCubit extends Cubit<ChatbotState> {
       final sessions = await _repo.getSessions();
       emit(ChatSessionsLoadedState(sessions: sessions));
     } catch (e) {
-      emit(ChatSessionsFailureState(
-          message: ApiErrorHandler.handle(error: e).message));
+      emit(
+        ChatSessionsFailureState(
+          message: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
     }
   }
 
@@ -53,8 +57,7 @@ class ChatbotCubit extends Cubit<ChatbotState> {
       final messages = await _repo.getMessages(sessionId);
       emit(ChatLoadedState(messages: messages));
     } catch (e) {
-      emit(ChatFailureState(
-          message: ApiErrorHandler.handle(error: e).message));
+      emit(ChatFailureState(message: ApiErrorHandler.handle(error: e).message));
     }
   }
 
@@ -65,44 +68,50 @@ class ChatbotCubit extends Cubit<ChatbotState> {
     final currentState = state;
     if (currentState is! ChatLoadedState) return;
 
-    // Optimistically add user message to UI
+    // 1. Optimistic UI
     final optimisticUser = ChatMessageModel(
       id: 'temp_${DateTime.now().millisecondsSinceEpoch}',
       sessionId: sessionId,
-      userId: '',
+      userId: getUser()!.userId,
       role: 'user',
       content: text,
       createdAt: DateTime.now(),
     );
 
-    emit(currentState.copyWith(
-      messages: [...currentState.messages, optimisticUser],
-      isSending: true,
-    ));
+    emit(
+      currentState.copyWith(
+        messages: [...currentState.messages, optimisticUser],
+        isSending: true,
+      ),
+    );
 
     try {
-      // sendMessage saves user msg, calls API, saves & returns assistant msg
-      // final assistantMsg = await _repo.sendMessage(
-      //   sessionId: sessionId,
-      //   userText: text,
-      //   history: currentState.messages, // history WITHOUT the optimistic entry
-      // );
+      // 2. Call repo (AI + DB + real messages)
+      final assistantMsg = await _repo.sendMessage(
+        sessionId: sessionId,
+        userText: text,
+        history: currentState.messages,
+      );
 
-      // Replace optimistic user msg with real one from DB + add assistant
-      final fresh = await _repo.getMessages(sessionId);
-      emit(ChatLoadedState(messages: fresh, isSending: false));
+      // 3. Replace UI state properly
+      final updatedMessages = [
+        ...currentState.messages,
+        optimisticUser,
+        assistantMsg,
+      ];
 
-      // Auto-title the session from first user message
+      emit(ChatLoadedState(messages: updatedMessages, isSending: false));
+
+      // 4. Auto title for first message
       if (currentState.messages.isEmpty) {
-        final title =
-            text.length > 40 ? '${text.substring(0, 40)}…' : text;
+        final title = text.length > 40 ? '${text.substring(0, 40)}…' : text;
+
         await _repo.updateSessionTitle(sessionId, title);
       }
     } catch (e) {
-      // Remove optimistic message on failure
-      emit(currentState.copyWith(isSending: false));
-      emit(ChatFailureState(
-          message: ApiErrorHandler.handle(error: e).message));
+      emit(ChatLoadedState(messages: currentState.messages, isSending: false));
+
+      emit(ChatFailureState(message: ApiErrorHandler.handle(error: e).message));
     }
   }
 

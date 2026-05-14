@@ -36,23 +36,27 @@ class _ChatSessionsViewState extends State<ChatSessionsView> {
     return Scaffold(
       backgroundColor: const Color(0xffF5F5F5),
       appBar: CustomAppbar(
-        title: 'Chat with Mindy',
+        title: 'Chat with Moodly',
         isPremium: widget.isPremium,
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _startNewChat,
-        backgroundColor: AppColors.brandGreen,
-        icon: const Icon(Icons.add, color: Colors.white),
-        label: Text(
-          'New Chat',
-          style: AppStyles.bold14.copyWith(color: Colors.white),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 100),
+        child: FloatingActionButton.extended(
+          onPressed: _startNewChat,
+          backgroundColor: AppColors.brandGreen,
+          icon: const Icon(Icons.add, color: Colors.white),
+          label: Text(
+            'New Chat',
+            style: AppStyles.bold14.copyWith(color: Colors.white),
+          ),
         ),
       ),
       body: BlocBuilder<ChatbotCubit, ChatbotState>(
         builder: (context, state) {
           if (state is ChatSessionsLoadingState) {
             return const Center(
-                child: CircularProgressIndicator(color: AppColors.brandGreen));
+              child: CircularProgressIndicator(color: AppColors.brandGreen),
+            );
           }
 
           if (state is ChatSessionsFailureState) {
@@ -77,14 +81,21 @@ class _ChatSessionsViewState extends State<ChatSessionsView> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.chat_bubble_outline,
-              size: 72, color: AppColors.brandGreen),
+          const Icon(
+            Icons.chat_bubble_outline,
+            size: 72,
+            color: AppColors.brandGreen,
+          ),
           const SizedBox(height: 16),
-          Text("No conversations yet",
-              style: AppStyles.bold14.copyWith(color: Colors.black54)),
+          Text(
+            "No conversations yet",
+            style: AppStyles.bold14.copyWith(color: Colors.black54),
+          ),
           const SizedBox(height: 8),
-          Text("Tap + to start chatting with Mindy",
-              style: AppStyles.medium14.copyWith(color: Colors.black38)),
+          Text(
+            "Tap + to start chatting with Moodly",
+            style: AppStyles.medium14.copyWith(color: Colors.black38),
+          ),
         ],
       ),
     );
@@ -114,22 +125,24 @@ class _ChatSessionsViewState extends State<ChatSessionsView> {
           child: ListTile(
             tileColor: Colors.white,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12)),
+              borderRadius: BorderRadius.circular(12),
+            ),
             leading: const CircleAvatar(
               backgroundColor: AppColors.brandGreen,
               child: Icon(Icons.chat, color: Colors.white, size: 18),
             ),
-            title: Text(session.title,
-                style: AppStyles.bold14,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis),
+            title: Text(
+              session.title,
+              style: AppStyles.bold14,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
             subtitle: Text(
               _formatDate(session.updatedAt),
               style: AppStyles.medium15.copyWith(color: Colors.black45),
             ),
             trailing: const Icon(Icons.chevron_right, color: Colors.black38),
-            onTap: () =>
-                context.push(Routes.chatbotView, args: session.id),
+            onTap: () => context.push(Routes.chatbotView, args: session.id),
           ),
         );
       },

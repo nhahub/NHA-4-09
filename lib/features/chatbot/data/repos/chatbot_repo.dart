@@ -1,35 +1,36 @@
 import '../models/chat_message_model.dart';
 import '../models/chat_session_model.dart';
-import '../services/chatbot_api_service.dart';
+import '../services/ai_chatbot_service.dart';
 import '../services/chatbot_storage_service.dart';
 
 class ChatbotRepo {
-  final ChatbotApiService _apiService;
-  final ChatbotStorageService _storageService;
+  final AIChatbotService _aiChatbotService;
+  final ChatbotDatabaseService _databaseService;
 
   ChatbotRepo({
-    required ChatbotApiService apiService,
-    required ChatbotStorageService storageService,
-  })  : _apiService = apiService,
-        _storageService = storageService;
+    required AIChatbotService aiChatbotService,
+    required ChatbotDatabaseService databaseService,
+  }) : _aiChatbotService = aiChatbotService,
+       _databaseService = databaseService;
 
   // ── Sessions ──────────────────────────────────────────────────────────────
 
-  Future<List<ChatSessionModel>> getSessions() => _storageService.getSessions();
+  Future<List<ChatSessionModel>> getSessions() =>
+      _databaseService.getSessions();
 
   Future<ChatSessionModel> createSession(String title) =>
-      _storageService.createSession(title);
+      _databaseService.createSession(title);
 
   Future<void> updateSessionTitle(String sessionId, String title) =>
-      _storageService.updateSessionTitle(sessionId, title);
+      _databaseService.updateSessionTitle(sessionId, title);
 
   Future<void> deleteSession(String sessionId) =>
-      _storageService.deleteSession(sessionId);
+      _databaseService.deleteSession(sessionId);
 
   // ── Messages ──────────────────────────────────────────────────────────────
 
   Future<List<ChatMessageModel>> getMessages(String sessionId) =>
-      _storageService.getMessages(sessionId);
+      _databaseService.getMessages(sessionId);
 
   /// Saves the user message, calls the AI, saves & returns the assistant reply.
   Future<ChatMessageModel> sendMessage({
@@ -38,7 +39,7 @@ class ChatbotRepo {
     required List<ChatMessageModel> history,
   }) async {
     // 1. Persist the user message
-    final userMsg = await _storageService.saveMessage(
+    final userMsg = await _databaseService.saveMessage(
       sessionId: sessionId,
       role: 'user',
       content: userText,
@@ -47,11 +48,15 @@ class ChatbotRepo {
     // 2. Build history INCLUDING the new user message for context
     final fullHistory = [...history, userMsg];
 
-    // 3. Call Claude API
-    final assistantText = await _apiService.sendMessage(fullHistory);
+    // 3. Call Gemini API
+    final assistantText = await _aiChatbotService.getReply(
+      history: fullHistory.map((msg) {
+        return {'role': msg.role, 'content': msg.content};
+      }).toList(),
+    );
 
     // 4. Persist the assistant reply
-    final assistantMsg = await _storageService.saveMessage(
+    final assistantMsg = await _databaseService.saveMessage(
       sessionId: sessionId,
       role: 'assistant',
       content: assistantText,
@@ -61,5 +66,5 @@ class ChatbotRepo {
   }
 
   Future<void> clearMessages(String sessionId) =>
-      _storageService.clearMessages(sessionId);
+      _databaseService.clearMessages(sessionId);
 }

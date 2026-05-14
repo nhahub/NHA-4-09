@@ -2,33 +2,14 @@ import '../../../../core/services/supabase_crud_service.dart';
 import '../models/chat_message_model.dart';
 import '../models/chat_session_model.dart';
 
-// ── Table names (create these in your Supabase project) ────────────────────
-// Table: chat_sessions
-//   id          uuid  PK default gen_random_uuid()
-//   user_id     uuid  FK → auth.users
-//   title       text
-//   created_at  timestamptz default now()
-//   updated_at  timestamptz default now()
-//
-// Table: chat_messages
-//   id          uuid  PK default gen_random_uuid()
-//   session_id  uuid  FK → chat_sessions.id
-//   user_id     uuid  FK → auth.users
-//   role        text  ('user' | 'assistant')
-//   content     text
-//   created_at  timestamptz default now()
-//
-// Enable Row-Level Security and add policies so users only see their own rows.
-// ────────────────────────────────────────────────────────────────────────────
-
 const _kSessionsTable = 'chat_sessions';
 const _kMessagesTable = 'chat_messages';
 
-class ChatbotStorageService {
+class ChatbotDatabaseService {
   final SupabaseCRUDService _crud;
 
-  ChatbotStorageService({required SupabaseCRUDService supabaseCRUDService})
-      : _crud = supabaseCRUDService;
+  ChatbotDatabaseService({required SupabaseCRUDService supabaseCRUDService})
+    : _crud = supabaseCRUDService;
 
   String? get _userId => _crud.getCurrentUserId();
 

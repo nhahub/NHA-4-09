@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/widgets/custom_circular_progress_indicator.dart';
+import 'package:moodly/core/widgets/custom_error_widget.dart';
 
 import '../../../../core/extensions/context_extensions.dart';
+import '../../../../core/theming/app_assets.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/app_styles.dart';
+import '../../../../core/widgets/custom_circle_button.dart';
 import '../manager/chatbot_cubit/chatbot_cubit.dart';
 import '../widgets/chat_message_bubble.dart';
 import '../widgets/chat_typing_indicator.dart';
@@ -43,9 +47,9 @@ class _ChatbotViewState extends State<ChatbotView> {
     if (text.isEmpty) return;
     _controller.clear();
     context.read<ChatbotCubit>().sendMessage(
-          sessionId: widget.sessionId,
-          text: text,
-        );
+      sessionId: widget.sessionId,
+      text: text,
+    );
     _scrollToBottom();
   }
 
@@ -63,28 +67,41 @@ class _ChatbotViewState extends State<ChatbotView> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: GestureDetector(
-          onTap: () => context.pop(),
-          child: const Icon(Icons.arrow_back, color: Colors.black),
+        leading: Center(
+          child: Transform.scale(
+            scale: 0.8,
+            child: CustomCircleButton(
+              icon: AppAssets.arrowLeftIosIcon,
+              onTap: () => context.pop(),
+              backgroundcolor: Colors.white,
+            ),
+          ),
         ),
         title: Row(
           children: [
             const CircleAvatar(
               radius: 16,
               backgroundColor: AppColors.brandGreen,
-              child: Text('M',
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold)),
+              child: Text(
+                'M',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
             const SizedBox(width: 8),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Mindy',
-                    style: AppStyles.bold14.copyWith(color: Colors.black)),
-                Text('Mental Wellness AI',
-                    style:
-                        AppStyles.medium15.copyWith(color: Colors.black45)),
+                Text(
+                  'Moodly',
+                  style: AppStyles.bold14.copyWith(color: Colors.black),
+                ),
+                Text(
+                  'Mental Wellness AI',
+                  style: AppStyles.medium15.copyWith(color: Colors.black45),
+                ),
               ],
             ),
           ],
@@ -100,12 +117,13 @@ class _ChatbotViewState extends State<ChatbotView> {
             itemBuilder: (_) => const [
               PopupMenuItem(
                 value: 'clear',
-                child: Row(children: [
-                  Icon(Icons.delete_outline, size: 18, color: Colors.red),
-                  SizedBox(width: 8),
-                  Text('Clear Chat',
-                      style: TextStyle(color: Colors.red)),
-                ]),
+                child: Row(
+                  children: [
+                    Icon(Icons.delete_outline, size: 18, color: Colors.red),
+                    SizedBox(width: 8),
+                    Text('Clear Chat', style: TextStyle(color: Colors.red)),
+                  ],
+                ),
               ),
             ],
           ),
@@ -117,19 +135,16 @@ class _ChatbotViewState extends State<ChatbotView> {
           listener: (context, state) {
             if (state is ChatLoadedState) _scrollToBottom();
             if (state is ChatFailureState) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.message),
-                  backgroundColor: Colors.red,
-                ),
-              );
+              CustomErrorWidget(message: state.message);
             }
           },
           builder: (context, state) {
             if (state is ChatLoadingState) {
               return const Center(
-                  child: CircularProgressIndicator(
-                      color: AppColors.brandGreen));
+                child: CustomCircularProgressIndicator(
+                  color: AppColors.brandGreen,
+                ),
+              );
             }
 
             if (state is ChatLoadedState) {
@@ -139,18 +154,34 @@ class _ChatbotViewState extends State<ChatbotView> {
                     child: state.messages.isEmpty
                         ? _buildWelcome()
                         : ListView.builder(
+                            reverse: true,
                             controller: _scrollController,
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 16),
-                            itemCount: state.messages.length +
+                              horizontal: 12,
+                              vertical: 16,
+                            ),
+                            itemCount:
+                                state.messages.length +
                                 (state.isSending ? 1 : 0),
                             itemBuilder: (context, index) {
-                              if (state.isSending &&
-                                  index == state.messages.length) {
+                              final messages = state.messages.reversed.toList();
+
+                              if (state.isSending && index == 0) {
                                 return const ChatTypingIndicator();
                               }
+
+                              final messageIndex = state.isSending
+                                  ? index - 1
+                                  : index;
+
+                              if (messageIndex < 0 ||
+                                  messageIndex >= messages.length) {
+                                return const SizedBox.shrink();
+                              }
+
                               return ChatMessageBubble(
-                                  message: state.messages[index]);
+                                message: messages[messageIndex],
+                              );
                             },
                           ),
                   ),
@@ -176,16 +207,21 @@ class _ChatbotViewState extends State<ChatbotView> {
             const CircleAvatar(
               radius: 40,
               backgroundColor: AppColors.brandGreen,
-              child: Text('M',
-                  style: TextStyle(
-                      fontSize: 36,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold)),
+              child: Text(
+                'M',
+                style: TextStyle(
+                  fontSize: 36,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
             const SizedBox(height: 16),
             Text(
-              'Hi, I\'m Mindy 👋',
-              style: AppStyles.extraBold21.copyWith(color: AppColors.brandGreen),
+              'Hi, I\'m Moodly 👋',
+              style: AppStyles.extraBold21.copyWith(
+                color: AppColors.brandGreen,
+              ),
             ),
             const SizedBox(height: 8),
             Text(
@@ -220,16 +256,16 @@ class _ChatbotViewState extends State<ChatbotView> {
                   borderSide: BorderSide.none,
                 ),
                 contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 16, vertical: 10),
+                  horizontal: 16,
+                  vertical: 10,
+                ),
               ),
             ),
           ),
           const SizedBox(width: 8),
           Container(
             decoration: BoxDecoration(
-              color: isSending
-                  ? Colors.grey.shade300
-                  : const Color(0xff7CB342),
+              color: isSending ? Colors.grey.shade300 : AppColors.brandGreen,
               shape: BoxShape.circle,
             ),
             child: IconButton(

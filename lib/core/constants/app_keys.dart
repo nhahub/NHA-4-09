@@ -29,4 +29,7 @@ class ApiKeys {
 
   // Google Books API Key
   static final String googleBooksApiKey = dotenv.env['GOOGLE_BOOKS_API_KEY']!;
+
+  // Google AI API Key
+  static final String googleAiApiKey = dotenv.env['GOOGLE_AI_API_KEY']!;
 }

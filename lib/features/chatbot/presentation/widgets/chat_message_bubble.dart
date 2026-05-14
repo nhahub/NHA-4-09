@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moodly/features/chatbot/data/models/chat_message_model.dart';
 
 import '../../../../../core/theming/app_styles.dart';
+import '../../../../core/theming/app_colors.dart';
 
 class ChatMessageBubble extends StatelessWidget {
   final ChatMessageModel message;
@@ -23,7 +24,7 @@ class ChatMessageBubble extends StatelessWidget {
           if (!isUser) ...[
             const CircleAvatar(
               radius: 14,
-              backgroundColor: Color(0xff7CB342),
+              backgroundColor: AppColors.brandGreen,
               child: Text(
                 'M',
                 style: TextStyle(color: Colors.white, fontSize: 12),
@@ -35,7 +36,7 @@ class ChatMessageBubble extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
               decoration: BoxDecoration(
-                color: isUser ? const Color(0xff8BC34A) : Colors.white,
+                color: isUser ? AppColors.brandGreen : Colors.white,
                 borderRadius: BorderRadius.only(
                   topLeft: const Radius.circular(16),
                   topRight: const Radius.circular(16),
@@ -66,7 +67,7 @@ class ChatMessageBubble extends StatelessWidget {
             const SizedBox(width: 6),
             const CircleAvatar(
               radius: 14,
-              backgroundColor: Color(0xff8BC34A),
+              backgroundColor: AppColors.brandGreen,
               child: Icon(Icons.person, color: Colors.white, size: 16),
             ),
           ],
