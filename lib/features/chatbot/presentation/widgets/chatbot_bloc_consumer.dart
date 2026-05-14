@@ -54,7 +54,9 @@ class ChatbotBlocConsumer extends StatelessWidget {
               ),
               ChatbotInputField(
                 isSending: state.isSending,
-                sessionId: sessionId, controller: controller, sendMessage: sendMessage,
+                sessionId: sessionId,
+                controller: controller,
+                sendMessage: sendMessage,
               ),
             ],
           );

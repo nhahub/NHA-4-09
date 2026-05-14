@@ -14,10 +14,13 @@ class ChatbotWelcomeWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const CircleAvatar(
+            CircleAvatar(
               radius: 40,
               backgroundColor: AppColors.brandGreen,
-              child: Text('M', style: AppStyles.bold36),
+              child: Text(
+                'M',
+                style: AppStyles.bold36.copyWith(color: Colors.white),
+              ),
             ),
             const SizedBox(height: 16),
             Text(
