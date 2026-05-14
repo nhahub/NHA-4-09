@@ -58,6 +58,6 @@ const String kUsersImagesBucket = "users_images";
 const String kProfileImagesPath = "images/profile";
 
 const String kCommunityImagesBucket = "Images";
-const String kPostsImagesPath = "Images/posts";
+const String kPostsImagesPath = "posts";
 
 const String kImagePlaceHolder = "https://placehold.co/600x400";

@@ -27,7 +27,8 @@ class ChatbotProvidersWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ChatbotCubit(repo: getIt.get<ChatbotRepo>()),
+      create: (context) =>
+          ChatbotCubit(repo: getIt.get<ChatbotRepo>())..loadSessions(),
       child: ChatSessionsView(isPremium: isPremium),
     );
   }
