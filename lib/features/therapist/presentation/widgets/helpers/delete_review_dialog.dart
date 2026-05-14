@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/therapist/presentation/manager/therapist_cubit/therapist_cubit.dart';
+import '../../manager/therapist_cubit/therapist_cubit.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/widgets/custom_dialog.dart';

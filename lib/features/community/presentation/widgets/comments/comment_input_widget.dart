@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/widgets/user_avatar.dart';
+import '../../../../../core/widgets/user_avatar.dart';
 
 import '../../../../../core/functions/user_data_local.dart';
 import '../../../../../core/theming/app_colors.dart';

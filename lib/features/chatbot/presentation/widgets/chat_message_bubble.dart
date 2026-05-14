@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/chatbot/data/models/chat_message_model.dart';
+import '../../data/models/chat_message_model.dart';
 
 import '../../../../../core/theming/app_styles.dart';
 import '../../../../core/theming/app_colors.dart';

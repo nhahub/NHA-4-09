@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+
 import '../../../data/models/comment_model.dart';
 
 enum CommentsStatus { loading, success, failure }

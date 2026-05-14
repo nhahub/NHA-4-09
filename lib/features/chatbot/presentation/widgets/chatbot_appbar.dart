@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/theming/app_assets.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/app_styles.dart';
 import '../../../../core/widgets/custom_circle_button.dart';
 import '../manager/chatbot_cubit/chatbot_cubit.dart';
-import '../views/chatbot_view.dart';
 
 class ChatbotAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const ChatbotAppBar({super.key, required this.widget});
+  final String sessionId;
 
-  final ChatbotView widget;
+  const ChatbotAppBar({super.key, required this.sessionId});
 
   @override
   Size get preferredSize => const Size.fromHeight(56);
@@ -66,7 +64,7 @@ class ChatbotAppBar extends StatelessWidget implements PreferredSizeWidget {
           icon: const Icon(Icons.more_vert, color: Colors.black),
           onSelected: (value) {
             if (value == 'clear') {
-              context.read<ChatbotCubit>().clearChat(widget.sessionId);
+              context.read<ChatbotCubit>().clearChat(sessionId);
             }
           },
           itemBuilder: (_) => const [

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/therapist/presentation/manager/therapist_cubit/therapist_cubit.dart';
+import '../../../../therapist/presentation/manager/therapist_cubit/therapist_cubit.dart';
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/helpers/alpha_from_percent.dart';
 import '../../../../../core/routing/routes.dart';

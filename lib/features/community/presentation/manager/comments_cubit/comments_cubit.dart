@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/networking/api_error_handler.dart';
+import '../../../../../core/networking/api_error_handler.dart';
 import '../../../data/models/comment_model.dart';
 import '../../../data/repos/comments_repo.dart';
 import 'comments_state.dart';

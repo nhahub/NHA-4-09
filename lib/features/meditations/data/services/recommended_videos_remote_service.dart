@@ -1,6 +1,6 @@
 import '../../../../core/constants/constants.dart';
-import '../models/video_model.dart';
 import '../../../../core/services/supabase_crud_service.dart';
+import '../models/video_model.dart';
 
 class RecommendedVideosRemoteService {
   final SupabaseCRUDService _supabaseCRUDService;

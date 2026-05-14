@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/chatbot/data/repos/chatbot_repo.dart';
-import 'package:moodly/features/chatbot/presentation/manager/chatbot_cubit/chatbot_cubit.dart';
+import '../../features/chatbot/data/repos/chatbot_repo.dart';
+import '../../features/chatbot/presentation/manager/chatbot_cubit/chatbot_cubit.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/data/repos/user_data_repo.dart';
@@ -421,7 +421,9 @@ class AppRouter {
         final String sessionId = settings.arguments as String;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (_) => ChatbotCubit(repo: getIt.get<ChatbotRepo>()),
+            create: (_) =>
+                ChatbotCubit(repo: getIt.get<ChatbotRepo>())
+                  ..loadMessages(sessionId),
             child: ChatbotView(sessionId: sessionId),
           ),
         );

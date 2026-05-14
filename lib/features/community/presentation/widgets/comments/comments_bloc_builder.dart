@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/widgets/custom_error_widget.dart';
-import 'package:moodly/features/community/presentation/widgets/comments/comments_list_view.dart';
+import '../../../../../core/widgets/custom_error_widget.dart';
+import 'comments_list_view.dart';
 
 import '../../../data/models/comment_model.dart';
 import '../../manager/comments_cubit/comments_cubit.dart';

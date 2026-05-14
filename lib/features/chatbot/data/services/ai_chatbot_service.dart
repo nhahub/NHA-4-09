@@ -1,5 +1,5 @@
 import 'package:google_generative_ai/google_generative_ai.dart';
-import 'package:moodly/core/helpers/logger.dart';
+import '../../../../core/helpers/logger.dart';
 
 import '../../../../core/constants/app_keys.dart';
 import '../../../../core/networking/api_error_handler.dart';
