@@ -16,17 +16,19 @@ class BookingSessionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       appBar: BackButtonAppbar(title: "Booking Session"),
-      body: Column(
-        children: [
-          SelectSessionTypeWidget(),
-          SizedBox(height: 20),
-          DateSelectorWidget(),
-          TimeSlotsWidget(),
-          SizedBox(height: 20),
-          SessionPrice(),
-          SizedBox(height: 20),
-          BookingSessionButton(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SelectSessionTypeWidget(),
+            SizedBox(height: 20),
+            DateSelectorWidget(),
+            TimeSlotsWidget(),
+            SizedBox(height: 20),
+            SessionPrice(),
+            SizedBox(height: 20),
+            BookingSessionButton(),
+          ],
+        ),
       ),
     );
   }

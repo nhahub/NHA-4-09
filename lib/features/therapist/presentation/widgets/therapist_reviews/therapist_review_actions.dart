@@ -8,12 +8,12 @@ import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../../data/models/therapist_review_model.dart';
+import '../../manager/therapist_cubit/therapist_cubit.dart';
 import '../../manager/therapist_reviews_cubit/therapist_reviews_cubit.dart';
 import '../helpers/delete_review_dialog.dart';
 
 class TherapistReviewActions extends StatelessWidget {
   final TherapistReviewModel oldTherapistReviewModel;
-
   final String therapistId;
 
   const TherapistReviewActions({
@@ -24,7 +24,8 @@ class TherapistReviewActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<TherapistReviewsCubit>();
+    final therapistReviewsCubit = context.read<TherapistReviewsCubit>();
+    final therapistCubit = context.read<TherapistCubit>();
 
     return InkWell(
       borderRadius: BorderRadius.circular(555),
@@ -65,8 +66,9 @@ class TherapistReviewActions extends StatelessWidget {
                     context.push(
                       Routes.therapistRatingUpdateView,
                       args: {
+                        'therapistCubit': therapistCubit,
                         'therapistId': therapistId,
-                        'cubit': cubit,
+                        'cubit': therapistReviewsCubit,
                         'oldTherapistReviewModel': oldTherapistReviewModel,
                       },
                     );
@@ -92,9 +94,10 @@ class TherapistReviewActions extends StatelessWidget {
                     context.pop();
                     deleteReviewDialog(
                       context: context,
-                      cubit: cubit,
+                      therapistReviewsCubit: therapistReviewsCubit,
                       ratingId: oldTherapistReviewModel.id,
                       therapistId: therapistId,
+                      therapistCubit: therapistCubit,
                     );
                   },
                 ),

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../core/enums/fade_position.dart';
 import '../../../../core/widgets/custom_appbar.dart';
 import '../../../../core/widgets/fade_scrollable.dart';
-import '../widgets/add_community_post_button.dart';
-import '../widgets/community_view_body.dart';
+import '../widgets/post/add_community_post_button.dart';
+import '../widgets/post/community_bloc_builder.dart';
 
 class CommunityView extends StatelessWidget {
   final bool isPremium;
@@ -18,7 +18,7 @@ class CommunityView extends StatelessWidget {
       appBar: CustomAppbar(title: "Community", isPremium: isPremium),
       body: const FadeScrollable(
         fadePosition: FadePosition.bottom,
-        child: CommunityViewBody(),
+        child: CommunityBlocBuilder(),
       ),
     );
   }

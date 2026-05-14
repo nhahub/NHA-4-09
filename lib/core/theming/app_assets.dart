@@ -109,14 +109,5 @@ class AppAssets {
   static const String dummyImage =
       "http://edenchristianacademy.co.nz/wp-content/uploads/2013/11/dummy-image-square.jpg";
   static const String dummyImageAsset = 'assets/images/dummy_image_square.jpg';
-
-  // Mock Images
-  static const String avatar1 = 'assets/mock_images/avatar1.jpg';
-  static const String avatar2 = 'assets/mock_images/avatar2.jpg';
-  static const String avatar3 = 'assets/mock_images/avatar3.jpg';
-  static const String avatar4 = 'assets/mock_images/avatar4.jpg';
-  static const String commentImg1 = 'assets/mock_images/comment_img1.jpg';
-  static const String commentImg2 = 'assets/mock_images/comment_img2.jpg';
-  static const String commentImg3 = 'assets/mock_images/comment_img3.jpg';
   static const String meal = 'assets/images/meal.png';
 }

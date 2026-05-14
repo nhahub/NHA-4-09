@@ -46,6 +46,12 @@ abstract class AppStyles {
     fontFamily: "SFPro",
     letterSpacing: -0.2,
   );
+  static const TextStyle medium17 = TextStyle(
+    fontSize: 17,
+    fontWeight: FontWeightHelper.medium,
+    fontFamily: "SFPro",
+    letterSpacing: -0.2,
+  );
   static const TextStyle extraBold17 = TextStyle(
     fontSize: 17,
     fontWeight: FontWeightHelper.extraBold,

@@ -1,27 +1,38 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/widgets/user_avatar.dart';
 import '../../../data/models/post_model.dart';
 import 'post_actions.dart';
 import 'post_content.dart';
 import 'post_header.dart';
 import 'post_media_section.dart';
-import 'post_user_avatar.dart';
 
 class PostCard extends StatelessWidget {
   final PostModel postModel;
   final VoidCallback? onLikeTap;
+  final VoidCallback? onRepeatTap;
+  final VoidCallback? onExportTap;
 
-  const PostCard({super.key, required this.postModel, this.onLikeTap});
+  const PostCard({
+    super.key,
+    required this.postModel,
+    this.onLikeTap,
+    this.onRepeatTap,
+    this.onExportTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Avatar
-        PostUserAvatar(postModel: postModel),
+        UserAvatar(
+          name: postModel.userName,
+          imageUrl: postModel.userImage,
+          radius: 20,
+          fontSize: 18,
+        ),
         const SizedBox(width: 16),
-        // Content Column
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,12 +40,17 @@ class PostCard extends StatelessWidget {
               PostHeader(postModel: postModel),
               const SizedBox(height: 4),
               PostContent(content: postModel.content),
-              if (postModel.images.isNotEmpty) ...[
+              if (postModel.imageUrls.isNotEmpty) ...[
                 const SizedBox(height: 8),
-                PostMedia(images: postModel.images),
+                PostMedia(images: postModel.imageUrls),
               ],
               const SizedBox(height: 8),
-              PostActions(post: postModel, onLikeTap: onLikeTap),
+              PostActions(
+                post: postModel,
+                onLikeTap: onLikeTap,
+                onRepeatTap: onRepeatTap,
+                onExportTap: onExportTap,
+              ),
             ],
           ),
         ),

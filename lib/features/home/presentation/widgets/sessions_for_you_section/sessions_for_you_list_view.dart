@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../core/widgets/custom_error_widget.dart';
 import '../../../../../core/widgets/horizontal_padding_list.dart';
 import '../../../../therapist/data/models/dummy/dummy_therapists.dart';
@@ -15,8 +14,8 @@ class SessionsForYouListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TherapistCubit, TherapistState>(
       builder: (context, state) {
-        switch (state) {
-          case GetTherapistsLoadingState():
+        switch (state.status) {
+          case TherapistStatus.loading:
             return HorizontalPaddingList(
               height: 382,
               isLoading: true,
@@ -28,7 +27,8 @@ class SessionsForYouListView extends StatelessWidget {
               },
             );
 
-          case GetTherapistsLoadedState(:final List<TherapistModel> therapists):
+          case TherapistStatus.success:
+            final List<TherapistModel> therapists = state.therapists ?? [];
             return HorizontalPaddingList(
               height: 382,
               itemCount: therapists.length,
@@ -37,8 +37,9 @@ class SessionsForYouListView extends StatelessWidget {
               },
             );
 
-          case GetTherapistFailureState(:final String errorMsg):
-            return CustomErrorWidget(message: errorMsg);
+          case TherapistStatus.failure:
+            final message = state.error ?? 'Something went wrong';
+            return CustomErrorWidget(message: message);
         }
       },
     );

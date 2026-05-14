@@ -21,21 +21,21 @@ class GetAllTherapistsBlocBuilder extends StatelessWidget {
       ),
       sliver: BlocBuilder<TherapistCubit, TherapistState>(
         builder: (context, state) {
-          switch (state) {
-            case GetTherapistsLoadingState():
+          switch (state.status) {
+            case TherapistStatus.loading:
               return GetAllTherapistsSliverList(
                 isLoading: true,
                 therapists: DummyTherapists.dummyTherapists,
               );
 
-            case GetTherapistsLoadedState(
-              :final List<TherapistModel> therapists,
-            ):
+            case TherapistStatus.success:
+              final List<TherapistModel> therapists = state.therapists ?? [];
               return GetAllTherapistsSliverList(therapists: therapists);
 
-            case GetTherapistFailureState(:final String errorMsg):
+            case TherapistStatus.failure:
+              final message = state.error ?? 'Something went wrong';
               return SliverToBoxAdapter(
-                child: CustomErrorWidget(message: errorMsg),
+                child: CustomErrorWidget(message: message),
               );
           }
         },

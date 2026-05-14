@@ -5,10 +5,15 @@ import '../../features/chatbot/data/services/ai_chatbot_service.dart';
 import '../../features/meditations/data/repos/podcast_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../features/community/data/repos/comments_repo.dart';
+import '../../features/community/data/services/community_comments_remote_service.dart';
+import '../../features/community/data/services/community_media_service.dart';
+import '../../features/community/data/services/community_posts_remote_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/data/repos/user_data_repo.dart';
 import '../../features/auth/data/services/supabase_auth_service.dart';
 import '../../features/auth/data/services/user_data_service.dart';
+import '../../features/community/data/repos/create_post_repo.dart';
 import '../../features/home/data/repos/activities_repo.dart';
 import '../../features/home/data/repos/quote_repo.dart';
 import '../../features/home/data/repos/water_repo.dart';
@@ -318,6 +323,23 @@ Future<void> setupGetIt() async {
     () => UserDataRepo(userDataService: getIt()),
   );
 
+  // Community posts & media (remote + storage)
+  getIt.registerLazySingleton<CommunityPostsRemoteService>(
+    () => CommunityPostsRemoteService(client: getIt(), crudService: getIt()),
+  );
+
+  getIt.registerLazySingleton<CommunityMediaService>(
+    () => CommunityMediaService(storageService: getIt()),
+  );
+
+  // Community Create/Post Repository
+  getIt.registerLazySingleton<CreatePostRepo>(
+    () => CreatePostRepo(
+      postsRemote: getIt<CommunityPostsRemoteService>(),
+      mediaService: getIt<CommunityMediaService>(),
+    ),
+  );
+
   // App Rating Repo
   getIt.registerLazySingleton<AppRatingRepo>(
     () => AppRatingRepo(
@@ -411,6 +433,18 @@ Future<void> setupGetIt() async {
       supabaseStorageService: getIt(),
       supabaseCRUDService: getIt(),
     ),
+  );
+
+  // Community comments (remote I/O + repo orchestration)
+  getIt.registerLazySingleton<CommunityCommentsRemoteService>(
+    () => CommunityCommentsRemoteService(
+      crudService: getIt(),
+      client: getIt(),
+    ),
+  );
+
+  getIt.registerLazySingleton<CommentsRepo>(
+    () => CommentsRepo(remote: getIt<CommunityCommentsRemoteService>()),
   );
 
   // Audio Player

@@ -1,27 +1,85 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'post_model.g.dart';
+
+@JsonSerializable()
 class PostModel {
   final String id;
+
+  @JsonKey(name: 'user_id')
+  final String userId;
+
+  @JsonKey(name: 'user_name')
   final String userName;
-  final String userAvatar;
+
+  @JsonKey(name: 'user_image')
+  final String userImage;
+
   final String content;
+
+  @JsonKey(name: 'image_urls')
+  final List<String> imageUrls;
+
+  @JsonKey(name: 'created_at')
   final DateTime createdAt;
-  final int likes;
-  final int comments;
+
+  @JsonKey(name: 'love_count')
+  final int loveCount;
+
+  @JsonKey(name: 'comments_count')
+  final int commentsCount;
+
+  @JsonKey(name: 'shares_count')
   final int sharesCount;
-  final bool isPremium;
-  final bool isLiked;
-  final List<String> images;
+
+  @JsonKey(name: 'is_liked')
+  final bool isLikedByCurrentUser;
 
   const PostModel({
     required this.id,
+    required this.userId,
     required this.userName,
-    required this.userAvatar,
+    required this.userImage,
     required this.content,
+    this.imageUrls = const [],
     required this.createdAt,
-    required this.likes,
-    required this.comments,
+    this.loveCount = 0,
+    this.commentsCount = 0,
     this.sharesCount = 0,
-    required this.isPremium,
-    this.isLiked = false,
-    required this.images,
+    this.isLikedByCurrentUser = false,
   });
+
+  factory PostModel.fromJson(Map<String, dynamic> json) =>
+      _$PostModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PostModelToJson(this);
+
+  PostModel copyWith({
+    String? id,
+    String? userId,
+    String? userName,
+    String? userImage,
+    String? content,
+    List<String>? imageUrls,
+    DateTime? createdAt,
+    int? loveCount,
+    int? commentsCount,
+    int? sharesCount,
+    bool? isLikedByCurrentUser,
+  }) {
+    return PostModel(
+      id: id ?? this.id,
+      userId: userId ?? this.userId,
+      userName: userName ?? this.userName,
+      userImage: userImage ?? this.userImage,
+      content: content ?? this.content,
+      imageUrls: imageUrls ?? this.imageUrls,
+      createdAt: createdAt ?? this.createdAt,
+      loveCount: loveCount ?? this.loveCount,
+      commentsCount: commentsCount ?? this.commentsCount,
+      sharesCount: sharesCount ?? this.sharesCount,
+      isLikedByCurrentUser:
+          isLikedByCurrentUser ?? this.isLikedByCurrentUser,
+    );
+  }
 }

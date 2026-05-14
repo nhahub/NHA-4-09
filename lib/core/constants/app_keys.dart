@@ -32,4 +32,7 @@ class ApiKeys {
 
   // Google AI API Key
   static final String googleAiApiKey = dotenv.env['GOOGLE_AI_API_KEY']!;
+  /// Optional base URL for shared community post links (no trailing slash).
+  /// Example: https://app.example.com — links become `$base/community/post/{id}`.
+  static String? get communityPostShareBase => dotenv.env['COMMUNITY_POST_SHARE_BASE'];
 }

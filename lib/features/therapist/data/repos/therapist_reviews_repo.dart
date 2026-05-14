@@ -11,13 +11,13 @@ class TherapistReviewsRepo {
   Future<List<TherapistReviewModel>> getReviews({
     required String therapistId,
   }) async {
-    final List<TherapistReviewModel> ratings = await _therapistReviewsService
+    final List<TherapistReviewModel> reviews = await _therapistReviewsService
         .getReviews(therapistId: therapistId);
-    return ratings;
+    return reviews;
   }
 
-  Future<void> addReview({required TherapistReviewModel rating}) async {
-    await _therapistReviewsService.addReview(data: rating.toJson());
+  Future<void> addReview({required TherapistReviewModel review}) async {
+    await _therapistReviewsService.addReview(data: review.toJson());
   }
 
   Future<void> updateReview({

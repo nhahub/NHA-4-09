@@ -15,6 +15,8 @@ import '../../features/auth/presentation/views/register_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/auth/presentation/views/start_view.dart';
 import '../../features/chatbot/presentation/views/chatbot_view.dart';
+import '../../features/community/data/repos/create_post_repo.dart';
+import '../../features/community/presentation/manager/create_post_cubit/create_post_cubit.dart';
 import '../../features/community/presentation/views/add_community_post_view.dart';
 import '../../features/home/presentation/manager/activities_cubit/activities_cubit.dart';
 import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
@@ -189,7 +191,12 @@ class AppRouter {
 
       case Routes.addCommunityPostView:
         return MaterialPageRoute(
-          builder: (context) => const AddCommunityPostView(),
+          builder: (context) => BlocProvider(
+            create: (context) => CreatePostCubit(
+              createPostRepo: getIt.get<CreatePostRepo>(),
+            ),
+            child: const AddCommunityPostView(),
+          ),
         );
 
       case Routes.videoView:
@@ -198,7 +205,8 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) =>
-                VideoPlayerCubit(service: getIt.get<VideoPlayerService>())..init(url: videoModel.videoUrl),
+                VideoPlayerCubit(service: getIt.get<VideoPlayerService>())
+                  ..init(url: videoModel.videoUrl),
             child: VideoView(videoModel: videoModel),
           ),
         );
@@ -236,33 +244,45 @@ class AppRouter {
         );
 
       case Routes.therapistDetailsView:
-        final TherapistModel therapistModel =
-            settings.arguments as TherapistModel;
+        final args = settings.arguments as Map<String, dynamic>;
+        final TherapistCubit cubit = args['cubit'];
+        final TherapistModel therapistModel = args['therapistModel'];
         return MaterialPageRoute(
-          builder: (context) =>
-              TherapistDetailsView(therapistModel: therapistModel),
+          builder: (context) => BlocProvider.value(
+            value: cubit,
+            child: TherapistDetailsView(therapistModel: therapistModel),
+          ),
         );
 
-      case Routes.therapistRatingsView:
-        final String therapistId = settings.arguments as String;
+      case Routes.therapistReviewsView:
+        final args = settings.arguments as Map<String, dynamic>;
+        final TherapistCubit therapistCubit = args['therapistCubit'];
+        final String therapistId = args['therapistId'];
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => TherapistReviewsCubit(
-              therapistRatingRepo: getIt.get<TherapistReviewsRepo>(),
-            )..getReviews(therapistId: therapistId),
-            child: TherapistReviewsView(therapistId: therapistId),
+          builder: (context) => BlocProvider.value(
+            value: therapistCubit,
+            child: BlocProvider(
+              create: (context) => TherapistReviewsCubit(
+                therapistRatingRepo: getIt.get<TherapistReviewsRepo>(),
+              )..getReviews(therapistId: therapistId),
+              child: TherapistReviewsView(therapistId: therapistId),
+            ),
           ),
         );
 
       case Routes.therapistRatingAddView:
         final args = settings.arguments as Map<String, dynamic>;
+        final TherapistCubit therapistCubit = args['therapistCubit'];
         final String therapistId = args['therapistId'];
         final TherapistReviewsCubit cubit = args['cubit'];
         return MaterialPageRoute(
           builder: (context) {
             return BlocProvider.value(
-              value: cubit,
-              child: TherapistReviewAddView(therapistId: therapistId),
+              value: therapistCubit,
+              child: BlocProvider.value(
+                value: cubit,
+                child: TherapistReviewAddView(therapistId: therapistId),
+              ),
             );
           },
         );
@@ -272,14 +292,18 @@ class AppRouter {
         final String therapistId = args['therapistId'];
         final TherapistReviewModel oldTherapistReviewMode =
             args['oldTherapistReviewModel'] as TherapistReviewModel;
+        final TherapistCubit therapistCubit = args['therapistCubit'];
         final TherapistReviewsCubit cubit = args['cubit'];
         return MaterialPageRoute(
           builder: (context) {
             return BlocProvider.value(
-              value: cubit,
-              child: TherapistReviewUpdateView(
-                therapistId: therapistId,
-                oldTherapistReviewModel: oldTherapistReviewMode,
+              value: therapistCubit,
+              child: BlocProvider.value(
+                value: cubit,
+                child: TherapistReviewUpdateView(
+                  therapistId: therapistId,
+                  oldTherapistReviewModel: oldTherapistReviewMode,
+                ),
               ),
             );
           },

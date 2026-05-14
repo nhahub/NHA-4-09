@@ -12,19 +12,52 @@ class TherapistCubit extends Cubit<TherapistState> {
 
   TherapistCubit({required TherapistRepo therapistRepo})
     : _therapistRepo = therapistRepo,
-      super(GetTherapistsLoadingState());
+      super(const TherapistState(status: TherapistStatus.loading));
 
   void getTherapists() async {
     try {
       final List<TherapistModel> therapists = await _therapistRepo
           .getTherapists();
-      emit(GetTherapistsLoadedState(therapists: therapists));
+      emit(
+        state.copyWith(status: TherapistStatus.success, therapists: therapists),
+      );
     } catch (e) {
       emit(
-        GetTherapistFailureState(
-          errorMsg: ApiErrorHandler.handle(error: e).message,
+        state.copyWith(
+          status: TherapistStatus.failure,
+          error: ApiErrorHandler.handle(error: e).message,
         ),
       );
     }
+  }
+
+  void updateReviewsCountAndAverage({
+    required String therapistId,
+    required int totalCount,
+    required double? average,
+  }) {
+    final currentTherapists = state.therapists ?? [];
+
+    final updatedTherapists = currentTherapists.map((therapist) {
+      if (therapist.id == therapistId) {
+        final currentSummary = therapist.ratingSummary;
+
+        return therapist.copyWith(
+          ratingSummary: currentSummary.copyWith(
+            totalCount: totalCount,
+            rating: average,
+          ),
+        );
+      }
+
+      return therapist;
+    }).toList();
+
+    emit(
+      state.copyWith(
+        status: TherapistStatus.success,
+        therapists: updatedTherapists,
+      ),
+    );
   }
 }

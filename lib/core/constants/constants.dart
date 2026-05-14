@@ -48,8 +48,16 @@ const String kArticlesTable = "articles";
 const String kActivitiesTable = "activities";
 const String kActivityCategoriesTable = "activity_categories";
 const String kVideosTable = "videos";
+const String kCommunityPostsTable = "community_posts";
+const String kCommunityPostMediaTable = "community_post_media";
+const String kCommunityCommentsTable = "community_comments";
+const String kCommunityCommentLikesTable = "community_comment_likes";
+const String kCommunityPostLikesTable = "community_post_likes";
 
 const String kUsersImagesBucket = "users_images";
 const String kProfileImagesPath = "images/profile";
+
+const String kCommunityImagesBucket = "Images";
+const String kPostsImagesPath = "Images/posts";
 
 const String kImagePlaceHolder = "https://placehold.co/600x400";
