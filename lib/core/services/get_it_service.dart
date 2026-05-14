@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:just_audio/just_audio.dart';
+import '../../features/chatbot/data/services/ai_chatbot_service.dart';
 import '../../features/meditations/data/repos/podcast_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -78,6 +79,9 @@ import '../../features/therapist/data/services/therapist_service.dart';
 import 'local_cache_service.dart';
 import 'supabase_crud_service.dart';
 import 'supabase_storage_service.dart';
+import '../../features/chatbot/data/services/chatbot_storage_service.dart';
+import '../../features/chatbot/data/repos/chatbot_repo.dart';
+//import '../../features/chatbot/data/services/emotion_analysis_service.dart';
 
 final GetIt getIt = GetIt.instance;
 
@@ -449,6 +453,19 @@ Future<void> setupGetIt() async {
   // Audio Player Service
   getIt.registerFactory(() => AudioPlayerService(player: getIt()));
 
-  // Audio Player Service
+  // Video Player Service
   getIt.registerFactory(() => VideoPlayerService());
+
+  // Chatbot Database Service
+  getIt.registerLazySingleton<ChatbotDatabaseService>(
+    () => ChatbotDatabaseService(supabaseCRUDService: getIt()),
+  );
+
+  // Chatbot AI Service
+  getIt.registerLazySingleton<AIChatbotService>(() => AIChatbotService());
+
+  // Chatbot Repo
+  getIt.registerLazySingleton<ChatbotRepo>(
+    () => ChatbotRepo(databaseService: getIt(), aiChatbotService: getIt()),
+  );
 }
