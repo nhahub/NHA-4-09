@@ -134,9 +134,6 @@ class _ChatbotViewState extends State<ChatbotView> {
         child: BlocConsumer<ChatbotCubit, ChatbotState>(
           listener: (context, state) {
             if (state is ChatLoadedState) _scrollToBottom();
-            if (state is ChatFailureState) {
-              CustomErrorWidget(message: state.message);
-            }
           },
           builder: (context, state) {
             if (state is ChatLoadingState) {
@@ -146,7 +143,9 @@ class _ChatbotViewState extends State<ChatbotView> {
                 ),
               );
             }
-
+            if (state is ChatFailureState) {
+              return CustomErrorWidget(message: state.message);
+            }
             if (state is ChatLoadedState) {
               return Column(
                 children: [
