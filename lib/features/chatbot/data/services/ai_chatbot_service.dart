@@ -91,6 +91,11 @@ $message
     if (error.contains('SAFETY')) {
       return 'Message blocked for safety reasons.';
     }
+    if (e is GenerativeAIException) {
+      if (e.message.contains('503') || e.message.contains('UNAVAILABLE')) {
+        return 'The service is busy right now. Please try again in a few seconds.';
+      }
+    }
 
     return ApiErrorHandler.handle(error: e).message;
   }
