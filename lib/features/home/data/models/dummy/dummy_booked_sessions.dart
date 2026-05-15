@@ -18,6 +18,8 @@ class DummyBookedSessions {
       price: 0,
       status: "",
       createdAt: DateTime.now(),
+      userName: '',
+      userImage: AppAssets.dummyImage,
     ),
   );
 }

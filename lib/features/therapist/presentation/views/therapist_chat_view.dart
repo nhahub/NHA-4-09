@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/functions/user_data_local.dart';
 import '../../../../core/widgets/custom_error_widget.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../../data/models/booking_model.dart';
@@ -76,7 +77,10 @@ class _TherapistChatViewState extends State<TherapistChatView> {
             ChatInputField(
               onSend: (text) {
                 context.read<ChatCubit>().sendMessage(
-                  senderType: "user",
+                  senderType:
+                      widget.bookingModel.therapistId == getUser()!.userId
+                      ? "therapist"
+                      : "user",
                   text: text,
                 );
               },

@@ -26,12 +26,16 @@ BookingModel _$BookingModelFromJson(Map<String, dynamic> json) => BookingModel(
   slotEndTime: json['slot_end_time'] == null
       ? null
       : DateTime.parse(json['slot_end_time'] as String),
+  userName: json['user_name'] as String,
+  userImage: json['user_image'] as String,
 );
 
 Map<String, dynamic> _$BookingModelToJson(BookingModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'user_id': instance.userId,
+      'user_name': instance.userName,
+      'user_image': instance.userImage,
       'session_type': instance.sessionType,
       'price': instance.price,
       'status': instance.status,

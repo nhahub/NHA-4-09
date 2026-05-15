@@ -20,6 +20,19 @@ class ChatTherapistBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+      final currentUserId = getUser()!.userId;
+
+  final bool isCurrentUserPatient =
+      currentUserId == bookingModel.userId;
+
+  final otherUserName = isCurrentUserPatient
+      ? bookingModel.therapistName
+      : bookingModel.userName;
+
+  final otherUserImage = isCurrentUserPatient
+      ? bookingModel.therapistImage
+      : bookingModel.userImage;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
@@ -30,10 +43,10 @@ class ChatTherapistBubble extends StatelessWidget {
         children: [
           if (!isMe)
             UserAvatar(
-              name: (bookingModel.therapistName),
-              radius: 18,
-              fontSize: 16,
-              imageUrl: bookingModel.therapistImage,
+            name: otherUserName,
+            radius: 18,
+            fontSize: 16,
+            imageUrl: otherUserImage,
             ),
           Flexible(
             child: Container(

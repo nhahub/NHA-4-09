@@ -74,6 +74,7 @@ class SupabaseCRUDService {
     bool ascending = true,
     int? limit,
     Map<String, dynamic>? filters,
+    String? orFilters,
   }) async {
     dynamic query = _client.from(table).select(select);
 
@@ -87,6 +88,9 @@ class SupabaseCRUDService {
           query = query.eq(key, value);
         }
       });
+    }
+    if (orFilters != null) {
+      query = query.or(orFilters);
     }
 
     if (orderBy != null) {

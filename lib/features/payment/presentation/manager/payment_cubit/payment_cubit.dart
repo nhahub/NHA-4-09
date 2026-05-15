@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paymob/billing_data.dart';
+import 'package:moodly/core/functions/user_data_local.dart';
 import '../../../../../core/networking/api_error_handler.dart';
 import '../../../../therapist/data/models/booking_model.dart';
 import '../../../../therapist/data/repos/booking_repo.dart';
@@ -104,6 +105,8 @@ class PaymentCubit extends Cubit<PaymentState> {
         slot: slot!,
         sessionType: sessionType!,
         price: price,
+        userName: getUser()!.name!,
+        userImage: getUser()!.picture!,
       );
     }
     emit(const PaymentSuccessState(paymentToken: "Payment Successful"));
