@@ -11,7 +11,7 @@ class BookedSessionActions {
   }) {
     switch (bookingModel.sessionType) {
       case "chat":
-        context.push(Routes.therapistChatView, args: bookingModel.therapistId);
+        context.push(Routes.therapistChatView, args: bookingModel);
         break;
 
       case "call":

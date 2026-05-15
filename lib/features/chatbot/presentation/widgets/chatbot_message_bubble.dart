@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/functions/user_data_local.dart';
+import 'package:moodly/core/widgets/user_avatar.dart';
 import '../../data/models/chat_message_model.dart';
 
 import '../../../../../core/theming/app_styles.dart';
 import '../../../../core/theming/app_colors.dart';
 
-class ChatMessageBubble extends StatelessWidget {
+class ChatbotMessageBubble extends StatelessWidget {
   final ChatMessageModel message;
 
-  const ChatMessageBubble({super.key, required this.message});
+  const ChatbotMessageBubble({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -65,10 +67,11 @@ class ChatMessageBubble extends StatelessWidget {
           ),
           if (isUser) ...[
             const SizedBox(width: 6),
-            const CircleAvatar(
+            UserAvatar(
+              name: getUser()!.name!,
               radius: 14,
-              backgroundColor: AppColors.brandGreen,
-              child: Icon(Icons.person, color: Colors.white, size: 16),
+              fontSize: 12,
+              imageUrl: getUser()?.picture,
             ),
           ],
         ],

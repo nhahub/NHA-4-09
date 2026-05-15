@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/widgets/custom_error_widget.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
+import '../../data/models/booking_model.dart';
 import '../../data/models/dummy/dummy_messages.dart';
 import '../../data/models/message_model.dart';
 import '../manager/chat_cubit/chat_cubit.dart';
@@ -10,7 +11,8 @@ import '../widgets/therapist_chat/chat_input_field.dart';
 import '../widgets/therapist_chat/messages_list.dart';
 
 class TherapistChatView extends StatefulWidget {
-  const TherapistChatView({super.key});
+  final BookingModel bookingModel;
+  const TherapistChatView({super.key, required this.bookingModel});
 
   @override
   State<TherapistChatView> createState() => _TherapistChatViewState();
@@ -48,6 +50,8 @@ class _TherapistChatViewState extends State<TherapistChatView> {
                       return MessagesList(
                         messages: DummyMessages.dummyMessages,
                         controller: _controller,
+                        isLoading: true,
+                        bookingModel: widget.bookingModel,
                       );
 
                     case ChatLoadedState(:final List<MessageModel> messages):
@@ -56,6 +60,7 @@ class _TherapistChatViewState extends State<TherapistChatView> {
                       return MessagesList(
                         messages: messages,
                         controller: _controller,
+                        bookingModel: widget.bookingModel,
                       );
 
                     case ChatFailureState(:final String errorMsg):

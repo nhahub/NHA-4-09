@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/theming/app_colors.dart';
+
 class ChatInputField extends StatefulWidget {
   final void Function(String text) onSend;
 
@@ -46,7 +48,7 @@ class _ChatInputFieldState extends State<ChatInputField> {
             const SizedBox(width: 8),
             CircleAvatar(
               radius: 24,
-              backgroundColor: Colors.green[400],
+              backgroundColor: AppColors.brandGreen,
               child: IconButton(
                 icon: const Icon(Icons.send, color: Colors.white),
                 onPressed: _send,

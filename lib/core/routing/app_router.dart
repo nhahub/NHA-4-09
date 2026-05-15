@@ -222,13 +222,13 @@ class AppRouter {
         );
 
       case Routes.therapistChatView:
-        final String therapistId = settings.arguments as String;
+        final BookingModel bookingModel = settings.arguments as BookingModel;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) =>
                 ChatCubit(chatRepo: getIt.get<ChatRepo>())
-                  ..loadMessages(therapistId: therapistId),
-            child: const TherapistChatView(),
+                  ..loadMessages(therapistId: bookingModel.therapistId),
+            child: TherapistChatView(bookingModel: bookingModel),
           ),
         );
 
