@@ -38,7 +38,7 @@ class _TherapistChatViewState extends State<TherapistChatView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const BackButtonAppbar(title: "Chat with Therapist"),
+      appBar: BackButtonAppbar(title: widget.bookingModel.therapistName),
       body: SafeArea(
         child: Column(
           children: [
