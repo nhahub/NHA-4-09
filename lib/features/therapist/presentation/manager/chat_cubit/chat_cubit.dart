@@ -1,11 +1,8 @@
 import 'dart:async';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/helpers/logger.dart';
 import 'package:moodly/features/auth/data/repos/user_data_repo.dart';
 import 'package:uuid/uuid.dart';
-
 import '../../../../../core/functions/user_data_local.dart';
 import '../../../../../core/models/user_data_model.dart';
 import '../../../../../core/networking/api_error_handler.dart';
@@ -39,10 +36,8 @@ class ChatCubit extends Cubit<ChatState> {
       );
 
       _roomId = roomId;
-      Logger.log('Listening to messages for room: $roomId');
 
       final messages = await _chatRepo.getMessages(roomId: roomId);
-      Logger.log('Loaded ${messages.length} messages for room: $roomId');
       final UserDataModel? userData = await _userDataRepo.getUserData(
         userId: userId,
       );

@@ -3,7 +3,7 @@ import '../../../../therapist/data/models/booking_model.dart';
 
 class DummyBookedSessions {
   static List<BookingModel> dummyBookedSessions = List.generate(
-    5,
+    2,
     (index) => BookingModel(
       id: "",
       userId: "",
