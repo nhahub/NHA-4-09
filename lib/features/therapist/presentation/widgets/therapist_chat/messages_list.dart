@@ -11,6 +11,8 @@ class MessagesList extends StatelessWidget {
   final BookingModel bookingModel;
   final List<MessageModel> messages;
   final ScrollController controller;
+  final String userName;
+  final String userImage;
 
   const MessagesList({
     super.key,
@@ -18,6 +20,8 @@ class MessagesList extends StatelessWidget {
     required this.controller,
     this.isLoading = false,
     required this.bookingModel,
+    required this.userName,
+    required this.userImage,
   });
 
   @override
@@ -38,6 +42,8 @@ class MessagesList extends StatelessWidget {
             message: msg,
             isMe: msg.senderId == getUser()!.userId,
             bookingModel: bookingModel,
+            userName: userName,
+            userImage: userImage,
           );
         },
       ),

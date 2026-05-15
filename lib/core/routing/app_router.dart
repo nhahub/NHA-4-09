@@ -226,8 +226,13 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) =>
-                ChatCubit(chatRepo: getIt.get<ChatRepo>())
-                  ..loadMessages(therapistId: bookingModel.therapistId),
+                ChatCubit(
+                  chatRepo: getIt.get<ChatRepo>(),
+                  userDataRepo: getIt.get<UserDataRepo>(),
+                )..loadMessages(
+                  therapistId: bookingModel.therapistId,
+                  userId: bookingModel.userId,
+                ),
             child: TherapistChatView(bookingModel: bookingModel),
           ),
         );

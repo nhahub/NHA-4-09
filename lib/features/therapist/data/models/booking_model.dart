@@ -9,12 +9,6 @@ class BookingModel {
   @JsonKey(name: 'user_id')
   final String userId;
 
-  @JsonKey(name: 'user_name')
-  final String userName;
-
-  @JsonKey(name: 'user_image')
-  final String userImage;
-
   @JsonKey(name: 'session_type')
   final String sessionType;
 
@@ -60,8 +54,6 @@ class BookingModel {
     required this.slotId,
     required this.slotStartTime,
     required this.slotEndTime,
-    required this.userName,
-    required this.userImage,
   });
 
   factory BookingModel.fromJson(Map<String, dynamic> json) =>

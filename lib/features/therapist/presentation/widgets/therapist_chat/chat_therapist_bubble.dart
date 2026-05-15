@@ -10,28 +10,31 @@ class ChatTherapistBubble extends StatelessWidget {
   final BookingModel bookingModel;
   final MessageModel message;
   final bool isMe;
+  final String userName;
+  final String userImage;
 
   const ChatTherapistBubble({
     super.key,
     required this.message,
     required this.isMe,
     required this.bookingModel,
+    required this.userName,
+    required this.userImage,
   });
 
   @override
   Widget build(BuildContext context) {
-      final currentUserId = getUser()!.userId;
+    final currentUserId = getUser()!.userId;
 
-  final bool isCurrentUserPatient =
-      currentUserId == bookingModel.userId;
+    final bool isCurrentUserPatient = currentUserId == bookingModel.userId;
 
-  final otherUserName = isCurrentUserPatient
-      ? bookingModel.therapistName
-      : bookingModel.userName;
+    final otherUserName = isCurrentUserPatient
+        ? bookingModel.therapistName
+        : userName;
 
-  final otherUserImage = isCurrentUserPatient
-      ? bookingModel.therapistImage
-      : bookingModel.userImage;
+    final otherUserImage = isCurrentUserPatient
+        ? bookingModel.therapistImage
+        : userImage;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -43,10 +46,10 @@ class ChatTherapistBubble extends StatelessWidget {
         children: [
           if (!isMe)
             UserAvatar(
-            name: otherUserName,
-            radius: 18,
-            fontSize: 16,
-            imageUrl: otherUserImage,
+              name: otherUserName,
+              radius: 18,
+              fontSize: 16,
+              imageUrl: otherUserImage,
             ),
           Flexible(
             child: Container(

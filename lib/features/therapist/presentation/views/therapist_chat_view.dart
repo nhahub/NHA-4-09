@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/functions/user_data_local.dart';
 import '../../../../core/widgets/custom_error_widget.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../../data/models/booking_model.dart';
 import '../../data/models/dummy/dummy_messages.dart';
-import '../../data/models/message_model.dart';
 import '../manager/chat_cubit/chat_cubit.dart';
 import '../widgets/therapist_chat/chat_input_field.dart';
 import '../widgets/therapist_chat/messages_list.dart';
@@ -46,26 +44,30 @@ class _TherapistChatViewState extends State<TherapistChatView> {
             Expanded(
               child: BlocBuilder<ChatCubit, ChatState>(
                 builder: (context, state) {
-                  switch (state) {
-                    case ChatLoadingState():
+                  switch (state.status) {
+                    case ChatStatus.loading:
                       return MessagesList(
                         messages: DummyMessages.dummyMessages,
                         controller: _controller,
                         isLoading: true,
                         bookingModel: widget.bookingModel,
+                        userName: '',
+                        userImage: '',
                       );
 
-                    case ChatLoadedState(:final List<MessageModel> messages):
+                    case ChatStatus.success:
                       _scrollToBottom();
 
                       return MessagesList(
-                        messages: messages,
+                        messages: state.messages!,
                         controller: _controller,
                         bookingModel: widget.bookingModel,
+                        userName: state.userName!,
+                        userImage: state.userImage!,
                       );
 
-                    case ChatFailureState(:final String errorMsg):
-                      return CustomErrorWidget(message: errorMsg);
+                    case ChatStatus.failure:
+                      return CustomErrorWidget(message: state.errorMsg!);
 
                     default:
                       return const SizedBox.shrink();

@@ -19,9 +19,14 @@ class AuthRepo {
     required String email,
     required String password,
   }) async {
-    await _supabaseAuthService.loginWithEmail(email: email, password: password);
+    final AuthResponse authResponse = await _supabaseAuthService.loginWithEmail(
+      email: email,
+      password: password,
+    );
 
-    final UserDataModel? userData = await _userDataRepo.getUserData();
+    final UserDataModel? userData = await _userDataRepo.getUserData(
+      userId: authResponse.user!.id,
+    );
     await saveUserDataLocal(userDataModel: userData!);
 
     return userData;
@@ -38,7 +43,7 @@ class AuthRepo {
     final bool isExists = await _userDataRepo.isUserExists();
 
     final UserDataModel? userData = isExists
-        ? await _userDataRepo.getUserData()
+        ? await _userDataRepo.getUserData(userId: authResponse.user!.id)
         : await _createGoogleUser(authResponse);
 
     await saveUserDataLocal(userDataModel: userData!);

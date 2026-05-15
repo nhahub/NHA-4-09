@@ -15,8 +15,6 @@ class BookingRepo {
     required BookingSlot slot,
     required String sessionType,
     required double price,
-    required String userName,
-    required String userImage,
   }) async {
     const uuid = Uuid();
     await _bookingService.bookingSession(
@@ -29,8 +27,6 @@ class BookingRepo {
         createdAt: DateTime.now(),
         therapistId: therapist.id,
         therapistName: therapist.name,
-        userName: userName,
-        userImage: userImage,
         therapistSpeciality: therapist.speciality,
         therapistImage: therapist.image,
         slotId: slot.id,
