@@ -31,7 +31,7 @@ class BookingService {
     final List<Map<String, dynamic>> data = await _supabaseCRUDService.getData(
       table: kBookingsTable,
       orderBy: 'created_at',
-      filters: {"user_id": currentUserId},
+      orFilters: 'user_id.eq.$currentUserId,therapist_id.eq.$currentUserId',
     );
 
     return data.map((item) => BookingModel.fromJson(item)).toList();

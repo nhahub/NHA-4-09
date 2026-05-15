@@ -5,24 +5,28 @@ import '../../../../../core/networking/api_error_handler.dart';
 import '../../../../therapist/data/models/booking_model.dart';
 import '../../../../therapist/data/repos/booking_repo.dart';
 
-part 'get_booking_sessions_state.dart';
+part 'booking_sessions_state.dart';
 
-class GetBookingSessionsCubit extends Cubit<GetBookingSessionsState> {
+class BookingSessionsCubit extends Cubit<BookingSessionsState> {
   final BookingRepo _bookingRepo;
-  GetBookingSessionsCubit({required BookingRepo bookingRepo})
+  BookingSessionsCubit({required BookingRepo bookingRepo})
     : _bookingRepo = bookingRepo,
-      super(GetBookingSessionsInitialState());
+      super(const BookingSessionsState(status: BookingSessionsStatus.loading));
 
   Future<void> getBookingSessions() async {
-    emit(GetBookingSessionsLoadingState());
-    
     try {
       final List<BookingModel> bookings = await _bookingRepo
           .getBookingSessions();
-      emit(GetBookingSessionsSuccessState(bookings: bookings));
+      emit(
+        state.copyWith(
+          status: BookingSessionsStatus.success,
+          bookings: bookings,
+        ),
+      );
     } catch (e) {
       emit(
-        GetBookingSessionsFailureState(
+        state.copyWith(
+          status: BookingSessionsStatus.failure,
           errorMessage: ApiErrorHandler.handle(error: e).message,
         ),
       );
@@ -33,14 +37,24 @@ class GetBookingSessionsCubit extends Cubit<GetBookingSessionsState> {
     required String bookingId,
     required String slotId,
   }) async {
-    emit(CancelBookingSessionsLoadingState());
+    emit(state.copyWith(status: BookingSessionsStatus.loading));
     try {
       await _bookingRepo.cancelSession(bookingId: bookingId, slotId: slotId);
-      await getBookingSessions();
-      emit(CancelBookingSessionsSuccessState());
+
+      final updatedSessions = state.bookings!
+          .where((session) => session.id != bookingId)
+          .toList();
+
+      emit(
+        state.copyWith(
+          status: BookingSessionsStatus.success,
+          bookings: updatedSessions,
+        ),
+      );
     } catch (e) {
       emit(
-        CancelBookingSessionsFailureState(
+        state.copyWith(
+          status: BookingSessionsStatus.failure,
           errorMessage: ApiErrorHandler.handle(error: e).message,
         ),
       );

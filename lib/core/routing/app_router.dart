@@ -20,7 +20,7 @@ import '../../features/community/presentation/manager/create_post_cubit/create_p
 import '../../features/community/presentation/views/add_community_post_view.dart';
 import '../../features/home/presentation/manager/activities_cubit/activities_cubit.dart';
 import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
-import '../../features/home/presentation/manager/get_booking_sessions_cubit/get_booking_sessions_cubit.dart';
+import '../../features/home/presentation/manager/booking_sessions_cubit/booking_sessions_cubit.dart';
 import '../../features/home/presentation/views/activities_view.dart';
 import '../../features/home/presentation/views/all_booking_sessions_view.dart';
 import '../../features/home/presentation/views/water_tracking_view.dart';
@@ -226,8 +226,13 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) =>
-                ChatCubit(chatRepo: getIt.get<ChatRepo>())
-                  ..loadMessages(therapistId: bookingModel.therapistId),
+                ChatCubit(
+                  chatRepo: getIt.get<ChatRepo>(),
+                  userDataRepo: getIt.get<UserDataRepo>(),
+                )..loadMessages(
+                  therapistId: bookingModel.therapistId,
+                  userId: bookingModel.userId,
+                ),
             child: TherapistChatView(bookingModel: bookingModel),
           ),
         );
@@ -359,7 +364,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) =>
-                GetBookingSessionsCubit(bookingRepo: getIt.get<BookingRepo>())
+                BookingSessionsCubit(bookingRepo: getIt.get<BookingRepo>())
                   ..getBookingSessions(),
             child: const AllBookingSessionsView(),
           ),

@@ -1,4 +1,3 @@
-import '../../../../core/functions/user_data_local.dart';
 import '../models/message_model.dart';
 import '../services/chat_service.dart';
 
@@ -7,9 +6,12 @@ class ChatRepo {
 
   ChatRepo({required ChatService chatService}) : _chatService = chatService;
 
-  Future<String> getOrCreateRoom({required String therapistId}) async {
+  Future<String> getOrCreateRoom({
+    required String therapistId,
+    required String userId,
+  }) async {
     final String roomId = await _chatService.getOrCreateRoom(
-      userId: getUser()!.userId,
+      userId: userId,
       therapistId: therapistId,
     );
     return roomId;

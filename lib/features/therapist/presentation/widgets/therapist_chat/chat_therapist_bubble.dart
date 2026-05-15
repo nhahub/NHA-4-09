@@ -6,20 +6,36 @@ import '../../../../../core/theming/app_styles.dart';
 import '../../../data/models/booking_model.dart';
 import '../../../data/models/message_model.dart';
 
-class ChatBubble extends StatelessWidget {
+class ChatTherapistBubble extends StatelessWidget {
   final BookingModel bookingModel;
   final MessageModel message;
   final bool isMe;
+  final String userName;
+  final String userImage;
 
-  const ChatBubble({
+  const ChatTherapistBubble({
     super.key,
     required this.message,
     required this.isMe,
     required this.bookingModel,
+    required this.userName,
+    required this.userImage,
   });
 
   @override
   Widget build(BuildContext context) {
+    final currentUserId = getUser()!.userId;
+
+    final bool isCurrentUserPatient = currentUserId == bookingModel.userId;
+
+    final otherUserName = isCurrentUserPatient
+        ? bookingModel.therapistName
+        : userName;
+
+    final otherUserImage = isCurrentUserPatient
+        ? bookingModel.therapistImage
+        : userImage;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
@@ -30,10 +46,10 @@ class ChatBubble extends StatelessWidget {
         children: [
           if (!isMe)
             UserAvatar(
-              name: (bookingModel.therapistName),
+              name: otherUserName,
               radius: 18,
               fontSize: 16,
-              imageUrl: bookingModel.therapistImage,
+              imageUrl: otherUserImage,
             ),
           Flexible(
             child: Container(

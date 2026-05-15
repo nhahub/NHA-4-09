@@ -39,12 +39,9 @@ class UserDataService {
     );
   }
 
-  Future<UserDataModel?> getUserData() async {
+  Future<UserDataModel?> getUserData({required String userId}) async {
     final Map<String, dynamic>? userData = await _supabaseCRUDService
-        .getSingleRow(
-          table: kUserDataTable,
-          filters: {"id": _supabaseCRUDService.getCurrentUserId()},
-        );
+        .getSingleRow(table: kUserDataTable, filters: {"id": userId});
 
     return UserDataModel?.fromJson(userData!);
   }

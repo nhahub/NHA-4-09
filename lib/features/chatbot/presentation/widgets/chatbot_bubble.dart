@@ -6,10 +6,10 @@ import '../../data/models/chat_message_model.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../../../core/theming/app_colors.dart';
 
-class ChatbotMessageBubble extends StatelessWidget {
+class ChatbotBubble extends StatelessWidget {
   final ChatMessageModel message;
 
-  const ChatbotMessageBubble({super.key, required this.message});
+  const ChatbotBubble({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
