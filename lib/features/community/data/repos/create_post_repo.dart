@@ -27,6 +27,8 @@ class CreatePostRepo {
       'id': post.id,
       'user_id': post.userId,
       'content': post.content.trim(),
+      'user_name': post.userName,
+      'user_image': post.userImage,
     });
 
     if (post.imageUrls.isNotEmpty) {

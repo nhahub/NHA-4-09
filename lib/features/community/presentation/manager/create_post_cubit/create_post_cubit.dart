@@ -6,7 +6,6 @@ import 'package:image_picker/image_picker.dart';
 import '../../../../../core/functions/user_data_local.dart';
 import '../../../../../core/networking/api_error_handler.dart';
 import 'package:uuid/uuid.dart';
-import '../../../../../core/helpers/logger.dart';
 import '../../../data/models/post_model.dart';
 import '../../../data/repos/create_post_repo.dart';
 part 'create_post_state.dart';
@@ -101,7 +100,6 @@ class CreatePostCubit extends Cubit<CreatePostState> {
       emit(state.copyWith(status: CreatePostStatus.success));
       return post;
     } catch (e) {
-      Logger.log(e.toString());
       emit(
         state.copyWith(
           status: CreatePostStatus.failure,
