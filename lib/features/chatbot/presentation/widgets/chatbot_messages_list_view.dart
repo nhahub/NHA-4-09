@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../data/models/chat_message_model.dart';
-import 'chatbot_message_bubble.dart';
+import 'chatbot_bubble.dart';
 import '../manager/chatbot_cubit/chatbot_cubit.dart';
 import 'chat_typing_indicator.dart';
 
@@ -35,7 +35,7 @@ class ChatbotMessagesListView extends StatelessWidget {
           return const SizedBox.shrink();
         }
 
-        return ChatbotMessageBubble(message: messages[messageIndex]);
+        return ChatbotBubble(message: messages[messageIndex]);
       },
     );
   }

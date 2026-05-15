@@ -4,7 +4,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/functions/user_data_local.dart';
 import '../../../data/models/booking_model.dart';
 import '../../../data/models/message_model.dart';
-import 'chat_bubble.dart';
+import 'chat_therapist_bubble.dart';
 
 class MessagesList extends StatelessWidget {
   final bool isLoading;
@@ -16,7 +16,8 @@ class MessagesList extends StatelessWidget {
     super.key,
     required this.messages,
     required this.controller,
-    this.isLoading = false, required this.bookingModel,
+    this.isLoading = false,
+    required this.bookingModel,
   });
 
   @override
@@ -33,9 +34,10 @@ class MessagesList extends StatelessWidget {
         },
         itemBuilder: (context, index) {
           final msg = messages[messages.length - 1 - index];
-          return ChatBubble(
+          return ChatTherapistBubble(
             message: msg,
-            isMe: msg.senderId == getUser()!.userId, bookingModel: bookingModel,
+            isMe: msg.senderId == getUser()!.userId,
+            bookingModel: bookingModel,
           );
         },
       ),
