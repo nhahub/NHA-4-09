@@ -1,6 +1,4 @@
 import 'package:equatable/equatable.dart';
-
-import '../../../data/models/card_model.dart';
 import '../../../data/models/paybal/payment_transaction_model.dart';
 
 abstract class PaymentState extends Equatable {
@@ -15,19 +13,16 @@ class PaymentInitialState extends PaymentState {}
 class PaymentLoadingState extends PaymentState {}
 
 class PaymentUpdatedState extends PaymentState {
-  final List<CardModel> savedCards;
   final int selectedMethodIndex;
   final int selectedSavedCardIndex;
 
   const PaymentUpdatedState({
-    required this.savedCards,
     required this.selectedMethodIndex,
     required this.selectedSavedCardIndex,
   });
 
   @override
   List<Object?> get props => [
-    savedCards,
     selectedMethodIndex,
     selectedSavedCardIndex,
   ];

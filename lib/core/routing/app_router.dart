@@ -52,7 +52,6 @@ import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../../features/payment/data/repos/subscription_repo.dart';
 import '../../features/payment/domain/repos/payment_repo.dart';
 import '../../features/payment/presentation/manager/payment_cubit/payment_cubit.dart';
-import '../../features/payment/presentation/views/add_card_view.dart';
 import '../../features/payment/presentation/views/premium_view.dart';
 import '../../features/payment/presentation/views/subscribe_view.dart';
 import '../../features/settings/data/repos/privacy_policy_repo.dart';
@@ -210,9 +209,6 @@ class AppRouter {
           ),
         );
 
-      case Routes.addCardView:
-        return MaterialPageRoute(builder: (context) => const AddCardView());
-
       case Routes.audioView:
         final AudioModel audioModel = settings.arguments as AudioModel;
         return MaterialPageRoute(
@@ -226,13 +222,13 @@ class AppRouter {
         );
 
       case Routes.therapistChatView:
-        final String therapistId = settings.arguments as String;
+        final BookingModel bookingModel = settings.arguments as BookingModel;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) =>
                 ChatCubit(chatRepo: getIt.get<ChatRepo>())
-                  ..loadMessages(therapistId: therapistId),
-            child: const TherapistChatView(),
+                  ..loadMessages(therapistId: bookingModel.therapistId),
+            child: TherapistChatView(bookingModel: bookingModel),
           ),
         );
 
@@ -340,7 +336,7 @@ class AppRouter {
               sessionType: sessionType,
               slot: slot,
               therapist: therapist,
-            )..loadSavedCards(),
+            ),
             child: const SubscribeView(),
           ),
         );

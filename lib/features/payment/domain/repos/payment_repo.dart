@@ -18,7 +18,6 @@ abstract class PaymentRepo {
 
   Future<List<CardModel>> getSavedCards();
 
-  Future<void> saveCards(List<CardModel> cards);
 
   Future<PaymentPaymobResponse> payWithPaymob({
     required BuildContext context,

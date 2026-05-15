@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/functions/user_data_local.dart';
+import '../../../data/models/booking_model.dart';
 import '../../../data/models/message_model.dart';
 import 'chat_bubble.dart';
 
 class MessagesList extends StatelessWidget {
   final bool isLoading;
+  final BookingModel bookingModel;
   final List<MessageModel> messages;
   final ScrollController controller;
 
@@ -14,7 +16,7 @@ class MessagesList extends StatelessWidget {
     super.key,
     required this.messages,
     required this.controller,
-    this.isLoading = false,
+    this.isLoading = false, required this.bookingModel,
   });
 
   @override
@@ -33,7 +35,7 @@ class MessagesList extends StatelessWidget {
           final msg = messages[messages.length - 1 - index];
           return ChatBubble(
             message: msg,
-            isMe: msg.senderId == getUser()!.userId,
+            isMe: msg.senderId == getUser()!.userId, bookingModel: bookingModel,
           );
         },
       ),
