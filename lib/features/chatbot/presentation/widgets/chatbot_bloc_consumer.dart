@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'chatbot_input_field.dart';
-
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/widgets/custom_circular_progress_indicator.dart';
 import '../../../../core/widgets/custom_error_widget.dart';
