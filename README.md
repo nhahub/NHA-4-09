@@ -304,7 +304,7 @@ lib/features
 # 📩 Contact  
 
 ## 👨‍💻 Developer
-Karem Motaz  
+Karim Motaz  
 
 📧 Email: karemmotaz2929@gmail.com  
 
