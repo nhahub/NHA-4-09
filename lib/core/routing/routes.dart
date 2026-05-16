@@ -22,7 +22,7 @@ class Routes {
   static const String audioView = '/audioView';
   static const String therapistDetailsView = '/therapistDetailsView';
   static const String therapistChatView = '/therapistChatView';
-  static const String therapistLiveView = '/liveView';
+  static const String therapistVideoCallView = '/liveView';
   static const String therapistReviewsView = '/therapistReviewsView';
   static const String therapistRatingAddView = '/therapistRatingAddView';
   static const String therapistRatingUpdateView = '/therapistRatingUpdateView';
@@ -38,5 +38,4 @@ class Routes {
   static const String aboutView = '/aboutView';
   static const String articlesView = '/articlesView';
   static const String chatSessionsView = '/chat-sessions';
-
 }

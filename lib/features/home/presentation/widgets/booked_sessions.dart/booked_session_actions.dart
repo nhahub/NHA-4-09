@@ -15,7 +15,7 @@ class BookedSessionActions {
         break;
 
       case "call":
-        context.push(Routes.therapistLiveView, args: bookingModel.id);
+        context.push(Routes.therapistVideoCallView, args: bookingModel.id);
         break;
 
       default:

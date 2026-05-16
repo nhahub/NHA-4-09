@@ -3,9 +3,9 @@ import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 
 import '../../data/services/zego_call_service.dart';
 
-class TherapistLiveView extends StatelessWidget {
+class TherapistVideoCallView extends StatelessWidget {
   final String callID;
-  const TherapistLiveView({super.key, required this.callID});
+  const TherapistVideoCallView({super.key, required this.callID});
 
   @override
   Widget build(BuildContext context) {

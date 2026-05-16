@@ -80,7 +80,7 @@ import '../../features/therapist/presentation/views/all_therapists_view.dart';
 import '../../features/therapist/presentation/views/booking_session_view.dart';
 import '../../features/therapist/presentation/views/therapist_chat_view.dart';
 import '../../features/therapist/presentation/views/therapist_details_view.dart';
-import '../../features/therapist/presentation/views/therapist_live_view.dart';
+import '../../features/therapist/presentation/views/therapist_video_call_view.dart';
 import '../../features/therapist/presentation/views/therapist_review_add_view.dart';
 import '../../features/therapist/presentation/views/therapist_review_update_view.dart';
 import '../../features/therapist/presentation/views/therapist_reviews_view.dart';
@@ -237,10 +237,10 @@ class AppRouter {
           ),
         );
 
-      case Routes.therapistLiveView:
+      case Routes.therapistVideoCallView:
         final String callID = settings.arguments as String;
         return MaterialPageRoute(
-          builder: (context) => TherapistLiveView(callID: callID),
+          builder: (context) => TherapistVideoCallView(callID: callID),
         );
 
       case Routes.therapistDetailsView:
