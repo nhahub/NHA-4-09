@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../core/widgets/user_avatar.dart';
 import '../../../data/models/post_model.dart';
 import 'post_actions.dart';
@@ -34,7 +33,7 @@ class PostCard extends StatelessWidget {
         ),
         const SizedBox(width: 16),
         Expanded(
-          child: Column(
+          child: Column( 
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               PostHeader(postModel: postModel),

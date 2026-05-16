@@ -8,7 +8,6 @@ import '../../../../core/services/get_it_service.dart';
 import '../../data/models/post_model.dart';
 import '../../data/repos/create_post_repo.dart';
 
-/// Share / copy-link helpers for community posts (keeps UI widgets thin).
 class CommunityShareHelper {
   CommunityShareHelper._();
 
@@ -20,7 +19,10 @@ class CommunityShareHelper {
     return 'moodly://community/post/$postId';
   }
 
-  static Future<void> showShareSheet(BuildContext context, PostModel post) async {
+  static Future<void> showShareSheet(
+    BuildContext context,
+    PostModel post,
+  ) async {
     await showModalBottomSheet<void>(
       context: context,
       builder: (ctx) => SafeArea(
@@ -41,8 +43,7 @@ class CommunityShareHelper {
               title: const Text('WhatsApp'),
               onTap: () async {
                 Navigator.pop(ctx);
-                final text =
-                    '${post.content.trim()}\n${postDeepLink(post.id)}';
+                final text = '${post.content.trim()}\n${postDeepLink(post.id)}';
                 final url = Uri.parse(
                   'https://wa.me/?text=${Uri.encodeComponent(text)}',
                 );
@@ -59,8 +60,7 @@ class CommunityShareHelper {
                 Navigator.pop(ctx);
                 await SharePlus.instance.share(
                   ShareParams(
-                    text:
-                        '${post.content.trim()}\n${postDeepLink(post.id)}',
+                    text: '${post.content.trim()}\n${postDeepLink(post.id)}',
                   ),
                 );
                 await getIt<CreatePostRepo>().recordShare(post.id);
@@ -76,7 +76,10 @@ class CommunityShareHelper {
     await Clipboard.setData(ClipboardData(text: postDeepLink(postId)));
   }
 
-  static Future<void> copyPostLinkAndTrack(BuildContext context, PostModel post) async {
+  static Future<void> copyPostLinkAndTrack(
+    BuildContext context,
+    PostModel post,
+  ) async {
     await copyPostLink(post.id);
     await getIt<CreatePostRepo>().recordShare(post.id);
   }
