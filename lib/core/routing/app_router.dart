@@ -227,20 +227,28 @@ class AppRouter {
           builder: (context) => BlocProvider(
             create: (context) =>
                 ChatCubit(
-                  chatRepo: getIt.get<ChatRepo>(),
-                  userDataRepo: getIt.get<UserDataRepo>(),
-                )..loadMessages(
-                  therapistId: bookingModel.therapistId,
-                  userId: bookingModel.userId,
-                ),
+                    chatRepo: getIt.get<ChatRepo>(),
+                    userDataRepo: getIt.get<UserDataRepo>(),
+                  )
+                  ..loadMessages(
+                    therapistId: bookingModel.therapistId,
+                    userId: bookingModel.userId,
+                  )
+                  ..scheduleSessionEnd(bookingModel),
             child: TherapistChatView(bookingModel: bookingModel),
           ),
         );
 
       case Routes.therapistVideoCallView:
-        final String callID = settings.arguments as String;
+        final BookingModel bookingModel = settings.arguments as BookingModel;
         return MaterialPageRoute(
-          builder: (context) => TherapistVideoCallView(callID: callID),
+          builder: (context) => BlocProvider(
+            create: (context) => ChatCubit(
+              chatRepo: getIt.get<ChatRepo>(),
+              userDataRepo: getIt.get<UserDataRepo>(),
+            )..scheduleSessionEnd(bookingModel),
+            child: TherapistVideoCallView(callID: bookingModel.id),
+          ),
         );
 
       case Routes.therapistDetailsView:

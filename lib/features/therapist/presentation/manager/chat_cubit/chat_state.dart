@@ -12,12 +12,14 @@ extension ChatStatusX on ChatStatus {
 class ChatState extends Equatable {
   final ChatStatus status;
   final List<MessageModel>? messages;
+  final bool isSessionEnded;
   final String? userName;
   final String? userImage;
   final String? errorMsg;
 
   const ChatState({
     this.status = ChatStatus.initial,
+    this.isSessionEnded = false,
     this.messages = const [],
     this.userName = '',
     this.userImage = '',
@@ -31,6 +33,7 @@ class ChatState extends Equatable {
     userName ?? '',
     userImage ?? '',
     errorMsg ?? '',
+    isSessionEnded,
   ];
 
   ChatState copyWith({
@@ -39,6 +42,7 @@ class ChatState extends Equatable {
     String? userName,
     String? userImage,
     String? errorMsg,
+    bool? isSessionEnded,
   }) {
     return ChatState(
       status: status ?? this.status,
@@ -46,6 +50,7 @@ class ChatState extends Equatable {
       userName: userName ?? this.userName,
       userImage: userImage ?? this.userImage,
       errorMsg: errorMsg ?? this.errorMsg,
+      isSessionEnded: isSessionEnded ?? this.isSessionEnded,
     );
   }
 }

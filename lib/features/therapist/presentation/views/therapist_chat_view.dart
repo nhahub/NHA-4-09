@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/functions/error_dialog.dart';
+import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/functions/user_data_local.dart';
+import '../../../../core/routing/routes.dart';
 import '../../../../core/widgets/custom_error_widget.dart';
 import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../../data/models/booking_model.dart';
@@ -42,7 +45,20 @@ class _TherapistChatViewState extends State<TherapistChatView> {
         child: Column(
           children: [
             Expanded(
-              child: BlocBuilder<ChatCubit, ChatState>(
+              child: BlocConsumer<ChatCubit, ChatState>(
+                listenWhen: (prev, curr) =>
+                    prev.isSessionEnded != curr.isSessionEnded,
+                listener: (context, state) {
+                  if (state.isSessionEnded) {
+                    errorDialog(
+                      context: context,
+                      message: "Session has ended",
+                      onPressed: () {
+                        context.pushAndRemoveUntil(Routes.mainView);
+                      },
+                    );
+                  }
+                },
                 builder: (context, state) {
                   switch (state.status) {
                     case ChatStatus.loading:

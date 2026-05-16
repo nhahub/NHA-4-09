@@ -6,6 +6,7 @@ import 'package:uuid/uuid.dart';
 import '../../../../../core/functions/user_data_local.dart';
 import '../../../../../core/models/user_data_model.dart';
 import '../../../../../core/networking/api_error_handler.dart';
+import '../../../data/models/booking_model.dart';
 import '../../../data/models/message_model.dart';
 import '../../../data/repos/chat_repo.dart';
 
@@ -115,6 +116,23 @@ class ChatCubit extends Cubit<ChatState> {
       );
     }
   }
+
+void scheduleSessionEnd(BookingModel bookingModel) {
+  final end = bookingModel.slotEndTime;
+  if (end == null) return;
+
+  final duration = end.difference(DateTime.now());
+
+  if (duration.isNegative) {
+    emit(state.copyWith(isSessionEnded: true));
+    return;
+  }
+
+  Future.delayed(duration, () {
+    emit(state.copyWith(isSessionEnded: true));
+  });
+}
+
 
   @override
   Future<void> close() {
