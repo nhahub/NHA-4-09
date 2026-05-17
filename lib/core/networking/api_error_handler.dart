@@ -16,7 +16,7 @@ class ApiErrorHandler {
       return DioErrorHandler.handle(error);
     } else if (error is SocketException ||
         error is AuthRetryableFetchException) {
-      return NetworkError(error).handle();
+      return NetworkError().handle();
     } else if (error is AuthApiException || error is AuthException) {
       return AuthError(error).handle();
     } else if (error is PostgrestException) {

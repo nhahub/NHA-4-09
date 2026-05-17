@@ -22,20 +22,3 @@ class MoodlyApp extends StatelessWidget {
     );
   }
 }
-/*class MoodlyApp extends StatelessWidget {
-  const MoodlyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      navigatorKey: navigatorKey,
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeManager.getAppTheme(),
-      onGenerateRoute: AppRouter.generateRoute,
-      initialRoute: Routes.chatbotView,
-    );
-  }
-}*/
-

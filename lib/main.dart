@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:moodly/core/manager/network_cubit/network_cubit.dart';
+import 'package:moodly/core/networking/network_info.dart';
 
 import 'core/config/hive_config.dart';
 // import 'core/helpers/app_bloc_observer.dart';
@@ -25,13 +28,15 @@ void main() async {
   // Bloc.observer = AppBlocObserver();
 
   runApp(
-    const MoodlyApp(),
+    BlocProvider(
+      create: (context) =>
+          NetworkCubit(networkMonitor: NetworkMonitor())..init(),
+      child: const MoodlyApp(),
+    ),
     // DevicePreview(
     //   enabled: true,
     //   devices: Devices.all,
     //   builder: (_) => const MoodlyApp(),
     // ),
   );
-
-  
 }
