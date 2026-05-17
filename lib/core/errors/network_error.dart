@@ -13,9 +13,7 @@ class NetworkError {
     if (error is SocketException ||
         (error is AuthRetryableFetchException &&
             error.toString().toLowerCase().contains('network'))) {
-      return ApiErrorModel(
-        message: 'Please check your internet connection and try again.',
-      );
+      return ApiErrorModel(message: 'Please check your internet connection.');
     }
     return ApiErrorModel(message: error.toString());
   }

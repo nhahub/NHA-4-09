@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/core/widgets/custom_error_widget.dart';
 
 import '../../../../../mood/data/models/mood_chart.dart';
 import '../../../../../mood/presentation/manager/mood_progress_cubit/mood_progress_cubit.dart';
@@ -27,6 +28,10 @@ class MoodGraphBuilder extends StatelessWidget {
           case MoodPeriod.year:
             moodData = state.yearMood ?? [];
             break;
+        }
+
+        if (state.status.isFailure) {
+          return CustomErrorWidget(message: state.failureMessage!);
         }
 
         return MoodGraphContent(
