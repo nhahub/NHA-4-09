@@ -53,7 +53,7 @@ class _CategoriesSectionState<T> extends State<CategoriesSection<T>> {
                   );
 
             if (index != 0 && index != widget.categories.length - 1) {
-              return Row(children: [const SizedBox(width: 5.34), button]);
+              return Row(children: [const SizedBox(width: 8), button]);
             }
             if (index == 0) {
               return Row(
@@ -65,8 +65,9 @@ class _CategoriesSectionState<T> extends State<CategoriesSection<T>> {
             }
             if (index == widget.categories.length - 1) {
               return Row(
+                
                 children: [
-                  const SizedBox(width: 5.34),
+                  const SizedBox(width: 8),
                   button,
                   const SizedBox(width: kAppHorizontalPadding),
                 ],

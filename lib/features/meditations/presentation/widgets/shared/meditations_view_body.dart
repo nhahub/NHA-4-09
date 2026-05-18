@@ -18,7 +18,6 @@ class MeditationsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        space(height: 80),
         const PodcastSection().toSliver(),
         space(),
         isPremium

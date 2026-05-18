@@ -158,12 +158,14 @@ class AppRouter {
         );
 
       case Routes.mainView:
-        return MaterialPageRoute(builder: (context) => const MainView());
+        return MaterialPageRoute(
+          builder: (context) => const MainView(),
+        );
 
       case Routes.waterTrackingView:
         final cubit = settings.arguments as WaterTrackingCubit;
         return MaterialPageRoute(
-          builder: (_) => BlocProvider.value(
+          builder: (context) => BlocProvider.value(
             value: cubit,
             child: const WaterTrackingView(),
           ),

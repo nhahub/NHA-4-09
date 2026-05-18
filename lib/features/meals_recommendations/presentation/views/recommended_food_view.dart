@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/enums/fade_position.dart';
 import '../../../../core/widgets/custom_error_widget.dart';
 import '../../../../core/widgets/fade_scrollable.dart';
@@ -30,7 +29,6 @@ class _RecommendedFoodViewState extends State<RecommendedFoodView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
       appBar: const BackButtonAppbar(title: "Recommended Food"),
       body: FadeScrollable(
         fadePosition: FadePosition.bottom,
@@ -57,7 +55,7 @@ class _RecommendedFoodViewState extends State<RecommendedFoodView> {
                   });
                 },
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               BlocBuilder<RecommendedFoodCubit, RecommendedFoodState>(
                 builder: (context, state) {
                   switch (state) {

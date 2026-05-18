@@ -10,66 +10,55 @@ class NetworkBannerWrapper extends StatelessWidget {
   const NetworkBannerWrapper({super.key, required this.child});
 
   void _showBanner({required BuildContext context, required bool isConnected}) {
-    final messenger = ScaffoldMessenger.of(context);
+    final messenger = ScaffoldMessenger.maybeOf(context);
+
+    if (messenger == null) return;
 
     messenger.hideCurrentMaterialBanner();
-    if (isConnected) {
-      messenger.showMaterialBanner(
-        MaterialBanner(
-          backgroundColor: AppColors.brandGreen,
-          content: Text(
-            'Internet connection restored',
-            style: AppStyles.bold15.copyWith(color: Colors.white),
-          ),
-          minActionBarHeight: 40.0,
-          actions: const [SizedBox.shrink()],
-        ),
-      );
 
+    messenger.showMaterialBanner(
+      MaterialBanner(
+        backgroundColor: isConnected
+            ? AppColors.brandGreen
+            : AppColors.bodyGray,
+        minActionBarHeight: 38,
+        elevation: 0,
+        forceActionsBelow: false,
+        content: Text(
+          isConnected
+              ? 'Internet connection restored'
+              : 'No internet connection',
+          style: AppStyles.bold15.copyWith(color: Colors.white),
+        ),
+        dividerColor: Colors.transparent,
+        actions: const [SizedBox.shrink()],
+      ),
+    );
+
+    if (isConnected) {
       Future.delayed(const Duration(seconds: 2), () {
         messenger.hideCurrentMaterialBanner();
       });
-    } else {
-      messenger.showMaterialBanner(
-        MaterialBanner(
-          backgroundColor: AppColors.bodyGray,
-          content: Text(
-            'No internet connection',
-            style: AppStyles.bold15.copyWith(color: Colors.white),
-          ),
-          minActionBarHeight: 40.0,
-          actions: const [SizedBox.shrink()],
-        ),
-      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldMessenger(
-      child: Builder(
-        builder: (innerContext) {
-          return BlocListener<NetworkCubit, NetworkState>(
-            listener: (context, state) {
-              switch (state.status) {
-                case NetworkStatus.connected:
-                  _showBanner(context: innerContext, isConnected: true);
-                  break;
-                case NetworkStatus.reconnected:
-                  _showBanner(context: innerContext, isConnected: true);
-                  break;
-                case NetworkStatus.disconnected:
-                  _showBanner(context: innerContext, isConnected: false);
-                  break;
-                case NetworkStatus.unknown:
-                  null;
-                  break;
-              }
-            },
-            child: child,
-          );
-        },
-      ),
+    return BlocListener<NetworkCubit, NetworkState>(
+      listener: (context, state) {
+        switch (state.status) {
+          case NetworkStatus.connected:
+          case NetworkStatus.reconnected:
+            _showBanner(context: context, isConnected: true);
+            break;
+          case NetworkStatus.disconnected:
+            _showBanner(context: context, isConnected: false);
+            break;
+          case NetworkStatus.unknown:
+            break;
+        }
+      },
+      child: child,
     );
   }
 }

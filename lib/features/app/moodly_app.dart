@@ -5,6 +5,7 @@ import '../../core/routing/app_router.dart';
 import '../../core/routing/navigation_service.dart';
 import '../../core/routing/routes.dart';
 import '../../core/theming/theme_manager.dart';
+import '../../core/widgets/network_banner_wrapper.dart';
 
 class MoodlyApp extends StatelessWidget {
   const MoodlyApp({super.key});
@@ -14,7 +15,12 @@ class MoodlyApp extends StatelessWidget {
     return MaterialApp(
       navigatorKey: navigatorKey,
       locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
+      builder: (context, child) {
+        return DevicePreview.appBuilder(
+          context,
+          NetworkBannerWrapper(child: child!),
+        );
+      },
       debugShowCheckedModeBanner: false,
       theme: ThemeManager.getAppTheme(),
       onGenerateRoute: AppRouter.generateRoute,
