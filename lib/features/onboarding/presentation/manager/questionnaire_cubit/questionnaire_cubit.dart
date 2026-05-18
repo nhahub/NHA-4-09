@@ -59,4 +59,19 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
       );
     }
   }
+
+  Future<void> getQuestionnaireAnswers() async {
+    emit(QuestionnaireLoadingState());
+    try {
+      final QuestionnaireAnswersModel result = await _questionnaireRepo
+          .getQuestionnaireAnswers();
+      emit(QuestionnaireLoadedState(remoteAnswers: result));
+    } catch (e) {
+      emit(
+        QuestionnaireFailureState(
+          message: ApiErrorHandler.handle(error: e).message,
+        ),
+      );
+    }
+  }
 }

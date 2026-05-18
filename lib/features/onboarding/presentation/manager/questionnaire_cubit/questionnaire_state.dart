@@ -19,7 +19,10 @@ final class QuestionnaireInitialState extends QuestionnaireState {}
 
 final class QuestionnaireLoadingState extends QuestionnaireState {}
 
-final class QuestionnaireLoadedState extends QuestionnaireState {}
+final class QuestionnaireLoadedState extends QuestionnaireState {
+  final QuestionnaireAnswersModel remoteAnswers;
+  const QuestionnaireLoadedState({required this.remoteAnswers});
+}
 
 final class QuestionnaireUploadedState extends QuestionnaireState {}
 
