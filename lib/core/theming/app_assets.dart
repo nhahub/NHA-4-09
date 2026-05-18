@@ -69,6 +69,7 @@ class AppAssets {
       'assets/svgs/terms_and_conditions.svg';
   static const String subscriptionIcon = 'assets/svgs/subscription.svg';
   static const String settingsIcon = 'assets/svgs/settings.svg';
+  static const String personaIcon = 'assets/svgs/persona.svg';
 
   // Images
   static const String start = 'assets/images/start.png';

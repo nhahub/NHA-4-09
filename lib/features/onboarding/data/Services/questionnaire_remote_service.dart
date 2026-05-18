@@ -20,7 +20,7 @@ class QuestionnaireRemoteService {
   }) async {
     final data = await _supabaseService.getSingleRow(
       table: kQuestionnaireAnswersTable,
-      filters: {'user_id': userId},
+      filters: {'id': userId},
     );
 
     if (data == null) return null;

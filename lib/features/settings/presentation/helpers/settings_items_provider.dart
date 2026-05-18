@@ -12,7 +12,12 @@ List<SettingsItemModel> getSettingsItems() {
       icon: AppAssets.profileIcon,
       action: SettingsActionType.myAccount,
     ),
-
+    SettingsItemModel(
+      title: "Persona",
+      icon: AppAssets.personaIcon,
+      action: SettingsActionType.persona,
+      iconSize: 23,
+    ),
     SettingsItemModel(
       title: "Privacy Policy",
       icon: AppAssets.privacyPolicyIcon,

@@ -1,5 +1,6 @@
 enum SettingsActionType {
   myAccount,
+  persona,
   rateUs,
   subscription,
   privacy,

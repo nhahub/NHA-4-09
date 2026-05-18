@@ -22,6 +22,9 @@ final class QuestionnaireLoadingState extends QuestionnaireState {}
 final class QuestionnaireLoadedState extends QuestionnaireState {
   final QuestionnaireAnswersModel remoteAnswers;
   const QuestionnaireLoadedState({required this.remoteAnswers});
+
+  @override
+  List<Object> get props => [remoteAnswers];
 }
 
 final class QuestionnaireUploadedState extends QuestionnaireState {}
