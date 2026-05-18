@@ -1,7 +1,19 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'questionnaire_answers_model.g.dart';
+
+@JsonSerializable()
 class QuestionnaireAnswersModel {
+  @JsonKey(name: 'id')
   final String userId;
+
+  @JsonKey(name: 'q1_answers')
   final List<String> q1;
+
+  @JsonKey(name: 'q2_answers')
   final List<String> q2;
+
+  @JsonKey(name: 'q3_answers')
   final List<String> q3;
 
   QuestionnaireAnswersModel({
@@ -11,12 +23,11 @@ class QuestionnaireAnswersModel {
     required this.q3,
   });
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': userId,
-      'q1_answers': q1,
-      'q2_answers': q2,
-      'q3_answers': q3,
-    };
-  }
+  factory QuestionnaireAnswersModel.fromJson(
+    Map<String, dynamic> json,
+  ) =>
+      _$QuestionnaireAnswersModelFromJson(json);
+
+  Map<String, dynamic> toJson() =>
+      _$QuestionnaireAnswersModelToJson(this);
 }

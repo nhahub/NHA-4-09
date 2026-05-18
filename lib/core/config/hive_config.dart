@@ -3,6 +3,7 @@ import 'package:hive_ce_flutter/hive_ce_flutter.dart';
 import '../../features/meditations/data/models/article_model_adapter.dart';
 import '../../features/meditations/data/models/book_model_adapter.dart';
 import '../../features/meditations/data/models/video_model_adapter.dart';
+import '../../features/onboarding/data/models/questionnaire_answers_model_adapter.dart';
 import '../constants/constants.dart';
 
 class HiveConfig {
@@ -20,5 +21,9 @@ class HiveConfig {
     // Recommended videos
     Hive.registerAdapter(VideoModelAdapter());
     await Hive.openBox(kRecommendedVideosBox);
+
+    // Questionnaire answers
+    Hive.registerAdapter(QuestionnaireAnswersModelAdapter());
+    await Hive.openBox(kQuestionnaireAnswersBox);
   }
 }

@@ -28,6 +28,9 @@ const String kRecommendedArticles = "recommended_articles";
 const String kRecommendedVideosBox = "recommended_videos_box";
 const String kRecommendedVideos = "recommended_videos";
 
+const String kQuestionnaireAnswersBox = "questionnaire_answers_box";
+const String kQuestionnaireAnswers = "questionnaire_answers";
+
 const String kCachedMood = "cached_mood";
 
 // Tables
