@@ -7,12 +7,6 @@ abstract class NetworkInfo {
 }
 
 class NetworkMonitor implements NetworkInfo {
-  static final NetworkMonitor _instance = NetworkMonitor._internal();
-
-  factory NetworkMonitor() => _instance;
-
-  NetworkMonitor._internal();
-
   final InternetConnection _checker = InternetConnection();
 
   @override
