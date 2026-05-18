@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'control_button.dart';
 
 import '../../../../../core/theming/app_styles.dart';
+import 'control_button.dart';
 
 class SecondaryControls extends StatelessWidget {
   final bool isMuted;

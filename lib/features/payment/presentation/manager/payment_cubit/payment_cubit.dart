@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paymob/billing_data.dart';
-
 import '../../../../../core/networking/api_error_handler.dart';
 import '../../../../therapist/data/models/booking_model.dart';
 import '../../../../therapist/data/repos/booking_repo.dart';
-import '../../../data/models/card_model.dart';
 import '../../../data/models/paybal/payment_transaction_model.dart';
 import '../../../data/models/stripe/payment_intent_input_model.dart';
 import '../../../data/repos/subscription_repo.dart';
@@ -24,7 +22,6 @@ class PaymentCubit extends Cubit<PaymentState> {
   final BookingTherapist? therapist;
   final BookingSlot? slot;
 
-  List<CardModel> savedCards = [];
   int selectedMethodIndex = -1;
   int selectedSavedCardIndex = -1;
 
@@ -117,62 +114,9 @@ class PaymentCubit extends Cubit<PaymentState> {
     selectedSavedCardIndex = -1;
     emit(
       PaymentUpdatedState(
-        savedCards: savedCards,
         selectedMethodIndex: selectedMethodIndex,
         selectedSavedCardIndex: selectedSavedCardIndex,
       ),
     );
-  }
-
-  void selectCard(int index) {
-    selectedMethodIndex = 3;
-    selectedSavedCardIndex = index;
-    emit(
-      PaymentUpdatedState(
-        savedCards: savedCards,
-        selectedMethodIndex: selectedMethodIndex,
-        selectedSavedCardIndex: selectedSavedCardIndex,
-      ),
-    );
-  }
-
-  Future<void> addCard(CardModel card) async {
-    savedCards.add(card);
-    selectedMethodIndex = 3;
-    selectedSavedCardIndex = savedCards.length - 1;
-
-    await _paymentRepo.saveCards(savedCards);
-
-    emit(
-      PaymentUpdatedState(
-        savedCards: savedCards,
-        selectedMethodIndex: selectedMethodIndex,
-        selectedSavedCardIndex: selectedSavedCardIndex,
-      ),
-    );
-  }
-
-  Future<void> loadSavedCards() async {
-    if (savedCards.isNotEmpty) return;
-
-    emit(PaymentLoadingState());
-
-    try {
-      savedCards = await _paymentRepo.getSavedCards();
-      if (savedCards.isNotEmpty && selectedSavedCardIndex == -1) {
-        selectedMethodIndex = 3;
-        selectedSavedCardIndex = -1;
-      }
-
-      emit(
-        PaymentUpdatedState(
-          savedCards: savedCards,
-          selectedMethodIndex: selectedMethodIndex,
-          selectedSavedCardIndex: selectedSavedCardIndex,
-        ),
-      );
-    } catch (e) {
-      emit(PaymentFailureState(errorMessage: e.toString()));
-    }
   }
 }

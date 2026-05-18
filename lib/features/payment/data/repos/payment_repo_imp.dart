@@ -49,11 +49,6 @@ class PaymentRepoImp extends PaymentRepo {
   }
 
   @override
-  Future<void> saveCards(List<CardModel> cards) {
-    return local.saveCards(cards);
-  }
-
-  @override
   Future<PaymentPaymobResponse> payWithPaymob({
     required BuildContext context,
     required double amount,

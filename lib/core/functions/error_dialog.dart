@@ -9,11 +9,12 @@ import '../theming/app_styles.dart';
 Future<void> errorDialog({
   required BuildContext context,
   required String message,
+  VoidCallback? onPressed,
 }) async {
   return showDialog(
     context: context,
     builder: (context) {
-      return ErrorDialog(message: message);
+      return ErrorDialog(message: message, onPressed: onPressed);
     },
   );
 }
@@ -65,7 +66,7 @@ class ErrorDialog extends StatelessWidget {
           Text(message, style: AppStyles.bold20, textAlign: TextAlign.center),
           const SizedBox(height: 20),
           OutlinedButton(
-            onPressed: () => context.pop(),
+            onPressed: onPressed ?? context.pop,
             style: OutlinedButton.styleFrom(
               side: const BorderSide(color: AppColors.brandGreen),
             ),

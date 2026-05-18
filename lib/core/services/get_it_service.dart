@@ -1,18 +1,20 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:just_audio/just_audio.dart';
-import '../../features/meditations/data/repos/podcast_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../features/community/data/repos/comments_repo.dart';
-import '../../features/community/data/services/community_comments_remote_service.dart';
-import '../../features/community/data/services/community_media_service.dart';
-import '../../features/community/data/services/community_posts_remote_service.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/data/repos/user_data_repo.dart';
 import '../../features/auth/data/services/supabase_auth_service.dart';
 import '../../features/auth/data/services/user_data_service.dart';
+import '../../features/chatbot/data/repos/chatbot_repo.dart';
+import '../../features/chatbot/data/services/ai_chatbot_service.dart';
+import '../../features/chatbot/data/services/chatbot_storage_service.dart';
+import '../../features/community/data/repos/comments_repo.dart';
 import '../../features/community/data/repos/create_post_repo.dart';
+import '../../features/community/data/services/community_comments_remote_service.dart';
+import '../../features/community/data/services/community_media_service.dart';
+import '../../features/community/data/services/community_posts_remote_service.dart';
 import '../../features/home/data/repos/activities_repo.dart';
 import '../../features/home/data/repos/quote_repo.dart';
 import '../../features/home/data/repos/water_repo.dart';
@@ -25,11 +27,12 @@ import '../../features/meditations/data/models/article_model.dart';
 import '../../features/meditations/data/models/book_model.dart';
 import '../../features/meditations/data/models/video_model.dart';
 import '../../features/meditations/data/repos/asmr_repo.dart';
+import '../../features/meditations/data/repos/podcast_repo.dart';
 import '../../features/meditations/data/repos/recommended_articles_repo.dart';
 import '../../features/meditations/data/repos/recommended_books_repo.dart';
 import '../../features/meditations/data/repos/recommended_videos_repo.dart';
-import '../../features/meditations/data/services/audio_player_service.dart';
 import '../../features/meditations/data/services/asmr_service.dart';
+import '../../features/meditations/data/services/audio_player_service.dart';
 import '../../features/meditations/data/services/podcast_service.dart';
 import '../../features/meditations/data/services/recommended_articles_local_service.dart';
 import '../../features/meditations/data/services/recommended_articles_remote_service.dart';
@@ -78,6 +81,7 @@ import '../../features/therapist/data/services/therapist_service.dart';
 import 'local_cache_service.dart';
 import 'supabase_crud_service.dart';
 import 'supabase_storage_service.dart';
+//import '../../features/chatbot/data/services/emotion_analysis_service.dart';
 
 final GetIt getIt = GetIt.instance;
 
@@ -449,6 +453,19 @@ Future<void> setupGetIt() async {
   // Audio Player Service
   getIt.registerFactory(() => AudioPlayerService(player: getIt()));
 
-  // Audio Player Service
+  // Video Player Service
   getIt.registerFactory(() => VideoPlayerService());
+
+  // Chatbot Database Service
+  getIt.registerLazySingleton<ChatbotDatabaseService>(
+    () => ChatbotDatabaseService(supabaseCRUDService: getIt()),
+  );
+
+  // Chatbot AI Service
+  getIt.registerLazySingleton<AIChatbotService>(() => AIChatbotService());
+
+  // Chatbot Repo
+  getIt.registerLazySingleton<ChatbotRepo>(
+    () => ChatbotRepo(databaseService: getIt(), aiChatbotService: getIt()),
+  );
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/functions/error_dialog.dart';
-import 'package:moodly/features/community/presentation/widgets/post/add_post_text_field.dart';
-import 'package:moodly/features/home/presentation/widgets/shared/back_button_appbar.dart';
+import '../../../../core/functions/error_dialog.dart';
+import '../widgets/post/add_post_text_field.dart';
+import '../../../home/presentation/widgets/shared/back_button_appbar.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/extensions/context_extensions.dart';
 import '../manager/create_post_cubit/create_post_cubit.dart';

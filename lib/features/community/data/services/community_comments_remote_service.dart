@@ -1,12 +1,9 @@
+import '../../../../core/functions/user_data_local.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
 import '../../../../core/constants/constants.dart';
 import '../../../../core/services/supabase_crud_service.dart';
 import '../models/comment_model.dart';
 
-/// Supabase reads/writes for community comments (no mock data).
-///
-/// Pagination or richer filters can extend these methods without changing call sites.
 class CommunityCommentsRemoteService {
   final SupabaseCRUDService _crudService;
   final SupabaseClient _client;
@@ -17,66 +14,65 @@ class CommunityCommentsRemoteService {
   }) : _crudService = crudService,
        _client = client;
 
-  static const String _commentSelect =
-      '*, user_data(name, picture), community_comment_likes(user_id)';
+  static const String _commentSelect = '''
+  *,
+  community_comment_likes(user_id),
+  user_data (
+    name,
+    picture
+  )
+''';
+  final currentUserId = getUser()!.userId;
 
   Future<List<CommentModel>> fetchTopLevelComments(String postId) async {
-    final currentUserId = _crudService.getCurrentUserId();
-    final response = await _client
-        .from(kCommunityCommentsTable)
-        .select(_commentSelect)
-        .eq('post_id', postId)
-        .isFilter('parent_id', null)
-        .order('created_at', ascending: false);
+    final response = await _crudService.getData(
+      table: kCommunityCommentsTable,
+      select: _commentSelect,
+      orderBy: 'created_at',
+      ascending: false,
+      filters: {'post_id': postId, 'parent_id': null},
+    );
 
     final rawData = List<Map<String, dynamic>>.from(response as List<dynamic>);
 
     return rawData.map((json) {
       final likes = json['community_comment_likes'] as List<dynamic>? ?? [];
-      final isLikedByMe =
-          currentUserId != null &&
-          likes.any((like) {
-            final m = like as Map<String, dynamic>;
-            return m['user_id'] == currentUserId;
-          });
+      final isLikedByMe = likes.any((like) {
+        final m = like as Map<String, dynamic>;
+        return m['user_id'] == currentUserId;
+      });
 
       return CommentModel.fromJson(json, isLikedByMe: isLikedByMe);
     }).toList();
   }
 
   Future<List<CommentModel>> fetchReplies(String parentCommentId) async {
-    final currentUserId = _crudService.getCurrentUserId();
-    final response = await _client
-        .from(kCommunityCommentsTable)
-        .select(_commentSelect)
-        .eq('parent_id', parentCommentId)
-        .order('created_at', ascending: true);
+    final response = await _crudService.getData(
+      table: kCommunityCommentsTable,
+      select: _commentSelect,
+      orderBy: 'created_at',
+      ascending: true,
+      filters: {'parent_id': parentCommentId},
+    );
 
     final rawData = List<Map<String, dynamic>>.from(response as List<dynamic>);
 
     return rawData.map((json) {
       final likes = json['community_comment_likes'] as List<dynamic>? ?? [];
-      final isLikedByMe =
-          currentUserId != null &&
-          likes.any((like) {
-            final m = like as Map<String, dynamic>;
-            return m['user_id'] == currentUserId;
-          });
+      final isLikedByMe = likes.any((like) {
+        final m = like as Map<String, dynamic>;
+        return m['user_id'] == currentUserId;
+      });
 
       return CommentModel.fromJson(json, isLikedByMe: isLikedByMe);
     }).toList();
   }
 
-  Future<CommentModel> insertComment({
+  Future<CommentModel> addComment({
     required String postId,
     required String content,
     String? parentId,
   }) async {
-    final currentUserId = _crudService.getCurrentUserId();
-    if (currentUserId == null) {
-      throw Exception('User not logged in');
-    }
-
     final dataToInsert = {
       'post_id': postId,
       'user_id': currentUserId,
@@ -87,24 +83,23 @@ class CommunityCommentsRemoteService {
     final insertedRow = await _crudService.addDataAndReturnRow(
       table: kCommunityCommentsTable,
       data: dataToInsert,
+      select: '''
+      *,
+      user_data (
+        name,
+        picture
+      )
+    ''',
     );
-
-    final profile = await _crudService.getSingleRow(
-      table: kUserDataTable,
-      filters: {'id': currentUserId},
-    );
-
-    insertedRow['user_data'] = profile;
     return CommentModel.fromJson(insertedRow, isLikedByMe: false);
   }
 
-  /// Returns the new liked flag, or [isCurrentlyLiked] if the operation failed.
+  /// Returns the new liked flag
   Future<bool> toggleLike({
     required String commentId,
     required bool isCurrentlyLiked,
   }) async {
-    final currentUserId = _crudService.getCurrentUserId();
-    if (currentUserId == null) throw Exception('User not logged in');
+    final currentUserId = getUser()!.userId;
 
     if (isCurrentlyLiked) {
       await _crudService.deleteDataByMatch(
@@ -120,7 +115,6 @@ class CommunityCommentsRemoteService {
     return !isCurrentlyLiked;
   }
 
-  /// Fires when rows for [postId] change (comments CRUD affecting this thread).
   RealtimeChannel subscribeToPostComments(
     String postId,
     void Function() onChanged,

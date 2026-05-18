@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../features/chatbot/data/repos/chatbot_repo.dart';
+import '../../features/chatbot/presentation/manager/chatbot_cubit/chatbot_cubit.dart';
 
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/data/repos/user_data_repo.dart';
@@ -18,7 +20,7 @@ import '../../features/community/presentation/manager/create_post_cubit/create_p
 import '../../features/community/presentation/views/add_community_post_view.dart';
 import '../../features/home/presentation/manager/activities_cubit/activities_cubit.dart';
 import '../../features/home/presentation/manager/cups_of_water_cubit/water_tracking_cubit.dart';
-import '../../features/home/presentation/manager/get_booking_sessions_cubit/get_booking_sessions_cubit.dart';
+import '../../features/home/presentation/manager/booking_sessions_cubit/booking_sessions_cubit.dart';
 import '../../features/home/presentation/views/activities_view.dart';
 import '../../features/home/presentation/views/all_booking_sessions_view.dart';
 import '../../features/home/presentation/views/water_tracking_view.dart';
@@ -50,7 +52,6 @@ import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../../features/payment/data/repos/subscription_repo.dart';
 import '../../features/payment/domain/repos/payment_repo.dart';
 import '../../features/payment/presentation/manager/payment_cubit/payment_cubit.dart';
-import '../../features/payment/presentation/views/add_card_view.dart';
 import '../../features/payment/presentation/views/premium_view.dart';
 import '../../features/payment/presentation/views/subscribe_view.dart';
 import '../../features/settings/data/repos/privacy_policy_repo.dart';
@@ -79,7 +80,7 @@ import '../../features/therapist/presentation/views/all_therapists_view.dart';
 import '../../features/therapist/presentation/views/booking_session_view.dart';
 import '../../features/therapist/presentation/views/therapist_chat_view.dart';
 import '../../features/therapist/presentation/views/therapist_details_view.dart';
-import '../../features/therapist/presentation/views/therapist_live_view.dart';
+import '../../features/therapist/presentation/views/therapist_video_call_view.dart';
 import '../../features/therapist/presentation/views/therapist_review_add_view.dart';
 import '../../features/therapist/presentation/views/therapist_review_update_view.dart';
 import '../../features/therapist/presentation/views/therapist_reviews_view.dart';
@@ -190,9 +191,8 @@ class AppRouter {
       case Routes.addCommunityPostView:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => CreatePostCubit(
-              createPostRepo: getIt.get<CreatePostRepo>(),
-            ),
+            create: (context) =>
+                CreatePostCubit(createPostRepo: getIt.get<CreatePostRepo>()),
             child: const AddCommunityPostView(),
           ),
         );
@@ -209,9 +209,6 @@ class AppRouter {
           ),
         );
 
-      case Routes.addCardView:
-        return MaterialPageRoute(builder: (context) => const AddCardView());
-
       case Routes.audioView:
         final AudioModel audioModel = settings.arguments as AudioModel;
         return MaterialPageRoute(
@@ -225,20 +222,33 @@ class AppRouter {
         );
 
       case Routes.therapistChatView:
-        final String therapistId = settings.arguments as String;
+        final BookingModel bookingModel = settings.arguments as BookingModel;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) =>
-                ChatCubit(chatRepo: getIt.get<ChatRepo>())
-                  ..loadMessages(therapistId: therapistId),
-            child: const TherapistChatView(),
+                ChatCubit(
+                    chatRepo: getIt.get<ChatRepo>(),
+                    userDataRepo: getIt.get<UserDataRepo>(),
+                  )
+                  ..loadMessages(
+                    therapistId: bookingModel.therapistId,
+                    userId: bookingModel.userId,
+                  )
+                  ..scheduleSessionEnd(bookingModel),
+            child: TherapistChatView(bookingModel: bookingModel),
           ),
         );
 
-      case Routes.therapistLiveView:
-        final String callID = settings.arguments as String;
+      case Routes.therapistVideoCallView:
+        final BookingModel bookingModel = settings.arguments as BookingModel;
         return MaterialPageRoute(
-          builder: (context) => TherapistLiveView(callID: callID),
+          builder: (context) => BlocProvider(
+            create: (context) => ChatCubit(
+              chatRepo: getIt.get<ChatRepo>(),
+              userDataRepo: getIt.get<UserDataRepo>(),
+            )..scheduleSessionEnd(bookingModel),
+            child: TherapistVideoCallView(callID: bookingModel.id),
+          ),
         );
 
       case Routes.therapistDetailsView:
@@ -339,7 +349,7 @@ class AppRouter {
               sessionType: sessionType,
               slot: slot,
               therapist: therapist,
-            )..loadSavedCards(),
+            ),
             child: const SubscribeView(),
           ),
         );
@@ -362,7 +372,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) =>
-                GetBookingSessionsCubit(bookingRepo: getIt.get<BookingRepo>())
+                BookingSessionsCubit(bookingRepo: getIt.get<BookingRepo>())
                   ..getBookingSessions(),
             child: const AllBookingSessionsView(),
           ),
@@ -417,7 +427,15 @@ class AppRouter {
         return MaterialPageRoute(builder: (context) => const AboutView());
 
       case Routes.chatbotView:
-        return MaterialPageRoute(builder: (context) => const ChatbotView());
+        final String sessionId = settings.arguments as String;
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (_) =>
+                ChatbotCubit(repo: getIt.get<ChatbotRepo>())
+                  ..loadMessages(sessionId),
+            child: ChatbotView(sessionId: sessionId),
+          ),
+        );
 
       case Routes.articlesView:
         final ArticleModel article = settings.arguments as ArticleModel;

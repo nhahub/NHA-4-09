@@ -4,11 +4,9 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:uuid/uuid.dart';
 
 import '../models/post_model.dart';
-import '../parsers/community_user_join.dart';
 import '../services/community_media_service.dart';
 import '../services/community_posts_remote_service.dart';
 
-/// Coordinates post feed loading, likes, shares, and post creation (services own raw I/O).
 class CreatePostRepo {
   final CommunityPostsRemoteService _postsRemote;
   final CommunityMediaService _mediaService;
@@ -29,6 +27,8 @@ class CreatePostRepo {
       'id': post.id,
       'user_id': post.userId,
       'content': post.content.trim(),
+      'user_name': post.userName,
+      'user_image': post.userImage,
     });
 
     if (post.imageUrls.isNotEmpty) {
@@ -103,8 +103,8 @@ class CreatePostRepo {
     return PostModel(
       id: postId,
       userId: (row['user_id'] ?? '').toString(),
-      userName: communityUserDisplayName(row),
-      userImage: communityUserPictureUrl(row),
+      userName: (row['user_name'] ?? '').toString(),
+      userImage: (row['user_image'] ?? '').toString(),
       content: (row['content'] ?? '').toString(),
       imageUrls: mediaByPost[postId] ?? [],
       createdAt:

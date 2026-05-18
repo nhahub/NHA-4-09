@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/features/community/data/models/comment_model.dart';
+import '../../../data/models/comment_model.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import 'comment_item.dart';

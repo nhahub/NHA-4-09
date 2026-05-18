@@ -13,13 +13,18 @@ class AvailabilityService {
   }) async {
     final rows = await _supabaseCRUDService.getData(
       table: kTimeSlotsTable,
-      filters: {'therapist_id': therapistId},
+      filters: {'therapist_id': therapistId, 'is_booked': false},
       orderBy: 'start_time',
     );
 
-    final slots = rows.map((row) => TimeSlotModel.fromJson(row)).toList();
+    final now = DateTime.now();
+
+    final slots = rows.map((row) => TimeSlotModel.fromJson(row)).where((slot) {
+      return slot.startTime.isAfter(now);
+    }).toList();
 
     final Map<int, List<TimeSlotModel>> slotsByDay = {};
+
     for (var slot in slots) {
       slotsByDay.putIfAbsent(slot.dayOfWeek, () => []);
       slotsByDay[slot.dayOfWeek]!.add(slot);

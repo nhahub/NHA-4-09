@@ -1,8 +1,6 @@
 import '../models/comment_model.dart';
 import '../services/community_comments_remote_service.dart';
 
-/// Orchestrates community comments. Raw Supabase I/O lives in
-/// [CommunityCommentsRemoteService].
 class CommentsRepo {
   final CommunityCommentsRemoteService _remote;
 
@@ -22,7 +20,7 @@ class CommentsRepo {
     required String content,
     String? parentId,
   }) {
-    return _remote.insertComment(
+    return _remote.addComment(
       postId: postId,
       content: content,
       parentId: parentId,

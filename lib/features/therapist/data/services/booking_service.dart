@@ -31,10 +31,20 @@ class BookingService {
     final List<Map<String, dynamic>> data = await _supabaseCRUDService.getData(
       table: kBookingsTable,
       orderBy: 'created_at',
-      filters: {"user_id": currentUserId},
+      orFilters: 'user_id.eq.$currentUserId,therapist_id.eq.$currentUserId',
     );
+    final now = DateTime.now();
 
-    return data.map((item) => BookingModel.fromJson(item)).toList();
+    final sessions = data.map((item) => BookingModel.fromJson(item)).where((
+      booking,
+    ) {
+      final end = booking.slotEndTime;
+      if (end == null) return false;
+
+      return end.isAfter(now);
+    }).toList();
+
+    return sessions;
   }
 
   Future<void> cancelSession({

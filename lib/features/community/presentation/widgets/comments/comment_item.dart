@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import '../../../../../core/widgets/user_avatar.dart';
 import '../../../../../core/extensions/datetime_extensions.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../data/models/comment_model.dart';
@@ -37,10 +37,11 @@ class _CommentItemState extends State<CommentItem> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CircleAvatar(
+              UserAvatar(
+                name: widget.comment.userName,
+                imageUrl: widget.comment.userAvatar,
                 radius: 16,
-                backgroundImage: NetworkImage(widget.comment.userAvatar),
-                backgroundColor: AppColors.brandGreen,
+                fontSize: 14,
               ),
               const SizedBox(width: 12),
               Expanded(

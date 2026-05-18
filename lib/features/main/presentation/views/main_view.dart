@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import '../../../../core/widgets/network_banner_wrapper.dart';
 import '../../../payment/presentation/manager/subscription_cubit/subscription_cubit.dart';
 import '../helpers/main_screens.dart';
 import '../manager/main_cubit/main_cubit.dart';
@@ -21,28 +21,30 @@ class MainView extends StatelessWidget {
 
           return BlocBuilder<MainCubit, int>(
             builder: (context, currentIndex) {
-              return Scaffold(
-                body: SafeArea(
-                  child: Stack(
-                    children: [
-                      AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 400),
-                        child: IndexedStack(
-                          index: currentIndex,
-                          children: screens,
+              return NetworkBannerWrapper(
+                child: Scaffold(
+                  body: SafeArea(
+                    child: Stack(
+                      children: [
+                        AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 400),
+                          child: IndexedStack(
+                            index: currentIndex,
+                            children: screens,
+                          ),
                         ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        child: MainNavBar(
-                          selectedIndex: currentIndex,
-                          onTap: (index) =>
-                              context.read<MainCubit>().changeTab(index),
+                        Positioned(
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          child: MainNavBar(
+                            selectedIndex: currentIndex,
+                            onTap: (index) =>
+                                context.read<MainCubit>().changeTab(index),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               );

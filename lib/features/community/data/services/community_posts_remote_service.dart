@@ -1,9 +1,9 @@
+import '../../../../core/functions/user_data_local.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/services/supabase_crud_service.dart';
 
-/// Remote persistence and realtime hooks for community posts and media.
 class CommunityPostsRemoteService {
   final SupabaseClient _client;
   final SupabaseCRUDService _crudService;
@@ -14,7 +14,7 @@ class CommunityPostsRemoteService {
   }) : _client = client,
        _crudService = crudService;
 
-  String? get currentUserId => _crudService.getCurrentUserId();
+  String currentUserId = getUser()!.userId;
 
   static const String _feedSelect = '''
 id,
@@ -23,31 +23,33 @@ content,
 created_at,
 shares_count,
 comments_count,
-user_data(name, picture),
+user_name,
+user_image,
 community_post_likes(user_id)
 ''';
 
   /// Single query: posts with owner profile, like rows for counts + current user flag.
   Future<List<Map<String, dynamic>>> fetchFeedRows() async {
-    final response = await _client
-        .from(kCommunityPostsTable)
-        .select(_feedSelect)
-        .order('created_at', ascending: false);
-
+    final response = await _crudService.getData(
+      table: kCommunityPostsTable,
+      select: _feedSelect,
+      orderBy: 'created_at',
+      ascending: false,
+    );
     return List<Map<String, dynamic>>.from(response as List<dynamic>);
   }
 
-  /// One round-trip for all media rows, grouped by post id and ordered by [sort_order].
   Future<Map<String, List<String>>> fetchMediaUrlsByPostIds(
     List<String> postIds,
   ) async {
     if (postIds.isEmpty) return {};
 
-    final response = await _client
-        .from(kCommunityPostMediaTable)
-        .select()
-        .inFilter('post_id', postIds)
-        .order('sort_order', ascending: true);
+    final response = await _crudService.getData(
+      table: kCommunityPostMediaTable,
+      filters: {'post_id': postIds},
+      orderBy: 'sort_order',
+      ascending: true,
+    );
 
     final rows = List<Map<String, dynamic>>.from(response as List<dynamic>);
 
@@ -84,18 +86,15 @@ community_post_likes(user_id)
     required String postId,
     required bool isCurrentlyLiked,
   }) async {
-    final uid = _crudService.getCurrentUserId();
-    if (uid == null) throw Exception('User not logged in');
-
     if (isCurrentlyLiked) {
       await _crudService.deleteDataByMatch(
         table: kCommunityPostLikesTable,
-        match: {'post_id': postId, 'user_id': uid},
+        match: {'post_id': postId, 'user_id': currentUserId},
       );
     } else {
       await _crudService.addData(
         table: kCommunityPostLikesTable,
-        data: {'post_id': postId, 'user_id': uid},
+        data: {'post_id': postId, 'user_id': currentUserId},
       );
     }
   }
@@ -107,9 +106,10 @@ community_post_likes(user_id)
     );
   }
 
-  /// Subscribe to feed-related tables; caller owns lifecycle ([RealtimeChannel.unsubscribe]).
   RealtimeChannel subscribeCommunityFeed(void Function() onChanged) {
-    final channel = _client.channel('community-feed-${DateTime.now().millisecondsSinceEpoch}');
+    final channel = _client.channel(
+      'community-feed-${DateTime.now().millisecondsSinceEpoch}',
+    );
 
     void listen(String table) {
       channel.onPostgresChanges(

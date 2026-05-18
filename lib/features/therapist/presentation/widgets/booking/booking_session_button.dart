@@ -50,11 +50,10 @@ class BookingSessionButton extends StatelessWidget {
         message: "Please select a time slot.",
       );
     }
-
     context.push(
       Routes.subscribeView,
       args: {
-        "price": state.price.toDouble(),
+        "price": state.priceAfterDiscount,
         "sessionType": state.selectedType,
         "therapist": BookingTherapist(
           id: state.therapist.id,

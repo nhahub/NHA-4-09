@@ -39,7 +39,7 @@ class UserAvatar extends StatelessWidget {
       );
     }
 
-    if (imageUrl != null) {
+    if (imageUrl != null && imageUrl!.isNotEmpty) {
       return CircleAvatar(
         radius: radius,
         backgroundColor: AppColors.lightGrey,
@@ -74,7 +74,7 @@ class UserAvatar extends StatelessWidget {
 
     final String initial = name.isNotEmpty ? name[0].toUpperCase() : "?";
 
-    if (imageUrl == null) {
+    if (imageUrl == null || imageUrl!.isEmpty) {
       return CircleAvatar(
         radius: radius,
         backgroundColor: AppColors.getColorFromId(id: getUser()!.userId),

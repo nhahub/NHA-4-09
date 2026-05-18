@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'detail_item.dart';
 
 class SessionDetailsCard extends StatelessWidget {

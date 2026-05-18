@@ -9,9 +9,11 @@ import '../../sessions_for_you_section/sessions_for_you_section.dart';
 import 'daily_stats_section.dart';
 
 class HomeViewBody extends StatelessWidget {
-  const HomeViewBody({super.key, required this.isPremium});
-
   final bool isPremium;
+  const HomeViewBody({
+    super.key,
+    required this.isPremium,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class HomeViewBody extends StatelessWidget {
       fadePosition: FadePosition.bottom,
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 80, bottom: 140),
+          padding: const EdgeInsets.only(top: 60, bottom: 140),
           child: Column(
             spacing: 20,
             children: [

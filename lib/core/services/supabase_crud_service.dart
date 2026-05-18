@@ -31,12 +31,13 @@ class SupabaseCRUDService {
 
   Future<Map<String, dynamic>> addDataAndReturnRow({
     required String table,
+    String select = '*',
     required Map<String, dynamic> data,
   }) async {
     final response = await _client
         .from(table)
         .insert(data)
-        .select('*')
+        .select(select)
         .single();
 
     return Map<String, dynamic>.from(response);
@@ -73,13 +74,23 @@ class SupabaseCRUDService {
     bool ascending = true,
     int? limit,
     Map<String, dynamic>? filters,
+    String? orFilters,
   }) async {
     dynamic query = _client.from(table).select(select);
 
     if (filters != null) {
       filters.forEach((key, value) {
-        query = query.eq(key, value);
+        if (value == null) {
+          query = query.isFilter(key, null);
+        } else if (value is List) {
+          query = query.inFilter(key, value);
+        } else {
+          query = query.eq(key, value);
+        }
       });
+    }
+    if (orFilters != null) {
+      query = query.or(orFilters);
     }
 
     if (orderBy != null) {

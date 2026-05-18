@@ -15,7 +15,6 @@ class SubscribeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = SubscribeMapper.map(state);
-    final currentCard = SubscribeMapper.getCurrentCard(data);
 
     return Align(
       alignment: Alignment.bottomCenter,
@@ -27,7 +26,6 @@ class SubscribeButton extends StatelessWidget {
             onPressed: () => PaymentHandler.handle(
               context: context,
               selectedMethodIndex: data.selectedMethodIndex,
-              currentCard: currentCard,
               cubit: context.read<PaymentCubit>(),
             ),
             buttonText: "Continue",

@@ -21,9 +21,9 @@ class TherapistDetailsView extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: const BackButtonAppbar(title: "Therapist Details"),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          top: false,
+      body: SafeArea(
+        top: false,
+        child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: kAppHorizontalPadding,
@@ -31,7 +31,7 @@ class TherapistDetailsView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 125),
+                const SizedBox(height: 100),
                 TherapistImage(therapistModel: therapistModel),
                 const SizedBox(height: 20),
                 TherapistHeader(

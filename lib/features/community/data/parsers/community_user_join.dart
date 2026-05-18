@@ -4,7 +4,7 @@ import '../../../../core/constants/constants.dart';
 ///
 /// Falls back to `profiles` only for older DBs that still used that embed name.
 Map<String, dynamic>? communityUserJoinRow(Map<String, dynamic> json) {
-  for (final key in <String>[kUserDataTable, 'profiles']) {
+  for (final key in <String>[kUserDataTable, 'user_data']) {
     final v = json[key];
     if (v is Map<String, dynamic>) return v;
     if (v is List && v.isNotEmpty && v.first is Map<String, dynamic>) {
@@ -16,10 +16,10 @@ Map<String, dynamic>? communityUserJoinRow(Map<String, dynamic> json) {
 
 String communityUserDisplayName(Map<String, dynamic> json) {
   final row = communityUserJoinRow(json);
-  return (row?['name'] ?? '').toString();
+  return (row?['user_name'] ?? '').toString();
 }
 
 String communityUserPictureUrl(Map<String, dynamic> json) {
   final row = communityUserJoinRow(json);
-  return (row?['picture'] ?? '').toString();
+  return (row?['user_image'] ?? '').toString();
 }

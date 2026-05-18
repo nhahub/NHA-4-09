@@ -11,6 +11,12 @@ abstract class AppStyles {
     fontFamily: "Nunito",
     letterSpacing: -1,
   );
+  static const TextStyle bold36 = TextStyle(
+    fontSize: 36,
+    fontWeight: FontWeightHelper.bold,
+    fontFamily: "Nunito",
+    letterSpacing: -1,
+  );
   static const TextStyle extraBold27 = TextStyle(
     fontSize: 27,
     fontWeight: FontWeightHelper.extraBold,

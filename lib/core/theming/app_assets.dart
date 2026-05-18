@@ -105,7 +105,6 @@ class AppAssets {
   static const String trueCheckBox = 'assets/images/true_check_box.png';
   static const String premiumShadow = 'assets/images/premium_shadow.png';
   static const String circleCheckBox = 'assets/images/circle_check_box.png';
-  static const String chatbot = 'assets/images/chatbot.png';
   static const String dummyImage =
       "http://edenchristianacademy.co.nz/wp-content/uploads/2013/11/dummy-image-square.jpg";
   static const String dummyImageAsset = 'assets/images/dummy_image_square.jpg';

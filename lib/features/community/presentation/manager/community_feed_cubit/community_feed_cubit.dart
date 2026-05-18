@@ -37,7 +37,7 @@ class CommunityFeedCubit extends Cubit<CommunityFeedState> {
     try {
       final posts = await _repo.getPosts();
       emit(
-        CommunityFeedState(
+        state.copyWith(
           status: CommunityFeedStatus.success,
           posts: posts,
           errorMessage: null,

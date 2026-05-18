@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:moodly/core/manager/network_cubit/network_cubit.dart';
+import 'package:moodly/core/networking/network_info.dart';
 
 import 'core/config/hive_config.dart';
-import 'core/helpers/app_bloc_observer.dart';
+// import 'core/helpers/app_bloc_observer.dart';
 import 'core/routing/deep_link_service.dart';
 import 'core/services/cache_helper.dart';
 import 'core/services/get_it_service.dart';
@@ -22,10 +25,14 @@ void main() async {
   await setupGetIt();
   await StripeService.init();
   await PaymobService.init();
-  Bloc.observer = AppBlocObserver();
+  // Bloc.observer = AppBlocObserver();
 
   runApp(
-    const MoodlyApp(),
+    BlocProvider(
+      create: (context) =>
+          NetworkCubit(networkMonitor: NetworkMonitor())..init(),
+      child: const MoodlyApp(),
+    ),
     // DevicePreview(
     //   enabled: true,
     //   devices: Devices.all,

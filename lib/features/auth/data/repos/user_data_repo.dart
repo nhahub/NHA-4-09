@@ -22,8 +22,10 @@ class UserDataRepo {
     return response;
   }
 
-  Future<UserDataModel?> getUserData() async {
-    final UserDataModel? response = await _userDataService.getUserData();
+  Future<UserDataModel?> getUserData({required String userId}) async {
+    final UserDataModel? response = await _userDataService.getUserData(
+      userId: userId,
+    );
     return response;
   }
 
