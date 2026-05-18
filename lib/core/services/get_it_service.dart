@@ -78,6 +78,7 @@ import '../../features/therapist/data/services/booking_service.dart';
 import '../../features/therapist/data/services/chat_service.dart';
 import '../../features/therapist/data/services/therapist_reviews_service.dart';
 import '../../features/therapist/data/services/therapist_service.dart';
+import '../networking/network_info.dart';
 import 'local_cache_service.dart';
 import 'supabase_crud_service.dart';
 import 'supabase_storage_service.dart';
@@ -437,10 +438,7 @@ Future<void> setupGetIt() async {
 
   // Community comments (remote I/O + repo orchestration)
   getIt.registerLazySingleton<CommunityCommentsRemoteService>(
-    () => CommunityCommentsRemoteService(
-      crudService: getIt(),
-      client: getIt(),
-    ),
+    () => CommunityCommentsRemoteService(crudService: getIt(), client: getIt()),
   );
 
   getIt.registerLazySingleton<CommentsRepo>(
@@ -463,6 +461,9 @@ Future<void> setupGetIt() async {
 
   // Chatbot AI Service
   getIt.registerLazySingleton<AIChatbotService>(() => AIChatbotService());
+
+  // Network Monitor
+  getIt.registerLazySingleton<NetworkMonitor>(() => NetworkMonitor());
 
   // Chatbot Repo
   getIt.registerLazySingleton<ChatbotRepo>(

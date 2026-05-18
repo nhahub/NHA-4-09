@@ -30,7 +30,7 @@ void main() async {
   runApp(
     BlocProvider(
       create: (context) =>
-          NetworkCubit(networkMonitor: NetworkMonitor())..init(),
+          NetworkCubit(networkMonitor: getIt.get<NetworkMonitor>())..init(),
       child: const MoodlyApp(),
     ),
     // DevicePreview(
