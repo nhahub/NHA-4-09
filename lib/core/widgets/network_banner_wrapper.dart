@@ -55,6 +55,9 @@ class NetworkBannerWrapper extends StatelessWidget {
                 case NetworkStatus.connected:
                   _showBanner(context: innerContext, isConnected: true);
                   break;
+                case NetworkStatus.reconnected:
+                  _showBanner(context: innerContext, isConnected: true);
+                  break;
                 case NetworkStatus.disconnected:
                   _showBanner(context: innerContext, isConnected: false);
                   break;
