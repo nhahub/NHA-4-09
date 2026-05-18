@@ -1,10 +1,12 @@
 part of 'network_cubit.dart';
 
-enum NetworkStatus { connected, disconnected, unknown }
+enum NetworkStatus { unknown, connected, disconnected, reconnected }
 
 extension NetworkStatusX on NetworkStatus {
+  bool get isUnknown => this == NetworkStatus.unknown;
   bool get isDisconnected => this == NetworkStatus.disconnected;
   bool get isConnected => this == NetworkStatus.connected;
+  bool get isReconnected => this == NetworkStatus.reconnected;
 }
 
 class NetworkState extends Equatable {

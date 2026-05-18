@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/manager/network_cubit/network_cubit.dart';
 import '../../../mood/presentation/manager/mood_cubit/mood_cubit.dart';
 
 import '../../../../core/services/get_it_service.dart';
@@ -21,6 +22,22 @@ class HomeProvidersWrapper extends StatelessWidget {
   final bool isPremium;
 
   const HomeProvidersWrapper({super.key, required this.isPremium});
+    void _retryRequests(BuildContext context) {
+
+    context.read<TherapistCubit>().getTherapists();
+
+    context.read<ActivitiesCubit>().getActivitiesCategories();
+
+    context.read<MoodProgressCubit>().getCurrentWeekMood();
+
+    final moodState = context.read<MoodCubit>().state;
+
+    if (moodState is MoodSavedState) {
+      context.read<RecommendationCubit>().getRecommendationData(
+        currentMood: moodState.currentMood,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,16 +73,33 @@ class HomeProvidersWrapper extends StatelessWidget {
                 ..getActivitiesCategories(),
         ),
       ],
-      child: BlocListener<MoodCubit, MoodState>(
-        listener: (context, state) {
-          if (state is MoodSavedState) {
-            final String currentMood = state.currentMood;
-            context.read<RecommendationCubit>().getRecommendationData(
-              currentMood: currentMood,
-            );
-            context.read<MoodProgressCubit>().getCurrentWeekMood();
-          }
-        },
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<MoodCubit, MoodState>(
+            listener: (context, state) {
+              if (state is MoodSavedState) {
+                context
+                    .read<RecommendationCubit>()
+                    .getRecommendationData(
+                      currentMood: state.currentMood,
+                    );
+
+                context
+                    .read<MoodProgressCubit>()
+                    .getCurrentWeekMood();
+              }
+            },
+          ),
+
+          BlocListener<NetworkCubit, NetworkState>(
+            listener: (context, state) {
+              if (state.status == NetworkStatus.reconnected) {
+                _retryRequests(context);
+              }
+            },
+          ),
+        ],
+
         child: HomeView(isPremium: isPremium),
       ),
     );

@@ -25,15 +25,17 @@ class NetworkCubit extends Cubit<NetworkState> {
 
     _subscription = _networkMonitor.connectivityStream.listen((connected) {
       if (connected == state.isConnected) return;
+      final NetworkStatus status;
 
-      emit(
-        state.copyWith(
-          isConnected: connected,
-          status: connected
-              ? NetworkStatus.connected
-              : NetworkStatus.disconnected,
-        ),
-      );
+      if (connected) {
+        status = state.status.isDisconnected
+            ? NetworkStatus.reconnected
+            : NetworkStatus.connected;
+      } else {
+        status = NetworkStatus.disconnected;
+      }
+
+      emit(state.copyWith(isConnected: connected, status: status));
     });
   }
 
