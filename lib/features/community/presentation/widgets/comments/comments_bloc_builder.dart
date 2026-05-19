@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/widgets/custom_error_widget.dart';
-import 'comments_list_view.dart';
 
+import '../../../../../core/widgets/custom_error_widget.dart';
 import '../../../data/models/comment_model.dart';
 import '../../manager/comments_cubit/comments_cubit.dart';
 import '../../manager/comments_cubit/comments_state.dart';
+import 'comments_list_view.dart';
 import 'no_comments_widget.dart';
 
 List<CommentModel> _skeletonComments(String postId) {

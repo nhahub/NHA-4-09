@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/functions/user_data_local.dart';
 
+import '../../../../../core/functions/user_data_local.dart';
 import '../../../../../core/networking/api_error_handler.dart';
 import '../../../data/models/chat_message_model.dart';
 import '../../../data/models/chat_session_model.dart';

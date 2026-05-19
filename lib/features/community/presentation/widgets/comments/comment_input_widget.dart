@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/widgets/user_avatar.dart';
 
 import '../../../../../core/functions/user_data_local.dart';
 import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/widgets/user_avatar.dart';
 import '../../manager/comments_cubit/comments_cubit.dart';
 
 class CommentInputWidget extends StatefulWidget {

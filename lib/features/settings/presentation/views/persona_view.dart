@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import '../widgets/persona/persona_bloc_builder.dart';
 import 'persona_app_bar.dart';
 

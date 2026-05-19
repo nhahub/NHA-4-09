@@ -1,7 +1,7 @@
-import '../../../../core/functions/user_data_local.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../core/constants/constants.dart';
+import '../../../../core/functions/user_data_local.dart';
 import '../../../../core/services/supabase_crud_service.dart';
 
 class CommunityPostsRemoteService {

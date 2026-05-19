@@ -1,4 +1,4 @@
-import 'package:moodly/core/functions/user_data_local.dart';
+import '../../../../core/functions/user_data_local.dart';
 import '../Services/questionnaire_local_service.dart';
 import '../Services/questionnaire_remote_service.dart';
 import '../models/question_model.dart';

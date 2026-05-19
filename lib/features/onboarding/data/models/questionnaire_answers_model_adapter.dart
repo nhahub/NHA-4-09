@@ -1,5 +1,7 @@
 import 'dart:convert';
+
 import 'package:hive_ce_flutter/hive_ce_flutter.dart';
+
 import 'questionnaire_answers_model.dart';
 
 class QuestionnaireAnswersModelAdapter extends TypeAdapter<QuestionnaireAnswersModel> {

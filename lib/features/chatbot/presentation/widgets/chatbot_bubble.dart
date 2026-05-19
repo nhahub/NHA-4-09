@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/functions/user_data_local.dart';
-import 'package:moodly/core/widgets/user_avatar.dart';
+import '../../../../core/functions/user_data_local.dart';
+import '../../../../core/widgets/user_avatar.dart';
 import '../../data/models/chat_message_model.dart';
 
 import '../../../../../core/theming/app_styles.dart';

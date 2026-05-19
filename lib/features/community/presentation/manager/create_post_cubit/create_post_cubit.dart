@@ -3,11 +3,13 @@ import 'dart:io';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:uuid/uuid.dart';
+
 import '../../../../../core/functions/user_data_local.dart';
 import '../../../../../core/networking/api_error_handler.dart';
-import 'package:uuid/uuid.dart';
 import '../../../data/models/post_model.dart';
 import '../../../data/repos/create_post_repo.dart';
+
 part 'create_post_state.dart';
 
 class CreatePostCubit extends Cubit<CreatePostState> {

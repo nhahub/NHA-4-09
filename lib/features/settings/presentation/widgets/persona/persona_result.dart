@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/theming/app_styles.dart';
 import '../../../data/models/persona_model.dart';
 import 'persona_emoji.dart';

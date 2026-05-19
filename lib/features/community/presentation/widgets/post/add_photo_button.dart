@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
-
 import '../../manager/create_post_cubit/create_post_cubit.dart';
 
 class AddPhotoButton extends StatelessWidget {

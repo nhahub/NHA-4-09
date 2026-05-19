@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../../data/models/chat_message_model.dart';
-import 'chatbot_bubble.dart';
 import '../manager/chatbot_cubit/chatbot_cubit.dart';
 import 'chat_typing_indicator.dart';
+import 'chatbot_bubble.dart';
 
 class ChatbotMessagesListView extends StatelessWidget {
   final List<ChatMessageModel> messages;

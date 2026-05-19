@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/features/auth/data/repos/user_data_repo.dart';
+import '../../../../auth/data/repos/user_data_repo.dart';
 import 'package:uuid/uuid.dart';
 import '../../../../../core/functions/user_data_local.dart';
 import '../../../../../core/models/user_data_model.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/theming/app_colors.dart';
+import '../theming/app_colors.dart';
 import '../manager/network_cubit/network_cubit.dart';
 import '../theming/app_styles.dart';
 

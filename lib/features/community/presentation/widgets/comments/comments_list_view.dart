@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../data/models/comment_model.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
+import '../../../data/models/comment_model.dart';
 import 'comment_item.dart';
 
 class CommentsListView extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/widgets/custom_error_widget.dart';
+import '../../../../../../core/widgets/custom_error_widget.dart';
 
 import '../../../../../mood/data/models/mood_chart.dart';
 import '../../../../../mood/presentation/manager/mood_progress_cubit/mood_progress_cubit.dart';

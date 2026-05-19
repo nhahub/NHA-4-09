@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/manager/network_cubit/network_cubit.dart';
-import '../../../mood/presentation/manager/mood_cubit/mood_cubit.dart';
 
+import '../../../../core/manager/network_cubit/network_cubit.dart';
 import '../../../../core/services/get_it_service.dart';
 import '../../../home/data/repos/activities_repo.dart';
 import '../../../home/data/repos/quote_repo.dart';
@@ -13,6 +12,7 @@ import '../../../home/presentation/manager/quote_cubit/quote_cubit.dart';
 import '../../../home/presentation/views/home_view.dart';
 import '../../../mood/data/repos/mood_progress_repo.dart';
 import '../../../mood/data/repos/recommendation_repo.dart';
+import '../../../mood/presentation/manager/mood_cubit/mood_cubit.dart';
 import '../../../mood/presentation/manager/mood_progress_cubit/mood_progress_cubit.dart';
 import '../../../mood/presentation/manager/recommendation_cubit/recommendation_cubit.dart';
 import '../../../therapist/data/repos/therapist_repo.dart';

@@ -1,7 +1,10 @@
 import 'dart:async';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../networking/network_info.dart';
+
 part 'network_state.dart';
 
 class NetworkCubit extends Cubit<NetworkState> {

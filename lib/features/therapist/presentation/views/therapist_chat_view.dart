@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moodly/core/functions/error_dialog.dart';
+import '../../../../core/functions/error_dialog.dart';
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/functions/user_data_local.dart';
 import '../../../../core/routing/routes.dart';

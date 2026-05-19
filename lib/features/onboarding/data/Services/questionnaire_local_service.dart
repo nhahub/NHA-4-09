@@ -1,4 +1,4 @@
-import 'package:moodly/features/onboarding/data/models/questionnaire_answers_model.dart';
+import '../models/questionnaire_answers_model.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/services/local_cache_service.dart';

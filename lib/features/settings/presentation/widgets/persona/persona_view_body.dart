@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+
 import '../../../../onboarding/data/models/questionnaire_answers_model.dart';
 import '../../../data/models/persona_model.dart';
 import '../../helpers/persona_helper.dart';
 import 'persona_description.dart';
+import 'persona_experience_footer.dart';
 import 'persona_focus_areas.dart';
 import 'persona_result.dart';
-import 'persona_experience_footer.dart';
 
 class PersonaViewBody extends StatelessWidget {
   final QuestionnaireAnswersModel answers;

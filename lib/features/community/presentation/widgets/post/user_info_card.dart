@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/functions/user_data_local.dart';
-import '../../../../../core/widgets/user_avatar.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/app_styles.dart';
+import '../../../../../core/widgets/user_avatar.dart';
 
 class UserInfoCard extends StatelessWidget {
   const UserInfoCard({super.key});

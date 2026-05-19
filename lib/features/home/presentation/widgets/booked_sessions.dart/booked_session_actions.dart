@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/functions/build_snack_bar.dart';
+import '../../../../../core/functions/build_snack_bar.dart';
 
 import '../../../../../core/extensions/context_extensions.dart';
 import '../../../../../core/routing/routes.dart';

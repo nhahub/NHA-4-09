@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+
 import '../../../data/models/paybal/payment_transaction_model.dart';
 
 abstract class PaymentState extends Equatable {

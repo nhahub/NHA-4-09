@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodly/core/constants/constants.dart';
+import '../constants/constants.dart';
 
 import '../theming/app_styles.dart';
 

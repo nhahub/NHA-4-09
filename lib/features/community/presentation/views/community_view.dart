@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/enums/fade_position.dart';
 import '../../../../core/widgets/fade_scrollable.dart';
 import '../widgets/post/add_community_post_button.dart';
