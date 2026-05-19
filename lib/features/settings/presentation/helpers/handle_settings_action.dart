@@ -19,6 +19,10 @@ void handleSettingsAction({
       context.push(Routes.editProfileView, args: cubit);
       break;
 
+    case SettingsActionType.persona:
+      context.push(Routes.personaView);
+      break;
+
     case SettingsActionType.privacy:
       context.push(Routes.privacyPolicyView);
       break;

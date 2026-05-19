@@ -61,6 +61,7 @@ import '../../features/settings/presentation/manager/privacy_policy_cubit/privac
 import '../../features/settings/presentation/manager/terms_cubit/terms_cubit.dart';
 import '../../features/settings/presentation/manager/update_profile_cubit/update_profile_cubit.dart';
 import '../../features/settings/presentation/views/about_view.dart';
+import '../../features/settings/presentation/views/persona_view.dart';
 import '../../features/settings/presentation/views/privacy_policy_view.dart';
 import '../../features/settings/presentation/views/terms_and_conditions_view.dart';
 import '../../features/settings/presentation/views/update_profile_view.dart';
@@ -158,9 +159,7 @@ class AppRouter {
         );
 
       case Routes.mainView:
-        return MaterialPageRoute(
-          builder: (context) => const MainView(),
-        );
+        return MaterialPageRoute(builder: (context) => const MainView());
 
       case Routes.waterTrackingView:
         final cubit = settings.arguments as WaterTrackingCubit;
@@ -458,6 +457,17 @@ class AppRouter {
                 TherapistCubit(therapistRepo: getIt.get<TherapistRepo>())
                   ..getTherapists(),
             child: const AllTherapistsView(),
+          ),
+        );
+
+      case Routes.personaView:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => QuestionnaireCubit(
+              questionnaireRepo: getIt.get<QuestionnaireRepo>(),
+              userDataRepo: getIt.get<UserDataRepo>(),
+            )..getQuestionnaireAnswers(),
+            child: const PersonaView(),
           ),
         );
 

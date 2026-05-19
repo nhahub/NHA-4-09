@@ -50,6 +50,7 @@ import '../../features/mood/data/services/mood_remote_service.dart';
 import '../../features/mood/data/services/recommendation_local_service.dart';
 import '../../features/onboarding/data/Services/questionnaire_local_service.dart';
 import '../../features/onboarding/data/Services/questionnaire_remote_service.dart';
+import '../../features/onboarding/data/models/questionnaire_answers_model.dart';
 import '../../features/onboarding/data/repos/questionnaire_repo.dart';
 import '../../features/payment/data/repos/payment_repo_imp.dart';
 import '../../features/payment/data/repos/subscription_repo.dart';
@@ -143,6 +144,12 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<QuestionnaireRemoteService>(
     () => QuestionnaireRemoteService(supabaseService: getIt()),
   );
+
+  // Questionnaire Local Cache
+  getIt.registerLazySingleton<LocalCacheService<QuestionnaireAnswersModel>>(
+    () => LocalCacheService<QuestionnaireAnswersModel>(),
+  );
+
   // Questionnaire Local Service
   getIt.registerLazySingleton<QuestionnaireLocalService>(
     () => QuestionnaireLocalService(localCacheService: getIt()),
