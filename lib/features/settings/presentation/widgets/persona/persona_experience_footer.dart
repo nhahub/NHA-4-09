@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../../../core/theming/app_styles.dart';
 
-class PersonalizedExperienceFooter extends StatelessWidget {
-  const PersonalizedExperienceFooter({super.key});
+class PersonaExperienceFooter extends StatelessWidget {
+  const PersonaExperienceFooter({super.key});
 
   @override
   Widget build(BuildContext context) {

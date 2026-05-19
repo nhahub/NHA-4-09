@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodly/core/theming/app_styles.dart';
 
 import '../../../data/models/persona_model.dart';
 
@@ -11,19 +12,17 @@ class PersonaDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(22),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: .08),
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(24),
         border: Border.all(color: Colors.white.withValues(alpha: .1)),
       ),
       child: Text(
         persona.description,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: AppStyles.regular16.copyWith(
           color: Colors.white.withValues(alpha: .9),
-          fontSize: 15,
-          height: 1.7,
         ),
       ),
     );

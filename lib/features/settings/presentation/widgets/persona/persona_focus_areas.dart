@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/theming/app_styles.dart';
 import '../../../data/models/persona_model.dart';
 
 class PersonaFocusAreas extends StatelessWidget {
@@ -23,10 +24,7 @@ class PersonaFocusAreas extends StatelessWidget {
           ),
           child: Text(
             focus,
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w600,
-            ),
+            style: AppStyles.semiBold14.copyWith(color: Colors.white),
           ),
         );
       }).toList(),

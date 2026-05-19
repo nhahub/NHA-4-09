@@ -5,7 +5,7 @@ import '../../helpers/persona_helper.dart';
 import 'persona_description.dart';
 import 'persona_focus_areas.dart';
 import 'persona_result.dart';
-import 'personalized_experience_footer.dart';
+import 'persona_experience_footer.dart';
 
 class PersonaViewBody extends StatelessWidget {
   final QuestionnaireAnswersModel answers;
@@ -27,24 +27,30 @@ class PersonaViewBody extends StatelessWidget {
       ),
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                const SizedBox(height: 16),
-                PersonaResult(persona: persona),
-                const SizedBox(height: 28),
-                PersonaDescription(persona: persona),
-                const SizedBox(height: 28),
-                PersonaFocusAreas(persona: persona),
-                const SizedBox(height: 16),
-                const PersonalizedExperienceFooter(),
-              ],
-            ),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 28),
+                      PersonaResult(persona: persona),
+                      const SizedBox(height: 28),
+                      PersonaDescription(persona: persona),
+                      const SizedBox(height: 28),
+                      PersonaFocusAreas(persona: persona),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              const PersonaExperienceFooter(),
+              const SizedBox(height: 8),
+            ],
           ),
         ),
       ),
     );
   }
 }
-
