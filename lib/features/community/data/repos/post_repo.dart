@@ -7,12 +7,12 @@ import '../models/post_model.dart';
 import '../services/community_media_service.dart';
 import '../services/community_posts_remote_service.dart';
 
-class CreatePostRepo {
+class PostRepo {
   final CommunityPostsRemoteService _postsRemote;
   final CommunityMediaService _mediaService;
   final Uuid _uuid = const Uuid();
 
-  CreatePostRepo({
+  PostRepo({
     required CommunityPostsRemoteService postsRemote,
     required CommunityMediaService mediaService,
   }) : _postsRemote = postsRemote,
@@ -44,8 +44,8 @@ class CreatePostRepo {
     }
   }
 
-  Future<List<PostModel>> getPosts() async {
-    final rows = await _postsRemote.fetchFeedRows();
+  Stream<List<PostModel>> getPosts() {
+  return _postsRemote.streamFeedRows().asyncMap((rows) async {
     final currentUserId = _postsRemote.currentUserId;
 
     final postIds = rows
@@ -53,15 +53,19 @@ class CreatePostRepo {
         .where((id) => id.isNotEmpty)
         .toList();
 
-    final mediaByPost = await _postsRemote.fetchMediaUrlsByPostIds(postIds);
+    final mediaByPost = await _postsRemote.fetchMediaUrlsByPostIds(
+      postIds,
+    );
 
-    final postsFromDb = <PostModel>[];
-    for (final row in rows) {
-      postsFromDb.add(_mapFeedRow(row, mediaByPost, currentUserId));
-    }
-
-    return postsFromDb;
-  }
+    return rows.map((row) {
+      return _mapFeedRow(
+        row,
+        mediaByPost,
+        currentUserId,
+      );
+    }).toList();
+  });
+}
 
   Future<void> togglePostLike({
     required String postId,

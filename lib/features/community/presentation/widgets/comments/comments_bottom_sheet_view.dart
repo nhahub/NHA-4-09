@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/theming/app_colors.dart';
+import '../../../data/models/post_model.dart';
 import 'comment_input_widget.dart';
 import 'comments_bloc_builder.dart';
 import 'comments_sheet_header.dart';
 import 'drag_handle.dart';
 
 class CommentsBottomSheetView extends StatefulWidget {
-  final String postId;
+  final PostModel post;
 
-  const CommentsBottomSheetView({super.key, required this.postId});
+  const CommentsBottomSheetView({super.key, required this.post});
 
   @override
   State<CommentsBottomSheetView> createState() =>
@@ -50,14 +51,11 @@ class _CommentsBottomSheetViewState extends State<CommentsBottomSheetView> {
           const DragHandle(),
           const CommentsSheetHeader(),
           const Divider(height: 1, color: AppColors.dividerColor),
-          CommentsBlocBuilder(
-            postId: widget.postId,
-            onReplyTap: _onReplyTap,
-          ),
+          CommentsBlocBuilder(postId: widget.post.id, onReplyTap: _onReplyTap),
 
           // Input Area
           CommentInputWidget(
-            postId: widget.postId,
+            post: widget.post,
             replyingToCommentId: replyingToCommentId,
             replyingToUserName: replyingToUserName,
             onCancelReply: _cancelReply,
@@ -68,4 +66,3 @@ class _CommentsBottomSheetViewState extends State<CommentsBottomSheetView> {
     );
   }
 }
-

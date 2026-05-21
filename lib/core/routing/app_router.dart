@@ -15,7 +15,7 @@ import '../../features/auth/presentation/views/start_view.dart';
 import '../../features/chatbot/data/repos/chatbot_repo.dart';
 import '../../features/chatbot/presentation/manager/chatbot_cubit/chatbot_cubit.dart';
 import '../../features/chatbot/presentation/views/chatbot_view.dart';
-import '../../features/community/data/repos/create_post_repo.dart';
+import '../../features/community/data/repos/post_repo.dart';
 import '../../features/community/presentation/manager/create_post_cubit/create_post_cubit.dart';
 import '../../features/community/presentation/views/add_community_post_view.dart';
 import '../../features/home/presentation/manager/activities_cubit/activities_cubit.dart';
@@ -193,7 +193,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) =>
-                CreatePostCubit(createPostRepo: getIt.get<CreatePostRepo>()),
+                CreatePostCubit(createPostRepo: getIt.get<PostRepo>()),
             child: const AddCommunityPostView(),
           ),
         );

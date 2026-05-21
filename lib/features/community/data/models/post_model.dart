@@ -1,9 +1,10 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'post_model.g.dart';
 
 @JsonSerializable()
-class PostModel {
+class PostModel extends Equatable {
   final String id;
 
   @JsonKey(name: 'user_id')
@@ -78,8 +79,22 @@ class PostModel {
       loveCount: loveCount ?? this.loveCount,
       commentsCount: commentsCount ?? this.commentsCount,
       sharesCount: sharesCount ?? this.sharesCount,
-      isLikedByCurrentUser:
-          isLikedByCurrentUser ?? this.isLikedByCurrentUser,
+      isLikedByCurrentUser: isLikedByCurrentUser ?? this.isLikedByCurrentUser,
     );
   }
+
+  @override
+  List<Object?> get props => [
+    id,
+    userId,
+    userName,
+    userImage,
+    content,
+    imageUrls,
+    createdAt,
+    loveCount,
+    commentsCount,
+    sharesCount,
+    isLikedByCurrentUser,
+  ];
 }

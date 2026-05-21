@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/networking/api_error_handler.dart';
 import '../../../data/models/comment_model.dart';
+import '../../../data/models/post_model.dart';
 import '../../../data/repos/comments_repo.dart';
 import 'comments_state.dart';
 
@@ -28,7 +29,7 @@ class CommentsCubit extends Cubit<CommentsState> {
         CommentsState(
           status: CommentsStatus.success,
           comments: comments,
-          replies: const {},
+          replies: state.replies,
           errorMessage: null,
         ),
       );
@@ -51,23 +52,16 @@ class CommentsCubit extends Cubit<CommentsState> {
         state.replies ?? const {},
       );
       updatedReplies[commentId] = replies;
-      emit(
-        state.copyWith(
-          replies: updatedReplies,
-          clearErrorMessage: true,
-        ),
-      );
+      emit(state.copyWith(replies: updatedReplies, clearErrorMessage: true));
     } catch (e) {
       emit(
-        state.copyWith(
-          errorMessage: ApiErrorHandler.handle(error: e).message,
-        ),
+        state.copyWith(errorMessage: ApiErrorHandler.handle(error: e).message),
       );
     }
   }
 
   Future<void> addComment({
-    required String postId,
+    required PostModel post,
     required String content,
     String? parentId,
   }) async {
@@ -75,10 +69,15 @@ class CommentsCubit extends Cubit<CommentsState> {
 
     try {
       final newComment = await _repo.addComment(
-        postId: postId,
+        postId: post.id,
         content: content,
         parentId: parentId,
+        oldCommentsCount: snapshot.comments?.length ?? 0,
       );
+
+      if (parentId != null) {
+        await loadReplies(parentId);
+      }
 
       if (parentId == null) {
         final existing = List<CommentModel>.from(snapshot.comments ?? []);

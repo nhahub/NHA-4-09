@@ -11,7 +11,7 @@ import '../../features/chatbot/data/repos/chatbot_repo.dart';
 import '../../features/chatbot/data/services/ai_chatbot_service.dart';
 import '../../features/chatbot/data/services/chatbot_storage_service.dart';
 import '../../features/community/data/repos/comments_repo.dart';
-import '../../features/community/data/repos/create_post_repo.dart';
+import '../../features/community/data/repos/post_repo.dart';
 import '../../features/community/data/services/community_comments_remote_service.dart';
 import '../../features/community/data/services/community_media_service.dart';
 import '../../features/community/data/services/community_posts_remote_service.dart';
@@ -349,8 +349,8 @@ Future<void> setupGetIt() async {
   );
 
   // Community Create/Post Repository
-  getIt.registerLazySingleton<CreatePostRepo>(
-    () => CreatePostRepo(
+  getIt.registerLazySingleton<PostRepo>(
+    () => PostRepo(
       postsRemote: getIt<CommunityPostsRemoteService>(),
       mediaService: getIt<CommunityMediaService>(),
     ),
@@ -457,7 +457,10 @@ Future<void> setupGetIt() async {
   );
 
   getIt.registerLazySingleton<CommentsRepo>(
-    () => CommentsRepo(remote: getIt<CommunityCommentsRemoteService>()),
+    () => CommentsRepo(
+      remote: getIt<CommunityCommentsRemoteService>(),
+      postsRemote: getIt<CommunityPostsRemoteService>(),
+    ),
   );
 
   // Audio Player

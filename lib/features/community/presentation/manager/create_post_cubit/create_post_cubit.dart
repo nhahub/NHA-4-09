@@ -8,21 +8,19 @@ import 'package:uuid/uuid.dart';
 import '../../../../../core/functions/user_data_local.dart';
 import '../../../../../core/networking/api_error_handler.dart';
 import '../../../data/models/post_model.dart';
-import '../../../data/repos/create_post_repo.dart';
+import '../../../data/repos/post_repo.dart';
 
 part 'create_post_state.dart';
 
 class CreatePostCubit extends Cubit<CreatePostState> {
-  final CreatePostRepo _createPostRepo;
+  final PostRepo _createPostRepo;
   final ImagePicker _imagePicker;
   final Uuid _uuid = const Uuid();
 
-  CreatePostCubit({
-    required CreatePostRepo createPostRepo,
-    ImagePicker? imagePicker,
-  }) : _createPostRepo = createPostRepo,
-       _imagePicker = imagePicker ?? ImagePicker(),
-       super(const CreatePostState());
+  CreatePostCubit({required PostRepo createPostRepo, ImagePicker? imagePicker})
+    : _createPostRepo = createPostRepo,
+      _imagePicker = imagePicker ?? ImagePicker(),
+      super(const CreatePostState());
 
   void onTextChanged(String value) {
     emit(

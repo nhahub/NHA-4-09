@@ -6,17 +6,18 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../../core/networking/api_error_handler.dart';
 import '../../../data/models/post_model.dart';
-import '../../../data/repos/create_post_repo.dart';
+import '../../../data/repos/post_repo.dart';
 
 part 'community_feed_state.dart';
 
 class CommunityFeedCubit extends Cubit<CommunityFeedState> {
-  final CreatePostRepo _repo;
+  final PostRepo _repo;
 
   RealtimeChannel? _feedChannel;
   Timer? _realtimeDebounce;
+  StreamSubscription<List<PostModel>>? _postsSubscription;
 
-  CommunityFeedCubit({required CreatePostRepo createPostRepo})
+  CommunityFeedCubit({required PostRepo createPostRepo})
     : _repo = createPostRepo,
       super(const CommunityFeedState(status: CommunityFeedStatus.loading)) {
     _attachRealtime();
@@ -34,23 +35,29 @@ class CommunityFeedCubit extends Cubit<CommunityFeedState> {
   }
 
   Future<void> getPosts() async {
-    try {
-      final posts = await _repo.getPosts();
-      emit(
-        state.copyWith(
-          status: CommunityFeedStatus.success,
-          posts: posts,
-          errorMessage: null,
-        ),
-      );
-    } catch (e) {
-      emit(
-        state.copyWith(
-          status: CommunityFeedStatus.failure,
-          errorMessage: ApiErrorHandler.handle(error: e).message,
-        ),
-      );
-    }
+    emit(state.copyWith(status: CommunityFeedStatus.loading));
+
+    await _postsSubscription?.cancel();
+
+    _postsSubscription = _repo.getPosts().listen(
+      (posts) {
+        emit(
+          state.copyWith(
+            status: CommunityFeedStatus.success,
+            posts: posts,
+            errorMessage: null,
+          ),
+        );
+      },
+      onError: (e) {
+        emit(
+          state.copyWith(
+            status: CommunityFeedStatus.failure,
+            errorMessage: ApiErrorHandler.handle(error: e).message,
+          ),
+        );
+      },
+    );
   }
 
   Future<void> togglePostLike(PostModel post) async {
@@ -94,6 +101,7 @@ class CommunityFeedCubit extends Cubit<CommunityFeedState> {
     if (ch != null) {
       _repo.unsubscribeCommunityFeed(ch);
     }
+    _postsSubscription?.cancel();
     return super.close();
   }
 }

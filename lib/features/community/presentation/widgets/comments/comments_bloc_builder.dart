@@ -53,7 +53,7 @@ class CommentsBlocBuilder extends StatelessWidget {
               }
               return CommentsListView(
                 comments: state.comments!,
-                replies: state.replies!,
+                replies: state.replies ?? const {},
                 isLoading: false,
                 onReplyTap: onReplyTap,
               );

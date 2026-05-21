@@ -29,16 +29,26 @@ community_post_likes(user_id)
 ''';
 
   /// Single query: posts with owner profile, like rows for counts + current user flag.
-  Future<List<Map<String, dynamic>>> fetchFeedRows() async {
-    final response = await _crudService.getData(
-      table: kCommunityPostsTable,
-      select: _feedSelect,
-      orderBy: 'created_at',
-      ascending: false,
-    );
-    return List<Map<String, dynamic>>.from(response as List<dynamic>);
-  }
+Stream<List<Map<String, dynamic>>> streamFeedRows() {
+  return _crudService
+      .listenToTable(
+        table: kCommunityPostsTable,
+        primaryKey: ['id'],
+        orderBy: 'created_at',
+        ascending: false,
+      )
+      .asyncMap((posts) async {
+        final ids = posts.map((e) => e['id']).toList();
 
+        return await _crudService.getData(
+          table: kCommunityPostsTable,
+          select: _feedSelect,
+          filters: {'id': ids},
+          orderBy: 'created_at',
+          ascending: false,
+        );
+      });
+}
   Future<Map<String, List<String>>> fetchMediaUrlsByPostIds(
     List<String> postIds,
   ) async {
@@ -72,6 +82,18 @@ community_post_likes(user_id)
           .toList();
       return MapEntry(postId, urls);
     });
+  }
+
+  Future<void> incrementCommentsCount({
+    required String postId,
+    required int commentsCount,
+  }) async {
+    await _crudService.updateData(
+      table: kCommunityPostsTable,
+      data: {'comments_count': commentsCount},
+      idColumn: 'id',
+      idValue: postId,
+    );
   }
 
   Future<void> insertPostRow(Map<String, dynamic> data) async {

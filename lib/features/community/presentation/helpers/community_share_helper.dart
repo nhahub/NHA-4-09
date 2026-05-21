@@ -6,7 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/constants/app_keys.dart';
 import '../../../../core/services/get_it_service.dart';
 import '../../data/models/post_model.dart';
-import '../../data/repos/create_post_repo.dart';
+import '../../data/repos/post_repo.dart';
 
 class CommunityShareHelper {
   CommunityShareHelper._();
@@ -35,7 +35,7 @@ class CommunityShareHelper {
               onTap: () async {
                 Navigator.pop(ctx);
                 await copyPostLink(post.id);
-                await getIt<CreatePostRepo>().recordShare(post.id);
+                await getIt<PostRepo>().recordShare(post.id);
               },
             ),
             ListTile(
@@ -50,7 +50,7 @@ class CommunityShareHelper {
                 if (await canLaunchUrl(url)) {
                   await launchUrl(url, mode: LaunchMode.externalApplication);
                 }
-                await getIt<CreatePostRepo>().recordShare(post.id);
+                await getIt<PostRepo>().recordShare(post.id);
               },
             ),
             ListTile(
@@ -63,7 +63,7 @@ class CommunityShareHelper {
                     text: '${post.content.trim()}\n${postDeepLink(post.id)}',
                   ),
                 );
-                await getIt<CreatePostRepo>().recordShare(post.id);
+                await getIt<PostRepo>().recordShare(post.id);
               },
             ),
           ],
@@ -81,6 +81,6 @@ class CommunityShareHelper {
     PostModel post,
   ) async {
     await copyPostLink(post.id);
-    await getIt<CreatePostRepo>().recordShare(post.id);
+    await getIt<PostRepo>().recordShare(post.id);
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/community/data/models/post_model.dart';
 
 import '../../../../../core/functions/user_data_local.dart';
 import '../../../../../core/theming/app_colors.dart';
@@ -7,7 +8,7 @@ import '../../../../../core/widgets/user_avatar.dart';
 import '../../manager/comments_cubit/comments_cubit.dart';
 
 class CommentInputWidget extends StatefulWidget {
-  final String postId;
+  final PostModel post;
   final String? replyingToCommentId;
   final String? replyingToUserName;
   final VoidCallback onCancelReply;
@@ -15,7 +16,7 @@ class CommentInputWidget extends StatefulWidget {
 
   const CommentInputWidget({
     super.key,
-    required this.postId,
+    required this.post,
     this.replyingToCommentId,
     this.replyingToUserName,
     required this.onCancelReply,
@@ -33,7 +34,7 @@ class _CommentInputWidgetState extends State<CommentInputWidget> {
     if (_controller.text.trim().isEmpty) return;
 
     context.read<CommentsCubit>().addComment(
-      postId: widget.postId,
+      post: widget.post,
       content: _controller.text.trim(),
       parentId: widget.replyingToCommentId,
     );
