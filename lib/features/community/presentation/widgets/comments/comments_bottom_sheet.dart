@@ -1,12 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
 import '../../../../../core/services/get_it_service.dart';
 import '../../../data/models/post_model.dart';
-import '../../../data/repos/comments_repo.dart';
 import '../../../data/services/community_comments_remote_service.dart';
 import '../../manager/comments_cubit/comments_cubit.dart';
 import 'comments_bottom_sheet_view.dart';
@@ -18,13 +15,9 @@ class CommentsBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          CommentsCubit(repo: getIt<CommentsRepo>())..loadComments(post.id),
-      child: _CommentsRealtimeScope(
-        postId: post.id,
-        child: CommentsBottomSheetView(post: post),
-      ),
+    return _CommentsRealtimeScope(
+      postId: post.id,
+      child: CommentsBottomSheetView(post: post),
     );
   }
 }

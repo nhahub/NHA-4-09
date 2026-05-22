@@ -1,8 +1,6 @@
 import 'dart:io';
-
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:uuid/uuid.dart';
-
 import '../models/post_model.dart';
 import '../services/community_media_service.dart';
 import '../services/community_posts_remote_service.dart';
@@ -27,8 +25,6 @@ class PostRepo {
       'id': post.id,
       'user_id': post.userId,
       'content': post.content.trim(),
-      'user_name': post.userName,
-      'user_image': post.userImage,
     });
 
     if (post.imageUrls.isNotEmpty) {
@@ -45,27 +41,21 @@ class PostRepo {
   }
 
   Stream<List<PostModel>> getPosts() {
-  return _postsRemote.streamFeedRows().asyncMap((rows) async {
-    final currentUserId = _postsRemote.currentUserId;
+    return _postsRemote.streamFeedRows().asyncMap((rows) async {
+      final currentUserId = _postsRemote.currentUserId;
 
-    final postIds = rows
-        .map((r) => (r['id'] ?? '').toString())
-        .where((id) => id.isNotEmpty)
-        .toList();
+      final postIds = rows
+          .map((r) => (r['id'] ?? '').toString())
+          .where((id) => id.isNotEmpty)
+          .toList();
 
-    final mediaByPost = await _postsRemote.fetchMediaUrlsByPostIds(
-      postIds,
-    );
+      final mediaByPost = await _postsRemote.fetchMediaUrlsByPostIds(postIds);
 
-    return rows.map((row) {
-      return _mapFeedRow(
-        row,
-        mediaByPost,
-        currentUserId,
-      );
-    }).toList();
-  });
-}
+      return rows.map((row) {
+        return _mapFeedRow(row, mediaByPost, currentUserId);
+      }).toList();
+    });
+  }
 
   Future<void> togglePostLike({
     required String postId,
@@ -107,8 +97,8 @@ class PostRepo {
     return PostModel(
       id: postId,
       userId: (row['user_id'] ?? '').toString(),
-      userName: (row['user_name'] ?? '').toString(),
-      userImage: (row['user_image'] ?? '').toString(),
+      userName: row['user_data']?['name'],
+      userAvatar: row['user_data']?['picture'],
       content: (row['content'] ?? '').toString(),
       imageUrls: mediaByPost[postId] ?? [],
       createdAt:

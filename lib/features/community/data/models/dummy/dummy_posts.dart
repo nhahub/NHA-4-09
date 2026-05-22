@@ -7,7 +7,7 @@ class DummyPosts {
       id: '__loading__$i',
       userId: '',
       userName: ' ',
-      userImage: '',
+      userAvatar: '',
       content: ' ',
       createdAt: DateTime.now(),
     ),

@@ -24,7 +24,7 @@ class CommunityCommentsRemoteService {
 ''';
   final currentUserId = getUser()!.userId;
 
-  Future<List<CommentModel>> fetchTopLevelComments(String postId) async {
+  Future<List<CommentModel>> fetchComments({required String postId}) async {
     final response = await _crudService.getData(
       table: kCommunityCommentsTable,
       select: _commentSelect,
@@ -46,7 +46,9 @@ class CommunityCommentsRemoteService {
     }).toList();
   }
 
-  Future<List<CommentModel>> fetchReplies(String parentCommentId) async {
+  Future<List<CommentModel>> fetchReplies({
+    required String parentCommentId,
+  }) async {
     final response = await _crudService.getData(
       table: kCommunityCommentsTable,
       select: _commentSelect,

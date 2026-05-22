@@ -138,7 +138,7 @@ class _CommentItemState extends State<CommentItem> {
                         onTap: () {
                           if (!_showReplies) {
                             context.read<CommentsCubit>().loadReplies(
-                              widget.comment.id,
+                              commentId: widget.comment.id,
                             );
                           }
                           setState(() {

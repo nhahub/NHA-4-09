@@ -19,12 +19,13 @@ class CommentsCubit extends Cubit<CommentsState> {
         status: CommentsStatus.loading,
         comments: state.comments,
         replies: state.replies,
+        commentsCount: state.commentsCount,
         errorMessage: null,
       ),
     );
 
     try {
-      final comments = await _repo.fetchComments(postId);
+      final comments = await _repo.fetchComments(postId: postId);
       emit(
         CommentsState(
           status: CommentsStatus.success,
@@ -45,9 +46,9 @@ class CommentsCubit extends Cubit<CommentsState> {
     }
   }
 
-  Future<void> loadReplies(String commentId) async {
+  Future<void> loadReplies({required String commentId}) async {
     try {
-      final replies = await _repo.fetchReplies(commentId);
+      final replies = await _repo.fetchReplies(commentId: commentId);
       final updatedReplies = Map<String, List<CommentModel>>.from(
         state.replies ?? const {},
       );
@@ -76,7 +77,7 @@ class CommentsCubit extends Cubit<CommentsState> {
       );
 
       if (parentId != null) {
-        await loadReplies(parentId);
+        await loadReplies(commentId: parentId);
       }
 
       if (parentId == null) {
@@ -85,6 +86,7 @@ class CommentsCubit extends Cubit<CommentsState> {
           snapshot.copyWith(
             status: CommentsStatus.success,
             comments: [newComment, ...existing],
+            commentsCount: snapshot.commentsCount + 1,
             clearErrorMessage: true,
           ),
         );

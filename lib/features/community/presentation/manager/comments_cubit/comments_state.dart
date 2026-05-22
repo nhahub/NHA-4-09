@@ -13,18 +13,26 @@ extension CommentsStatusX on CommentsStatus {
 class CommentsState extends Equatable {
   final CommentsStatus status;
   final List<CommentModel>? comments;
+  final int commentsCount;
   final Map<String, List<CommentModel>>? replies;
   final String? errorMessage;
 
   const CommentsState({
     this.status = CommentsStatus.loading,
     this.comments,
+    this.commentsCount = 0,
     this.replies,
     this.errorMessage,
   });
 
   @override
-  List<Object?> get props => [status, comments, replies, errorMessage];
+  List<Object?> get props => [
+    status,
+    comments,
+    replies,
+    errorMessage,
+    commentsCount,
+  ];
 
   CommentsState copyWith({
     CommentsStatus? status,
@@ -32,11 +40,13 @@ class CommentsState extends Equatable {
     Map<String, List<CommentModel>>? replies,
     String? errorMessage,
     bool clearErrorMessage = false,
+    int? commentsCount,
   }) {
     return CommentsState(
       status: status ?? this.status,
       comments: comments ?? this.comments,
       replies: replies ?? this.replies,
+      commentsCount: commentsCount ?? this.commentsCount,
       errorMessage: clearErrorMessage
           ? null
           : (errorMessage ?? this.errorMessage),

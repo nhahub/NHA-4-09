@@ -89,8 +89,6 @@ class CreatePostCubit extends Cubit<CreatePostState> {
       final post = PostModel(
         id: _uuid.v4(),
         userId: loggedUserId,
-        userName: getUser()?.name ?? 'unknown_user',
-        userImage: getUser()?.picture ?? '',
         content: state.content.trim(),
         imageUrls: imageUrls,
         createdAt: DateTime.now(),

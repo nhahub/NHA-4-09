@@ -12,12 +12,12 @@ class CommentsRepo {
   }) : _remote = remote,
        _postsRemote = postsRemote;
 
-  Future<List<CommentModel>> fetchComments(String postId) {
-    return _remote.fetchTopLevelComments(postId);
+  Future<List<CommentModel>> fetchComments({required String postId}) {
+    return _remote.fetchComments(postId: postId);
   }
 
-  Future<List<CommentModel>> fetchReplies(String commentId) {
-    return _remote.fetchReplies(commentId);
+  Future<List<CommentModel>> fetchReplies({required String commentId}) {
+    return _remote.fetchReplies(parentCommentId: commentId);
   }
 
   Future<CommentModel> addComment({

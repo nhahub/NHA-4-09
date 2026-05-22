@@ -23,32 +23,34 @@ content,
 created_at,
 shares_count,
 comments_count,
-user_name,
-user_image,
-community_post_likes(user_id)
+community_post_likes(user_id),
+user_data (
+  name,
+  picture
+)
 ''';
 
-  /// Single query: posts with owner profile, like rows for counts + current user flag.
-Stream<List<Map<String, dynamic>>> streamFeedRows() {
-  return _crudService
-      .listenToTable(
-        table: kCommunityPostsTable,
-        primaryKey: ['id'],
-        orderBy: 'created_at',
-        ascending: false,
-      )
-      .asyncMap((posts) async {
-        final ids = posts.map((e) => e['id']).toList();
-
-        return await _crudService.getData(
+  Stream<List<Map<String, dynamic>>> streamFeedRows() {
+    return _crudService
+        .listenToTable(
           table: kCommunityPostsTable,
-          select: _feedSelect,
-          filters: {'id': ids},
+          primaryKey: ['id'],
           orderBy: 'created_at',
           ascending: false,
-        );
-      });
-}
+        )
+        .asyncMap((posts) async {
+          final ids = posts.map((e) => e['id']).toList();
+
+          return await _crudService.getData(
+            table: kCommunityPostsTable,
+            select: _feedSelect,
+            filters: {'id': ids},
+            orderBy: 'created_at',
+            ascending: false,
+          );
+        });
+  }
+
   Future<Map<String, List<String>>> fetchMediaUrlsByPostIds(
     List<String> postIds,
   ) async {

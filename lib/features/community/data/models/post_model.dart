@@ -10,11 +10,11 @@ class PostModel extends Equatable {
   @JsonKey(name: 'user_id')
   final String userId;
 
-  @JsonKey(name: 'user_name')
-  final String userName;
+  @JsonKey(name: 'user_name', includeFromJson: false, includeToJson: false)
+  final String? userName;
 
-  @JsonKey(name: 'user_image')
-  final String userImage;
+  @JsonKey(name: 'user_avatar', includeFromJson: false, includeToJson: false)
+  final String? userAvatar;
 
   final String content;
 
@@ -39,8 +39,8 @@ class PostModel extends Equatable {
   const PostModel({
     required this.id,
     required this.userId,
-    required this.userName,
-    required this.userImage,
+    this.userName,
+    this.userAvatar,
     required this.content,
     this.imageUrls = const [],
     required this.createdAt,
@@ -59,7 +59,7 @@ class PostModel extends Equatable {
     String? id,
     String? userId,
     String? userName,
-    String? userImage,
+    String? userAvatar,
     String? content,
     List<String>? imageUrls,
     DateTime? createdAt,
@@ -72,7 +72,7 @@ class PostModel extends Equatable {
       id: id ?? this.id,
       userId: userId ?? this.userId,
       userName: userName ?? this.userName,
-      userImage: userImage ?? this.userImage,
+      userAvatar: userAvatar ?? this.userAvatar,
       content: content ?? this.content,
       imageUrls: imageUrls ?? this.imageUrls,
       createdAt: createdAt ?? this.createdAt,
@@ -88,7 +88,7 @@ class PostModel extends Equatable {
     id,
     userId,
     userName,
-    userImage,
+    userAvatar,
     content,
     imageUrls,
     createdAt,

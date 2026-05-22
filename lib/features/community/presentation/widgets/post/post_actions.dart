@@ -1,14 +1,14 @@
-
 import 'package:flutter/material.dart';
-
-import '../../../../../core/helpers/logger.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moodly/features/community/presentation/manager/comments_cubit/comments_cubit.dart';
+import 'package:moodly/features/community/presentation/manager/comments_cubit/comments_state.dart';
 import '../../../../../core/theming/app_assets.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../data/models/post_model.dart';
 import '../comments/comments_bottom_sheet.dart';
 import 'action_item.dart';
 
-class PostActions extends StatelessWidget {
+class PostActions extends StatefulWidget {
   final PostModel post;
   final VoidCallback? onLikeTap;
   final VoidCallback? onRepeatTap;
@@ -23,43 +23,64 @@ class PostActions extends StatelessWidget {
   });
 
   @override
+  State<PostActions> createState() => _PostActionsState();
+}
+
+class _PostActionsState extends State<PostActions> {
+  late final CommentsCubit cubit;
+
+  @override
+  void initState() {
+    cubit = context.read<CommentsCubit>();
+    cubit.loadComments(widget.post.id);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    Logger.log(post.commentsCount.toString());
     return Row(
       children: [
-        ActionItem(
-          key: ValueKey(post.id + post.commentsCount.toString()),
-          iconSvg: AppAssets.chatCircleIcon,
-          count: post.commentsCount,
-          onTap: () {
-            showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              backgroundColor: Colors.transparent,
-              builder: (context) => Padding(
-                padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom,
-                ),
-                child: CommentsBottomSheet(post: post),
-              ),
+        BlocBuilder<CommentsCubit, CommentsState>(
+          builder: (context, state) {
+            return ActionItem(
+              iconSvg: AppAssets.chatCircleIcon,
+              count: widget.post.commentsCount + state.commentsCount,
+              onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  builder: (context) => Padding(
+                    padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom,
+                    ),
+                    child: BlocProvider.value(
+                      value: cubit,
+                      child: CommentsBottomSheet(post: widget.post),
+                    ),
+                  ),
+                );
+              },
             );
           },
         ),
         const SizedBox(width: 24),
         ActionItem(
           iconSvg: AppAssets.repeatIcon,
-          count: post.sharesCount,
-          onTap: () => onRepeatTap?.call(),
+          count: widget.post.sharesCount,
+          onTap: () => widget.onRepeatTap?.call(),
         ),
         const SizedBox(width: 24),
         ActionItem(
-          iconSvg: post.isLikedByCurrentUser
+          iconSvg: widget.post.isLikedByCurrentUser
               ? AppAssets.heartFillIcon
               : AppAssets.heartIcon,
-          countColor: post.isLikedByCurrentUser ? AppColors.lightRed : null,
-          count: post.loveCount,
+          countColor: widget.post.isLikedByCurrentUser
+              ? AppColors.lightRed
+              : null,
+          count: widget.post.loveCount,
           onTap: () {
-            onLikeTap?.call();
+            widget.onLikeTap?.call();
           },
         ),
       ],
