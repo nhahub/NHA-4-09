@@ -288,14 +288,14 @@ lib/features
 ### Settings Screen  
 ![Settings Screen](assets/moodly_app_presentation/27.png)  
 
-### Profile Screen  
-![Profile Screen](assets/moodly_app_presentation/28.png)  
+### Update Profile Screen  
+![Update Profile Screen](assets/moodly_app_presentation/28.png)  
 
 ### Settings Screens Continue  
 ![Settings Screens Continue](assets/moodly_app_presentation/29.png)  
 
-### Logout Screen  
-![Logout Screen](assets/moodly_app_presentation/30.png)  
+### Rating App and Logout Screens  
+![Rating App and Logout Screens](assets/moodly_app_presentation/30.png)  
 
 ### Thank You  
 ![Thank You](assets/moodly_app_presentation/31.png)  
